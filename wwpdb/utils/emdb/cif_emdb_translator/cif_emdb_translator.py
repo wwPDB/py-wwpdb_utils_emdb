@@ -1334,7 +1334,11 @@ class CifEMDBTranslator(object):
                     cif_value = [item for item in category_list if item[0] == full_key]
                     if cif_value is not None:
                         if len(cif_value) == 1 and len(cif_value[0]) == 2:
-                            return cif_value[0][1]
+                            ret = cif_value[0][1]
+                            # Handle unicode
+                            if ret:
+                                ret = ret.encode()
+                            return ret
                         else:
                             return None
             else:
