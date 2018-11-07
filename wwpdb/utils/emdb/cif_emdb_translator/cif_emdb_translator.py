@@ -33,9 +33,9 @@ from lxml import etree
 
 # Deployment paths
 from wwpdb.apps.deposit.depui.mmcif_v2.PdbxIoUtil import PdbxIoUtil
-from wwpdb.api.facade.ConfigInfo import ConfigInfo
-from wwpdb.api.facade.ConfigInfo import getSiteId
-from pdbx_v2.adapter.IoAdapterCore import IoAdapterCore
+from wwpdb.utils.config.ConfigInfo import ConfigInfo
+from wwpdb.utils.config.ConfigInfo import getSiteId
+from mmcif.io.IoAdapterCore import IoAdapterCore
 import emdb
 
 

@@ -2,7 +2,7 @@ import sys
 import traceback, argparse
 
 from wwpdb.api.plugins.UtilsBase import UtilsBase
-from wwpdb.api.facade.ConfigInfo import ConfigInfo
+from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from pdbx_v2.trans.InstanceMapper import InstanceMapper
 
 class convert(UtilsBase):
