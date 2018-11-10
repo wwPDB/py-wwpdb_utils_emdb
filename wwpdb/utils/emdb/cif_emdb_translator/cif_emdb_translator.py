@@ -36,7 +36,7 @@ from wwpdb.apps.deposit.depui.mmcif_v2.PdbxIoUtil import PdbxIoUtil
 from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from mmcif.io.IoAdapterCore import IoAdapterCore
-import emdb
+import wwpdb.utils.emdb.cif_emdb_translator.emdb as emdb
 
 
 class CifEMDBTranslator(object):
@@ -954,7 +954,7 @@ class CifEMDBTranslator(object):
         """
         log_content = log_str.getvalue()
         if self.show_log_on_console:
-            print '%s' % log_content
+            print('%s' % log_content)
         self.write_to_file(log_file_name, log_content)
 
     def write_logger_logs(self, write_error_log=False, write_warn_log=False, write_info_log=False):
@@ -10636,7 +10636,7 @@ class CifEMDBTranslator(object):
             set_entry_type()
             self.translation_log.logs.append(self.entry_in_translation_log)
         else:
-            print 'cif file NOT read'
+            print('cif file NOT read')
             # TODO
             # txt = u'Translation cannot be performed. The cif file (%s) cannot be read.' % self.cif_file_name
             # self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' +txt))
@@ -10793,7 +10793,7 @@ def main():
 
     # Check for sensible/supported options
     if len(args) == 0:
-        print usage
+        print(usage)
         sys.exit("No input options given!")
     #     else:
     #         input_file = args[0]
