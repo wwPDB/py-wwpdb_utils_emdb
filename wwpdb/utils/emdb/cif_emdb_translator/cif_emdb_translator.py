@@ -48,7 +48,7 @@ class CifEMDBTranslator(object):
         There are many constants in use for the translation.
         They have been collected here for ease of use.
         """
-        XML_OUT_VERSION = '3.0.0.1'
+        XML_OUT_VERSION = '3.0.1.1'
 
         # Cif categories
         CITATION = 'citation'
@@ -233,7 +233,7 @@ class CifEMDBTranslator(object):
         # Other constants
         CIF_EMDB_ASSOC = 'associated EM volume'
         CIF_EMDB_OTHER = 'other EM volume'
-        CIF_AUTHOR_RE = re.compile(r"^([A-Za-z '\-\.]+), (([A-Z\-]+\.)*)$")
+        CIF_AUTHOR_RE = re.compile(r'^([A-Za-z \'\-.]+), (([A-Z\-]+\.)*)')
         CIF_HALF_MAP_RE = re.compile(r"^D_[0-9]+\_em\-half\-volume\_P([0-9]+)\.map")
         CIF_ADD_MAP_RE = re.compile(r"^D_[0-9]+\_em\-additional\-volume\_P([0-9]+)\.map")
         CIF_EMD_ID_RE = re.compile(r"EMD\-([0-9]){4}")
@@ -1747,7 +1747,7 @@ class CifEMDBTranslator(object):
                 auth_match = re.match(const.CIF_AUTHOR_RE, auth_in)
                 if auth_match is not None and not auth_in.isspace():
                     match_groups = auth_match.groups()
-                    auth_out = '%s %s' % (match_groups[0], match_groups[1].replace('.', ''))
+                    auth_out = '%s %s' % (match_groups[0].replace('.', ''), match_groups[1].replace('.', ''))
                 else:
                     auth_out = ''
                     txt = u'Author name: (%s) is not in a required CIF format.' % auth_in
@@ -3798,17 +3798,17 @@ class CifEMDBTranslator(object):
                             """
                             XSD: <xs:element name="natural_source" type="complex_natural_source_type" minOccurs="0"/> is
                             .. an extension of base="base_source_type" and
-                            .. a sequence of organ, tissue, cell
+                            .. a sequence of organ, tissue, cell, organelle and cellular location
                             """
                             nat_src_dict_in = sup_mol_dicts['nat_src_dict_in']
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
                                 cmpx_dict = {'add_nat_src': True,
-                                             'add_organ': False,
-                                             'add_tissue': False,
-                                             'add_cell': False,
-                                             'add_organelle': False,
-                                             'add_cellular_location': False
+                                             'add_organ': True,
+                                             'add_tissue': True,
+                                             'add_cell': True,
+                                             'add_organelle': True,
+                                             'add_cellular_location': True
                                              }
                                 complex_natural_source_type_list = []
                                 attr_ncbis = []
@@ -9983,35 +9983,30 @@ class CifEMDBTranslator(object):
                             # get structure determination method
                             struct_det_method = get_cif_value('method', const.EMD_STRUCTURE_DETERMINATION)
                             # determine map type
-                            map_type = None
-                            map_dict_in = make_list_of_dicts(const.EMD_MAP, 'type')
-                            pr_map_list_in = map_dict_in[const.MAP_PRIMARY] if const.MAP_PRIMARY in map_dict_in else []
-                            len_pr_map_list_in = len(pr_map_list_in)
-                            if len_pr_map_list_in == 1:
-                                map_type = get_cif_value('type', const.EMD_MAP, pr_map_list_in[0])
-                                if map_type == 'primary map':
-                                    if struct_det_method != 'TOMOGRAPHY':
-                                        cntr_level = get_cif_value('contour_level', const.EMD_MAP, cif_list=map_in)
-                                        if cntr_level is not None:
-                                            if not isinstance(cntr_level, str):
-                                                set_cif_value(cntr.set_level, 'contour_level', const.EMD_MAP, cif_list=map_in, fmt=float)
-                                            else:
-                                                # contour level is a string; check if the string can be converted
-                                                if is_number(cntr_level.lstrip('+-')):
-                                                    cl_float = float(cntr_level.lstrip('+-'))
-                                                    set_cif_value(cntr.set_level, 'contour_level', const.EMD_MAP, cif_list=map_in, cif_value=cl_float)
-                                                else:
-                                                    txt = u'Contour level is given as a text value of %s . This is not correct. It should be a number.' % cntr_level
-                                                    self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
-                                                    self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                            map_type = get_cif_value('type', const.EMD_MAP, cif_list=map_in)
+                            if map_type == 'primary map':
+                                if struct_det_method != 'TOMOGRAPHY':
+                                    cntr_level = get_cif_value('contour_level', const.EMD_MAP, cif_list=map_in)
+                                    if cntr_level is not None:
+                                        if not isinstance(cntr_level, str):
+                                            set_cif_value(cntr.set_level, 'contour_level', const.EMD_MAP, cif_list=map_in, fmt=float)
                                         else:
-                                            txt = u'Contour level is missing for %s.' % struct_det_method
-                                            self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
-                                            self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                                            # contour level is a string; check if the string can be converted
+                                            if is_number(cntr_level.lstrip('+-')):
+                                                cl_float = float(cntr_level.lstrip('+-'))
+                                                set_cif_value(cntr.set_level, 'contour_level', const.EMD_MAP, cif_list=map_in, cif_value=cl_float)
+                                            else:
+                                                txt = u'Contour level is given as a text value of %s . This is not correct. It should be a number.' % cntr_level
+                                                self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
+                                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                                     else:
-                                        txt = u'Contour level is not set for TOMOGRAPHY primary map.'
-                                        self.current_entry_log.info_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.info_title + txt))
-                                        self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
+                                        txt = u'Contour level is missing for %s.' % struct_det_method
+                                        self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
+                                        self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                                else:
+                                    txt = u'Contour level is not set for TOMOGRAPHY primary map.'
+                                    self.current_entry_log.info_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.info_title + txt))
+                                    self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
 
                         def set_el_source(cntr, map_in):
                             """
@@ -10179,10 +10174,12 @@ class CifEMDBTranslator(object):
 
             def set_attr_version():
                 """
-                XSD: <xs:attribute name="version" use="required">
+                XSD: <xs:attribute name="version" type="xs:token" default="3.0.0.1"/>
                 NOT IN CIF: The value is added in here -
                 """
-                self.xml_out.set_version(const.XML_OUT_VERSION)
+                # no need to set the version as the dafualt value is given
+                # self.xml_out.set_version(const.XML_OUT_VERSION)
+                pass
 
             def set_el_admin():
                 """
