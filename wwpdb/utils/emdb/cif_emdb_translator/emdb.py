@@ -2,24 +2,24 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Fri Jul  6 15:14:51 2018 by generateDS.py version 2.29.5.
+# Generated Fri Nov 23 18:06:41 2018 by generateDS.py version 2.29.5.
 # Python 2.7.11 (v2.7.11:6d1b6a68f775, Dec  5 2015, 12:54:16)  [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', '../../IdeaProjects/cif-emdb-translator/emdb.py')
+#   ('-o', '/Users/sanja/IdeaProjects/cif-emdb-translator/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   ../../IdeaProjects/emdb-schemas/v3/v3_0_0_1/emdb.xsd
+#   /Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_1_2/emdb.xsd
 #
 # Command line:
-#   /Users/sanja/Documents/generateDS-2.29.5/generateDS.py --root-element="emd" -f -o "../../IdeaProjects/cif-emdb-translator/emdb.py" --no-warnings --external-encoding="utf-8" ../../IdeaProjects/emdb-schemas/v3/v3_0_0_1/emdb.xsd
+#   /Users/sanja/Documents/modified_generateDS-2.29.5/generateDS.py --root-element="emd" -f -o "/Users/sanja/IdeaProjects/cif-emdb-translator/emdb.py" --no-warnings --external-encoding="utf-8" /Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_1_2/emdb.xsd
 #
 # Current working directory (os.getcwd()):
-#   generateDS-2.29.5
+#   v3
 #
 
 import sys
@@ -140,7 +140,10 @@ except ImportError as exp:
                     raise_parse_error(node, 'Requires sequence of integers')
             return values
         def gds_format_float(self, input_data, input_name=''):
-            return ('%.15f' % input_data).rstrip('0')
+            if (str(input_data)).endswith('.0'):
+                return ('%.1f' % input_data)
+            else:
+                return ('%.15f' % input_data).rstrip('0')
         def gds_validate_float(self, input_data, node=None, input_name=''):
             return input_data
         def gds_format_float_list(self, input_data, input_name=''):
@@ -722,7 +725,7 @@ def _cast(typ, value):
 class entry_type(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version=None, admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
+    def __init__(self, emdb_id=None, version='3.0.1.2', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
         self.original_tagname_ = None
         self.emdb_id = _cast(None, emdb_id)
         self.version = _cast(None, version)
@@ -4244,9 +4247,14 @@ class complex_supramolecule_type(base_supramolecule_type):
 class complex_natural_source_type(base_source_type):
     subclass = None
     superclass = base_source_type
-    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None):
+    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None, organ=None, tissue=None, cell=None, organelle=None, cellular_location=None):
         self.original_tagname_ = None
         super(complex_natural_source_type, self).__init__(database, organism, strain, synonym_organism, )
+        self.organ = organ
+        self.tissue = tissue
+        self.cell = cell
+        self.organelle = organelle
+        self.cellular_location = cellular_location
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -4258,8 +4266,23 @@ class complex_natural_source_type(base_source_type):
         else:
             return complex_natural_source_type(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def get_organ(self): return self.organ
+    def set_organ(self, organ): self.organ = organ
+    def get_tissue(self): return self.tissue
+    def set_tissue(self, tissue): self.tissue = tissue
+    def get_cell(self): return self.cell
+    def set_cell(self, cell): self.cell = cell
+    def get_organelle(self): return self.organelle
+    def set_organelle(self, organelle): self.organelle = organelle
+    def get_cellular_location(self): return self.cellular_location
+    def set_cellular_location(self, cellular_location): self.cellular_location = cellular_location
     def hasContent_(self):
         if (
+            self.organ is not None or
+            self.tissue is not None or
+            self.cell is not None or
+            self.organelle is not None or
+            self.cellular_location is not None or
             super(complex_natural_source_type, self).hasContent_()
         ):
             return True
@@ -4290,6 +4313,25 @@ class complex_natural_source_type(base_source_type):
         super(complex_natural_source_type, self).exportAttributes(outfile, level, already_processed, namespace_, name_='complex_natural_source_type')
     def exportChildren(self, outfile, level, namespace_='', name_='complex_natural_source_type', fromsubclass_=False, pretty_print=True):
         super(complex_natural_source_type, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.organ is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<organ>%s</organ>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.organ), input_name='organ')), eol_))
+        if self.tissue is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tissue>%s</tissue>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tissue), input_name='tissue')), eol_))
+        if self.cell is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cell>%s</cell>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cell), input_name='cell')), eol_))
+        if self.organelle is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<organelle>%s</organelle>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.organelle), input_name='organelle')), eol_))
+        if self.cellular_location is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cellular_location>%s</cellular_location>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cellular_location), input_name='cellular_location')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -4300,8 +4342,47 @@ class complex_natural_source_type(base_source_type):
     def buildAttributes(self, node, attrs, already_processed):
         super(complex_natural_source_type, self).buildAttributes(node, attrs, already_processed)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'organ':
+            organ_ = child_.text
+            if organ_:
+                organ_ = re_.sub(String_cleanup_pat_, " ", organ_).strip()
+            else:
+                organ_ = ""
+            organ_ = self.gds_validate_string(organ_, node, 'organ')
+            self.organ = organ_
+        elif nodeName_ == 'tissue':
+            tissue_ = child_.text
+            if tissue_:
+                tissue_ = re_.sub(String_cleanup_pat_, " ", tissue_).strip()
+            else:
+                tissue_ = ""
+            tissue_ = self.gds_validate_string(tissue_, node, 'tissue')
+            self.tissue = tissue_
+        elif nodeName_ == 'cell':
+            cell_ = child_.text
+            if cell_:
+                cell_ = re_.sub(String_cleanup_pat_, " ", cell_).strip()
+            else:
+                cell_ = ""
+            cell_ = self.gds_validate_string(cell_, node, 'cell')
+            self.cell = cell_
+        elif nodeName_ == 'organelle':
+            organelle_ = child_.text
+            if organelle_:
+                organelle_ = re_.sub(String_cleanup_pat_, " ", organelle_).strip()
+            else:
+                organelle_ = ""
+            organelle_ = self.gds_validate_string(organelle_, node, 'organelle')
+            self.organelle = organelle_
+        elif nodeName_ == 'cellular_location':
+            cellular_location_ = child_.text
+            if cellular_location_:
+                cellular_location_ = re_.sub(String_cleanup_pat_, " ", cellular_location_).strip()
+            else:
+                cellular_location_ = ""
+            cellular_location_ = self.gds_validate_string(cellular_location_, node, 'cellular_location')
+            self.cellular_location = cellular_location_
         super(complex_natural_source_type, self).buildChildren(child_, node, nodeName_, True)
-        pass
 # end class complex_natural_source_type
 
 
@@ -9217,7 +9298,7 @@ class ultramicrotomy_final_thickness_type(GeneratedsSuper):
         else:
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='ultramicrotomy_final_thickness_type'):
-        if self.units != "nm" and 'units' not in already_processed:
+        if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
     def exportChildren(self, outfile, level, namespace_='', name_='ultramicrotomy_final_thickness_type', fromsubclass_=False, pretty_print=True):
@@ -9440,7 +9521,7 @@ class fib_dose_rate_type(GeneratedsSuper):
         else:
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='fib_dose_rate_type'):
-        if self.units != "ions/(cm^2*s)" and 'units' not in already_processed:
+        if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
     def exportChildren(self, outfile, level, namespace_='', name_='fib_dose_rate_type', fromsubclass_=False, pretty_print=True):
@@ -9590,7 +9671,7 @@ class fib_initial_thickness_type(GeneratedsSuper):
         else:
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='fib_initial_thickness_type'):
-        if self.units != "nm" and 'units' not in already_processed:
+        if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
     def exportChildren(self, outfile, level, namespace_='', name_='fib_initial_thickness_type', fromsubclass_=False, pretty_print=True):
@@ -9665,7 +9746,7 @@ class fib_final_thickness_type(GeneratedsSuper):
         else:
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='fib_final_thickness_type'):
-        if self.units != "nm" and 'units' not in already_processed:
+        if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
     def exportChildren(self, outfile, level, namespace_='', name_='fib_final_thickness_type', fromsubclass_=False, pretty_print=True):
@@ -15770,7 +15851,7 @@ class validation_type(GeneratedsSuper):
             if not self.gds_validate_simple_patterns(
                     self.validate_fileType45_patterns_, value):
                 warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_fileType45_patterns_, ))
-    validate_fileType45_patterns_ = [['emd_\\d{4,}_fsc.xml']]
+    validate_fileType45_patterns_ = [['emd_\\d{4,}_fsc(_[1-9]{1,})*.xml']]
     def hasContent_(self):
         if (
             self.file is not None or
