@@ -48,7 +48,7 @@ class CifEMDBTranslator(object):
         There are many constants in use for the translation.
         They have been collected here for ease of use.
         """
-        XML_OUT_VERSION = '3.0.1.1'
+        XML_OUT_VERSION = '3.0.1.3'
 
         # Cif categories
         CITATION = 'citation'
