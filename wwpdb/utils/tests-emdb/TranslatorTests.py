@@ -26,9 +26,10 @@ mockTopPath = os.path.join(TOPDIR, 'wwpdb', 'mock-data')
 from wwpdb.utils.testing.SiteConfigSetup  import SiteConfigSetup
 SiteConfigSetup().setupEnvironment(TESTOUTPUT, mockTopPath)
 
-
+#
 from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTranslator
 from wwpdb.utils.config.ConfigInfo import ConfigInfo
+
 
 class ImportTests(unittest.TestCase):
     def setUp(self):
@@ -37,20 +38,21 @@ class ImportTests(unittest.TestCase):
         self.__logfile = os.path.join(TESTOUTPUT, 'emd-0000.log')
         pass
 
-    def testInstantiate(self):
+    @staticmethod
+    def testInstantiate():
         """Tests simple instantiation"""
-        cT = CifEMDBTranslator()
+        CifEMDBTranslator()
 
     def testTranslateSuppressed(self):
         """Tests translation of suppressed input"""
 
-        cI = ConfigInfo()
-        schema = os.path.join(cI.get('SITE_EM_DICT_PATH'), 'emdb-v3.xsd')
+        ci = ConfigInfo()
+        schema = os.path.join(ci.get('SITE_EM_DICT_PATH'), 'emdb-v3.xsd')
         
         translator = CifEMDBTranslator()
         translator.set_logger_logging(log_error=True, error_log_file_name=self.__logfile)
         translator.read_emd_map_v2_cif_file()
-        translator.translate_and_validate(in_cif=self.__inpfile, out_xml=self.__outfile, in_schema = schema)
+        translator.translate_and_validate(in_cif=self.__inpfile, out_xml=self.__outfile, in_schema=schema)
         # This will close the output file
         translator.write_logger_logs(write_error_log=True)
 
