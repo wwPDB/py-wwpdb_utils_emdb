@@ -44,7 +44,7 @@ setup(
         'console_scripts': ['em_emd_conversion=wwpdb.utils.config.emdb.cif_emdb_translator:main']
     },
     #
-    install_requires=['lxml', 'wwpdb.apps.deposit'],
+    install_requires=['lxml', 'mmcif', 'wwpdb.utils.config'],
     packages=find_packages(exclude=['wwpdb.utils.tests-emdb', 'mock-data', 'tests.*', 'wwpdb.utils.emdb/cif_emdb)translator/*test*.py']),
     package_data={
         # If any package contains *.md or *.rst ...  files, include them:

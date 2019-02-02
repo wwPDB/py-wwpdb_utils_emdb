@@ -32,12 +32,64 @@ from optparse import OptionParser
 from lxml import etree
 
 # Deployment paths
-from wwpdb.apps.deposit.depui.mmcif_v2.PdbxIoUtil import PdbxIoUtil
 from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from mmcif.io.IoAdapterCore import IoAdapterCore
 import wwpdb.utils.emdb.cif_emdb_translator.emdb as emdb
 
+class Cif(object):
+    """Class to represent parsed cif file conforming to needed interface"""
+    def __init__(self, container):
+        """
+        Initialize and stash data
+        :param container: DataContainer
+        """
+        self.__block = container[0]
+
+        # Create a tree
+        #print(dir(self.__block))
+        #print self.__block.getObjNameList()
+
+    def __getitem__(self, item):
+        # Handle if abc in self.cif - key is an integer
+        if type(item) == int:
+            nl = self.__block.getObjNameList()
+            if item >= len(nl):
+                raise StopIteration
+            else:
+                return nl[item]
+
+        return self.get(item)
+
+    def get(self, catname, err = False):
+        """Returns tuple representation of category or none like:
+
+        a= [[('_database_2.database_id', u'PDB'), ('_database_2.database_code', u'0XXX')],
+            [('_database_2.database_id', u'WWPDB'), ('_database_2.database_code', u'D_10001')],
+            [('_database_2.database_id', u'EMDB'), ('_database_2.database_code', u'EMD-0000')]]
+
+            '?' and '.' items not included
+        """
+
+        # DepUI reader use to treat a key that was not in dictionary as KeyError for [] or None for get method.
+        # However, if in dictionary both methods return [] if not in model file
+        dc_obj = self.__block.getObj(catname)
+        if not dc_obj:
+            return []
+
+        retlist = []
+
+        #print dir(dc_obj)
+        attrlist = dc_obj.getAttributeList()
+        for row in range(dc_obj.getRowCount()):
+            rowlist = []
+            for attr in attrlist:
+                value = dc_obj.getValue(attributeName=attr, rowIndex=row)
+                if value not in ['?', '.']:
+                    rowlist.append(('_%s.%s' % (catname, attr), value))
+            retlist.append(rowlist)
+
+        return retlist
 
 class CifEMDBTranslator(object):
     """Class for translating files from/to cif from EMDB XML 3.0"""
@@ -1167,83 +1219,84 @@ class CifEMDBTranslator(object):
         """
         const = self.Constants
         self.cif_file_name = cif_file_name
-        self.io_util = PdbxIoUtil()
-        self.cif = self.io_util.loadFile(cif_file_name,
-                                         includeCategoryList=[const.CITATION,
-                                                              const.CITATION_AUTHOR,
-                                                              const.DATABASE_2,
-                                                              const.EMD_ADMIN,
-                                                              const.EMD_DEPUI,
-                                                              const.EMD_ANGLE_ASSIGNMENT,
-                                                              const.AUDIT_AUTHOR,
-                                                              const.EMD_AUTHOR_LIST,
-                                                              const.EMD_BUFFER,
-                                                              const.EMD_BUFFER_COMPONENT,
-                                                              const.EMD_CROSSREFERENCE,
-                                                              const.EMD_CROSSREFERENCE_AUXILIARY,
-                                                              const.EMD_CRYSTAL_FORMATION,
-                                                              const.EMD_CRYSTALLOGRAPHY_SHELL,
-                                                              const.EMD_CRYSTALLOGRAPHY_STATS,
-                                                              const.EMD_CTF_CORRECTION,
-                                                              const.EMD_EMBEDDING,
-                                                              const.EMD_FIDUCIAL_MARKERS,
-                                                              const.EMD_FINAL_CLASSIFICATION,
-                                                              const.EMD_FINAL_2D_CLASSIFICATION,
-                                                              const.EMD_FINAL_RECONSTRUCTION,
-                                                              const.EMD_FSC_CURVE,
-                                                              const.EMD_GRID,
-                                                              const.EMD_GRID_PRETREATMENT,
-                                                              const.EMD_HELICAL_PARAMETERS,
-                                                              const.EMD_HIGH_PRESSURE_FREEZING,
-                                                              const.EMD_IMAGE_DIGITIZATION,
-                                                              const.EMD_MAP,
-                                                              const.EMD_MICROSCOPY,
-                                                              const.EMD_MICROSCOPY_CRYSTALLOGRAPHY,
-                                                              const.EMD_MICROSCOPY_TOMOGRAPHY,
-                                                              const.EMD_MOLECULAR_MASS,
-                                                              const.EMD_MODELLING,
-                                                              const.EMD_MODELLING_INITIAL_MODEL,
-                                                              const.EMD_NATURAL_SOURCE,
-                                                              const.EMD_IMAGE_PROCESSING,
-                                                              const.EMD_IMAGE_RECORDING,
-                                                              const.EMD_PARTICLE_SELECTION,
-                                                              const.EMD_RECOMBINANT_EXPRESSION,
-                                                              const.EMD_SECTIONING_FOCUSED_ION_BEAM,
-                                                              const.EMD_SECTIONING_ULTRAMICROTOMY,
-                                                              const.EMD_SHADOWING,
-                                                              const.EMD_SOFTWARE,
-                                                              const.EMD_SPECIALIST_OPTICS,
-                                                              const.EMD_SPECIMEN,
-                                                              const.EMD_STAINING,
-                                                              const.EMD_STARTUP_MODEL,
-                                                              const.EMD_STRUCTURE_DETERMINATION,
-                                                              const.EMD_SUPPORT_FILM,
-                                                              const.EMD_SUPRAMOLECULE,
-                                                              const.EMD_SYMMETRY_POINT,
-                                                              const.EMD_THREE_D_CRYSTAL_PARAMETERS,
-                                                              const.EMD_TOMOGRAPHY_PREPARATION,
-                                                              const.EMD_TWO_D_CRYSTAL_PARAMETERS,
-                                                              const.EMD_VIRUS,
-                                                              const.EMD_VIRUS_NATURAL_HOST,
-                                                              const.EMD_VIRUS_SHELL,
-                                                              const.EMD_VITRIFICATION,
-                                                              const.EMD_VOLUME_SELECTION,
-                                                              const.ENTITY,
-                                                              const.ENTITY_POLY,
-                                                              const.ENTITY_SRC_GEN,
-                                                              const.ENTITY_SRC_NAT,
-                                                              const.EXPTL,
-                                                              const.PDBX_DATABASE_RELATED,
-                                                              const.PDBX_DATABASE_STATUS,
-                                                              const.PDBX_ENTITY_NONPOLY,
-                                                              const.PDBX_DEPOSITOR_INFO,
-                                                              const.PDBX_OBS_SPR,
-                                                              const.PDBX_AUDIT_SUPPORT,
-                                                              const.PDBX_CONTACT_AUTHOR,
-                                                              const.STRUCT,
-                                                              const.PDBX_ENTITY_SRC_SYN]
-                                         )
-        if self.cif is not None or self.cif == {}:
+        self.io_util = IoAdapterCore()
+        container = self.io_util.readFile(inputFilePath=cif_file_name,
+                                          selectList=[const.CITATION,
+                                                      const.CITATION_AUTHOR,
+                                                      const.DATABASE_2,
+                                                      const.EMD_ADMIN,
+                                                      const.EMD_DEPUI,
+                                                      const.EMD_ANGLE_ASSIGNMENT,
+                                                      const.AUDIT_AUTHOR,
+                                                      const.EMD_AUTHOR_LIST,
+                                                      const.EMD_BUFFER,
+                                                      const.EMD_BUFFER_COMPONENT,
+                                                      const.EMD_CROSSREFERENCE,
+                                                      const.EMD_CROSSREFERENCE_AUXILIARY,
+                                                      const.EMD_CRYSTAL_FORMATION,
+                                                      const.EMD_CRYSTALLOGRAPHY_SHELL,
+                                                      const.EMD_CRYSTALLOGRAPHY_STATS,
+                                                      const.EMD_CTF_CORRECTION,
+                                                      const.EMD_EMBEDDING,
+                                                      const.EMD_FIDUCIAL_MARKERS,
+                                                      const.EMD_FINAL_CLASSIFICATION,
+                                                      const.EMD_FINAL_2D_CLASSIFICATION,
+                                                      const.EMD_FINAL_RECONSTRUCTION,
+                                                      const.EMD_FSC_CURVE,
+                                                      const.EMD_GRID,
+                                                      const.EMD_GRID_PRETREATMENT,
+                                                      const.EMD_HELICAL_PARAMETERS,
+                                                      const.EMD_HIGH_PRESSURE_FREEZING,
+                                                      const.EMD_IMAGE_DIGITIZATION,
+                                                      const.EMD_MAP,
+                                                      const.EMD_MICROSCOPY,
+                                                      const.EMD_MICROSCOPY_CRYSTALLOGRAPHY,
+                                                      const.EMD_MICROSCOPY_TOMOGRAPHY,
+                                                      const.EMD_MOLECULAR_MASS,
+                                                      const.EMD_MODELLING,
+                                                      const.EMD_MODELLING_INITIAL_MODEL,
+                                                      const.EMD_NATURAL_SOURCE,
+                                                      const.EMD_IMAGE_PROCESSING,
+                                                      const.EMD_IMAGE_RECORDING,
+                                                      const.EMD_PARTICLE_SELECTION,
+                                                      const.EMD_RECOMBINANT_EXPRESSION,
+                                                      const.EMD_SECTIONING_FOCUSED_ION_BEAM,
+                                                      const.EMD_SECTIONING_ULTRAMICROTOMY,
+                                                      const.EMD_SHADOWING,
+                                                      const.EMD_SOFTWARE,
+                                                      const.EMD_SPECIALIST_OPTICS,
+                                                      const.EMD_SPECIMEN,
+                                                      const.EMD_STAINING,
+                                                      const.EMD_STARTUP_MODEL,
+                                                      const.EMD_STRUCTURE_DETERMINATION,
+                                                      const.EMD_SUPPORT_FILM,
+                                                      const.EMD_SUPRAMOLECULE,
+                                                      const.EMD_SYMMETRY_POINT,
+                                                      const.EMD_THREE_D_CRYSTAL_PARAMETERS,
+                                                      const.EMD_TOMOGRAPHY_PREPARATION,
+                                                      const.EMD_TWO_D_CRYSTAL_PARAMETERS,
+                                                      const.EMD_VIRUS,
+                                                      const.EMD_VIRUS_NATURAL_HOST,
+                                                      const.EMD_VIRUS_SHELL,
+                                                      const.EMD_VITRIFICATION,
+                                                      const.EMD_VOLUME_SELECTION,
+                                                      const.ENTITY,
+                                                      const.ENTITY_POLY,
+                                                      const.ENTITY_SRC_GEN,
+                                                      const.ENTITY_SRC_NAT,
+                                                      const.EXPTL,
+                                                      const.PDBX_DATABASE_RELATED,
+                                                      const.PDBX_DATABASE_STATUS,
+                                                      const.PDBX_ENTITY_NONPOLY,
+                                                      const.PDBX_DEPOSITOR_INFO,
+                                                      const.PDBX_OBS_SPR,
+                                                      const.PDBX_AUDIT_SUPPORT,
+                                                      const.PDBX_CONTACT_AUTHOR,
+                                                      const.STRUCT,
+                                                      const.PDBX_ENTITY_SRC_SYN]
+                                          )
+        self.cif = Cif(container)
+        if container is not None or container == {}:
             self.cif_file_read = True
 
     def write_xml_out_file(self, xml_out_file_name):
