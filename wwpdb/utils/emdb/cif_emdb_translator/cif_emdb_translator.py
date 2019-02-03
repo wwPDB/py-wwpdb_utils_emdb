@@ -1388,9 +1388,9 @@ class CifEMDBTranslator(object):
                     if cif_value is not None:
                         if len(cif_value) == 1 and len(cif_value[0]) == 2:
                             ret = cif_value[0][1]
-                            # Handle unicode
+                            # Handle unicode returned from mmCIF parsers, as Python 2 unidcode does not support upper()
                             if ret:
-                                ret = ret.encode()
+                                ret = str(ret)
                             return ret
                         else:
                             return None
@@ -10705,7 +10705,8 @@ class CifEMDBTranslator(object):
         Method to validate any schema against any file
         """
         try:
-            xml_file = open(xml_filename, 'r')
+            # Python3 reqires a byte string for lxml as encoding in file
+            xml_file = open(xml_filename, 'rb')
             try:
                 etree.fromstring(xml_file.read(), the_parser)
             except etree.XMLSyntaxError:
@@ -10768,7 +10769,8 @@ class CifEMDBTranslator(object):
         Validate in_xml against in_schema
         """
         try:
-            in_schema = open(in_schema_filename, 'r')
+            # For python3, as encoding in file, lxml requires bytes string
+            in_schema = open(in_schema_filename, 'rb')
         except IOError as exp:
             txt = u'Error %s occurred. Arguments are: %s.' % (exp.message, exp.args)
             self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.validation_title + txt))
