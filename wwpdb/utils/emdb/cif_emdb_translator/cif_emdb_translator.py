@@ -35,7 +35,7 @@ from lxml import etree
 from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from mmcif.io.IoAdapterCore import IoAdapterCore
-import emdb
+from  . import emdb
 
 class Cif(object):
     """Class to represent parsed cif file conforming to needed interface"""
