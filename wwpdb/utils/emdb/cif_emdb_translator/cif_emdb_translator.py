@@ -19,7 +19,7 @@ under the License.
 """
 __author__ = 'Ardan Patwardhan, Sanja Abbott'
 __email__ = 'ardan@ebi.ac.uk, sanja@ebi.ac.uk'
-__date__ = '2017-08-22'
+__date__ = '2019-05-17'
 __version__ = '1.0'
 
 import os
@@ -35,7 +35,7 @@ from lxml import etree
 from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from mmcif.io.IoAdapterCore import IoAdapterCore
-import wwpdb.utils.emdb.cif_emdb_translator.emdb as emdb
+import emdb
 
 class Cif(object):
     """Class to represent parsed cif file conforming to needed interface"""
@@ -100,7 +100,7 @@ class CifEMDBTranslator(object):
         There are many constants in use for the translation.
         They have been collected here for ease of use.
         """
-        XML_OUT_VERSION = '3.0.1.4'
+        XML_OUT_VERSION = '3.0.1.5'
 
         # Cif categories
         CITATION = 'citation'
@@ -661,8 +661,8 @@ class CifEMDBTranslator(object):
             '_pdbx_database_PDB_obs_spr.details': '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             '_pdbx_database_PDB_obs_spr.pdb_id': '<xs:element name="entry" type="emdb_id_type"/>',
             '_pdbx_audit_support.funding_organization': '<xs:element name="funding_body" type="xs:token"/>',
-            '_pdbx_audit_support.grant_number': '<xs:element name="code" type="xs:token"/>',
-            '_pdbx_audit_support.country': '<xs:element name="country" type="xs:token"/>',
+            '_pdbx_audit_support.grant_number': '<xs:element name="code" type="xs:token minOccurs="0"/>',
+            '_pdbx_audit_support.country': '<xs:element name="country" type="xs:token" minOccurs="0"/>',
             '_pdbx_contact_author.role': '<xs:element name="role">',
             '_pdbx_contact_author.name_salutation': '<xs:element name="title">',
             '_pdbx_contact_author.name_first': '<xs:element name="first_name" type="xs:token">',
@@ -2127,14 +2127,14 @@ class CifEMDBTranslator(object):
 
                         def set_el_code(grant_ref, aud_sup, parent_req=False):
                             """
-                            XSD: <xs:element name="code" type="xs:token"/>
+                            XSD: <xs:element name="code" type="xs:token minOccures="0"/>
                             CIF: _pdbx_audit_support.grant_number
                             """
                             set_cif_value(grant_ref.set_code, 'grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup, parent_el_req=parent_req)
 
                         def set_el_country(grant_ref, aud_sup, parent_req=False):
                             """
-                            XSD: <xs:element name="country" type="xs:token"/>
+                            XSD: <xs:element name="country" type="xs:token" minOccurs="0"/>
                             CIF: _pdbx_audit_support.country
                             """
                             set_cif_value(grant_ref.set_country, 'country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup, parent_el_req=parent_req)
@@ -2146,12 +2146,12 @@ class CifEMDBTranslator(object):
                         # element 3
                         set_el_country(grant_ref, aud_sup, parent_req=False)
 
-                    for aud_sup in aud_sup_in:
+                    for aud_sup_key, aud_sup in aud_sup_in.items():
                         # all three sub-elements are required
                         el_funding_body = get_cif_value('funding_organization', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
                         el_code = get_cif_value('grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
                         el_country = get_cif_value('country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
-                        if el_funding_body is not None or el_code is not None or el_country is not None:
+                        if el_funding_body is not None: # or el_code is not None or el_country is not None:
                             grant_ref = emdb.grant_reference_type()
                             set_grant_reference_type(grant_ref, aud_sup)
                             if grant_ref.hasContent_():
