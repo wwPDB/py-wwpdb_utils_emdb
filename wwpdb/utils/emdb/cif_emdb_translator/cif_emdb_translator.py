@@ -5572,7 +5572,7 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="material" type="xs:token">
                         CIF: _emd_shadowing.material 'Platinum'
                         """
-                        set_cif_value(shadow.set_material, 'material', const.EMD_SHADOWING, cif_lit=shadow_in, parent_el_req=False)
+                        set_cif_value(shadow.set_material, 'material', const.EMD_SHADOWING, cif_list=shadow_in, parent_el_req=False)
 
                     def set_el_angle(shadow, shadow_in):
                         """
@@ -5609,7 +5609,7 @@ class CifEMDBTranslator(object):
 
                 if sp_id_in in shadow_dict_in:
                     shadow_in = shadow_dict_in[sp_id_in]
-                    el_material = get_cif_value('material', const.EMD_SHADOWING, cif_lit=shadow_in)
+                    el_material = get_cif_value('material', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_angle = get_cif_value('angle', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_thickness = get_cif_value('thickness', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_details = get_cif_value('details', const.EMD_SHADOWING, cif_list=shadow_in)
