@@ -5877,11 +5877,9 @@ class CifEMDBTranslator(object):
                         """
                         details_txt = u''
                         instrument = get_cif_value('instrument', const.EMD_VITRIFICATION, cif_list=vitr_in)
-                        allowed_instruments = {'FEI VITROBOT MARK I', 'FEI VITROBOT MARK II', 'FEI VITROBOT MARK III',
-                                               'FEI VITROBOT MARK IV',
-                                               'GATAN CRYOPLUNGE 3', 'HOMEMADE PLUNGER', 'LEICA EM CPC', 'LEICA EM GP',
-                                               'LEICA KF80',
-                                               'LEICA PLUNGER', 'REICHERT-JUNG PLUNGER', 'OTHER'}
+                        allowed_instruments = {'EMS-002 RAPID IMMERSION FREEZER', 'FEI VITROBOT MARK I', 'FEI VITROBOT MARK II', 'FEI VITROBOT MARK III',
+                                               'FEI VITROBOT MARK IV', 'GATAN CRYOPLUNGE 3', 'HOMEMADE PLUNGER', 'LEICA EM CPC', 'LEICA EM GP',
+                                               'LEICA KF80', 'LEICA PLUNGER', 'REICHERT-JUNG PLUNGER', 'SPOTITON', 'OTHER'}
                         if instrument is not None:
                             if instrument in allowed_instruments:
                                 set_cif_value(vitr.set_instrument, 'instrument', const.EMD_VITRIFICATION, cif_list=vitr_in)
