@@ -2146,11 +2146,11 @@ class CifEMDBTranslator(object):
                         # element 3
                         set_el_country(grant_ref, aud_sup, parent_req=False)
 
-		    for aud_sup_key, aud_sup in aud_sup_in.items():
-			el_funding_body = get_cif_value('funding_organization', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
+                    for aud_sup_key, aud_sup in aud_sup_in.items():
+                        el_funding_body = get_cif_value('funding_organization', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
                         el_code = get_cif_value('grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
                         el_country = get_cif_value('country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
-			if el_funding_body is not None: # or el_code is not None or el_country is not None:
+                        if el_funding_body is not None: # or el_code is not None or el_country is not None:
                             grant_ref = emdb.grant_reference_type()
                             set_grant_reference_type(grant_ref, aud_sup)
                             if grant_ref.hasContent_():
@@ -5608,7 +5608,7 @@ class CifEMDBTranslator(object):
 
                 if sp_id_in in shadow_dict_in:
                     shadow_in = shadow_dict_in[sp_id_in]
-		    el_material = get_cif_value('material', const.EMD_SHADOWING, cif_list=shadow_in)
+                    el_material = get_cif_value('material', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_angle = get_cif_value('angle', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_thickness = get_cif_value('thickness', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_details = get_cif_value('details', const.EMD_SHADOWING, cif_list=shadow_in)
