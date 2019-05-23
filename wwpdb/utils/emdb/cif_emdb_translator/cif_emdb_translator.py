@@ -5581,14 +5581,14 @@ class CifEMDBTranslator(object):
                         CIF: _emd_shadowing.angle 20
                         IS THIS CORRECT??????
                         """
-                        set_cif_value(shadow.set_angle, 'angle', const.EMD_SHADOWING, cif_list=shadow_in, constructor=emdb.angleType, fmt=float, parent_el_req=False)
+                        set_cif_value(shadow.set_angle, 'angle', const.EMD_SHADOWING, cif_list=shadow_in, constructor=emdb.angleType, fmt=float, units=const.U_DEG, parent_el_req=False)
 
                     def set_el_thickness(shadow, shadow_in):
                         """
                         XSD: <xs:element name="thickness">
                         CIF: _emd_shadowing.thickness ?
                         """
-                        set_cif_value(shadow.set_thickness, 'thickness', const.EMD_SHADOWING, cif_list=shadow_in, constructor=emdb.thicknessType, fmt=float, parent_el_req=False)
+                        set_cif_value(shadow.set_thickness, 'thickness', const.EMD_SHADOWING, cif_list=shadow_in, constructor=emdb.thicknessType, fmt=float, units=const.U_NM, parent_el_req=False)
 
                     def set_el_details(shadow, shadow_in):
                         """
@@ -5608,7 +5608,8 @@ class CifEMDBTranslator(object):
 
                 if sp_id_in in shadow_dict_in:
                     shadow_in = shadow_dict_in[sp_id_in]
-                    el_material = get_cif_value('material', const.EMD_SHADOWING, cif_list=shadow_in)
+                    print 'shadowing %s' % shadow_in
+		    el_material = get_cif_value('material', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_angle = get_cif_value('angle', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_thickness = get_cif_value('thickness', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_details = get_cif_value('details', const.EMD_SHADOWING, cif_list=shadow_in)
