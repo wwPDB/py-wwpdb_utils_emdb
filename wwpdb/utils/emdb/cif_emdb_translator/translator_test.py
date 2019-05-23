@@ -80,7 +80,7 @@ class TestTranslator(unittest.TestCase):
                 test_dir = os.path.join(script_loc, self.testInputCifDir)
                 test_cifs = glob.glob(test_dir + '/*.cif')
                 for test_cif in test_cifs:
-                    if test_cif.find('emd_8835.cif') != -1:
+                    if test_cif.find('OTHER-4464-REDO.cif'):
                         xml_out = os.path.join(self.outputXmlDir, 'test.xml')
                         translator.translate_and_validate(test_cif, xml_out, self.schema)
                         translator.write_logger_logs(True, True, True)

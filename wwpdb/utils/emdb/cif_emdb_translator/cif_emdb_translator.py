@@ -9564,7 +9564,7 @@ class CifEMDBTranslator(object):
                                         mic_id = int(mic_id_in)
                                         mic_list = microscopy_list.get_microscopy()
                                         for mic in mic_list:
-                                            if mic.get_id() == mic_id:
+                                            if mic.get_microscopy_id() == mic_id:
                                                 set_software_list(const.SOFT_IMAGE_ACQUISITION, cat_soft_dict_in,
                                                                   mic.set_software_list)
 
