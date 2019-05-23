@@ -5608,7 +5608,6 @@ class CifEMDBTranslator(object):
 
                 if sp_id_in in shadow_dict_in:
                     shadow_in = shadow_dict_in[sp_id_in]
-                    print 'shadowing %s' % shadow_in
 		    el_material = get_cif_value('material', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_angle = get_cif_value('angle', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_thickness = get_cif_value('thickness', const.EMD_SHADOWING, cif_list=shadow_in)
