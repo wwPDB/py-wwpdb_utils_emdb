@@ -8,7 +8,7 @@ SVN_PATH= os.path.join(SOFTWARE_ROOT, 'scripts/image_scripts/production/2015onwa
 SCRIPT_PATH = os.path.join(SVN_PATH, 'PDB_plugin.py')
 PREPARE= '/nfs/msd/oldnas9a/msd-pdbprepare/Processing/prepare'
 EM_PREPARE = '/nfs/msd/oldnas9a/msd-emprepare/prepare/'
-PRE_FTP = '/ebi/msd/work2/ftp/pdb/data/structures/all/mmCIF/'
+PRE_FTP = '/nfs/msd/work2/ftp/pdb/data/structures/all/mmCIF/'
 
 getLatestPath = os.path.join(SOFTWARE_ROOT, 'scripts/cif_utilities/getPDB/getLatest.py')
 
@@ -16,16 +16,16 @@ getLatestPath = os.path.join(SOFTWARE_ROOT, 'scripts/cif_utilities/getPDB/getLat
 # Database connection details
 db_user = 'pdberead'
 db_pass = 'pdberead55'
-db_sid  = 'mysql-wwpdb-da-prod.ebi.ac.uk'
+db_sid  = 'mysql-pdbe-onedep-prod.ebi.ac.uk'
 db_port = "4437"
 
 # Create a SQL Alchemy 'engine', then get the connection object so we can use normal SQL rather than objects
 db_connection_string = "mysql://"+db_user+":"+db_pass+"@"+db_sid+":"+db_port
 
-dataPath = '/wwpdb_da/da_top/data/archive'
+dataPath = '/nfs/msd/services/onedep/data/production/archive'
 
 #d_and_a_machine = 'triton-2'
-d_and_a_machine = 'io-2'
+d_and_a_machine = 'pdbe-onedep-emdb'
 
 
 class getWhat():
@@ -133,10 +133,11 @@ class PDBprocessedWhere():
             #print 'no extension'
             lower_entry = self.file.lower()
             ftp_cif = os.path.join(PRE_FTP, lower_entry + '.cif.gz')
-
             # check for entries which have been migrated to deppy
-            if not os.path.exists(os.path.join('/ebi/msd/work2/w3_pdb05/MIGRATION', lower_entry)):
-
+            entry = os.path.join('/ebi/msd/work2/w3_pdb05/MIGRATION', lower_entry)
+            #print entry
+            if os.path.exists(os.path.join('/ebi/msd/work2/w3_pdb05/MIGRATION', lower_entry)):
+                #print 'yes'
                 pdb_folder = os.path.join(PREPARE, lower_entry)
                 ebi_cif = os.path.join(pdb_folder, 'ebi', lower_entry + '.cif')
                 ebi_pdb = os.path.join(pdb_folder, 'ebi', 'pdb'+lower_entry+'.ent')
@@ -165,6 +166,7 @@ class PDBprocessedWhere():
                         return None, None
             else:
                 depID = getDepID(lower_entry).checkType()
+                #print " here"
                 if depID:
                     #print depID
                     modelCif = getLatest(depID=depID, cifType='model', extension='cif').getFileList()
@@ -177,9 +179,9 @@ class getLatest():
 
     def __init__(self, depID, cifType, extension):
 
-            self.depID = depID
-            self.cifType = cifType
-            self.extension = extension
+        self.depID = depID
+        self.cifType = cifType
+        self.extension = extension
 
     def getFileList(self):
         archivePath = os.path.join(dataPath, self.depID)
@@ -196,16 +198,16 @@ class getLatest():
             return None
 
     def prepare_file_list(self, file_list):
-          file_name = None
-          if file_list:
-                file_num = 0
-                for f in file_list:
-		    if not '-cif-parser' in f:
-                      num = int(re.split("\.", re.split(".V", f)[-1])[0])
-                      if num > file_num:
-                            file_num = num
-                            file_name = f
-          return file_name
+        file_name = None
+        if file_list:
+            file_num = 0
+            for f in file_list:
+                if not '-cif-parser' in f:
+                    num = int(re.split("\.", re.split(".V", f)[-1])[0])
+                    if num > file_num:
+                        file_num = num
+                        file_name = f
+        return file_name
 
 
 
