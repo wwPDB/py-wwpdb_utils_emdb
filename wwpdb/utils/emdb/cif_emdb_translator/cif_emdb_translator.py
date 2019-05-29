@@ -19,7 +19,7 @@ under the License.
 """
 __author__ = 'Ardan Patwardhan, Sanja Abbott'
 __email__ = 'ardan@ebi.ac.uk, sanja@ebi.ac.uk'
-__date__ = '2017-08-22'
+__date__ = '2019-05-17'
 __version__ = '1.0'
 
 import os
@@ -35,7 +35,7 @@ from lxml import etree
 from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from mmcif.io.IoAdapterCore import IoAdapterCore
-import wwpdb.utils.emdb.cif_emdb_translator.emdb as emdb
+from  . import emdb
 
 class Cif(object):
     """Class to represent parsed cif file conforming to needed interface"""
@@ -100,7 +100,7 @@ class CifEMDBTranslator(object):
         There are many constants in use for the translation.
         They have been collected here for ease of use.
         """
-        XML_OUT_VERSION = '3.0.1.4'
+        XML_OUT_VERSION = '3.0.1.5'
 
         # Cif categories
         CITATION = 'citation'
@@ -661,8 +661,8 @@ class CifEMDBTranslator(object):
             '_pdbx_database_PDB_obs_spr.details': '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             '_pdbx_database_PDB_obs_spr.pdb_id': '<xs:element name="entry" type="emdb_id_type"/>',
             '_pdbx_audit_support.funding_organization': '<xs:element name="funding_body" type="xs:token"/>',
-            '_pdbx_audit_support.grant_number': '<xs:element name="code" type="xs:token"/>',
-            '_pdbx_audit_support.country': '<xs:element name="country" type="xs:token"/>',
+            '_pdbx_audit_support.grant_number': '<xs:element name="code" type="xs:token minOccurs="0"/>',
+            '_pdbx_audit_support.country': '<xs:element name="country" type="xs:token" minOccurs="0"/>',
             '_pdbx_contact_author.role': '<xs:element name="role">',
             '_pdbx_contact_author.name_salutation': '<xs:element name="title">',
             '_pdbx_contact_author.name_first': '<xs:element name="first_name" type="xs:token">',
@@ -2127,14 +2127,14 @@ class CifEMDBTranslator(object):
 
                         def set_el_code(grant_ref, aud_sup, parent_req=False):
                             """
-                            XSD: <xs:element name="code" type="xs:token"/>
+                            XSD: <xs:element name="code" type="xs:token minOccures="0"/>
                             CIF: _pdbx_audit_support.grant_number
                             """
                             set_cif_value(grant_ref.set_code, 'grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup, parent_el_req=parent_req)
 
                         def set_el_country(grant_ref, aud_sup, parent_req=False):
                             """
-                            XSD: <xs:element name="country" type="xs:token"/>
+                            XSD: <xs:element name="country" type="xs:token" minOccurs="0"/>
                             CIF: _pdbx_audit_support.country
                             """
                             set_cif_value(grant_ref.set_country, 'country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup, parent_el_req=parent_req)
@@ -2146,12 +2146,11 @@ class CifEMDBTranslator(object):
                         # element 3
                         set_el_country(grant_ref, aud_sup, parent_req=False)
 
-                    for aud_sup in aud_sup_in:
-                        # all three sub-elements are required
+                    for aud_sup_key, aud_sup in aud_sup_in.items():
                         el_funding_body = get_cif_value('funding_organization', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
                         el_code = get_cif_value('grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
                         el_country = get_cif_value('country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
-                        if el_funding_body is not None or el_code is not None or el_country is not None:
+                        if el_funding_body is not None: # or el_code is not None or el_country is not None:
                             grant_ref = emdb.grant_reference_type()
                             set_grant_reference_type(grant_ref, aud_sup)
                             if grant_ref.hasContent_():
@@ -2463,7 +2462,7 @@ class CifEMDBTranslator(object):
             # element 6
             set_el_superseded_by_list(admin, obs_spr_in)
             # element 7
-            aud_sup_in = make_dict(const.PDBX_AUDIT_SUPPORT, 'ordinal')
+            aud_sup_in = make_dict(const.PDBX_AUDIT_SUPPORT, 'ordinal', 2)
             set_el_grant_support(admin, aud_sup_in)
             # element 8
             if self.__show_private:
@@ -5572,7 +5571,7 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="material" type="xs:token">
                         CIF: _emd_shadowing.material 'Platinum'
                         """
-                        set_cif_value(shadow.set_material, 'material', const.EMD_SHADOWING, cif_lit=shadow_in, parent_el_req=False)
+                        set_cif_value(shadow.set_material, 'material', const.EMD_SHADOWING, cif_list=shadow_in, parent_el_req=False)
 
                     def set_el_angle(shadow, shadow_in):
                         """
@@ -5582,14 +5581,14 @@ class CifEMDBTranslator(object):
                         CIF: _emd_shadowing.angle 20
                         IS THIS CORRECT??????
                         """
-                        set_cif_value(shadow.set_angle, 'angle', const.EMD_SHADOWING, cif_list=shadow_in, constructor=emdb.angleType, fmt=float, parent_el_req=False)
+                        set_cif_value(shadow.set_angle, 'angle', const.EMD_SHADOWING, cif_list=shadow_in, constructor=emdb.angleType, fmt=float, units=const.U_DEG, parent_el_req=False)
 
                     def set_el_thickness(shadow, shadow_in):
                         """
                         XSD: <xs:element name="thickness">
                         CIF: _emd_shadowing.thickness ?
                         """
-                        set_cif_value(shadow.set_thickness, 'thickness', const.EMD_SHADOWING, cif_list=shadow_in, constructor=emdb.thicknessType, fmt=float, parent_el_req=False)
+                        set_cif_value(shadow.set_thickness, 'thickness', const.EMD_SHADOWING, cif_list=shadow_in, constructor=emdb.thicknessType, fmt=float, units=const.U_NM, parent_el_req=False)
 
                     def set_el_details(shadow, shadow_in):
                         """
@@ -5609,7 +5608,7 @@ class CifEMDBTranslator(object):
 
                 if sp_id_in in shadow_dict_in:
                     shadow_in = shadow_dict_in[sp_id_in]
-                    el_material = get_cif_value('material', const.EMD_SHADOWING, cif_lit=shadow_in)
+                    el_material = get_cif_value('material', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_angle = get_cif_value('angle', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_thickness = get_cif_value('thickness', const.EMD_SHADOWING, cif_list=shadow_in)
                     el_details = get_cif_value('details', const.EMD_SHADOWING, cif_list=shadow_in)
@@ -5877,11 +5876,9 @@ class CifEMDBTranslator(object):
                         """
                         details_txt = u''
                         instrument = get_cif_value('instrument', const.EMD_VITRIFICATION, cif_list=vitr_in)
-                        allowed_instruments = {'FEI VITROBOT MARK I', 'FEI VITROBOT MARK II', 'FEI VITROBOT MARK III',
-                                               'FEI VITROBOT MARK IV',
-                                               'GATAN CRYOPLUNGE 3', 'HOMEMADE PLUNGER', 'LEICA EM CPC', 'LEICA EM GP',
-                                               'LEICA KF80',
-                                               'LEICA PLUNGER', 'REICHERT-JUNG PLUNGER', 'OTHER'}
+                        allowed_instruments = {'EMS-002 RAPID IMMERSION FREEZER', 'FEI VITROBOT MARK I', 'FEI VITROBOT MARK II', 'FEI VITROBOT MARK III',
+                                               'FEI VITROBOT MARK IV', 'GATAN CRYOPLUNGE 3', 'HOMEMADE PLUNGER', 'LEICA EM CPC', 'LEICA EM GP',
+                                               'LEICA KF80', 'LEICA PLUNGER', 'REICHERT-JUNG PLUNGER', 'SPOTITON', 'OTHER'}
                         if instrument is not None:
                             if instrument in allowed_instruments:
                                 set_cif_value(vitr.set_instrument, 'instrument', const.EMD_VITRIFICATION, cif_list=vitr_in)
@@ -9565,7 +9562,8 @@ class CifEMDBTranslator(object):
                                         mic_list = microscopy_list.get_microscopy()
                                         for mic in mic_list:
                                             if mic.get_microscopy_id() == mic_id:
-                                                set_software_list(const.SOFT_IMAGE_ACQUISITION, cat_soft_dict_in,  mic.set_software_list)
+                                                set_software_list(const.SOFT_IMAGE_ACQUISITION, cat_soft_dict_in,
+                                                                  mic.set_software_list)
 
             # attribute 1
             set_attr_id(struct_det)

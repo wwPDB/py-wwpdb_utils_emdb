@@ -32,7 +32,7 @@ under the License.
 
 __author__ = 'Ardan Patwardhan, Sanja Abbott'
 __email__ = 'ardan@ebi.ac.uk, sanja@ebi.ac.uk'
-__date__ = '2017-08-24'
+__date__ = '2019-05-17'
 
 import os.path
 import logging
@@ -52,20 +52,23 @@ class TestTranslator(unittest.TestCase):
     pdbeInputCifDir = 'data/cif'
     rcsbInputCifDir = 'data/rcsb_cifs'
     outputXmlDir = 'data/test/xml_v3_out'
-    testInputCifDir = 'data/test/cif'
+    testInputCifDir = 'data/cif'
 
     schema = "emdb.xsd"
 
     process_rcsb = False
-    process_pdbe = True
-    process_test = False
+    process_pdbe = False
+    process_test = True
 
     def test_cif2xml(self):
 
         # create the translator object
         translator = CifEMDBTranslator()
+        # get the script's location
+        script_loc = os.path.dirname(os.path.realpath(__file__))
         # translator.set_logger_logging(True, True, True, False)
-        translator.set_logger_logging(log_error=True, error_log_file_name='/nfs/msd/work2/sanja/cif_emdb_translator/ERROR.log')
+        error_log_loc = os.path.join(script_loc, 'ERROR.log')
+        translator.set_logger_logging(log_error=True, error_log_file_name=error_log_loc)
         # translator.set_show_log_id(True)
         # Reads mmcif_pdbx_v5_next.dic that contains information
         # about how the em categories map to the emd categories
@@ -74,10 +77,11 @@ class TestTranslator(unittest.TestCase):
 
         if self.process_test:
             try:
-                test_cifs = glob.glob(self.testInputCifDir+'/*.cif')
+                test_dir = os.path.join(script_loc, self.testInputCifDir)
+                test_cifs = glob.glob(test_dir + '/*.cif')
                 for test_cif in test_cifs:
-                    if test_cif.find('D_1000232975_emdb.cif') != -1:
-                        xml_out = os.path.join(self.testInputCifDir+'/test.xml')
+                    if test_cif.find('OTHER-4464-REDO.cif'):
+                        xml_out = os.path.join(self.outputXmlDir, 'test.xml')
                         translator.translate_and_validate(test_cif, xml_out, self.schema)
                         translator.write_logger_logs(True, True, True)
                         print
@@ -122,15 +126,15 @@ class TestTranslator(unittest.TestCase):
             try:
                 listOfEMIDs,  listOfDepIDs = self.getAllIDs()
                 if listOfEMIDs:
-                    print len(listOfEMIDs)
+                    print "# of EM IDs - %s\n" % len(listOfEMIDs)
                     j = 0
                     for id in listOfEMIDs:
                         depID = listOfDepIDs[j]
                         j = j + 1
-                        #print depID
+                        print "dep_id: %s" % depID
                         #if depID == 'D_1200000799' or depID == 'D_1200005141':
-                        if id == "EMD-8142":# or id == "EMD-8057":
-                            print id
+                        if True: # id == "EMD-8142":# or id == "EMD-8057":
+                            print "EMD ID: %s" % id
                             try:
                                 fileType, f, copyStatic = PDBprocessedWhere(id).Extension()
                                 if f:
@@ -146,13 +150,21 @@ class TestTranslator(unittest.TestCase):
                                             convert(f, conv_f).em2emd()
                                     if os.path.exists(conv_f) and os.path.isfile(conv_f):
                                         of = os.path.join(self.outputXmlDir, id + '.xml')
-                                        print of
-                                        print "conv_f %s" % conv_f
-                                        translator.translate_and_validate(conv_f, of, self.schema)
-                                        a_log = translator.current_entry_log
-                                        log_id = a_log.id
+                                        schema_loc = os.path.join(script_loc, self.schema)
+                                        if os.path.exists(schema_loc):
+                                            print "conv_f %s" % conv_f
+                                            print "of %s" % of
+                                            print "schema_loc %s" % schema_loc
+                                            translator.translate_and_validate(conv_f, of, schema_loc)
+                                            print "translation done"
+                                            a_log = translator.current_entry_log
+                                            log_id = a_log.id
+                                        else:
+                                            print 'schema missing. Add it here'
                                     else:
                                         print 'The file ' + conv_f + 'cannot be converted into the _emd space and therefore, cannot be translated'
+                                else:
+                                    print "Nope"
                             except IOError as exp:
                                 print exp
                             print
@@ -194,7 +206,7 @@ class TestTranslator(unittest.TestCase):
     def getAllIDs(self):
         ids = []
         d_ids = []
-        latestEMDBDump = '/nfs/pdbe_da/production/data/for_release/emd/em_db_status.csv'
+        latestEMDBDump = 'em_db_status.csv'
         with open(latestEMDBDump) as csvfile:
             reader = csv.DictReader(csvfile)
             for col in reader:
