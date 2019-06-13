@@ -140,6 +140,7 @@ class CifEMDBTranslator(object):
         EMD_NATURAL_SOURCE = 'emd_natural_source'
         EMD_IMAGE_PROCESSING = 'emd_image_processing'
         EMD_IMAGE_RECORDING = 'emd_image_recording'
+        EMD_OBSOLETE = 'emd_obsolete'
         EMD_PARTICLE_SELECTION = 'emd_particle_selection'
         EMD_RECOMBINANT_EXPRESSION = 'emd_recombinant_expression'
         EMD_SECTIONING_FOCUSED_ION_BEAM = 'emd_sectioning_focused_ion_beam'
@@ -151,6 +152,7 @@ class CifEMDBTranslator(object):
         EMD_STAINING = 'emd_staining'
         EMD_STARTUP_MODEL = 'emd_startup_model'
         EMD_STRUCTURE_DETERMINATION = 'emd_structure_determination'
+        EMD_SUPERSEDE = 'emd_supersede'
         EMD_SUPPORT_FILM = 'emd_support_film'
         EMD_SUPRAMOLECULE = 'emd_supramolecule'
         EMD_SYMMETRY_POINT = 'emd_symmetry_point'
@@ -759,7 +761,13 @@ class CifEMDBTranslator(object):
             '_emd_startup_model.random_conical_tilt_angle': '<xs:element name="tilt_angle" minOccurs="0">',
             '_exptl.method': '<xs:element name="method">',
             '_emd_structure_determination.method': '<xs:element name="method">',
-            '_emd_specialist_optics.energyfilter_slit_width': '<xs:element name="slit_width" minOccurs="0">'
+            '_emd_specialist_optics.energyfilter_slit_width': '<xs:element name="slit_width" minOccurs="0">',
+            '_emd_supersede.date': '<xs:element name="date" type="xs:date"/>',
+            '_emd_supersede.entry': '<xs:element name="entry" type="emdb_id_type"/>',
+            '_emd_supersede.details': '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            '_emd_obsolete.date': '<xs:element name="date" type="xs:date"/>',
+            '_emd_obsolete.entry': '<xs:element name="entry" type="emdb_id_type"/>',
+            '_emd_obsolete.details': '<xs:element name="details" type="xs:string" minOccurs="0"/>'
         }
 
     class ALog(object):
@@ -1293,7 +1301,9 @@ class CifEMDBTranslator(object):
                                                       const.PDBX_AUDIT_SUPPORT,
                                                       const.PDBX_CONTACT_AUTHOR,
                                                       const.STRUCT,
-                                                      const.PDBX_ENTITY_SRC_SYN]
+                                                      const.PDBX_ENTITY_SRC_SYN,
+                                                      const.EMD_SUPERSEDE,
+                                                      const.EMD_OBSOLETE]
                                           )
         self.cif = Cif(container)
         if container is not None or container == {}:
@@ -1980,7 +1990,7 @@ class CifEMDBTranslator(object):
                 set_key_dates_type(key_dates)
                 admin.set_key_dates(key_dates)
 
-            def set_el_obsolete_list(admin, obs_spr_in):
+            def set_el_obsolete_list(admin):
                 """
                 This list contains old entries that have been replaced
                 because of this newer entry.
@@ -1989,116 +1999,116 @@ class CifEMDBTranslator(object):
                 CIF: _pdbx_database_PDB_obs_spr
                 """
 
-                def set_obsolete_list_type(obs_list, obs_spr_in):
+                def set_obsolete_list_type(obs_list, obsolete_in):
                     """
                     XSD: <xs:element name="obsolete_list" minOccurs="0"> has
                     .. 1 element of supersedes_type
                     """
 
-                    def set_supersedes_type(obs, obs_in):
+                    def set_supersedes_type(obs_entry, obs_in):
                         """
                         XSD: <xs:complexType name="supersedes_type"> has
                         .. 3 elements
                         """
 
-                        def set_el_date(obs, obs_in):
+                        def set_el_date(obs_entry, obs_in):
                             """
                             XSD: <xs:element name="date" type="xs:date"/>
-                            CIF: _pdbx_database_PDB_obs_spr.date
+                            CIF: _emd_obsolete.date
                             """
-                            set_cif_value(obs.set_date, 'date', const.PDBX_OBS_SPR, cif_list=obs_in)
+                            set_cif_value(obs_entry.set_date, 'date', const.EMD_OBSOLETE, cif_list=obs_in, fmt='date')
 
-                        def set_el_entry(obs, obs_in):
+                        def set_el_entry(obs_entry, obs_in):
                             """
                             XSD: <xs:element name="entry" type="emdb_id_type"/>
-                            CIF: _pdbx_database_PDB_obs_spr.replace_pdb_id
+                            CIF: _emd_obsolete.entry
                             """
-                            set_cif_value(obs.set_entry, 'replace_pdb_id', const.PDBX_OBS_SPR, cif_list=obs_in)
+                            set_cif_value(obs_entry.set_entry, 'entry', const.EMD_OBSOLETE, cif_list=obs_in)
 
-                        def set_el_details(obs, obs_in):
+                        def set_el_details(obs_entry, obs_in):
                             """
                             XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
-                            CIF: _pdbx_database_PDB_obs_spr.details
+                            CIF: _emd_obsolete.details
                             """
-                            set_cif_value(obs.set_details, 'details', const.PDBX_OBS_SPR, cif_list=obs_in)
+                            set_cif_value(obs_entry.set_details, 'details', const.EMD_OBSOLETE, cif_list=obs_in)
 
                         # element 1
-                        set_el_date(obs, obs_in)
+                        set_el_date(obs_entry, obs_in)
                         # element 2
-                        set_el_entry(obs, obs_in)
+                        set_el_entry(obs_entry, obs_in)
                         # element 3
-                        set_el_details(obs, obs_in)
+                        set_el_details(obs_entry, obs_in)
 
-                    for obs_in in obs_spr_in:
-                        obs = emdb.supersedes_type()
-                        set_supersedes_type(obs, obs_in)
-                        obs_list.add_supersedes_type(obs)
+                    for obs_id, obs_in in obsolete_in.items():
+                        obs_entry = emdb.supersedes_type()
+                        set_supersedes_type(obs_entry, obs_in)
+                        obs_list.add_entry(obs_entry)
 
-                obs_spr_id = get_cif_value('id', const.PDBX_OBS_SPR, obs_spr_in)
-                if obs_spr_id == 'OBSLTE':
-                    obs_list = emdb.obsolete_listType()
-                    set_obsolete_list_type(obs_list, obs_spr_in)
+                obsolete_in = make_dict(const.EMD_OBSOLETE, 'id')
+                obs_list = emdb.obsolete_listType()
+                set_obsolete_list_type(obs_list, obsolete_in)
+                if obs_list.hasContent_():
                     admin.set_obsolete_list(obs_list)
 
-            def set_el_superseded_by_list(admin, obs_spr_in):
+            def set_el_superseded_by_list(admin):
                 """
                 If this element appears means that the current entry is obsoleted.
                 The newer entry which replaces this entry is listed here.
                 XSD: <xs:element name="superseded_by_list" minOccurs="0"> has
                 .. 1 element <xs:element name="entry" type="supersedes_type" maxOccurs="unbounded">
-                CIF: _pdbx_database_PDB_obs_spr NOT YET IMPLEMENTED
+                CIF: _emd_supersede
                 """
 
-                def set_supersed_by_list_type(supersed_list, obs_spr_in):
+                def set_supersede_by_list(supersed_list, supr_in):
                     """
                     XSD: <xs:element name="superseded_by_list" minOccurs="0"> has
                     .. 1 element of supersedes_type
                     """
 
-                    def set_supersedes_type(spr, spr_in):
+                    def set_supersede_entry(spr_entry, spr_in):
                         """
                         XSD: <xs:complexType name="supersedes_type"> has
                         .. 3 elements
                         """
 
-                        def set_el_date(spr, spr_in):
+                        def set_el_date(spr_entry, spr_in):
                             """
                             XSD: <xs:element name="date" type="xs:date"/>
-                            CIF: _pdbx_database_PDB_obs_spr.date
+                            CIF: _emd_supersede.date
                             """
-                            set_cif_value(spr.set_date, 'date', const.PDBX_OBS_SPR, cif_list=spr_in)
+                            set_cif_value(spr_entry.set_date, 'date', const.EMD_SUPERSEDE, cif_list=spr_in, fmt='date')
 
-                        def set_el_entry(spr, spr_in):
+                        def set_el_entry(spr_entry, spr_in):
                             """
                             XSD: <xs:element name="entry" type="emdb_id_type"/>
-                            CIF: _pdbx_database_PDB_obs_spr.pdb_id
+                            CIF: _emd_supersede.entry
                             """
-                            set_cif_value(spr.set_entry, 'pdb_id', const.PDBX_OBS_SPR, cif_list=spr_in)
+                            set_cif_value(spr_entry.set_entry, 'entry', const.EMD_SUPERSEDE, cif_list=spr_in)
 
-                        def set_el_details(spr, spr_in):
+                        def set_el_details(spr_entry, spr_in):
                             """
                             XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
-                            CIF: _pdbx_database_PDB_obs_spr.details
+                            CIF: _emd_supersede.details
                             """
-                            set_cif_value(spr.set_details, 'details', const.PDBX_OBS_SPR, cif_list=spr_in)
+                            set_cif_value(spr_entry.set_details, 'details', const.EMD_SUPERSEDE, cif_list=spr_in)
 
                         # element 1
-                        set_el_date(spr, spr_in)
+                        set_el_date(spr_entry, spr_in)
                         # element 2
-                        set_el_entry(spr, spr_in)
+                        set_el_entry(spr_entry, spr_in)
                         # element 3
-                        set_el_details(spr, spr_in)
+                        set_el_details(spr_entry, spr_in)
 
-                    for spr_in in obs_spr_in:
-                        spr = emdb.supersedes_type()
-                        set_supersedes_type(spr, spr_in)
-                        supersed_list.add_supersedes_type(spr)
+                    for spr_id, spr_in in supr_in.items():
+                        spr_entry = emdb.supersedes_type()
+                        set_supersede_entry(spr_entry, spr_in)
+                        supersed_list.add_entry(spr_entry)
 
-                obs_spr_id = get_cif_value('id', const.PDBX_OBS_SPR, obs_spr_in)
-                if obs_spr_id == 'SPRSDE':
-                    supersed_list = emdb.superseded_by_listType()
-                    set_supersed_by_list_type(supersed_list, obs_spr_in)
-                    admin.set_superseded_by_list(supersed_list)
+                supr_in = make_dict(const.EMD_SUPERSEDE, 'id')
+                supersede_list = emdb.superseded_by_listType()
+                set_supersede_by_list(supersede_list, supr_in)
+                if supersede_list.hasContent_():
+                    admin.set_superseded_by_list(supersede_list)
 
             def set_el_grant_support(admin, aud_sup_in):
                 """
@@ -2457,10 +2467,9 @@ class CifEMDBTranslator(object):
             # element 4
             set_el_key_dates(admin)
             # element 5
-            obs_spr_in = make_list_of_dicts(const.PDBX_OBS_SPR, 'id')
-            set_el_obsolete_list(admin, obs_spr_in)
+            set_el_obsolete_list(admin)
             # element 6
-            set_el_superseded_by_list(admin, obs_spr_in)
+            set_el_superseded_by_list(admin)
             # element 7
             aud_sup_in = make_dict(const.PDBX_AUDIT_SUPPORT, 'ordinal', 2)
             set_el_grant_support(admin, aud_sup_in)
