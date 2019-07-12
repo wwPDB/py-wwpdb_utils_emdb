@@ -290,7 +290,7 @@ class CifEMDBTranslator(object):
         CIF_AUTHOR_RE = re.compile(r'^([A-Za-z \'\-.]+), (([A-Z\-]+\.)*)')
         CIF_HALF_MAP_RE = re.compile(r"^D_[0-9]+\_em\-half\-volume\_P([0-9]+)\.map")
         CIF_ADD_MAP_RE = re.compile(r"^D_[0-9]+\_em\-additional\-volume\_P([0-9]+)\.map")
-        CIF_EMD_ID_RE = re.compile(r"EMD\-([0-9]){4}")
+        CIF_EMD_ID_RE = re.compile(r"EMD\-([0-9]){4,}")
         # format: D_1000218615_em-mask-volume_P1.map.V1
         CIF_MSK_MAP_RE = re.compile(r"^D_[0-9]+\_em\-mask\-volume\_P([0-9]+)\.map")
         DA2MDA = 1.0 / 1000000.0
@@ -931,6 +931,8 @@ class CifEMDBTranslator(object):
         self.parent_logger_level = None
         self.translation_log = self.TranslationLog()
         self.entry_in_translation_log = None
+        # create_xml enables the XML out to be created - if False the creation of the output file and its validation shouldn't happen
+        self.create_xml = True
 
     @property
     def is_translation_log_empty(self):
@@ -2967,13 +2969,13 @@ class CifEMDBTranslator(object):
                             if acc_code_match is not None:  # a match
                                 set_cif_value(emdb_ref.set_emdb_id, 'access_code', const.EMD_CROSSREFERENCE, cif_list=emdb_ref_in)
                             else:
-                                # acc_code is not in a format of EMD-xxxx
+                                # acc_code is not in a format of EMD-xxxx...x
                                 corrected = False
                                 txt = u'The value for (_emd_crossreference.access_code) is (%s) and it is in a wrong format. If a new value is given the message follows.' % acc_code
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.warn_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
-                                if len(acc_code) == 4 and acc_code.isdigit():
-                                    # acc_code is a 4-digit number - add EMD- to it
+                                if (len(acc_code) == 4 or len(acc_code) == 5) and acc_code.isdigit():
+                                    # acc_code is a 4 or 5-digit number - add EMD- to it
                                     correct_acc_code = 'EMD-' + acc_code
                                     corrected = True
                                 if acc_code.find('EMDB') != -1:
@@ -3031,12 +3033,12 @@ class CifEMDBTranslator(object):
                                 txt = u'The value for (_pdbx_database_related.db_id) (%s) is in a wrong format. If a new value is given the message follows.' % db_id
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.warn_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
-                                if len(db_id) == 4 and db_id.isdigit():
-                                    # db_id is a 4-digit number - add EMD- to it
+                                if (len(db_id) == 4 or len(db_id) == 5) and db_id.isdigit():
+                                    # db_id is a 4 or 5-digit number - add EMD- to it
                                     correct_db_id = 'EMD-' + db_id
                                     corrected = True
                                 if db_id.find('EMDB') != -1:
-                                    # db_id is in a EMDB-xxxx format - remove B
+                                    # db_id is in a EMDB-xxxx...x format - remove B
                                     correct_db_id = db_id.replace('B', '')
                                     corrected = True
                                 if db_id.find('D_') != -1:
@@ -10039,33 +10041,42 @@ class CifEMDBTranslator(object):
                             Contour level had to be made non-mandatory as it's not given for tomograms
                             _emd_structure_determination.method != "TOMOGRAPHY"
                             """
-                            # get structure determination method
-                            struct_det_method = get_cif_value('method', const.EMD_STRUCTURE_DETERMINATION)
-                            # determine map type
-                            map_type = get_cif_value('type', const.EMD_MAP, cif_list=map_in)
-                            if map_type == 'primary map':
-                                if struct_det_method != 'TOMOGRAPHY':
-                                    cntr_level = get_cif_value('contour_level', const.EMD_MAP, cif_list=map_in)
-                                    if cntr_level is not None:
-                                        if not isinstance(cntr_level, str):
-                                            set_cif_value(cntr.set_level, 'contour_level', const.EMD_MAP, cif_list=map_in, fmt=float)
-                                        else:
-                                            # contour level is a string; check if the string can be converted
-                                            if is_number(cntr_level.lstrip('+-')):
-                                                cl_float = float(cntr_level.lstrip('+-'))
-                                                set_cif_value(cntr.set_level, 'contour_level', const.EMD_MAP, cif_list=map_in, cif_value=cl_float)
+                            # check if the map contour level is not None
+                            cntr_level = get_cif_value('contour_level', const.EMD_MAP, cif_list=map_in)
+                            if cntr_level == 'None':
+                                self.create_xml = False
+                                txt = u'Contour level is "%s". This is not correct. The XML file is not going to be created now.' % cntr_level
+                                self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
+                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                            else:
+                                # contour level can be set for the primary map
+                                # get structure determination method
+                                struct_det_method = get_cif_value('method', const.EMD_STRUCTURE_DETERMINATION)
+                                # determine map type
+                                map_type = get_cif_value('type', const.EMD_MAP, cif_list=map_in)
+                                if map_type == 'primary map':
+                                    if struct_det_method != 'TOMOGRAPHY':
+                                        cntr_level = get_cif_value('contour_level', const.EMD_MAP, cif_list=map_in)
+                                        if cntr_level is not None:
+                                            if not isinstance(cntr_level, str):
+                                                set_cif_value(cntr.set_level, 'contour_level', const.EMD_MAP, cif_list=map_in, fmt=float)
                                             else:
-                                                txt = u'Contour level is given as a text value of %s . This is not correct. It should be a number.' % cntr_level
-                                                self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
-                                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                                                # contour level is a string; check if the string can be converted
+                                                if is_number(cntr_level.lstrip('+-')):
+                                                    cl_float = float(cntr_level.lstrip('+-'))
+                                                    set_cif_value(cntr.set_level, 'contour_level', const.EMD_MAP, cif_list=map_in, cif_value=cl_float)
+                                                else:
+                                                    txt = u'Contour level is given as a text value of %s. This is not correct. It should be a number.' % cntr_level
+                                                    self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
+                                                    self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                                        else:
+                                            txt = u'Contour level is missing for %s.' % struct_det_method
+                                            self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
+                                            self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                                     else:
-                                        txt = u'Contour level is missing for %s.' % struct_det_method
-                                        self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
-                                        self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
-                                else:
-                                    txt = u'Contour level is not set for TOMOGRAPHY primary map.'
-                                    self.current_entry_log.info_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.info_title + txt))
-                                    self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
+                                        txt = u'Contour level is not set for TOMOGRAPHY primary map.'
+                                        self.current_entry_log.info_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.info_title + txt))
+                                        self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
 
                         def set_el_source(cntr, map_in):
                             """
@@ -10678,7 +10689,7 @@ class CifEMDBTranslator(object):
             set_el_validation()
 
         def get_entry_id_from_input_file():
-            cif_re = re.compile(r"EMD\-([0-9]){4}")
+            cif_re = re.compile(r"EMD\-([0-9]){4,}")
             search_result = re.search(cif_re, self.cif_file_name)
             if search_result is not None:
                 return search_result.group()
@@ -10688,6 +10699,7 @@ class CifEMDBTranslator(object):
         if self.cif_file_read:
             const = self.Constants
             self.entry_in_translation_log = self.EntryLog(get_entry_id_from_input_file())
+            self.create_xml = True
             self.xml_out = emdb.entry_type()
             set_entry_type()
             self.translation_log.logs.append(self.entry_in_translation_log)
@@ -10704,7 +10716,12 @@ class CifEMDBTranslator(object):
         """
         self.read_cif_in_file(in_cif)
         self.translate_cif_to_xml()
-        self.write_xml_out_file(out_xml)
+        if self.create_xml:
+            self.write_xml_out_file(out_xml)
+        else:
+            txt = u'The XML output file (%s) has not been created. See previous messages for the reason.' % out_xml
+            self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
+            self.log_formatted(self.error_log_string, self.Constants.REQUIRED_ALERT + txt)
 
     def validate_file(self, the_parser, xml_filename):
         """
@@ -10801,7 +10818,8 @@ class CifEMDBTranslator(object):
         Validates XML file after reading an input cif file, translating it and creating XML
         """
         self.translate(in_cif, out_xml)
-        self.validate(out_xml, in_schema)
+        if self.create_xml:
+            self.validate(out_xml, in_schema)
 
 
 def main():
