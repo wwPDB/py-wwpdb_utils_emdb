@@ -53,12 +53,13 @@ class TestTranslator(unittest.TestCase):
     rcsbInputCifDir = 'data/rcsb_cifs'
     outputXmlDir = 'data/test/xml_v3_out'
     testInputCifDir = 'data/cif'
+    db_dump = '/nfs/msd/em/dep_id_to_emdb_id.csv'
 
     schema = "emdb.xsd"
 
     process_rcsb = False
-    process_pdbe = False
-    process_test = True
+    process_pdbe = True
+    process_test = False
 
     def test_cif2xml(self):
 
@@ -80,27 +81,24 @@ class TestTranslator(unittest.TestCase):
                 test_dir = os.path.join(script_loc, self.testInputCifDir)
                 test_cifs = glob.glob(test_dir + '/*.cif')
                 for test_cif in test_cifs:
-                    if test_cif.find('OTHER-4464-REDO.cif'):
-                        xml_out = os.path.join(self.outputXmlDir, 'test.xml')
+                    emd_id = os.path.splitext(os.path.basename(test_cif))[0]
+                    out_name = emd_id + '.xml'
+                    if True: # emd_id == 'EMD-10119':
+                        print 'translating %s' % test_cif
+                        xml_out = os.path.join(self.outputXmlDir, out_name)
                         translator.translate_and_validate(test_cif, xml_out, self.schema)
                         translator.write_logger_logs(True, True, True)
-                        print
-                        print 'TEST CLASS LOGS'
-                        print
+                        #print '\nTEST CLASS LOGS\n'
                         if translator.is_translation_log_empty:
-                            print 'NO ERRORS FOUND'
+                            print '\nNO ERRORS FOUND\n'
                         else:
                             for entry_log in translator.translation_log.logs:
-                                print entry_log.id
+                                print 'entry_log.id %s' % entry_log.id
                                 if entry_log.is_error_log_empty:
-                                    print
-                                    print "NO ERRORS FOUND FOR THIS ENTRY"
-                                    print
+                                    print "\nNO ERRORS FOUND FOR THIS ENTRY\n"
                                 else:
                                     for err in entry_log.errors:
-                                        print
-                                        print err.log_text
-                                        print
+                                        print '\nERRORS: %s' % err.log_text
             except Exception as ex:
                 print ex
 
@@ -131,19 +129,19 @@ class TestTranslator(unittest.TestCase):
                     for id in listOfEMIDs:
                         depID = listOfDepIDs[j]
                         j = j + 1
-                        print "dep_id: %s" % depID
+                        #print "dep_id: %s" % depID
                         #if depID == 'D_1200000799' or depID == 'D_1200005141':
-                        if True: # id == "EMD-8142":# or id == "EMD-8057":
-                            print "EMD ID: %s" % id
+                        if True: #id == "EMD-10119":# or id == "EMD-8057":
+                            # print "EMD ID: %s" % id
                             try:
                                 fileType, f, copyStatic = PDBprocessedWhere(id).Extension()
                                 if f:
-                                    print i
+                                    print '%s: %s' % (i, id)
                                     i = i + 1
                                     #Check if the cif file is in the _emd space
                                     if not self.isCifInEMDSpace(f):
                                         conv_f = os.path.join(self.pdbeInputCifDir, id + '.cif')
-                                        print conv_f
+                                        #print conv_f
                                         # Check if the converted file exits
                                         if not self.convertedCifToEMDSpaceExits(conv_f):
                                             # There is no converted file, convert it now
@@ -152,11 +150,11 @@ class TestTranslator(unittest.TestCase):
                                         of = os.path.join(self.outputXmlDir, id + '.xml')
                                         schema_loc = os.path.join(script_loc, self.schema)
                                         if os.path.exists(schema_loc):
-                                            print "conv_f %s" % conv_f
-                                            print "of %s" % of
-                                            print "schema_loc %s" % schema_loc
+                                            #print "conv_f %s" % conv_f
+                                            #print "of %s" % of
+                                            #print "schema_loc %s" % schema_loc
                                             translator.translate_and_validate(conv_f, of, schema_loc)
-                                            print "translation done"
+                                            #print "translation done"
                                             a_log = translator.current_entry_log
                                             log_id = a_log.id
                                         else:
@@ -164,30 +162,23 @@ class TestTranslator(unittest.TestCase):
                                     else:
                                         print 'The file ' + conv_f + 'cannot be converted into the _emd space and therefore, cannot be translated'
                                 else:
-                                    print "Nope"
+                                    # print "Nope"
+                                    pass
                             except IOError as exp:
                                 print exp
-                            print
-                            print 'PDBE LOGGER LOGS'
-                            print
+                            #print '\nPDBE LOGGER LOGS\n'
                             translator.write_logger_logs(write_error_log=True)
-                print
-                print 'PDBE CLASS LOGS'
-                print
+                #print '\nPDBE CLASS LOGS\n'
                 if translator.is_translation_log_empty:
                     print 'NO ERRORS FOUND'
                 else:
                     for entry_log in translator.translation_log.logs:
                         print entry_log.id
                         if entry_log.is_error_log_empty:
-                            print
-                            print "NO ERRORS FOUND FOR THIS ENTRY"
-                            print
+                            print "\nNO ERRORS FOUND FOR THIS ENTRY\n"
                         else:
                             for err in entry_log.errors:
-                                print
-                                print err.log_text
-                                print
+                                print '\nERRORS: %s\n' % err.log_text
             except IOError as exp:
                 print exp
 
@@ -206,12 +197,12 @@ class TestTranslator(unittest.TestCase):
     def getAllIDs(self):
         ids = []
         d_ids = []
-        latestEMDBDump = 'em_db_status.csv'
+        latestEMDBDump = self.db_dump
         with open(latestEMDBDump) as csvfile:
-            reader = csv.DictReader(csvfile)
-            for col in reader:
-                ids.append(col['emdb_id'])
-                d_ids.append(col['dep_id'])
+            reader = csv.reader(csvfile)
+            for row in reader:
+                ids.append(row[1])
+                d_ids.append(row[0])
         return ids, d_ids
 
     def validateWithSchemaV20(self,headerToValidate):
