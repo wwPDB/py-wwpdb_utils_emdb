@@ -134,9 +134,9 @@ class PDBprocessedWhere():
             lower_entry = self.file.lower()
             ftp_cif = os.path.join(PRE_FTP, lower_entry + '.cif.gz')
             # check for entries which have been migrated to deppy
-            entry = os.path.join('/ebi/msd/work2/w3_pdb05/MIGRATION', lower_entry)
-            #print entry
-            if os.path.exists(os.path.join('/ebi/msd/work2/w3_pdb05/MIGRATION', lower_entry)):
+            entry = os.path.join('/nfs/msd/work2/w3_pdb05/MIGRATION', lower_entry)
+            # print entry
+            if os.path.exists(os.path.join('/nfs/msd/work2/w3_pdb05/MIGRATION', lower_entry)):
                 #print 'yes'
                 pdb_folder = os.path.join(PREPARE, lower_entry)
                 ebi_cif = os.path.join(pdb_folder, 'ebi', lower_entry + '.cif')
@@ -144,7 +144,7 @@ class PDBprocessedWhere():
                 orig_pdb = os.path.join(pdb_folder, 'ORIG', 'pdb'+lower_entry+'.ent')
 
                 if os.path.exists(pdb_folder):
-                    #print 'one of our entries'
+                    print 'one of our entries'
                     if os.path.exists(ebi_cif):
                         return 'cif', ebi_cif, 'static'
                     elif os.path.exists(ebi_pdb):
@@ -152,27 +152,27 @@ class PDBprocessedWhere():
                     elif os.path.exists(orig_pdb):
                         return 'pdb', orig_pdb, 'static'
                     else:
-                        return None, None
+                        return None, None, None
 
                 else:
                     depID = getDepID(lower_entry).checkType()
                     if depID:
-                        # print depID
+                        #print depID
                         modelCif = getLatest(depID=depID, cifType='model', extension='cif').getFileList()
                         return 'cif', modelCif, 'copy'
                     elif os.path.exists(ftp_cif):
                         return 'cif', ftp_cif, 'static'
                     else:
-                        return None, None
+                        return None, None, None
             else:
                 depID = getDepID(lower_entry).checkType()
-                #print " here"
+                #print "(depID, lower_entry) = (%s, %s)" % (depID, lower_entry)
                 if depID:
                     #print depID
                     modelCif = getLatest(depID=depID, cifType='model', extension='cif').getFileList()
                     return 'cif', modelCif, 'copy'
                 else:
-                    return None, None
+                    return None, None, None
 
 
 class getLatest():
@@ -202,7 +202,7 @@ class getLatest():
         if file_list:
             file_num = 0
             for f in file_list:
-                if not '-cif-parser' in f:
+                if not '-cif-parser' in f and not '~' in f:
                     num = int(re.split("\.", re.split(".V", f)[-1])[0])
                     if num > file_num:
                         file_num = num
