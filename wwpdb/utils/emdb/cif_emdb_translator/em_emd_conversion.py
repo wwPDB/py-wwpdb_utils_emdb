@@ -26,11 +26,11 @@ class convert(UtilsBase):
 
     def em2emd(self):
         ok = self.im.translate(self.inFile, self.outFile, mode="src-dst")
-        print ok
+        # print ok
 
     def emd2em(self):
         ok = self.im.translate(self.inFile, self.outFile, mode="dst-src")
-        print ok
+        # print ok
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='em translate')
