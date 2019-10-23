@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Fri Oct 18 14:18:52 2019 by generateDS.py version 2.29.5.
+# Generated Wed Oct 23 12:49:05 2019 by generateDS.py version 2.29.5.
 # Python 2.7.11 (v2.7.11:6d1b6a68f775, Dec  5 2015, 12:54:16)  [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
 #
 # Command line options:
@@ -19,7 +19,7 @@
 #   /Users/sanja/Documents/modified_generateDS-2.29.5/generateDS.py --root-element="emd" -f -o "/Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_1_6/emdb.py" --no-warnings --external-encoding="utf-8" /Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_1_6/emdb.xsd
 #
 # Current working directory (os.getcwd()):
-#   generateDS-2.29.5
+#   modified_generateDS-2.29.5
 #
 
 import sys
@@ -146,13 +146,13 @@ except ImportError as exp:
             #else:
             #    return ('%.2f' % input_data).rstrip('0')
             decimal_places = 1
-            stripped_input = str(input_data).rstrip("0")
-            if "." in str(stripped_input):
+            fl_input_data = float(input_data)
+            if "." in str(input_data):
+                stripped_input = str(input_data).rstrip("0") 
                 index = stripped_input.index(".")
                 len_stripped = len(stripped_input)
                 decimal_places = len_stripped - (index + 1)
-    
-            fl_input_data = float(stripped_input)
+                fl_input_data = float(stripped_input)
             return '%.*f' % (decimal_places, fl_input_data)
     
         def gds_validate_float(self, input_data, node=None, input_name=''):
