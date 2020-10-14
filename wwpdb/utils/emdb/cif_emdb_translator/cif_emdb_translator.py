@@ -100,7 +100,7 @@ class CifEMDBTranslator(object):
         There are many constants in use for the translation.
         They have been collected here for ease of use.
         """
-        XML_OUT_VERSION = '3.0.1.10'
+        XML_OUT_VERSION = '3.0.2.0'
 
         # Cif categories
         CITATION = 'citation'
@@ -3568,7 +3568,7 @@ class CifEMDBTranslator(object):
 
                     Parameters:
                     @param sup_mol: supramolecule source object of supramolecule source of
-                    emdb.{virus,cell,tissue,organelle,complex,sample}_natural_source_type
+                    emdb.{virus,cell,tissue,organelle,complex,sample}_source_type
                     @param cif_category: contains natural source info (emd_natural_source)
                     @param src_in: source in cif: natural from emd_natural_source
                     XSD: <xs:complexType name="base_source_type">
@@ -3859,7 +3859,7 @@ class CifEMDBTranslator(object):
 
                         def set_el_natural_source(complex_sup_mol, sup_mol_id_in, sup_mol_dicts):
                             """
-                            XSD: <xs:element name="natural_source" type="complex_natural_source_type" minOccurs="0"/> is
+                            XSD: <xs:element name="natural_source" type="complex_source_type" minOccurs="0"/> is
                             .. an extension of base="base_source_type" and
                             .. a sequence of organ, tissue, cell, organelle and cellular location
                             """
@@ -3888,7 +3888,7 @@ class CifEMDBTranslator(object):
                                 complex_natural_source_type_list.extend(el_organisms)
                                 complex_natural_source_type_list.extend(el_strains)
                                 if any(x is not None for x in complex_natural_source_type_list):
-                                    cns = emdb.complex_natural_source_type()
+                                    cns = emdb.complex_source_type()
                                     set_sup_mol_nat_src(cns, complex_sup_mol, const.EMD_NATURAL_SOURCE, sup_mol_dict_in, cmpx_dict)
 
                         def set_el_recombinant_expression(complex_sup_mol, sup_mol_id_in, rec_exp_dict_in):
@@ -3985,12 +3985,12 @@ class CifEMDBTranslator(object):
 
                         def set_el_natural_host(virus_sup_mol, sup_mol_id_in, virus_nat_host_dict_in):
                             """
-                            XSD: <xs:element name="natural_host" type="virus_natural_host_type" minOccurs="0" maxOccurs="unbounded"/>
+                            XSD: <xs:element name="natural_host" type="virus_host_type" minOccurs="0" maxOccurs="unbounded"/>
                             """
 
                             def set_virus_natural_host_type(nat_host, nat_host_in):
                                 """
-                                XSD: <xs:element name="natural_host" type="virus_natural_host_type" minOccurs="0" maxOccurs="unbounded"/>
+                                XSD: <xs:element name="natural_host" type="virus_host_type" minOccurs="0" maxOccurs="unbounded"/>
                                 CIF: _emd_virus_natural_host.id                     1
                                 CIF: _emd_virus_natural_host.emd_supramolecule_id   1
                                 .. an extension of base_source_type that has
@@ -4060,7 +4060,7 @@ class CifEMDBTranslator(object):
                                     attr_ncbi = get_cif_value('ncbi_tax_id', const.EMD_VIRUS_NATURAL_HOST, cif_list=nat_host_in)
                                     organism = get_cif_value('organism', const.EMD_VIRUS_NATURAL_HOST, cif_list=nat_host_in)
                                     if any(x is not None for x in [attr_ncbi, organism]):
-                                        nat_host = emdb.virus_natural_host_type()
+                                        nat_host = emdb.virus_host_type()
                                         set_virus_natural_host_type(nat_host, nat_host_in)
                                         if nat_host.hasContent_():
                                             virus_sup_mol.add_natural_host(nat_host)
@@ -4325,7 +4325,7 @@ class CifEMDBTranslator(object):
                                 organelle_natural_source_type_list.extend(el_organelles)
                                 organelle_natural_source_type_list.extend(el_cellular_locations)
                                 if any(x is not None for x in organelle_natural_source_type_list):
-                                    cns = emdb.organelle_natural_source_type()
+                                    cns = emdb.organelle_source_type()
                                     set_sup_mol_nat_src(cns, org_or_cell_sup_mol, const.EMD_NATURAL_SOURCE, sup_mol_dict_in, org_dict)
 
                         def set_el_molecular_weight(org_or_cell_sup_mol, sup_mol_id_in, s_mol_wt_dict_in):
@@ -4397,7 +4397,7 @@ class CifEMDBTranslator(object):
                                 tissue_natural_source_type_list.extend(el_organs)
                                 tissue_natural_source_type_list.extend(el_tissues)
                                 if any(x is not None for x in tissue_natural_source_type_list):
-                                    cns = emdb.tissue_natural_source_type()
+                                    cns = emdb.tissue_source_type()
                                     set_sup_mol_nat_src(cns, tissue_sup_mol, const.EMD_NATURAL_SOURCE, sup_mol_dict_in, tiss_dict)
 
                         # set up the supramolecule specific tagname explicitly
@@ -4455,7 +4455,7 @@ class CifEMDBTranslator(object):
                                 cell_natural_source_type_list.extend(el_tissues)
                                 cell_natural_source_type_list.extend(el_cells)
                                 if any(x is not None for x in cell_natural_source_type_list):
-                                    cns = emdb.cell_natural_source_type()
+                                    cns = emdb.cell_source_type()
                                     set_sup_mol_nat_src(cns, cell_sup_mol, const.EMD_NATURAL_SOURCE, sup_mol_dict_in, cell_dict)
 
                         # set up the supramolecule specific tagname explicitly
