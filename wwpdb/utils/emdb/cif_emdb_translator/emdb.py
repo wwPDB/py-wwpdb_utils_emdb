@@ -2,24 +2,24 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Oct 14 14:01:58 2020 by generateDS.py version 2.29.5.
+# Generated Tue Nov 24 15:05:32 2020 by generateDS.py version 2.29.5.
 # Python 2.7.11 (v2.7.11:6d1b6a68f775, Dec  5 2015, 12:54:16)  [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', '/Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_0/emdb.py')
+#   ('-o', '/Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_2/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   /Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_0/emdb.xsd
+#   /Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_2/emdb.xsd
 #
 # Command line:
-#   /Users/sanja/Documents/modified_generateDS-2.29.5/generateDS.py --root-element="emd" -f -o "/Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_0/emdb.py" --no-warnings --external-encoding="utf-8" /Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_0/emdb.xsd
+#   /Users/sanja/Documents/modified_generateDS-2.29.5/generateDS.py --root-element="emd" -f -o "/Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_2/emdb.py" --no-warnings --external-encoding="utf-8" /Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_2/emdb.xsd
 #
 # Current working directory (os.getcwd()):
-#   sanja
+#   modified_generateDS-2.29.5
 #
 
 import sys
@@ -145,15 +145,20 @@ except ImportError as exp:
             #    return ('%.1f' % input_data)
             #else:
             #    return ('%.2f' % input_data).rstrip('0')
+            ret = ''
             decimal_places = 1
             fl_input_data = float(input_data)
-            if "." in str(input_data):
-                stripped_input = str(input_data).rstrip("0") 
-                index = stripped_input.index(".")
-                len_stripped = len(stripped_input)
-                decimal_places = len_stripped - (index + 1)
-                fl_input_data = float(stripped_input)
-            return '%.*f' % (decimal_places, fl_input_data)
+            if "e" not in str(input_data) and "E" not in str(input_data):
+                if "." in str(input_data):
+                    stripped_input = str(input_data).rstrip("0")
+                    index = stripped_input.index(".")
+                    len_stripped = len(stripped_input)
+                    decimal_places = len_stripped - (index + 1)
+                    fl_input_data = float(stripped_input)
+                    ret = '%.*f' % (decimal_places, fl_input_data)
+            else:
+                ret = '%s' % str(fl_input_data)
+            return ret
     
         def gds_validate_float(self, input_data, node=None, input_name=''):
             return input_data
@@ -736,7 +741,7 @@ def _cast(typ, value):
 class entry_type(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.2.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
+    def __init__(self, emdb_id=None, version='3.0.2.2', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
         self.original_tagname_ = None
         self.emdb_id = _cast(None, emdb_id)
         self.version = _cast(None, version)
@@ -1267,7 +1272,7 @@ class version_type(GeneratedsSuper):
         # Validate type processing_siteType, a restriction on xs:token.
         if value is not None and Validate_simpletypes_:
             value = str(value)
-            enumerations = ['PDBe', 'RCSB', 'PDBj']
+            enumerations = ['PDBe', 'RCSB', 'PDBj', 'PDBc']
             enumeration_respectee = False
             for enum in enumerations:
                 if value == enum:
@@ -10554,13 +10559,14 @@ class residual_tilt_type(GeneratedsSuper):
 class specialist_optics_type(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, phase_plate=None, sph_aberration_corrector=None, chr_aberration_corrector=None, energy_filter=None):
+    def __init__(self, phase_plate=None, sph_aberration_corrector=None, chr_aberration_corrector=None, energy_filter=None, details=None):
         self.original_tagname_ = None
         self.phase_plate = phase_plate
         self.validate_phase_plateType(self.phase_plate)
         self.sph_aberration_corrector = sph_aberration_corrector
         self.chr_aberration_corrector = chr_aberration_corrector
         self.energy_filter = energy_filter
+        self.details = details
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -10580,6 +10586,8 @@ class specialist_optics_type(GeneratedsSuper):
     def set_chr_aberration_corrector(self, chr_aberration_corrector): self.chr_aberration_corrector = chr_aberration_corrector
     def get_energy_filter(self): return self.energy_filter
     def set_energy_filter(self, energy_filter): self.energy_filter = energy_filter
+    def get_details(self): return self.details
+    def set_details(self, details): self.details = details
     def validate_phase_plateType(self, value):
         # Validate type phase_plateType, a restriction on xs:token.
         if value is not None and Validate_simpletypes_:
@@ -10597,7 +10605,8 @@ class specialist_optics_type(GeneratedsSuper):
             self.phase_plate is not None or
             self.sph_aberration_corrector is not None or
             self.chr_aberration_corrector is not None or
-            self.energy_filter is not None
+            self.energy_filter is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -10641,6 +10650,9 @@ class specialist_optics_type(GeneratedsSuper):
             outfile.write('<chr_aberration_corrector>%s</chr_aberration_corrector>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.chr_aberration_corrector), input_name='chr_aberration_corrector')), eol_))
         if self.energy_filter is not None:
             self.energy_filter.export(outfile, level, namespace_, name_='energy_filter', pretty_print=pretty_print)
+        if self.details is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<details>%s</details>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.details), input_name='details')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -10682,6 +10694,10 @@ class specialist_optics_type(GeneratedsSuper):
             obj_.build(child_)
             self.energy_filter = obj_
             obj_.original_tagname_ = 'energy_filter'
+        elif nodeName_ == 'details':
+            details_ = child_.text
+            details_ = self.gds_validate_string(details_, node, 'details')
+            self.details = details_
 # end class specialist_optics_type
 
 
@@ -13299,13 +13315,13 @@ class crystallography_statistics_type(GeneratedsSuper):
             outfile.write('<r_merge>%s</r_merge>%s' % (self.gds_format_float(self.r_merge, input_name='r_merge'), eol_))
         if self.overall_phase_error is not None:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<overall_phase_error>%s</overall_phase_error>%s' % (self.gds_format_float(self.overall_phase_error, input_name='overall_phase_error'), eol_))
+            outfile.write('<overall_phase_error>%s</overall_phase_error>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.overall_phase_error), input_name='overall_phase_error')), eol_))
         if self.overall_phase_residual is not None:
             showIndent(outfile, level, pretty_print)
             outfile.write('<overall_phase_residual>%s</overall_phase_residual>%s' % (self.gds_format_float(self.overall_phase_residual, input_name='overall_phase_residual'), eol_))
         if self.phase_error_rejection_criteria is not None:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<phase_error_rejection_criteria>%s</phase_error_rejection_criteria>%s' % (self.gds_format_float(self.phase_error_rejection_criteria, input_name='phase_error_rejection_criteria'), eol_))
+            outfile.write('<phase_error_rejection_criteria>%s</phase_error_rejection_criteria>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.phase_error_rejection_criteria), input_name='phase_error_rejection_criteria')), eol_))
         if self.high_resolution is not None:
             self.high_resolution.export(outfile, level, namespace_, name_='high_resolution', pretty_print=pretty_print)
         if self.shell_list is not None:
@@ -13368,13 +13384,13 @@ class crystallography_statistics_type(GeneratedsSuper):
             fval_ = self.gds_validate_float(fval_, node, 'r_merge')
             self.r_merge = fval_
         elif nodeName_ == 'overall_phase_error':
-            sval_ = child_.text
-            try:
-                fval_ = float(sval_)
-            except (TypeError, ValueError) as exp:
-                raise_parse_error(child_, 'requires float or double: %s' % exp)
-            fval_ = self.gds_validate_float(fval_, node, 'overall_phase_error')
-            self.overall_phase_error = fval_
+            overall_phase_error_ = child_.text
+            if overall_phase_error_:
+                overall_phase_error_ = re_.sub(String_cleanup_pat_, " ", overall_phase_error_).strip()
+            else:
+                overall_phase_error_ = ""
+            overall_phase_error_ = self.gds_validate_string(overall_phase_error_, node, 'overall_phase_error')
+            self.overall_phase_error = overall_phase_error_
         elif nodeName_ == 'overall_phase_residual':
             sval_ = child_.text
             try:
@@ -13384,13 +13400,13 @@ class crystallography_statistics_type(GeneratedsSuper):
             fval_ = self.gds_validate_float(fval_, node, 'overall_phase_residual')
             self.overall_phase_residual = fval_
         elif nodeName_ == 'phase_error_rejection_criteria':
-            sval_ = child_.text
-            try:
-                fval_ = float(sval_)
-            except (TypeError, ValueError) as exp:
-                raise_parse_error(child_, 'requires float or double: %s' % exp)
-            fval_ = self.gds_validate_float(fval_, node, 'phase_error_rejection_criteria')
-            self.phase_error_rejection_criteria = fval_
+            phase_error_rejection_criteria_ = child_.text
+            if phase_error_rejection_criteria_:
+                phase_error_rejection_criteria_ = re_.sub(String_cleanup_pat_, " ", phase_error_rejection_criteria_).strip()
+            else:
+                phase_error_rejection_criteria_ = ""
+            phase_error_rejection_criteria_ = self.gds_validate_string(phase_error_rejection_criteria_, node, 'phase_error_rejection_criteria')
+            self.phase_error_rejection_criteria = phase_error_rejection_criteria_
         elif nodeName_ == 'high_resolution':
             obj_ = high_resolutionType34.factory()
             obj_.build(child_)
@@ -17109,7 +17125,7 @@ class sitesType(GeneratedsSuper):
         # Validate type depositionType, a restriction on xs:token.
         if value is not None and Validate_simpletypes_:
             value = str(value)
-            enumerations = ['PDBe', 'PDBj', 'RCSB']
+            enumerations = ['PDBe', 'PDBj', 'RCSB', 'PDBc']
             enumeration_respectee = False
             for enum in enumerations:
                 if value == enum:
@@ -17121,7 +17137,7 @@ class sitesType(GeneratedsSuper):
         # Validate type last_processingType, a restriction on xs:token.
         if value is not None and Validate_simpletypes_:
             value = str(value)
-            enumerations = ['PDBe', 'PDBj', 'RCSB']
+            enumerations = ['PDBe', 'PDBj', 'RCSB', 'PDBc']
             enumeration_respectee = False
             for enum in enumerations:
                 if value == enum:
