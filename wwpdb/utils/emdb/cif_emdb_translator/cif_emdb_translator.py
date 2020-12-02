@@ -7338,14 +7338,14 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="nominal_magnification" type="allowed_magnification" minOccurs="0">
                         CIF: _emd_microscopy.nominal_magnification 50000
                         """
-                        set_cif_value(mic.set_nominal_magnification, 'nominal_magnification', const.EMD_MICROSCOPY, cif_list=mic_in, fmt=int)
+                        set_cif_value(mic.set_nominal_magnification, 'nominal_magnification', const.EMD_MICROSCOPY, cif_list=mic_in, fmt=float)
 
                     def set_el_calibrated_magnification(mic, mic_in):
                         """
                         XSD: <xs:element name="calibrated_magnification" type="allowed_magnification" minOccurs="0">
                         CIF: _emd_microscopy.calibrated_magnification 50230
                         """
-                        set_cif_value(mic.set_calibrated_magnification, 'calibrated_magnification', const.EMD_MICROSCOPY, cif_list=mic_in, fmt=int)
+                        set_cif_value(mic.set_calibrated_magnification, 'calibrated_magnification', const.EMD_MICROSCOPY, cif_list=mic_in, fmt=float)
 
                     def set_el_specimen_holder_model(mic, mic_in):
                         """
