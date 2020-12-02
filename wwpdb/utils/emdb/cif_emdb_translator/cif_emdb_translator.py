@@ -345,6 +345,7 @@ class CifEMDBTranslator(object):
             'Center for the X-ray Structure Determination of Human Transporters (TransportPDB)',
             'Chaperone-Enabled Studies of Epigenetic Regulation Enzymes (CEBS)',
             'Enzyme Discovery for Natural Product Biosynthesis (NatPro)',
+            'QCRG Structural Biology Consortium',
             'GPCR Network (GPCR)',
             'Integrated Center for Structure and Function Innovation (ISFI)',
             'Israel Structural Proteomics Center (ISPC)',
