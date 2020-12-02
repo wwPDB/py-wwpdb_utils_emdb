@@ -145,19 +145,17 @@ except ImportError as exp:
             #    return ('%.1f' % input_data)
             #else:
             #    return ('%.2f' % input_data).rstrip('0')
-            ret = ''
-            decimal_places = 1
             fl_input_data = float(input_data)
+            ret = '%s' % str(fl_input_data)
             if "e" not in str(input_data) and "E" not in str(input_data):
-                if "." in str(input_data):
-                    stripped_input = str(input_data).rstrip("0")
-                    index = stripped_input.index(".")
-                    len_stripped = len(stripped_input)
-                    decimal_places = len_stripped - (index + 1)
-                    fl_input_data = float(stripped_input)
-                    ret = '%.*f' % (decimal_places, fl_input_data)
-            else:
-                ret = '%s' % str(fl_input_data)
+                decimal_places = 1
+                if "." in str(input_data) and not str(input_data).endswith('.0'):
+                        stripped_input = str(input_data).rstrip("0")
+                        index = stripped_input.index(".")
+                        len_stripped = len(stripped_input)
+                        decimal_places = len_stripped - (index + 1)
+                        fl_input_data = float(stripped_input)
+                ret = '%.*f' % (decimal_places, fl_input_data)
             return ret
     
         def gds_validate_float(self, input_data, node=None, input_name=''):
