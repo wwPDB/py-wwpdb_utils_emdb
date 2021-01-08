@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 
 test-output
+/wwpdb/utils/emdb/cif_emdb_translator/emdb.xsd
