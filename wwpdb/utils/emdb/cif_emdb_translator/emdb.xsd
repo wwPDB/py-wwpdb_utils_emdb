@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.2.2"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.2.3"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -1959,7 +1959,7 @@
     </xs:simpleType>
     <xs:complexType name="fib_duration_type">
         <xs:simpleContent>
-            <xs:extension base="xs:positiveInteger">
+            <xs:extension base="xs:float">
                 <xs:attribute name="units" type="xs:token" fixed="s"/>
             </xs:extension>
         </xs:simpleContent>
@@ -2062,6 +2062,7 @@
                         <xs:enumeration value="JEOL 4000EX"/>
                         <xs:enumeration value="JEOL CRYO ARM 200"/>
                         <xs:enumeration value="JEOL CRYO ARM 300"/>
+                        <xs:enumeration value="JEOL JEM-1000EES"/>
                         <xs:enumeration value="JEOL KYOTO-3000SFF"/>
                         <xs:enumeration value="TFS GLACIOS"/>
                         <xs:enumeration value="TFS KRIOS"/>
