@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.2.3"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.2.4"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -2063,7 +2063,6 @@
                         <xs:enumeration value="JEOL 4000EX"/>
                         <xs:enumeration value="JEOL CRYO ARM 200"/>
                         <xs:enumeration value="JEOL CRYO ARM 300"/>
-                        <xs:enumeration value="JEOL JEM-1000EES"/>
                         <xs:enumeration value="JEOL KYOTO-3000SFF"/>
                         <xs:enumeration value="TFS GLACIOS"/>
                         <xs:enumeration value="TFS KRIOS"/>
@@ -2173,6 +2172,7 @@
                 <xs:simpleType>
                     <xs:restriction base="xs:token">
                         <xs:enumeration value="FISCHIONE 2550"/>
+                        <xs:enumeration value="FISCHIONE INSTRUMENTS DUAL AXIS TOMOGRAPHY HOLDER"/>
                         <xs:enumeration value="FEI TITAN KRIOS AUTOGRID HOLDER"/>
                         <xs:enumeration value="GATAN 626 SINGLE TILT LIQUID NITROGEN CRYO TRANSFER HOLDER"/>
                         <xs:enumeration value="GATAN 910 MULTI-SPECIMEN SINGLE TILT CRYO TRANSFER HOLDER"/>
