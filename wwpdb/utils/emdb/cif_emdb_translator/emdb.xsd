@@ -2035,6 +2035,7 @@
                         <xs:enumeration value="HITACHI HF2000"/>
                         <xs:enumeration value="HITACHI HF3000"/>
                         <xs:enumeration value="JEOL 100CX"/>
+                        <xs:enumeration value="JEOL 1000EES"/>
                         <xs:enumeration value="JEOL 1010"/>
                         <xs:enumeration value="JEOL 1200"/>
                         <xs:enumeration value="JEOL 1200EX"/>
