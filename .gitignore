@@ -105,3 +105,6 @@ venv.bak/
 
 test-output
 /wwpdb/utils/emdb/cif_emdb_translator/emdb.xsd
+
+# emacs
+*~
