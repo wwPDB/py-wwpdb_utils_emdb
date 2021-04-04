@@ -1,6 +1,5 @@
-
-__date__ = '2020-11-17'
-__version__ = '0.1'
+__date__ = "2020-11-17"
+__version__ = "0.1"
 
 
 import os
@@ -22,11 +21,11 @@ def main():
     usage = """
             test_cif_to_xml_translator.py [options]
             Convert an mmcif emd file to EMDB v3.x xml file
-            
-            Examples: 
+
+            Examples:
             python test_cif_to_xml_translator.py -i input_cif_file -o output_xml_file
             python test_cif_to_xml_translator.py -i "data/cif/EMD-0000.cif" -o "data/test/xml_v3_out/EMD-0000.xml"
-            
+
             Typical run:
             python test_cif_to_xml_translator.py -i in.cif -o out.xml
                 in.xml: a cif file in emd space
@@ -53,7 +52,7 @@ def main():
     # create the translator object
     translator = CifEMDBTranslator()
     # set up the translator's logger object
-    translator.set_logger_logging(log_error=True, error_log_file_name=os.path.join(os.path.dirname(os.path.realpath(__file__)), 'ERROR.log'))
+    translator.set_logger_logging(log_error=True, error_log_file_name=os.path.join(os.path.dirname(os.path.realpath(__file__)), "ERROR.log"))
     translator.set_logger_logging(True, True, True, False)
 
     # do the translation
