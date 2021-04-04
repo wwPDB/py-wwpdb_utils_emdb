@@ -1,6 +1,5 @@
-
-__date__ = '2020-11-17'
-__version__ = '0.1'
+__date__ = "2020-11-17"
+__version__ = "0.1"
 
 
 import os
@@ -53,7 +52,7 @@ def main():
     # create the translator object
     translator = CifEMDBTranslator()
     # set up the translator's logger object
-    translator.set_logger_logging(log_error=True, error_log_file_name=os.path.join(os.path.dirname(os.path.realpath(__file__)), 'ERROR.log'))
+    translator.set_logger_logging(log_error=True, error_log_file_name=os.path.join(os.path.dirname(os.path.realpath(__file__)), "ERROR.log"))
     translator.set_logger_logging(True, True, True, False)
 
     # do the translation

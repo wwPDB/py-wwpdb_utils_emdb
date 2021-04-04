@@ -1,4 +1,3 @@
-
 # Last update: 2019-05-17
 import sys
 import argparse
@@ -9,10 +8,9 @@ from mmcif_utils.trans.InstanceMapper import InstanceMapper
 
 
 class convert(UtilsBase):
-
     def __init__(self, inFile=None, outFile=None, verbose=False, log=sys.stderr):
 
-        headerFilters = ['all', 'prereleasetitle']  # noqa: F841
+        headerFilters = ["all", "prereleasetitle"]  # noqa: F841
         cI = ConfigInfo()
         self.mappingInfoPath = cI.get("SITE_EXT_DICT_MAP_EMD_FILE_PATH")
         self.inFile = inFile
@@ -32,12 +30,12 @@ class convert(UtilsBase):
         # print ok
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog='em translate')
-    parser.add_argument('-o', '--output', help='output file', type=str, required=True)
-    parser.add_argument('-i', '--input', help='input file', type=str, required=True)
-    parser.add_argument('-d', '--emToEmd', help='em to emd', action='store_true')
-    parser.add_argument('-e', '--emdToEm', help='emd to em', action='store_true')
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(prog="em translate")
+    parser.add_argument("-o", "--output", help="output file", type=str, required=True)
+    parser.add_argument("-i", "--input", help="input file", type=str, required=True)
+    parser.add_argument("-d", "--emToEmd", help="em to emd", action="store_true")
+    parser.add_argument("-e", "--emdToEm", help="emd to em", action="store_true")
 
     args = parser.parse_args()
 
