@@ -28,7 +28,6 @@ SiteConfigSetup().setupEnvironment(TESTOUTPUT, mockTopPath)
 
 #
 from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTranslator
-from wwpdb.utils.config.ConfigInfo import ConfigInfo
 
 
 class ImportTests(unittest.TestCase):
@@ -46,15 +45,16 @@ class ImportTests(unittest.TestCase):
     def testTranslateSuppressed(self):
         """Tests translation of suppressed input"""
 
-        ci = ConfigInfo()
-        schema = os.path.join(ci.get('SITE_EM_DICT_PATH'), 'emdb-v3.xsd')
-        
+        # Changed to not specify schema - let system determine
         translator = CifEMDBTranslator()
         translator.set_logger_logging(log_error=True, error_log_file_name=self.__logfile)
         translator.read_emd_map_v2_cif_file()
-        translator.translate_and_validate(in_cif=self.__inpfile, out_xml=self.__outfile, in_schema=schema)
+        translator.translate_and_validate(in_cif=self.__inpfile, out_xml=self.__outfile)
         # This will close the output file
         translator.write_logger_logs(write_error_log=True)
 
         self.assertTrue(translator.is_translation_log_empty, 'Translator failed')
         self.assertTrue(os.path.exists(self.__outfile), "No output file")
+
+if __name__ == "__main__":
+    unittest.main()

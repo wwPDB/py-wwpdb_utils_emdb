@@ -36,6 +36,7 @@ from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from mmcif.io.IoAdapterCore import IoAdapterCore
 from  . import emdb
+from  ..EmdbSchema import EmdbSchema
 
 class Cif(object):
     """Class to represent parsed cif file conforming to needed interface"""
@@ -10946,10 +10947,14 @@ class CifEMDBTranslator(object):
         finally:
             in_schema.close()
 
-    def translate_and_validate(self, in_cif, out_xml, in_schema):
+    def translate_and_validate(self, in_cif, out_xml, in_schema=None):
         """
         Validates XML file after reading an input cif file, translating it and creating XML
         """
+        if in_schema is None:
+            es = EmdbSchema()
+            in_schema = es.getSchemaPath()
+
         self.translate(in_cif, out_xml)
         if self.create_xml:
             self.validate(out_xml, in_schema)
