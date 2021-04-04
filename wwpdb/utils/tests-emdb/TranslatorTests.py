@@ -35,7 +35,6 @@ class ImportTests(unittest.TestCase):
         self.__inpfile = os.path.join(mockTopPath, 'EMD', 'emd-0000.cif')
         self.__outfile = os.path.join(TESTOUTPUT, 'emd-0000.xml')
         self.__logfile = os.path.join(TESTOUTPUT, 'emd-0000.log')
-        pass
 
     @staticmethod
     def testInstantiate():

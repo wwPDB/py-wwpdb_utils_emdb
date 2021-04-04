@@ -24,11 +24,11 @@ class convert(UtilsBase):
         # self.im.setFilterTagList(headerFilters)
 
     def em2emd(self):
-        ok = self.im.translate(self.inFile, self.outFile, mode="src-dst")  # noqa: F841
+        ok = self.im.translate(self.inFile, self.outFile, mode="src-dst")  # noqa: F841 pylint: disable=unused-variable
         # print ok
 
     def emd2em(self):
-        ok = self.im.translate(self.inFile, self.outFile, mode="dst-src")  # noqa: F841
+        ok = self.im.translate(self.inFile, self.outFile, mode="dst-src")  # noqa: F841 pylint: disable=unused-variable
         # print ok
 
 
