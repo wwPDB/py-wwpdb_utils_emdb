@@ -51,12 +51,11 @@ class TestTranslator(unittest.TestCase):
         # create the translator object
         translator = CifEMDBTranslator()
         translator.set_logger_logging(True, True, True, False)
-        i = 1
 
-        test_cifs = glob.glob(self.testInputCifDir+'/*.cif')
+        test_cifs = glob.glob(self.testInputCifDir + '/*.cif')
         for test_cif in test_cifs:
             out_filename = os.path.splitext(os.path.basename(test_cif))[0]
-            xml_out = os.path.join(self.testOutputXmlDir+'/'+out_filename+'.xml')
+            xml_out = os.path.join(self.testOutputXmlDir + '/' + out_filename + '.xml')
             translator.translate_and_validate(test_cif, xml_out, self.schema)
             translator.write_logger_logs(True, True, True)
 

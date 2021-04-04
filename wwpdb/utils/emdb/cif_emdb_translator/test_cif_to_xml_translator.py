@@ -22,11 +22,11 @@ def main():
     usage = """
             test_cif_to_xml_translator.py [options]
             Convert an mmcif emd file to EMDB v3.x xml file
-            
-            Examples: 
+
+            Examples:
             python test_cif_to_xml_translator.py -i input_cif_file -o output_xml_file
             python test_cif_to_xml_translator.py -i "data/cif/EMD-0000.cif" -o "data/test/xml_v3_out/EMD-0000.xml"
-            
+
             Typical run:
             python test_cif_to_xml_translator.py -i in.cif -o out.xml
                 in.xml: a cif file in emd space

@@ -35,8 +35,9 @@ from lxml import etree
 from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from mmcif.io.IoAdapterCore import IoAdapterCore
-from  . import emdb
-from  ..EmdbSchema import EmdbSchema
+from . import emdb
+from ..EmdbSchema import EmdbSchema
+
 
 class Cif(object):
     """Class to represent parsed cif file conforming to needed interface"""
@@ -48,8 +49,8 @@ class Cif(object):
         self.__block = container[0]
 
         # Create a tree
-        #print(dir(self.__block))
-        #print self.__block.getObjNameList()
+        # print(dir(self.__block))
+        # print self.__block.getObjNameList()
 
     def __getitem__(self, item):
         # Handle if abc in self.cif - key is an integer
@@ -62,7 +63,7 @@ class Cif(object):
 
         return self.get(item)
 
-    def get(self, catname, err = False):
+    def get(self, catname, err=False):
         """Returns tuple representation of category or none like:
 
         a= [[('_database_2.database_id', u'PDB'), ('_database_2.database_code', u'0XXX')],
@@ -80,7 +81,7 @@ class Cif(object):
 
         retlist = []
 
-        #print dir(dc_obj)
+        # print dir(dc_obj)
         attrlist = dc_obj.getAttributeList()
         for row in range(dc_obj.getRowCount()):
             rowlist = []
@@ -91,6 +92,7 @@ class Cif(object):
             retlist.append(rowlist)
 
         return retlist
+
 
 class CifEMDBTranslator(object):
     """Class for translating files from/to cif from EMDB XML 3.0"""
@@ -306,11 +308,11 @@ class CifEMDBTranslator(object):
                              'TISSUE': 'tissue',
                              'CELL': 'cell'}
         MAP_DATA_TYPE_CIF2XML = {'Image stored as signed byte':
-                                     'IMAGE STORED AS SIGNED BYTE',
+                                 'IMAGE STORED AS SIGNED BYTE',
                                  'Image stored as signed integer (2 bytes)':
-                                     'IMAGE STORED AS SIGNED INTEGER (2 BYTES)',
+                                 'IMAGE STORED AS SIGNED INTEGER (2 BYTES)',
                                  'Image stored as floating point number (4 bytes)':
-                                     'IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)'}
+                                 'IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)'}
 
         INFO_LOG_FILE_NAME = 'INFO_cifEMDBTranslation.log'
         WARN_LOG_FILE_NAME = 'WARN_cifEMDBTranslation.log'
@@ -393,16 +395,17 @@ class CifEMDBTranslator(object):
             'Transcontinental EM Initiative for Membrane Protein Structure (TEMIMPS)',
             'Transmembrane Protein Center (TMPC)'}
 
+        # XXX emd_admin.last_update should not be initialized twice
         MMCIF_TO_XSD = {
             '_emd_admin.current_status': '<xs:element name="code" type="code_type"/>',
-            '_emd_admin.last_update': '<xs:element name="date" minOccurs="0">',
+            '_emd_admin.last_update': '<xs:element name="date" minOccurs="0">',  # noqa: F601
             '_pdbx_database_status.process_site': '<xs:element name="processing_site" minOccurs="0">',
             '_emd_admin.deposition_site': '<xs:element name="deposition">',
             '_emd_admin.deposition_date': '<xs:element name="deposition" type="xs:date">',
             '_emd_admin.header_release_date': '<xs:element name="header_release" type="xs:date" minOccurs="0">',
             '_emd_admin.map_release_date': '<xs:element name="map_release" type="xs:date" minOccurs="0">',
             '_emd_admin.obsoleted_date': '<xs:element name="obsolete" type="xs:date" minOccurs="0">',
-            '_emd_admin.last_update': '<xs:element name="update" type="xs:date">',
+            '_emd_admin.last_update': '<xs:element name="update" type="xs:date">',  # noqa: F601
             '_struct.title': '<xs:element name="title" type="xs:token">',
             '_emd_admin.title': '<xs:element name="title" type="xs:token">',
             '_emd_admin.details': '<xs:element name="details" type="xs:token" minOccurs="0">',
@@ -899,8 +902,6 @@ class CifEMDBTranslator(object):
         @property
         def validation_title(self):
             return self._validation_title
-
-
 
         def add_info(self, cif_item, setter_func, xsd, em_for_emd, fmt_cif_value=None, parent_el_req=None, soft_name=None):
             info = CifEMDBTranslator.ALog(cif_item, setter_func, xsd, em_for_emd, fmt_cif_value, parent_el_req, soft_name)
@@ -2177,9 +2178,9 @@ class CifEMDBTranslator(object):
 
                     for aud_sup_key, aud_sup in aud_sup_in.items():
                         el_funding_body = get_cif_value('funding_organization', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
-                        el_code = get_cif_value('grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
-                        el_country = get_cif_value('country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
-                        if el_funding_body is not None: # or el_code is not None or el_country is not None:
+                        el_code = get_cif_value('grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)  # noqa: F841
+                        el_country = get_cif_value('country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)  # noqa: F841
+                        if el_funding_body is not None:  # or el_code is not None or el_country is not None:
                             grant_ref = emdb.grant_reference_type()
                             set_grant_reference_type(grant_ref, aud_sup)
                             if grant_ref.hasContent_():
@@ -2251,7 +2252,8 @@ class CifEMDBTranslator(object):
                             XSD: <xs:element name="organization">
                             CIF: _pdbx_contact_author.organization_type
                             """
-                            set_cif_value(cont_author.set_organization, 'organization_type', const.PDBX_CONTACT_AUTHOR, cif_list=contact_auth_in, constructor=emdb.organizationType, type='', fmt=str.upper, parent_el_req=parent_req)
+                            set_cif_value(cont_author.set_organization, 'organization_type', const.PDBX_CONTACT_AUTHOR, cif_list=contact_auth_in, constructor=emdb.organizationType, type='',
+                                          fmt=str.upper, parent_el_req=parent_req)
 
                         def set_el_street(cont_author, contact_auth_in, parent_req):
                             """
@@ -2549,7 +2551,7 @@ class CifEMDBTranslator(object):
                         refs = []
                         for cite_ref_type in cite_ref_type_list:
                             cite_ref_value = get_cif_value(cite_ref_type[0], const.CITATION, cite_in)
-                            cite_ref_item = get_cif_item(cite_ref_type[0], const.CITATION)
+                            # cite_ref_item = get_cif_item(cite_ref_type[0], const.CITATION)
                             if cite_ref_value is not None:
                                 ext_ref = emdb.external_referencesType()
                                 ext_ref.set_type(cite_ref_type[1])
@@ -2621,7 +2623,7 @@ class CifEMDBTranslator(object):
                             No proper flag to distinguish between journal and book depositions.
                             Use the journal abbreviation as an implicit flag
                             """
-                            ja_item = get_cif_item('journal_abbrev', const.CITATION)
+                            # ja_item = get_cif_item('journal_abbrev', const.CITATION)
                             value_given = None
                             if jrnl_abbrev_in.lower() in ['to be published', 'suppressed']:
                                 value_given = False
@@ -2755,7 +2757,7 @@ class CifEMDBTranslator(object):
                             CIF: _citation.unpublished_flag ?
                             """
                             unpublished_flag = get_cif_value('unpublished_flag', const.CITATION, cite_in)
-                            uf_item = get_cif_item('unpublished_flag', const.CITATION)
+                            # uf_item = get_cif_item('unpublished_flag', const.CITATION)
                             value_given = None
                             if unpublished_flag is None or unpublished_flag == 'Y':
                                 value_given = False
@@ -3015,7 +3017,7 @@ class CifEMDBTranslator(object):
                         CIF: _emd_crossreference.relationship ?
                         """
                         rel_in = get_cif_value('relationship', const.EMD_CROSSREFERENCE, emdb_ref_in)
-                        rel_item = get_cif_item('relationship', const.EMD_CROSSREFERENCE)
+                        # rel_item = get_cif_item('relationship', const.EMD_CROSSREFERENCE)
                         txt = None
                         if rel_in == 'IN FRAME':
                             emdb_ref.set_relationship(emdb.relationshipType(in_frame='FULLOVERLAP'))
@@ -3151,7 +3153,7 @@ class CifEMDBTranslator(object):
                         CIF: _emd_crossreference.relationship ?
                         """
                         rel_in = get_cif_value('relationship', const.EMD_CROSSREFERENCE, pdb_ref_in)
-                        rel_item = get_cif_item('relationship', const.EMD_CROSSREFERENCE)
+                        # rel_item = get_cif_item('relationship', const.EMD_CROSSREFERENCE)
                         txt = None
                         if rel_in == 'IN FRAME':
                             pdb_ref.set_relationship(emdb.relationshipType(in_frame='FULLOVERLAP'))
@@ -3336,7 +3338,8 @@ class CifEMDBTranslator(object):
                                 else:
                                     # common_name is not None
                                     if tax_id_in is not None:
-                                        set_cif_value(src.set_organism, cif_key, cif_category, cif_list=src_in, constructor=emdb.organism_type, ncbi=tax_id_in, cif_value=common_name, parent_el_req=False)
+                                        set_cif_value(src.set_organism, cif_key, cif_category, cif_list=src_in, constructor=emdb.organism_type, ncbi=tax_id_in,
+                                                      cif_value=common_name, parent_el_req=False)
                                     else:
                                         set_cif_value(src.set_organism, cif_key, cif_category, cif_list=src_in, constructor=emdb.organism_type, cif_value=common_name, parent_el_req=False)
                             else:
@@ -3427,7 +3430,7 @@ class CifEMDBTranslator(object):
                         if ent_type == 'polymer':
                             ent_src_method = get_cif_value('src_method', const.ENTITY, entity_dict[ent_id_in])
                             if ent_src_method == 'nat':
-                                pass # CHECK THIS
+                                pass  # CHECK THIS
                             elif ent_src_method == 'man':
                                 if src_dicts.get('ent_src_gen_dict', None) is None:
                                     txt = u'(_entity_src_gen) category missing for creating recombinant expression for the map and model entry (%s) where (_emd_supramolecule.source) is (RECOMBINANT) and polymer is (man).' % ent_id_in
@@ -5270,7 +5273,7 @@ class CifEMDBTranslator(object):
                                 # there is more than one EC number: split it and write the first bit
                                 ec_num = ec_num_in.split(',')[0]
                                 set_cif_value(p_mol.add_ec_number, 'pdbx_ec', const.ENTITY, cif_list=ent_in, cif_value=ec_num)
-                                txt = u'(_entity.pdbx_ec) is given: (%s) but the value: (%s) is set instead.'% (ec_num_in, ec_num)
+                                txt = u'(_entity.pdbx_ec) is given: (%s) but the value: (%s) is set instead.' % (ec_num_in, ec_num)
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.change_title + txt))
                                 self.log_formatted(self.warn_log_string, const.CHANGE_MADE + txt)
                             else:
@@ -5562,7 +5565,8 @@ class CifEMDBTranslator(object):
                                 """
                                 conc_units = get_cif_value('concentration_units', const.EMD_BUFFER_COMPONENT, buff_comp_in)
                                 if conc_units is not None:
-                                    set_cif_value(buff_comp.set_concentration, 'concentration', const.EMD_BUFFER_COMPONENT, cif_list=buff_comp_in, constructor=emdb.concentrationType, fmt=float, units=conc_units)
+                                    set_cif_value(buff_comp.set_concentration, 'concentration', const.EMD_BUFFER_COMPONENT, cif_list=buff_comp_in, constructor=emdb.concentrationType,
+                                                  fmt=float, units=conc_units)
                                 else:
                                     txt = u'The value for (_emd_buffer_component.concentration_units) is missing. Buffer concentration will not be set.'
                                     self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.warn_title + txt))
@@ -5851,18 +5855,17 @@ class CifEMDBTranslator(object):
                                 CIF: _emd_support_film.thickness 50
                                 mmCIF dict: Thickness of the support film, in Angstrom
                                 """
-                                film_thickness = get_cif_value('thickness', const.EMD_SUPPORT_FILM, cif_list=film_in)
-                                if film_thickness is not None:
-                                    fl_film_thickness = float(film_thickness) * 0.1
-                                    # if fl_film_thickness < 5:
-                                    #     txt = u'The value for (_emd_support_film.thickness) is (%s) angstroms. The lowest value should be 5.0 nm.' % film_thickness
-                                    #     self.current_entry_log.warn_logs.append(self.ALog(log_text=self.current_entry_log.not_changed_for_now_title + txt))
-                                    #     self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
-                                    # elif fl_film_thickness > 50:
-                                    #     txt = u'The value for (_emd_support_film.thickness) is (%s) angstroms. The highest value is 50.0 nm.'% film_thickness
-                                    #     self.current_entry_log.warn_logs.append(self.ALog(log_text=self.current_entry_log.not_changed_for_now_title + txt))
-                                    #     self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
-
+                                # film_thickness = get_cif_value('thickness', const.EMD_SUPPORT_FILM, cif_list=film_in)
+                                # if film_thickness is not None:
+                                #     fl_film_thickness = float(film_thickness) * 0.1
+                                #     if fl_film_thickness < 5:
+                                #         txt = u'The value for (_emd_support_film.thickness) is (%s) angstroms. The lowest value should be 5.0 nm.' % film_thickness
+                                #         self.current_entry_log.warn_logs.append(self.ALog(log_text=self.current_entry_log.not_changed_for_now_title + txt))
+                                #         self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
+                                #     elif fl_film_thickness > 50:
+                                #         txt = u'The value for (_emd_support_film.thickness) is (%s) angstroms. The highest value is 50.0 nm.'% film_thickness
+                                #         self.current_entry_log.warn_logs.append(self.ALog(log_text=self.current_entry_log.not_changed_for_now_title + txt))
+                                #         self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                                 set_cif_value(film.set_film_thickness, 'thickness', const.EMD_SUPPORT_FILM, cif_list=film_in,
                                               constructor=emdb.film_thicknessType, fmt=lambda x: float(x) * 0.1, units=const.U_NM)
 
@@ -6045,7 +6048,7 @@ class CifEMDBTranslator(object):
                                 set_cif_value(vitr.set_instrument, 'instrument', const.EMD_VITRIFICATION, cif_list=vitr_in)
                             else:
                                 # write OTHER and add note in details
-                                set_cif_value(vitr.set_instrument, 'instrument', const.EMD_VITRIFICATION,  cif_list=vitr_in, cif_value='OTHER')
+                                set_cif_value(vitr.set_instrument, 'instrument', const.EMD_VITRIFICATION, cif_list=vitr_in, cif_value='OTHER')
                                 details_txt = u'The value given for _emd_vitrification.instrument is %s. This is not in a list of allowed values %s so OTHER is written into the XML file.' % (instrument, allowed_instruments)
                         return details_txt
 
@@ -6512,7 +6515,7 @@ class CifEMDBTranslator(object):
                     XSD: <xs:element name="lipid_protein_ratio" type="xs:float" minOccurs="0"/>
                     CIF: _emd_crystal_formation.lipid_protein_ratio 5.0
                     """
-                    set_cif_value(cryst.set_lipid_protein_ratio, 'lipid_protein_ratio', const.EMD_CRYSTAL_FORMATION,  cif_list=cryst_in, fmt=float)
+                    set_cif_value(cryst.set_lipid_protein_ratio, 'lipid_protein_ratio', const.EMD_CRYSTAL_FORMATION, cif_list=cryst_in, fmt=float)
 
                 def set_el_lipid_mixture(cryst, cryst_in):
                     """
@@ -6701,7 +6704,8 @@ class CifEMDBTranslator(object):
                         set_cif_value(struct_det.set_method, 'method', const.EMD_STRUCTURE_DETERMINATION, cif_value=em_method)
                     else:
                         txt = u'(%s) is not a recognised structure determination method. Recognised methods are: SINGLE PARTICLE, SUBTOMOGRAM AVERAGING, TOMOGRAPHY, HELICAL, CRYSTALLOGRAPHY.' % metd_item
-                        self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
+                        self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')'
+                                                                           + self.current_entry_log.error_title + txt))
                         self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                 return em_method
 
@@ -7310,7 +7314,7 @@ class CifEMDBTranslator(object):
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.not_changed_for_now_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                             elif fl_nom_fel > 20:
-                                txt = u'_emd_microscopy.nominal_defocus_max (%s) is larger than 20.' %  fl_nom_fel
+                                txt = u'_emd_microscopy.nominal_defocus_max (%s) is larger than 20.' % fl_nom_fel
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.not_changed_for_now_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                             set_cif_value(mic.set_nominal_defocus_max, 'nominal_defocus_max', const.EMD_MICROSCOPY, cif_list=mic_in,
@@ -7329,7 +7333,7 @@ class CifEMDBTranslator(object):
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.not_changed_for_now_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                             elif fl_cal_fel > 20:
-                                txt = u'The value given to (_emd_microscopy.calibrated_defocus_max): (%s) is larger than 20.' %  fl_cal_fel
+                                txt = u'The value given to (_emd_microscopy.calibrated_defocus_max): (%s) is larger than 20.' % fl_cal_fel
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.not_changed_for_now_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                             set_cif_value(mic.set_calibrated_defocus_max, 'calibrated_defocus_max', const.EMD_MICROSCOPY, cif_list=mic_in,
@@ -8433,7 +8437,7 @@ class CifEMDBTranslator(object):
                         el_num_ref_projections = get_cif_value('projection_matching_number_reference_projections', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         el_merit_function = get_cif_value('projection_matching_merit_function', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         el_angular_sampling = get_cif_value('projection_matching_angular_sampling', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
-                        el_software_list = get_cif_value('order', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
+                        _el_software_list = get_cif_value('order', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)  # noqa: F841
                         el_details = get_cif_value('details', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         angle_assignment_type_list = [el_type, el_num_ref_projections, el_merit_function, el_angular_sampling, el_details]
                         if any(x is not None for x in angle_assignment_type_list):
@@ -9388,14 +9392,16 @@ class CifEMDBTranslator(object):
                                         XSD: <xs:element name="high_resolution">
                                         CIF: _emd_crystallography_shell.high_resolution 3.0
                                         """
-                                        set_cif_value(shell.set_high_resolution, 'high_resolution', const.EMD_CRYSTALLOGRAPHY_SHELL, cif_list=cs_in, constructor=emdb.high_resolutionType, fmt=float, units=const.U_ANG, parent_el_req=False)
+                                        set_cif_value(shell.set_high_resolution, 'high_resolution', const.EMD_CRYSTALLOGRAPHY_SHELL, cif_list=cs_in, constructor=emdb.high_resolutionType,
+                                                      fmt=float, units=const.U_ANG, parent_el_req=False)
 
                                     def set_el_low_resolution(shell, cs_in):
                                         """
                                         XSD: <xs:element name="low_resolution">
                                         CIF: _emd_crystallography_shell.low_resolution 5.5
                                         """
-                                        set_cif_value(shell.set_low_resolution, 'low_resolution', const.EMD_CRYSTALLOGRAPHY_SHELL, cif_list=cs_in, constructor=emdb.low_resolutionType, fmt=float, units=const.U_ANG, parent_el_req=False)
+                                        set_cif_value(shell.set_low_resolution, 'low_resolution', const.EMD_CRYSTALLOGRAPHY_SHELL, cif_list=cs_in, constructor=emdb.low_resolutionType,
+                                                      fmt=float, units=const.U_ANG, parent_el_req=False)
 
                                     def set_el_number_structure_factors(shell, cs_in):
                                         """
@@ -9454,7 +9460,8 @@ class CifEMDBTranslator(object):
                                             el_phase_residual = get_cif_value('phase_residual', const.EMD_CRYSTALLOGRAPHY_SHELL, cif_list=cs_in)
                                             el_fourier_space_coverage = get_cif_value('fourier_space_coverage', const.EMD_CRYSTALLOGRAPHY_SHELL, cif_list=cs_in)
                                             el_multiplicity = get_cif_value('multiplicity', const.EMD_CRYSTALLOGRAPHY_SHELL, cif_list=cs_in)
-                                            shell_type_list = [attr_id, el_high_resolution, el_low_resolution, el_number_structure_factors, el_phase_residual, el_fourier_space_coverage, el_multiplicity]
+                                            shell_type_list = [attr_id, el_high_resolution, el_low_resolution, el_number_structure_factors, el_phase_residual,
+                                                               el_fourier_space_coverage, el_multiplicity]
                                             if any(x is not None for x in shell_type_list):
                                                 shell = emdb.shellType()
                                                 set_shell_type(shell, cs_in)
@@ -10201,7 +10208,8 @@ class CifEMDBTranslator(object):
                                                     set_cif_value(cntr.set_level, 'contour_level', const.EMD_MAP, cif_list=map_in, cif_value=cl_float)
                                                 else:
                                                     txt = u'Contour level is given as a text value of %s. This is not correct. It should be a number.' % cntr_level
-                                                    self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.error_title + txt))
+                                                    self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')'
+                                                                                                       + self.current_entry_log.error_title + txt))
                                                     self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                                         else:
                                             txt = u'Contour level is missing for %s.' % struct_det_method
@@ -10971,21 +10979,21 @@ def main():
             python cif_emdb_translator.py --xml -i input_file -o outputFile
 
             Typical run:
-            python cif_emdb_translator.py --xml -i in.cif -o out.xml 
+            python cif_emdb_translator.py --xml -i in.cif -o out.xml
                 in.cif is assumed to be a cif file in emd space
                 an XML file following EMDB XML schema 3.0 is produced and written out to out.xml
-                
+
             Enabling console logging information:
             python cif_emdb_translator.py --xml -l -i in.cif -o out.xml
-                
+
             Turn off logging files:
-            python cif_emdb_translator.py --xml --info-log-off --warn-log-off --error-log-off -i in.cif -o out.xml 
+            python cif_emdb_translator.py --xml --info-log-off --warn-log-off --error-log-off -i in.cif -o out.xml
             or
             python cif_emdb_translator.py --xml -f -w -e -i in.cif -o out.xml
                 -f or --info-log-off: no information written into INFO_cifEMDBTranslation.log
                 -w or --warn-log-off: no information written into WARN_cifEMDBTranslation.log
                 -e or --error-log-off: no information written into ERROR_cifEMDBTranslation.log
-                
+
             Combine turning off log files and enabling console log:
             python cif_emdb_translator.py --xml -w -e -i in.cif -o out.xml
             """

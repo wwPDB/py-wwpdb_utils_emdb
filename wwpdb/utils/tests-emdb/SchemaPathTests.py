@@ -19,4 +19,7 @@ class SchamePathTests(unittest.TestCase):
 
         ok = os.path.exists(spath)
         self.assertTrue(ok, "EMDB schema missing: %s" % spath)
-        
+
+
+if __name__ == "__main__":
+    unittest.main()

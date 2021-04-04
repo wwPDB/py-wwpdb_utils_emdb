@@ -23,11 +23,11 @@ if not os.path.exists(TESTOUTPUT):
 mockTopPath = os.path.join(TOPDIR, 'wwpdb', 'mock-data')
 
 # Must create config file before importing ConfigInfo
-from wwpdb.utils.testing.SiteConfigSetup  import SiteConfigSetup
+from wwpdb.utils.testing.SiteConfigSetup import SiteConfigSetup  # noqa: E402
 SiteConfigSetup().setupEnvironment(TESTOUTPUT, mockTopPath)
 
 #
-from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTranslator
+from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTranslator  # noqa: E402
 
 
 class ImportTests(unittest.TestCase):
@@ -55,6 +55,7 @@ class ImportTests(unittest.TestCase):
 
         self.assertTrue(translator.is_translation_log_empty, 'Translator failed')
         self.assertTrue(os.path.exists(self.__outfile), "No output file")
+
 
 if __name__ == "__main__":
     unittest.main()
