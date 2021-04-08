@@ -30,9 +30,15 @@ under the License.
 """
 
 
+<<<<<<< HEAD
 __author__ = 'Ardan Patwardhan, Sanja Abbott'
 __email__ = 'ardan@ebi.ac.uk, sanja@ebi.ac.uk'
 __date__ = '2018-06-28'
+=======
+__author__ = "Ardan Patwardhan, Sanja Abbott"
+__email__ = "ardan@ebi.ac.uk, sanja@ebi.ac.uk"
+__date__ = "2018-06-28"
+>>>>>>> origin/develop
 
 import os.path
 import unittest
@@ -42,8 +48,14 @@ from cif_emdb_translator import CifEMDBTranslator
 
 class TestTranslator(unittest.TestCase):
     """Run the translator on a bunch of example files"""
+<<<<<<< HEAD
     testOutputXmlDir = 'data/test/xml_out'
     testInputCifDir = 'data/test/cif'
+=======
+
+    testOutputXmlDir = "data/test/xml_out"
+    testInputCifDir = "data/test/cif"
+>>>>>>> origin/develop
     schema = "emdb.xsd"
 
     def test_cif2xml(self):
@@ -51,15 +63,27 @@ class TestTranslator(unittest.TestCase):
         # create the translator object
         translator = CifEMDBTranslator()
         translator.set_logger_logging(True, True, True, False)
+<<<<<<< HEAD
         i = 1
 
         test_cifs = glob.glob(self.testInputCifDir+'/*.cif')
         for test_cif in test_cifs:
             out_filename = os.path.splitext(os.path.basename(test_cif))[0]
             xml_out = os.path.join(self.testOutputXmlDir+'/'+out_filename+'.xml')
+=======
+
+        test_cifs = glob.glob(self.testInputCifDir + "/*.cif")
+        for test_cif in test_cifs:
+            out_filename = os.path.splitext(os.path.basename(test_cif))[0]
+            xml_out = os.path.join(self.testOutputXmlDir + "/" + out_filename + ".xml")
+>>>>>>> origin/develop
             translator.translate_and_validate(test_cif, xml_out, self.schema)
             translator.write_logger_logs(True, True, True)
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
+=======
+if __name__ == "__main__":
+>>>>>>> origin/develop
     unittest.main()

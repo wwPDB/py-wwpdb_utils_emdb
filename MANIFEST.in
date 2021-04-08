@@ -1,1 +1,5 @@
 recursive-exclude wwpdb/utils/emdb/emdb_xml2cif_translator *
+<<<<<<< HEAD
+=======
+recursive-include wwpdb/utils/emdb/data *xsd
+>>>>>>> origin/develop
