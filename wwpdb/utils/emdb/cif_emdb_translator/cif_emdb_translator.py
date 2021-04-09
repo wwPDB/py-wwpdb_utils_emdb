@@ -17,10 +17,10 @@ KIND, either express or implied. See the License for the
 specific language governing permissions and limitations
 under the License.
 """
-__author__ = 'Ardan Patwardhan, Sanja Abbott'
-__email__ = 'ardan@ebi.ac.uk, sanja@ebi.ac.uk'
-__date__ = '2019-05-17'
-__version__ = '1.0'
+__author__ = "Ardan Patwardhan, Sanja Abbott"
+__email__ = "ardan@ebi.ac.uk, sanja@ebi.ac.uk"
+__date__ = "2019-05-17"
+__version__ = "1.0"
 
 import os
 import sys
@@ -28,7 +28,7 @@ import re
 import datetime
 import logging
 import io
-from optparse import OptionParser
+from optparse import OptionParser  # pylint: disable=deprecated-module
 from lxml import etree
 
 # Deployment paths
@@ -36,6 +36,8 @@ from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from mmcif.io.IoAdapterCore import IoAdapterCore
 from  . import emdb
+from ..EmdbSchema import EmdbSchema
+
 
 class Cif(object):
     """Class to represent parsed cif file conforming to needed interface"""
@@ -47,8 +49,8 @@ class Cif(object):
         self.__block = container[0]
 
         # Create a tree
-        #print(dir(self.__block))
-        #print self.__block.getObjNameList()
+        # print(dir(self.__block))
+        # print self.__block.getObjNameList()
 
     def __getitem__(self, item):
         # Handle if abc in self.cif - key is an integer
@@ -61,7 +63,7 @@ class Cif(object):
 
         return self.get(item)
 
-    def get(self, catname, err = False):
+    def get(self, catname, err=False):  # pylint: disable=unused-argument
         """Returns tuple representation of category or none like:
 
         a= [[('_database_2.database_id', u'PDB'), ('_database_2.database_code', u'0XXX')],
@@ -79,7 +81,7 @@ class Cif(object):
 
         retlist = []
 
-        #print dir(dc_obj)
+        # print dir(dc_obj)
         attrlist = dc_obj.getAttributeList()
         for row in range(dc_obj.getRowCount()):
             rowlist = []
@@ -392,7 +394,8 @@ class CifEMDBTranslator(object):
             'Transcontinental EM Initiative for Membrane Protein Structure (TEMIMPS)',
             'Transmembrane Protein Center (TMPC)'}
 
-        MMCIF_TO_XSD = {
+        # emd_admin.last_update should not be initialized twice
+        MMCIF_TO_XSD = {  # pylint: disable=duplicate-key
             '_emd_admin.current_status': '<xs:element name="code" type="code_type"/>',
             '_emd_admin.last_update': '<xs:element name="date" minOccurs="0">',
             '_pdbx_database_status.process_site': '<xs:element name="processing_site" minOccurs="0">',
@@ -926,7 +929,7 @@ class CifEMDBTranslator(object):
         def logs(self):
             return self.entry_logs
 
-    def __init__(self, info_log=None, warn_log=None, error_log=None):
+    def __init__(self, info_log=None, warn_log=None, error_log=None):  # pylint: disable=unused-argument
         self.cif_file_name = None
         self.cif_file_read = False  # flag set once the cif file is read
         self.cif = None  # cif dictionary
@@ -1219,10 +1222,10 @@ class CifEMDBTranslator(object):
         about how the em categories map to the emd categories.
         Please note: the mapping is not one to one for certain categories
         """
-        self.__siteId = getSiteId()
-        self.__cI = ConfigInfo(self.__siteId)
+        siteId = getSiteId()
+        cI = ConfigInfo(siteId)
         # site_ext_dict_map_emd_file_path = %(resource_path)s/emd_map_v2.cif
-        emd_map_file_name = self.__cI.get('SITE_EXT_DICT_MAP_EMD_FILE_PATH')
+        emd_map_file_name = cI.get('SITE_EXT_DICT_MAP_EMD_FILE_PATH')
         io_adapt = IoAdapterCore()
         map_cat_list = io_adapt.readFile(emd_map_file_name)
         cat = self.Constants.PDBX_DICT_ITEM_MAPPING
@@ -1244,8 +1247,8 @@ class CifEMDBTranslator(object):
         """
         const = self.Constants
         self.cif_file_name = cif_file_name
-        self.io_util = IoAdapterCore()
-        container = self.io_util.readFile(inputFilePath=cif_file_name,
+        io_util = IoAdapterCore()
+        container = io_util.readFile(inputFilePath=cif_file_name,
                                           selectList=[const.CITATION,
                                                       const.CITATION_AUTHOR,
                                                       const.DATABASE_2,
@@ -2057,7 +2060,7 @@ class CifEMDBTranslator(object):
                         # element 3
                         set_el_details(obs_entry, obs_in)
 
-                    for obs_id, obs_in in obsolete_in.items():
+                    for _obs_id, obs_in in obsolete_in.items():
                         obs_entry = emdb.supersedes_type()
                         set_supersedes_type(obs_entry, obs_in)
                         obs_list.add_entry(obs_entry)
@@ -2117,7 +2120,7 @@ class CifEMDBTranslator(object):
                         # element 3
                         set_el_details(spr_entry, spr_in)
 
-                    for spr_id, spr_in in supr_in.items():
+                    for _spr_id, spr_in in supr_in.items():
                         spr_entry = emdb.supersedes_type()
                         set_supersede_entry(spr_entry, spr_in)
                         supersed_list.add_entry(spr_entry)
@@ -2174,10 +2177,10 @@ class CifEMDBTranslator(object):
                         # element 3
                         set_el_country(grant_ref, aud_sup, parent_req=False)
 
-                    for aud_sup_key, aud_sup in aud_sup_in.items():
+                    for _aud_sup_key, aud_sup in aud_sup_in.items():
                         el_funding_body = get_cif_value('funding_organization', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
-                        el_code = get_cif_value('grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
-                        el_country = get_cif_value('country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
+                        # el_code = get_cif_value('grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
+                        # el_country = get_cif_value('country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
                         if el_funding_body is not None: # or el_code is not None or el_country is not None:
                             grant_ref = emdb.grant_reference_type()
                             set_grant_reference_type(grant_ref, aud_sup)
@@ -2548,7 +2551,7 @@ class CifEMDBTranslator(object):
                         refs = []
                         for cite_ref_type in cite_ref_type_list:
                             cite_ref_value = get_cif_value(cite_ref_type[0], const.CITATION, cite_in)
-                            cite_ref_item = get_cif_item(cite_ref_type[0], const.CITATION)
+                            # cite_ref_item = get_cif_item(cite_ref_type[0], const.CITATION)
                             if cite_ref_value is not None:
                                 ext_ref = emdb.external_referencesType()
                                 ext_ref.set_type(cite_ref_type[1])
@@ -2620,9 +2623,9 @@ class CifEMDBTranslator(object):
                             No proper flag to distinguish between journal and book depositions.
                             Use the journal abbreviation as an implicit flag
                             """
-                            ja_item = get_cif_item('journal_abbrev', const.CITATION)
+                            # ja_item = get_cif_item('journal_abbrev', const.CITATION)
                             value_given = None
-                            if jrnl_abbrev_in.lower() in ['to be published', 'suppressed']:
+                            if jrnl_abbrev_in.lower() in ["to be published", "suppressed"]:
                                 value_given = False
                             else:
                                 value_given = True
@@ -2753,8 +2756,8 @@ class CifEMDBTranslator(object):
                             XSD: <xs:attribute name="published" type="xs:boolean" use="required"/>
                             CIF: _citation.unpublished_flag ?
                             """
-                            unpublished_flag = get_cif_value('unpublished_flag', const.CITATION, cite_in)
-                            uf_item = get_cif_item('unpublished_flag', const.CITATION)
+                            unpublished_flag = get_cif_value("unpublished_flag", const.CITATION, cite_in)
+                            # uf_item = get_cif_item('unpublished_flag', const.CITATION)
                             value_given = None
                             if unpublished_flag is None or unpublished_flag == 'Y':
                                 value_given = False
@@ -3013,8 +3016,8 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="relationship" minOccurs="0">
                         CIF: _emd_crossreference.relationship ?
                         """
-                        rel_in = get_cif_value('relationship', const.EMD_CROSSREFERENCE, emdb_ref_in)
-                        rel_item = get_cif_item('relationship', const.EMD_CROSSREFERENCE)
+                        rel_in = get_cif_value("relationship", const.EMD_CROSSREFERENCE, emdb_ref_in)
+                        # rel_item = get_cif_item('relationship', const.EMD_CROSSREFERENCE)
                         txt = None
                         if rel_in == 'IN FRAME':
                             emdb_ref.set_relationship(emdb.relationshipType(in_frame='FULLOVERLAP'))
@@ -3149,8 +3152,8 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="relationship" minOccurs="0">
                         CIF: _emd_crossreference.relationship ?
                         """
-                        rel_in = get_cif_value('relationship', const.EMD_CROSSREFERENCE, pdb_ref_in)
-                        rel_item = get_cif_item('relationship', const.EMD_CROSSREFERENCE)
+                        rel_in = get_cif_value("relationship", const.EMD_CROSSREFERENCE, pdb_ref_in)
+                        # rel_item = get_cif_item('relationship', const.EMD_CROSSREFERENCE)
                         txt = None
                         if rel_in == 'IN FRAME':
                             pdb_ref.set_relationship(emdb.relationshipType(in_frame='FULLOVERLAP'))
@@ -3786,7 +3789,7 @@ class CifEMDBTranslator(object):
                                     a_macromol = emdb.macromoleculeType(macromolecule_id=int(m_in))
                                     a_macromol.original_tagname_ = 'macromolecule'
                                     macro_list.add_macromolecule(a_macromol)
-                                txt = u'Macromolecule (%s) added to the list of macromolecules.' % int(m_in)
+                                txt = u'Macromolecule (%s) added to the list of macromolecules.' % int(m_in)  # pylint: disable=undefined-loop-variable
                                 self.current_entry_log.info_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.info_title + txt))
                                 self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
                                 if macro_list.hasContent_():
@@ -5850,9 +5853,9 @@ class CifEMDBTranslator(object):
                                 CIF: _emd_support_film.thickness 50
                                 mmCIF dict: Thickness of the support film, in Angstrom
                                 """
-                                film_thickness = get_cif_value('thickness', const.EMD_SUPPORT_FILM, cif_list=film_in)
-                                if film_thickness is not None:
-                                    fl_film_thickness = float(film_thickness) * 0.1
+                                # film_thickness = get_cif_value('thickness', const.EMD_SUPPORT_FILM, cif_list=film_in)
+                                # if film_thickness is not None:
+                                    # fl_film_thickness = float(film_thickness) * 0.1
                                     # if fl_film_thickness < 5:
                                     #     txt = u'The value for (_emd_support_film.thickness) is (%s) angstroms. The lowest value should be 5.0 nm.' % film_thickness
                                     #     self.current_entry_log.warn_logs.append(self.ALog(log_text=self.current_entry_log.not_changed_for_now_title + txt))
@@ -8110,7 +8113,7 @@ class CifEMDBTranslator(object):
                                 set_choice_pdb_model(st_map, sm_in)
                             elif t_of_m == 'INSILICO MODEL':
                                 set_choice_insilico_model(st_map, sm_in)
-                            elif t_of_m in ['OTHER' 'NONE']:
+                            elif t_of_m in ['OTHER' 'NONE']:  # pylint: disable=implicit-str-concat
                                 set_choice_other(st_map, sm_in)
 
                         def set_el_details(st_map, sm_in):
@@ -8226,16 +8229,16 @@ class CifEMDBTranslator(object):
                                 if h_sym.hasContent_():
                                     app_sym.set_helical_parameters(h_sym)
 
-                            p_sym_dict_in = final_dicts['p_sym_dict_in']
-                            h_sym_dict_in = final_dicts['h_sym_dict_in']
-                            if sym_type_in in ['2D CRYSTAL' '3D CRYSTAL']:
+                            p_sym_dict_in = final_dicts["p_sym_dict_in"]
+                            h_sym_dict_in = final_dicts["h_sym_dict_in"]
+                            if sym_type_in in ["2D CRYSTAL" "3D CRYSTAL"]:  # pylint: disable=implicit-str-concat
                                 # choice 1
                                 set_choice_space_group()
-                            elif sym_type_in == 'POINT' and ip_id_in in p_sym_dict_in:
+                            elif sym_type_in == "POINT" and ip_id_in in p_sym_dict_in:
                                 p_sym_in = p_sym_dict_in[ip_id_in]
                                 # choice 2
                                 set_choice_point_group(app_sym, p_sym_in)
-                            elif sym_type_in == 'HELICAL' and ip_id_in in h_sym_dict_in:
+                            elif sym_type_in == "HELICAL" and ip_id_in in h_sym_dict_in:
                                 h_sym_in = h_sym_dict_in[ip_id_in]
                                 if h_sym_in is not None:
                                     # choice 3
@@ -8432,7 +8435,7 @@ class CifEMDBTranslator(object):
                         el_num_ref_projections = get_cif_value('projection_matching_number_reference_projections', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         el_merit_function = get_cif_value('projection_matching_merit_function', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         el_angular_sampling = get_cif_value('projection_matching_angular_sampling', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
-                        el_software_list = get_cif_value('order', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
+                        _el_software_list = get_cif_value('order', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         el_details = get_cif_value('details', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         angle_assignment_type_list = [el_type, el_num_ref_projections, el_merit_function, el_angular_sampling, el_details]
                         if any(x is not None for x in angle_assignment_type_list):
@@ -9069,7 +9072,6 @@ class CifEMDBTranslator(object):
                             XSD: <xs:element name="software_list" type="software_list_type" minOccurs="0"/>
                             XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
                             """
-                            pass
 
                         refinement = emdb.refinement_type()
                         set_refinement_type()
@@ -10382,7 +10384,7 @@ class CifEMDBTranslator(object):
                 """
                 # no need to set the version as the dafualt value is given
                 # self.xml_out.set_version(const.XML_OUT_VERSION)
-                pass
+                pass  # pylint: disable=unnecessary-pass
 
             def set_el_admin():
                 """
@@ -10837,8 +10839,8 @@ class CifEMDBTranslator(object):
             set_entry_type()
             self.translation_log.logs.append(self.entry_in_translation_log)
         else:
-            print('cif file NOT read')
-            # TODO
+            print("cif file NOT read")
+            # TODO  # pylint: disable=fixme
             # txt = u'Translation cannot be performed. The cif file (%s) cannot be read.' % self.cif_file_name
             # self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' +txt))
             # self.log_formatted(self.error_log_string, self.Constants.REQUIRED_ALERT + txt)
@@ -10871,8 +10873,8 @@ class CifEMDBTranslator(object):
                 return False
             return True
         except IOError as exp:
-            txt = u'Error (%s) occured. Arguments (%s).' % (exp.message, exp.args)
-            self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.validation_title + txt))
+            txt = u"Error (%s) occured. Arguments (%s)." % (str(exp), exp.args)
+            self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.validation_title + txt))
             self.log_formatted(self.error_log_string, self.Constants.VALIDATION_ERROR + txt)
             return False
         finally:
@@ -10897,13 +10899,13 @@ class CifEMDBTranslator(object):
             self.log_formatted(self.error_log_string, txt)
         except etree.DocumentInvalid as exp:
             i = 1
-            for err in exp.error_log:
-                txt = u'%d: %s' % (i, err)
-                self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.validation_title + txt))
+            for err in exp.error_log:  # pylint: disable=no-member
+                txt = u"%d: %s" % (i, err)
+                self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.validation_title + txt))
                 self.log_formatted(self.error_log_string, self.Constants.VALIDATION_ERROR + txt)
                 i = i + 1
 
-    def validation_logger_header(self, log_str, in_schema_filename):
+    def validation_logger_header(self, log_str, in_schema_filename):  # pylint: disable=unused-argument
         """
         Makes the validation logger pretty
         """
@@ -10926,10 +10928,10 @@ class CifEMDBTranslator(object):
         """
         try:
             # For python3, as encoding in file, lxml requires bytes string
-            in_schema = open(in_schema_filename, 'rb')
+            in_schema = open(in_schema_filename, "rb")
         except IOError as exp:
-            txt = u'Error %s occurred. Arguments are: %s.' % (exp.message, exp.args)
-            self.current_entry_log.error_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.validation_title + txt))
+            txt = u"Error (%s) occured. Arguments (%s)." % (str(exp), exp.args)
+            self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.validation_title + txt))
             self.log_formatted(self.error_log_string, self.Constants.VALIDATION_ERROR + txt)
             return False
         else:
@@ -10946,10 +10948,14 @@ class CifEMDBTranslator(object):
         finally:
             in_schema.close()
 
-    def translate_and_validate(self, in_cif, out_xml, in_schema):
+    def translate_and_validate(self, in_cif, out_xml, in_schema=None):
         """
         Validates XML file after reading an input cif file, translating it and creating XML
         """
+        if in_schema is None:
+            es = EmdbSchema()
+            in_schema = es.getSchemaPath()
+
         self.translate(in_cif, out_xml)
         if self.create_xml:
             self.validate(out_xml, in_schema)
