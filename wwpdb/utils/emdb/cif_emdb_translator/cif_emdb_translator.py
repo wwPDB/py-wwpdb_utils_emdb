@@ -35,7 +35,7 @@ from lxml import etree
 from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from mmcif.io.IoAdapterCore import IoAdapterCore
-from  . import emdb
+from . import emdb
 from ..EmdbSchema import EmdbSchema
 
 
@@ -92,6 +92,7 @@ class Cif(object):
             retlist.append(rowlist)
 
         return retlist
+
 
 class CifEMDBTranslator(object):
     """Class for translating files from/to cif from EMDB XML 3.0"""
@@ -307,11 +308,11 @@ class CifEMDBTranslator(object):
                              'TISSUE': 'tissue',
                              'CELL': 'cell'}
         MAP_DATA_TYPE_CIF2XML = {'Image stored as signed byte':
-                                     'IMAGE STORED AS SIGNED BYTE',
+                                 'IMAGE STORED AS SIGNED BYTE',
                                  'Image stored as signed integer (2 bytes)':
-                                     'IMAGE STORED AS SIGNED INTEGER (2 BYTES)',
+                                 'IMAGE STORED AS SIGNED INTEGER (2 BYTES)',
                                  'Image stored as floating point number (4 bytes)':
-                                     'IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)'}
+                                 'IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)'}
 
         INFO_LOG_FILE_NAME = 'INFO_cifEMDBTranslation.log'
         WARN_LOG_FILE_NAME = 'WARN_cifEMDBTranslation.log'
@@ -397,14 +398,14 @@ class CifEMDBTranslator(object):
         # emd_admin.last_update should not be initialized twice
         MMCIF_TO_XSD = {  # pylint: disable=duplicate-key
             '_emd_admin.current_status': '<xs:element name="code" type="code_type"/>',
-            '_emd_admin.last_update': '<xs:element name="date" minOccurs="0">',
+            '_emd_admin.last_update': '<xs:element name="date" minOccurs="0">',  # noqa: F601 pylint: disable=duplicate-key
             '_pdbx_database_status.process_site': '<xs:element name="processing_site" minOccurs="0">',
             '_emd_admin.deposition_site': '<xs:element name="deposition">',
             '_emd_admin.deposition_date': '<xs:element name="deposition" type="xs:date">',
             '_emd_admin.header_release_date': '<xs:element name="header_release" type="xs:date" minOccurs="0">',
             '_emd_admin.map_release_date': '<xs:element name="map_release" type="xs:date" minOccurs="0">',
             '_emd_admin.obsoleted_date': '<xs:element name="obsolete" type="xs:date" minOccurs="0">',
-            '_emd_admin.last_update': '<xs:element name="update" type="xs:date">',
+            '_emd_admin.last_update': '<xs:element name="update" type="xs:date">',  # noqa: F601 pylint: disable=duplicate-key
             '_struct.title': '<xs:element name="title" type="xs:token">',
             '_emd_admin.title': '<xs:element name="title" type="xs:token">',
             '_emd_admin.details': '<xs:element name="details" type="xs:token" minOccurs="0">',
@@ -902,8 +903,6 @@ class CifEMDBTranslator(object):
         def validation_title(self):
             return self._validation_title
 
-
-
         def add_info(self, cif_item, setter_func, xsd, em_for_emd, fmt_cif_value=None, parent_el_req=None, soft_name=None):
             info = CifEMDBTranslator.ALog(cif_item, setter_func, xsd, em_for_emd, fmt_cif_value, parent_el_req, soft_name)
             info.create_std_info_log_text('(' + self.ID + ')' + self._info_title)
@@ -1249,83 +1248,83 @@ class CifEMDBTranslator(object):
         self.cif_file_name = cif_file_name
         io_util = IoAdapterCore()
         container = io_util.readFile(inputFilePath=cif_file_name,
-                                          selectList=[const.CITATION,
-                                                      const.CITATION_AUTHOR,
-                                                      const.DATABASE_2,
-                                                      const.EMD_ADMIN,
-                                                      const.EMD_DEPUI,
-                                                      const.EMD_ANGLE_ASSIGNMENT,
-                                                      const.AUDIT_AUTHOR,
-                                                      const.EMD_AUTHOR_LIST,
-                                                      const.EMD_BUFFER,
-                                                      const.EMD_BUFFER_COMPONENT,
-                                                      const.EMD_CROSSREFERENCE,
-                                                      const.EMD_CROSSREFERENCE_AUXILIARY,
-                                                      const.EMD_CRYSTAL_FORMATION,
-                                                      const.EMD_CRYSTALLOGRAPHY_SHELL,
-                                                      const.EMD_CRYSTALLOGRAPHY_STATS,
-                                                      const.EMD_CTF_CORRECTION,
-                                                      const.EMD_EMBEDDING,
-                                                      const.EMD_FIDUCIAL_MARKERS,
-                                                      const.EMD_FINAL_CLASSIFICATION,
-                                                      const.EMD_FINAL_2D_CLASSIFICATION,
-                                                      const.EMD_FINAL_RECONSTRUCTION,
-                                                      const.EMD_FSC_CURVE,
-                                                      const.EMD_GRID,
-                                                      const.EMD_GRID_PRETREATMENT,
-                                                      const.EMD_HELICAL_PARAMETERS,
-                                                      const.EMD_HIGH_PRESSURE_FREEZING,
-                                                      const.EMD_IMAGE_DIGITIZATION,
-                                                      const.EMD_MAP,
-                                                      const.EMD_MICROSCOPY,
-                                                      const.EMD_MICROSCOPY_CRYSTALLOGRAPHY,
-                                                      const.EMD_MICROSCOPY_TOMOGRAPHY,
-                                                      const.EMD_MOLECULAR_MASS,
-                                                      const.EMD_MODELLING,
-                                                      const.EMD_MODELLING_INITIAL_MODEL,
-                                                      const.EMD_NATURAL_SOURCE,
-                                                      const.EMD_SYNTHETIC_SOURCE,
-                                                      const.EMD_IMAGE_PROCESSING,
-                                                      const.EMD_IMAGE_RECORDING,
-                                                      const.EMD_PARTICLE_SELECTION,
-                                                      const.EMD_RECOMBINANT_EXPRESSION,
-                                                      const.EMD_SECTIONING_FOCUSED_ION_BEAM,
-                                                      const.EMD_SECTIONING_ULTRAMICROTOMY,
-                                                      const.EMD_SHADOWING,
-                                                      const.EMD_SOFTWARE,
-                                                      const.EMD_SPECIALIST_OPTICS,
-                                                      const.EMD_SPECIMEN,
-                                                      const.EMD_STAINING,
-                                                      const.EMD_STARTUP_MODEL,
-                                                      const.EMD_STRUCTURE_DETERMINATION,
-                                                      const.EMD_SUPPORT_FILM,
-                                                      const.EMD_SUPRAMOLECULE,
-                                                      const.EMD_SYMMETRY_POINT,
-                                                      const.EMD_THREE_D_CRYSTAL_PARAMETERS,
-                                                      const.EMD_TOMOGRAPHY_PREPARATION,
-                                                      const.EMD_TWO_D_CRYSTAL_PARAMETERS,
-                                                      const.EMD_VIRUS,
-                                                      const.EMD_VIRUS_NATURAL_HOST,
-                                                      const.EMD_VIRUS_SHELL,
-                                                      const.EMD_VITRIFICATION,
-                                                      const.EMD_VOLUME_SELECTION,
-                                                      const.ENTITY,
-                                                      const.ENTITY_POLY,
-                                                      const.ENTITY_SRC_GEN,
-                                                      const.ENTITY_SRC_NAT,
-                                                      const.EXPTL,
-                                                      const.PDBX_DATABASE_RELATED,
-                                                      const.PDBX_DATABASE_STATUS,
-                                                      const.PDBX_ENTITY_NONPOLY,
-                                                      const.PDBX_DEPOSITOR_INFO,
-                                                      const.PDBX_OBS_SPR,
-                                                      const.PDBX_AUDIT_SUPPORT,
-                                                      const.PDBX_CONTACT_AUTHOR,
-                                                      const.STRUCT,
-                                                      const.PDBX_ENTITY_SRC_SYN,
-                                                      const.EMD_SUPERSEDE,
-                                                      const.EMD_OBSOLETE]
-                                          )
+                                     selectList=[const.CITATION,
+                                                 const.CITATION_AUTHOR,
+                                                 const.DATABASE_2,
+                                                 const.EMD_ADMIN,
+                                                 const.EMD_DEPUI,
+                                                 const.EMD_ANGLE_ASSIGNMENT,
+                                                 const.AUDIT_AUTHOR,
+                                                 const.EMD_AUTHOR_LIST,
+                                                 const.EMD_BUFFER,
+                                                 const.EMD_BUFFER_COMPONENT,
+                                                 const.EMD_CROSSREFERENCE,
+                                                 const.EMD_CROSSREFERENCE_AUXILIARY,
+                                                 const.EMD_CRYSTAL_FORMATION,
+                                                 const.EMD_CRYSTALLOGRAPHY_SHELL,
+                                                 const.EMD_CRYSTALLOGRAPHY_STATS,
+                                                 const.EMD_CTF_CORRECTION,
+                                                 const.EMD_EMBEDDING,
+                                                 const.EMD_FIDUCIAL_MARKERS,
+                                                 const.EMD_FINAL_CLASSIFICATION,
+                                                 const.EMD_FINAL_2D_CLASSIFICATION,
+                                                 const.EMD_FINAL_RECONSTRUCTION,
+                                                 const.EMD_FSC_CURVE,
+                                                 const.EMD_GRID,
+                                                 const.EMD_GRID_PRETREATMENT,
+                                                 const.EMD_HELICAL_PARAMETERS,
+                                                 const.EMD_HIGH_PRESSURE_FREEZING,
+                                                 const.EMD_IMAGE_DIGITIZATION,
+                                                 const.EMD_MAP,
+                                                 const.EMD_MICROSCOPY,
+                                                 const.EMD_MICROSCOPY_CRYSTALLOGRAPHY,
+                                                 const.EMD_MICROSCOPY_TOMOGRAPHY,
+                                                 const.EMD_MOLECULAR_MASS,
+                                                 const.EMD_MODELLING,
+                                                 const.EMD_MODELLING_INITIAL_MODEL,
+                                                 const.EMD_NATURAL_SOURCE,
+                                                 const.EMD_SYNTHETIC_SOURCE,
+                                                 const.EMD_IMAGE_PROCESSING,
+                                                 const.EMD_IMAGE_RECORDING,
+                                                 const.EMD_PARTICLE_SELECTION,
+                                                 const.EMD_RECOMBINANT_EXPRESSION,
+                                                 const.EMD_SECTIONING_FOCUSED_ION_BEAM,
+                                                 const.EMD_SECTIONING_ULTRAMICROTOMY,
+                                                 const.EMD_SHADOWING,
+                                                 const.EMD_SOFTWARE,
+                                                 const.EMD_SPECIALIST_OPTICS,
+                                                 const.EMD_SPECIMEN,
+                                                 const.EMD_STAINING,
+                                                 const.EMD_STARTUP_MODEL,
+                                                 const.EMD_STRUCTURE_DETERMINATION,
+                                                 const.EMD_SUPPORT_FILM,
+                                                 const.EMD_SUPRAMOLECULE,
+                                                 const.EMD_SYMMETRY_POINT,
+                                                 const.EMD_THREE_D_CRYSTAL_PARAMETERS,
+                                                 const.EMD_TOMOGRAPHY_PREPARATION,
+                                                 const.EMD_TWO_D_CRYSTAL_PARAMETERS,
+                                                 const.EMD_VIRUS,
+                                                 const.EMD_VIRUS_NATURAL_HOST,
+                                                 const.EMD_VIRUS_SHELL,
+                                                 const.EMD_VITRIFICATION,
+                                                 const.EMD_VOLUME_SELECTION,
+                                                 const.ENTITY,
+                                                 const.ENTITY_POLY,
+                                                 const.ENTITY_SRC_GEN,
+                                                 const.ENTITY_SRC_NAT,
+                                                 const.EXPTL,
+                                                 const.PDBX_DATABASE_RELATED,
+                                                 const.PDBX_DATABASE_STATUS,
+                                                 const.PDBX_ENTITY_NONPOLY,
+                                                 const.PDBX_DEPOSITOR_INFO,
+                                                 const.PDBX_OBS_SPR,
+                                                 const.PDBX_AUDIT_SUPPORT,
+                                                 const.PDBX_CONTACT_AUTHOR,
+                                                 const.STRUCT,
+                                                 const.PDBX_ENTITY_SRC_SYN,
+                                                 const.EMD_SUPERSEDE,
+                                                 const.EMD_OBSOLETE]
+                                     )
         self.cif = Cif(container)
         if container is not None or container == {}:
             self.cif_file_read = True
@@ -2181,7 +2180,7 @@ class CifEMDBTranslator(object):
                         el_funding_body = get_cif_value('funding_organization', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
                         # el_code = get_cif_value('grant_number', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
                         # el_country = get_cif_value('country', const.PDBX_AUDIT_SUPPORT, cif_list=aud_sup)
-                        if el_funding_body is not None: # or el_code is not None or el_country is not None:
+                        if el_funding_body is not None:  # or el_code is not None or el_country is not None:
                             grant_ref = emdb.grant_reference_type()
                             set_grant_reference_type(grant_ref, aud_sup)
                             if grant_ref.hasContent_():
@@ -3429,7 +3428,7 @@ class CifEMDBTranslator(object):
                         if ent_type == 'polymer':
                             ent_src_method = get_cif_value('src_method', const.ENTITY, entity_dict[ent_id_in])
                             if ent_src_method == 'nat':
-                                pass # CHECK THIS
+                                pass  # CHECK THIS
                             elif ent_src_method == 'man':
                                 if src_dicts.get('ent_src_gen_dict', None) is None:
                                     txt = u'(_entity_src_gen) category missing for creating recombinant expression for the map and model entry (%s) where (_emd_supramolecule.source) is (RECOMBINANT) and polymer is (man).' % ent_id_in
@@ -5272,7 +5271,7 @@ class CifEMDBTranslator(object):
                                 # there is more than one EC number: split it and write the first bit
                                 ec_num = ec_num_in.split(',')[0]
                                 set_cif_value(p_mol.add_ec_number, 'pdbx_ec', const.ENTITY, cif_list=ent_in, cif_value=ec_num)
-                                txt = u'(_entity.pdbx_ec) is given: (%s) but the value: (%s) is set instead.'% (ec_num_in, ec_num)
+                                txt = u'(_entity.pdbx_ec) is given: (%s) but the value: (%s) is set instead.' % (ec_num_in, ec_num)
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.change_title + txt))
                                 self.log_formatted(self.warn_log_string, const.CHANGE_MADE + txt)
                             else:
@@ -5855,16 +5854,15 @@ class CifEMDBTranslator(object):
                                 """
                                 # film_thickness = get_cif_value('thickness', const.EMD_SUPPORT_FILM, cif_list=film_in)
                                 # if film_thickness is not None:
-                                    # fl_film_thickness = float(film_thickness) * 0.1
-                                    # if fl_film_thickness < 5:
-                                    #     txt = u'The value for (_emd_support_film.thickness) is (%s) angstroms. The lowest value should be 5.0 nm.' % film_thickness
-                                    #     self.current_entry_log.warn_logs.append(self.ALog(log_text=self.current_entry_log.not_changed_for_now_title + txt))
-                                    #     self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
-                                    # elif fl_film_thickness > 50:
-                                    #     txt = u'The value for (_emd_support_film.thickness) is (%s) angstroms. The highest value is 50.0 nm.'% film_thickness
-                                    #     self.current_entry_log.warn_logs.append(self.ALog(log_text=self.current_entry_log.not_changed_for_now_title + txt))
-                                    #     self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
-
+                                #     fl_film_thickness = float(film_thickness) * 0.1
+                                #     if fl_film_thickness < 5:
+                                #         txt = u'The value for (_emd_support_film.thickness) is (%s) angstroms. The lowest value should be 5.0 nm.' % film_thickness
+                                #         self.current_entry_log.warn_logs.append(self.ALog(log_text=self.current_entry_log.not_changed_for_now_title + txt))
+                                #         self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
+                                #     elif fl_film_thickness > 50:
+                                #         txt = u'The value for (_emd_support_film.thickness) is (%s) angstroms. The highest value is 50.0 nm.'% film_thickness
+                                #         self.current_entry_log.warn_logs.append(self.ALog(log_text=self.current_entry_log.not_changed_for_now_title + txt))
+                                #         self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                                 set_cif_value(film.set_film_thickness, 'thickness', const.EMD_SUPPORT_FILM, cif_list=film_in,
                                               constructor=emdb.film_thicknessType, fmt=lambda x: float(x) * 0.1, units=const.U_NM)
 
@@ -6047,7 +6045,7 @@ class CifEMDBTranslator(object):
                                 set_cif_value(vitr.set_instrument, 'instrument', const.EMD_VITRIFICATION, cif_list=vitr_in)
                             else:
                                 # write OTHER and add note in details
-                                set_cif_value(vitr.set_instrument, 'instrument', const.EMD_VITRIFICATION,  cif_list=vitr_in, cif_value='OTHER')
+                                set_cif_value(vitr.set_instrument, 'instrument', const.EMD_VITRIFICATION, cif_list=vitr_in, cif_value='OTHER')
                                 details_txt = u'The value given for _emd_vitrification.instrument is %s. This is not in a list of allowed values %s so OTHER is written into the XML file.' % (instrument, allowed_instruments)
                         return details_txt
 
@@ -6514,7 +6512,7 @@ class CifEMDBTranslator(object):
                     XSD: <xs:element name="lipid_protein_ratio" type="xs:float" minOccurs="0"/>
                     CIF: _emd_crystal_formation.lipid_protein_ratio 5.0
                     """
-                    set_cif_value(cryst.set_lipid_protein_ratio, 'lipid_protein_ratio', const.EMD_CRYSTAL_FORMATION,  cif_list=cryst_in, fmt=float)
+                    set_cif_value(cryst.set_lipid_protein_ratio, 'lipid_protein_ratio', const.EMD_CRYSTAL_FORMATION, cif_list=cryst_in, fmt=float)
 
                 def set_el_lipid_mixture(cryst, cryst_in):
                     """
@@ -7312,7 +7310,7 @@ class CifEMDBTranslator(object):
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.not_changed_for_now_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                             elif fl_nom_fel > 20:
-                                txt = u'_emd_microscopy.nominal_defocus_max (%s) is larger than 20.' %  fl_nom_fel
+                                txt = u'_emd_microscopy.nominal_defocus_max (%s) is larger than 20.' % fl_nom_fel
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.not_changed_for_now_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                             set_cif_value(mic.set_nominal_defocus_max, 'nominal_defocus_max', const.EMD_MICROSCOPY, cif_list=mic_in,
@@ -7331,7 +7329,7 @@ class CifEMDBTranslator(object):
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.not_changed_for_now_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                             elif fl_cal_fel > 20:
-                                txt = u'The value given to (_emd_microscopy.calibrated_defocus_max): (%s) is larger than 20.' %  fl_cal_fel
+                                txt = u'The value given to (_emd_microscopy.calibrated_defocus_max): (%s) is larger than 20.' % fl_cal_fel
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text='(' + self.entry_in_translation_log.id + ')' + self.current_entry_log.not_changed_for_now_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_CHANGED_FOR_NOW + txt)
                             set_cif_value(mic.set_calibrated_defocus_max, 'calibrated_defocus_max', const.EMD_MICROSCOPY, cif_list=mic_in,
@@ -8435,7 +8433,7 @@ class CifEMDBTranslator(object):
                         el_num_ref_projections = get_cif_value('projection_matching_number_reference_projections', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         el_merit_function = get_cif_value('projection_matching_merit_function', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         el_angular_sampling = get_cif_value('projection_matching_angular_sampling', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
-                        _el_software_list = get_cif_value('order', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
+                        _el_software_list = get_cif_value('order', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)  # noqa: F841
                         el_details = get_cif_value('details', const.EMD_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         angle_assignment_type_list = [el_type, el_num_ref_projections, el_merit_function, el_angular_sampling, el_details]
                         if any(x is not None for x in angle_assignment_type_list):
@@ -10972,21 +10970,21 @@ def main():
             python cif_emdb_translator.py --xml -i input_file -o outputFile
 
             Typical run:
-            python cif_emdb_translator.py --xml -i in.cif -o out.xml 
+            python cif_emdb_translator.py --xml -i in.cif -o out.xml
                 in.cif is assumed to be a cif file in emd space
                 an XML file following EMDB XML schema 3.0 is produced and written out to out.xml
-                
+
             Enabling console logging information:
             python cif_emdb_translator.py --xml -l -i in.cif -o out.xml
-                
+
             Turn off logging files:
-            python cif_emdb_translator.py --xml --info-log-off --warn-log-off --error-log-off -i in.cif -o out.xml 
+            python cif_emdb_translator.py --xml --info-log-off --warn-log-off --error-log-off -i in.cif -o out.xml
             or
             python cif_emdb_translator.py --xml -f -w -e -i in.cif -o out.xml
                 -f or --info-log-off: no information written into INFO_cifEMDBTranslation.log
                 -w or --warn-log-off: no information written into WARN_cifEMDBTranslation.log
                 -e or --error-log-off: no information written into ERROR_cifEMDBTranslation.log
-                
+
             Combine turning off log files and enabling console log:
             python cif_emdb_translator.py --xml -w -e -i in.cif -o out.xml
             """
