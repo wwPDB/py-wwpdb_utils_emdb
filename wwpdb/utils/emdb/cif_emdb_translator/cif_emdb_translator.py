@@ -1224,13 +1224,12 @@ class CifEMDBTranslator(object):
 
     def read_emd_map_v2_cif_file(self):
         """
-        Read %(site_pdbx_dict_path)s/mmcif_pdbx_v5_next.dic that contains information
+        Read mmCIF dictionary that contains information
         about how the em categories map to the emd categories.
         Please note: the mapping is not one to one for certain categories
         """
         siteId = getSiteId()
         cI = ConfigInfo(siteId)
-        # site_ext_dict_map_emd_file_path = %(resource_path)s/emd_map_v2.cif
         emd_map_file_name = cI.get("SITE_EXT_DICT_MAP_EMD_FILE_PATH")
         io_adapt = IoAdapterCore()
         map_cat_list = io_adapt.readFile(emd_map_file_name)
