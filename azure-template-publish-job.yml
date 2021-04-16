@@ -12,8 +12,14 @@ parameters:
   os: "linux"
   fixtures: ""
 
+
 jobs:
 - job: ${{ format('publish_{0}_{1}', parameters.tox, parameters.os) }}
+
+  variables:
+    isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')] 
+    isDevelop: $[eq(variables['Build.SourceBranch'], 'refs/heads/develop')] 
+
   pool:
     ${{ if eq(parameters.os, 'macos') }}:
       vmImage: 'macOS-10.14'
@@ -21,7 +27,7 @@ jobs:
       vmImage: 'ubuntu-latest'
   dependsOn:
   - ${{ format('build_test_{0}_{1}', parameters.tox, parameters.os) }}
-  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'), or (eq(variables['Build.SourceBranchName'], 'master'), eq(variables['Push_Pypi'], 'True')))
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'), or(eq(variables.isMaster, true), eq(variables.isDevelop, true)))
   #
   steps:
     - task: UsePythonVersion@0
