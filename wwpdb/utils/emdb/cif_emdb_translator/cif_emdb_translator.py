@@ -32,8 +32,8 @@ from optparse import OptionParser  # pylint: disable=deprecated-module
 from lxml import etree
 
 # Deployment paths
-from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from wwpdb.utils.config.ConfigInfo import getSiteId
+from wwpdb.utils.config.ConfigInfoApp import ConfigInfoAppEm
 from mmcif.io.IoAdapterCore import IoAdapterCore
 from . import emdb
 from ..EmdbSchema import EmdbSchema
@@ -1229,8 +1229,8 @@ class CifEMDBTranslator(object):
         Please note: the mapping is not one to one for certain categories
         """
         siteId = getSiteId()
-        cI = ConfigInfo(siteId)
-        emd_map_file_name = cI.get("SITE_EXT_DICT_MAP_EMD_FILE_PATH")
+        cIA = ConfigInfoAppEm(siteId)
+        emd_map_file_name = cIA.get_emd_mapping_file_path()
         io_adapt = IoAdapterCore()
         map_cat_list = io_adapt.readFile(emd_map_file_name)
         cat = self.Constants.PDBX_DICT_ITEM_MAPPING
