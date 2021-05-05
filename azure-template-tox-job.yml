@@ -23,8 +23,8 @@ jobs:
       vmImage: 'ubuntu-latest'
 
   variables:
-    - group: py-shared-variables
-    - PIP_CACHE_DIR: $(Pipeline.Workspace)/.pip
+    group: py-shared-variables
+    PIP_CACHE_DIR: $(Pipeline.Workspace)/.pip
 
   steps:
     #
