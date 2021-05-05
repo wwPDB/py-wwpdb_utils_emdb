@@ -121,13 +121,9 @@ jobs:
     - script: "python -c \"import sys; print(sys.version); print(sys.executable)\""
       displayName: show python information
     #
-    - script: python -m pip install --upgrade pip tox
+    - script: python -m pip install --upgrade pip tox wheel
       displayName: 'Install tools'
       #
-    - script: pip install wheel
-      displayName: 'Install wheel'
-      #
-
     - task: Cache@2
       inputs:
         key: 'python | "$(Agent.OS)" | requirements.txt'
