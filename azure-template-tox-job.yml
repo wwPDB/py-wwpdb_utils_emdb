@@ -24,6 +24,7 @@ jobs:
 
   variables:
     - group: py-shared-variables
+    - PIP_CACHE_DIR: $(Pipeline.Workspace)/.pip
 
   steps:
     #
@@ -123,6 +124,19 @@ jobs:
     - script: python -m pip install --upgrade pip tox
       displayName: 'Install tools'
       #
+    - script: pip install wheel
+      displayName: 'Install wheel'
+      #
+
+    - task: Cache@2
+      inputs:
+        key: 'python | "$(Agent.OS)" | requirements.txt'
+        restoreKeys: | 
+          python | "$(Agent.OS)"
+          python
+        path: $(PIP_CACHE_DIR)
+      displayName: Cache pip packages
+
     - script: pip install -r requirements.txt
       displayName: 'Install dependencies'
     #
