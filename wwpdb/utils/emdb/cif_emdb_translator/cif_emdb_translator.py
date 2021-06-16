@@ -10208,7 +10208,7 @@ class CifEMDBTranslator(object):
                         Only space_group choice has mmCIF value
                         CIF: _emd_map.symmetry_space_group 1
                         """
-                        set_cif_value(app_sym.set_space_group, "symmetry_space_group", const.EMD_MAP, cif_list=map_in)
+                        set_cif_value(app_sym.set_space_group, "symmetry_space_group", const.EMD_MAP, cif_list=map_in, fmt=int)
 
                     app_sym = emdb.applied_symmetry_type()
                     set_applied_symmetry_type(app_sym)
