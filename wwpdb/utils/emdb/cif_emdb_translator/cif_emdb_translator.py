@@ -8497,7 +8497,7 @@ class CifEMDBTranslator(object):
 
                             def set_choice_space_group():
                                 """
-                                XSD: <xs:element name="space_group" type="xs:token"/>
+                                XSD: <xs:element name="space_group" type="xs:int"/>
                                 """
 
                             def set_choice_point_group(app_sym, p_sym_in):
