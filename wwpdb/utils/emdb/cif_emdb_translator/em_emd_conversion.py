@@ -1,18 +1,17 @@
 # Last update: 2019-05-17
-import sys
 import argparse
+import sys
 
-from wwpdb.utils.wf.plugins.UtilsBase import UtilsBase
-from wwpdb.utils.config.ConfigInfo import ConfigInfo
 from mmcif_utils.trans.InstanceMapper import InstanceMapper
+from wwpdb.utils.config.ConfigInfoApp import ConfigInfoAppEm
+from wwpdb.utils.wf.plugins.UtilsBase import UtilsBase
 
 
 class convert(UtilsBase):
     def __init__(self, inFile=None, outFile=None, verbose=False, log=sys.stderr):
-
         headerFilters = ["all", "prereleasetitle"]  # noqa: F841
-        cI = ConfigInfo()
-        self.mappingInfoPath = cI.get("SITE_EXT_DICT_MAP_EMD_FILE_PATH")
+        cI = ConfigInfoAppEm()
+        self.mappingInfoPath = cI.get_emd_mapping_file_path()
         self.inFile = inFile
         self.outFile = outFile
         self.verbose = verbose
