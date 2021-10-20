@@ -42,7 +42,7 @@ jobs:
       - bash: |
           set -e
           ls -la /Applications/Xcode*
-          sudo xcode-select --switch /Applications/Xcode_12.2.app/Contents/Developer
+          sudo xcode-select --switch /Applications/Xcode_13.0.app/Contents/Developer
           which g++
           c++ --version
         displayName: "setup Xcode"

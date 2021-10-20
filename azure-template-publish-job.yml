@@ -22,7 +22,7 @@ jobs:
 
   pool:
     ${{ if eq(parameters.os, 'macos') }}:
-      vmImage: 'macOS-10.14'
+      vmImage: 'macOS-latest'
     ${{ if eq(parameters.os, 'linux') }}:
       vmImage: 'ubuntu-latest'
   dependsOn:
