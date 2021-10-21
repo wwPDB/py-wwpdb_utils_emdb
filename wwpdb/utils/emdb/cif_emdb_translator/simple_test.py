@@ -37,14 +37,15 @@ __date__ = "2018-06-28"
 import os.path
 import unittest
 import glob
-from cif_emdb_translator import CifEMDBTranslator
+# from cif_emdb_translator import CifEMDBTranslator
+from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTranslator
 
 
 class TestTranslator(unittest.TestCase):
     """Run the translator on a bunch of example files"""
 
-    testOutputXmlDir = "data/test/xml_out"
-    testInputCifDir = "data/test/cif"
+    testOutputXmlDir = "data/test/xml_v3_out"
+    testInputCifDir = "data/cif"
     schema = "emdb.xsd"
 
     def test_cif2xml(self):
@@ -55,6 +56,7 @@ class TestTranslator(unittest.TestCase):
 
         test_cifs = glob.glob(self.testInputCifDir + "/*.cif")
         for test_cif in test_cifs:
+            print("In file: " + test_cif)
             out_filename = os.path.splitext(os.path.basename(test_cif))[0]
             xml_out = os.path.join(self.testOutputXmlDir + "/" + out_filename + ".xml")
             translator.translate_and_validate(test_cif, xml_out, self.schema)
