@@ -2482,7 +2482,7 @@ class CifEMDBTranslator(object):
                         ... 1 attribute
                         """
 
-                        def set_attr_orcid(author_with_ORCID, auth_in, same_as_pdb):
+                        def set_attr_orcid(author_with_ORCID, auth_in, same_as_pdb):  # pylint: disable=unused-argument
                             """
                             XSD: <xs:attribute name="ORCID" type="ORCID_type"/>
                             CIF: _audit_author.identifier_ORCID  ? 'First, A.'           1  0000-0002-5251-4674
@@ -2520,7 +2520,7 @@ class CifEMDBTranslator(object):
                 if same_as_pdb == "YES":
                     # CIF: _audit_author
                     authors_in = make_dict(const.AUDIT_AUTHOR, "pdbx_ordinal", 2)
-                else: # same_as_pdb == 'NO' or None
+                else:  # same_as_pdb == 'NO' or None
                     # CIF: _emd_author_list
                     authors_in = make_dict(const.EMD_AUTHOR_LIST, "ordinal", 2)
 
