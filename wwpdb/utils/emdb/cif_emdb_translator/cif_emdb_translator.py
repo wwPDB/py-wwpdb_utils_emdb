@@ -791,6 +791,8 @@ class CifEMDBTranslator(object):
             "_emd_obsolete.date": '<xs:element name="date" type="xs:date"/>',
             "_emd_obsolete.entry": '<xs:element name="entry" type="emdb_id_type"/>',
             "_emd_obsolete.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_audit_author.identifier_ORCID": '<xs:element name="author" type="author_ORCID_type" maxOccurs="unbounded"/>',
+            "_emd_author_list.identifier_ORCID": '<xs:element name="author" type="author_ORCID_type" maxOccurs="unbounded"/>'
         }
 
     class ALog(object):
@@ -2436,22 +2438,6 @@ class CifEMDBTranslator(object):
                     # CIF: _emd_admin.title
                     set_cif_value(admin.set_title, "title", const.EMD_ADMIN)
 
-            # def set_author_list(cif_in, cif_category, cif_key, author_list):
-            #     """
-            #     Helper function for determining author_list
-            #     """
-            #     for index in range(len(cif_in)):
-            #         cif_index_list = cif_in.get(str(index + 1))
-            #         cif_author = get_cif_value(cif_key, cif_category, cif_index_list)
-            #         if cif_author is not None:
-            #             fmt_author = format_author(cif_author)
-            #             if fmt_author != "":
-            #                 author_list.add_author(fmt_author)
-            #             else:
-            #                 txt = u"Author (%s) at index (%s) is not added to the list of authors as the format is wrong." % (cif_author, index + 1)
-            #                 self.current_entry_log.warn_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt))
-            #                 self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
-
             def set_el_authors_list(admin):
                 """
                 XSD: <xs:element name="authors_list_type"> is a sequence of elements <author>
@@ -2476,20 +2462,17 @@ class CifEMDBTranslator(object):
                     XSD: <xs:element name="authors_list"> has
                      ... 1 element of author_ORCID_type
                     """
-                    def set_author_ORCID_type(author_with_ORCID, auth_in, same_as_pdb):
+
+                    def set_author_orcid_type(author_with_ORCID, auth_in, same_as_pdb):
                         """
                         XSD: <xs:complexType name="author_ORCID_type"> extends author_type and has
                         ... 1 attribute
-                        """
-
-                        def set_attr_orcid(author_with_ORCID, auth_in, same_as_pdb):  # pylint: disable=unused-argument
-                            """
-                            XSD: <xs:attribute name="ORCID" type="ORCID_type"/>
+                        XSD: <xs:attribute name="ORCID" type="ORCID_type"/>
                             CIF: _audit_author.identifier_ORCID  ? 'First, A.'           1  0000-0002-5251-4674
                             CIF: _emd_author_list.ordinal            1
                                  _emd_author_list.author             'Turner, J.'
                                  _emd_author_list.identifier_ORCID   0000-0002-5251-4674
-                            """
+                        """
                         if same_as_pdb == "YES":
                             # CIF: _audit_author
                             set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.AUDIT_AUTHOR, cif_list=auth_in)
@@ -2507,12 +2490,9 @@ class CifEMDBTranslator(object):
                             self.current_entry_log.warn_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt))
                             self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
 
-                        # attribute 1
-                        set_attr_orcid(author_with_ORCID, auth_in, same_as_pdb)
-
                     for _auth_id, auth_in in authors_in.items():
                         author_with_orcid = emdb.author_ORCID_type()
-                        set_author_ORCID_type(author_with_orcid, auth_in, same_as_pdb)
+                        set_author_orcid_type(author_with_orcid, auth_in, same_as_pdb)
                         authors_list.add_author(author_with_orcid)
 
                 authors_in = {}
@@ -2527,32 +2507,6 @@ class CifEMDBTranslator(object):
                 authors_list = emdb.authors_listType()
                 set_authors_list_type(authors_list, authors_in, same_as_pdb)
                 admin.set_authors_list(authors_list)
-
-                # same_as_pdb = get_cif_value("same_authors_as_pdb", const.EMD_DEPUI)
-                #
-                # if same_as_pdb == "YES":
-                #     # CIF: _audit_author
-                #     audit_author_in = make_dict(const.AUDIT_AUTHOR, "pdbx_ordinal", 2)
-                #     if audit_author_in != {}:
-                #         set_author_list(audit_author_in, const.AUDIT_AUTHOR, "name", author_list)
-                #     else:
-                #         txt = u"Author list cannot be produced as the CIF category ( _%s ) is missing while (_emd_depui.same_authors_as_pdb) is (YES)." % const.AUDIT_AUTHOR
-                #         self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
-                #         self.log_formatted(self.error_log_string, "(" + self.entry_in_translation_log.id + ")" + const.REQUIRED_ALERT + txt)
-                # else:  # same_as_pdb == 'NO' or None
-                #     # CIF: _emd_author_list
-                #     audit_author_list_in = make_dict(const.EMD_AUTHOR_LIST, "ordinal", 2)
-                #     if audit_author_list_in != {}:
-                #         set_author_list(audit_author_list_in, const.EMD_AUTHOR_LIST, "author", author_list)
-                #     else:
-                #         txt = (
-                #             u"Author list cannot be produced as the CIF category ( _%s ) is missing while the value for (_emd_depui.same_authors_as_pdb) is either (NO) or not given."
-                #             % const.EMD_AUTHOR_LIST
-                #         )
-                #         self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
-                #         self.log_formatted(self.error_log_string, "(" + self.entry_in_translation_log.id + ")" + const.REQUIRED_ALERT + txt)
-                # if author_list is not None:
-                #     admin.set_authors_list(author_list)
 
             def set_el_details():
                 """
