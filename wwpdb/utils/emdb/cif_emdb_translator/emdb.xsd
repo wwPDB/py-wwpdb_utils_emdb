@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.2.6"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.2.7"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -126,7 +126,7 @@
             <xs:element name="authors_list">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="author" type="author_type" maxOccurs="unbounded"/>
+                        <xs:element name="author" type="author_ORCID_type" maxOccurs="unbounded"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -389,6 +389,25 @@
             </xs:simpleType>
         </xs:union>
     </xs:simpleType>
+    <xs:simpleType name="ORCID_type">
+        <xs:restriction base="xs:token">
+            <xs:pattern value="[0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{3}X|[0-9]{4})"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="author_ORCID_type">
+        <xs:simpleContent>
+            <xs:extension base="author_type">
+                <xs:attribute name="ORCID" type="ORCID_type"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="author_order_type">
+        <xs:simpleContent>
+            <xs:extension base="author_ORCID_type">
+                <xs:attribute name="order" type="xs:positiveInteger"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
 
     <xs:complexType name="crossreferences_type">
         <xs:sequence>
@@ -421,7 +440,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <!--
+            <!-- 
             <xs:element name="component_maps" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
@@ -488,13 +507,6 @@
             <xs:attribute name="published" type="xs:boolean" use="required"/>
         </xs:complexType>
     </xs:element>
-    <xs:complexType name="author_order_type">
-        <xs:simpleContent>
-            <xs:extension base="author_type">
-                <xs:attribute name="order" type="xs:positiveInteger"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
     <xs:simpleType name="page_type">
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
@@ -1250,7 +1262,7 @@
                         <xs:simpleType>
                             <xs:restriction base="xs:token">
                                 <xs:pattern
-                                        value="([1-7]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-)))(([ ]*,[ ]*)([1-6]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-))))*"
+                                    value="([1-7]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-)))(([ ]*,[ ]*)([1-6]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-))))*"
                                 />
                             </xs:restriction>
                         </xs:simpleType>
@@ -3779,7 +3791,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <!--
+            <!-- 
             <xs:element name="reference_map_for_composition" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
