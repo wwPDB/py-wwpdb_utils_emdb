@@ -791,8 +791,8 @@ class CifEMDBTranslator(object):
             "_emd_obsolete.date": '<xs:element name="date" type="xs:date"/>',
             "_emd_obsolete.entry": '<xs:element name="entry" type="emdb_id_type"/>',
             "_emd_obsolete.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_audit_author.identifier_ORCID": '<xs:element name="author" type="author_ORCID_type" maxOccurs="unbounded"/>',
-            "_emd_author_list.identifier_ORCID": '<xs:element name="author" type="author_ORCID_type" maxOccurs="unbounded"/>'
+            "_audit_author.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>',
+            "_emd_author_list.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>'
         }
 
     class ALog(object):
