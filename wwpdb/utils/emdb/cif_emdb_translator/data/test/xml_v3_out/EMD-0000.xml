@@ -1,0 +1,1306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/emdb-empiar/emdb-schemas/blob/master/v3/v3_0_2_7/emdb.xsd" emdb_id="EMD-0000" version="3.0.2.7">
+    <admin>
+        <current_status>
+            <date>2019-10-16</date>
+            <code>HPUB</code>
+            <processing_site>PDBc</processing_site>
+        </current_status>
+        <sites>
+            <deposition>PDBc</deposition>
+            <last_processing>PDBc</last_processing>
+        </sites>
+        <key_dates>
+            <deposition>2019-09-01</deposition>
+            <header_release>2019-10-16</header_release>
+            <update>2019-10-16</update>
+        </key_dates>
+        <grant_support>
+            <grant_reference>
+                <funding_body>Danish Council for Independent Research</funding_body>
+                <code>DFF-4181-00115</code>
+                <country>Denmark</country>
+            </grant_reference>
+            <grant_reference>
+                <funding_body>Novo Nordisk Foundation</funding_body>
+                <country>Denmark</country>
+            </grant_reference>
+            <grant_reference>
+                <funding_body>European Research Council</funding_body>
+                <code>322581</code>
+            </grant_reference>
+            <grant_reference>
+                <funding_body>European Union</funding_body>
+                <code>iNEXT, project number 653706, funded by the Horizon 2020 programme of the European Union</code>
+            </grant_reference>
+        </grant_support>
+        <title>Pseudomona tuto 70s ribosome from an anything</title>
+        <authors_list>
+            <author ORCID="0000-0000-0000-0000">First A</author>
+            <author>Second-Second B</author>
+            <author>La Third C</author>
+            <author>Fourth D</author>
+            <author>Fifth Sixth E</author>
+            <author>Sixth F</author>
+            <author>Seventh G</author>
+            <author>Eight H</author>
+            <author>Ninth J</author>
+            <author>Tenth K</author>
+            <author>Eleventh L</author>
+            <author>Twelveth M</author>
+        </authors_list>
+    </admin>
+    <crossreferences>
+        <citation_list>
+            <primary_citation>
+                <journal_citation published="true">
+                    <author order="1">Halfon Y</author>
+                    <author order="2">Jimenez-Fernande A</author>
+                    <author order="3">La Rosa R</author>
+                    <author order="4">Espinosa R</author>
+                    <author order="5">Krogh Johansen H</author>
+                    <author order="6">Matzov D</author>
+                    <author order="7">Eyal Z</author>
+                    <author order="8">Bashan A</author>
+                    <author order="9">Zimmerman E</author>
+                    <author ORCID="0000-0002-3229-474X" order="10">Belousoff M</author>
+                    <author ORCID="0000-0002-7973-2639" order="11">Molin S</author>
+                    <author ORCID="0000-0002-1856-6964" order="12">Yonath A</author>
+                    <title>Pseudomona tuto 70s ribosome from an anything</title>
+                    <journal_abbreviation>Proc.Natl.Acad.Sci.USA</journal_abbreviation>
+                    <country>US</country>
+                    <year>2019</year>
+                    <external_references type="ISSN">1091-6490</external_references>
+                    <external_references type="CSD">0040</external_references>
+                    <external_references type="ASTM">PNASA6</external_references>
+                </journal_citation>
+            </primary_citation>
+        </citation_list>
+        <emdb_list>
+            <emdb_reference>
+                <emdb_id>EMD-0000</emdb_id>
+                <relationship>
+                    <other>associated EM volume</other>
+                </relationship>
+                <details>Pseudomona tuto 70s ribosome from an anything</details>
+            </emdb_reference>
+        </emdb_list>
+        <pdb_list>
+            <pdb_reference>
+                <pdb_id>6spf</pdb_id>
+                <relationship>
+                    <in_frame>FULLOVERLAP</in_frame>
+                </relationship>
+            </pdb_reference>
+        </pdb_list>
+    </crossreferences>
+    <sample>
+        <name>Pseudomonas aeruginosa 70s ribosome from a clinical isolate</name>
+        <supramolecule_list>
+            <complex_supramolecule supramolecule_id="1">
+                <name>Pseudomonas aeruginosa 70s ribosome from a clinical isolate</name>
+                <parent>0</parent>
+                <macromolecule_list>
+                    <macromolecule>
+                        <macromolecule_id>1</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>2</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>3</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>4</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>5</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>6</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>7</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>8</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>9</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>10</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>11</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>12</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>13</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>14</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>15</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>16</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>17</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>18</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>19</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>20</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>21</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>22</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>23</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>24</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>25</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>26</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>27</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>28</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>29</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>30</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>31</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>32</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>33</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>34</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>35</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>36</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>37</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>38</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>39</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>40</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>41</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>42</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>43</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>44</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>45</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>46</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>47</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>48</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>49</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>50</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>51</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>52</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>53</macromolecule_id>
+                    </macromolecule>
+                </macromolecule_list>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginos</organism>
+                </natural_source>
+            </complex_supramolecule>
+        </supramolecule_list>
+        <macromolecule_list>
+            <rna macromolecule_id="1">
+                <name>Pseudomonas aeruginosa strain PAO1 23S ribosomal RNA</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.9359904379999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <sequence>
+                    <string>GUCAAGUGAAGAAGCGCAUACGGUGGAUGCCUUGGCAGUCAGAGGCGAUGAAAGACGUGGUAGCCUGCGAAAAGCUUCGG
+GGAGUCGGCAAACAGACUUUGAUCCGGAGAUCUCUGAAUGGGGGAACCCACCUAGGAUAACCUAGGUAUCUUGUACUGAA
+UCCAUAGGUGCAAGAGGCGAACCAGGGGAACUGAAACAUCUAAGUACCCUGAGGAAAAGAAAUCAACCGAGAUUCCCUUA
+GUAGUGGCGAGCGAACGGGGAUUAGCCCUUAAGCUUCAUUGAUUUUAGCGGAACGCUCUGGAAAGUGCGGCCAUAGUGGG
+UGAUAGCCCCGUACGCGAAAGGAUCUUUGAAGUGAAAUCAAGUAGGACGGAGCACGAGAAACUUUGUCUGAACAUGGGGG
+GACCAUCCUCCAAGGCUAAAUACUACUGACUGACCGAUAGUGAACCAGUACCGUGAGGGAAAGGCGAAAAGAACCCCGGA
+GAGGGGAGUGAAAUAGAACCUGAAACCGUAUGCGUACAAGCAGUGGGAGCCUACUUGUUAGGUGACUGCGUACCUUUUGU
+AUAAUGGGUCAGCGACUUAUAUUCAGUGGCAAGCUUAACCGUAUAGGGUAGGCGUAGCGAAAGCGAGUCUUAAUAGGGCG
+UUUAGUCGCUGGGUAUAGACCCGAAACCGGGCGAUCUAUCCAUGAGCAGGUUGAAGGUUAGGUAACACUGACUGGAGGAC
+CGAACCCACUCCCGUUGAAAAGGUAGGGGAUGACUUGUGGAUCGGAGUGAAAGGCUAAUCAAGCUCGGAGAUAGCUGGUU
+CUCCUCGAAAGCUAUUUAGGUAGCGCCUCAUGUAUCACUCUGGGGGGUAGAGCACUGUUUCGGCUAGGGGGUCAUCCCGA
+CUUACCAAACCGAUGCAAACUCCGAAUACCCAGAAGUGCCGAGCAUGGGAGACACACGGCGGGUGCUAACGUCCGUCGUG
+AAAAGGGAAACAACCCAGACCGCCAGCUAAGGUCCCAAAGUUGUGGUUAAGUGGUAAACGAUGUGGGAAGGCUUAGACAG
+CUAGGAGGUUGGCUUAGAAGCAGCCACCCUUUAAAGAAAGCGUAAUAGCUCACUAGUCGAGUCGGCCUGCGCGGAAGAUG
+UAACGGGGCUCAAACCACACACCGAAGCUGCGGGUGUCACGUAAGUGACGCGGUAGAGGAGCGUUCUGUAAGCCUGUGAA
+GGUGAGUUGAGAAGCUUGCUGGAGGUAUCAGAAGUGCGAAUGCUGACAUGAGUAACGACAAUGGGUGUGAAAAACACCCA
+CGCCGAAAGACCAAGGGUUCCUGCGCAACGUUAAUCGACGCAGGGUUAGUCGGUUCCUAAGGCGAGGCUGAAAAGCGUAG
+UCGAUGGGAAACAGGUUAAUAUUCCUGUACUUCUGGUUACUGCGAUGGAGGGACGGAGAAGGCUAGGCCAGCUUGGCGUU
+GGUUGUCCAAGUUUAAGGUGGUAGGCUGAAAUCUUAGGUAAAUCCGGGGUUUCAAGGCCGAGAGCUGAUGACGAGUCGUC
+UUUUAGAUGACGAAGUGGUUGAUGCCAUGCUUCCAAGAAAAGCUUCUAAGCUUCAGGUAACCAGGAACCGUACCCCAAAC
+CGACACAGGUGGUCGGGUAGAGAAUACCAAGGCGCUUGAGAGAACUCGGGUGAAGGAACUAGGCAAAAUGGCACCGUAAC
+UUCGGGAGAAGGUGCGCCGGCUAGGGUGAAGGAUUUACUCCGUAAGCUCUGGCUGGUCGAAGAUACCAGGCCGCUGCGAC
+UGUUUAUUAAAAACACAGCACUCUGCAAACACGAAAGUGGACGUAUAGGGUGUGACGCCUGCCCGGUGCCGGAAGGUUAA
+UUGAUGGGGUUAGCGCAAGCGAAGCUCUUGAUCGAAGCCCCGGUAAACGGCGGCCGUAACUAUAACGGUCCUAAGGUAGC
+GAAAUUCCUUGUCGGGUAAGUUCCGACCUGCACGAAUGGCGUAACGAUGGCGGCGCUGUCUCCACCCGAGACUCAGUGAA
+AUUGAAAUCGCUGUGAAGAUGCAGUGUAUCCGCGGCUAGACGGAAAGACCCCGUGAACCUUUACUGUAGCUUUGCACUGG
+ACUUUGAGCCUGCUUGUGUAGGAUAGGUGGGAGGCUUUGAAGCGUGGACGCCAGUUCGCGUGGAGCCAUCCUUGAAAUAC
+CACCCUGGCAUGCUUGAGGUUCUAACUCUGGUCCGUAAUCCGGAUCGAGGACAGUGUAUGGUGGGCAGUUUGACUGGGGC
+GGUCUCCUCCUAAAGAGUAACGGAGGAGUACGAAGGUGCGCUCAGACCGGUCGGAAAUCGGUCGCAGAGUAUAAAGGCAA
+AAGCGCGCUUGACUGCGAGACAGACACGUCGAGCAGGUACGAAAGUAGGUCUUAGUGAUCCGGUGGUUCUGUAUGGAAGG
+GCCAUCGCUCAACGGAUAAAAGGUACUCCGGGGAUAACAGGCUGAUACCGCCCAAGAGUUCAUAUCGACGGCGGUGUUUG
+GCACCUCGAUGUCGGCUCAUCACAUCCUGGGGCUGAAGCCGGUCCCAAGGGUAUGGCUGUUCGCCAUUUAAAGUGGUACG
+CGAGCUGGGUUUAGAACGUCGUGAGACAGUUCGGUCCCUAUCUGCCGUGGACGUUUGAGAUUUGAGAGGGGCUGCUCCUA
+GUACGAGAGGACCGGAGUGGACGAACCUCUGGUGUUCCGGUUGUCACGCCAGUGGCAUUGCCGGGUAGCUAUGUUCGGAA
+AAGAUAACCGCUGAAAGCAUCUAAGCGGGAAACUUGCCUCAAGAUGAGAUCUCACUGGGAACUUGAUUCCCCUGAAGGGC
+CGUCGAAGACUACGACGUUGAUAGGCUGGGUGUGUAAGCGUUGUGAGGCGUUGAGCUAACCAGUACUAAUGGCCCGUGAG
+GCUUGACC</string>
+                </sequence>
+            </rna>
+            <rna macromolecule_id="2">
+                <name>5S rRNA</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.037679391</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <sequence>
+                    <string>GCUUGACGAUCAUAGAGCGUUGGAACCACCUGAUCCCUUCCCGAACUCAGAAGUGAAACGACGCAUCGCCGAUGGUAGUG
+UGGGGUCUCCCCAUGUGAGAGUAGGUCAUCGUCAAGC</string>
+                </sequence>
+            </rna>
+            <protein_or_peptide macromolecule_id="3">
+                <name>50S ribosomal protein L2</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.029438982</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>IVKCKPTSAGRRFVVKVVNQELHKGAPYAPLLEKKSKSGGRNNNGRITTRHIGGGHKQHYRLVDFRRNKDGIPAIVERVE
+YDPNRTAHIALLKYADGERRYIIAPKGVAAGDQLISGIGAPIKAGNSMPLRNIPVGSTVHGIELKPGKGAQIARSAGASA
+QLVAREGAYVTLRLRSGEMRKVLAECRATLGEVSNSEHSLRSLGKAGATRWRGVRPTVRGVAMNPVDHPHGGGEGRTSAG
+RHPVSPWGLQTKGKKTRSNKRTDNMIVRRRK</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="4">
+                <name>50S ribosomal protein L3</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.02217915</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>IGVVGRKCGMTRIFTEEGVSIPVTVIEVEPNRVTQFKTEETDGYRAVQVTAGERRASRVTKAQAGHFAKANVAAGRGVWE
+FRLGEEQYAAGDQITVDLFQAGQMVDVTGESKGKGFAGTIKRWNFRGQDNTHGNSVSHRVPGSIGQCQTPGRVFKGKKMS
+GHLGAERVTVQSLEIVRVDAERNLLLVKGAVPGATGGDVIVRPAAKA</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="5">
+                <name>50S ribosomal protein L4</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.021542744</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>QLNVNGAQAIEVSERTFGGEFNETLVHQAVVAYMAGGRQGSKAQKTRSEVSGGGKKPWRQKGTGRARAGTIRSPIWRGGG
+TTFAAKPRSHEQKLNKKMYRAALRSILAELVRLDRLVVVADFAVDAPKTKGLVAKLDTLGLKDVLIVTDGVDENLYLAAR
+NLAHVDVRDVQGSDPVSLIAYDKVLVTVSAVKKFEELLG</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="6">
+                <name>50S ribosomal protein L5</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.019804086</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>RLKELYRKEIAPKLKEELQLANVMEVPRVTKITLNMGLGEAVGDKKIIENAVADLEKITGQKPVVTYARKSIAGFKIREG
+WPIGVKVTLRSDRMYEFLDRLLSISLPRVRDFRGLNAKSFDGRGNYSMGVKEQIIFPEIDYDKIDALRGLDITLTTTART
+DDEGRALLRAFKFP</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="7">
+                <name>50S ribosomal protein L6</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.018189924</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>SRVAKNPVKLPAGVEIKLAGQQLSIKGAKGALELKVHPSVEVIQDSGELRFAARNGDQQTRAMAGTTRALVNNMVVGVSQ
+GFERKLQLVGVQAKGQVLSLSLGFSHPVDYELPAGIVAETPSQTDILIKGIDKQLVGQVAAEIRDFRPPEPYKGKGVRYA
+DEVVRRKEA</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="8">
+                <name>50S ribosomal protein L9</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.008216423</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>EVILLEKVANLGNLGDKVNIKGGYARNFLLPQGKATVATAENVAAFEARRAELEKAAAEKKAAAEARAAQLSELVVTL</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="9">
+                <name>50S ribosomal protein L11</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.014623716</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>KKIQAYIKLQVKAGQANPSPPVGPALGQHGVNIMEFCKAFNAKTQGQEPGLPTPVIITVYSDRSFTFETKSTPAAVLLKK
+AAGITSGSARPNSQKVGTVTRAQLEEIAKTKQADLTAADLDAAVRTIAGSARSMGLNVEG</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="10">
+                <name>50S ribosomal protein L13</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.015927382</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>KTYTAKPETVQRDWFVVDAAGQTLGRLATEIARRLRGKHKPEYTPHVDTGDYIVVINAEQVRVTGAKTTDKMYYHHSGFP
+GGIKSINFEKLIAKAPERVIETAVKGMLPKNPLGRDMYRKLKVYKGASHPHTAQQPQELKI</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="11">
+                <name>50S ribosomal protein L14</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.013223620999999998</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MIQTQSMLDVADNSGARRVMCIKVLGGSHRRYAGIGDIIKVTVKEAIPRGKVKKGQVMTAVVVRTKHGVRRTDGSIIRFD
+GNAAVLLNNKQEPIGTRIFGPVTRELRTEKFMKIVSLAPE</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="12">
+                <name>50S ribosomal protein L15</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.015204487999999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MQLNDLRSAPGARREKHRPGRGIGSGLGKTGGRGHKGLTSRSGGKVAPGFEGGQQPLHRRLPKFGFVSLKAMDRAEVRTS
+ELAKVEGDVVSLQTLKDANLINQHVQRVKVMLSGEVGRAVTLKGIAATKGARAAIEAAGGKFED</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="13">
+                <name>50S ribosomal protein L16</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.015303033999999998</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MLQPKRTKFRKQMTGHNRGLAHRGSKVSFGEYALKATSRGRLTARQIESARRALTRHVKRGGKIWIRVFPDKPVTKKPLE
+VRMGKGKGGVEYWVAQIQPGKVLYEIEGVSEELAREAFALAAAKLPLATSFVKRTV</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="14">
+                <name>50S ribosomal protein L17</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.013692035</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MRHRKSGRHLSRTSAHRKAMFQNMAVSLFEHELIKTTLPKAKELRRVAEPLITLAKEDSVANRRLAFDRTRSKAAVGKLF
+NDLGKRYANRPGGYLRILKCGFRAGDNAPMAYVELVDRPV</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="15">
+                <name>50S ribosomal protein L18</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.012556469999999998</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>SVKKETRLRRARKARLKMRELETVRLCVYRSSQHIYAQVIAADGGKVLASASTLDKDLREGATGNIDAAKKVGQLVAERA
+KAAGVTQVAFDRSGFKYHGRVKALADAAREGGLEF</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="16">
+                <name>50S ribosomal protein L19</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.012824898</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>TNKIIQQIEAEQMNKEIPAFAPGDTVIVQVKVKEGDRQRLQAFEGVVIAKRNRGLNSAFTVRKISNGVGVERTFQTYSPI
+VDSLSVKRRGDVRKAKLYYLRALSGKAARIKEKL</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="17">
+                <name>50S ribosomal protein L20</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.013266776</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>ARVKRGVIARRRHKKILKLAKGYYGARSRVFRVAKQAVIKAGQYAYRDRRQRKRQFRALWIARINAGARQNGLSYSRLIA
+GLKKAAIEIDRKVLADLAVNEKAAFTAIVEKAKASLA</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="18">
+                <name>50S ribosomal protein L21</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.011607544</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MYAVIVTGGKQHKVTEGEFLKVEKLDVATGEAIDFDRVLLVANGEDVKIGLPVVEGAKVTAEVVSHGRHDKVRIIKFRRR
+KHHMKRQGHRQWFTEIKITGIQ</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="19">
+                <name>50S ribosomal protein L22</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.011935995999999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MEVAAKLSGARISAQKARLVADQIRGKKVGEALNLLAFSSKKAAEIMKKVLESAVANAEHNEGADVDDLKVSTVFVNEGR
+SLKRIMPRAKGRADRIVKRSCHITVKVADK</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="20">
+                <name>50S ribosomal protein L23</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.010510263999999998</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MNQERVFKVLLGPHISEKATGLADGKSQFVFKVATDATKLEIKKAVESLFSVKVQRVTTLNVKGKTKRTARGLGKRNDWK
+KAYIALQPGQDLDF</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="21">
+                <name>50S ribosomal protein L24</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.011423413</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MQKIRRDDEVIVIAGKDKGKRGKVLKVLADDRLVVGGVNLIKRHTKPNPMLGQQGGIVEKEAPLHVSNVAIFNTETSKAD
+RVGFKVEDGKKIRVFKSTQKPVQ</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="22">
+                <name>50S ribosomal protein L25</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.020346504</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>FIVNAQVRSDLGKGASRRLRRNAGLVPAVVYGGDKEPQSVTLELREIAKLLENEAAFSHVIALNVGGVKETVLIKALQRH
+PAKGFVMHADFLRVVADHKLTAHVPLHFINEEVAVGVKQAGGEISHTISEVEVSCLPKDLPEFIEVDMAKVELGQIVHLS
+DLKAPKGVELVQLAHGNDLAVANIHASR</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="23">
+                <name>50S ribosomal protein L27</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.008124437</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>TRNGRDSESKRLGVKLFGGQAVKAGNILVRLRGTKFHAGYGVGLGKDHTLFAKVDGVVKFETKGAFGRKYVSIVAA</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="24">
+                <name>50S ribosomal protein L28</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.008956437</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>SRVCQVTGKGPVTGNNISHAHNKTRRRFLPNLQHHRFWVESEKRFVRLRVSAKGMRIIDKRGIEAVLADLRARGEKF</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="25">
+                <name>Ribosomal protein uL29</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.006807756999999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>KANELREEKSGPVTGNNISHLLRDQFNLRMQKATGQLGQSHLLSQVKRDIARVKTVLNQQ</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="26">
+                <name>50S ribosomal protein L30</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.006358448</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>ATVKVTLVKSLNGRLANHKACVKGLGLRRINHTVEVQDTPENRGMINKAYYLLRVEG</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="27">
+                <name>50S ribosomal protein L31</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.0033689209999999995</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>KADIHPTYEAIEATCSCGNVIKTRSTLCKPI</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="28">
+                <name>50S ribosomal protein L32</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.006043777</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>AVQQNKKSRSARDMRRSHDALESNALSVEKSTGEVHLRHHVSPDGFYRGRKVV</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="29">
+                <name>50S ribosomal protein L33</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.005928945</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>RELIRLVSSAGTGHFYTTDKNKRTKPEKIEIKKYDPVVRQHVIYKEAKIK</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="30">
+                <name>50S ribosomal protein L34</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.005226309</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MKRTFQPSTLKRARVHGFRARMATKNGRQVLSRRRAKGRKRLTV</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="31">
+                <name>50S ribosomal protein L35</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.0072568</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>PKMKTKSGAAKRFKKTAGGLKHKHAFKSHILTKMTTKRKRQLRGTSMLNKSDVARVERSLRLR</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="32">
+                <name>50S ribosomal protein L36</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.0044474449999999995</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MKVRASVKKLCRNCKIIRRDGIVRVICSAEPRHKQRQG</string>
+                </sequence>
+            </protein_or_peptide>
+            <rna macromolecule_id="33">
+                <name>16S rRNA</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.49306896899999997</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <sequence>
+                    <string>GAAGAGUUUGAUCAUGGCUCAGAUUGAACGCUGGCGGCAGGCCUAACACAUGCAAGUCGAGCGGAUGAAGGGAGCUUGCU
+CCUGGAUUCAGCGGCAGACGGGUGAGUAAUGCCUAGGAAUCUGCCUGGUAGUGGGGGAUAACGUCCGGAAACGGGCGCUA
+AUACCGCAUACGUCCUGAGGGAGAAAGUGGGGGAUCUUCGGACCUCACGCUAUCAGAUGAGCCUAGGUCGGAUUAGCUAG
+UUGGUGGGGUAAAGGCCUACCAAGGCGACGAUCCGUAACUGGUCUGAGAGGAUGAUCAGUCACACUGGAACUGAGACACG
+GUCCAGACUCCUACGGGAGGCAGCAGUGGGGAAUAUUGGACAAUGGGCGAAAGCCUGAUCCAGCCAUGCCGCGUGUGUGA
+AGAAGGUCUUCGGAUUGUAAAGCACUUUAAGUUGGGAGGAAGGGCAGUAAGUUAAUACCUUGCUGUUUUGACGUUACCAA
+CAGAAUAAGCACCGGCUAACUUCGUGCCAGCAGCCGCGGUAAUACGAAGGGUGCAAGCGUUAAUCGGAAUUACUGGGCGU
+AAAGCGCGCGUAGGUGGUUCAGCAAGUUGGAUGUGAAAUCCCCGGGCUCAACCUGGGAACUGCAUCCAAAACUACUGAGC
+UAGAGUACGGUAGAGGGUGGUGGAAUUUCCUGUGUAGCGGUGAAAUGCGUAGAUAUAGGAAGGAACACCAGUGGCGAAGG
+CGACCACCUGGACUGAUACUGACACUGAGGUGCGAAAGCGUGGGGAGCAAACAGGAUUAGAUACCCUGGUAGUCCACGCC
+GUAAACGAUGUCGACUAGCCGUUGGGAUCCUUGAGAUCUUAGUGGCGCAGCUAACGCGAUAAGUCGACCGCCUGGGGAGU
+ACGGCCGCAAGGUUAAAACUCAAAUGAAUUGACGGGGGCCCGCACAAGCGGUGGAGCAUGUGGUUUAAUUCGAAGCAACG
+CGAAGAACCUUACCUGGCCUUGACAUGCUGAGAACUUUCCAGAGAUGGAUUGGUGCCUUCGGGAACUCAGACACAGGUGC
+UGCAUGGCUGUCGUCAGCUCGUGUCGUGAGAUGUUGGGUUAAGUCCCGUAACGAGCGCAACCCUUGUCCUUAGUUACCAG
+CACCUCGGGUGGGCACUCUAAGGAGACUGCCGGUGACAAACCGGAGGAAGGUGGGGAUGACGUCAAGUCAUCAUGGCCCU
+UACGGCCAGGGCUACACACGUGCUACAAUGGUCGGUACAAAGGGUUGCCAAGCCGCGAGGUGGAGCUAAUCCCAUAAAAC
+CGAUCGUAGUCCGGAUCGCAGUCUGCAACUCGACUGCGUGAAGUCGGAAUCGCUAGUAAUCGUGAAUCAGAAUGUCACGG
+UGAAUACGUUCCCGGGCCUUGUACACACCGCCCGUCACACCAUGGGAGUGGGUUGCUCCAGAAGUAGCUAGUCUAACCGC
+AAGGGGGACGGUUACCACGGAGUGAUUCAUGACUGGGGUGAAGUCGUAACAAGGUAGCCGUAGGGGAACCUGCGGCUGGA
+U</string>
+                </sequence>
+            </rna>
+            <protein_or_peptide macromolecule_id="34">
+                <name>30S ribosomal protein S2</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.025366418</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>QVNMRDMLKAGVHFGHQTRYWNPKMGKFIFGARNKIHIINLEKTLPMFNEALTFVERLAAGKNKILFVGTKRSAGKIVRE
+EAARCGMPYVDHRWLGGMLTNYKTIRQSIKRLRDLETQSQDGTFDKLTKKEALMRSRDLEKLERSLGGIKDMGGLPDALF
+VIDVDHERIAITEANKLGIPVIGVVDTNSSPEGVDYVIPGNDDAIRAVQLYLNSMAEAVIRGKQGA</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="35">
+                <name>30S ribosomal protein S3</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.023180905999999998</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>VHPNGIRLGIVKEHTSVWYADRKNYADYLFADLKVREYLQDKLKSASVSRIDIHRPAQTARITIHTARPGIVIGKKGEDV
+EKLRQDLTKQMGVPVHINIEEIRKPELDAMLVAQSVAQQLERRVMFRRAMKRAVQNAMRIGAKGIKIQVSGRLGGAEIAR
+TEWYREGRVPLHTLRADIDYATYEAHTTYGVIGVKVWIFKGEV</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="36">
+                <name>30S ribosomal protein S4</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.023116396</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>RYIGPKCKLSRREGTDLFLKSGARALDSKCKAENVPGQHGQRRGRLSDYGLQLREKQKVRRIYGVLERQFRGYYQEASRR
+KGSTGENLLQLLECRLDNVVYRMGFGSTRSESRQLVSHKAITVNGQTVNIPSYQVKAGDVVAVREKSKNQLRIAQALELC
+GQRGRVEWVEVDLDKKAGTFKSAPARSDLSADINENLIVELYSK</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="37">
+                <name>30S ribosomal protein S5</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.015761337</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>GYIEKLVQVNRVAKTVKGGRIFAFTALTVVGDGKGRVGFGRGKAREVPAAIQKAMEAARRNMIQVDLNGTTLQYPTKSAH
+GASKVYMQPASEGTGIIAGGAMRAVLEVAGVQNVLAKCYGSTNPVNVVYATFKGLKNMQAPEAVAAKRGK</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="38">
+                <name>30S ribosomal protein S6</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.011613011</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>RHYEIVFLVHPDQSEQVGGMVERYTKAIEEDGGKIHRLEDWGRRQLAYAINNVHKAHYVLMNVECSAKALAELEDNFRAN
+DAVIRNLVMRRDEAVTEQSE</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="39">
+                <name>30S ribosomal protein S7</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.017313199</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>RRRVAAKREVLADPKYGSQILAKFMNHVMESGKKAVAERIVYGALDKVKERGKADPLETFEKALDAIAPLVEVKSRRVGG
+ATYQVPVEVRPSRRNALAMRWLVDFARKRGEKSMALRLAGELLDAAEGKGAAVKKREDVHRMAEANKAFSHYRF</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="40">
+                <name>30S ribosomal protein S8</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.014001311999999998</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>SMQDPLADMLTRIRNAQMAEKTVVSMPSSKLKAAVAKVLKDEGYIADFQISSEVKPQLSIELKYFEGKPVIEEVKRISRP
+GLRQYKSVEQLPAVRGGLGVSIVSTNKGVMTDRAARAAGVGGEVLCTVF</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="41">
+                <name>30S ribosomal protein S9</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.014139194999999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>ATQNYGTGRRKTATARVFLRPGTGKISINNRGLDQFFGRETARMVVRQPLELTETVEKFDIFVTVVGGGVSGQAGAIRHG
+ITRALIEYDETLRSSLRKAGYVTRDAREVERKKVGLRKARKRPQYS</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="42">
+                <name>30S ribosomal protein S10</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.010886568999999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>IRLKAFDHRLIDQSTQEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQYEIRTHKRVLDIVQPTDKTVDAL
+MKLDLAAGVEVQISLG</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="43">
+                <name>30S ribosomal protein S11</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.012086656999999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>KTVVDGIAHIHASFNNTIVTITDRQGNALSWATSGGSGFRGSRKSTPFAAQVAAERAGQAALEYGLKNLDVNVKGPGPGR
+ESAVRALNACGYKIASITDVTPIPHNGCRPPKKRR</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="44">
+                <name>30S ribosomal protein S12</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.013472611999999998</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>ATINQLVRKPRKRMVDKSDVPALQNCPQRRGVCTRVYTTTPKKPNSALRKVCRVRLTNGFEVSSYIGGEGHNLQEHSVVL
+IRGGRVKDLPGVRYHTVRGSLDTSGVKDRKQGRSKYGAKR</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="45">
+                <name>30S ribosomal protein S13</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.012307191</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>RIAGVNIPDNKHTVISLTYIYGVGRTTAQSICAATGVNPAAKIKDLSDEQIDQLRNEVAKITTEGDLRREINMNIKRLMD
+LGCYRGLRHRRGLPVRGQRTKTNARTRKGP</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="46">
+                <name>30S ribosomal protein S14</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.011203023999999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>KESMKNRELKRQLTVAKYAKKRAELKAIIANPNSSAEERWNAQVALQKQPRDASASRLRNRCRLTGRPHGFYRKFGLSRN
+KLREAAMRGDVPGLVKAS</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="47">
+                <name>30S ribosomal protein S15</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.009847271</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>ALSVEEKAQIVNEYKQAEGDTGSPEVQVALLSANINKLQDHFKANGKDHHSRRGLIRMVNQRRKLLDYLKGKDVSRYTAL
+IGRLGLR</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="48">
+                <name>30S ribosomal protein S16</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.008762938</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MVTIRLARGGSKKRPFYHLTVTNSRNARDGRFVERIGFFNPVATGGEVRLSVDQERATYWLGQGAQPSERVAQLLKDA</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="49">
+                <name>30S ribosomal protein S17</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.008848358</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>RTLTGRVVSDKMDKTVTVLIERRVKHPIYGKYVKRSTKLHAHDESNQCRIGDLVTIRETRPLAKTKAWTLVDIVER</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="50">
+                <name>30S ribosomal protein S18</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.006411409999999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>KEIDYKDLNTLKAYVSETGKIVPSRITGTKAKYQRQLATAIKRARYLALLPYTDSH</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="51">
+                <name>30S ribosomal protein S19</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.009182882</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>PRSLKKGPFIDLHLLKKVEVAVEKNDRKPIKTWSRRSMILPHMVGLTIAVHNGRQHVPVLVNEDMVGHKLGEFAATRTYR</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="52">
+                <name>30S ribosomal protein S20</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.00949714</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>ANTPSAKKRAKQAEKRRSHNASLRSMVRTYIKNVVKAIDAKDLEKAQAAFTAAVPVIDRMADKGIIHKNKAARHKSRLSG
+HIKALS</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="53">
+                <name>30S ribosomal protein S21</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="287">Pseudomonas aeruginosa</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.0042098909999999995</theoretical>
+                </molecular_weight>
+                <number_of_copies>1</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>SREFYEKPTAERRRKAAAAVKRHAKKVQREQRRR</string>
+                </sequence>
+            </protein_or_peptide>
+        </macromolecule_list>
+    </sample>
+    <structure_determination_list>
+        <structure_determination structure_determination_id="1">
+            <method>singleParticle</method>
+            <aggregation_state>particle</aggregation_state>
+            <specimen_preparation_list>
+                <single_particle_preparation preparation_id="1">
+                    <buffer>
+                        <ph>7.4</ph>
+                    </buffer>
+                    <vitrification>
+                        <cryogen_name>ETHANE</cryogen_name>
+                        <chamber_humidity units="percentage">100</chamber_humidity>
+                        <chamber_temperature units="K">277</chamber_temperature>
+                        <instrument>FEI VITROBOT MARK IV</instrument>
+                    </vitrification>
+                </single_particle_preparation>
+            </specimen_preparation_list>
+            <microscopy_list>
+                <single_particle_microscopy microscopy_id="1">
+                    <microscope>FEI TITAN KRIOS</microscope>
+                    <illumination_mode>FLOOD BEAM</illumination_mode>
+                    <imaging_mode>BRIGHT FIELD</imaging_mode>
+                    <electron_source>FIELD EMISSION GUN</electron_source>
+                    <acceleration_voltage units="kV">300</acceleration_voltage>
+                    <image_recording_list>
+                        <image_recording image_recording_id="1">
+                            <film_or_detector_model>FEI FALCON II (4k x 4k)</film_or_detector_model>
+                            <average_electron_dose_per_image units="e/Å^2">1.0</average_electron_dose_per_image>
+                        </image_recording>
+                    </image_recording_list>
+                </single_particle_microscopy>
+            </microscopy_list>
+            <singleparticle_processing image_processing_id="1">
+                <image_recording_id>1</image_recording_id>
+                <ctf_correction>
+                    <software_list>
+                        <software>
+                            <name>Gctf</name>
+                        </software>
+                    </software_list>
+                </ctf_correction>
+                <startup_model type_of_model="PDB ENTRY">
+                    <pdb_model>
+                        <pdb_id>4LF4</pdb_id>
+                    </pdb_model>
+                </startup_model>
+                <final_reconstruction>
+                    <applied_symmetry>
+                        <point_group>C1</point_group>
+                    </applied_symmetry>
+                    <resolution units="Å" res_type="BY AUTHOR">2.89</resolution>
+                    <resolution_method>FSC 0.143 CUT-OFF</resolution_method>
+                    <software_list>
+                        <software>
+                            <name>RELION</name>
+                        </software>
+                    </software_list>
+                    <number_images_used>319022</number_images_used>
+                </final_reconstruction>
+                <initial_angle_assignment>
+                    <type>ANGULAR RECONSTITUTION</type>
+                    <software_list>
+                        <software>
+                            <name>RELION</name>
+                        </software>
+                    </software_list>
+                </initial_angle_assignment>
+                <final_angle_assignment>
+                    <type>ANGULAR RECONSTITUTION</type>
+                    <software_list>
+                        <software>
+                            <name>RELION</name>
+                        </software>
+                    </software_list>
+                </final_angle_assignment>
+                <final_three_d_classification>
+                    <software_list>
+                        <software>
+                            <name>RELION</name>
+                        </software>
+                    </software_list>
+                </final_three_d_classification>
+            </singleparticle_processing>
+        </structure_determination>
+    </structure_determination_list>
+    <map format="CCP4" size_kbytes="256001">
+        <file>emd_0000.map.gz</file>
+        <symmetry>
+            <space_group>1</space_group>
+        </symmetry>
+        <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
+        <dimensions>
+            <col>400</col>
+            <row>400</row>
+            <sec>400</sec>
+        </dimensions>
+        <origin>
+            <col>0</col>
+            <row>0</row>
+            <sec>0</sec>
+        </origin>
+        <spacing>
+            <x>400</x>
+            <y>400</y>
+            <z>400</z>
+        </spacing>
+        <cell>
+            <a units="Å">440.0</a>
+            <b units="Å">440.0</b>
+            <c units="Å">440.0</c>
+            <alpha units="deg">90.0</alpha>
+            <beta units="deg">90.0</beta>
+            <gamma units="deg">90.0</gamma>
+        </cell>
+        <axis_order>
+            <fast>X</fast>
+            <medium>Y</medium>
+            <slow>Z</slow>
+        </axis_order>
+        <statistics>
+            <minimum>-0.478421</minimum>
+            <maximum>0.7881263</maximum>
+            <average>0.0007639024</average>
+            <std>0.017213747</std>
+        </statistics>
+        <pixel_spacing>
+            <x units="Å">1.1</x>
+            <y units="Å">1.1</y>
+            <z units="Å">1.1</z>
+        </pixel_spacing>
+        <contour_list>
+            <contour primary="true">
+                <level>0.0491</level>
+                <source>AUTHOR</source>
+            </contour>
+        </contour_list>
+        <label>::::EMDATABANK.org::::EMD-0000::::</label>
+    </map>
+    <interpretation>
+        <additional_map_list>
+            <additional_map format="CCP4" size_kbytes="256001">
+                <file>emd_0000_additional_1.map.gz</file>
+                <symmetry>
+                    <space_group>1</space_group>
+                </symmetry>
+                <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
+                <dimensions>
+                    <col>400</col>
+                    <row>400</row>
+                    <sec>400</sec>
+                </dimensions>
+                <origin>
+                    <col>0</col>
+                    <row>0</row>
+                    <sec>0</sec>
+                </origin>
+                <spacing>
+                    <x>400</x>
+                    <y>400</y>
+                    <z>400</z>
+                </spacing>
+                <cell>
+                    <a units="Å">440.0</a>
+                    <b units="Å">440.0</b>
+                    <c units="Å">440.0</c>
+                    <alpha units="deg">90.0</alpha>
+                    <beta units="deg">90.0</beta>
+                    <gamma units="deg">90.0</gamma>
+                </cell>
+                <axis_order>
+                    <fast>X</fast>
+                    <medium>Y</medium>
+                    <slow>Z</slow>
+                </axis_order>
+                <statistics>
+                    <minimum>-0.478421</minimum>
+                    <maximum>0.7881263</maximum>
+                    <average>0.0007639024</average>
+                    <std>0.017213747</std>
+                </statistics>
+                <pixel_spacing>
+                    <x units="Å">1.1</x>
+                    <y units="Å">1.1</y>
+                    <z units="Å">1.1</z>
+                </pixel_spacing>
+                <contour_list>
+                    <contour primary="true">
+                        <source>AUTHOR</source>
+                    </contour>
+                </contour_list>
+                <label>::::EMDATABANK.org::::EMD-0000::::</label>
+                <annotation_details>Unsharp map</annotation_details>
+            </additional_map>
+        </additional_map_list>
+    </interpretation>
+</emd>
