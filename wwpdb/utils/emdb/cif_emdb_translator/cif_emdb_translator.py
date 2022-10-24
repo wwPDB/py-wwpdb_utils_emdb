@@ -106,7 +106,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.2.7"
+        XML_OUT_VERSION = "3.0.2.9"
 
         # Cif categories
         CITATION = "citation"
@@ -3866,7 +3866,7 @@ class CifEMDBTranslator(object):
                         At the moment only the GO category is being captured; others:
                         ARBITRARY DEFINITION and PROTEIN ONTOLOGY are not supported
                         """
-                        set_cif_value(sup_mol.set_category, "category_go", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.categoryType, type="GO")
+                        set_cif_value(sup_mol.set_category, "go_id", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.categoryType, type="GO")
 
                     def set_el_parent(sup_mol, sup_in):
                         """
@@ -6903,7 +6903,7 @@ class CifEMDBTranslator(object):
                         self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
                         self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                     if em_method is not None:
-                        set_cif_value(struct_det.set_method, "method", const.EM_EXPERIMENT, cif_value=em_method)
+                        set_cif_value(struct_det.set_method, "reconstruction_method", const.EM_EXPERIMENT, cif_value=em_method)
                     else:
                         txt = (
                             u"(%s) is not a recognised structure determination method. Recognised methods are: SINGLE PARTICLE, SUBTOMOGRAM AVERAGING, TOMOGRAPHY, HELICAL, CRYSTALLOGRAPHY."
@@ -7271,7 +7271,7 @@ class CifEMDBTranslator(object):
                                     XSD: <xs:element name="scanner" minOccurs="0">
                                     CIF: _em_image_scans.scanner_model 'EIKONIX IEEE 488'
                                     """
-                                    set_cif_value(im_dig.set_scanner, "scanner", const.EM_IMAGE_SCANS, cif_list=im_dig_in)
+                                    set_cif_value(im_dig.set_scanner, "scanner_model", const.EM_IMAGE_SCANS, cif_list=im_dig_in)
 
                                 def set_el_dimensions(im_dig, im_dig_in):
                                     """
@@ -7342,7 +7342,7 @@ class CifEMDBTranslator(object):
                             XSD: <xs:element name="number_grids_imaged" type="xs:positiveInteger" minOccurs="0"/>
                             CIF: _em_image_recording.num_grids_imaged 10
                             """
-                            set_cif_value(im_rec.set_number_grids_imaged, "number_grids_imaged", const.EM_IMAGE_RECORDING, cif_list=im_rec_in, fmt=int)
+                            set_cif_value(im_rec.set_number_grids_imaged, "num_grids_imaged", const.EM_IMAGE_RECORDING, cif_list=im_rec_in, fmt=int)
 
                         def set_el_number_real_images(im_rec, im_rec_in):
                             """
@@ -7356,7 +7356,7 @@ class CifEMDBTranslator(object):
                             XSD: <xs:element name="number_diffraction_images" type="xs:positiveInteger" minOccurs="0"/>
                             CIF: _em_image_recording.num_diffraction_images 10
                             """
-                            set_cif_value(im_rec.set_number_diffraction_images, "number_diffraction_images", const.EM_IMAGE_RECORDING, cif_list=im_rec_in, fmt=int)
+                            set_cif_value(im_rec.set_number_diffraction_images, "num_diffraction_images", const.EM_IMAGE_RECORDING, cif_list=im_rec_in, fmt=int)
 
                         def set_el_average_exposure_time(im_rec, im_rec_in):
                             """
@@ -8487,7 +8487,7 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="number_classes_used" type="xs:positiveInteger" minOccurs="0"/>
                         CIF: _em_3d_reconstruction.num_class_averages 300
                         """
-                        set_cif_value(final_rec.set_number_classes_used, "number_classes_used", const.EM_3D_RECONSTRUCTION, cif_list=final_rec_in, fmt=int)
+                        set_cif_value(final_rec.set_number_classes_used, "num_class_averages", const.EM_3D_RECONSTRUCTION, cif_list=final_rec_in, fmt=int)
 
                     def set_el_applied_symmetry(final_rec, final_dicts):
                         """
@@ -10605,7 +10605,7 @@ class CifEMDBTranslator(object):
                             else:
                                 # contour level can be set for the primary map
                                 # get structure determination method
-                                struct_det_method = get_cif_value("method", const.EM_EXPERIMENT)
+                                struct_det_method = get_cif_value("reconstruction_method", const.EM_EXPERIMENT)
                                 # determine map type
                                 map_type = get_cif_value("type", const.EM_MAP, cif_list=map_in)
                                 if map_type == "primary map":
@@ -10998,7 +10998,7 @@ class CifEMDBTranslator(object):
                                 XSD: <xs:element name="refinement_protocol" minOccurs="0">
                                 CIF: _em_3d_fitting.ref_protocol {AB INITIO MODEL,...}
                                 """
-                                set_cif_value(modelling.set_refinement_protocol, "refinement_protocol", const.EM_3D_FITTING, cif_list=modelling_in)
+                                set_cif_value(modelling.set_refinement_protocol, "ref_protocol", const.EM_3D_FITTING, cif_list=modelling_in)
 
                             def set_el_software_list(modelling, cat_soft_dict_in):
                                 """

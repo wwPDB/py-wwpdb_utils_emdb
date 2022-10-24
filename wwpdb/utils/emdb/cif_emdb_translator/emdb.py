@@ -2,24 +2,24 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Thu Oct 21 15:46:04 2021 by generateDS.py version 2.29.5.
-# Python 2.7.11 (v2.7.11:6d1b6a68f775, Dec  5 2015, 12:54:16)  [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+# Generated Tue Oct 18 17:13:17 2022 by generateDS.py version 2.29.5.
+# Python 3.8.13 | packaged by conda-forge | (default, Mar 25 2022, 06:05:47)  [Clang 12.0.1 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', '/Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_7/emdb.py')
+#   ('-o', '/Users/amudha/IdeaProjects/emdb-schemas/emdb_schemas/v3/v3_0_2_9/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   /Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_7/emdb.xsd
+#   /Users/amudha/IdeaProjects/emdb-schemas/emdb_schemas/v3/v3_0_2_9/emdb.xsd
 #
 # Command line:
-#   /Users/sanja/Documents/modified_generateDS-2.29.5/generateDS.py --root-element="emd" -f -o "/Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_7/emdb.py" --no-warnings --external-encoding="utf-8" /Users/sanja/IdeaProjects/emdb-schemas/v3/v3_0_2_7/emdb.xsd
+#   /Users/amudha/IdeaProjects/emdb_config/emdb_config/modified_generateDS/generateDS.py --root-element="emd" -f -o "/Users/amudha/IdeaProjects/emdb-schemas/emdb_schemas/v3/v3_0_2_9/emdb.py" --no-warnings --external-encoding="utf-8" /Users/amudha/IdeaProjects/emdb-schemas/emdb_schemas/v3/v3_0_2_9/emdb.xsd
 #
 # Current working directory (os.getcwd()):
-#   v3_0_2_7
+#   v3_0_2_9
 #
 
 import sys
@@ -739,7 +739,7 @@ def _cast(typ, value):
 class entry_type(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.2.7', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
+    def __init__(self, emdb_id=None, version='3.0.2.9', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
         self.original_tagname_ = None
         self.emdb_id = _cast(None, emdb_id)
         self.version = _cast(None, version)
@@ -2577,7 +2577,7 @@ class journal_citation(GeneratedsSuper):
     def validate_yearType(self, value):
         # Validate type yearType, a restriction on xs:gYear.
         if value is not None and Validate_simpletypes_:
-            if value < 1900:
+            if value < str(1900):
                 warnings_.warn('Value "%(value)s" does not match xsd minInclusive restriction on yearType' % {"value" : value} )
     def hasContent_(self):
         if (
@@ -2857,7 +2857,7 @@ class non_journal_citation(GeneratedsSuper):
     def validate_yearType2(self, value):
         # Validate type yearType2, a restriction on xs:gYear.
         if value is not None and Validate_simpletypes_:
-            if value < 1900:
+            if value < str(1900):
                 warnings_.warn('Value "%(value)s" does not match xsd minInclusive restriction on yearType2' % {"value" : value} )
     def hasContent_(self):
         if (
