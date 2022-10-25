@@ -8696,7 +8696,8 @@ class CifEMDBTranslator(object):
                             angle_type = get_cif_value("type", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
                             if angle_type is not None:
                                 if angle_type == "" or angle_type.isspace():
-                                    txt = u"Cif item (_em_euler_angle_assignment.type) is not set. The value given should be one of: ANGULAR RECONSTITUTION, COMMON LINE, NOT APPLICABLE, OTHER, PROJECTION MATCHING, RANDOM ASSIGNMENT, MAXIMUM LIKELIHOOD."
+                                    txt = u"Cif item (_em_euler_angle_assignment.type) is not set. The value given should be one of: ANGULAR RECONSTITUTION, COMMON LINE, NOT APPLICABLE, " \
+                                          u"OTHER, PROJECTION MATCHING, RANDOM ASSIGNMENT, MAXIMUM LIKELIHOOD."
                                     self.current_entry_log.error_logs.append(
                                         self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt)
                                     )
