@@ -6411,7 +6411,7 @@ class CifEMDBTranslator(object):
                         CIF: _em_high_pressure_freezing.details
                         """
                         all_details = ""
-                        current_details = get_cif_value("details", const.em_high_pressure_freezing, cif_list=h_pf_in)
+                        current_details = get_cif_value("details", const.EM_HIGH_PRESSURE_FREEZING, cif_list=h_pf_in)
                         if current_details is not None:
                             all_details = ". ".join((current_details, details_txt))
                         else:
