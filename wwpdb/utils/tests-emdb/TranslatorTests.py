@@ -33,7 +33,7 @@ from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTran
 
 class ImportTests(unittest.TestCase):
     def setUp(self):
-        self.__inpfile = os.path.join(mockTopPath, "EMD", "emd-0000.cif")
+        self.__inpfile = os.path.join(mockTopPath, "EM", "emd-0000.cif")
         self.__outfile = os.path.join(TESTOUTPUT, "emd-0000.xml")
         self.__logfile = os.path.join(TESTOUTPUT, "emd-0000.log")
 
