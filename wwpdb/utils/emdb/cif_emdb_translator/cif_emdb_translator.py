@@ -6822,14 +6822,14 @@ class CifEMDBTranslator(object):
                     XSD: <xs:element name="number_classes" type="xs:positiveInteger" minOccurs="0">
                     CIF: _em_final_classification.num_classes 200
                     """
-                    set_cif_value(clas.set_number_classes, "number_classes", const.EM_FINAL_CLASSIFICATION, cif_list=f_c_in, fmt=int)
+                    set_cif_value(clas.set_number_classes, "num_classes", const.EM_FINAL_CLASSIFICATION, cif_list=f_c_in, fmt=int)
 
                 def set_el_av_num_members_per_class(clas, f_c_in):
                     """
                     XSD: <xs:element name="average_number_members_per_class" minOccurs="0">
                     CIF: _em_final_classification.avg_num_images_per_class 75
                     """
-                    set_cif_value(clas.set_average_number_members_per_class, "average_number_images_per_class", const.EM_FINAL_CLASSIFICATION, cif_list=f_c_in, fmt=float)
+                    set_cif_value(clas.set_average_number_members_per_class, "avg_num_images_per_class", const.EM_FINAL_CLASSIFICATION, cif_list=f_c_in, fmt=float)
 
                 def set_el_software_list(clas, cat_soft_dict_in):
                     """
@@ -9178,14 +9178,14 @@ class CifEMDBTranslator(object):
                                 XSD: <xs:element name="number_tomograms" type="xs:positiveInteger"/>
                                 CIF: _em_volume_selection.num_tomograms 20
                                 """
-                                set_cif_value(extraction.set_number_tomograms, "number_tomograms", const.EM_VOLUME_SELECTION, cif_list=vs_in, fmt=int)
+                                set_cif_value(extraction.set_number_tomograms, "num_tomograms", const.EM_VOLUME_SELECTION, cif_list=vs_in, fmt=int)
 
                             def set_el_number_images_used(extraction, vs_in):
                                 """
                                 XSD: <xs:element name="number_images_used" type="xs:positiveInteger"/>
                                 CIF: _em_volume_selection.num_volumes_extracted 840
                                 """
-                                set_cif_value(extraction.set_number_images_used, "number_volumes_extracted", const.EM_VOLUME_SELECTION, cif_list=vs_in, fmt=int)
+                                set_cif_value(extraction.set_number_images_used, "num_volumes_extracted", const.EM_VOLUME_SELECTION, cif_list=vs_in, fmt=int)
 
                             def set_el_reference_model(extraction, vs_in):
                                 """
