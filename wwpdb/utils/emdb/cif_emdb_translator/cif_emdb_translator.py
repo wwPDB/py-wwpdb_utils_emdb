@@ -8517,7 +8517,6 @@ class CifEMDBTranslator(object):
                                 This is being dealt in def set_applied_symmetry_type(app_sym):
                                 XSD: <xs:element name="space_group" type="xs:int"/>
                                 """
-                                pass
 
                             def set_choice_point_group(app_sym, p_sym_in):
                                 """
