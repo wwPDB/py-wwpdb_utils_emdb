@@ -10929,15 +10929,6 @@ class CifEMDBTranslator(object):
                                         pattern "d[dA-Za-z]{3}"
                                         """
                                         set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                        ### _em_3d_fitting_list.source_name will not exist for old depositions
-                                        # source_name = get_cif_value("source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                        # if source_name is None:
-                                        #     set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                        #     set_cif_value(model.set_source_name, "PDB")
-                                        # else:
-                                        #     set_cif_value(model.set_access_code, "entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                        #     set_cif_value(model.set_source_name, "source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
-
 
                                     def set_el_chain(model, model_in):
                                         """
