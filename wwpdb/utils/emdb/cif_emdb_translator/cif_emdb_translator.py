@@ -401,6 +401,131 @@ class CifEMDBTranslator(object):
 
         # em_admin.last_update should not be initialized twice
         MMCIF_TO_XSD = {  # pylint: disable=duplicate-key
+            # _em_3d_fitting_list.accession_code
+            # _em_3d_fitting_list.chain_id
+            # _em_3d_fitting_list.chain_residue_range
+            "_em_3d_fitting_list.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_3d_fitting_list.pdb_chain_id": '<xs:element name="chain_id" type="chain_pdb_id" minOccurs="0" maxOccurs="unbounded"/>',
+            "_em_3d_fitting_list.pdb_chain_residue_range": '<xs:element name="residue_range" minOccurs="0" maxOccurs="1">',
+            "_em_3d_fitting_list.pdb_entry_id": '<xs:element name="access_code">',
+            # _em_3d_fitting_list.source_name
+            # _em_3d_fitting_list.type
+            "_em_3d_fitting_list": '<xs:element name="access_code">',
+            # _em_3d_fitting.entry_id
+            # _em_3d_fitting.id
+            "_em_3d_fitting.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            # _em_3d_fitting.initial_refinement_model_id
+            # _em_3d_fitting.method
+            "_em_3d_fitting.overall_b_value": '<xs:element name="overall_bvalue" type="xs:float" minOccurs="0">',
+            "_em_3d_fitting.ref_protocol": '<xs:element name="refinement_protocol" minOccurs="0">',
+            "_em_3d_fitting.ref_space": '<xs:element name="refinement_space" type="xs:token" minOccurs="0">',
+            # _em_3d_fitting.software_name
+            "_em_3d_fitting.target_criteria": '<xs:element name="target_criteria" type="xs:token" minOccurs="0">',
+            "_em_3d_reconstruction.num_particles": '<xs:element name="number_images_used" type="xs:positiveInteger" minOccurs="0"/>',
+            "_em_3d_reconstruction.num_class_averages": '<xs:element name="number_classes_used" type="xs:positiveInteger" minOccurs="0"/>',
+            "_em_3d_reconstruction.algorithm": '<xs:element name="algorithm" type="reconstruction_algorithm_type" minOccurs="0"/>',
+            "_em_3d_reconstruction.resolution_method": '<xs:element name="resolution_method" minOccurs="0">',
+            "_em_3d_reconstruction.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_3d_reconstruction.resolution": '<xs:element name="resolution" minOccurs="0">',
+            "_em_buffer.pH": '<xs:element name="ph">',
+            "_em_buffer.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
+            "_em_entity_assembly.chimera": '<xs:attribute name="chimera" type="xs:boolean" fixed="true"/>',
+            "_em_entity_assembly.id": '<xs:attribute name="supramolecule_id" type="xs:positiveInteger" use="required"/>',
+            "_em_entity_assembly.name": '<xs:element name="name" type="sci_name_type">',
+            "_em_entity_assembly.go_id": '<xs:element name="category" minOccurs="0">',
+            "_em_entity_assembly.parent_id": '<xs:element name="parent" type="xs:nonNegativeInteger">',
+            "_em_entity_assembly.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_entity_assembly.entity_id_list": '<xs:element name="macromolecule_list" minOccurs="0">',
+            "_em_experiment.id": '<xs:attribute name="structure_determination_id" type="xs:positiveInteger" use="required"/>',
+            "_em_experiment.aggregation_state": '<xs:element name="aggregation_state">',
+            "_em_experiment.reconstruction_method": '<xs:element name="method">',
+            "_em_image_scans.scanner_model": '<xs:element name="scanner" minOccurs="0">',
+            "_em_image_scans.used_frames_per_image": '<xs:element name="frames_per_image" type="xs:token" minOccurs="0"/>',
+            "_em_image_scans.sampling_interval": '<xs:element name="sampling_interval" minOccurs="0">',
+            "_em_imaging.id": '<xs:attribute name="microscopy_id" type="xs:positiveInteger" use="required"/>',
+            "_em_imaging.microscope_model": '<xs:element name="microscope">',
+            "_em_imaging.illumination_mode": '<xs:element name="illumination_mode">',
+            "_em_imaging.mode": '<xs:element name="imaging_mode">',
+            "_em_imaging.electron_source": '<xs:element name="electron_source">',
+            "_em_imaging.nominal_magnification": '<xs:element name="nominal_magnification" type="allowed_magnification" minOccurs="0"/>',
+            "_em_imaging.calibrated_magnification": '<xs:element name="calibrated_magnification" type="allowed_magnification" minOccurs="0"/>',
+            "_em_imaging.specimen_holder_model": '<xs:element name="specimen_holder_model" minOccurs="0">',
+            "_em_imaging.cryogen": '<xs:element name="cooling_holder_cryogen" minOccurs="0">',
+            "_em_imaging.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
+            "_em_imaging.accelerating_voltage": '<xs:element name="acceleration_voltage">',
+            "_em_imaging.c2_aperture_diameter": '<xs:element name="c2_aperture_diameter" minOccurs="0">',
+            "_em_imaging.nominal_cs": '<xs:element name="nominal_cs" minOccurs="0">',
+            "_em_imaging.nominal_defocus_min": '<xs:element name="nominal_defocus_min" minOccurs="0">',
+            "_em_imaging.calibrated_defocus_min": '<xs:element name="calibrated_defocus_min" minOccurs="0">',
+            "_em_imaging.nominal_defocus_max": '<xs:element name="nominal_defocus_max" minOccurs="0">',
+            "_em_imaging.calibrated_defocus_max": '<xs:element name="calibrated_defocus_max" minOccurs="0">',
+            "_em_imaging.recording_temperature_maximum": '<xs:element name="temperature" minOccurs="0">',
+            "_em_imaging.recording_temperature_minimum": '<xs:element name="temperature" minOccurs="0">',
+            "_em_sample_support.grid_type": '<xs:element name="model" type="xs:token" minOccurs="0">',
+            "_em_sample_support.grid_material": '<xs:element name="material" minOccurs="0">',
+            "_em_sample_support.grid_mesh_size": '<xs:element name="mesh" type="xs:positiveInteger" minOccurs="0">',
+            "_em_sample_support.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
+            "_em_single_particle_entity.point_symmetry": '<xs:element name="point_group">',
+            "_em_virus_entity.empty": '<xs:element name="virus_empty" type="xs:boolean"/>',
+            "_em_virus_entity.enveloped": '<xs:element name="virus_enveloped" type="xs:boolean"/>',
+            "_em_virus_entity.virus_isolate": '<xs:element name="virus_isolate">',
+            "_em_virus_entity.virus_type": '<xs:element name="virus_type">',
+            "_em_vitrification.instrument": '<xs:element name="instrument" minOccurs="0">',
+            "_em_vitrification.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
+            "_em_vitrification.humidity": '<xs:element name="chamber_humidity" minOccurs="0">',
+            "_em_vitrification.chamber_temperature": '<xs:element name="chamber_temperature" minOccurs="0">',
+            "_em_vitrification.cryogen_name": '<xs:element name="cryogen_name">',
+            "_em_2d_crystal_entity.length_a": '<xs:element name="a" type="cell_type"/>',
+            "_em_2d_crystal_entity.length_b": '<xs:element name="b" type="cell_type"/>',
+            "_em_2d_crystal_entity.length_c": '<xs:element name="c" type="cell_type"/>',
+            "_em_2d_crystal_entity.c_sampling_length": '<xs:element name="c_sampling_length" type="cell_type" minOccurs="0"/>',
+            "_em_2d_crystal_entity.angle_gamma": '<xs:element name="gamma" type="cell_angle_type"/>',
+            # "_em_2d_crystal_entity.alpha": '<xs:element name="alpha" type="cell_angle_type minOccurs="0"/>',
+            # "_em_2d_crystal_entity.beta": '<xs:element name="beta" type="cell_angle_type" minOccurs="0"/>',
+            "_em_2d_crystal_entity.space_group_name_H-M": '<xs:element name="space_group" type="xs:token">',
+            "_em_3d_crystal_entity.length_a": '<xs:element name="a" type="cell_type"/>',
+            "_em_3d_crystal_entity.length_b": '<xs:element name="b" type="cell_type"/>',
+            "_em_3d_crystal_entity.length_c": '<xs:element name="c" type="cell_type"/>',
+            "_em_3d_crystal_entity.c_sampling_length": '<xs:element name="c_sampling_length" type="cell_type" minOccurs="0"/>',
+            "_em_3d_crystal_entity.angle_gamma": '<xs:element name="gamma" type="cell_angle_type"/>',
+            "_em_3d_crystal_entity.angle_alpha": '<xs:element name="alpha" type="cell_angle_type" minOccurs="0"/>',
+            "_em_3d_crystal_entity.angle_beta": '<xs:element name="beta" type="cell_angle_type" minOccurs="0"/>',
+            "_em_3d_crystal_entity.space_group_name": '<xs:element name="space_group" type="xs:token">',
+            "_em_buffer_component.concentration": '<xs:element name="concentration" minOccurs="0">',
+            "_em_buffer_component.concentration_units": '<xs:element name="concentration" minOccurs="0">',
+            "_em_buffer_component.formula": '<xs:element name="formula" type="formula_type" minOccurs="0"/>',
+            "_em_buffer_component.name": '<xs:element name="name" type="xs:token" minOccurs="0">',
+            "_em_crystal_formation.time_unit": '<xs:complexType name="crystal_formation_time_type">',
+            "_em_crystal_formation.lipid_protein_ratio": '<xs:element name="lipid_protein_ratio" type="xs:float" minOccurs="0"/>',
+            "_em_crystal_formation.lipid_mixture": '<xs:element name="lipid_mixture" type="xs:token" minOccurs="0"/>',
+            "_em_crystal_formation.instrument": '<xs:element name="instrument" type="xs:token" minOccurs="0"/>',
+            "_em_crystal_formation.atmosphere": '<xs:element name="atmosphere" type="xs:token" minOccurs="0"/>',
+            "_em_crystal_formation.temperature": '<xs:element name="temperature" type="crystal_formation_temperature_type" minOccurs="0"/>',
+            "_em_crystal_formation.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
+            "_em_crystal_formation.time": '<xs:complexType name="crystal_formation_time_type">',
+            "_em_ctf_correction.phase_reversal_anisotropic": '<xs:element name="anisotropic" type="xs:boolean" minOccurs="0"/>',
+            "_em_ctf_correction.phase_reversal_correction_space": '<xs:element name="correction_space" type="correction_space_type" minOccurs="0"/>',
+            "_em_ctf_correction.amplitude_correction_factor": '<xs:element name="factor" type="xs:float" minOccurs="0"/>',
+            "_em_ctf_correction.amplitude_correction_space": '<xs:element name="correction_space" type="correction_space_type" minOccurs="0"/>',
+            "_em_ctf_correction.correction_operation": '<xs:element name="correction_operation" minOccurs="0">',
+            "_em_ctf_correction.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_image_recording.id": '<xs:attribute name="image_recording_id" type="xs:positiveInteger"/>',
+            "_em_image_recording.detector_mode": '<xs:element name="detector_mode" minOccurs="0">',
+            "_em_image_recording.num_grids_imaged": '<xs:element name="number_grids_imaged" type="xs:positiveInteger" minOccurs="0"/>',
+            "_em_image_recording.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_image_recording.num_diffraction_images": '<xs:element name="number_diffraction_images" type="xs:positiveInteger" minOccurs="0"/>',
+            "_em_image_recording.num_real_images": '<xs:element name="number_real_images" type="xs:positiveInteger" minOccurs="0"/>',
+            "_em_image_recording.film_or_detector_model": '<xs:element name="film_or_detector_model">',
+            "_em_image_recording.average_exposure_time": '<xs:element name="average_exposure_time" minOccurs="0">',
+            "_em_image_recording.avg_electron_dose_per_image": '<xs:element name="average_electron_dose_per_image" minOccurs="0">',
+            "_em_entity_assembly_molwt.value": '<xs:complexType name="molecular_weight_type">',
+
+
+            "_em_imaging_optics.phase_plate": '<xs:element name="phase_plate" type="xs:token" minOccurs="0"/>',
+            "_em_imaging_optics.sph_aberration_corrector": '<xs:element name="sph_aberration_corrector" type="xs:token" minOccurs="0"/>',
+            "_em_imaging_optics.chr_aberration_corrector": '<xs:element name="chr_aberration_corrector" type="xs:token" minOccurs="0"/>',
+            "_em_imaging_optics.energyfilter_name": '<xs:element name="name" type="xs:token" minOccurs="0">',
+            "_em_imaging_optics.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
             "_em_admin.current_status": '<xs:element name="code" type="code_type"/>',
             "_em_admin.last_update": '<xs:element name="date" minOccurs="0">',  # noqa: F601 pylint: disable=duplicate-key
             "_pdbx_database_status.process_site": '<xs:element name="processing_site" minOccurs="0">',
@@ -433,7 +558,6 @@ class CifEMDBTranslator(object):
             "_pdbx_database_related.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_em_db_reference_auxiliary.link_type": '<xs:element name="type">',
             "_em_db_reference_auxiliary.link": '<xs:element name="link">',
-            "_em_entity_assembly.chimera": '<xs:attribute name="chimera" type="xs:boolean" fixed="true"/>',
             "_em_entity_assembly_naturalsource.organ": '<xs:element name="organ" type="xs:token" minOccurs="0"/>',
             "_em_entity_assembly_naturalsource.tissue": '<xs:element name="tissue" type="xs:token" minOccurs="0">',
             "_em_entity_assembly_synthetic.organ": '<xs:element name="organ" type="xs:token" minOccurs="0"/>',
@@ -447,20 +571,11 @@ class CifEMDBTranslator(object):
             "_em_entity_assembly_synthetic.cell": '<xs:element name="cell" type="xs:token" minOccurs="0">',
             "_em_entity_assembly_synthetic.organelle": '<xs:element name="organelle" type="xs:token" minOccurs="0">',
             "_em_entity_assembly_synthetic.cellular_location": '<xs:element name="cellular_location" type="xs:token" minOccurs="0">',
-            "_em_virus_entity.empty": '<xs:element name="virus_empty" type="xs:boolean"/>',
-            "_em_virus_entity.enveloped": '<xs:element name="virus_enveloped" type="xs:boolean"/>',
-            "_em_virus_entity.virus_isolate": '<xs:element name="virus_isolate">',
-            "_em_virus_entity.virus_type": '<xs:element name="virus_type">',
             "_em_virus_shell.triangulation": '<xs:element name="triangulation" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_virus_shell.name": '<xs:element name="name" type="xs:token" nillable="false" minOccurs="0"/>',
             "_em_virus_shell.id": '<xs:attribute name="shell_id" type="xs:positiveInteger"/>',
             "_em_entity_assembly_naturalsource.strain": '<xs:element name="sci_species_strain" type="xs:string" minOccurs="0" maxOccurs="1"/>',
             "_em_entity_assembly_synthetic.strain": '<xs:element name="sci_species_strain" type="xs:string" minOccurs="0" maxOccurs="1"/>',
-            "_em_entity_assembly.id": '<xs:attribute name="supramolecule_id" type="xs:positiveInteger" use="required"/>',
-            "_em_entity_assembly.name": '<xs:element name="name" type="sci_name_type">',
-            "_em_entity_assembly.go_id": '<xs:element name="category" minOccurs="0">',
-            "_em_entity_assembly.parent_id": '<xs:element name="parent" type="xs:nonNegativeInteger">',
-            "_em_entity_assembly.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_entity.id": '<xs:attribute name="macromolecule_id" type="xs:positiveInteger" use="required"/>',
             "_entity.pdbx_number_of_molecules": '<xs:element name="number_of_copies" type="pos_int_or_string_type" minOccurs="0"/>',
             "_entity.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
@@ -479,14 +594,7 @@ class CifEMDBTranslator(object):
             "_entity_src_gen.plasmid_name": '<xs:element name="recombinant_plasmid" type="xs:token" minOccurs="0"/>',
             "_entity_src_gen.pdbx_gene_src_cell_line": '<xs:element name="cell" type="xs:token" minOccurs="0"/>',
             "_pdbx_entity_nonpoly.comp_id": '<xs:element name="formula" type="formula_type" minOccurs="0"/>',
-            "_em_experiment.id": '<xs:attribute name="structure_determination_id" type="xs:positiveInteger" use="required"/>',
             "_em_specimen.id": '<xs:element name="specimen_preparation_id" type="xs:positiveInteger"/>',
-            "_em_buffer.pH": '<xs:element name="ph">',
-            "_em_buffer.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
-            "_em_buffer_component.concentration": '<xs:element name="concentration" minOccurs="0">',
-            "_em_buffer_component.concentration_units": '<xs:element name="concentration" minOccurs="0">',
-            "_em_buffer_component.formula": '<xs:element name="formula" type="formula_type" minOccurs="0"/>',
-            "_em_buffer_component.name": '<xs:element name="name" type="xs:token" minOccurs="0">',
             "_em_staining.type": '<xs:element name="type">',
             "_em_staining.material": '<xs:element name="material" type="xs:token">',
             "_em_staining.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
@@ -496,17 +604,11 @@ class CifEMDBTranslator(object):
             "_em_shadowing.angle": '<xs:element name="angle">',
             "_em_shadowing.thickness": '<xs:element name="thickness">',
             "_em_shadowing.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
-            "_em_sample_support.grid_type": '<xs:element name="model" type="xs:token" minOccurs="0">',
-            "_em_sample_support.grid_material": '<xs:element name="material" minOccurs="0">',
-            "_em_sample_support.grid_mesh_size": '<xs:element name="mesh" type="xs:positiveInteger" minOccurs="0">',
             "_em_support_film.id": '<xs:attribute name="film_type_id" type="xs:positiveInteger" use="required"/>',
             "_em_support_film.material": '<xs:element name="film_material" type="xs:token" minOccurs="0">',
             "_em_support_film.topology": '<xs:element name="film_topology" minOccurs="0">',
             "_em_grid_pretreatment.type": '<xs:element name="type" type="xs:token" minOccurs="0"/>',
-            "_em_sample_support.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
             "_em_specimen_vitrification.cryogen_name": '<xs:element name="cryogen_name">',
-            "_em_vitrification.instrument": '<xs:element name="instrument" minOccurs="0">',
-            "_em_vitrification.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
             "_em_specimen.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
             "_em_fiducial_markers.manufacturer": '<xs:element name="manufacturer" type="xs:token" minOccurs="0">',
             "_em_fiducial_markers.diameter": '<xs:element name="diameter" type="fiducial_marker_diameter_type"/>',
@@ -527,42 +629,12 @@ class CifEMDBTranslator(object):
             "_em_focused_ion_beam.initial_thickness": '<xs:element name="initial_thickness" type="fib_initial_thickness_type">',
             "_em_focused_ion_beam.final_thickness": '<xs:element name="final_thickness" type="fib_final_thickness_type"/>',
             "_em_focused_ion_beam.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_crystal_formation.lipid_protein_ratio": '<xs:element name="lipid_protein_ratio" type="xs:float" minOccurs="0"/>',
-            "_em_crystal_formation.lipid_mixture": '<xs:element name="lipid_mixture" type="xs:token" minOccurs="0"/>',
-            "_em_crystal_formation.instrument": '<xs:element name="instrument" type="xs:token" minOccurs="0"/>',
-            "_em_crystal_formation.atmosphere": '<xs:element name="atmosphere" type="xs:token" minOccurs="0"/>',
-            "_em_crystal_formation.temperature": '<xs:element name="temperature" type="crystal_formation_temperature_type" minOccurs="0"/>',
-            "_em_crystal_formation.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
             "_em_fsc_curve.file": '<xs:element name="file">',
             "_em_fsc_curve.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_em_grid_pretreatment.atmosphere": '<xs:element name="atmosphere" minOccurs="0">',
-            "_em_3d_fitting_list": '<xs:element name="access_code">',
-            "_em_3d_fitting_list.pdb_chain_id": '<xs:element name="chain_id" type="chain_pdb_id" minOccurs="0" maxOccurs="unbounded"/>',
-            "_em_3d_fitting_list.pdb_chain_residue_range": '<xs:element name="residue_range" minOccurs="0" maxOccurs="1">',
-            "_em_3d_fitting_list.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_3d_fitting.ref_protocol": '<xs:element name="refinement_protocol" minOccurs="0">',
             "_em_software.name": '<xs:element name="name" type="xs:token" minOccurs="0"/>',
             "_em_software.version": '<xs:element name="version" type="xs:token" minOccurs="0"/>',
             "_em_software.details": '<xs:element name="processing_details" type="xs:string" minOccurs="0"/>',
-            "_em_imaging.id": '<xs:attribute name="microscopy_id" type="xs:positiveInteger" use="required"/>',
-            "_em_imaging.microscope_model": '<xs:element name="microscope">',
-            "_em_imaging.illumination_mode": '<xs:element name="illumination_mode">',
-            "_em_imaging.mode": '<xs:element name="imaging_mode">',
-            "_em_imaging.electron_source": '<xs:element name="electron_source">',
-            "_em_imaging.nominal_magnification": '<xs:element name="nominal_magnification" type="allowed_magnification" minOccurs="0"/>',
-            "_em_imaging.calibrated_magnification": '<xs:element name="calibrated_magnification" type="allowed_magnification" minOccurs="0"/>',
-            "_em_imaging.specimen_holder_model": '<xs:element name="specimen_holder_model" minOccurs="0">',
-            "_em_imaging.cryogen": '<xs:element name="cooling_holder_cryogen" minOccurs="0">',
-            "_em_imaging_optics.phase_plate": '<xs:element name="phase_plate" type="xs:token" minOccurs="0"/>',
-            "_em_imaging_optics.sph_aberration_corrector": '<xs:element name="sph_aberration_corrector" type="xs:token" minOccurs="0"/>',
-            "_em_imaging_optics.chr_aberration_corrector": '<xs:element name="chr_aberration_corrector" type="xs:token" minOccurs="0"/>',
-            "_em_imaging_optics.energyfilter_name": '<xs:element name="name" type="xs:token" minOccurs="0">',
-            "_em_imaging_optics.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
-            "_em_imaging.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
-            "_em_3d_fitting.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_3d_fitting.target_criteria": '<xs:element name="target_criteria" type="xs:token" minOccurs="0">',
-            "_em_3d_fitting.ref_space": '<xs:element name="refinement_space" type="xs:token" minOccurs="0">',
-            "_em_3d_fitting.overall_b_value": '<xs:element name="overall_bvalue" type="xs:float" minOccurs="0">',
             "_em_map.format": '<xs:attribute name="format" fixed="CCP4" use="required"/>',
             "_em_map.size_kb": '<xs:attribute name="size_kbytes" type="xs:positiveInteger" use="required"/>',
             "_em_map.data_type": '<xs:element name="data_type" type="map_data_type"/>',
@@ -570,18 +642,13 @@ class CifEMDBTranslator(object):
             "_em_map.annotation_details": '<xs:element name="annotation_details" type="xs:string" minOccurs="0"/>',
             "_em_map.contour_level": '<xs:element name="level" type="xs:float" minOccurs="0">',
             "_em_map.contour_level_source": '<xs:element name="source" minOccurs="0">',
-            "_em_image_recording.id": '<xs:attribute name="image_recording_id" type="xs:positiveInteger"/>',
-            "_em_image_recording.detector_mode": '<xs:element name="detector_mode" minOccurs="0">',
-            "_em_image_recording.num_grids_imaged": '<xs:element name="number_grids_imaged" type="xs:positiveInteger" minOccurs="0"/>',
-            "_em_image_recording.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_image_recording.num_diffraction_images": '<xs:element name="number_diffraction_images" type="xs:positiveInteger" minOccurs="0"/>',
-            "_em_image_recording.number_real_images": '<xs:element name="number_real_images" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_tomography.axis1_min_angle": '<xs:element name="min_angle" minOccurs="0">',
-            "_em_imaging_tomography.axis2_min_angle": '<xs:element name="min_angle" minOccurs="0">',
+            "_em_tomography.axis2_min_angle": '<xs:element name="min_angle" minOccurs="0">',
             "_em_tomography.axis1_max_angle": '<xs:element name="max_angle" minOccurs="0">',
             "_em_tomography.axis2_max_angle": '<xs:element name="max_angle" minOccurs="0">',
             "_em_tomography.axis1_angle_increment": '<xs:element name="angle_increment" minOccurs="0">',
             "_em_tomography.axis2_angle_increment": '<xs:element name="angle_increment" minOccurs="0">',
+            "_em_tomography.dual_tilt_axis_rotation": '<xs:element name="axis_rotation" fixed="90" minOccurs="0">',
             "_em_diffraction.camera_length": '<xs:element name="camera_length">',
             "_em_image_processing.details": '<xs:element name="details" type="xs:token" minOccurs="0"/>',
             "_em_image_processing.image_recording_id": '<xs:element name="image_recording_id" type="xs:positiveInteger"/>',
@@ -589,20 +656,9 @@ class CifEMDBTranslator(object):
             "_em_particle_selection.reference_model": '<xs:element name="reference_model" type="xs:token" minOccurs="0"/>',
             "_em_particle_selection.method": '<xs:element name="method" type="xs:string" minOccurs="0"/>',
             "_em_particle_selection.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_3d_reconstruction.num_particles": '<xs:element name="number_images_used" type="xs:positiveInteger" minOccurs="0"/>',
-            "_em_3d_reconstruction.num_class_averages": '<xs:element name="number_classes_used" type="xs:positiveInteger" minOccurs="0"/>',
-            "_em_single_particle_entity.point_symmetry": '<xs:element name="point_group">',
+            "_em_helical_entity.angular_rotation_per_subunit": '<xs:element name="delta_phi">',
             "_em_helical_entity.axial_rise_per_subunit": '<xs:element name="delta_z">',
             "_em_helical_entity.axial_symmetry": '<xs:element name="axial_symmetry">',
-            "_em_3d_reconstruction.algorithm": '<xs:element name="algorithm" type="reconstruction_algorithm_type" minOccurs="0"/>',
-            "_em_3d_reconstruction.resolution_method": '<xs:element name="resolution_method" minOccurs="0">',
-            "_em_3d_reconstruction.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_ctf_correction.phase_reversal_anisotropic": '<xs:element name="anisotropic" type="xs:boolean" minOccurs="0"/>',
-            "_em_ctf_correction.phase_reversal_correction_space": '<xs:element name="correction_space" type="correction_space_type" minOccurs="0"/>',
-            "_em_ctf_correction.amplitude_correction_factor": '<xs:element name="factor" type="xs:float" minOccurs="0"/>',
-            "_em_ctf_correction.amplitude_correction_space": '<xs:element name="correction_space" type="correction_space_type" minOccurs="0"/>',
-            "_em_ctf_correction.correction_operation": '<xs:element name="correction_operation" minOccurs="0">',
-            "_em_ctf_correction.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_em_volume_selection.num_tomograms": '<xs:element name="number_tomograms" type="xs:positiveInteger"/>',
             "_em_volume_selection.num_volumes_extracted": '<xs:element name="number_images_used" type="xs:positiveInteger"/>',
             "_em_volume_selection.reference_model": '<xs:element name="reference_model" type="xs:token" minOccurs="0">',
@@ -618,22 +674,6 @@ class CifEMDBTranslator(object):
             "_em_start_model.emdb_id": '<xs:element name="emdb_id" type="emdb_id_type" minOccurs="0"/>',
             "_em_start_model.pdb_id": '<xs:element name="pdb_id" type="pdb_code_type"/>',
             "_em_start_model.insilico_model": '<xs:element name="insilico_model" type="xs:token" minOccurs="0"/>',
-            "_em_2d_crystal_entity.length_a": '<xs:element name="a" type="cell_type"/>',
-            "_em_3d_crystal_entity.length_a": '<xs:element name="a" type="cell_type"/>',
-            "_em_2d_crystal_entity.length_b": '<xs:element name="b" type="cell_type"/>',
-            "_em_3d_crystal_entity.length_b": '<xs:element name="b" type="cell_type"/>',
-            "_em_2d_crystal_entity.length_c": '<xs:element name="c" type="cell_type"/>',
-            "_em_3d_crystal_entity.length_c": '<xs:element name="c" type="cell_type"/>',
-            "_em_2d_crystal_entity.c_sampling_length": '<xs:element name="c_sampling_length" type="cell_type" minOccurs="0"/>',
-            "_em_3d_crystal_entity.c_sampling_length": '<xs:element name="c_sampling_length" type="cell_type" minOccurs="0"/>',
-            "_em_3d_crystal_entity.angle_gamma": '<xs:element name="gamma" type="cell_angle_type"/>',
-            "_em_2d_crystal_entity.angle_gamma": '<xs:element name="gamma" type="cell_angle_type"/>',
-            "_em_3d_crystal_entity.angle_alpha": '<xs:element name="alpha" type="cell_angle_type" minOccurs="0"/>',
-            "_em_2d_crystal_entity.alpha": '<xs:element name="alpha" type="cell_angle_type minOccurs="0"/>',
-            "_em_3d_crystal_entity.angle_beta": '<xs:element name="beta" type="cell_angle_type" minOccurs="0"/>',
-            "_em_2d_crystal_entity.beta": '<xs:element name="beta" type="cell_angle_type" minOccurs="0"/>',
-            "_em_3d_crystal_entity.space_group_name": '<xs:element name="space_group" type="xs:token">',
-            "_em_2d_crystal_entity.space_group_name_H-M": '<xs:element name="space_group" type="xs:token">',
             "_em_euler_angle_assignment.type": '<xs:element name="type">',
             "_em_euler_angle_assignment.proj_matching_num_projections": '<xs:element name="number_reference_projections" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_euler_angle_assignment.proj_matching_merit_function": '<xs:element name="merit_function" type="xs:token" minOccurs="0"/>',
@@ -655,9 +695,6 @@ class CifEMDBTranslator(object):
             "_em_diffraction_shell.fourier_space_coverage": '<xs:element name="fourier_space_coverage" type="xs:float">',
             "_em_diffraction_shell.multiplicity": '<xs:element name="multiplicity" type="xs:float"/>',
             "_em_diffraction_stats.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_image_scans.scanner_model": '<xs:element name="scanner" minOccurs="0">',
-            "_em_image_scans.used_frames_per_image": '<xs:element name="frames_per_image" type="xs:token" minOccurs="0"/>',
-            "_em_experiment.aggregation_state": '<xs:element name="aggregation_state">',
             "_database_2.database_code": '<xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>',
             "_citation.unpublished_flag": '<xs:attribute name="published" type="xs:boolean" use="required"/>',
             "_em_db_reference.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
@@ -669,10 +706,8 @@ class CifEMDBTranslator(object):
             "_citation.journal_id_CSD": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_citation.database_id_Medline": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_citation.journal_id_ASTM": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
-            "_em_entity_assembly.entity_id_list": '<xs:element name="macromolecule_list" minOccurs="0">',
             "_em_entity_assembly_recombinan.ncbi_tax_id": '<xs:attribute name="database">',
             "_em_entity_assembly_recombinan.organism": '<xs:element name="recombinant_organism" type="organism_type">',
-            "_em_entity_assembly_molwt.value": '<xs:complexType name="molecular_weight_type">',
             "_em_entity_assembly_naturalsource.ncbi_tax_id": '<xs:attribute name="database">',
             "_em_entity_assembly_naturalsource.organism": '<xs:element name="organism" type="organism_type"/>',
             "_em_entity_assembly_synthetic.ncbi_tax_id": '<xs:attribute name="database">',
@@ -712,21 +747,7 @@ class CifEMDBTranslator(object):
             "_entity_src_gen.pdbx_host_org_scientific_name": '<xs:element name="organism" type="organism_type"/>',
             "_em_specimen.concentration": '<xs:element name="concentration" minOccurs="0">',
             "_em_grid_pretreatment.pretreat_time": '<xs:element name="time" minOccurs="0">',
-            "_em_vitrification.humidity": '<xs:element name="chamber_humidity" minOccurs="0">',
-            "_em_vitrification.chamber_temperature": '<xs:element name="chamber_temperature" minOccurs="0">',
-            "_em_crystal_formation.time": '<xs:complexType name="crystal_formation_time_type">',
-            "_em_crystal_formation.time_unit": '<xs:complexType name="crystal_formation_time_type">',
-            "_em_imaging.accelerating_voltage": '<xs:element name="acceleration_voltage">',
-            "_em_imaging.c2_aperture_diameter": '<xs:element name="c2_aperture_diameter" minOccurs="0">',
-            "_em_imaging.nominal_cs": '<xs:element name="nominal_cs" minOccurs="0">',
-            "_em_imaging.nominal_defocus_min": '<xs:element name="nominal_defocus_min" minOccurs="0">',
-            "_em_imaging.calibrated_defocus_min": '<xs:element name="calibrated_defocus_min" minOccurs="0">',
-            "_em_imaging.nominal_defocus_max": '<xs:element name="nominal_defocus_max" minOccurs="0">',
-            "_em_imaging.calibrated_defocus_max": '<xs:element name="calibrated_defocus_max" minOccurs="0">',
-            "_em_imaging.recording_temperature_maximum": '<xs:element name="temperature" minOccurs="0">',
-            "_em_imaging.recording_temperature_minimum": '<xs:element name="temperature" minOccurs="0">',
             "_em_imaging_optics.energyfilter_lower": '<xs:element name="lower_energy_threshold" minOccurs="0">',
-            "_em_vitrification.cryogen_name": '<xs:element name="cryogen_name">',
             "_em_imaging_optics.energyfilter_upper": '<xs:element name="upper_energy_threshold" minOccurs="0">',
             "_entity.formula_weight": '<xs:element name="experimental" minOccurs="0">',
             "_em_grid_pretreatment.pressure": '<xs:element name="pressure" minOccurs="0">',
@@ -737,16 +758,9 @@ class CifEMDBTranslator(object):
             "_entity_src_nat.strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
             "_entity_src_gen.gene_src_strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
             "_pdbx_entity_src_syn.strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
-            "_em_tomography.dual_tilt_axis_rotation": '<xs:element name="axis_rotation" fixed="90" minOccurs="0">',
-            "_em_image_recording.film_or_detector_model": '<xs:element name="film_or_detector_model">',
-            "_em_image_scans.sampling_interval": '<xs:element name="sampling_interval" minOccurs="0">',
-            "_em_image_recording.average_exposure_time": '<xs:element name="average_exposure_time" minOccurs="0">',
-            "_em_image_recording.avg_electron_dose_per_image": '<xs:element name="average_electron_dose_per_image" minOccurs="0">',
             "_em_final_classification.num_classes": '<xs:element name="number_classes" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_start_model.orthogonal_tilt_angle1": '<xs:element name="tilt_angle1" minOccurs="0">',
             "_em_start_model.orthogonal_tilt_angle2": '<xs:element name="tilt_angle2" minOccurs="0">',
-            "_em_helical_entity.angular_rotation_per_subunit": '<xs:element name="delta_phi">',
-            "_em_3d_reconstruction.resolution": '<xs:element name="resolution" minOccurs="0">',
             "_em_euler_angle_assignment.proj_matching_angular_sampling": '<xs:element name="angular_sampling" minOccurs="0">',
             "_em_map.symmetry_space_group": '<xs:complexType name="applied_symmetry_type">',
             "_em_map.dimensions_col": '<xs:element name="col" type="xs:positiveInteger"/>',
@@ -775,11 +789,9 @@ class CifEMDBTranslator(object):
             "_em_map.pixel_spacing_x": '<xs:element name="x" type="pixel_spacing_type"/>',
             "_em_map.pixel_spacing_y": '<xs:element name="y" type="pixel_spacing_type"/>',
             "_em_map.pixel_spacing_z": '<xs:element name="z" type="pixel_spacing_type"/>',
-            "_em_3d_fitting_list.pdb_entry_id": '<xs:element name="access_code">',
             "_em_support_film.thickness": '<xs:element name="film_thickness" minOccurs="0">',
             "_em_start_model.random_conical_tilt_angle": '<xs:element name="tilt_angle" minOccurs="0">',
             "_exptl.method": '<xs:element name="method">',
-            "_em_experiment.reconstruction_method": '<xs:element name="method">',
             "_em_imaging_optics.energyfilter_slit_width": '<xs:element name="slit_width" minOccurs="0">',
             "_em_supersede.date": '<xs:element name="date" type="xs:date"/>',
             "_em_supersede.entry": '<xs:element name="entry" type="emdb_id_type"/>',
@@ -4262,24 +4274,24 @@ class CifEMDBTranslator(object):
                             XSD:  <xs:element name="virus_type">; base xs:token with restriction
                             CIF: _em_virus_entity.virus_type PRION
                             """
-                            set_cif_value(virus_sup_mol.set_virus_type, "category", const.EM_VIRUS_ENTITY, cif_list=virus_in)
+                            set_cif_value(virus_sup_mol.set_virus_type, "virus_type", const.EM_VIRUS_ENTITY, cif_list=virus_in)
 
                         def set_el_virus_isolate(virus_sup_mol, virus_in):
                             """
                             XSD: <xs:element name="virus_isolate">; base xs:token with restriction
                             CIF: _em_virus_entity.virus_isolate
                             """
-                            virus_iso = get_cif_value("isolate", const.EM_VIRUS_ENTITY, virus_in)
+                            virus_iso = get_cif_value("virus_isolate", const.EM_VIRUS_ENTITY, virus_in)
                             if virus_iso is None:
                                 virus_iso = "OTHER"  # default value
-                                set_cif_value(virus_sup_mol.set_virus_isolate, "isolate", const.EM_VIRUS_ENTITY, cif_list=virus_in, cif_value=virus_iso)
+                                set_cif_value(virus_sup_mol.set_virus_isolate, "virua_isolate", const.EM_VIRUS_ENTITY, cif_list=virus_in, cif_value=virus_iso)
                                 txt = u"The value for (_em_virus_entity.virus_isolate) is not given. Set to (OTHER)."
                                 self.current_entry_log.warn_logs.append(
                                     self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.change_title + txt)
                                 )
                                 self.log_formatted(self.warn_log_string, const.CHANGE_MADE + txt)
                             else:
-                                set_cif_value(virus_sup_mol.set_virus_isolate, "isolate", const.EM_VIRUS_ENTITY, cif_list=virus_in)
+                                set_cif_value(virus_sup_mol.set_virus_isolate, "virus_isolate", const.EM_VIRUS_ENTITY, cif_list=virus_in)
 
                         def set_el_virus_enveloped(virus_sup_mol, virus_in):
                             """
@@ -7349,7 +7361,7 @@ class CifEMDBTranslator(object):
                             XSD: <xs:element name="number_real_images" type="xs:positiveInteger" minOccurs="0"/>
                             CIF: _em_image_recording.number_real_images 10
                             """
-                            set_cif_value(im_rec.set_number_real_images, "number_real_images", const.EM_IMAGE_RECORDING, cif_list=im_rec_in, fmt=int)
+                            set_cif_value(im_rec.set_number_real_images, "num_real_images", const.EM_IMAGE_RECORDING, cif_list=im_rec_in, fmt=int)
 
                         def set_el_number_diffr_images(im_rec, im_rec_in):
                             """
@@ -8044,7 +8056,7 @@ class CifEMDBTranslator(object):
                             XSD: <xs:element name="number_selected" type="xs:positiveInteger"/>
                             CIF: _em_particle_selection.num_particles_selected 840
                             """
-                            set_cif_value(part_sel.set_number_selected, "number_particles_selected", const.EM_PARTICLE_SELECTION, cif_list=ps_in, fmt=int)
+                            set_cif_value(part_sel.set_number_selected, "num_particles_selected", const.EM_PARTICLE_SELECTION, cif_list=ps_in, fmt=int)
 
                         def set_el_reference_model(part_sel, ps_in):
                             """
@@ -8504,8 +8516,10 @@ class CifEMDBTranslator(object):
 
                             def set_choice_space_group():
                                 """
+                                This is being dealt in def set_applied_symmetry_type(app_sym):
                                 XSD: <xs:element name="space_group" type="xs:int"/>
                                 """
+                                pass
 
                             def set_choice_point_group(app_sym, p_sym_in):
                                 """
@@ -8532,7 +8546,7 @@ class CifEMDBTranslator(object):
                                         """
                                         set_cif_value(
                                             h_sym.set_delta_z,
-                                            "delta_z",
+                                            "axial_rise_per_subunit",
                                             const.EM_HELICAL_ENTITY,
                                             cif_list=h_sym_in,
                                             constructor=emdb.delta_zType,
@@ -8546,7 +8560,7 @@ class CifEMDBTranslator(object):
                                         CIF: _em_helical_entity.angular_rotation_per_subunit -34.616000
                                         """
                                         set_cif_value(
-                                            h_sym.set_delta_phi, "delta_phi", const.EM_HELICAL_ENTITY, cif_list=h_sym_in, constructor=emdb.delta_phiType, units=const.U_DEG
+                                            h_sym.set_delta_phi, "angular_rotation_per_subunit", const.EM_HELICAL_ENTITY, cif_list=h_sym_in, constructor=emdb.delta_phiType, units=const.U_DEG
                                         )
 
                                     def set_el_axial_symmetry(h_sym, h_sym_in):
@@ -8722,7 +8736,7 @@ class CifEMDBTranslator(object):
                                     """
                                     set_cif_value(
                                         prj.set_number_reference_projections,
-                                        "projection_matching_number_reference_projections",
+                                        "proj_matching_num_projections",
                                         const.EM_EULER_ANGLE_ASSIGNMENT,
                                         cif_list=ang_in,
                                         fmt=int,
@@ -8733,7 +8747,7 @@ class CifEMDBTranslator(object):
                                     XSD: <xs:element name="merit_function" type="xs:token"  minOccurs="0"/>
                                     CIF: _em_euler_angle_assignment.proj_matching_merit_function 'Correlation coeficient (CC)'
                                     """
-                                    set_cif_value(prj.set_merit_function, "projection_matching_merit_function", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
+                                    set_cif_value(prj.set_merit_function, "proj_matching_merit_function", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
 
                                 def set_el_angular_sampling(prj, ang_in):
                                     """
@@ -8796,9 +8810,9 @@ class CifEMDBTranslator(object):
 
                     for ang_in in ang_dict_in[ip_id_in]:
                         el_type = get_cif_value("type", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
-                        el_num_ref_projections = get_cif_value("projection_matching_number_reference_projections", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
-                        el_merit_function = get_cif_value("projection_matching_merit_function", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
-                        el_angular_sampling = get_cif_value("projection_matching_angular_sampling", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
+                        el_num_ref_projections = get_cif_value("proj_matching_number_reference_projections", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
+                        el_merit_function = get_cif_value("proj_matching_merit_function", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
+                        el_angular_sampling = get_cif_value("proj_matching_angular_sampling", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         _el_software_list = get_cif_value("order", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)  # noqa: F841
                         el_details = get_cif_value("details", const.EM_EULER_ANGLE_ASSIGNMENT, cif_list=ang_in)
                         angle_assignment_type_list = [el_type, el_num_ref_projections, el_merit_function, el_angular_sampling, el_details]
@@ -9658,7 +9672,7 @@ class CifEMDBTranslator(object):
                                 CIF: _em_diffraction_stats.num_intensities_measured 1590
                                 """
                                 set_cif_value(
-                                    cry_stats.set_number_intensities_measured, "number_intensities_measured", const.EM_DIFFRACTION_STATS, cif_list=cry_stats_in, fmt=int
+                                    cry_stats.set_number_intensities_measured, "num_intensities_measured", const.EM_DIFFRACTION_STATS, cif_list=cry_stats_in, fmt=int
                                 )
 
                             def set_el_number_structure_factors(cry_stats, cry_stats_in):
@@ -9666,7 +9680,7 @@ class CifEMDBTranslator(object):
                                 XSD: <xs:element name="number_structure_factors" type="xs:positiveInteger"/>
                                 CIF: _em_diffraction_stats.num_structure_factors 1590
                                 """
-                                set_cif_value(cry_stats.set_number_structure_factors, "number_structure_factors", const.EM_DIFFRACTION_STATS, cif_list=cry_stats_in, fmt=int)
+                                set_cif_value(cry_stats.set_number_structure_factors, "num_structure_factors", const.EM_DIFFRACTION_STATS, cif_list=cry_stats_in, fmt=int)
 
                             def set_el_fourier_space_coverage(cry_stats, cry_stats_in):
                                 """
@@ -10913,9 +10927,19 @@ class CifEMDBTranslator(object):
                                         """
                                         XSD: <xs:element name="access_code">
                                         CIF: _em_3d_fitting_list.pdb_entry_id  1EHZ
+                                        CIF: _em_3d_fitting_list.entry_id  1EHZ
                                         pattern "d[dA-Za-z]{3}"
                                         """
-                                        set_cif_value(model.set_access_code, "pdb_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        ### _em_3d_fitting_list.source_name will not exist for old depositions
+                                        # source_name = get_cif_value("source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        # if source_name is None:
+                                        #     set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        #     set_cif_value(model.set_source_name, "PDB")
+                                        # else:
+                                        #     set_cif_value(model.set_access_code, "entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        #     set_cif_value(model.set_source_name, "source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
+
 
                                     def set_el_chain(model, model_in):
                                         """
