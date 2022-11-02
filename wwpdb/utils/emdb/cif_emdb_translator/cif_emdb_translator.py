@@ -613,8 +613,17 @@ class CifEMDBTranslator(object):
             "_em_admin.last_update": '<xs:element name="update" type="xs:date">',  # noqa: F601 pylint: disable=duplicate-key
             "_em_admin.title": '<xs:element name="title" type="xs:token">',
             "_em_admin.details": '<xs:element name="details" type="xs:token" minOccurs="0">',
-
-
+            "_em_euler_angle_assignment.type": '<xs:element name="type">',
+            "_em_euler_angle_assignment.proj_matching_num_projections": '<xs:element name="number_reference_projections" type="xs:positiveInteger" minOccurs="0"/>',
+            "_em_euler_angle_assignment.proj_matching_merit_function": '<xs:element name="merit_function" type="xs:token" minOccurs="0"/>',
+            "_em_euler_angle_assignment.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_euler_angle_assignment.proj_matching_angular_sampling": '<xs:element name="angular_sampling" minOccurs="0">',
+            "_em_author_list.ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>',
+            "_em_db_reference.access_code": '<xs:element name="emdb_id" type="emdb_id_type"/>',
+            "_em_db_reference.relationship": '<xs:element name="relationship" minOccurs="0">',
+            "_em_db_reference.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_db_reference_auxiliary.link_type": '<xs:element name="type">',
+            "_em_db_reference_auxiliary.link": '<xs:element name="link">',
 
             "_em_specimen_vitrification.cryogen_name": '<xs:element name="cryogen_name">',
             "_em_shadowing.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
@@ -633,13 +642,9 @@ class CifEMDBTranslator(object):
             "_citation.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_citation.book_title": '<xs:element name="title" type="xs:token"/>',
             "_citation.book_publisher": '<xs:element name="publisher" type="xs:token" minOccurs="0"/>',
-            "_em_db_reference.access_code": '<xs:element name="emdb_id" type="emdb_id_type"/>',
             "_pdbx_database_related.db_id": '<xs:element name="emdb_id" type="emdb_id_type"/>',
-            "_em_db_reference.relationship": '<xs:element name="relationship" minOccurs="0">',
             "_pdbx_database_related.content_type": '<xs:element name="relationship" minOccurs="0">',
             "_pdbx_database_related.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_db_reference_auxiliary.link_type": '<xs:element name="type">',
-            "_em_db_reference_auxiliary.link": '<xs:element name="link">',
             "_em_entity_assembly_recombinan.strain": '<xs:element name="recombinant_strain" type="xs:token" minOccurs="0"/>',
             "_em_entity_assembly_recombinan.cell": '<xs:element name="recombinant_cell" type="xs:token" minOccurs="0"/>',
             "_em_entity_assembly_recombinan.plasmid": '<xs:element name="recombinant_plasmid" type="xs:token" minOccurs="0"/>',
@@ -714,10 +719,6 @@ class CifEMDBTranslator(object):
             "_em_start_model.emdb_id": '<xs:element name="emdb_id" type="emdb_id_type" minOccurs="0"/>',
             "_em_start_model.pdb_id": '<xs:element name="pdb_id" type="pdb_code_type"/>',
             "_em_start_model.insilico_model": '<xs:element name="insilico_model" type="xs:token" minOccurs="0"/>',
-            "_em_euler_angle_assignment.type": '<xs:element name="type">',
-            "_em_euler_angle_assignment.proj_matching_num_projections": '<xs:element name="number_reference_projections" type="xs:positiveInteger" minOccurs="0"/>',
-            "_em_euler_angle_assignment.proj_matching_merit_function": '<xs:element name="merit_function" type="xs:token" minOccurs="0"/>',
-            "_em_euler_angle_assignment.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_em_diffraction_stats.num_intensities_measured": '<xs:element name="number_intensities_measured" type="xs:positiveInteger"/>',
             "_em_diffraction_stats.num_structure_factors": '<xs:element name="number_structure_factors" type="xs:positiveInteger"/>',
             "_em_diffraction_stats.fourier_space_coverage": '<xs:element name="fourier_space_coverage" type="xs:float"/>',
@@ -737,7 +738,6 @@ class CifEMDBTranslator(object):
             "_em_diffraction_stats.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_database_2.database_code": '<xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>',
             "_citation.unpublished_flag": '<xs:attribute name="published" type="xs:boolean" use="required"/>',
-            "_em_db_reference.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_citation.pdbx_database_id_PubMed": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_citation.pdbx_database_id_DOI": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_citation.book_id_ISBN": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
@@ -790,7 +790,6 @@ class CifEMDBTranslator(object):
             "_em_final_classification.num_classes": '<xs:element name="number_classes" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_start_model.orthogonal_tilt_angle1": '<xs:element name="tilt_angle1" minOccurs="0">',
             "_em_start_model.orthogonal_tilt_angle2": '<xs:element name="tilt_angle2" minOccurs="0">',
-            "_em_euler_angle_assignment.proj_matching_angular_sampling": '<xs:element name="angular_sampling" minOccurs="0">',
             "_em_start_model.random_conical_tilt_angle": '<xs:element name="tilt_angle" minOccurs="0">',
             "_exptl.method": '<xs:element name="method">',
             "_em_supersede.date": '<xs:element name="date" type="xs:date"/>',
@@ -799,8 +798,7 @@ class CifEMDBTranslator(object):
             "_em_obsolete.date": '<xs:element name="date" type="xs:date"/>',
             "_em_obsolete.entry": '<xs:element name="entry" type="emdb_id_type"/>',
             "_em_obsolete.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_audit_author.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>',
-            "_em_author_list.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>'
+            "_audit_author.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>'
         }
 
     class ALog(object):
@@ -8756,7 +8754,7 @@ class CifEMDBTranslator(object):
                                     """
                                     set_cif_value(
                                         prj.set_angular_sampling,
-                                        "projection_matching_angular_sampling",
+                                        "proj_matching_angular_sampling",
                                         const.EM_EULER_ANGLE_ASSIGNMENT,
                                         cif_list=ang_in,
                                         constructor=emdb.angular_samplingType,
