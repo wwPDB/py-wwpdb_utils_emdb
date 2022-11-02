@@ -618,7 +618,7 @@ class CifEMDBTranslator(object):
             "_em_euler_angle_assignment.proj_matching_merit_function": '<xs:element name="merit_function" type="xs:token" minOccurs="0"/>',
             "_em_euler_angle_assignment.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_em_euler_angle_assignment.proj_matching_angular_sampling": '<xs:element name="angular_sampling" minOccurs="0">',
-            "_em_author_list.ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>',
+            "_em_author_list.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>',
             "_em_db_reference.access_code": '<xs:element name="emdb_id" type="emdb_id_type"/>',
             "_em_db_reference.relationship": '<xs:element name="relationship" minOccurs="0">',
             "_em_db_reference.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
