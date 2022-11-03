@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.2.8"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.2.9"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -1940,8 +1940,8 @@
     </xs:complexType>
     <xs:simpleType name="allowed_focus_ion_voltage">
         <xs:restriction base="xs:float">
-            <xs:minInclusive value="3"/>
-            <xs:maxInclusive value="30"/>
+            <xs:minInclusive value="0.1"/>
+            <xs:maxInclusive value="50"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="fib_current_type">
@@ -2428,7 +2428,7 @@
     <xs:simpleType name="allowed_defocus_max">
         <xs:restriction base="xs:float">
             <xs:minInclusive value="-30"/>
-            <xs:maxInclusive value="30"/>
+            <xs:maxInclusive value="50"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="allowed_magnification">

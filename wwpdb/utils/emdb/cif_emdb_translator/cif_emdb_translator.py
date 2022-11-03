@@ -480,8 +480,8 @@ class CifEMDBTranslator(object):
             "_em_2d_crystal_entity.length_c": '<xs:element name="c" type="cell_type"/>',
             "_em_2d_crystal_entity.c_sampling_length": '<xs:element name="c_sampling_length" type="cell_type" minOccurs="0"/>',
             "_em_2d_crystal_entity.angle_gamma": '<xs:element name="gamma" type="cell_angle_type"/>',
-            # "_em_2d_crystal_entity.alpha": '<xs:element name="alpha" type="cell_angle_type minOccurs="0"/>',
-            # "_em_2d_crystal_entity.beta": '<xs:element name="beta" type="cell_angle_type" minOccurs="0"/>',
+            "_em_2d_crystal_entity.alpha": '<xs:element name="alpha" type="cell_angle_type minOccurs="0"/>',
+            "_em_2d_crystal_entity.beta": '<xs:element name="beta" type="cell_angle_type" minOccurs="0"/>',
             "_em_2d_crystal_entity.space_group_name_H-M": '<xs:element name="space_group" type="xs:token">',
             "_em_3d_crystal_entity.length_a": '<xs:element name="a" type="cell_type"/>',
             "_em_3d_crystal_entity.length_b": '<xs:element name="b" type="cell_type"/>',
@@ -624,9 +624,86 @@ class CifEMDBTranslator(object):
             "_em_db_reference.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_em_db_reference_auxiliary.link_type": '<xs:element name="type">',
             "_em_db_reference_auxiliary.link": '<xs:element name="link">',
-
-            "_em_specimen_vitrification.cryogen_name": '<xs:element name="cryogen_name">',
+            "_em_diffraction_shell.id": '<xs:attribute name="shell_id" type="xs:positiveInteger"/>',
+            "_em_diffraction_shell.high_resolution": '<xs:element name="high_resolution">',
+            "_em_diffraction_shell.low_resolution": '<xs:element name="low_resolution">',
+            "_em_diffraction_shell.num_structure_factors": '<xs:element name="number_structure_factors" type="xs:positiveInteger"/>',
+            "_em_diffraction_shell.phase_residual": '<xs:element name="phase_residual" type="xs:float"/>',
+            "_em_diffraction_shell.fourier_space_coverage": '<xs:element name="fourier_space_coverage" type="xs:float">',
+            "_em_diffraction_shell.multiplicity": '<xs:element name="multiplicity" type="xs:float"/>',
+            "_em_diffraction_stats.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_diffraction_stats.num_intensities_measured": '<xs:element name="number_intensities_measured" type="xs:positiveInteger"/>',
+            "_em_diffraction_stats.num_structure_factors": '<xs:element name="number_structure_factors" type="xs:positiveInteger"/>',
+            "_em_diffraction_stats.fourier_space_coverage": '<xs:element name="fourier_space_coverage" type="xs:float"/>',
+            "_em_diffraction_stats.r_sym": '<xs:element name="r_sym" type="xs:float" minOccurs="0"/>',
+            "_em_diffraction_stats.r_merge": '<xs:element name="r_merge" type="xs:float"/>',
+            "_em_diffraction_stats.overall_phase_error": '<xs:element name="overall_phase_error" type="xs:float" minOccurs="0"/>',
+            "_em_diffraction_stats.overall_phase_residual": '<xs:element name="overall_phase_residual" type="xs:float"  minOccurs="0"/>',
+            "_em_diffraction_stats.phase_error_rejection_criteria": '<xs:element name="phase_error_rejection_criteria" type="xs:token"/>',
+            "_em_diffraction_stats.high_resolution": '<xs:element name="high_resolution">',
+            "_em_embedding.material": '<xs:element name="material" type="xs:token">',
+            "_em_embedding.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
+            "_em_fiducial_markers.manufacturer": '<xs:element name="manufacturer" type="xs:token" minOccurs="0">',
+            "_em_fiducial_markers.diameter": '<xs:element name="diameter" type="fiducial_marker_diameter_type"/>',
+            "_em_final_classification.avg_num_images_per_class": '<xs:element name="average_number_members_per_class" minOccurs="0">',
+            "_em_final_classification.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_final_classification.num_classes": '<xs:element name="number_classes" type="xs:positiveInteger" minOccurs="0"/>',
+            "_em_fsc_curve.file": '<xs:element name="file">',
+            "_em_fsc_curve.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_grid_pretreatment.type": '<xs:element name="type" type="xs:token" minOccurs="0"/>',
+            "_em_grid_pretreatment.atmosphere": '<xs:element name="atmosphere" minOccurs="0">',
+            "_em_grid_pretreatment.time": '<xs:element name="time" minOccurs="0">',
+            "_em_grid_pretreatment.pressure": '<xs:element name="pressure" minOccurs="0">',
+            "_em_high_pressure_freezing.instrument": '<xs:element name="instrument" minOccurs="0">',
+            "_em_high_pressure_freezing.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_diffraction.camera_length": '<xs:element name="camera_length">',
+            "_em_tomography.axis1_min_angle": '<xs:element name="min_angle" minOccurs="0">',
+            "_em_tomography.axis2_min_angle": '<xs:element name="min_angle" minOccurs="0">',
+            "_em_tomography.axis1_max_angle": '<xs:element name="max_angle" minOccurs="0">',
+            "_em_tomography.axis2_max_angle": '<xs:element name="max_angle" minOccurs="0">',
+            "_em_tomography.axis1_angle_increment": '<xs:element name="angle_increment" minOccurs="0">',
+            "_em_tomography.axis2_angle_increment": '<xs:element name="angle_increment" minOccurs="0">',
+            "_em_tomography.dual_tilt_axis_rotation": '<xs:element name="axis_rotation" fixed="90" minOccurs="0">',
+            "_em_obsolete.date": '<xs:element name="date" type="xs:date"/>',
+            "_em_obsolete.entry": '<xs:element name="entry" type="emdb_id_type"/>',
+            "_em_obsolete.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_focused_ion_beam.instrument": '<xs:element name="instrument">',
+            "_em_focused_ion_beam.ion": '<xs:element name="ion">',
+            "_em_focused_ion_beam.voltage": '<xs:element name="voltage" type="fib_voltage_type"/>',
+            "_em_focused_ion_beam.current": '<xs:element name="current" type="fib_current_type"/>',
+            "_em_focused_ion_beam.dose_rate": '<xs:element name="dose_rate" type="fib_dose_rate_type" minOccurs="0"/>',
+            "_em_focused_ion_beam.duration": '<xs:element name="duration" type="fib_duration_type"/>',
+            "_em_focused_ion_beam.temperature": '<xs:element name="temperature" type="temperature_type"/>',
+            "_em_focused_ion_beam.initial_thickness": '<xs:element name="initial_thickness" type="fib_initial_thickness_type">',
+            "_em_focused_ion_beam.final_thickness": '<xs:element name="final_thickness" type="fib_final_thickness_type"/>',
+            "_em_focused_ion_beam.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_ultramicrotomy.instrument": '<xs:element name="instrument" type="xs:token"/>',
+            "_em_ultramicrotomy.temperature": '<xs:element name="temperature" type="temperature_type"/>',
+            "_em_ultramicrotomy.final_thickness": '<xs:element name="final_thickness" type="ultramicrotomy_final_thickness_type"/>',
+            "_em_ultramicrotomy.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_em_shadowing.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
+            "_em_shadowing.material": '<xs:element name="material" type="xs:token">',
+            "_em_shadowing.angle": '<xs:element name="angle">',
+            "_em_shadowing.thickness": '<xs:element name="thickness">',
+            "_em_start_model.type": '<xs:attribute name="type_of_model" type="xs:token"/>',
+            "_em_start_model.random_conical_tilt_num_images": '<xs:element name="number_images" type="xs:positiveInteger" minOccurs="0"/>',
+            "_em_start_model.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_start_model.orthogonal_tilt_num_images": '<xs:element name="number_images" type="xs:positiveInteger" minOccurs="0"/>',
+            "_em_start_model.emdb_id": '<xs:element name="emdb_id" type="emdb_id_type" minOccurs="0"/>',
+            "_em_start_model.pdb_id": '<xs:element name="pdb_id" type="pdb_code_type"/>',
+            "_em_start_model.insilico_model": '<xs:element name="insilico_model" type="xs:token" minOccurs="0"/>',
+            "_em_start_model.orthogonal_tilt_angle1": '<xs:element name="tilt_angle1" minOccurs="0">',
+            "_em_start_model.orthogonal_tilt_angle2": '<xs:element name="tilt_angle2" minOccurs="0">',
+            "_em_start_model.random_conical_tilt_angle": '<xs:element name="tilt_angle" minOccurs="0">',
+            "_em_supersede.date": '<xs:element name="date" type="xs:date"/>',
+            "_em_supersede.entry": '<xs:element name="entry" type="emdb_id_type"/>',
+            "_em_supersede.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_tomography_specimen.cryo_protectant": '<xs:element name="cryo_protectant" type="xs:token" minOccurs="0">',
+            "_em_volume_selection.num_tomograms": '<xs:element name="number_tomograms" type="xs:positiveInteger"/>',
+            "_em_volume_selection.num_volumes_extracted": '<xs:element name="number_images_used" type="xs:positiveInteger"/>',
+            "_em_volume_selection.reference_model": '<xs:element name="reference_model" type="xs:token" minOccurs="0">',
+            "_em_volume_selection.method": '<xs:element name="method" type="xs:string" minOccurs="0">',
+            "_em_volume_selection.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_pdbx_database_status.process_site": '<xs:element name="processing_site" minOccurs="0">',
             "_struct.title": '<xs:element name="title" type="xs:token">',
             "_citation.title": '<xs:element name="title" type="xs:token"/>',
@@ -666,76 +743,9 @@ class CifEMDBTranslator(object):
             "_entity_src_gen.plasmid_name": '<xs:element name="recombinant_plasmid" type="xs:token" minOccurs="0"/>',
             "_entity_src_gen.pdbx_gene_src_cell_line": '<xs:element name="cell" type="xs:token" minOccurs="0"/>',
             "_pdbx_entity_nonpoly.comp_id": '<xs:element name="formula" type="formula_type" minOccurs="0"/>',
-            "_em_embedding.material": '<xs:element name="material" type="xs:token">',
-            "_em_embedding.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
-            "_em_shadowing.material": '<xs:element name="material" type="xs:token">',
-            "_em_shadowing.angle": '<xs:element name="angle">',
-            "_em_shadowing.thickness": '<xs:element name="thickness">',
-            "_em_grid_pretreatment.type": '<xs:element name="type" type="xs:token" minOccurs="0"/>',
-            "_em_fiducial_markers.manufacturer": '<xs:element name="manufacturer" type="xs:token" minOccurs="0">',
-            "_em_fiducial_markers.diameter": '<xs:element name="diameter" type="fiducial_marker_diameter_type"/>',
-            "_em_high_pressure_freezing.instrument": '<xs:element name="instrument" minOccurs="0">',
-            "_em_high_pressure_freezing.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_tomography_specimen.cryo_protectant": '<xs:element name="cryo_protectant" type="xs:token" minOccurs="0">',
-            "_em_ultramicrotomy.instrument": '<xs:element name="instrument" type="xs:token"/>',
-            "_em_ultramicrotomy.temperature": '<xs:element name="temperature" type="temperature_type"/>',
-            "_em_ultramicrotomy.final_thickness": '<xs:element name="final_thickness" type="ultramicrotomy_final_thickness_type"/>',
-            "_em_ultramicrotomy.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_focused_ion_beam.instrument": '<xs:element name="instrument">',
-            "_em_focused_ion_beam.ion": '<xs:element name="ion">',
-            "_em_focused_ion_beam.voltage": '<xs:element name="voltage" type="fib_voltage_type"/>',
-            "_em_focused_ion_beam.current": '<xs:element name="current" type="fib_current_type"/>',
-            "_em_focused_ion_beam.dose_rate": '<xs:element name="dose_rate" type="fib_dose_rate_type" minOccurs="0"/>',
-            "_em_focused_ion_beam.duration": '<xs:element name="duration" type="fib_duration_type"/>',
-            "_em_focused_ion_beam.temperature": '<xs:element name="temperature" type="temperature_type"/>',
-            "_em_focused_ion_beam.initial_thickness": '<xs:element name="initial_thickness" type="fib_initial_thickness_type">',
-            "_em_focused_ion_beam.final_thickness": '<xs:element name="final_thickness" type="fib_final_thickness_type"/>',
-            "_em_focused_ion_beam.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_fsc_curve.file": '<xs:element name="file">',
-            "_em_fsc_curve.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_grid_pretreatment.atmosphere": '<xs:element name="atmosphere" minOccurs="0">',
-            "_em_tomography.axis1_min_angle": '<xs:element name="min_angle" minOccurs="0">',
-            "_em_tomography.axis2_min_angle": '<xs:element name="min_angle" minOccurs="0">',
-            "_em_tomography.axis1_max_angle": '<xs:element name="max_angle" minOccurs="0">',
-            "_em_tomography.axis2_max_angle": '<xs:element name="max_angle" minOccurs="0">',
-            "_em_tomography.axis1_angle_increment": '<xs:element name="angle_increment" minOccurs="0">',
-            "_em_tomography.axis2_angle_increment": '<xs:element name="angle_increment" minOccurs="0">',
-            "_em_tomography.dual_tilt_axis_rotation": '<xs:element name="axis_rotation" fixed="90" minOccurs="0">',
-            "_em_diffraction.camera_length": '<xs:element name="camera_length">',
             "_em_helical_entity.angular_rotation_per_subunit": '<xs:element name="delta_phi">',
             "_em_helical_entity.axial_rise_per_subunit": '<xs:element name="delta_z">',
             "_em_helical_entity.axial_symmetry": '<xs:element name="axial_symmetry">',
-            "_em_volume_selection.num_tomograms": '<xs:element name="number_tomograms" type="xs:positiveInteger"/>',
-            "_em_volume_selection.num_volumes_extracted": '<xs:element name="number_images_used" type="xs:positiveInteger"/>',
-            "_em_volume_selection.reference_model": '<xs:element name="reference_model" type="xs:token" minOccurs="0">',
-            "_em_volume_selection.method": '<xs:element name="method" type="xs:string" minOccurs="0">',
-            "_em_volume_selection.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_final_classification.avg_num_images_per_class": '<xs:element name="average_number_members_per_class" minOccurs="0">',
-            "_em_final_classification.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_start_model.type": '<xs:attribute name="type_of_model" type="xs:token"/>',
-            "_em_start_model.random_conical_tilt_number_images": '<xs:element name="number_images" type="xs:positiveInteger" minOccurs="0"/>',
-            "_em_start_model.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_start_model.orthogonal_tilt_number_images": '<xs:element name="number_images" type="xs:positiveInteger" minOccurs="0"/>',
-            "_em_start_model.emdb_id": '<xs:element name="emdb_id" type="emdb_id_type" minOccurs="0"/>',
-            "_em_start_model.pdb_id": '<xs:element name="pdb_id" type="pdb_code_type"/>',
-            "_em_start_model.insilico_model": '<xs:element name="insilico_model" type="xs:token" minOccurs="0"/>',
-            "_em_diffraction_stats.num_intensities_measured": '<xs:element name="number_intensities_measured" type="xs:positiveInteger"/>',
-            "_em_diffraction_stats.num_structure_factors": '<xs:element name="number_structure_factors" type="xs:positiveInteger"/>',
-            "_em_diffraction_stats.fourier_space_coverage": '<xs:element name="fourier_space_coverage" type="xs:float"/>',
-            "_em_diffraction_stats.r_sym": '<xs:element name="r_sym" type="xs:float" minOccurs="0"/>',
-            "_em_diffraction_stats.r_merge": '<xs:element name="r_merge" type="xs:float"/>',
-            "_em_diffraction_stats.overall_phase_error": '<xs:element name="overall_phase_error" type="xs:float" minOccurs="0"/>',
-            "_em_diffraction_stats.overall_phase_residual": '<xs:element name="overall_phase_residual" type="xs:float"  minOccurs="0"/>',
-            "_em_diffraction_stats.phase_error_rejection_criteria": '<xs:element name="phase_error_rejection_criteria" type="xs:token"/>',
-            "_em_diffraction_stats.high_resolution": '<xs:element name="high_resolution">',
-            "_em_diffraction_shell.id": '<xs:attribute name="shell_id" type="xs:positiveInteger"/>',
-            "_em_diffraction_shell.high_resolution": '<xs:element name="high_resolution">',
-            "_em_diffraction_shell.low_resolution": '<xs:element name="low_resolution">',
-            "_em_diffraction_shell.number_structure_factors": '<xs:element name="number_structure_factors" type="xs:positiveInteger"/>',
-            "_em_diffraction_shell.phase_residual": '<xs:element name="phase_residual" type="xs:float"/>',
-            "_em_diffraction_shell.fourier_space_coverage": '<xs:element name="fourier_space_coverage" type="xs:float">',
-            "_em_diffraction_shell.multiplicity": '<xs:element name="multiplicity" type="xs:float"/>',
-            "_em_diffraction_stats.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_database_2.database_code": '<xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>',
             "_citation.unpublished_flag": '<xs:attribute name="published" type="xs:boolean" use="required"/>',
             "_citation.pdbx_database_id_PubMed": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
@@ -777,9 +787,7 @@ class CifEMDBTranslator(object):
             "_struct_ref.db_name": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id": '<xs:attribute name="database">',
             "_entity_src_gen.pdbx_host_org_scientific_name": '<xs:element name="organism" type="organism_type"/>',
-            "_em_grid_pretreatment.pretreat_time": '<xs:element name="time" minOccurs="0">',
             "_entity.formula_weight": '<xs:element name="experimental" minOccurs="0">',
-            "_em_grid_pretreatment.pressure": '<xs:element name="pressure" minOccurs="0">',
             "_entity_src_nat.common_name": '<xs:element name="organism" type="organism_type"/>',
             "_entity_src_nat.pdbx_organism_scientific": '<xs:element name="organism" type="organism_type"/>',
             "_entity_src_gen.pdbx_gene_src_scientific_name": '<xs:element name="organism" type="organism_type"/>',
@@ -787,17 +795,7 @@ class CifEMDBTranslator(object):
             "_entity_src_nat.strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
             "_entity_src_gen.gene_src_strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
             "_pdbx_entity_src_syn.strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
-            "_em_final_classification.num_classes": '<xs:element name="number_classes" type="xs:positiveInteger" minOccurs="0"/>',
-            "_em_start_model.orthogonal_tilt_angle1": '<xs:element name="tilt_angle1" minOccurs="0">',
-            "_em_start_model.orthogonal_tilt_angle2": '<xs:element name="tilt_angle2" minOccurs="0">',
-            "_em_start_model.random_conical_tilt_angle": '<xs:element name="tilt_angle" minOccurs="0">',
             "_exptl.method": '<xs:element name="method">',
-            "_em_supersede.date": '<xs:element name="date" type="xs:date"/>',
-            "_em_supersede.entry": '<xs:element name="entry" type="emdb_id_type"/>',
-            "_em_supersede.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
-            "_em_obsolete.date": '<xs:element name="date" type="xs:date"/>',
-            "_em_obsolete.entry": '<xs:element name="entry" type="emdb_id_type"/>',
-            "_em_obsolete.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_audit_author.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>'
         }
 
@@ -6046,10 +6044,10 @@ class CifEMDBTranslator(object):
                             def set_el_time(pretreat, pretreat_in):
                                 """
                                 XSD: <xs:element name="time" minOccurs="0">
-                                CIF: _em_grid_pretreatment.pretreat_time ? or 60
+                                CIF: _em_grid_pretreatment.time ? or 60
                                 """
                                 set_cif_value(
-                                    pretreat.set_time, "pretreat_time", const.EM_GRID_PRETREATMENT, cif_list=pretreat_in, constructor=emdb.timeType, fmt=int, units=const.U_SEC
+                                    pretreat.set_time, "time", const.EM_GRID_PRETREATMENT, cif_list=pretreat_in, constructor=emdb.timeType, fmt=int, units=const.U_SEC
                                 )
 
                             def set_el_atmosphere(pretreat, pretreat_in):
@@ -8277,9 +8275,9 @@ class CifEMDBTranslator(object):
                                 def set_el_number_images(rct, sm_in):
                                     """
                                     XSD: <xs:element name="number_images" type="xs:positiveInteger" minOccurs="0"/>
-                                    CIF: _em_start_model.random_conical_tilt_number_images 40
+                                    CIF: _em_start_model.random_conical_tilt_num_images 40
                                     """
-                                    set_cif_value(rct.set_number_images, "random_conical_tilt_number_images", const.EM_START_MODEL, cif_list=sm_in, fmt=int)
+                                    set_cif_value(rct.set_number_images, "random_conical_tilt_num_images", const.EM_START_MODEL, cif_list=sm_in, fmt=int)
 
                                 def set_el_tilt_angle(rct, sm_in):
                                     """
@@ -8333,9 +8331,9 @@ class CifEMDBTranslator(object):
                                 def set_el_number_images(orth_tilt, sm_in):
                                     """
                                     XSD: <xs:element name="number_images" type="xs:positiveInteger"/ minOccurs="0">
-                                    CIF: _em_start_model.orthogonal_tilt_number_images
+                                    CIF: _em_start_model.orthogonal_tilt_num_images
                                     """
-                                    set_cif_value(orth_tilt.set_number_images, "orthogonal_tilt_number_images", const.EM_START_MODEL, cif_list=sm_in, fmt=int)
+                                    set_cif_value(orth_tilt.set_number_images, "orthogonal_tilt_num_images", const.EM_START_MODEL, cif_list=sm_in, fmt=int)
 
                                 def set_el_tilt_angle1(orth_tilt, sm_in):
                                     """
@@ -8851,7 +8849,7 @@ class CifEMDBTranslator(object):
                                     CIF: _em_2d_crystal_entity.length_a 62.3
                                     CIF: _em_3d_crystal_entity.length_a 62.4
                                     """
-                                    set_cif_value(u_cell.set_a, "a", dict_category, cif_list=cryst_in, constructor=emdb.cell_type, units=const.U_ANG, parent_el_req=parent_req)
+                                    set_cif_value(u_cell.set_a, "length_a", dict_category, cif_list=cryst_in, constructor=emdb.cell_type, units=const.U_ANG, parent_el_req=parent_req)
 
                                 def set_el_b(u_cell, cryst_in, dict_category):
                                     """
@@ -8859,7 +8857,7 @@ class CifEMDBTranslator(object):
                                     CIF: _em_2d_crystal_entity.length_b 62.3
                                     CIF: _em_3d_crystal_entity.length_b 62.4
                                     """
-                                    set_cif_value(u_cell.set_b, "b", dict_category, cif_list=cryst_in, constructor=emdb.cell_type, units=const.U_ANG, parent_el_req=parent_req)
+                                    set_cif_value(u_cell.set_b, "length_b", dict_category, cif_list=cryst_in, constructor=emdb.cell_type, units=const.U_ANG, parent_el_req=parent_req)
 
                                 def set_el_c(u_cell, cryst_in, dict_category):
                                     """
@@ -8867,7 +8865,7 @@ class CifEMDBTranslator(object):
                                     CIF: _em_2d_crystal_entity.length_c 62.4
                                     CIF: _em_3d_crystal_entity.length_c
                                     """
-                                    set_cif_value(u_cell.set_c, "c", dict_category, cif_list=cryst_in, constructor=emdb.cell_type, units=const.U_ANG, parent_el_req=parent_req)
+                                    set_cif_value(u_cell.set_c, "length_c", dict_category, cif_list=cryst_in, constructor=emdb.cell_type, units=const.U_ANG, parent_el_req=parent_req)
 
                                 def set_el_c_sampling_length(u_cell, cryst_in, dict_category):
                                     """
@@ -8886,7 +8884,7 @@ class CifEMDBTranslator(object):
                                     CIF: _em_3d_crystal_entity.angle_gamma 120.0
                                     """
                                     set_cif_value(
-                                        u_cell.set_gamma, "gamma", dict_category, cif_list=cryst_in, constructor=emdb.cell_angle_type, units=const.U_DEG, parent_el_req=parent_req
+                                        u_cell.set_gamma, "angle_gamma", dict_category, cif_list=cryst_in, constructor=emdb.cell_angle_type, units=const.U_DEG, parent_el_req=parent_req
                                     )
 
                                 def set_el_alpha(u_cell, cryst_in, dict_category):
@@ -8936,9 +8934,9 @@ class CifEMDBTranslator(object):
                             CIF: _em_2d_crystal_entity.space_group_name_H-M
                             """
                             if dict_category == const.EM_3D_CRYSTAL_ENTITY:
-                                set_cif_value(cryst.set_space_group, "space_group", const.EM_3D_CRYSTAL_ENTITY, cif_list=cryst_in)
+                                set_cif_value(cryst.set_space_group, "space_group_name", const.EM_3D_CRYSTAL_ENTITY, cif_list=cryst_in)
                             elif dict_category == const.EM_2D_CRYSTAL_ENTITY:
-                                set_cif_value(cryst.set_plane_group, "plane_group", const.EM_2D_CRYSTAL_ENTITY, cif_list=cryst_in)
+                                set_cif_value(cryst.set_plane_group, "space_group_name_H-M", const.EM_2D_CRYSTAL_ENTITY, cif_list=cryst_in)
 
                         # element 1
                         set_el_unit_cell(cryst, cryst_in, dict_category, parent_req)
@@ -9381,7 +9379,7 @@ class CifEMDBTranslator(object):
                                 XSD: <xs:element name="number_selected" type="xs:positiveInteger" minOccurs="0"/>
                                 CIF: _em_particle_selection.num_particles_selected
                                 """
-                                set_cif_value(seg_sel.set_number_selected, "number_particles_selected", const.EM_PARTICLE_SELECTION, cif_list=ps_in, fmt=int)
+                                set_cif_value(seg_sel.set_number_selected, "num_particles_selected", const.EM_PARTICLE_SELECTION, cif_list=ps_in, fmt=int)
 
                             def set_el_segment_length():
                                 """
@@ -9809,11 +9807,11 @@ class CifEMDBTranslator(object):
                                     def set_el_number_structure_factors(shell, cs_in):
                                         """
                                         XSD: <xs:element name="number_structure_factors" type="xs:positiveInteger"/>
-                                        CIF: _em_diffraction_shell.number_structure_factors 244
+                                        CIF: _em_diffraction_shell.num_structure_factors 244
                                         """
                                         set_cif_value(
                                             shell.set_number_structure_factors,
-                                            "number_structure_factors",
+                                            "num_structure_factors",
                                             const.EM_DIFFRACTION_SHELL,
                                             cif_list=cs_in,
                                             fmt=int,
@@ -9873,7 +9871,7 @@ class CifEMDBTranslator(object):
                                             attr_id = get_cif_value("id", const.EM_DIFFRACTION_SHELL, cif_list=cs_in)
                                             el_high_resolution = get_cif_value("high_resolution", const.EM_DIFFRACTION_SHELL, cif_list=cs_in)
                                             el_low_resolution = get_cif_value("low_resolution", const.EM_DIFFRACTION_SHELL, cif_list=cs_in)
-                                            el_number_structure_factors = get_cif_value("number_structure_factors", const.EM_DIFFRACTION_SHELL, cif_list=cs_in)
+                                            el_number_structure_factors = get_cif_value("num_structure_factors", const.EM_DIFFRACTION_SHELL, cif_list=cs_in)
                                             el_phase_residual = get_cif_value("phase_residual", const.EM_DIFFRACTION_SHELL, cif_list=cs_in)
                                             el_fourier_space_coverage = get_cif_value("fourier_space_coverage", const.EM_DIFFRACTION_SHELL, cif_list=cs_in)
                                             el_multiplicity = get_cif_value("multiplicity", const.EM_DIFFRACTION_SHELL, cif_list=cs_in)
