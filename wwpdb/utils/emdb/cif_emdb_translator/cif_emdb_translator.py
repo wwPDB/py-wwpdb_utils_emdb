@@ -294,7 +294,7 @@ class CifEMDBTranslator(object):
         # Other constants
         CIF_EMDB_ASSOC = "associated EM volume"
         CIF_EMDB_OTHER = "other EM volume"
-        CIF_AUTHOR_RE = re.compile(r"^([A-Za-z \'\-.]+), (([A-Z\-]+\.)*)")
+        CIF_AUTHOR_RE = re.compile(r"^([A-Za-z0-9 \'\-.]+), (([A-Z\-]+\.)*)")
         CIF_HALF_MAP_RE = re.compile(r"^D_[0-9]+\_em\-half\-volume\_P([0-9]+)\.map")
         CIF_ADD_MAP_RE = re.compile(r"^D_[0-9]+\_em\-additional\-volume\_P([0-9]+)\.map")
         CIF_EMD_ID_RE = re.compile(r"EMD\-([0-9]){4,}")
