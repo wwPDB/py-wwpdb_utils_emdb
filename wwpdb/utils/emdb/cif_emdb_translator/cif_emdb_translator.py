@@ -4280,7 +4280,7 @@ class CifEMDBTranslator(object):
                             virus_iso = get_cif_value("virus_isolate", const.EM_VIRUS_ENTITY, virus_in)
                             if virus_iso is None:
                                 virus_iso = "OTHER"  # default value
-                                set_cif_value(virus_sup_mol.set_virus_isolate, "virua_isolate", const.EM_VIRUS_ENTITY, cif_list=virus_in, cif_value=virus_iso)
+                                set_cif_value(virus_sup_mol.set_virus_isolate, "virus_isolate", const.EM_VIRUS_ENTITY, cif_list=virus_in, cif_value=virus_iso)
                                 txt = u"The value for (_em_virus_entity.virus_isolate) is not given. Set to (OTHER)."
                                 self.current_entry_log.warn_logs.append(
                                     self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.change_title + txt)
