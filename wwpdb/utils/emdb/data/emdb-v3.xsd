@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.2.9"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.2.10"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -384,7 +384,7 @@
         <xs:union memberTypes="author_enums">
             <xs:simpleType>
                 <xs:restriction base="xs:token">
-                    <xs:pattern value="([A-Za-z' \-]+ (Jr.?|II|III|3rd|4th)?) ?([A-Za-z\-]*)"/>
+                    <xs:pattern value="([A-Za-z' \-]+ (Jr.?|I|II|III|IV|1st|2nd|3rd|4th)?) ?([A-Za-z\-]*)"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:union>
