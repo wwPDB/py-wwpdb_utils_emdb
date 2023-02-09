@@ -346,6 +346,7 @@ class CifEMDBTranslator(object):
             "Center for Eukaryotic Structural Genomics (CESG)",
             "Center for High-Throughput Structural Biology (CHTSB)",
             "Center for Membrane Proteins of Infectious Diseases (MPID)",
+            "Center for Structural Biology of Infectious Diseases (CSBID)",
             "Center for Structural Genomics of Infectious Diseases (CSGID)",
             "Center for Structures of Membrane Proteins (CSMP)",
             "Center for the X-ray Structure Determination of Human Transporters (TransportPDB)",
