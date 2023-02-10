@@ -11235,7 +11235,7 @@ class CifEMDBTranslator(object):
                     fsc = emdb.fsc_curve_validation_type()
                     set_fsc_curve_validation_type(fsc, fsc_in)
                     if fsc.hasContent_():
-                        validation.add_validation_type(fsc)
+                        validation.add_validation_method(fsc)
                 if validation.hasContent_():
                     self.xml_out.set_validation(validation)
 

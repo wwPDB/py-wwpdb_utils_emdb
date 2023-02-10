@@ -198,7 +198,11 @@ _em_3d_fitting.overall_b_value   ?
 _em_3d_fitting.ref_protocol      ? 
 _em_3d_fitting.ref_space         ? 
 _em_3d_fitting.target_criteria   ? 
-# 
+#
+_em_fsc_curve.id    ?
+_em_fsc_curve.details   'TEST TO CHECK IF IT INCLUDES EM_FSC_CURVES.DETAILS'
+_em_fsc_curve.file  ?
+#
 _em_3d_reconstruction.entry_id              ? 
 _em_3d_reconstruction.id                    1 
 _em_3d_reconstruction.algorithm             ? 
@@ -232,7 +236,7 @@ _em_imaging.entry_id                        ?
 _em_imaging.accelerating_voltage            300 
 _em_imaging.alignment_procedure             'COMA FREE' 
 _em_imaging.c2_aperture_diameter            70 
-_em_imaging.calibrated_defocus_max          ? 
+_em_imaging.calibrated_defocus_max          ?
 _em_imaging.calibrated_defocus_min          ? 
 _em_imaging.calibrated_magnification        ? 
 _em_imaging.cryogen                         NITROGEN 
