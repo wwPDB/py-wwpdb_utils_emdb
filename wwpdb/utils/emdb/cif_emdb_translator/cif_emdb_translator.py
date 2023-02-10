@@ -346,6 +346,7 @@ class CifEMDBTranslator(object):
             "Center for Eukaryotic Structural Genomics (CESG)",
             "Center for High-Throughput Structural Biology (CHTSB)",
             "Center for Membrane Proteins of Infectious Diseases (MPID)",
+            "Center for Structural Biology of Infectious Diseases (CSBID)",
             "Center for Structural Genomics of Infectious Diseases (CSGID)",
             "Center for Structures of Membrane Proteins (CSMP)",
             "Center for the X-ray Structure Determination of Human Transporters (TransportPDB)",
@@ -11234,7 +11235,7 @@ class CifEMDBTranslator(object):
                     fsc = emdb.fsc_curve_validation_type()
                     set_fsc_curve_validation_type(fsc, fsc_in)
                     if fsc.hasContent_():
-                        validation.add_validation_type(fsc)
+                        validation.add_validation_method(fsc)
                 if validation.hasContent_():
                     self.xml_out.set_validation(validation)
 
