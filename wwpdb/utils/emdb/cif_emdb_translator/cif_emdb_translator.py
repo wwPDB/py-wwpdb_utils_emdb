@@ -106,7 +106,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.2.8"
+        XML_OUT_VERSION = "3.0.2.10"
 
         # Cif categories
         CITATION = "citation"
