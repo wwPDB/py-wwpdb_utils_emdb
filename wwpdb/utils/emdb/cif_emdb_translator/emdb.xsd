@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.2.8"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.2.11"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -327,6 +327,7 @@
             <xs:enumeration value="Center for Eukaryotic Structural Genomics (CESG)"/>
             <xs:enumeration value="Center for High-Throughput Structural Biology (CHTSB)"/>
             <xs:enumeration value="Center for Membrane Proteins of Infectious Diseases (MPID)"/>
+            <xs:enumeration value="Center for Structural Biology of Infectious Diseases (CSBID)"/>
             <xs:enumeration value="Center for Structural Genomics of Infectious Diseases (CSGID)"/>
             <xs:enumeration value="Center for Structures of Membrane Proteins (CSMP)"/>
             <xs:enumeration value="Center for the X-ray Structure Determination of Human Transporters (TransportPDB)"/>
@@ -384,7 +385,7 @@
         <xs:union memberTypes="author_enums">
             <xs:simpleType>
                 <xs:restriction base="xs:token">
-                    <xs:pattern value="([A-Za-z' \-]+ (Jr.?|II|III|3rd|4th)?) ?([A-Za-z\-]*)"/>
+                    <xs:pattern value="([A-Za-z' \-]+ (Jr.?|I|II|III|IV|1st|2nd|3rd|4th)?) ?([A-Za-z\-]*)"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:union>
@@ -440,7 +441,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <!--
+            <!-- 
             <xs:element name="component_maps" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
@@ -1262,7 +1263,7 @@
                         <xs:simpleType>
                             <xs:restriction base="xs:token">
                                 <xs:pattern
-                                        value="([1-7]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-)))(([ ]*,[ ]*)([1-6]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-))))*"
+                                    value="([1-7]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-)))(([ ]*,[ ]*)([1-6]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-))))*"
                                 />
                             </xs:restriction>
                         </xs:simpleType>
@@ -1940,8 +1941,8 @@
     </xs:complexType>
     <xs:simpleType name="allowed_focus_ion_voltage">
         <xs:restriction base="xs:float">
-            <xs:minInclusive value="3"/>
-            <xs:maxInclusive value="30"/>
+            <xs:minInclusive value="0.1"/>
+            <xs:maxInclusive value="50"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="fib_current_type">
@@ -2428,7 +2429,7 @@
     <xs:simpleType name="allowed_defocus_max">
         <xs:restriction base="xs:float">
             <xs:minInclusive value="-30"/>
-            <xs:maxInclusive value="30"/>
+            <xs:maxInclusive value="50"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="allowed_magnification">
@@ -3792,7 +3793,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <!--
+            <!-- 
             <xs:element name="reference_map_for_composition" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
