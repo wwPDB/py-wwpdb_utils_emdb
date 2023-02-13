@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.2.10"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.2.11"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -327,6 +327,7 @@
             <xs:enumeration value="Center for Eukaryotic Structural Genomics (CESG)"/>
             <xs:enumeration value="Center for High-Throughput Structural Biology (CHTSB)"/>
             <xs:enumeration value="Center for Membrane Proteins of Infectious Diseases (MPID)"/>
+            <xs:enumeration value="Center for Structural Biology of Infectious Diseases (CSBID)"/>
             <xs:enumeration value="Center for Structural Genomics of Infectious Diseases (CSGID)"/>
             <xs:enumeration value="Center for Structures of Membrane Proteins (CSMP)"/>
             <xs:enumeration value="Center for the X-ray Structure Determination of Human Transporters (TransportPDB)"/>
