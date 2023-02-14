@@ -739,11 +739,7 @@ def _cast(typ, value):
 class entry_type(GeneratedsSuper):
     subclass = None
     superclass = None
-<<<<<<< HEAD
     def __init__(self, emdb_id=None, version='3.0.2.11', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
-=======
-    def __init__(self, emdb_id=None, version='3.0.2.10', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
->>>>>>> 736f74de2ba538401a7c99400bf0209a6eb22233
         self.original_tagname_ = None
         self.emdb_id = _cast(None, emdb_id)
         self.version = _cast(None, version)
