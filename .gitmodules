@@ -1,3 +1,0 @@
-[submodule "wwpdb/mock-data"]
-	path = wwpdb/mock-data
-	url = ../py-onedep_mock_data.git
