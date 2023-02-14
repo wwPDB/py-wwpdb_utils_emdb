@@ -1,4 +1,5 @@
 lxml
 mmcif
 wwpdb.utils.config
-wwpdb.utils.testing
+
+mock; python_version < '3'
