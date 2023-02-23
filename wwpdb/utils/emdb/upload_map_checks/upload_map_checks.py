@@ -8,7 +8,7 @@ import sys
 
 
 def le(array1, array2) -> bool:
-    result = list(map(lambda x: x[0] <= x[1], list(zip(array1, array2()))))
+    result = list(map(lambda x: x[0] <= x[1], list(zip(array1, array2))))
     return sum(result) == len(result)
 
 
@@ -46,11 +46,12 @@ class LoadMap:
         origin2, end2 = another_map.extremities()
         return le(origin2, origin1) and le(end1, end2)
 
+    # Needs to be split into two new functions
     def accepted_pixel_size(self, another_map):
         pxlsz1 = list(map(lambda x: round(x, 2), self.pixel_size))
         pxlsz2 = list(map(lambda x: round(x, 2), another_map.pixel_size))
         if not multiple(pxlsz1, pxlsz2):
-            print(f"WARNING! Pixel sizes of first map ({pxlsz1}) are not multiple second map`s sizes ({pxlsz2}).")
+            print(f"WARNING! Pixel sizes of first map ({pxlsz1}) are not multiple of second map`s sizes ({pxlsz2}).")
         return le(pxlsz2, pxlsz1)
 
 
@@ -62,14 +63,10 @@ class UploadMapCheck:
 
     def check_all_maps(self):
         primmap = LoadMap(self.input['primary_map'])
-        print(vars(primmap))
         primmap.load()
-        print(vars(primmap))
         halfmaps = [LoadMap(self.input['half_maps'][i]) for i in range(len(self.input['half_maps']))]
         for halfmap in halfmaps:
-            print(vars(halfmap))
             halfmap.load()
-            print(vars(halfmap))
 
         self.output = {
             'primary_map': {
@@ -82,19 +79,18 @@ class UploadMapCheck:
                 'is_inside': {},
                 'accepted_pixel_size': {}
             },
-            'half_maps': []
+            'half_maps': {}
         }
         for halfmap in halfmaps:
             self.output['primary_map']['smaller_or_equal'][halfmap.file] = primmap.smaller_or_equal(halfmap)
             self.output['primary_map']['is_inside'][halfmap.file] = primmap.is_inside(halfmap)
             self.output['primary_map']['accepted_pixel_size'][halfmap.file] = primmap.accepted_pixel_size(halfmap)
-            self.output['half_maps'].append({
-                'path': halfmap.file,
+            self.output['half_maps'][halfmap.file] = {
                 'dimensions': halfmap.dimensions,
                 'size': halfmap.size,
                 'offset': halfmap.offset,
                 'pixel_size': halfmap.pixel_size
-            })
+            }
         return self.output
 
     def __repr__(self):
@@ -108,7 +104,7 @@ def run_uploaded_map_checks(input_json_file, output_json_file):
         data = json.load(infile)
     result = UploadMapCheck(data).check_all_maps()
     with open(output_json_file, 'w') as outfile:
-        json.dump(result, outfile, separators = (',', ':'), sort_keys = True, indent = 4)
+        json.dump(result, outfile, separators=(',', ':'), sort_keys=False, indent=4)
     return True
 
 
