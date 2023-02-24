@@ -12,7 +12,7 @@ def le(array1, array2) -> bool:
     return sum(result) == len(result)
 
 
-def multiple(array1, array2):
+def multiple(array1, array2) -> bool:
     result = list(map(lambda x: x[0] % x[1] == 0, list(zip(array1, array2))))
     return sum(result) == len(result)
 
@@ -31,7 +31,7 @@ class LoadMap:
             self.dimensions = np.array((mrc.header.nx, mrc.header.ny, mrc.header.nz)).tolist()
             self.size = mrc.header.cella.tolist()
             self.offset = np.array((mrc.header.nxstart, mrc.header.nystart, mrc.header.nzstart)).tolist()
-            self.pixel_size = mrc.voxel_size.tolist()
+            self.pixel_size = list(map(lambda x: round(x, 2), mrc.voxel_size.tolist()))
 
     def extremities(self):
         origin = np.array(self.offset) * np.array(self.pixel_size)
@@ -46,13 +46,8 @@ class LoadMap:
         origin2, end2 = another_map.extremities()
         return le(origin2, origin1) and le(end1, end2)
 
-    # Needs to be split into two new functions
-    def accepted_pixel_size(self, another_map):
-        pxlsz1 = list(map(lambda x: round(x, 2), self.pixel_size))
-        pxlsz2 = list(map(lambda x: round(x, 2), another_map.pixel_size))
-        if not multiple(pxlsz1, pxlsz2):
-            print(f"WARNING! Pixel sizes of first map ({pxlsz1}) are not multiple of second map`s sizes ({pxlsz2}).")
-        return le(pxlsz2, pxlsz1)
+    def acceptable_pixel_size(self, another_map):
+        return le(another_map.pixel_size, self.pixel_size), multiple(self.pixel_size, another_map.pixel_size)
 
 
 class UploadMapCheck:
@@ -77,14 +72,15 @@ class UploadMapCheck:
                 'pixel_size': primmap.pixel_size,
                 'smaller_or_equal': {},
                 'is_inside': {},
-                'accepted_pixel_size': {}
+                'acceptable_pixel_size': {},
+                'pixel_size_is_multiple':{}
             },
             'half_maps': {}
         }
         for halfmap in halfmaps:
             self.output['primary_map']['smaller_or_equal'][halfmap.file] = primmap.smaller_or_equal(halfmap)
             self.output['primary_map']['is_inside'][halfmap.file] = primmap.is_inside(halfmap)
-            self.output['primary_map']['accepted_pixel_size'][halfmap.file] = primmap.accepted_pixel_size(halfmap)
+            self.output['primary_map']['acceptable_pixel_size'][halfmap.file], self.output['primary_map']['pixel_size_is_multiple'][halfmap.file] = primmap.acceptable_pixel_size(halfmap)
             self.output['half_maps'][halfmap.file] = {
                 'dimensions': halfmap.dimensions,
                 'size': halfmap.size,
