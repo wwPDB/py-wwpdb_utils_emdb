@@ -59,9 +59,9 @@ class UploadMapCheck:
     def check_all_maps(self):
         primmap = LoadMap(self.input['primary_map'])
         primmap.load()
-        halfmaps = [LoadMap(self.input['half_maps'][i]) for i in range(len(self.input['half_maps']))]
-        for halfmap in halfmaps:
-            halfmap.load()
+        othermaps = [LoadMap(self.input['other_maps'][i]) for i in range(len(self.input['other_maps']))]
+        for othermap in othermaps:
+            othermap.load()
 
         self.output = {
             'primary_map': {
@@ -75,17 +75,17 @@ class UploadMapCheck:
                 'acceptable_pixel_size': {},
                 'pixel_size_is_multiple':{}
             },
-            'half_maps': {}
+            'other_maps': {}
         }
-        for halfmap in halfmaps:
-            self.output['primary_map']['smaller_or_equal'][halfmap.file] = primmap.smaller_or_equal(halfmap)
-            self.output['primary_map']['is_inside'][halfmap.file] = primmap.is_inside(halfmap)
-            self.output['primary_map']['acceptable_pixel_size'][halfmap.file], self.output['primary_map']['pixel_size_is_multiple'][halfmap.file] = primmap.acceptable_pixel_size(halfmap)
-            self.output['half_maps'][halfmap.file] = {
-                'dimensions': halfmap.dimensions,
-                'size': halfmap.size,
-                'offset': halfmap.offset,
-                'pixel_size': halfmap.pixel_size
+        for othermap in othermaps:
+            self.output['primary_map']['smaller_or_equal'][othermap.file] = primmap.smaller_or_equal(othermap)
+            self.output['primary_map']['is_inside'][othermap.file] = primmap.is_inside(othermap)
+            self.output['primary_map']['acceptable_pixel_size'][othermap.file], self.output['primary_map']['pixel_size_is_multiple'][othermap.file] = primmap.acceptable_pixel_size(othermap)
+            self.output['other_maps'][othermap.file] = {
+                'dimensions': othermap.dimensions,
+                'size': othermap.size,
+                'offset': othermap.offset,
+                'pixel_size': othermap.pixel_size
             }
         return self.output
 
