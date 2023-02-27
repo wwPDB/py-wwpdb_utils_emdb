@@ -106,7 +106,7 @@ def run_uploaded_map_checks(input_json_file, output_json_file):
 
 def main():
     description = """
-    Takes the paths from a json file, then do some checks on maps 
+    Takes the path from a json file, then do some checks on maps 
     and writes the results in another json file.
     """
     usage = """
