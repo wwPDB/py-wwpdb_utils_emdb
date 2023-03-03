@@ -3981,7 +3981,7 @@
             <xs:element name="initial_model" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="access_code" type="xs:token"> </xs:element>
+                        <xs:element name="access_code" type="xs:token" minOccurs="0"> </xs:element>
                         <xs:element minOccurs="0" name="chain">
                             <xs:complexType>
                                 <xs:sequence>

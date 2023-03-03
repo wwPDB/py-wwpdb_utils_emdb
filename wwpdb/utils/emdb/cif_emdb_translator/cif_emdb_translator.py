@@ -10948,14 +10948,11 @@ class CifEMDBTranslator(object):
                                         .. a base chain_type and
                                         .. 1 element
                                         """
-                                        
                                         # def set_chain_type(chain, model_in):
                                         #     """
                                         #     XSD: <xs:complexType name="chain_type"> has
                                         #     .. 2 elements
                                         #     """
-
-
                                         def set_el_id(chain, model_in):
                                             """
                                             XSD: <xs:element name="id" type="chain_pdb_id" minOccurs="0" maxOccurs="unbounded"/>
@@ -11014,8 +11011,6 @@ class CifEMDBTranslator(object):
                                             CIF: _em_3d_fitting_list.type experimental model
                                             """
                                             set_cif_value(chain.set_initial_model_type, "type", const.EM_3D_FITTING_LIST, cif_list=model_in)
-
-    
                                         # element 2
                                         chain = emdb.chainType()
                                         set_el_id(chain, model_in)
@@ -11025,28 +11020,25 @@ class CifEMDBTranslator(object):
                                         set_el_initial_model_type(chain, model_in)
                                         if chain.hasContent_():
                                             model.set_chain(chain)
-                                            
+
                                     def set_el_details(model, model_in):
                                         """
                                         XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
                                         CIF: _em_3d_fitting_list.details
                                         """
                                         set_cif_value(model.set_details, "details", const.EM_3D_FITTING_LIST, cif_list=model_in)
-
                                     # element 1
                                     set_el_access_code(model, model_in)
                                     # element 2
                                     set_el_chain(model, model_in)
                                     # element 3
                                     set_el_details(model, model_in)
-    
                                 if modelling_id_in in model_dict_in:
                                     for model_in in model_dict_in[modelling_id_in]:
                                         model = emdb.initial_modelType()
                                         set_initial_model_type(model, model_in)
                                         if model.hasContent_():
                                             modelling.add_initial_model(model)
-
                             def set_el_final_model():
                                 """
                                 XSD: <xs:element name="final_model" minOccurs="0"> has
