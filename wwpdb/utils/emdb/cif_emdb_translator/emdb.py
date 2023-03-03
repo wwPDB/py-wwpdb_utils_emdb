@@ -2,25 +2,25 @@
 # -*- coding: utf-8 -*-
 
 #
-
-# Generated Mon Feb 13 09:32:06 2023 by generateDS.py version 2.29.5.
+# Generated Thu Mar  2 09:55:43 2023 by generateDS.py version 2.29.5.
 # Python 2.7.15 | packaged by conda-forge | (default, Mar  5 2020, 14:58:04)  [GCC Clang 9.0.1 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_2_11/emdb.py')
+#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_3_0/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb-schemas/emdb_schemas/v3/v3_0_2_11/emdb.xsd
+#   emdb-schemas/emdb_schemas/v3/v3_0_3_0/emdb.xsd
 #
 # Command line:
-#   emdb_config/emdb_config/modified_generateDS/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_2_11/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_2_11/emdb.xsd
+#   emdb_config/emdb_config/modified_generateDS/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_3_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_3_0/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   IdeaProjects
+#
 
 import sys
 import re as re_
@@ -739,7 +739,7 @@ def _cast(typ, value):
 class entry_type(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.2.11', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
+    def __init__(self, emdb_id=None, version='3.0.3.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
         self.original_tagname_ = None
         self.emdb_id = _cast(None, emdb_id)
         self.version = _cast(None, version)
@@ -12930,8 +12930,7 @@ class pdb_model_type(GeneratedsSuper):
             # validate type pdb_code_type
             self.validate_pdb_code_type(self.pdb_id)
         elif nodeName_ == 'chain_id_list':
-            class_obj_ = self.get_class_obj_(child_, chain_type)
-            obj_ = class_obj_.factory()
+            obj_ = chain_type.factory()
             obj_.build(child_)
             self.chain_id_list = obj_
             obj_.original_tagname_ = 'chain_id_list'
@@ -12941,7 +12940,7 @@ class pdb_model_type(GeneratedsSuper):
 class chain_type(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, chain_id=None, residue_range=None, extensiontype_=None):
+    def __init__(self, chain_id=None, residue_range=None):
         self.original_tagname_ = None
         if chain_id is None:
             self.chain_id = []
@@ -12949,7 +12948,6 @@ class chain_type(GeneratedsSuper):
             self.chain_id = chain_id
         self.residue_range = residue_range
         self.validate_residue_rangeType(self.residue_range)
-        self.extensiontype_ = extensiontype_
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -12968,8 +12966,6 @@ class chain_type(GeneratedsSuper):
     def replace_chain_id_at(self, index, value): self.chain_id[index] = value
     def get_residue_range(self): return self.residue_range
     def set_residue_range(self, residue_range): self.residue_range = residue_range
-    def get_extensiontype_(self): return self.extensiontype_
-    def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
     def validate_chain_pdb_id(self, value):
         # Validate type chain_pdb_id, a restriction on xs:token.
         if value is not None and Validate_simpletypes_:
@@ -13014,10 +13010,6 @@ class chain_type(GeneratedsSuper):
         else:
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='chain_type'):
-        if self.extensiontype_ is not None and 'xsi:type' not in already_processed:
-            already_processed.add('xsi:type')
-            outfile.write(' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"')
-            outfile.write(' xsi:type="%s"' % self.extensiontype_)
         pass
     def exportChildren(self, outfile, level, namespace_='', name_='chain_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
@@ -13038,10 +13030,7 @@ class chain_type(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('xsi:type', node)
-        if value is not None and 'xsi:type' not in already_processed:
-            already_processed.add('xsi:type')
-            self.extensiontype_ = value
+        pass
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'chain_id':
             chain_id_ = child_.text
@@ -16048,7 +16037,7 @@ class figure_type(GeneratedsSuper):
     def __init__(self, file=None, details=None):
         self.original_tagname_ = None
         self.file = file
-        self.validate_fileType45(self.file)
+        self.validate_fileType46(self.file)
         self.details = details
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
@@ -16065,13 +16054,13 @@ class figure_type(GeneratedsSuper):
     def set_file(self, file): self.file = file
     def get_details(self): return self.details
     def set_details(self, details): self.details = details
-    def validate_fileType45(self, value):
-        # Validate type fileType45, a restriction on xs:token.
+    def validate_fileType46(self, value):
+        # Validate type fileType46, a restriction on xs:token.
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
-                    self.validate_fileType45_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_fileType45_patterns_, ))
-    validate_fileType45_patterns_ = [['emd_\\d{4,}.+']]
+                    self.validate_fileType46_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_fileType46_patterns_, ))
+    validate_fileType46_patterns_ = [['emd_\\d{4,}.+']]
     def hasContent_(self):
         if (
             self.file is not None or
@@ -16132,8 +16121,8 @@ class figure_type(GeneratedsSuper):
                 file_ = ""
             file_ = self.gds_validate_string(file_, node, 'file')
             self.file = file_
-            # validate type fileType45
-            self.validate_fileType45(self.file)
+            # validate type fileType46
+            self.validate_fileType46(self.file)
         elif nodeName_ == 'details':
             details_ = child_.text
             details_ = self.gds_validate_string(details_, node, 'details')
@@ -16147,7 +16136,7 @@ class validation_type(GeneratedsSuper):
     def __init__(self, file=None, details=None, extensiontype_=None):
         self.original_tagname_ = None
         self.file = file
-        self.validate_fileType46(self.file)
+        self.validate_fileType47(self.file)
         self.details = details
         self.extensiontype_ = extensiontype_
     def factory(*args_, **kwargs_):
@@ -16167,13 +16156,13 @@ class validation_type(GeneratedsSuper):
     def set_details(self, details): self.details = details
     def get_extensiontype_(self): return self.extensiontype_
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
-    def validate_fileType46(self, value):
-        # Validate type fileType46, a restriction on xs:token.
+    def validate_fileType47(self, value):
+        # Validate type fileType47, a restriction on xs:token.
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
-                    self.validate_fileType46_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_fileType46_patterns_, ))
-    validate_fileType46_patterns_ = [['emd_\\d{4,}_fsc(_[1-9]{1,})*.xml']]
+                    self.validate_fileType47_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_fileType47_patterns_, ))
+    validate_fileType47_patterns_ = [['emd_\\d{4,}_fsc(_[1-9]{1,})*.xml']]
     def hasContent_(self):
         if (
             self.file is not None or
@@ -16241,8 +16230,8 @@ class validation_type(GeneratedsSuper):
                 file_ = ""
             file_ = self.gds_validate_string(file_, node, 'file')
             self.file = file_
-            # validate type fileType46
-            self.validate_fileType46(self.file)
+            # validate type fileType47
+            self.validate_fileType47(self.file)
         elif nodeName_ == 'details':
             details_ = child_.text
             details_ = self.gds_validate_string(details_, node, 'details')
@@ -28335,8 +28324,7 @@ class starting_modelType(GeneratedsSuper):
             # validate type pdb_code_type
             self.validate_pdb_code_type(self.access_code)
         elif nodeName_ == 'chain':
-            class_obj_ = self.get_class_obj_(child_, chain_type)
-            obj_ = class_obj_.factory()
+            obj_ = chain_type.factory()
             obj_.build(child_)
             self.chain.append(obj_)
             obj_.original_tagname_ = 'chain'
@@ -32269,11 +32257,7 @@ class initial_modelType(GeneratedsSuper):
     def __init__(self, access_code=None, chain=None, details=None):
         self.original_tagname_ = None
         self.access_code = access_code
-        self.validate_access_codeType(self.access_code)
-        if chain is None:
-            self.chain = []
-        else:
-            self.chain = chain
+        self.chain = chain
         self.details = details
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
@@ -32290,22 +32274,12 @@ class initial_modelType(GeneratedsSuper):
     def set_access_code(self, access_code): self.access_code = access_code
     def get_chain(self): return self.chain
     def set_chain(self, chain): self.chain = chain
-    def add_chain(self, value): self.chain.append(value)
-    def insert_chain_at(self, index, value): self.chain.insert(index, value)
-    def replace_chain_at(self, index, value): self.chain[index] = value
     def get_details(self): return self.details
     def set_details(self, details): self.details = details
-    def validate_access_codeType(self, value):
-        # Validate type access_codeType, a restriction on pdb_code_type.
-        if value is not None and Validate_simpletypes_:
-            if not self.gds_validate_simple_patterns(
-                    self.validate_access_codeType_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_access_codeType_patterns_, ))
-    validate_access_codeType_patterns_ = [['\\d[\\dA-Za-z]{3}'], ['\\d[\\dA-Za-z]{3}']]
     def hasContent_(self):
         if (
             self.access_code is not None or
-            self.chain or
+            self.chain is not None or
             self.details is not None
         ):
             return True
@@ -32342,8 +32316,8 @@ class initial_modelType(GeneratedsSuper):
         if self.access_code is not None:
             showIndent(outfile, level, pretty_print)
             outfile.write('<access_code>%s</access_code>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.access_code), input_name='access_code')), eol_))
-        for chain_ in self.chain:
-            chain_.export(outfile, level, namespace_, name_='chain', pretty_print=pretty_print)
+        if self.chain is not None:
+            self.chain.export(outfile, level, namespace_, name_='chain', pretty_print=pretty_print)
         if self.details is not None:
             showIndent(outfile, level, pretty_print)
             outfile.write('<details>%s</details>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.details), input_name='details')), eol_))
@@ -32365,12 +32339,10 @@ class initial_modelType(GeneratedsSuper):
                 access_code_ = ""
             access_code_ = self.gds_validate_string(access_code_, node, 'access_code')
             self.access_code = access_code_
-            # validate type access_codeType
-            self.validate_access_codeType(self.access_code)
         elif nodeName_ == 'chain':
             obj_ = chainType.factory()
             obj_.build(child_)
-            self.chain.append(obj_)
+            self.chain = obj_
             obj_.original_tagname_ = 'chain'
         elif nodeName_ == 'details':
             details_ = child_.text
@@ -32379,13 +32351,19 @@ class initial_modelType(GeneratedsSuper):
 # end class initial_modelType
 
 
-class chainType(chain_type):
+class chainType(GeneratedsSuper):
     subclass = None
-    superclass = chain_type
-    def __init__(self, chain_id=None, residue_range=None, number_of_copies_in_final_model=None):
+    superclass = None
+    def __init__(self, chain_id=None, residue_range=None, number_of_copies_in_final_model=None, source_name=None, initial_model_type=None):
         self.original_tagname_ = None
-        super(chainType, self).__init__(chain_id, residue_range, )
+        self.chain_id = chain_id
+        self.residue_range = residue_range
+        self.validate_residue_rangeType45(self.residue_range)
         self.number_of_copies_in_final_model = number_of_copies_in_final_model
+        self.source_name = source_name
+        self.validate_source_nameType(self.source_name)
+        self.initial_model_type = initial_model_type
+        self.validate_initial_model_typeType(self.initial_model_type)
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -32397,12 +32375,54 @@ class chainType(chain_type):
         else:
             return chainType(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def get_chain_id(self): return self.chain_id
+    def set_chain_id(self, chain_id): self.chain_id = chain_id
+    def get_residue_range(self): return self.residue_range
+    def set_residue_range(self, residue_range): self.residue_range = residue_range
     def get_number_of_copies_in_final_model(self): return self.number_of_copies_in_final_model
     def set_number_of_copies_in_final_model(self, number_of_copies_in_final_model): self.number_of_copies_in_final_model = number_of_copies_in_final_model
+    def get_source_name(self): return self.source_name
+    def set_source_name(self, source_name): self.source_name = source_name
+    def get_initial_model_type(self): return self.initial_model_type
+    def set_initial_model_type(self, initial_model_type): self.initial_model_type = initial_model_type
+    def validate_residue_rangeType45(self, value):
+        # Validate type residue_rangeType45, a restriction on xs:token.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_residue_rangeType45_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_residue_rangeType45_patterns_, ))
+    validate_residue_rangeType45_patterns_ = [['\\d+-\\d+']]
+    def validate_source_nameType(self, value):
+        # Validate type source_nameType, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['PDB', 'AlphaFold', 'ITasser', 'ModelArchive', 'Modeller', 'RoseTTAFold', 'SwissModel', 'Other']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on source_nameType' % {"value" : value.encode("utf-8")} )
+    def validate_initial_model_typeType(self, value):
+        # Validate type initial_model_typeType, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['experimental model', 'in silico model', 'intergrative model', 'other']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on initial_model_typeType' % {"value" : value.encode("utf-8")} )
     def hasContent_(self):
         if (
+            self.chain_id is not None or
+            self.residue_range is not None or
             self.number_of_copies_in_final_model is not None or
-            super(chainType, self).hasContent_()
+            self.source_name is not None or
+            self.initial_model_type is not None
         ):
             return True
         else:
@@ -32429,16 +32449,27 @@ class chainType(chain_type):
         else:
             outfile.write('/>%s' % (eol_, ))
     def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='chainType'):
-        super(chainType, self).exportAttributes(outfile, level, already_processed, namespace_, name_='chainType')
+        pass
     def exportChildren(self, outfile, level, namespace_='', name_='chainType', fromsubclass_=False, pretty_print=True):
-        super(chainType, self).exportChildren(outfile, level, namespace_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
+        if self.chain_id is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<chain_id>%s</chain_id>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.chain_id), input_name='chain_id')), eol_))
+        if self.residue_range is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<residue_range>%s</residue_range>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.residue_range), input_name='residue_range')), eol_))
         if self.number_of_copies_in_final_model is not None:
             showIndent(outfile, level, pretty_print)
             outfile.write('<number_of_copies_in_final_model>%s</number_of_copies_in_final_model>%s' % (self.gds_format_integer(self.number_of_copies_in_final_model, input_name='number_of_copies_in_final_model'), eol_))
+        if self.source_name is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<source_name>%s</source_name>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.source_name), input_name='source_name')), eol_))
+        if self.initial_model_type is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<initial_model_type>%s</initial_model_type>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.initial_model_type), input_name='initial_model_type')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -32447,9 +32478,27 @@ class chainType(chain_type):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        super(chainType, self).buildAttributes(node, attrs, already_processed)
+        pass
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'number_of_copies_in_final_model':
+        if nodeName_ == 'chain_id':
+            chain_id_ = child_.text
+            if chain_id_:
+                chain_id_ = re_.sub(String_cleanup_pat_, " ", chain_id_).strip()
+            else:
+                chain_id_ = ""
+            chain_id_ = self.gds_validate_string(chain_id_, node, 'chain_id')
+            self.chain_id = chain_id_
+        elif nodeName_ == 'residue_range':
+            residue_range_ = child_.text
+            if residue_range_:
+                residue_range_ = re_.sub(String_cleanup_pat_, " ", residue_range_).strip()
+            else:
+                residue_range_ = ""
+            residue_range_ = self.gds_validate_string(residue_range_, node, 'residue_range')
+            self.residue_range = residue_range_
+            # validate type residue_rangeType45
+            self.validate_residue_rangeType45(self.residue_range)
+        elif nodeName_ == 'number_of_copies_in_final_model':
             sval_ = child_.text
             try:
                 ival_ = int(sval_)
@@ -32459,7 +32508,18 @@ class chainType(chain_type):
                 raise_parse_error(child_, 'requires positiveInteger')
             ival_ = self.gds_validate_integer(ival_, node, 'number_of_copies_in_final_model')
             self.number_of_copies_in_final_model = ival_
-        super(chainType, self).buildChildren(child_, node, nodeName_, True)
+        elif nodeName_ == 'source_name':
+            source_name_ = child_.text
+            source_name_ = self.gds_validate_string(source_name_, node, 'source_name')
+            self.source_name = source_name_
+            # validate type source_nameType
+            self.validate_source_nameType(self.source_name)
+        elif nodeName_ == 'initial_model_type':
+            initial_model_type_ = child_.text
+            initial_model_type_ = self.gds_validate_string(initial_model_type_, node, 'initial_model_type')
+            self.initial_model_type = initial_model_type_
+            # validate type initial_model_typeType
+            self.validate_initial_model_typeType(self.initial_model_type)
 # end class chainType
 
 
@@ -32568,8 +32628,7 @@ class final_modelType(GeneratedsSuper):
             # validate type pdb_code_type
             self.validate_pdb_code_type(self.access_code)
         elif nodeName_ == 'chain':
-            class_obj_ = self.get_class_obj_(child_, chain_type)
-            obj_ = class_obj_.factory()
+            obj_ = chain_type.factory()
             obj_.build(child_)
             self.chain.append(obj_)
             obj_.original_tagname_ = 'chain'

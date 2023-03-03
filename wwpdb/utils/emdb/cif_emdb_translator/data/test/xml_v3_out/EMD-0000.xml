@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/emdb-empiar/emdb-schemas/blob/master/v3/v3_0_2_8/emdb.xsd" emdb_id="EMD-13682" version="3.0.2.8">
+<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/emdb-empiar/emdb-schemas/blob/master/v3/v3_0_2_10/emdb.xsd" emdb_id="EMD-14544" version="3.0.3.0">
     <admin>
         <current_status>
-            <date>2021-10-06</date>
-            <code>AUTH</code>
+            <date>2022-10-05</date>
+            <code>REL</code>
             <processing_site>PDBe</processing_site>
         </current_status>
         <sites>
@@ -11,190 +11,350 @@
             <last_processing>PDBe</last_processing>
         </sites>
         <key_dates>
-            <deposition>2021-10-06</deposition>
-            <update>2021-10-06</update>
+            <deposition>2022-03-16</deposition>
+            <header_release>2022-07-13</header_release>
+            <map_release>2022-07-13</map_release>
+            <update>2022-10-05</update>
         </key_dates>
         <grant_support>
             <grant_reference>
-                <funding_body>H2020 Marie Curie Actions of the European Commission</funding_body>
-                <code>795892</code>
-                <country>Sweden</country>
+                <funding_body>Engineering and Physical Sciences Research Council</funding_body>
+                <code>P2019-0006</code>
+                <country>United Kingdom</country>
             </grant_reference>
             <grant_reference>
-                <funding_body>Human Frontier Science Program (HFSP)</funding_body>
-                <code>CDA00047/2017-C</code>
-                <country>Sweden</country>
-            </grant_reference>
-            <grant_reference>
-                <funding_body>Knut and Alice Wallenberg Foundation</funding_body>
-                <country>Sweden</country>
+                <funding_body>Wellcome Trust</funding_body>
+                <code>100209/Z/12/Z</code>
+                <country>United Kingdom</country>
             </grant_reference>
         </grant_support>
-        <title>In situ subtomogram average of autophagosome-associated protein filament</title>
+        <title>CRYO-EM STRUCTURE OF SARS-COV-2 SPIKE : H11-H4 Q98R H100E nanobody complex in 1Up2Down conformation</title>
         <authors_list>
-            <author ORCID="0000-0003-4193-1496">Dahmane S</author>
-            <author ORCID="0000-0003-4193-1496">Morado DR</author>
-            <author ORCID="0000-0003-4193-1496">Carlson L-A</author>
+            <author ORCID="0000-0002-1419-9378">Weckener M</author>
+            <author ORCID="0000-0001-6744-5061">Naismith JH</author>
         </authors_list>
     </admin>
     <crossreferences>
         <citation_list>
             <primary_citation>
-                <journal_citation published="false">
-                    <author ORCID="0000-0003-4193-1496" order="1">Dahmane S</author>
-                    <author ORCID="0000-0002-1315-9841" order="2">Kerviel A</author>
-                    <author ORCID="0000-0003-4693-3220" order="3">Morado DR</author>
-                    <author ORCID="0000-0002-0011-3756" order="4">Shankar K</author>
-                    <author order="5">Ahlman B</author>
-                    <author ORCID="0000-0003-2150-5545" order="6">Lazarou M</author>
-                    <author order="7">Altan-Bonnet N</author>
-                    <author ORCID="0000-0003-2342-6488" order="8">Carlson L-A</author>
-                    <title>In situ structures of membrane-assisted assembly and selective autophagy of enteroviruses</title>
-                    <journal_abbreviation>To Be Published</journal_abbreviation>
-                    <external_references type="CSD">0353</external_references>
+                <journal_citation published="true">
+                    <author ORCID="0000-0003-0776-9974" order="1">Mikolajek H</author>
+                    <author ORCID="0000-0002-1419-9378" order="2">Weckener M</author>
+                    <author order="3">Brotzakis ZF</author>
+                    <author order="4">Huo J</author>
+                    <author order="5">Dalietou EV</author>
+                    <author order="6">Le Bas A</author>
+                    <author ORCID="0000-0002-6228-2221" order="7">Sormanni P</author>
+                    <author order="8">Harrison PJ</author>
+                    <author ORCID="0000-0003-2546-3426" order="9">Ward PN</author>
+                    <author ORCID="0000-0001-9624-4461" order="10">Truong S</author>
+                    <author ORCID="0000-0002-4097-4331" order="11">Moynie L</author>
+                    <author order="12">Clare DK</author>
+                    <author order="13">Dumoux M</author>
+                    <author order="14">Dormon J</author>
+                    <author order="15">Norman C</author>
+                    <author ORCID="0000-0002-5170-0061" order="16">Hussain N</author>
+                    <author ORCID="0000-0002-8534-3736" order="17">Vogirala V</author>
+                    <author ORCID="0000-0002-3705-2993" order="18">Owens RJ</author>
+                    <author ORCID="0000-0002-3616-1610" order="19">Vendruscolo M</author>
+                    <author ORCID="0000-0001-6744-5061" order="20">Naismith JH</author>
+                    <title>Correlation between the binding affinity and the conformational entropy of nanobody SARS-CoV-2 spike protein complexes.</title>
+                    <journal_abbreviation>Proc.Natl.Acad.Sci.USA</journal_abbreviation>
+                    <country>US</country>
+                    <volume>119</volume>
+                    <first_page>e2205412119</first_page>
+                    <last_page>e2205412119</last_page>
+                    <year>2022</year>
+                    <external_references type="PUBMED">35858383</external_references>
+                    <external_references type="DOI">doi:10.1073/pnas.2205412119</external_references>
+                    <external_references type="ISSN">1091-6490</external_references>
+                    <external_references type="CSD">0040</external_references>
+                    <external_references type="ASTM">PNASA6</external_references>
                 </journal_citation>
             </primary_citation>
         </citation_list>
         <emdb_list>
             <emdb_reference>
-                <emdb_id>EMD-13682</emdb_id>
+                <emdb_id>EMD-14544</emdb_id>
                 <relationship>
                     <other>associated EM volume</other>
                 </relationship>
+                <details>CRYO-EM STRUCTURE OF SARS-COV-2 SPIKE : H11-H4 Q98R H100E nanobody complex in 1Up2Down conformation</details>
             </emdb_reference>
         </emdb_list>
+        <pdb_list>
+            <pdb_reference>
+                <pdb_id>7z86</pdb_id>
+                <relationship>
+                    <in_frame>FULLOVERLAP</in_frame>
+                </relationship>
+            </pdb_reference>
+        </pdb_list>
     </crossreferences>
     <sample>
-        <name>Autophagosome-associated protein filament inside poliovirus-infected human cells.</name>
+        <name>Complex between Spike and nanobody H11-H4 Q98R H100E</name>
         <supramolecule_list>
-            <cell_supramolecule supramolecule_id="1">
-                <name>Autophagosome-associated protein filament inside poliovirus-infected human cells.</name>
+            <complex_supramolecule supramolecule_id="1" chimera="true">
+                <name>Complex between Spike and nanobody H11-H4 Q98R H100E</name>
                 <parent>0</parent>
+                <macromolecule_list>
+                    <macromolecule>
+                        <macromolecule_id>1</macromolecule_id>
+                    </macromolecule>
+                    <macromolecule>
+                        <macromolecule_id>2</macromolecule_id>
+                    </macromolecule>
+                </macromolecule_list>
+                <molecular_weight>
+                    <theoretical units="MDa">0.015</theoretical>
+                </molecular_weight>
+            </complex_supramolecule>
+            <complex_supramolecule supramolecule_id="2" chimera="true">
+                <name>Spike glycoprotein trimer with fibritin tag</name>
+                <parent>1</parent>
+                <macromolecule_list>
+                    <macromolecule>
+                        <macromolecule_id>1</macromolecule_id>
+                    </macromolecule>
+                </macromolecule_list>
                 <natural_source database="NCBI">
-                    <organism ncbi="9606">Homo sapiens</organism>
+                    <organism ncbi="2697049">Severe acute respiratory syndrome coronavirus 2</organism>
                 </natural_source>
-            </cell_supramolecule>
+            </complex_supramolecule>
+            <complex_supramolecule supramolecule_id="3" chimera="true">
+                <name>Nanobody H11-H4 Q98R H100E</name>
+                <parent>1</parent>
+                <macromolecule_list>
+                    <macromolecule>
+                        <macromolecule_id>2</macromolecule_id>
+                    </macromolecule>
+                </macromolecule_list>
+                <natural_source database="NCBI">
+                    <organism ncbi="9844">Lama glama</organism>
+                </natural_source>
+            </complex_supramolecule>
         </supramolecule_list>
+        <macromolecule_list>
+            <protein_or_peptide macromolecule_id="1">
+                <name>Spike glycoprotein,Fibritin</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="10665">Escherichia virus T4</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.13987790599999997</theoretical>
+                </molecular_weight>
+                <number_of_copies>3</number_of_copies>
+                <recombinant_expression database="NCBI">
+                    <recombinant_organism ncbi="9606">Homo sapiens</recombinant_organism>
+                </recombinant_expression>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>MFVFLVLLPLVSSQCVNLTTRTQLPPAYTNSFTRGVYYPDKVFRSSVLHSTQDLFLPFFSNVTWFHAIHVSGTNGTKRFD
+NPVLPFNDGVYFASTEKSNIIRGWIFGTTLDSKTQSLLIVNNATNVVIKVCEFQFCNDPFLGVYYHKNNKSWMESEFRVY
+SSANNCTFEYVSQPFLMDLEGKQGNFKNLREFVFKNIDGYFKIYSKHTPINLVRDLPQGFSALEPLVDLPIGINITRFQT
+LLALHRSYLTPGDSSSGWTAGAAAYYVGYLQPRTFLLKYNENGTITDAVDCALDPLSETKCTLKSFTVEKGIYQTSNFRV
+QPTESIVRFPNITNLCPFGEVFNATRFASVYAWNRKRISNCVADYSVLYNSASFSTFKCYGVSPTKLNDLCFTNVYADSF
+VIRGDEVRQIAPGQTGKIADYNYKLPDDFTGCVIAWNSNNLDSKVGGNYNYLYRLFRKSNLKPFERDISTEIYQAGSTPC
+NGVEGFNCYFPLQSYGFQPTNGVGYQPYRVVVLSFELLHAPATVCGPKKSTNLVKNKCVNFNFNGLTGTGVLTESNKKFL
+PFQQFGRDIADTTDAVRDPQTLEILDITPCSFGGVSVITPGTNTSNQVAVLYQDVNCTEVPVAIHADQLTPTWRVYSTGS
+NVFQTRAGCLIGAEHVNNSYECDIPIGAGICASYQTQTNSPGSASSVASQSIIAYTMSLGAENSVAYSNNSIAIPTNFTI
+SVTTEILPVSMTKTSVDCTMYICGDSTECSNLLLQYGSFCTQLNRALTGIAVEQDKNTQEVFAQVKQIYKTPPIKDFGGF
+NFSQILPDPSKPSKRSFIEDLLFNKVTLADAGFIKQYGDCLGDIAARDLICAQKFNGLTVLPPLLTDEMIAQYTSALLAG
+TITSGWTFGAGAALQIPFAMQMAYRFNGIGVTQNVLYENQKLIANQFNSAIGKIQDSLSSTASALGKLQDVVNQNAQALN
+TLVKQLSSNFGAISSVLNDILSRLDPPEAEVQIDRLITGRLQSLQTYVTQQLIRAAEIRASANLAATKMSECVLGQSKRV
+DFCGKGYHLMSFPQSAPHGVVFLHVTYVPAQEKNFTTAPAICHDGKAHFPREGVFVSNGTHWFVTQRNFYEPQIITTDNT
+FVSGNCDVVIGIVNNTVYDPLQPELDSFKEELDKYFKNHTSPDVDLGDISGINASVVNIQKEIDRLNEVAKNLNESLIDL
+QELGKYEQGSGYIPEAPRDGQAYVRKDGEWVLLSTFLSLLNDIFEAQKIEWHEKHHHHHH</string>
+                </sequence>
+            </protein_or_peptide>
+            <protein_or_peptide macromolecule_id="2">
+                <name>Nanobody H11-H4 Q98R H100E</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="9844">Lama glama</organism>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.014107722999999999</theoretical>
+                </molecular_weight>
+                <number_of_copies>3</number_of_copies>
+                <recombinant_expression database="NCBI">
+                    <recombinant_organism ncbi="562">Escherichia coli</recombinant_organism>
+                </recombinant_expression>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>QVQLVESGGGLMQAGGSLRLSCAVSGRTFSTAAMGWFRQAPGKEREFVAAIRWSGGSAYYADSVKGRFTISRDKAKNTVY
+LQMNSLKYEDTAVYYCARTEYVSYLLSDYATWPYDYWGQGTQVTVSS</string>
+                </sequence>
+            </protein_or_peptide>
+            <ligand macromolecule_id="4">
+                <name>2-acetamido-2-deoxy-beta-D-glucopyranose</name>
+                <molecular_weight>
+                    <theoretical units="MDa">0.000221208</theoretical>
+                </molecular_weight>
+                <number_of_copies>26</number_of_copies>
+                <formula>NAG</formula>
+            </ligand>
+        </macromolecule_list>
     </sample>
     <structure_determination_list>
         <structure_determination structure_determination_id="1">
-            <method>subtomogramAveraging</method>
-            <aggregation_state>cell</aggregation_state>
+            <method>singleParticle</method>
+            <aggregation_state>particle</aggregation_state>
             <specimen_preparation_list>
-                <subtomogram_averaging_preparation preparation_id="1">
+                <single_particle_preparation preparation_id="1">
+                    <concentration units="mg/mL">1</concentration>
                     <buffer>
-                        <ph>7.4</ph>
+                        <ph>8.0</ph>
+                        <component>
+                            <concentration units="mM">10.0</concentration>
+                            <formula>HEPES</formula>
+                            <name>HEPES</name>
+                        </component>
+                        <component>
+                            <concentration units="mM">150.0</concentration>
+                            <formula>NaCl</formula>
+                            <name>Sodium chloride</name>
+                        </component>
                     </buffer>
                     <grid>
-                        <model>UltrAuFoil</model>
+                        <model>Quantifoil R1.2/1.3</model>
                         <material>GOLD</material>
-                        <mesh>300</mesh>
+                        <mesh>200</mesh>
                         <support_film film_type_id="1">
-                            <film_material>GOLD</film_material>
+                            <film_material>CARBON</film_material>
                             <film_topology>HOLEY ARRAY</film_topology>
                         </support_film>
                         <pretreatment>
                             <type>GLOW DISCHARGE</type>
-                            <time units="s">30</time>
+                            <time units="s">120</time>
                             <atmosphere>AIR</atmosphere>
                         </pretreatment>
+                        <details>Grids were glow discharged twice, 60 s each time.</details>
                     </grid>
                     <vitrification>
-                        <cryogen_name>ETHANE-PROPANE</cryogen_name>
+                        <cryogen_name>ETHANE</cryogen_name>
+                        <instrument>FEI VITROBOT MARK IV</instrument>
                     </vitrification>
-                    <details>Cryo-FIB lamellas of HeLa cells grown on EM-grids and infected with poliovirus type 1.</details>
-                </subtomogram_averaging_preparation>
+                </single_particle_preparation>
             </specimen_preparation_list>
             <microscopy_list>
-                <subtomogram_averaging_microscopy microscopy_id="1">
-                    <microscope>FEI TITAN KRIOS</microscope>
+                <single_particle_microscopy microscopy_id="1">
+                    <microscope>TFS KRIOS</microscope>
                     <illumination_mode>FLOOD BEAM</illumination_mode>
                     <imaging_mode>BRIGHT FIELD</imaging_mode>
                     <electron_source>FIELD EMISSION GUN</electron_source>
                     <acceleration_voltage units="kV">300</acceleration_voltage>
                     <c2_aperture_diameter units="µm">70.0</c2_aperture_diameter>
                     <nominal_cs units="mm">2.7</nominal_cs>
-                    <nominal_defocus_min units="µm">3.0</nominal_defocus_min>
-                    <nominal_defocus_max units="µm">4.0</nominal_defocus_max>
-                    <nominal_magnification>33000.0</nominal_magnification>
+                    <nominal_defocus_min units="µm">1.5</nominal_defocus_min>
+                    <nominal_defocus_max units="µm">3.0</nominal_defocus_max>
+                    <nominal_magnification>81000.0</nominal_magnification>
+                    <specimen_holder_model>FEI TITAN KRIOS AUTOGRID HOLDER</specimen_holder_model>
                     <cooling_holder_cryogen>NITROGEN</cooling_holder_cryogen>
                     <alignment_procedure>
-                        <coma_free/>
+                        <zemlin_tableau/>
                     </alignment_procedure>
                     <specialist_optics>
                         <energy_filter>
-                            <name>GIF Bioquantum</name>
+                            <name>GIF Quantum LS</name>
                             <slit_width units="eV">20</slit_width>
                         </energy_filter>
                     </specialist_optics>
+                    <details>EPU auto-function coma free correction</details>
                     <image_recording_list>
                         <image_recording image_recording_id="1">
-                            <film_or_detector_model>GATAN K2 SUMMIT (4k x 4k)</film_or_detector_model>
-                            <detector_mode>SUPER-RESOLUTION</detector_mode>
-                            <average_electron_dose_per_image units="e/Å^2">2.5</average_electron_dose_per_image>
+                            <film_or_detector_model>GATAN K3 BIOQUANTUM (6k x 4k)</film_or_detector_model>
+                            <digitization_details>
+                                <dimensions>
+                                    <width units="pixel">5760</width>
+                                    <height units="pixel">4092</height>
+                                </dimensions>
+                            </digitization_details>
+                            <number_grids_imaged>1</number_grids_imaged>
+                            <average_exposure_time units="s">3.85</average_exposure_time>
+                            <average_electron_dose_per_image units="e/Å^2">50.0</average_electron_dose_per_image>
+                            <details>The images were collected as 50 frame movies</details>
                         </image_recording>
                     </image_recording_list>
-                </subtomogram_averaging_microscopy>
+                </single_particle_microscopy>
             </microscopy_list>
-            <subtomogram_averaging_processing image_processing_id="1">
+            <singleparticle_processing image_processing_id="1">
                 <image_recording_id>1</image_recording_id>
+                <particle_selection>
+                    <number_selected>909790</number_selected>
+                </particle_selection>
+                <startup_model type_of_model="EMDB MAP">
+                    <emdb_id>EMD-21374</emdb_id>
+                </startup_model>
                 <final_reconstruction>
                     <number_classes_used>1</number_classes_used>
                     <applied_symmetry>
                         <point_group>C1</point_group>
                     </applied_symmetry>
-                    <resolution units="Å" res_type="BY AUTHOR">18.5</resolution>
+                    <resolution units="Å" res_type="BY AUTHOR">3.4</resolution>
                     <resolution_method>FSC 0.143 CUT-OFF</resolution_method>
                     <software_list>
                         <software>
-                            <name>subTOM</name>
+                            <name>RELION</name>
+                            <version>3.08</version>
                         </software>
                     </software_list>
-                    <number_subtomograms_used>141855</number_subtomograms_used>
+                    <number_images_used>396910</number_images_used>
                 </final_reconstruction>
-                <extraction>
-                    <number_tomograms>16</number_tomograms>
-                    <number_images_used>55376</number_images_used>
-                </extraction>
-                <final_angle_assignment>
-                    <type>ANGULAR RECONSTITUTION</type>
+                <initial_angle_assignment>
+                    <type>MAXIMUM LIKELIHOOD</type>
                     <software_list>
                         <software>
-                            <name>subTOM</name>
+                            <name>RELION</name>
+                            <version>3.08</version>
                         </software>
+                    </software_list>
+                </initial_angle_assignment>
+                <final_angle_assignment>
+                    <type>MAXIMUM LIKELIHOOD</type>
+                    <software_list>
                         <software>
-                            <name>Dynamo</name>
+                            <name>RELION</name>
+                            <version>3.08</version>
                         </software>
                     </software_list>
                 </final_angle_assignment>
-            </subtomogram_averaging_processing>
+                <final_three_d_classification>
+                    <number_classes>3</number_classes>
+                    <software_list>
+                        <software>
+                            <name>RELION</name>
+                            <version>3.08</version>
+                        </software>
+                    </software_list>
+                </final_three_d_classification>
+            </singleparticle_processing>
         </structure_determination>
     </structure_determination_list>
-    <map format="CCP4" size_kbytes="4001">
-        <file>emd_13682.map.gz</file>
+    <map format="CCP4" size_kbytes="108001">
+        <file>emd_14544.map.gz</file>
         <symmetry>
             <space_group>1</space_group>
         </symmetry>
         <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
         <dimensions>
-            <col>100</col>
-            <row>100</row>
-            <sec>100</sec>
+            <col>300</col>
+            <row>300</row>
+            <sec>300</sec>
         </dimensions>
         <origin>
-            <col>-50</col>
-            <row>-50</row>
-            <sec>-50</sec>
+            <col>0</col>
+            <row>0</row>
+            <sec>0</sec>
         </origin>
         <spacing>
-            <x>100</x>
-            <y>100</y>
-            <z>100</z>
+            <x>300</x>
+            <y>300</y>
+            <z>300</z>
         </spacing>
         <cell>
-            <a units="Å">429.0</a>
-            <b units="Å">429.0</b>
-            <c units="Å">429.0</c>
+            <a units="Å">321.6</a>
+            <b units="Å">321.6</b>
+            <c units="Å">321.6</c>
             <alpha units="deg">90.0</alpha>
             <beta units="deg">90.0</beta>
             <gamma units="deg">90.0</gamma>
@@ -205,52 +365,126 @@
             <slow>Z</slow>
         </axis_order>
         <statistics>
-            <minimum>-0.06239607</minimum>
-            <maximum>0.10313908</maximum>
-            <average>-5.403114e-05</average>
-            <std>0.0073031676</std>
+            <minimum>-0.13394156</minimum>
+            <maximum>0.21614736</maximum>
+            <average>0.00031954265</average>
+            <std>0.004536797</std>
         </statistics>
         <pixel_spacing>
-            <x units="Å">4.29</x>
-            <y units="Å">4.29</y>
-            <z units="Å">4.29</z>
+            <x units="Å">1.072</x>
+            <y units="Å">1.072</y>
+            <z units="Å">1.072</z>
         </pixel_spacing>
         <contour_list>
             <contour primary="true">
-                <level>0.015</level>
+                <level>0.017</level>
                 <source>AUTHOR</source>
             </contour>
         </contour_list>
-        <label>::::EMDATABANK.org::::EMD-13682::::</label>
-        <annotation_details>Autophagosome-associated protein filament</annotation_details>
+        <label>::::EMDATABANK.org::::EMD-14544::::</label>
+        <annotation_details>Sharpened map, output from postprocessing.</annotation_details>
     </map>
     <interpretation>
+        <modelling_list>
+            <modelling>
+                <initial_model>
+                    <access_code>6ZHD</access_code>
+                    <chain>
+                        <chain_id>A</chain_id>
+                        <residue_range>27-1147</residue_range>
+                        <source_name>PDB</source_name>
+                        <initial_model_type>experimental model</initial_model_type>
+                    </chain>
+                    <details>ex</details>
+                </initial_model>
+                <initial_model>
+                    <access_code>6ZHD</access_code>
+                    <chain>
+                        <chain_id>B</chain_id>
+                        <residue_range>27-1147</residue_range>
+                        <source_name>PDB</source_name>
+                        <initial_model_type>experimental model</initial_model_type>
+                    </chain>
+                    <details>ph</details>
+                </initial_model>
+                <initial_model>
+                    <access_code>6ZHD</access_code>
+                    <chain>
+                        <chain_id>C</chain_id>
+                        <residue_range>27-1147</residue_range>
+                        <source_name>PDB</source_name>
+                        <initial_model_type>experimental model</initial_model_type>
+                    </chain>
+                </initial_model>
+                <initial_model>
+                    <access_code>7ZHD</access_code>
+                    <chain>
+                        <chain_id>A</chain_id>
+                        <residue_range>27-1147</residue_range>
+                    </chain>
+                    <details>exep</details>
+                </initial_model>
+                <initial_model>
+                    <access_code>7ZHD</access_code>
+                    <chain>
+                        <chain_id>B</chain_id>
+                        <residue_range>27-1147</residue_range>
+                    </chain>
+                    <details>phep</details>
+                </initial_model>
+                <initial_model>
+                    <access_code>6E1O</access_code>
+                    <chain>
+                        <chain_id>F</chain_id>
+                        <residue_range>31-56</residue_range>
+                        <source_name>AlphaFold</source_name>
+                        <initial_model_type>other</initial_model_type>
+                    </chain>
+                </initial_model>
+                <initial_model>
+                    <access_code>6E1O</access_code>
+                    <chain>
+                        <chain_id>E</chain_id>
+                        <residue_range>78-90</residue_range>
+                        <source_name>AlphaFold</source_name>
+                        <initial_model_type>other</initial_model_type>
+                    </chain>
+                </initial_model>
+                <refinement_protocol>RIGID BODY FIT</refinement_protocol>
+                <refinement_space>RECIPROCAL</refinement_space>
+            </modelling>
+        </modelling_list>
+        <segmentation_list>
+            <segmentation>
+                <file>emd_14544_msk_1.map</file>
+            </segmentation>
+        </segmentation_list>
         <additional_map_list>
-            <additional_map format="CCP4" size_kbytes="4001">
-                <file>emd_13682_additional_1.map.gz</file>
+            <additional_map format="CCP4" size_kbytes="108001">
+                <file>emd_14544_additional_1.map.gz</file>
                 <symmetry>
                     <space_group>1</space_group>
                 </symmetry>
                 <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
                 <dimensions>
-                    <col>100</col>
-                    <row>100</row>
-                    <sec>100</sec>
+                    <col>300</col>
+                    <row>300</row>
+                    <sec>300</sec>
                 </dimensions>
                 <origin>
-                    <col>-50</col>
-                    <row>-50</row>
-                    <sec>-50</sec>
+                    <col>0</col>
+                    <row>0</row>
+                    <sec>0</sec>
                 </origin>
                 <spacing>
-                    <x>100</x>
-                    <y>100</y>
-                    <z>100</z>
+                    <x>300</x>
+                    <y>300</y>
+                    <z>300</z>
                 </spacing>
                 <cell>
-                    <a units="Å">429.0</a>
-                    <b units="Å">429.0</b>
-                    <c units="Å">429.0</c>
+                    <a units="Å">321.6</a>
+                    <b units="Å">321.6</b>
+                    <c units="Å">321.6</c>
                     <alpha units="deg">90.0</alpha>
                     <beta units="deg">90.0</beta>
                     <gamma units="deg">90.0</gamma>
@@ -261,51 +495,104 @@
                     <slow>Z</slow>
                 </axis_order>
                 <statistics>
-                    <minimum>-0.032311346</minimum>
-                    <maximum>0.05726408</maximum>
-                    <average>-5.4031138e-05</average>
-                    <std>0.0044612056</std>
+                    <minimum>-0.10149353</minimum>
+                    <maximum>0.50419664</maximum>
+                    <average>0.0023221371</average>
+                    <std>0.01745419</std>
                 </statistics>
                 <pixel_spacing>
-                    <x units="Å">4.29</x>
-                    <y units="Å">4.29</y>
-                    <z units="Å">4.29</z>
+                    <x units="Å">1.072</x>
+                    <y units="Å">1.072</y>
+                    <z units="Å">1.072</z>
                 </pixel_spacing>
                 <contour_list>
                     <contour primary="true">
                         <source>AUTHOR</source>
                     </contour>
                 </contour_list>
-                <label>::::EMDATABANK.org::::EMD-13682::::</label>
-                <annotation_details>unsharpened map</annotation_details>
+                <label>::::EMDATABANK.org::::EMD-14544::::</label>
+                <annotation_details>Sharpened map, output from LocScale.</annotation_details>
+            </additional_map>
+            <additional_map format="CCP4" size_kbytes="108001">
+                <file>emd_14544_additional_2.map.gz</file>
+                <symmetry>
+                    <space_group>1</space_group>
+                </symmetry>
+                <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
+                <dimensions>
+                    <col>300</col>
+                    <row>300</row>
+                    <sec>300</sec>
+                </dimensions>
+                <origin>
+                    <col>0</col>
+                    <row>0</row>
+                    <sec>0</sec>
+                </origin>
+                <spacing>
+                    <x>300</x>
+                    <y>300</y>
+                    <z>300</z>
+                </spacing>
+                <cell>
+                    <a units="Å">321.6</a>
+                    <b units="Å">321.6</b>
+                    <c units="Å">321.6</c>
+                    <alpha units="deg">90.0</alpha>
+                    <beta units="deg">90.0</beta>
+                    <gamma units="deg">90.0</gamma>
+                </cell>
+                <axis_order>
+                    <fast>X</fast>
+                    <medium>Y</medium>
+                    <slow>Z</slow>
+                </axis_order>
+                <statistics>
+                    <minimum>-0.008487709</minimum>
+                    <maximum>0.043352537</maximum>
+                    <average>0.00015634863</average>
+                    <std>0.0019904554</std>
+                </statistics>
+                <pixel_spacing>
+                    <x units="Å">1.072</x>
+                    <y units="Å">1.072</y>
+                    <z units="Å">1.072</z>
+                </pixel_spacing>
+                <contour_list>
+                    <contour primary="true">
+                        <source>AUTHOR</source>
+                    </contour>
+                </contour_list>
+                <label>::::EMDATABANK.org::::EMD-14544::::</label>
+                <annotation_details>Map from final 3D refinement.</annotation_details>
             </additional_map>
         </additional_map_list>
         <half_map_list>
-            <half_map format="CCP4" size_kbytes="4001">
-                <file>emd_13682_half_map_2.map.gz</file>
+            <half_map format="CCP4" size_kbytes="108001">
+                <file>emd_14544_half_map_1.map.gz</file>
                 <symmetry>
                     <space_group>1</space_group>
                 </symmetry>
                 <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
                 <dimensions>
-                    <col>100</col>
-                    <row>100</row>
-                    <sec>100</sec>
+                    <col>300</col>
+                    <row>300</row>
+                    <sec>300</sec>
                 </dimensions>
                 <origin>
-                    <col>-50</col>
-                    <row>-50</row>
-                    <sec>-50</sec>
+                    <col>0</col>
+                    <row>0</row>
+                    <sec>0</sec>
                 </origin>
                 <spacing>
-                    <x>100</x>
-                    <y>100</y>
-                    <z>100</z>
+                    <x>300</x>
+                    <y>300</y>
+                    <z>300</z>
                 </spacing>
                 <cell>
-                    <a units="Å">429.0</a>
-                    <b units="Å">429.0</b>
-                    <c units="Å">429.0</c>
+                    <a units="Å">321.6</a>
+                    <b units="Å">321.6</b>
+                    <c units="Å">321.6</c>
                     <alpha units="deg">90.0</alpha>
                     <beta units="deg">90.0</beta>
                     <gamma units="deg">90.0</gamma>
@@ -316,49 +603,49 @@
                     <slow>Z</slow>
                 </axis_order>
                 <statistics>
-                    <minimum>-0.032719295</minimum>
-                    <maximum>0.053642742</maximum>
-                    <average>-2.2411554e-05</average>
-                    <std>0.0048729456</std>
+                    <minimum>-0.009391842</minimum>
+                    <maximum>0.04513475</maximum>
+                    <average>0.00015652274</average>
+                    <std>0.0020310385</std>
                 </statistics>
                 <pixel_spacing>
-                    <x units="Å">4.29</x>
-                    <y units="Å">4.29</y>
-                    <z units="Å">4.29</z>
+                    <x units="Å">1.072</x>
+                    <y units="Å">1.072</y>
+                    <z units="Å">1.072</z>
                 </pixel_spacing>
                 <contour_list>
                     <contour primary="true">
                         <source>AUTHOR</source>
                     </contour>
                 </contour_list>
-                <label>::::EMDATABANK.org::::EMD-13682::::</label>
-                <annotation_details>unmasked half map</annotation_details>
+                <label>::::EMDATABANK.org::::EMD-14544::::</label>
+                <annotation_details>Half map from final 3D refinement.</annotation_details>
             </half_map>
-            <half_map format="CCP4" size_kbytes="4001">
-                <file>emd_13682_half_map_1.map.gz</file>
+            <half_map format="CCP4" size_kbytes="108001">
+                <file>emd_14544_half_map_2.map.gz</file>
                 <symmetry>
                     <space_group>1</space_group>
                 </symmetry>
                 <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
                 <dimensions>
-                    <col>100</col>
-                    <row>100</row>
-                    <sec>100</sec>
+                    <col>300</col>
+                    <row>300</row>
+                    <sec>300</sec>
                 </dimensions>
                 <origin>
-                    <col>-50</col>
-                    <row>-50</row>
-                    <sec>-50</sec>
+                    <col>0</col>
+                    <row>0</row>
+                    <sec>0</sec>
                 </origin>
                 <spacing>
-                    <x>100</x>
-                    <y>100</y>
-                    <z>100</z>
+                    <x>300</x>
+                    <y>300</y>
+                    <z>300</z>
                 </spacing>
                 <cell>
-                    <a units="Å">429.0</a>
-                    <b units="Å">429.0</b>
-                    <c units="Å">429.0</c>
+                    <a units="Å">321.6</a>
+                    <b units="Å">321.6</b>
+                    <c units="Å">321.6</c>
                     <alpha units="deg">90.0</alpha>
                     <beta units="deg">90.0</beta>
                     <gamma units="deg">90.0</gamma>
@@ -369,29 +656,24 @@
                     <slow>Z</slow>
                 </axis_order>
                 <statistics>
-                    <minimum>-0.032598644</minimum>
-                    <maximum>0.06088542</maximum>
-                    <average>-1.1672208e-05</average>
-                    <std>0.0050113727</std>
+                    <minimum>-0.008793963</minimum>
+                    <maximum>0.044961315</maximum>
+                    <average>0.00015619697</average>
+                    <std>0.0020307635</std>
                 </statistics>
                 <pixel_spacing>
-                    <x units="Å">4.29</x>
-                    <y units="Å">4.29</y>
-                    <z units="Å">4.29</z>
+                    <x units="Å">1.072</x>
+                    <y units="Å">1.072</y>
+                    <z units="Å">1.072</z>
                 </pixel_spacing>
                 <contour_list>
                     <contour primary="true">
                         <source>AUTHOR</source>
                     </contour>
                 </contour_list>
-                <label>::::EMDATABANK.org::::EMD-13682::::</label>
-                <annotation_details>unmasked half map</annotation_details>
+                <label>::::EMDATABANK.org::::EMD-14544::::</label>
+                <annotation_details>Half map from final 3D refinement.</annotation_details>
             </half_map>
         </half_map_list>
     </interpretation>
-    <validation>
-        <fsc_curve_validation_type>
-            <details>TEST TO CHECK IF IT INCLUDES EM_FSC_CURVES.DETAILS</details>
-        </fsc_curve_validation_type>
-    </validation>
 </emd>
