@@ -190,7 +190,14 @@ _atom_sites.fract_transf_matrix[3][3]   1.000000
 _atom_sites.fract_transf_vector[1]      0.00000 
 _atom_sites.fract_transf_vector[2]      0.00000 
 _atom_sites.fract_transf_vector[3]      0.00000 
-# 
+#
+_em_3d_fitting_list.pdb_entry_id          6e1o
+_em_3d_fitting_list.pdb_chain_id          A
+_em_3d_fitting_list.pdb_residue_range     1-324
+_em_3d_fitting_list.source_name      PDB
+_em_3d_fitting_list.type      experimental model
+_em_3d_fitting_list.details     TEST TO CHECK IF IT INCLUDES EM_FSC_CURVES.DETAILS
+#
 _em_3d_fitting.entry_id          ? 
 _em_3d_fitting.id                1 
 _em_3d_fitting.details           ? 
