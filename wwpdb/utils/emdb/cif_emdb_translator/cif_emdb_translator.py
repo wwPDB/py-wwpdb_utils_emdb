@@ -11039,7 +11039,7 @@ class CifEMDBTranslator(object):
                                         set_initial_model_type(model, model_in)
                                         if model.hasContent_():
                                             modelling.add_initial_model(model)
-                                            
+
                             def set_el_final_model():
                                 """
                                 XSD: <xs:element name="final_model" minOccurs="0"> has
