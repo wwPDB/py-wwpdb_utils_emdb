@@ -10934,7 +10934,7 @@ class CifEMDBTranslator(object):
                                         access_code = get_cif_value("pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         if accession_code is None:
                                             set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                        else:
+                                        if accession_code is not None:
                                             set_cif_value(model.set_access_code, "accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         if accession_code is not None and access_code is not None:
                                             if accession_code != access_code:
@@ -10964,7 +10964,7 @@ class CifEMDBTranslator(object):
                                                 ids = ids_in.split(",")
                                                 for a_id in ids:
                                                     set_cif_value(chain.set_chain_id, "pdb_chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=a_id)
-                                            else:
+                                            if ids_in is None and ch_ids is not None:
                                                 c_ids = ch_ids.split(",")
                                                 for b_id in c_ids:
                                                     set_cif_value(chain.set_chain_id, "chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=b_id)
@@ -10983,7 +10983,7 @@ class CifEMDBTranslator(object):
                                             res_range = get_cif_value("chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             if p_res_range is not None:
                                                 set_cif_value(chain.set_residue_range, "pdb_chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                            else:
+                                            if p_res_range is None and res_range is not None:
                                                 set_cif_value(chain.set_residue_range, "chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             if p_res_range is not None and res_range is not None:
                                                 if p_res_range != res_range:

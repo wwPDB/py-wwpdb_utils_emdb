@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/emdb-empiar/emdb-schemas/blob/master/v3/v3_0_3_0/emdb.xsd" emdb_id="EMD-13682" version="3.0.3.0">
+<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_3_0/emdb.xsd" emdb_id="EMD-13682" version="3.0.3.0">
     <admin>
         <current_status>
             <date>2021-10-06</date>
