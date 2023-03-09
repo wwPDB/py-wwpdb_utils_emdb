@@ -106,7 +106,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.3.0"
+        XML_OUT_VERSION = "3.0.3.1"
 
         # Cif categories
         CITATION = "citation"
@@ -8476,8 +8476,7 @@ class CifEMDBTranslator(object):
                     for sm_in in st_mod_dict_in[ip_id_in]:
                         st_map = emdb.starting_map_type()
                         set_starting_map_type(st_map, sm_in)
-                        if st_map.hasContent_():
-                            im_proc.add_startup_model(st_map)
+                        im_proc.add_startup_model(st_map)
 
                 def set_final_reconstruction(final_rec, ip_id_in, final_dicts):
                     """
