@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.3.0"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.3.1"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -3223,7 +3223,7 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="software_list" type="software_list_type" minOccurs="0"/>
-                            <xs:element name="number_images" type="xs:positiveInteger"/>
+                            <xs:element name="number_images" type="xs:positiveInteger" minOccurs="0"/>
                             <xs:element name="tilt_angle1" minOccurs="0">
                                 <xs:complexType>
                                     <xs:simpleContent>
@@ -3277,7 +3277,7 @@
     </xs:simpleType>
     <xs:complexType name="pdb_model_type">
         <xs:sequence>
-            <xs:element name="pdb_id" type="pdb_code_type"/>
+            <xs:element name="pdb_id" type="pdb_code_type" minOccurs="0"/>
             <xs:element name="chain_id_list" type="chain_type" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
