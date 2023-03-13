@@ -15,25 +15,24 @@ import platform
 import os
 import unittest
 
+try:
+    from unittest.mock import MagicMock, patch
+except ImportError:
+    from mock import MagicMock, patch
+
+from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTranslator  # noqa: E402
+
+
 HERE = os.path.abspath(os.path.dirname(__file__))
 TOPDIR = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 TESTOUTPUT = os.path.join(HERE, "test-output", platform.python_version())
 if not os.path.exists(TESTOUTPUT):
     os.makedirs(TESTOUTPUT)
-mockTopPath = os.path.join(TOPDIR, "wwpdb", "mock-data")
-
-# Must create config file before importing ConfigInfo
-from wwpdb.utils.testing.SiteConfigSetup import SiteConfigSetup  # noqa: E402
-
-SiteConfigSetup().setupEnvironment(TESTOUTPUT, mockTopPath)
-
-#
-from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTranslator  # noqa: E402
 
 
 class ImportTests(unittest.TestCase):
     def setUp(self):
-        self.__inpfile = os.path.join(mockTopPath, "EMD", "emd-0000.cif")
+        self.__inpfile = os.path.join(HERE, "data", "emd-0000.cif")
         self.__outfile = os.path.join(TESTOUTPUT, "emd-0000.xml")
         self.__logfile = os.path.join(TESTOUTPUT, "emd-0000.log")
 
@@ -42,8 +41,12 @@ class ImportTests(unittest.TestCase):
         """Tests simple instantiation"""
         CifEMDBTranslator()
 
-    def testTranslateSuppressed(self):
+    @patch("wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator.ConfigInfoAppEm")
+    def testTranslateSuppressed(self, ciamock):
         """Tests translation of suppressed input"""
+        instance = MagicMock()
+        instance.get_emd_mapping_file_path.return_value = os.path.join(HERE, "data", "emd", "emd_map_v2.cif")
+        ciamock.return_value = instance
 
         # Changed to not specify schema - let system determine
         translator = CifEMDBTranslator()
