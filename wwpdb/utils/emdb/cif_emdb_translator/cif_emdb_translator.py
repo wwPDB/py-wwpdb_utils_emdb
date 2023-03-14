@@ -11265,7 +11265,7 @@ class CifEMDBTranslator(object):
                     set_el_file(fsc, fsc_in)
                     # element 2
                     set_el_details(fsc, fsc_in)
-                    
+
                 validation = emdb.validationType()
                 fsc_list_in = self.cif.get(const.EM_FSC_CURVE, None)
                 for fsc_in in fsc_list_in:
