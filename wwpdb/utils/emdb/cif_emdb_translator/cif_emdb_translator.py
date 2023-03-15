@@ -11239,15 +11239,13 @@ class CifEMDBTranslator(object):
                 4. structure factors
                 Only fsc curve is implemented here???
                 """
-
-                def set_fsc_curve_validation_type(fsc, fsc_in):
+                def set_fsc_curve(fsc, fsc_in):
                     """
                     XSD: <xs:complexType name="fsc_curve_validation_type"> has
                     .. a base validation_type only
                     XSD: <xs:complexType name="validation_type"> has
                     .. 2 elements with pattern for a fsc curve only!!!???
                     """
-
                     def set_el_file(fsc, fsc_in):
                         """
                         XSD: <xs:element name="file">
@@ -11271,7 +11269,8 @@ class CifEMDBTranslator(object):
                 fsc_list_in = self.cif.get(const.EM_FSC_CURVE, None)
                 for fsc_in in fsc_list_in:
                     fsc = emdb.fsc_curve_validation_type()
-                    set_fsc_curve_validation_type(fsc, fsc_in)
+                    fsc.original_tagname_ = "fsc_curve"
+                    set_fsc_curve(fsc, fsc_in)
                     if fsc.hasContent_():
                         validation.add_validation_method(fsc)
                 if validation.hasContent_():

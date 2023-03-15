@@ -23,6 +23,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+data/test/xml_v3_out/
 MANIFEST
 
 # PyInstaller
