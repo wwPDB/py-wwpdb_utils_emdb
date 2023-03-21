@@ -11248,7 +11248,7 @@ class CifEMDBTranslator(object):
                 Only fsc curve is implemented here???
                 """
 
-                def set_fsc_curve(fsc, fsc_in):
+                def set_fsc_curve_validation_type(fsc, fsc_in):
                     """
                     XSD: <xs:complexType name="fsc_curve_validation_type"> has
                     .. a base validation_type only
@@ -11279,8 +11279,7 @@ class CifEMDBTranslator(object):
                 fsc_list_in = self.cif.get(const.EM_FSC_CURVE, None)
                 for fsc_in in fsc_list_in:
                     fsc = emdb.fsc_curve_validation_type()
-                    fsc.original_tagname_ = "fsc_curve"
-                    set_fsc_curve(fsc, fsc_in)
+                    set_fsc_curve_validation_type(fsc, fsc_in)
                     if fsc.hasContent_():
                         validation.add_validation_method(fsc)
                 if validation.hasContent_():
