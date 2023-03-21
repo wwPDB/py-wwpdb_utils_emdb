@@ -11008,7 +11008,6 @@ class CifEMDBTranslator(object):
                                                 self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
                                                 self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
 
-
                                         def set_el_initial_model_type(chain, model_in):
                                             """
                                             XSD: <xs:element name="initial_model_type" type="xs:string"  minOccurs="0" maxOccurs="1">
