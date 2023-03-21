@@ -11000,7 +11000,14 @@ class CifEMDBTranslator(object):
                                             XSD: <xs:element name="source_name" type="xs:string"  minOccurs="0" maxOccurs="1">
                                             CIF: _em_3d_fitting_list.source_name SwissModel
                                             """
+                                            access_code = get_cif_value("pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            sourcename = get_cif_value("source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             set_cif_value(chain.set_source_name, "source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            if sourcename == "PDB" and access_code is None:
+                                                txt = u"Error! Missing PDB ID. If initial model is from PDB, then access code is mandatory."
+                                                self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
+                                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+
 
                                         def set_el_initial_model_type(chain, model_in):
                                             """
@@ -11241,7 +11248,7 @@ class CifEMDBTranslator(object):
                 Only fsc curve is implemented here???
                 """
 
-                def set_fsc_curve_validation_type(fsc, fsc_in):
+                def set_fsc_curve(fsc, fsc_in):
                     """
                     XSD: <xs:complexType name="fsc_curve_validation_type"> has
                     .. a base validation_type only
@@ -11272,7 +11279,8 @@ class CifEMDBTranslator(object):
                 fsc_list_in = self.cif.get(const.EM_FSC_CURVE, None)
                 for fsc_in in fsc_list_in:
                     fsc = emdb.fsc_curve_validation_type()
-                    set_fsc_curve_validation_type(fsc, fsc_in)
+                    fsc.original_tagname_ = "fsc_curve"
+                    set_fsc_curve(fsc, fsc_in)
                     if fsc.hasContent_():
                         validation.add_validation_method(fsc)
                 if validation.hasContent_():
