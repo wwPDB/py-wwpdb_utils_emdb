@@ -710,6 +710,7 @@ class CifEMDBTranslator(object):
             "_em_volume_selection.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_pdbx_database_status.process_site": '<xs:element name="processing_site" minOccurs="0">',
             "_struct.title": '<xs:element name="title" type="xs:token">',
+            "_struct_keywords.text": '<xs:element name="keywords" type="xs:string" minOccurs="0">',
             "_citation.title": '<xs:element name="title" type="xs:token"/>',
             "_citation.journal_full": '<xs:element name="journal" type="xs:token" minOccurs="0"/>',
             "_citation.journal_abbrev": '<xs:element name="journal_abbreviation" type="xs:token"/>',
@@ -1357,7 +1358,7 @@ class CifEMDBTranslator(object):
         @param xml_out_file_name: name of the xml file
         """
         # self.xml_out is the xml object representing conversion from cif
-        if self.xml_out is None or self.xml_out._hasContent() is False:
+        if self.xml_out is None or self.xml_out.hasContent_() is False:
             txt = u"There is no content to write out. No output file will be written."
             self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
             self.log_formatted(self.error_log_string, "(" + self.entry_in_translation_log.id + ")" + self.Constants.REQUIRED_ALERT + txt)
@@ -1814,9 +1815,9 @@ class CifEMDBTranslator(object):
                 for soft_in in category_dict[software_category]:
                     soft = emdb.software_type()
                     set_software_type(software_category, soft, soft_in)
-                    if soft._hasContent():
+                    if soft.hasContent_():
                         soft_list.add_software(soft)
-                if soft_list._hasContent():
+                if soft_list.hasContent_():
                     setter_func(soft_list)
 
         def assert_get_value(key, dic):
@@ -2088,7 +2089,7 @@ class CifEMDBTranslator(object):
                 obsolete_in = make_dict(const.EM_OBSOLETE, "id")
                 obs_list = emdb.obsolete_listType()
                 set_obsolete_list_type(obs_list, obsolete_in)
-                if obs_list._hasContent():
+                if obs_list.hasContent_():
                     admin.set_obsolete_list(obs_list)
 
             def set_el_superseded_by_list(admin):
@@ -2148,7 +2149,7 @@ class CifEMDBTranslator(object):
                 supr_in = make_dict(const.EM_SUPERSEDE, "id")
                 supersede_list = emdb.superseded_by_listType()
                 set_supersede_by_list(supersede_list, supr_in)
-                if supersede_list._hasContent():
+                if supersede_list.hasContent_():
                     admin.set_superseded_by_list(supersede_list)
 
             def set_el_grant_support(admin, aud_sup_in):
@@ -2204,12 +2205,12 @@ class CifEMDBTranslator(object):
                         if el_funding_body is not None:  # or el_code is not None or el_country is not None:
                             grant_ref = emdb.grant_reference_type()
                             set_grant_reference_type(grant_ref, aud_sup)
-                            if grant_ref._hasContent():
+                            if grant_ref.hasContent_():
                                 grant_support.add_grant_reference(grant_ref)
 
                 grant_support = emdb.grant_supportType()
                 set_grant_support_type(grant_support, aud_sup_in)
-                if grant_support._hasContent():
+                if grant_support.hasContent_():
                     admin.set_grant_support(grant_support)
 
             def set_el_contact_author(admin, contact_auth_in):
@@ -2427,7 +2428,7 @@ class CifEMDBTranslator(object):
                 if any(x is not None for x in contact_author_type_list):
                     cont_author = emdb.contact_authorType()
                     set_contact_author_type(cont_author, contact_auth_in)
-                    if cont_author._hasContent():
+                    if cont_author.hasContent_():
                         admin.add_contact_author(cont_author)
 
             def set_el_title(admin):
@@ -2668,7 +2669,7 @@ class CifEMDBTranslator(object):
                             if len(auth_dict[cite_id_in]) > 0:
                                 for auth_in in auth_dict[cite_id_in]:
                                     author = emdb.author_order_type(valueOf_=format_author(auth_in[0]), ORCID=auth_in[2], order=int(auth_in[1]))
-                                    if author._hasContent():
+                                    if author.hasContent_():
                                         pub.add_author(author)
                             else:
                                 txt = u"No authors for citation id (%s) found. At least one is required." % cite_id_in
@@ -3185,7 +3186,7 @@ class CifEMDBTranslator(object):
                             set_ref_el_relationship(emdb_ref, emdb_ref_in)
                             set_ref_el_details(emdb_ref, emdb_ref_in)
 
-                            if emdb_ref._hasContent():
+                            if emdb_ref.hasContent_():
                                 emdb_ref_list.add_emdb_reference(emdb_ref)
 
                     if "EMDB" in rel_entries_dict_in:
@@ -3196,12 +3197,12 @@ class CifEMDBTranslator(object):
                             set_rel_el_relationship(cross_ref, rel_in)
                             set_rel_el_details(cross_ref, rel_in)
 
-                            if cross_ref._hasContent():
+                            if cross_ref.hasContent_():
                                 emdb_ref_list.add_emdb_reference(cross_ref)
 
                 emdb_ref_list = emdb.emdb_cross_reference_list_type()
                 set_emdb_cross_ref_list_type(emdb_ref_list, x_ref_dict_in)
-                if emdb_ref_list._hasContent():
+                if emdb_ref_list.hasContent_():
                     cross_references.set_emdb_list(emdb_ref_list)
 
             def set_el_pdb_list(cross_references, x_ref_dict_in):
@@ -3238,7 +3239,7 @@ class CifEMDBTranslator(object):
                         else:
                             pdb_ref.set_relationship(emdb.relationshipType(other="unknown"))
                             txt = u"The value (unknown) is given to (pdb_ref.set_relationship)."
-                        if pdb_ref._hasContent():
+                        if pdb_ref.hasContent_():
                             pdb_ref_list.add_pdb_reference(pdb_ref)
                             if txt is not None:
                                 self.current_entry_log.warn_logs.append(
@@ -3269,7 +3270,7 @@ class CifEMDBTranslator(object):
                 if "PDB" in x_ref_dict_in:
                     pdb_ref_list = emdb.pdb_cross_reference_list_type()
                     set_pdb_cross_ref_list_type(pdb_ref_list, x_ref_dict_in)
-                    if pdb_ref_list._hasContent():
+                    if pdb_ref_list.hasContent_():
                         cross_references.set_pdb_list(pdb_ref_list)
 
             def set_el_auxiliary_link_list(cross_references):
@@ -3316,9 +3317,9 @@ class CifEMDBTranslator(object):
                 for aux_in in aux_link_list_in:
                     aux = emdb.auxiliary_link_type()
                     set_aux_link_type(aux, aux_in)
-                    if aux._hasContent():
+                    if aux.hasContent_():
                         aux_link_list.add_auxiliary_link(aux)
-                if aux_link_list._hasContent():
+                if aux_link_list.hasContent_():
                     cross_references.set_auxiliary_link_list(aux_link_list)
 
             # element 1
@@ -3699,7 +3700,7 @@ class CifEMDBTranslator(object):
 
                     mol_weight = emdb.molecular_weight_type()
                     set_molecular_weight_type(mol_weight)
-                    if mol_weight._hasContent():
+                    if mol_weight.hasContent_():
                         supra_mol.set_molecular_weight(mol_weight)
 
                 def set_sup_mol_base_source(sup_mol, cif_category, src_in):
@@ -3786,7 +3787,7 @@ class CifEMDBTranslator(object):
                         if flags_dict["add_cellular_location"]:
                             set_el_cellular_location(nat_src, cif_category, sup_mol_nat_src_in)
 
-                        if nat_src._hasContent():
+                        if nat_src.hasContent_():
                             if flags_dict["add_nat_src"]:
                                 sup_mol.add_natural_source(nat_src)
                             else:
@@ -3810,7 +3811,7 @@ class CifEMDBTranslator(object):
                             for rec_exp_in in rec_exp_dict_in[sup_mol_id_in]:
                                 r_exp = emdb.recombinant_source_type()
                                 set_recombinant_source_type(r_exp, rec_exp_in)
-                                if r_exp._hasContent():
+                                if r_exp.hasContent_():
                                     if add_rec_exp is False:
                                         if virus is False:
                                             sup_mol.set_recombinant_expression(r_exp)
@@ -3921,7 +3922,7 @@ class CifEMDBTranslator(object):
                                 txt = u"Macromolecule (%s) added to the list of macromolecules." % int(m_in)  # pylint: disable=undefined-loop-variable
                                 self.current_entry_log.info_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.info_title + txt))
                                 self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
-                                if macro_list._hasContent():
+                                if macro_list.hasContent_():
                                     sup_mol.set_macromolecule_list(macro_list)
                             else:
                                 txt = u"No macromolecule found for (%s)." % id_list_item
@@ -4116,7 +4117,7 @@ class CifEMDBTranslator(object):
 
                             virus_name = emdb.virus_species_name_type()
                             set_virus_species_name_type(virus_name)
-                            if virus_name._hasContent():
+                            if virus_name.hasContent_():
                                 virus_sup_mol.set_sci_species_name(virus_name)
 
                         def set_el_sci_species_strain(virus_sup_mol, nat_src_in):
@@ -4206,7 +4207,7 @@ class CifEMDBTranslator(object):
                                     if any(x is not None for x in [attr_ncbi, organism]):
                                         nat_host = emdb.virus_host_type()
                                         set_virus_natural_host_type(nat_host, nat_host_in)
-                                        if nat_host._hasContent():
+                                        if nat_host.hasContent_():
                                             virus_sup_mol.add_natural_host(nat_host)
 
                         def set_el_host_system(virus_sup_mol, sup_mol_id_in, rec_exp_dict_in):
@@ -4272,7 +4273,7 @@ class CifEMDBTranslator(object):
                                     # element 3
                                     set_el_triangulation(virus_shell, vs_in)
 
-                                    if virus_shell._hasContent():
+                                    if virus_shell.hasContent_():
                                         virus_sup_mol.add_virus_shell(virus_shell)
 
                         def set_el_virus_type(virus_sup_mol, virus_in):
@@ -4619,27 +4620,27 @@ class CifEMDBTranslator(object):
                                     if sup_type in ["RIBOSOME", "COMPLEX"]:
                                         complex_sup_mol = emdb.complex_supramolecule_type()
                                         set_complex_supramolecule_type(complex_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
-                                        if complex_sup_mol._hasContent():
+                                        if complex_sup_mol.hasContent_():
                                             sup_list.add_supramolecule(complex_sup_mol)
                                     elif sup_type == "VIRUS":
                                         virus_sup_mol = emdb.virus_supramolecule_type()
                                         set_virus_supramolecule_type(virus_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
-                                        if virus_sup_mol._hasContent():
+                                        if virus_sup_mol.hasContent_():
                                             sup_list.add_supramolecule(virus_sup_mol)
                                     elif sup_type == "ORGANELLE OR CELLULAR COMPONENT":
                                         org_or_cell_sup_mol = emdb.organelle_or_cellular_component_supramolecule_type()
                                         set_orgorcell_supmol_type(org_or_cell_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
-                                        if org_or_cell_sup_mol._hasContent():
+                                        if org_or_cell_sup_mol.hasContent_():
                                             sup_list.add_supramolecule(org_or_cell_sup_mol)
                                     elif sup_type == "TISSUE":
                                         tissue_sup_mol = emdb.tissue_supramolecule_type()
                                         set_tissue_supramolecule_type(tissue_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
-                                        if tissue_sup_mol._hasContent():
+                                        if tissue_sup_mol.hasContent_():
                                             sup_list.add_supramolecule(tissue_sup_mol)
                                     elif sup_type == "CELL":
                                         cell_sup_mol = emdb.cell_supramolecule_type()
                                         set_cell_supramolecule_type(cell_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
-                                        if cell_sup_mol._hasContent():
+                                        if cell_sup_mol.hasContent_():
                                             sup_list.add_supramolecule(cell_sup_mol)
                                     else:
                                         txt = u"Supramolecule type not implemented. (_em_entity_assembly.type) is (%s)" % sup_type
@@ -4896,7 +4897,7 @@ class CifEMDBTranslator(object):
                     if ent_src_dict is not None and cif_category is not None:
                         mol_src_dict = {"add_organ": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
                         nat_src = make_mol_src(cif_category, ent_src_dict, mol_src_dict)
-                        if nat_src._hasContent():
+                        if nat_src.hasContent_():
                             mol.set_natural_source(nat_src)
 
                 def set_base_mol_with_dict(mol, ent_in, ent_id_in, mol_dicts):
@@ -5080,7 +5081,7 @@ class CifEMDBTranslator(object):
                             for rel_in in ent_ref_list_in:
                                 cross_ref = emdb.external_referencesType()
                                 set_external_references_type(cross_ref, rel_in)
-                                if cross_ref._hasContent():
+                                if cross_ref.hasContent_():
                                     seq.add_external_references(cross_ref)
 
                     seq = emdb.sequenceType()
@@ -5091,7 +5092,7 @@ class CifEMDBTranslator(object):
                     # element 3
                     set_el_external_references(seq, ent_id_in, ent_ref_dict)
 
-                    if seq._hasContent():
+                    if seq.hasContent_():
                         mol.set_sequence(seq)
 
                 def set_mol_rec_exp(mol, ent_id_in, mol_rec_exp_dict):
@@ -5112,7 +5113,7 @@ class CifEMDBTranslator(object):
                             r_exp_in = mol_rec_exp_dict[ent_id_in]
                             r_exp = emdb.recombinant_source_type()
                             set_recombinant_source_type(r_exp, r_exp_in)
-                            if r_exp._hasContent():
+                            if r_exp.hasContent_():
                                 mol.set_recombinant_expression(r_exp)
                     else:
                         txt = u"The dictionary for recombinant expression for macromolecule id (%s) not found." % ent_id_in
@@ -5190,7 +5191,7 @@ class CifEMDBTranslator(object):
                         if flags_dict["add_cellular_location"]:
                             set_el_cellular_location(syn_src, cif_category, mol_syn_src_in)
 
-                        if syn_src._hasContent():
+                        if syn_src.hasContent_():
                             if flags_dict["add_syn_src"]:
                                 mol.add_synthetic_source(syn_src)
                             else:
@@ -5608,7 +5609,7 @@ class CifEMDBTranslator(object):
                         set_ligand_macromolecule_type(lig_mol, ent_in, ent_id_in, src_dicts)
                         mol_list.add_macromolecule(lig_mol)
 
-                    if mol_list._hasContent():
+                    if mol_list.hasContent_():
                         sample.set_macromolecule_list(mol_list)
 
             # element 1
@@ -5808,7 +5809,7 @@ class CifEMDBTranslator(object):
                     set_el_material(stain, stain_in)
                     # element 3
                     set_el_details(stain, stain_in)
-                    if stain._hasContent():
+                    if stain.hasContent_():
                         specimen.set_staining(stain)
 
             def set_el_sugar_embedding(specimen, sp_id_in, embed_dict_in):
@@ -5848,7 +5849,7 @@ class CifEMDBTranslator(object):
                     if any(x is not None for x in [el_material, el_details]):
                         embed = emdb.sugar_embeddingType()
                         set_sugar_embedding_type(embed, embed_in)
-                        if embed._hasContent():
+                        if embed.hasContent_():
                             specimen.set_sugar_embedding(embed)
 
             def set_el_shadowing(specimen, sp_id_in, shadow_dict_in):
@@ -5922,7 +5923,7 @@ class CifEMDBTranslator(object):
                     if any(x is not None for x in [el_material, el_angle, el_thickness, el_details]):
                         shadow = emdb.shadowingType()
                         set_shadowing_type(shadow)
-                        if shadow._hasContent():
+                        if shadow.hasContent_():
                             specimen.set_shadowing(shadow)
 
             def set_el_grid(specimen, sp_id_in, grid_dict_in, film_dict_in, pretreat_dict_in):
@@ -6143,7 +6144,7 @@ class CifEMDBTranslator(object):
                     grid_in = grid_dict_in[sp_id_in]
                     grid = emdb.grid_type()
                     set_grid_type(grid, film_dict_in, pretreat_dict_in)
-                    if grid._hasContent():
+                    if grid.hasContent_():
                         specimen.set_grid(grid)
 
             def set_el_vitrification(specimen, sp_id_in, vitr_dict_in):
@@ -6286,7 +6287,7 @@ class CifEMDBTranslator(object):
                     vitr_in = vitr_dict_in[sp_id_in]
                     vitr = emdb.vitrification_type()
                     set_vitrification_type(vitr, vitr_in)
-                    if vitr._hasContent():
+                    if vitr.hasContent_():
                         specimen.set_vitrification(vitr)
 
             def set_el_details(specimen, spec_prep_in):
@@ -6386,9 +6387,9 @@ class CifEMDBTranslator(object):
                     for fid_in in fid_list_in:
                         fid = emdb.fiducial_marker_type()
                         set_fiducial_marker_type(fid, fid_in)
-                        if fid._hasContent():
+                        if fid.hasContent_():
                             fid_list.add_fiducial_marker(fid)
-                    if fid_list._hasContent():
+                    if fid_list.hasContent_():
                         tom_prep.set_fiducial_markers_list(fid_list)
 
             def set_el_high_pressure_freezing(tom_prep, tom_id_in, h_pfdict_in):
@@ -6449,7 +6450,7 @@ class CifEMDBTranslator(object):
                     if any(x is not None for x in [el_instrument, el_details]):
                         h_pf = emdb.high_pressure_freezingType()
                         set_high_pressure_freezing_type(h_pf, h_pf_in)
-                        if h_pf._hasContent():
+                        if h_pf.hasContent_():
                             tom_prep.set_high_pressure_freezing(h_pf)
 
             def set_el_embedding_material():
@@ -6677,13 +6678,13 @@ class CifEMDBTranslator(object):
                         u_tome_in = u_tome_dict_in[tom_id_in]
                         u_tome = emdb.ultramicrotomyType()
                         set_ultramicrotomy_type(u_tome)
-                        if u_tome._hasContent():
+                        if u_tome.hasContent_():
                             tom_prep.set_sectioning(emdb.sectioningType(ultramicrotomy=u_tome))
                     elif sec_in == "FOCUSED ION BEAM" and tom_id_in in fib_dict_in:
                         fib_in = fib_dict_in[tom_id_in]
                         fib = emdb.focused_ion_beamType()
                         set_focused_ion_beam_type(fib)
-                        if fib._hasContent():
+                        if fib.hasContent_():
                             tom_prep.set_sectioning(emdb.sectioningType(focused_ion_beam=fib))
                     elif sec_in == "NO SECTIONING":
                         # XSD: choice 3: <xs:element name="other_sectioning" type="xs:string"/>
@@ -6816,7 +6817,7 @@ class CifEMDBTranslator(object):
                 cryst_in = cryst_dict_in[sp_id_in]
                 cryst = emdb.crystal_formationType()
                 set_crystal_formation_type(cryst)
-                if cryst._hasContent():
+                if cryst.hasContent_():
                     cryst_prep.set_crystal_formation(cryst)
 
         def set_classification(ip_id_in, final_class_dict_in, cat_soft_dict_in):
@@ -7195,7 +7196,7 @@ class CifEMDBTranslator(object):
 
                             eng_flt = emdb.energy_filterType()
                             set_energy_filter_type(eng_flt, sp_op_in)
-                            if eng_flt._hasContent():
+                            if eng_flt.hasContent_():
                                 sp_op.set_energy_filter(eng_flt)
 
                         def set_el_details(sp_op, sp_op_in):
@@ -7472,10 +7473,10 @@ class CifEMDBTranslator(object):
                         for im_rec_in in im_rec_list_in:
                             im_rec = emdb.image_recordingType()
                             set_image_recording_type(im_rec, im_rec_in, im_dig_dict_in)
-                            if im_rec._hasContent():
+                            if im_rec.hasContent_():
                                 im_rec_list.add_image_recording(im_rec)
 
-                        if im_rec_list._hasContent():
+                        if im_rec_list.hasContent_():
                             mic.set_image_recording_list(im_rec_list)
 
                 def set_base_microscopy(mic_in, mic, mic_id):
@@ -7864,7 +7865,7 @@ class CifEMDBTranslator(object):
                             CIF:
                             """
                             axis1 = get_tilt_axis(ts_in, axis1=True)
-                            if axis1._hasContent():
+                            if axis1.hasContent_():
                                 set_cif_value(tilt_ser.set_axis1, axis1)
 
                         def set_el_axis2(tilt_ser, ts_in):
@@ -7875,7 +7876,7 @@ class CifEMDBTranslator(object):
                             CIF:
                             """
                             axis2 = get_tilt_axis(ts_in, axis1=False)
-                            if axis2._hasContent():
+                            if axis2.hasContent_():
                                 set_cif_value(tilt_ser.set_axis2, axis2)
 
                         def set_el_axis_rotation(tilt_ser, ts_in):
@@ -7906,7 +7907,7 @@ class CifEMDBTranslator(object):
                         for ts_in in tilt_list_in:
                             tilt_ser = emdb.tilt_series_type()
                             set_tilt_series_type(tilt_ser, ts_in)
-                            if tilt_ser._hasContent():
+                            if tilt_ser.hasContent_():
                                 mic.add_tilt_series(tilt_ser)
 
                 def set_cryst_mic_specifics(mic_id, cryst_mic):
@@ -7950,7 +7951,7 @@ class CifEMDBTranslator(object):
                             for tilt_in in tilt_list_in:
                                 # XSD: <xs:element name="tilt_list" minOccurs="1">
                                 tilt_list.add_angle(float(tilt_in))
-                            if tilt_list._hasContent():
+                            if tilt_list.hasContent_():
                                 cryst_mic.set_tilt_list(tilt_list)
                                 # choice 2 (IS THIS NECESSARY ????????????)
                                 # XSD: <xs:element name="tilt_series"
@@ -8104,7 +8105,7 @@ class CifEMDBTranslator(object):
 
                     part_sel = emdb.particle_selection_type()
                     set_particle_selection_type(part_sel)
-                    if part_sel._hasContent():
+                    if part_sel.hasContent_():
                         im_proc.add_particle_selection(part_sel)
 
                 def set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in):
@@ -8240,7 +8241,7 @@ class CifEMDBTranslator(object):
 
                     ctf_corr = emdb.ctf_correction_type()
                     set_ctf_correction_type(ctf_corr)
-                    if ctf_corr._hasContent():
+                    if ctf_corr.hasContent_():
                         im_proc.set_ctf_correction(ctf_corr)
 
                 def set_startup_model(ip_id_in, im_proc, st_mod_dict_in):
@@ -8430,7 +8431,7 @@ class CifEMDBTranslator(object):
                                 if el_pdb_id is not None:
                                     pdb_mt = emdb.pdb_model_type()
                                     set_pdb_model_type(pdb_mt)
-                                    if pdb_mt._hasContent():
+                                    if pdb_mt.hasContent_():
                                         st_map.set_pdb_model(pdb_mt)
 
                             def set_choice_insilico_model(st_map, sm_in):
@@ -8451,12 +8452,12 @@ class CifEMDBTranslator(object):
                             if t_of_m == "RANDOM CONICAL TILT":
                                 rct = emdb.random_conical_tiltType()
                                 set_choice_random_conical_tilt(rct, sm_in)
-                                if rct._hasContent():
+                                if rct.hasContent_():
                                     st_map.set_random_conical_tilt(rct)
                             elif t_of_m == "ORTHOGONAL TILT":
                                 orth_tilt = emdb.orthogonal_tiltType()
                                 set_choice_orthogonal_tilt(orth_tilt, sm_in)
-                                if orth_tilt._hasContent():
+                                if orth_tilt.hasContent_():
                                     st_map.set_orthogonal_tilt(orth_tilt)
                             elif t_of_m == "EMDB MAP":
                                 set_choice_emdb_id(st_map, sm_in)
@@ -8585,7 +8586,7 @@ class CifEMDBTranslator(object):
 
                                 h_sym = emdb.helical_parameters_type()
                                 set_helical_parameters_type(h_sym, h_sym_in)
-                                if h_sym._hasContent():
+                                if h_sym.hasContent_():
                                     app_sym.set_helical_parameters(h_sym)
 
                             p_sym_dict_in = final_dicts["p_sym_dict_in"]
@@ -8607,7 +8608,7 @@ class CifEMDBTranslator(object):
                         if sym_type_in is not None:
                             app_sym = emdb.applied_symmetry_type()
                             set_applied_symmetry_type(app_sym, final_dicts)
-                            if app_sym._hasContent():
+                            if app_sym.hasContent_():
                                 final_rec.set_applied_symmetry(app_sym)
 
                     def set_el_algorithm(final_rec, final_rec_in):
@@ -8789,11 +8790,11 @@ class CifEMDBTranslator(object):
                             order = get_cif_value("order", const.EM_EULER_ANGLE_ASSIGNMENT, ang_in)
                             if order == "INITIAL" and em_method == const.EMM_SP:
                                 set_software_list(const.SOFT_INITIAL_EULER_ASSIGNMENT, cat_soft_dict_in, ang.set_software_list)
-                                if ang._hasContent():
+                                if ang.hasContent_():
                                     im_proc.set_initial_angle_assignment(ang)
                             elif order == "FINAL":
                                 set_software_list(const.SOFT_FINAL_EULER_ASSIGNMENT, cat_soft_dict_in, ang.set_software_list)
-                                if ang._hasContent():
+                                if ang.hasContent_():
                                     im_proc.set_final_angle_assignment(ang)
 
                         def set_el_details(ang, ang_in):
@@ -8927,7 +8928,7 @@ class CifEMDBTranslator(object):
 
                             u_cell = emdb.unit_cell_type()
                             set_unit_cell_type(u_cell, cryst_in, dict_category, parent_req)
-                            if u_cell._hasContent():
+                            if u_cell.hasContent_():
                                 cryst.set_unit_cell(u_cell)
 
                         def set_choice_plane_group():
@@ -8971,7 +8972,7 @@ class CifEMDBTranslator(object):
                     if any(x is not None for x in crystal_parameters_type_list):
                         cryst = emdb.crystal_parameters_type()
                         set_crystal_parameters_type(cryst, cryst_in, dict_category, parent_req)
-                        if cryst._hasContent():
+                        if cryst.hasContent_():
                             im_proc.set_crystal_parameters(cryst)
 
                 def set_non_sub_tom_final_recon(ip_id_in, im_proc, non_st_dicts):
@@ -9094,7 +9095,7 @@ class CifEMDBTranslator(object):
                         cat_soft_dict_in = sp_dict_list["cat_soft_dict_in"]
                         if ip_id_in in final_2d_class_dict_in:
                             f2dc = set_classification(ip_id_in, final_2d_class_dict_in, cat_soft_dict_in)
-                            if f2dc._hasContent():
+                            if f2dc.hasContent_():
                                 im_proc.set_final_two_d_classification(f2dc)
 
                     def set_el_final_three_d_class(ip_id_in, im_proc, sp_dict_list):
@@ -9105,7 +9106,7 @@ class CifEMDBTranslator(object):
                         cat_soft_dict_in = sp_dict_list["cat_soft_dict_in"]
                         if ip_id_in in final_class_dict_in:
                             f3dc = set_classification(ip_id_in, final_class_dict_in, cat_soft_dict_in)
-                            if f3dc._hasContent():
+                            if f3dc.hasContent_():
                                 im_proc.set_final_three_d_classification(f3dc)
 
                     # element 1
@@ -9251,7 +9252,7 @@ class CifEMDBTranslator(object):
                             vs_in = vol_sel_dict_in[ip_id_in]
                             extraction = emdb.extractionType()
                             set_extraction_type(extraction, vs_in, subtom_dicts)
-                            if extraction._hasContent():
+                            if extraction.hasContent_():
                                 im_proc.set_extraction(extraction)
 
                     def set_el_ctf_correction(im_proc, ip_id_in, subtom_dicts):
@@ -9276,7 +9277,7 @@ class CifEMDBTranslator(object):
                         cat_soft_dict_in = subtom_dicts["cat_soft_dict_in"]
                         if ip_id_in in final_class_dict_in:
                             f3dc = set_classification(ip_id_in, final_class_dict_in, cat_soft_dict_in)
-                            if f3dc._hasContent():
+                            if f3dc.hasContent_():
                                 im_proc.set_final_three_d_classification(f3dc)
 
                     def set_el_final_angle_assignment(im_proc, subtom_dicts, em_method):
@@ -9440,7 +9441,7 @@ class CifEMDBTranslator(object):
                             for ps_in in ps_list_in:
                                 seg_sel = emdb.segment_selection_type()
                                 set_segment_selection_type(seg_sel, ps_in)
-                                if seg_sel._hasContent():
+                                if seg_sel.hasContent_():
                                     im_proc.add_segment_selection(seg_sel)
 
                     def set_el_refinement(im_proc):
@@ -9461,7 +9462,7 @@ class CifEMDBTranslator(object):
 
                         refinement = emdb.refinement_type()
                         set_refinement_type()
-                        if refinement._hasContent():
+                        if refinement.hasContent_():
                             im_proc.set_refinement(refinement)
 
                     def set_el_startup_model(im_proc, ip_id_in, hel_dict_list):
@@ -9489,7 +9490,7 @@ class CifEMDBTranslator(object):
 
                         lay_lines = emdb.layer_lines_type()
                         set_layer_lines_type()
-                        if lay_lines._hasContent():
+                        if lay_lines.hasContent_():
                             im_proc.set_helical_layer_lines(lay_lines)
 
                     def set_el_initial_angle_assignment():
@@ -9638,7 +9639,7 @@ class CifEMDBTranslator(object):
 
                         mol_repl = emdb.molecular_replacement_type()
                         set_molecular_replacement_type(mol_repl, cryst_dicts)
-                        if mol_repl._hasContent():
+                        if mol_repl.hasContent_():
                             im_proc.set_molecular_replacement(mol_repl)
 
                     def set_el_lat_dist_corr_soft_list(im_proc, cryst_dicts):
@@ -9896,9 +9897,9 @@ class CifEMDBTranslator(object):
                                             if any(x is not None for x in shell_type_list):
                                                 shell = emdb.shellType()
                                                 set_shell_type(shell, cs_in)
-                                                if shell._hasContent():
+                                                if shell.hasContent_():
                                                     cry_shell_list.add_shell(shell)
-                                        if cry_shell_list._hasContent():
+                                        if cry_shell_list.hasContent_():
                                             cry_stats.set_shell_list(cry_shell_list)
 
                             def set_el_details(cry_stats, cry_stats_in):
@@ -9936,7 +9937,7 @@ class CifEMDBTranslator(object):
                             cry_stats_in = cry_stats_dict_in[ip_id_in]
                             cry_stats = emdb.crystallography_statistics_type()
                             set_cryst_statistics_type(cry_stats, cry_stats_in)
-                            if cry_stats._hasContent():
+                            if cry_stats.hasContent_():
                                 im_proc.set_crystallography_statistics(cry_stats)
 
                     # element 1
@@ -10238,7 +10239,7 @@ class CifEMDBTranslator(object):
 
                     app_sym = emdb.applied_symmetry_type()
                     set_applied_symmetry_type(app_sym)
-                    if app_sym._hasContent():
+                    if app_sym.hasContent_():
                         em_map.set_symmetry(app_sym)
 
                 def set_el_data_type(em_map, map_in):
@@ -10289,7 +10290,7 @@ class CifEMDBTranslator(object):
 
                     dim = emdb.integer_vector_map_type()
                     set_integer_vector_map_type(dim, map_in)
-                    if dim._hasContent():
+                    if dim.hasContent_():
                         em_map.set_dimensions(dim)
 
                 def set_el_origin(em_map, map_in):
@@ -10674,9 +10675,9 @@ class CifEMDBTranslator(object):
                     cntr_list = emdb.contour_listType()
                     cntr = emdb.contourType()
                     set_contour_type(cntr, map_in)
-                    if cntr._hasContent():
+                    if cntr.hasContent_():
                         cntr_list.add_contour(cntr)
-                    if cntr_list._hasContent():
+                    if cntr_list.hasContent_():
                         em_map.set_contour_list(cntr_list)
 
                 def set_el_label(em_map, map_in):
@@ -10886,7 +10887,7 @@ class CifEMDBTranslator(object):
                     self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                 else:
                     em_map = make_map(pr_map_list_in[0], get_canonical_map_name(pr_map_list_in[0], "PRIMARY"))
-                    if em_map._hasContent():
+                    if em_map.hasContent_():
                         self.xml_out.set_map(em_map)
                     else:
                         txt = u"No information given for the primary map."
@@ -11022,7 +11023,7 @@ class CifEMDBTranslator(object):
                                         set_el_numofcps_in_final_model(chain, model_in)
                                         set_el_source_name(chain, model_in)
                                         set_el_initial_model_type(chain, model_in)
-                                        if chain._hasContent():
+                                        if chain.hasContent_():
                                             model.set_chain(chain)
 
                                     def set_el_details(model, model_in):
@@ -11041,7 +11042,7 @@ class CifEMDBTranslator(object):
                                     for model_in in model_dict_in[modelling_id_in]:
                                         model = emdb.initial_modelType()
                                         set_initial_model_type(model, model_in)
-                                        if model._hasContent():
+                                        if model.hasContent_():
                                             modelling.add_initial_model(model)
 
                             def set_el_final_model():
@@ -11125,9 +11126,9 @@ class CifEMDBTranslator(object):
                             modelling_id_in = get_cif_value(const.K_ID, const.EM_3D_FITTING, modelling_in)
                             modelling = emdb.modelling_type()
                             set_modelling_type(modelling, modelling_in, cat_soft_dict_in)
-                            if modelling._hasContent():
+                            if modelling.hasContent_():
                                 modelling_list.add_modelling(modelling)
-                        if modelling_list._hasContent():
+                        if modelling_list.hasContent_():
                             intrp.set_modelling_list(modelling_list)
 
                     def set_el_figure_list():
@@ -11179,11 +11180,11 @@ class CifEMDBTranslator(object):
                         seg_list = emdb.segmentation_listType()
                         for msk_in in mask_list_in:
                             msk = make_map(msk_in, get_canonical_map_name(msk_in, "MASK"))
-                            if msk._hasContent():
+                            if msk.hasContent_():
                                 seg = emdb.segmentationType()
                                 set_segmentation_type(seg, msk)
                                 seg_list.add_segmentation(seg)
-                        if seg_list._hasContent():
+                        if seg_list.hasContent_():
                             intrp.set_segmentation_list(seg_list)
 
                     def set_el_slices_list():
@@ -11200,9 +11201,9 @@ class CifEMDBTranslator(object):
                         add_map_list = emdb.additional_map_listType()
                         for add_map_in in add_map_list_in:
                             add_map = make_map(add_map_in, get_canonical_map_name(add_map_in, "ADDMAP"))
-                            if add_map._hasContent():
+                            if add_map.hasContent_():
                                 add_map_list.add_additional_map(add_map)
-                        if add_map_list._hasContent():
+                        if add_map_list.hasContent_():
                             intrp.set_additional_map_list(add_map_list)
 
                     def set_el_half_map_list(intrp, map_dict_in):
@@ -11213,9 +11214,9 @@ class CifEMDBTranslator(object):
                         hf_map_list = emdb.half_map_listType()
                         for hf_map_in in hf_map_list_in:
                             hf_map = make_map(hf_map_in, get_canonical_map_name(hf_map_in, "HALFMAP"))
-                            if hf_map._hasContent():
+                            if hf_map.hasContent_():
                                 hf_map_list.add_half_map(hf_map)
-                        if hf_map_list._hasContent():
+                        if hf_map_list.hasContent_():
                             intrp.set_half_map_list(hf_map_list)
 
                     # element 1
@@ -11234,7 +11235,7 @@ class CifEMDBTranslator(object):
                 map_dict_in = make_list_of_dicts(const.EM_MAP, "type")
                 intrp = emdb.interpretation_type()
                 set_interpretation_type(intrp, map_dict_in)
-                if intrp._hasContent():
+                if intrp.hasContent_():
                     self.xml_out.set_interpretation(intrp)
 
             def set_el_validation():
@@ -11279,9 +11280,9 @@ class CifEMDBTranslator(object):
                     fsc = emdb.fsc_curve_validation_type()
                     fsc.original_tagname_ = "fsc_curve"
                     set_fsc_curve(fsc, fsc_in)
-                    if fsc._hasContent():
+                    if fsc.hasContent_():
                         validation.add_validation_method(fsc)
-                if validation._hasContent():
+                if validation.hasContent_():
                     self.xml_out.set_validation(validation)
 
             # attribute 1
