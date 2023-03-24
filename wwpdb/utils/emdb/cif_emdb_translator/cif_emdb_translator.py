@@ -2567,7 +2567,7 @@ class CifEMDBTranslator(object):
             set_el_details()
             # element 12
             keywords_in = make_dict(const.STRUCT_KEYWORDS, "entry_id")
-            for keywords_in_key, key_words in keywords_in.items():
+            for key_words in keywords_in.values():
                 pdbx_keywords = get_cif_value("text", const.STRUCT_KEYWORDS, cif_list=key_words)
                 if pdbx_keywords is not None:
                     set_el_keywords(admin, key_words)
