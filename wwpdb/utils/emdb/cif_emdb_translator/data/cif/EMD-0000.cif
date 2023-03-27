@@ -33,7 +33,7 @@ WWPDB D_1292118478 ? ?
 EMDB  EMD-13682    ? ? 
 # 
 _struct_keywords.entry_id        D_1292118478 
-_struct_keywords.text            'virus, autophagy, membrane, CYTOSOLIC PROTEIN' 
+_struct_keywords.text            'virus, autophagy, membrane, CYTOSOLIC PROTEIN'
 _struct_keywords.pdbx_keywords   'CYTOSOLIC PROTEIN' 
 _struct_keywords.pdbx_details    ? 
 # 

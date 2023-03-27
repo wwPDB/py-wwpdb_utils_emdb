@@ -106,7 +106,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.3.0"
+        XML_OUT_VERSION = "3.0.3.2"
 
         # Cif categories
         CITATION = "citation"
@@ -186,6 +186,7 @@ class CifEMDBTranslator(object):
         PDBX_AUDIT_SUPPORT = "pdbx_audit_support"
         PDBX_CONTACT_AUTHOR = "pdbx_contact_author"
         STRUCT = "struct"
+        STRUCT_KEYWORDS = "struct_keywords"
         PDBX_DICT_ITEM_MAPPING = "pdbx_dict_item_mapping"
 
         # Keys
@@ -615,6 +616,7 @@ class CifEMDBTranslator(object):
             "_em_admin.last_update": '<xs:element name="update" type="xs:date">',  # noqa: F601 pylint: disable=duplicate-key
             "_em_admin.title": '<xs:element name="title" type="xs:token">',
             "_em_admin.details": '<xs:element name="details" type="xs:token" minOccurs="0">',
+            "_em_admin.keywords": '<xs:element name="keywords" type="xs:token" minOccurs="0">',
             "_em_euler_angle_assignment.type": '<xs:element name="type">',
             "_em_euler_angle_assignment.proj_matching_num_projections": '<xs:element name="number_reference_projections" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_euler_angle_assignment.proj_matching_merit_function": '<xs:element name="merit_function" type="xs:token" minOccurs="0"/>',
@@ -708,6 +710,7 @@ class CifEMDBTranslator(object):
             "_em_volume_selection.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_pdbx_database_status.process_site": '<xs:element name="processing_site" minOccurs="0">',
             "_struct.title": '<xs:element name="title" type="xs:token">',
+            "_struct_keywords.text": '<xs:element name="keywords" type="xs:string" minOccurs="0">',
             "_citation.title": '<xs:element name="title" type="xs:token"/>',
             "_citation.journal_full": '<xs:element name="journal" type="xs:token" minOccurs="0"/>',
             "_citation.journal_abbrev": '<xs:element name="journal_abbreviation" type="xs:token"/>',
@@ -1336,6 +1339,7 @@ class CifEMDBTranslator(object):
                 const.PDBX_AUDIT_SUPPORT,
                 const.PDBX_CONTACT_AUTHOR,
                 const.STRUCT,
+                const.STRUCT_KEYWORDS,
                 const.PDBX_ENTITY_SRC_SYN,
                 const.EM_SUPERSEDE,
                 const.EM_OBSOLETE,
@@ -2522,11 +2526,12 @@ class CifEMDBTranslator(object):
                 Deprecated (2014-10-21)
                 """
 
-            def set_el_keywords():
+            def set_el_keywords(admin, key_words):
                 """
-                XSD: <name="keywords" type="xs:string" xs:element minOccurs="0">
+                XSD: <name="z" type="xs:string" xs:element minOccurs="0">
                 DEPRECATED 2014-10-21
                 """
+                set_cif_value(admin.set_keywords, "text", const.STRUCT_KEYWORDS, cif_list=key_words)
 
             def set_el_replace_existing_entry():
                 """
@@ -2561,7 +2566,11 @@ class CifEMDBTranslator(object):
             # element 11
             set_el_details()
             # element 12
-            set_el_keywords()
+            keywords_in = make_dict(const.STRUCT_KEYWORDS, "entry_id")
+            for key_words in keywords_in.values():
+                pdbx_keywords = get_cif_value("text", const.STRUCT_KEYWORDS, cif_list=key_words)
+                if pdbx_keywords is not None:
+                    set_el_keywords(admin, key_words)
             # element 13
             set_el_replace_existing_entry()
 
@@ -8476,8 +8485,7 @@ class CifEMDBTranslator(object):
                     for sm_in in st_mod_dict_in[ip_id_in]:
                         st_map = emdb.starting_map_type()
                         set_starting_map_type(st_map, sm_in)
-                        if st_map.hasContent_():
-                            im_proc.add_startup_model(st_map)
+                        im_proc.add_startup_model(st_map)
 
                 def set_final_reconstruction(final_rec, ip_id_in, final_dicts):
                     """

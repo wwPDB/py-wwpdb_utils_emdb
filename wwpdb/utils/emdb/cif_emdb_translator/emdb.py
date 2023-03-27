@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Fri Mar  3 15:24:47 2023 by generateDS.py version 2.29.5.
+# Generated Fri Mar 24 10:07:40 2023 by generateDS.py version 2.29.5.
 # Python 2.7.15 | packaged by conda-forge | (default, Mar  5 2020, 14:58:04)  [GCC Clang 9.0.1 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_3_0/emdb.py')
+#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_3_2/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb-schemas/emdb_schemas/v3/v3_0_3_0/emdb.xsd
+#   emdb-schemas/emdb_schemas/v3/v3_0_3_2/emdb.xsd
 #
 # Command line:
-#   emdb_config/emdb_config/modified_generateDS/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_3_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_3_0/emdb.xsd
+#   emdb_config/emdb_config/modified_generateDS/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_3_2/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_3_2/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   IdeaProjects
@@ -739,7 +739,7 @@ def _cast(typ, value):
 class entry_type(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.3.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
+    def __init__(self, emdb_id=None, version='3.0.3.2', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None):
         self.original_tagname_ = None
         self.emdb_id = _cast(None, emdb_id)
         self.version = _cast(None, version)
@@ -32408,7 +32408,7 @@ class chainType(GeneratedsSuper):
         # Validate type initial_model_typeType, a restriction on xs:string.
         if value is not None and Validate_simpletypes_:
             value = str(value)
-            enumerations = ['experimental model', 'in silico model', 'intergrative model', 'other']
+            enumerations = ['experimental model', 'in silico model', 'integrative model', 'other']
             enumeration_respectee = False
             for enum in enumerations:
                 if value == enum:
