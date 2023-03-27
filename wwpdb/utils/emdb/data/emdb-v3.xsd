@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.3.1"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.3.2"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -2692,6 +2692,7 @@
             <xs:enumeration value="OTHER"/>
             <xs:enumeration value="PROSCAN TEM-PIV (2k x 2k)"/>
             <xs:enumeration value="SIA 15C (3k x 3k)"/>
+            <xs:enumeration value="TFS FALCON 4i (4k x 4x)"/>
             <xs:enumeration value="TVIPS TEMCAM-F216 (2k x 2k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F224 (2k x 2k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F415 (4k x 4k)"/>
@@ -4015,7 +4016,7 @@
                                             <xs:restriction base="xs:string">
                                                 <xs:enumeration value="experimental model"/>
                                                 <xs:enumeration value="in silico model"/>
-                                                <xs:enumeration value="intergrative model"/>
+                                                <xs:enumeration value="integrative model"/>
                                                 <xs:enumeration value="other"/>
                                             </xs:restriction>
                                         </xs:simpleType>
