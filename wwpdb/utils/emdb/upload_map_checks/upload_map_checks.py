@@ -13,7 +13,10 @@ def le(array1, array2) -> bool:
 
 
 def multiple(array1, array2) -> bool:
-    result = list(map(lambda x: x[0] % x[1] == 0, list(zip(array1, array2))))
+    try:
+        result = list(map(lambda x: x[0] % x[1] == 0, list(zip(array1, array2))))
+    except ZeroDivisionError:
+        return False
     return sum(result) == len(result)
 
 
@@ -80,7 +83,8 @@ class UploadMapCheck:
         for othermap in othermaps:
             self.output['primary_map']['smaller_or_equal'][othermap.file] = primmap.smaller_or_equal(othermap)
             self.output['primary_map']['is_inside'][othermap.file] = primmap.is_inside(othermap)
-            self.output['primary_map']['acceptable_pixel_size'][othermap.file], self.output['primary_map']['pixel_size_is_multiple'][othermap.file] = primmap.acceptable_pixel_size(othermap)
+            self.output['primary_map']['acceptable_pixel_size'][othermap.file], \
+                self.output['primary_map']['pixel_size_is_multiple'][othermap.file] = primmap.acceptable_pixel_size(othermap)
             self.output['other_maps'][othermap.file] = {
                 'dimensions': othermap.dimensions,
                 'size': othermap.size,
