@@ -41,7 +41,16 @@ setup(
     ],
     entry_points={"console_scripts": ["em_emd_conversion=wwpdb.utils.config.emdb.cif_emdb_translator:main"]},
     #
-    install_requires=["lxml", "mmcif", "wwpdb.utils.config>=0.22.2"],
+    install_requires=[
+        "lxml",
+        "mmcif",
+        "argparse",
+        "mrcfile",
+        "numpy",
+        "json",
+        "sys",
+        "wwpdb.utils.config>=0.22.2"
+    ],
     packages=find_packages(exclude=["wwpdb.utils.tests-emdb", "mock-data", "tests.*", "wwpdb.utils.emdb/cif_emdb)translator/*test*.py"]),
     include_package_data=True,
     package_data={
