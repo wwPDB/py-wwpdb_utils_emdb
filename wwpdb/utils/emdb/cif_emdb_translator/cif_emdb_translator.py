@@ -106,7 +106,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.2.10"
+        XML_OUT_VERSION = "3.0.3.2"
 
         # Cif categories
         CITATION = "citation"
@@ -186,6 +186,7 @@ class CifEMDBTranslator(object):
         PDBX_AUDIT_SUPPORT = "pdbx_audit_support"
         PDBX_CONTACT_AUTHOR = "pdbx_contact_author"
         STRUCT = "struct"
+        STRUCT_KEYWORDS = "struct_keywords"
         PDBX_DICT_ITEM_MAPPING = "pdbx_dict_item_mapping"
 
         # Keys
@@ -346,6 +347,7 @@ class CifEMDBTranslator(object):
             "Center for Eukaryotic Structural Genomics (CESG)",
             "Center for High-Throughput Structural Biology (CHTSB)",
             "Center for Membrane Proteins of Infectious Diseases (MPID)",
+            "Center for Structural Biology of Infectious Diseases (CSBID)",
             "Center for Structural Genomics of Infectious Diseases (CSGID)",
             "Center for Structures of Membrane Proteins (CSMP)",
             "Center for the X-ray Structure Determination of Human Transporters (TransportPDB)",
@@ -401,16 +403,17 @@ class CifEMDBTranslator(object):
 
         # em_admin.last_update should not be initialized twice
         MMCIF_TO_XSD = {  # pylint: disable=duplicate-key
-            # _em_3d_fitting_list.accession_code
-            # _em_3d_fitting_list.chain_id
-            # _em_3d_fitting_list.chain_residue_range
-            "_em_3d_fitting_list.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_3d_fitting_list.accession_code": '<xs:element name="access_code"/>',
+            "_em_3d_fitting_list.pdb_entry_id": '<xs:element name="access_code"/>',
             "_em_3d_fitting_list.pdb_chain_id": '<xs:element name="chain_id" type="chain_pdb_id" minOccurs="0" maxOccurs="unbounded"/>',
-            "_em_3d_fitting_list.pdb_chain_residue_range": '<xs:element name="residue_range" minOccurs="0" maxOccurs="1">',
-            "_em_3d_fitting_list.pdb_entry_id": '<xs:element name="access_code">',
-            # _em_3d_fitting_list.source_name
-            # _em_3d_fitting_list.type
-            "_em_3d_fitting_list": '<xs:element name="access_code">',
+            "_em_3d_fitting_list.chain_id": '<xs:element name="chain_id" type="token" minOccurs="0" maxOccurs="unbounded"/>',
+            "_em_3d_fitting_list.pdb_chain_residue_range": '<xs:element name="residue_range" minOccurs="0" maxOccurs="1"/>',
+            "_em_3d_fitting_list.chain_residue_range": '<xs:element name="residue_range" minOccurs="0" maxOccurs="1"/>',
+            "_em_3d_fitting_list.number_of_copies_in_final_model": '<xs:element name="number_of_copies_in_final_model" minOccurs="0"/>',
+            "_em_3d_fitting_list.source_name": '<xs:element name="source_name" minOccurs="0" maxOccurs="1"/>',
+            "_em_3d_fitting_list.type": '<xs:element name=initial_model_type" minOccurs="0" maxOccurs="1"/>',
+            "_em_3d_fitting_list.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_3d_fitting_list": '<xs:element name="access_code"/>',
             # _em_3d_fitting.entry_id
             # _em_3d_fitting.id
             "_em_3d_fitting.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
@@ -613,6 +616,7 @@ class CifEMDBTranslator(object):
             "_em_admin.last_update": '<xs:element name="update" type="xs:date">',  # noqa: F601 pylint: disable=duplicate-key
             "_em_admin.title": '<xs:element name="title" type="xs:token">',
             "_em_admin.details": '<xs:element name="details" type="xs:token" minOccurs="0">',
+            "_em_admin.keywords": '<xs:element name="keywords" type="xs:token" minOccurs="0">',
             "_em_euler_angle_assignment.type": '<xs:element name="type">',
             "_em_euler_angle_assignment.proj_matching_num_projections": '<xs:element name="number_reference_projections" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_euler_angle_assignment.proj_matching_merit_function": '<xs:element name="merit_function" type="xs:token" minOccurs="0"/>',
@@ -706,6 +710,7 @@ class CifEMDBTranslator(object):
             "_em_volume_selection.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_pdbx_database_status.process_site": '<xs:element name="processing_site" minOccurs="0">',
             "_struct.title": '<xs:element name="title" type="xs:token">',
+            "_struct_keywords.text": '<xs:element name="keywords" type="xs:string" minOccurs="0">',
             "_citation.title": '<xs:element name="title" type="xs:token"/>',
             "_citation.journal_full": '<xs:element name="journal" type="xs:token" minOccurs="0"/>',
             "_citation.journal_abbrev": '<xs:element name="journal_abbreviation" type="xs:token"/>',
@@ -1334,6 +1339,7 @@ class CifEMDBTranslator(object):
                 const.PDBX_AUDIT_SUPPORT,
                 const.PDBX_CONTACT_AUTHOR,
                 const.STRUCT,
+                const.STRUCT_KEYWORDS,
                 const.PDBX_ENTITY_SRC_SYN,
                 const.EM_SUPERSEDE,
                 const.EM_OBSOLETE,
@@ -2520,11 +2526,12 @@ class CifEMDBTranslator(object):
                 Deprecated (2014-10-21)
                 """
 
-            def set_el_keywords():
+            def set_el_keywords(admin, key_words):
                 """
-                XSD: <name="keywords" type="xs:string" xs:element minOccurs="0">
+                XSD: <name="z" type="xs:string" xs:element minOccurs="0">
                 DEPRECATED 2014-10-21
                 """
+                set_cif_value(admin.set_keywords, "text", const.STRUCT_KEYWORDS, cif_list=key_words)
 
             def set_el_replace_existing_entry():
                 """
@@ -2559,7 +2566,11 @@ class CifEMDBTranslator(object):
             # element 11
             set_el_details()
             # element 12
-            set_el_keywords()
+            keywords_in = make_dict(const.STRUCT_KEYWORDS, "entry_id")
+            for key_words in keywords_in.values():
+                pdbx_keywords = get_cif_value("text", const.STRUCT_KEYWORDS, cif_list=key_words)
+                if pdbx_keywords is not None:
+                    set_el_keywords(admin, key_words)
             # element 13
             set_el_replace_existing_entry()
 
@@ -8474,8 +8485,7 @@ class CifEMDBTranslator(object):
                     for sm_in in st_mod_dict_in[ip_id_in]:
                         st_map = emdb.starting_map_type()
                         set_starting_map_type(st_map, sm_in)
-                        if st_map.hasContent_():
-                            im_proc.add_startup_model(st_map)
+                        im_proc.add_startup_model(st_map)
 
                 def set_final_reconstruction(final_rec, ip_id_in, final_dicts):
                     """
@@ -10925,7 +10935,17 @@ class CifEMDBTranslator(object):
                                         CIF: _em_3d_fitting_list.entry_id  1EHZ
                                         pattern "d[dA-Za-z]{3}"
                                         """
-                                        set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        accession_code = get_cif_value("accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        access_code = get_cif_value("pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        if accession_code is None and access_code is not None:
+                                            set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        if accession_code is not None and access_code is None:
+                                            set_cif_value(model.set_access_code, "accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        if accession_code is not None and access_code is not None:
+                                            if accession_code != access_code:
+                                                txt = u"Cannot be two access_codes. If both pdb_entry_id and accession_code are populated, then both should be same."
+                                                self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
+                                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
 
                                     def set_el_chain(model, model_in):
                                         """
@@ -10933,48 +10953,84 @@ class CifEMDBTranslator(object):
                                         .. a base chain_type and
                                         .. 1 element
                                         """
+                                        # def set_chain_type(chain, model_in):
+                                        #     """
+                                        #     XSD: <xs:complexType name="chain_type"> has
+                                        #     .. 2 elements
+                                        #     """
+                                        def set_el_id(chain, model_in):
+                                            """
+                                            XSD: <xs:element name="id" type="chain_pdb_id" minOccurs="0" maxOccurs="unbounded"/>
+                                            CIF: _em_3d_fitting_list.pdb_chain_id A
+                                            """
+                                            ids_in = get_cif_value("pdb_chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            ch_ids = get_cif_value("chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            if ids_in is not None and ch_ids is None:
+                                                ids = ids_in.split(",")
+                                                for a_id in ids:
+                                                    set_cif_value(chain.set_chain_id, "pdb_chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=a_id)
+                                            if ids_in is None and ch_ids is not None:
+                                                c_ids = ch_ids.split(",")
+                                                for b_id in c_ids:
+                                                    set_cif_value(chain.set_chain_id, "chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=b_id)
+                                            if ids_in is not None and ch_ids is not None:
+                                                if ids_in != ch_ids:
+                                                    txt = u"Cannot be two chain_ids. If both pdb_chain_id and chain_id are populated, then both should be same."
+                                                    self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
+                                                    self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
 
-                                        def set_el_numofcps_in_final_model():
+                                        def set_el_residue_range(chain, model_in):
+                                            """
+                                            XSD: <xs:element name="residue_range" maxOccurs="unbounded" minOccurs="0">
+                                            CIF: _em_3d_fitting_list.pdb_chain_residue_range 5-545
+                                            """
+                                            p_res_range = get_cif_value("pdb_chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            res_range = get_cif_value("chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            if p_res_range is not None and res_range is None:
+                                                set_cif_value(chain.set_residue_range, "pdb_chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            if p_res_range is None and res_range is not None:
+                                                set_cif_value(chain.set_residue_range, "chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            if p_res_range is not None and res_range is not None:
+                                                if p_res_range != res_range:
+                                                    txt = u"Cannot be two chain_residue_range. If both pdb_chain_residue_range and chain_residue_range are populated, then both should be same."
+                                                    self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
+                                                    self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+
+                                        def set_el_numofcps_in_final_model(chain, model_in):
                                             """
                                             XSD: <xs:element name="number_of_copies_in_final_model" type="xs:positiveInteger"  minOccurs="0">
                                             CIF: ?????? How do you calculate this? It's not in mmCIf
                                             """
+                                            set_cif_value(chain.set_number_of_copies_in_final_model, "number_of_copies_in_final_model", const.EM_3D_FITTING_LIST, cif_list=model_in)
 
-                                        def set_chain_type(chain, model_in):
+                                        def set_el_source_name(chain, model_in):
                                             """
-                                            XSD: <xs:complexType name="chain_type"> has
-                                            .. 2 elements
+                                            XSD: <xs:element name="source_name" type="xs:string"  minOccurs="0" maxOccurs="1">
+                                            CIF: _em_3d_fitting_list.source_name SwissModel
                                             """
+                                            access_code = get_cif_value("pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            sourcename = get_cif_value("source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            set_cif_value(chain.set_source_name, "source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            if sourcename == "PDB" and access_code is None:
+                                                txt = u"Error! Missing PDB ID. If initial model is from PDB, then access code is mandatory."
+                                                self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
+                                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
 
-                                            def set_el_id(chain, model_in):
-                                                """
-                                                XSD: <xs:element name="id" type="chain_pdb_id" minOccurs="0" maxOccurs="unbounded"/>
-                                                CIF: _em_3d_fitting_list.pdb_chain_id A
-                                                """
-                                                ids_in = get_cif_value("pdb_chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                                if ids_in is not None:
-                                                    ids = ids_in.split(",")
-                                                    for a_id in ids:
-                                                        set_cif_value(chain.add_chain_id, "pdb_chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=a_id)
-
-                                            def set_el_residue_range(chain, model_in):
-                                                """
-                                                XSD: <xs:element name="residue_range" maxOccurs="unbounded" minOccurs="0">
-                                                CIF: _em_3d_fitting_list.pdb_chain_residue_range 5-545
-                                                """
-                                                set_cif_value(chain.set_residue_range, "pdb_chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
-
-                                            # element 1
-                                            set_el_id(chain, model_in)
-                                            # element 2
-                                            set_el_residue_range(chain, model_in)
-
-                                        chain = emdb.chain_type()
-                                        set_chain_type(chain, model_in)
-                                        # element 1
-                                        set_el_numofcps_in_final_model()
+                                        def set_el_initial_model_type(chain, model_in):
+                                            """
+                                            XSD: <xs:element name="initial_model_type" type="xs:string"  minOccurs="0" maxOccurs="1">
+                                            CIF: _em_3d_fitting_list.type experimental model
+                                            """
+                                            set_cif_value(chain.set_initial_model_type, "type", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                        # element 2
+                                        chain = emdb.chainType()
+                                        set_el_id(chain, model_in)
+                                        set_el_residue_range(chain, model_in)
+                                        set_el_numofcps_in_final_model(chain, model_in)
+                                        set_el_source_name(chain, model_in)
+                                        set_el_initial_model_type(chain, model_in)
                                         if chain.hasContent_():
-                                            model.add_chain(chain)
+                                            model.set_chain(chain)
 
                                     def set_el_details(model, model_in):
                                         """
@@ -10982,14 +11038,12 @@ class CifEMDBTranslator(object):
                                         CIF: _em_3d_fitting_list.details
                                         """
                                         set_cif_value(model.set_details, "details", const.EM_3D_FITTING_LIST, cif_list=model_in)
-
                                     # element 1
                                     set_el_access_code(model, model_in)
                                     # element 2
                                     set_el_chain(model, model_in)
                                     # element 3
                                     set_el_details(model, model_in)
-
                                 if modelling_id_in in model_dict_in:
                                     for model_in in model_dict_in[modelling_id_in]:
                                         model = emdb.initial_modelType()
@@ -11200,15 +11254,13 @@ class CifEMDBTranslator(object):
                 4. structure factors
                 Only fsc curve is implemented here???
                 """
-
-                def set_fsc_curve_validation_type(fsc, fsc_in):
+                def set_fsc_curve(fsc, fsc_in):
                     """
                     XSD: <xs:complexType name="fsc_curve_validation_type"> has
                     .. a base validation_type only
                     XSD: <xs:complexType name="validation_type"> has
                     .. 2 elements with pattern for a fsc curve only!!!???
                     """
-
                     def set_el_file(fsc, fsc_in):
                         """
                         XSD: <xs:element name="file">
@@ -11232,9 +11284,10 @@ class CifEMDBTranslator(object):
                 fsc_list_in = self.cif.get(const.EM_FSC_CURVE, None)
                 for fsc_in in fsc_list_in:
                     fsc = emdb.fsc_curve_validation_type()
-                    set_fsc_curve_validation_type(fsc, fsc_in)
+                    fsc.original_tagname_ = "fsc_curve"
+                    set_fsc_curve(fsc, fsc_in)
                     if fsc.hasContent_():
-                        validation.add_validation_type(fsc)
+                        validation.add_validation_method(fsc)
                 if validation.hasContent_():
                     self.xml_out.set_validation(validation)
 

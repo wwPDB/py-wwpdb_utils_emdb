@@ -33,7 +33,7 @@ WWPDB D_1292118478 ? ?
 EMDB  EMD-13682    ? ? 
 # 
 _struct_keywords.entry_id        D_1292118478 
-_struct_keywords.text            'virus, autophagy, membrane, CYTOSOLIC PROTEIN' 
+_struct_keywords.text            'virus, autophagy, membrane, CYTOSOLIC PROTEIN'
 _struct_keywords.pdbx_keywords   'CYTOSOLIC PROTEIN' 
 _struct_keywords.pdbx_details    ? 
 # 
@@ -190,7 +190,14 @@ _atom_sites.fract_transf_matrix[3][3]   1.000000
 _atom_sites.fract_transf_vector[1]      0.00000 
 _atom_sites.fract_transf_vector[2]      0.00000 
 _atom_sites.fract_transf_vector[3]      0.00000 
-# 
+#
+_em_3d_fitting_list.pdb_entry_id          6e1o
+_em_3d_fitting_list.pdb_chain_id          A
+_em_3d_fitting_list.pdb_residue_range     1-324
+_em_3d_fitting_list.source_name      PDB
+_em_3d_fitting_list.type      experimental model
+_em_3d_fitting_list.details     TEST TO CHECK IF IT INCLUDES EM_FSC_CURVES.DETAILS
+#
 _em_3d_fitting.entry_id          ? 
 _em_3d_fitting.id                1 
 _em_3d_fitting.details           ? 
@@ -198,7 +205,11 @@ _em_3d_fitting.overall_b_value   ?
 _em_3d_fitting.ref_protocol      ? 
 _em_3d_fitting.ref_space         ? 
 _em_3d_fitting.target_criteria   ? 
-# 
+#
+_em_fsc_curve.id    1
+_em_fsc_curve.details  "FSC"
+_em_fsc_curve.file  "emd_0000_fsc_1.xml"
+#
 _em_3d_reconstruction.entry_id              ? 
 _em_3d_reconstruction.id                    1 
 _em_3d_reconstruction.algorithm             ? 
@@ -232,7 +243,7 @@ _em_imaging.entry_id                        ?
 _em_imaging.accelerating_voltage            300 
 _em_imaging.alignment_procedure             'COMA FREE' 
 _em_imaging.c2_aperture_diameter            70 
-_em_imaging.calibrated_defocus_max          ? 
+_em_imaging.calibrated_defocus_max          ?
 _em_imaging.calibrated_defocus_min          ? 
 _em_imaging.calibrated_magnification        ? 
 _em_imaging.cryogen                         NITROGEN 
