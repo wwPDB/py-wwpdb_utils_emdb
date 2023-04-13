@@ -30,11 +30,11 @@ class LoadMap:
         self.pixel_size = None
 
     def load(self):
-        with mrcfile.open(self.file, 'r') as mrc:
+        with mrcfile.open(self.file, mode='r', permissive=True) as mrc:
             self.dimensions = np.array((mrc.header.nx, mrc.header.ny, mrc.header.nz)).tolist()
-            self.size = mrc.header.cella.tolist()
+            self.size = [round(x, 2) for x in mrc.header.cella.tolist()]
             self.offset = np.array((mrc.header.nxstart, mrc.header.nystart, mrc.header.nzstart)).tolist()
-            self.pixel_size = list(map(lambda x: round(x, 2), mrc.voxel_size.tolist()))
+            self.pixel_size = [round(x, 2) for x in mrc.voxel_size.tolist()]
 
     def extremities(self):
         origin = np.array(self.offset) * np.array(self.pixel_size)
