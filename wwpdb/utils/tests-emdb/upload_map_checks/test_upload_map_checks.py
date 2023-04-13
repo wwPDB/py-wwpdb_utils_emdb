@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch
 from wwpdb.utils.emdb.upload_map_checks.upload_map_checks import *
+import numpy as np
 
 
 def mock_load():
@@ -26,31 +27,110 @@ def mock_load():
     return map1, map2, map3
 
 
+def mock_mrc_file(
+        path='/path/to/mock/file.map',
+        dimensions=(10, 10, 10),
+        offset=(0, 0, 0),
+        pixel_size=(1., 1., 1.)
+    ):
+    """
+
+    :param path:
+    :param dimensions:
+    :param offset:
+    :param pixel_size:
+    :return:
+    """
+    aux = 1
+    for d in dimensions:
+        aux *= d
+    mock_data = np.zeros(aux, dtype=np.int8).reshape(dimensions)
+    with mrcfile.new(path, overwrite=True) as mrc:
+        mrc.set_data(mock_data)
+        mrc.header['nx'], mrc.header['ny'], mrc.header['nz'] = dimensions
+        mrc.header['nxstart'], mrc.header['nystart'], mrc.header['nzstart'] = offset
+        mrc.voxel_size = pixel_size
+        mrc.update_header_from_data()
+        mrc.update_header_stats()
+    return True
+
+def set_input(primmap, halfmap1, halfmap2):
+    mock_mrc_file(**primmap)
+    mock_mrc_file(**halfmap1)
+    mock_mrc_file(**halfmap2)
+    data = {
+        'primary_map': primmap['path'],
+        'other_maps': [
+            halfmap1['path'],
+            halfmap2['path']
+        ]
+    }
+    return data
+
+def other_maps(halfmap1, halfmap2):
+    data = {
+        halfmap1['path']: {
+            'dimensions': halfmap1['dimensions'],
+            'size': [
+                round(x, 2) for x in (
+                        np.array(halfmap1['dimensions']) * np.array(halfmap1['pixel_size'])
+                ).tolist()
+            ],
+            'offset': halfmap1['offset'],
+            'pixel_size': halfmap1['pixel_size']
+        },
+        halfmap2['path']: {
+            'dimensions': halfmap2['dimensions'],
+            'size': [
+                round(x, 2) for x in (
+                        np.array(halfmap2['dimensions']) * np.array(halfmap2['pixel_size'])
+                ).tolist()
+            ],
+            'offset': halfmap2['offset'],
+            'pixel_size': halfmap2['pixel_size']
+        }
+    }
+    return data
+
+mock_map1 = {
+    'path': '../data/em/mock_map1.map',
+    'dimensions': (100, 100, 100),
+    'offset': (50, 50, 50),
+    'pixel_size': (1., 1., 1.)
+}
+mock_map2 = {
+    'path': '../data/em/mock_map2.map',
+    'dimensions': (200, 200, 200),
+    'offset': (0, 0, 0),
+    'pixel_size': (.75, .75, .75)
+}
+mock_map3 = {
+    'path': '../data/em/mock_map3.map',
+    'dimensions': (200, 200, 200),
+    'offset': (0, 0, 0),
+    'pixel_size': (.5, .5, .5)
+}
 mock_primmap_A = {
-    'path': '../data/em/emd_33233.map.gz',
+    'path': '../data/em/mock_primmap_A.map',
     'dimensions': [240, 240, 240],
-    'size': (259.79998779296875, 259.79998779296875, 259.79998779296875),
     'offset': [0, 0, 0],
     'pixel_size': [1.08, 1.08, 1.08]
 }
 mock_halfmap_A1 = {
-    'path': '../data/em/emd_33233_half_map_1.map.gz',
+    'path': '../data/em/mock_halfmap_A1.map',
     'dimensions': [240, 240, 240],
-    'size': (259.79998779296875, 259.79998779296875, 259.79998779296875),
     'offset': [0, 0, 0],
     'pixel_size': [1.08, 1.08, 1.08]
 }
 mock_halfmap_A2 = {
-    'path': '../data/em/emd_33233_half_map_2.map.gz',
+    'path': '../data/em/mock_halfmap_A2.map',
     'dimensions': [240, 240, 240],
-    'size': (259.79998779296875, 259.79998779296875, 259.79998779296875),
     'offset': [0, 0, 0],
     'pixel_size': [1.08, 1.08, 1.08]
 }
 mock_primmap_B = {
-    'path': '../data/em/emd_0132.map',
+    'path': '../data/em/mock_primmap_B.map',
     'dimensions': [350, 350, 350],
-    'size': (301.0, 301.0, 301.0),
     'offset': [0, 0, 0],
     'pixel_size': [0.86, 0.86, 0.86]
 }
@@ -119,39 +199,36 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(map1.acceptable_pixel_size(map2), (True, True))
 
     def test_load(self):
+        mock_mrc_file(**mock_primmap_A)
         mock_map = LoadMap(mock_primmap_A['path'])
         mock_map.load()
         test = (
             mock_map.file,
             mock_map.dimensions,
-            mock_map.size,
             mock_map.offset,
             mock_map.pixel_size
         )
         target = (
             mock_primmap_A['path'],
             mock_primmap_A['dimensions'],
-            mock_primmap_A['size'],
             mock_primmap_A['offset'],
             mock_primmap_A['pixel_size']
         )
         self.assertEqual(test, target)
 
     def test_check_all_maps_A_A1_A2(self):
-        data = {
-            'primary_map': mock_primmap_A['path'],
-            'other_maps': [
-                mock_halfmap_A1['path'],
-                mock_halfmap_A2['path']
-            ]
-        }
+        data = set_input(mock_primmap_A, mock_halfmap_A1, mock_halfmap_A2)
         mock_check = UploadMapCheck(data)
         test = mock_check.check_all_maps()
         target = {
             'primary_map': {
                 'path': mock_primmap_A['path'],
                 'dimensions': mock_primmap_A['dimensions'],
-                'size': mock_primmap_A['size'],
+                'size': [
+                    round(x,2) for x in (
+                            np.array(mock_primmap_A['dimensions']) * np.array(mock_primmap_A['pixel_size'])
+                    ).tolist()
+                ],
                 'offset': mock_primmap_A['offset'],
                 'pixel_size': mock_primmap_A['pixel_size'],
                 'smaller_or_equal': {
@@ -171,38 +248,23 @@ class MyTestCase(unittest.TestCase):
                     mock_halfmap_A2['path']: True
                 }
             },
-            'other_maps': {
-                mock_halfmap_A1['path']: {
-                    'dimensions': mock_halfmap_A1['dimensions'],
-                    'size': mock_halfmap_A1['size'],
-                    'offset': mock_halfmap_A1['offset'],
-                    'pixel_size': mock_halfmap_A1['pixel_size']
-                },
-                mock_halfmap_A2['path']: {
-                    'dimensions': mock_halfmap_A2['dimensions'],
-                    'size': mock_halfmap_A2['size'],
-                    'offset': mock_halfmap_A2['offset'],
-                    'pixel_size': mock_halfmap_A2['pixel_size']
-                }
-            }
+            'other_maps': other_maps(mock_halfmap_A1, mock_halfmap_A2)
         }
         self.assertEqual(test, target)
 
     def test_check_all_maps_B_A1_A2(self):
-        data = {
-            'primary_map': mock_primmap_B['path'],
-            'other_maps': [
-                mock_halfmap_A1['path'],
-                mock_halfmap_A2['path']
-            ]
-        }
+        data = set_input(mock_primmap_B, mock_halfmap_A1, mock_halfmap_A2)
         mock_check = UploadMapCheck(data)
         test = mock_check.check_all_maps()
         target = {
             'primary_map': {
                 'path': mock_primmap_B['path'],
                 'dimensions': mock_primmap_B['dimensions'],
-                'size': mock_primmap_B['size'],
+                'size': [
+                    round(x, 2) for x in (
+                            np.array(mock_primmap_B['dimensions']) * np.array(mock_primmap_B['pixel_size'])
+                    ).tolist()
+                ],
                 'offset': mock_primmap_B['offset'],
                 'pixel_size': mock_primmap_B['pixel_size'],
                 'smaller_or_equal': {
@@ -222,20 +284,7 @@ class MyTestCase(unittest.TestCase):
                     mock_halfmap_A2['path']: False
                 }
             },
-            'other_maps': {
-                mock_halfmap_A1['path']: {
-                    'dimensions': mock_halfmap_A1['dimensions'],
-                    'size': mock_halfmap_A1['size'],
-                    'offset': mock_halfmap_A1['offset'],
-                    'pixel_size': mock_halfmap_A1['pixel_size']
-                },
-                mock_halfmap_A2['path']: {
-                    'dimensions': mock_halfmap_A2['dimensions'],
-                    'size': mock_halfmap_A2['size'],
-                    'offset': mock_halfmap_A2['offset'],
-                    'pixel_size': mock_halfmap_A2['pixel_size']
-                }
-            }
+            'other_maps': other_maps(mock_halfmap_A1, mock_halfmap_A2)
         }
         self.assertEqual(test, target)
 
