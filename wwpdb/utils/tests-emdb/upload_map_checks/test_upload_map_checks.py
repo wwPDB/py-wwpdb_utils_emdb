@@ -1,31 +1,6 @@
 import unittest
-from unittest.mock import patch
 from wwpdb.utils.emdb.upload_map_checks.upload_map_checks import *
 import numpy as np
-
-
-def mock_load():
-    mock_file_path = '/path/to/mock/file'
-
-    map1, map2, map3 = LoadMap(mock_file_path), LoadMap(mock_file_path), LoadMap(mock_file_path)
-
-    map1.dimensions = (100, 100, 100)
-    map1.size = (100, 100, 100)
-    map1.offset = (50, 50, 50)
-    map1.pixel_size = (1., 1., 1.)
-
-    map2.dimensions = (200, 200, 200)
-    map2.size = (150, 150, 150)
-    map2.offset = (0, 0, 0)
-    map2.pixel_size = (.75, .75, .75)
-
-    map3.dimensions = (200, 200, 200)
-    map3.size = (100, 100, 100)
-    map3.offset = (0, 0, 0)
-    map3.pixel_size = (.5, .5, .5)
-
-    return map1, map2, map3
-
 
 def mock_mrc_file(
         path='/path/to/mock/file.map',
@@ -52,242 +27,219 @@ def mock_mrc_file(
         mrc.voxel_size = pixel_size
         mrc.update_header_from_data()
         mrc.update_header_stats()
-    return True
-
-def set_input(primmap, halfmap1, halfmap2):
-    mock_mrc_file(**primmap)
-    mock_mrc_file(**halfmap1)
-    mock_mrc_file(**halfmap2)
-    data = {
-        'primary_map': primmap['path'],
-        'other_maps': [
-            halfmap1['path'],
-            halfmap2['path']
-        ]
-    }
-    return data
-
-def other_maps(halfmap1, halfmap2):
-    data = {
-        halfmap1['path']: {
-            'dimensions': halfmap1['dimensions'],
-            'size': [
-                round(x, 2) for x in (
-                        np.array(halfmap1['dimensions']) * np.array(halfmap1['pixel_size'])
-                ).tolist()
-            ],
-            'offset': halfmap1['offset'],
-            'pixel_size': halfmap1['pixel_size']
-        },
-        halfmap2['path']: {
-            'dimensions': halfmap2['dimensions'],
-            'size': [
-                round(x, 2) for x in (
-                        np.array(halfmap2['dimensions']) * np.array(halfmap2['pixel_size'])
-                ).tolist()
-            ],
-            'offset': halfmap2['offset'],
-            'pixel_size': halfmap2['pixel_size']
-        }
-    }
-    return data
 
 mock_map1 = {
     'path': '../data/em/mock_map1.map',
-    'dimensions': (100, 100, 100),
-    'offset': (50, 50, 50),
-    'pixel_size': (1., 1., 1.)
+    'dimensions': [100, 100, 100],
+    'offset': [50, 50, 50],
+    'pixel_size': [1., 1., 1.]
 }
 mock_map2 = {
     'path': '../data/em/mock_map2.map',
-    'dimensions': (200, 200, 200),
-    'offset': (0, 0, 0),
-    'pixel_size': (.75, .75, .75)
+    'dimensions': [200, 200, 200],
+    'offset': [0, 0, 0],
+    'pixel_size': [.75, .75, .75]
 }
 mock_map3 = {
     'path': '../data/em/mock_map3.map',
-    'dimensions': (200, 200, 200),
-    'offset': (0, 0, 0),
-    'pixel_size': (.5, .5, .5)
-}
-mock_primmap_A = {
-    'path': '../data/em/mock_primmap_A.map',
-    'dimensions': [240, 240, 240],
+    'dimensions': [200, 200, 200],
     'offset': [0, 0, 0],
-    'pixel_size': [1.08, 1.08, 1.08]
-}
-mock_halfmap_A1 = {
-    'path': '../data/em/mock_halfmap_A1.map',
-    'dimensions': [240, 240, 240],
-    'offset': [0, 0, 0],
-    'pixel_size': [1.08, 1.08, 1.08]
-}
-mock_halfmap_A2 = {
-    'path': '../data/em/mock_halfmap_A2.map',
-    'dimensions': [240, 240, 240],
-    'offset': [0, 0, 0],
-    'pixel_size': [1.08, 1.08, 1.08]
-}
-mock_primmap_B = {
-    'path': '../data/em/mock_primmap_B.map',
-    'dimensions': [350, 350, 350],
-    'offset': [0, 0, 0],
-    'pixel_size': [0.86, 0.86, 0.86]
+    'pixel_size': [.5, .5, .5]
 }
 
+mock_mrc_file(**mock_map1)
+mock_mrc_file(**mock_map2)
+mock_mrc_file(**mock_map3)
 
-class MyTestCase(unittest.TestCase):
 
-    def test_le_false(self):
-        self.assertEqual(le((1., 1., 1.), (0., 1., 2.)), False)
+class TestLe(unittest.TestCase):
 
-    def test_le_true(self):
-        self.assertEqual(le((1., 1., 1.), (1., 1., 2.)), True)
+    def test_le_returns_true_when_array1_is_less_than_or_equal_to_array2(self):
+        self.assertTrue(le([1, 2, 3], [2, 3, 4]))
+        self.assertTrue(le([1, 2, 3], [1, 2, 3]))
+        self.assertTrue(le([1, 2, 3], [3, 4, 5]))
 
-    def test_multiple_false(self):
-        self.assertEqual(multiple((1., 1., 1.), (0., 1., 2.)), False)
+    def test_le_returns_false_when_array1_is_greater_than_array2(self):
+        self.assertFalse(le([2, 3, 4], [1, 2, 3]))
+        self.assertFalse(le([3, 4, 5], [1, 2, 3]))
+        self.assertFalse(le([4, 5, 6], [1, 2, 3]))
 
-    def test_multiple_true(self):
-        self.assertEqual(multiple((6., 6., 6.), (3., 3., 3.)), True)
+class TestMultiple(unittest.TestCase):
 
-    @patch.object(LoadMap, 'extremities')
-    def test_extremities(self, mock_extremities):
-        map1, _, _ = mock_load()
-        mock_extremities.return_value = (50, 150)
-        self.assertEqual(map1.extremities(), (50, 150))
+    def test_multiple_returns_true_when_array1_is_divisible_by_array2(self):
+        self.assertTrue(multiple([4, 6, 8], [2, 3, 4]))
+        self.assertTrue(multiple([10, 20, 30], [5, 10, 15]))
+        self.assertTrue(multiple([100, 200, 300], [2, 4, 6]))
 
-    @patch.object(LoadMap, 'smaller_or_equal')
-    def test_smaller_or_equal_true(self, mock_smaller_or_equal):
-        map1, map2, _ = mock_load()
-        mock_smaller_or_equal.return_value = True
-        self.assertEqual(map1.smaller_or_equal(map2), True)
+    def test_multiple_returns_false_when_array2_contains_zero(self):
+        self.assertFalse(multiple([1, 2, 3], [0, 1, 2]))
+        self.assertFalse(multiple([4, 5, 6], [2, 0, 3]))
+        self.assertFalse(multiple([7, 8, 9], [3, 4, 0]))
 
-    @patch.object(LoadMap, 'smaller_or_equal')
-    def test_smaller_or_equal_false(self, mock_smaller_or_equal):
-        map1, map2, _ = mock_load()
-        mock_smaller_or_equal.return_value = False
-        self.assertEqual(map2.smaller_or_equal(map1), False)
+    def test_multiple_returns_false_when_array1_is_not_divisible_by_array2(self):
+        self.assertFalse(multiple([4, 6, 8], [3, 3, 3]))
+        self.assertFalse(multiple([10, 20, 30], [3, 6, 9]))
+        self.assertFalse(multiple([100, 200, 300], [3, 6, 9]))
 
-    @patch.object(LoadMap, 'is_inside')
-    def test_is_inside_true(self, mock_is_inside):
-        map1, map2, _ = mock_load()
-        mock_is_inside.return_value = True
-        self.assertEqual(map1.is_inside(map2), True)
 
-    @patch.object(LoadMap, 'is_inside')
-    def test_is_inside_false(self, mock_is_inside):
-        map1, map2, _ = mock_load()
-        mock_is_inside.return_value = False
-        self.assertEqual(map2.is_inside(map1), False)
 
-    @patch.object(LoadMap, 'acceptable_pixel_size')
-    def test_acceptable_pixel_size_true(self, mock_acceptable_pixel_size):
-        map1, map2, _ = mock_load()
-        mock_acceptable_pixel_size.return_value = (True, False)
-        self.assertEqual(map1.acceptable_pixel_size(map2), (True, False))
+class TestLoadMap(unittest.TestCase):
 
-    @patch.object(LoadMap, 'acceptable_pixel_size')
-    def test_acceptable_pixel_size_false(self, mock_acceptable_pixel_size):
-        map1, map2, _ = mock_load()
-        mock_acceptable_pixel_size.return_value = (False, False)
-        self.assertEqual(map2.acceptable_pixel_size(map1), (False, False))
+    def setUp(self):
+        self.load_map1 = LoadMap(mock_map1['path'])
+        self.load_map1.load()
+        self.load_map2 = LoadMap(mock_map2['path'])
+        self.load_map2.load()
+        self.load_map3 = LoadMap(mock_map3['path'])
+        self.load_map3.load()
 
-    @patch.object(LoadMap, 'acceptable_pixel_size')
-    def test_acceptable_pixel_size_true_multiple(self, mock_acceptable_pixel_size):
-        map1, _, map2 = mock_load()
-        mock_acceptable_pixel_size.return_value = (True, True)
-        self.assertEqual(map1.acceptable_pixel_size(map2), (True, True))
+    def test_load_sets_attributes_correctly(self):
+        self.assertEqual(self.load_map1.dimensions, [100, 100, 100])
+        self.assertEqual(self.load_map1.size, [100., 100., 100.])
+        self.assertEqual(self.load_map1.offset, [50, 50, 50])
+        self.assertEqual(self.load_map1.pixel_size, [1., 1., 1.])
 
-    def test_load(self):
-        mock_mrc_file(**mock_primmap_A)
-        mock_map = LoadMap(mock_primmap_A['path'])
-        mock_map.load()
-        test = (
-            mock_map.file,
-            mock_map.dimensions,
-            mock_map.offset,
-            mock_map.pixel_size
-        )
-        target = (
-            mock_primmap_A['path'],
-            mock_primmap_A['dimensions'],
-            mock_primmap_A['offset'],
-            mock_primmap_A['pixel_size']
-        )
-        self.assertEqual(test, target)
+    def test_extremities(self):
+        origin, end = self.load_map1.extremities()
+        self.assertEqual(origin, [50., 50., 50.])
+        self.assertEqual(end, [150., 150., 150.])
 
-    def test_check_all_maps_A_A1_A2(self):
-        data = set_input(mock_primmap_A, mock_halfmap_A1, mock_halfmap_A2)
-        mock_check = UploadMapCheck(data)
-        test = mock_check.check_all_maps()
-        target = {
-            'primary_map': {
-                'path': mock_primmap_A['path'],
-                'dimensions': mock_primmap_A['dimensions'],
-                'size': [
-                    round(x,2) for x in (
-                            np.array(mock_primmap_A['dimensions']) * np.array(mock_primmap_A['pixel_size'])
-                    ).tolist()
-                ],
-                'offset': mock_primmap_A['offset'],
-                'pixel_size': mock_primmap_A['pixel_size'],
-                'smaller_or_equal': {
-                    mock_halfmap_A1['path']: True,
-                    mock_halfmap_A2['path']: True
-                },
-                'is_inside': {
-                    mock_halfmap_A1['path']: True,
-                    mock_halfmap_A2['path']: True
-                },
-                'acceptable_pixel_size': {
-                    mock_halfmap_A1['path']: True,
-                    mock_halfmap_A2['path']: True
-                },
-                'pixel_size_is_multiple': {
-                    mock_halfmap_A1['path']: True,
-                    mock_halfmap_A2['path']: True
-                }
-            },
-            'other_maps': other_maps(mock_halfmap_A1, mock_halfmap_A2)
+    def test_smaller_or_equal_returns_true_when_other_map_is_smaller_or_equal(self):
+        self.assertTrue(self.load_map1.smaller_or_equal(self.load_map1))
+        self.assertTrue(self.load_map1.smaller_or_equal(self.load_map2))
+        self.assertTrue(self.load_map1.smaller_or_equal(self.load_map3))
+        self.assertTrue(self.load_map2.smaller_or_equal(self.load_map2))
+        self.assertTrue(self.load_map3.smaller_or_equal(self.load_map1))
+        self.assertTrue(self.load_map3.smaller_or_equal(self.load_map2))
+
+    def test_smaller_or_equal_returns_false_when_other_map_is_bigger(self):
+        self.assertFalse(self.load_map2.smaller_or_equal(self.load_map1))
+        self.assertFalse(self.load_map2.smaller_or_equal(self.load_map3))
+
+    def test_is_inside_returns_true_when_other_map_contains_current_map(self):
+        self.assertTrue(self.load_map1.is_inside(self.load_map1))
+        self.assertTrue(self.load_map1.is_inside(self.load_map2))
+        self.assertTrue(self.load_map2.is_inside(self.load_map2))
+        self.assertTrue(self.load_map3.is_inside(self.load_map2))
+
+    def test_is_inside_returns_false_when_other_map_do_not_contains_current_map(self):
+        self.assertFalse(self.load_map1.is_inside(self.load_map3))
+        self.assertFalse(self.load_map2.is_inside(self.load_map1))
+        self.assertFalse(self.load_map2.is_inside(self.load_map3))
+        self.assertFalse(self.load_map3.is_inside(self.load_map1))
+    def test_acceptable_pixel_size_returns_true_when_other_map_pixel_size_is_small_enough(self):
+        self.assertTrue(self.load_map1.acceptable_pixel_size(self.load_map1)[0])
+        self.assertTrue(self.load_map1.acceptable_pixel_size(self.load_map2)[0])
+        self.assertTrue(self.load_map1.acceptable_pixel_size(self.load_map3)[0])
+        self.assertTrue(self.load_map2.acceptable_pixel_size(self.load_map2)[0])
+        self.assertTrue(self.load_map2.acceptable_pixel_size(self.load_map3)[0])
+
+    def test_acceptable_pixel_size_returns_false_when_other_map_pixel_size_is_not_small_enough(self):
+        self.assertFalse(self.load_map2.acceptable_pixel_size(self.load_map1)[0])
+        self.assertFalse(self.load_map3.acceptable_pixel_size(self.load_map1)[0])
+        self.assertFalse(self.load_map3.acceptable_pixel_size(self.load_map2)[0])
+
+    def test_acceptable_pixel_size_returns_true_when_other_map_pixel_size_is_multiple(self):
+        self.assertTrue(self.load_map1.acceptable_pixel_size(self.load_map1)[1])
+        self.assertTrue(self.load_map1.acceptable_pixel_size(self.load_map3)[1])
+        self.assertTrue(self.load_map2.acceptable_pixel_size(self.load_map2)[1])
+
+
+    def test_acceptable_pixel_size_returns_false_when_other_map_pixel_size_is_not_multiple(self):
+        self.assertFalse(self.load_map1.acceptable_pixel_size(self.load_map2)[1])
+        self.assertFalse(self.load_map2.acceptable_pixel_size(self.load_map1)[1])
+        self.assertFalse(self.load_map2.acceptable_pixel_size(self.load_map3)[1])
+        self.assertFalse(self.load_map3.acceptable_pixel_size(self.load_map1)[1])
+        self.assertFalse(self.load_map3.acceptable_pixel_size(self.load_map2)[1])
+
+
+class TestUploadMapCheck(unittest.TestCase):
+    def setUp(self):
+        self.json_data1 = {
+            "primary_map": mock_map1['path'],
+            "other_maps": [
+                mock_map2['path'],
+                mock_map3['path']
+            ]
         }
-        self.assertEqual(test, target)
+        self.checker1 = UploadMapCheck(self.json_data1)
+        self.checker1.check_all_maps()
 
-    def test_check_all_maps_B_A1_A2(self):
-        data = set_input(mock_primmap_B, mock_halfmap_A1, mock_halfmap_A2)
-        mock_check = UploadMapCheck(data)
-        test = mock_check.check_all_maps()
-        target = {
-            'primary_map': {
-                'path': mock_primmap_B['path'],
-                'dimensions': mock_primmap_B['dimensions'],
-                'size': [
-                    round(x, 2) for x in (
-                            np.array(mock_primmap_B['dimensions']) * np.array(mock_primmap_B['pixel_size'])
-                    ).tolist()
-                ],
-                'offset': mock_primmap_B['offset'],
-                'pixel_size': mock_primmap_B['pixel_size'],
-                'smaller_or_equal': {
-                    mock_halfmap_A1['path']: False,
-                    mock_halfmap_A2['path']: False
-                },
-                'is_inside': {
-                    mock_halfmap_A1['path']: False,
-                    mock_halfmap_A2['path']: False
-                },
-                'acceptable_pixel_size': {
-                    mock_halfmap_A1['path']: False,
-                    mock_halfmap_A2['path']: False
-                },
-                'pixel_size_is_multiple': {
-                    mock_halfmap_A1['path']: False,
-                    mock_halfmap_A2['path']: False
-                }
-            },
-            'other_maps': other_maps(mock_halfmap_A1, mock_halfmap_A2)
+        self.json_data2 = {
+            "primary_map": mock_map2['path'],
+            "other_maps": [
+                mock_map1['path'],
+                mock_map3['path']
+            ]
         }
-        self.assertEqual(test, target)
+        self.checker2 = UploadMapCheck(self.json_data2)
+        self.checker2.check_all_maps()
 
+        self.json_data3 = {
+            "primary_map": mock_map3['path'],
+            "other_maps": [
+                mock_map1['path'],
+                mock_map2['path']
+            ]
+        }
+        self.checker3 = UploadMapCheck(self.json_data3)
+        self.checker3.check_all_maps()
+
+    def test_primary_map(self):
+        self.assertEqual(self.json_data1['primary_map'], self.checker1.output['primary_map']['path'])
+        self.assertEqual(mock_map1['dimensions'], self.checker1.output['primary_map']['dimensions'])
+        self.assertEqual(
+            (np.array(mock_map1['dimensions']) * np.array(mock_map1['pixel_size'])).tolist(),
+            self.checker1.output['primary_map']['size']
+        )
+        self.assertEqual(mock_map1['offset'], self.checker1.output['primary_map']['offset'])
+        self.assertEqual(mock_map1['pixel_size'], self.checker1.output['primary_map']['pixel_size'])
+
+        self.assertEqual(self.json_data2['primary_map'], self.checker2.output['primary_map']['path'])
+        self.assertEqual(mock_map2['dimensions'], self.checker2.output['primary_map']['dimensions'])
+        self.assertEqual(
+            (np.array(mock_map2['dimensions']) * np.array(mock_map2['pixel_size'])).tolist(),
+            self.checker2.output['primary_map']['size']
+        )
+        self.assertEqual(mock_map2['offset'], self.checker2.output['primary_map']['offset'])
+        self.assertEqual(self.checker2.output['primary_map']['pixel_size'], mock_map2['pixel_size'])
+
+        self.assertEqual(self.json_data3['primary_map'], self.checker3.output['primary_map']['path'])
+        self.assertEqual(mock_map3['dimensions'], self.checker3.output['primary_map']['dimensions'])
+        self.assertEqual(
+            (np.array(mock_map3['dimensions']) * np.array(mock_map3['pixel_size'])).tolist(),
+            self.checker3.output['primary_map']['size']
+        )
+        self.assertEqual(mock_map3['offset'], self.checker3.output['primary_map']['offset'])
+        self.assertEqual(mock_map3['pixel_size'], self.checker3.output['primary_map']['pixel_size'])
+
+    def test_other_maps(self):
+        checks = {
+            'smaller_or_equal': [
+                [True, True],
+                [False, False],
+                [True, True]
+            ],
+            'is_inside': [
+                [True, False],
+                [False, False],
+                [False, True]
+            ],
+            'acceptable_pixel_size': [
+                [True, True],
+                [False, True],
+                [False, False]
+            ],
+            'pixel_size_is_multiple': [
+                [False, True],
+                [False, False],
+                [False, False]
+            ]
+        }
+        for i, checker in enumerate([self.checker1, self.checker2, self.checker3]):
+            for j, other_map in enumerate(checker.output['other_maps']):
+                for check in checks:
+                    self.assertEqual(checks[check][i][j], checker.output['primary_map'][check][other_map])
 
 if __name__ == '__main__':
     unittest.main()
