@@ -7731,11 +7731,13 @@ class CifEMDBTranslator(object):
                                 ali_cf = emdb.coma_freeType()
                                 if tilt is not None:
                                     ali_cf.set_residual_tilt(emdb.residual_tilt_type(valueOf_=float(tilt), units=const.U_MRAD))
-                                ali.set_coma_free(ali_cf)
+                                if ali_cf.hasContent_():
+                                    ali.set_coma_free(ali_cf)
                             elif align_proc == "OTHER":
                                 ali_other = emdb.otherType()
                                 ali.set_other(ali_other)
-                            mic.set_alignment_procedure(ali)
+                            if ali.hasContent_():
+                                mic.set_alignment_procedure(ali)
 
                     def set_el_specialist_optics(mic, mic_id):
                         """
