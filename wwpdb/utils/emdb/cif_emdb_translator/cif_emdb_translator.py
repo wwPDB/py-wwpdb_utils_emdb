@@ -2489,7 +2489,7 @@ class CifEMDBTranslator(object):
                             author = get_cif_value("name", const.AUDIT_AUTHOR, cif_list=auth_in)
                         else:
                             # CIF: _em_author_list
-                            set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST,  cif_list=auth_in)
+                            set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST, cif_list=auth_in)
                             author = get_cif_value("author", const.EM_AUTHOR_LIST, cif_list=auth_in)
 
                         fmt_auth = format_author(author)
