@@ -10944,6 +10944,7 @@ class CifEMDBTranslator(object):
                                         if accession_code is not None and access_code is None:
                                             set_cif_value(model.set_access_code, "accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         if accession_code is not None and access_code is not None:
+                                            set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             if accession_code != access_code:
                                                 txt = u"Cannot be two access_codes. If both pdb_entry_id and accession_code are populated, then both should be same."
                                                 self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
@@ -10976,6 +10977,9 @@ class CifEMDBTranslator(object):
                                                 for b_id in c_ids:
                                                     set_cif_value(chain.set_chain_id, "chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=b_id)
                                             if ids_in is not None and ch_ids is not None:
+                                                ids = ids_in.split(",")
+                                                for a_id in ids:
+                                                    set_cif_value(chain.set_chain_id, "pdb_chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=a_id)
                                                 if ids_in != ch_ids:
                                                     txt = u"Cannot be two chain_ids. If both pdb_chain_id and chain_id are populated, then both should be same."
                                                     self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
