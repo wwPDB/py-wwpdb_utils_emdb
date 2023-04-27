@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Fri Mar 31 09:07:22 2023 by generateDS.py version 2.41.3.
+# Generated Thu Apr 27 09:16:02 2023 by generateDS.py version 2.41.4.
 # Python 3.9.5 (default, May 18 2021, 12:31:01)  [Clang 10.0.0 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', '/Users/amudha/Desktop/emdb_dave.py')
+#   ('-o', '/Users/amudha/project/emdb_2_41_4.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
@@ -16,10 +16,10 @@
 #   /Users/amudha/IdeaProjects/emdb-schemas/emdb_schemas/v3/v3_0_3_2/emdb.xsd
 #
 # Command line:
-#   /Users/amudha/Downloads/generateDS-2.41.3/generateDS.py --root-element="emd" -f -o "/Users/amudha/Desktop/emdb_dave.py" --no-warnings --external-encoding="utf-8" /Users/amudha/IdeaProjects/emdb-schemas/emdb_schemas/v3/v3_0_3_2/emdb.xsd
+#   /Users/amudha/Downloads/generateDS-2.41.4/generateDS.py --root-element="emd" -f -o "/Users/amudha/project/emdb_2_41_4.py" --no-warnings --external-encoding="utf-8" /Users/amudha/IdeaProjects/emdb-schemas/emdb_schemas/v3/v3_0_3_2/emdb.xsd
 #
 # Current working directory (os.getcwd()):
-#   Desktop
+#   amudha
 #
 
 import sys
@@ -44146,8 +44146,8 @@ def parseLiteral(inFileName, silence=False, print_warnings=True):
         doc = None
         rootNode = None
     if not silence:
-        sys.stdout.write('#from emdb_dave import *\n\n')
-        sys.stdout.write('import emdb_dave as model_\n\n')
+        sys.stdout.write('#from emdb_2_41_4 import *\n\n')
+        sys.stdout.write('import emdb_2_41_4 as model_\n\n')
         sys.stdout.write('rootObj = model_.rootClass(\n')
         rootObj.exportLiteral(sys.stdout, 0, name_=rootTag)
         sys.stdout.write(')\n')
