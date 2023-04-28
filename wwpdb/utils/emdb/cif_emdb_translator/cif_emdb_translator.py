@@ -2441,12 +2441,7 @@ class CifEMDBTranslator(object):
                     NO: CIF: _em_admin.title
                 """
                 same_as_pdb = get_cif_value("same_title_as_pdb", const.EM_DEPUI)
-                if same_as_pdb == "YES":
-                    # CIF: _struct.title
-                    set_cif_value(admin.set_title, "title", const.STRUCT)
-                else:
-                    # CIF: _em_admin.title
-                    set_cif_value(admin.set_title, "title", const.EM_ADMIN)
+                set_cif_value(admin.set_title, "title", const.EM_ADMIN)
 
             def set_el_authors_list(admin):
                 """
@@ -2483,14 +2478,9 @@ class CifEMDBTranslator(object):
                                  _em_author_list.author             'Turner, J.'
                                  _em_author_list.identifier_ORCID   0000-0002-5251-4674
                         """
-                        if same_as_pdb == "YES":
-                            # CIF: _audit_author
-                            set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.AUDIT_AUTHOR, cif_list=auth_in)
-                            author = get_cif_value("name", const.AUDIT_AUTHOR, cif_list=auth_in)
-                        else:
-                            # CIF: _em_author_list
-                            set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST, cif_list=auth_in)
-                            author = get_cif_value("author", const.EM_AUTHOR_LIST, cif_list=auth_in)
+
+                        set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST, cif_list=auth_in)
+                        author = get_cif_value("author", const.EM_AUTHOR_LIST, cif_list=auth_in)
 
                         fmt_auth = format_author(author)
                         if fmt_auth != "":
