@@ -17,6 +17,9 @@ KIND, either express or implied. See the License for the
 specific language governing permissions and limitations
 under the License.
 """
+
+# pylint: disable=protected-access
+
 __author__ = "Ardan Patwardhan, Sanja Abbott"
 __email__ = "ardan@ebi.ac.uk, sanja@ebi.ac.uk"
 __date__ = "2019-05-17"
