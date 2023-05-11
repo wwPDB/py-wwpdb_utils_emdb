@@ -191,7 +191,9 @@ _atom_sites.fract_transf_vector[1]      0.00000
 _atom_sites.fract_transf_vector[2]      0.00000 
 _atom_sites.fract_transf_vector[3]      0.00000 
 #
-_em_3d_fitting_list.pdb_entry_id          6e1o
+_em_3d_fitting_list.3d_fitting_id       1
+_em_3d_fitting_list.id      1
+_em_3d_fitting_list.pdb_entry_id          pdb_00001aBc
 _em_3d_fitting_list.pdb_chain_id          A
 _em_3d_fitting_list.pdb_residue_range     1-324
 _em_3d_fitting_list.source_name      PDB
