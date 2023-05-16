@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed May 10 13:02:59 2023 by generateDS.py version 2.41.5.
+# Generated Tue May 16 10:17:10 2023 by generateDS.py version 2.41.5.
 # Python 3.9.5 (default, May 18 2021, 12:31:01)  [Clang 10.0.0 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_4_0/emdb.py')
+#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb-schemas/emdb_schemas/v3/v3_0_4_0/emdb.xsd
+#   emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd
 #
 # Command line:
-#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_4_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_4_0/emdb.xsd
+#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   IdeaProjects
@@ -1763,7 +1763,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.4.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.4.1', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1862,7 +1862,7 @@ class entry_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='entry_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('entry_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -1889,10 +1889,10 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.4.0" and 'version' not in already_processed:
+        if self.version != "3.0.4.1" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='entry_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -2118,7 +2118,7 @@ class admin_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='admin_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='admin_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('admin_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -2143,7 +2143,7 @@ class admin_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='admin_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='admin_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='admin_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -2341,7 +2341,7 @@ class version_list_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='version_list_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='version_list_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('version_list_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -2366,7 +2366,7 @@ class version_list_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='version_list_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='version_list_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='version_list_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -2498,7 +2498,7 @@ class version_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='version_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='version_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('version_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -2531,7 +2531,7 @@ class version_type(GeneratedsSuper):
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='version_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='version_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -2807,7 +2807,7 @@ class supersedes_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='supersedes_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='supersedes_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('supersedes_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -2832,7 +2832,7 @@ class supersedes_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='supersedes_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='supersedes_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='supersedes_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -2941,7 +2941,7 @@ class grant_reference_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='grant_reference_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='grant_reference_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('grant_reference_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -2966,7 +2966,7 @@ class grant_reference_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='grant_reference_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='grant_reference_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='grant_reference_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -3224,7 +3224,7 @@ class contact_details_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='contact_details_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='contact_details_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('contact_details_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -3257,7 +3257,7 @@ class contact_details_type(GeneratedsSuper):
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='contact_details_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='contact_details_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -3561,7 +3561,7 @@ class telephone_number_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='telephone_number_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='telephone_number_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('telephone_number_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -3586,7 +3586,7 @@ class telephone_number_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='telephone_number_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='telephone_number_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='telephone_number_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -3933,7 +3933,7 @@ class crossreferences_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crossreferences_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crossreferences_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('crossreferences_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -3958,7 +3958,7 @@ class crossreferences_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='crossreferences_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crossreferences_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crossreferences_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -4256,7 +4256,7 @@ class journal_citation(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='journal_citation', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='journal_citation', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('journal_citation')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -4283,7 +4283,7 @@ class journal_citation(GeneratedsSuper):
         if self.published is not None and 'published' not in already_processed:
             already_processed.add('published')
             outfile.write(' published="%s"' % self.gds_format_boolean(self.published, input_name='published'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='journal_citation', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='journal_citation', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -4647,7 +4647,7 @@ class non_journal_citation(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='non_journal_citation', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='non_journal_citation', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('non_journal_citation')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -4674,7 +4674,7 @@ class non_journal_citation(GeneratedsSuper):
         if self.published is not None and 'published' not in already_processed:
             already_processed.add('published')
             outfile.write(' published="%s"' % self.gds_format_boolean(self.published, input_name='published'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='non_journal_citation', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='non_journal_citation', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -4911,7 +4911,7 @@ class emdb_cross_reference_list_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='emdb_cross_reference_list_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='emdb_cross_reference_list_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('emdb_cross_reference_list_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -4936,7 +4936,7 @@ class emdb_cross_reference_list_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='emdb_cross_reference_list_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='emdb_cross_reference_list_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='emdb_cross_reference_list_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -5033,7 +5033,7 @@ class emdb_cross_reference_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='emdb_cross_reference_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='emdb_cross_reference_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('emdb_cross_reference_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -5058,7 +5058,7 @@ class emdb_cross_reference_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='emdb_cross_reference_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='emdb_cross_reference_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='emdb_cross_reference_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -5161,7 +5161,7 @@ class pdb_cross_reference_list_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='pdb_cross_reference_list_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='pdb_cross_reference_list_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('pdb_cross_reference_list_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -5186,7 +5186,7 @@ class pdb_cross_reference_list_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='pdb_cross_reference_list_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='pdb_cross_reference_list_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='pdb_cross_reference_list_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -5283,7 +5283,7 @@ class pdb_cross_reference_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='pdb_cross_reference_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='pdb_cross_reference_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('pdb_cross_reference_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -5308,7 +5308,7 @@ class pdb_cross_reference_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='pdb_cross_reference_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='pdb_cross_reference_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='pdb_cross_reference_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -5447,7 +5447,7 @@ class auxiliary_link_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='auxiliary_link_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='auxiliary_link_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('auxiliary_link_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -5472,7 +5472,7 @@ class auxiliary_link_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='auxiliary_link_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='auxiliary_link_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='auxiliary_link_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -5584,7 +5584,7 @@ class sample_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sample_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sample_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sample_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -5609,7 +5609,7 @@ class sample_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sample_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sample_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sample_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -5864,7 +5864,7 @@ class base_supramolecule_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_supramolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_supramolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('base_supramolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -5899,7 +5899,7 @@ class base_supramolecule_type(GeneratedsSuper):
                 outfile.write(' xsi:type="%s%s"' % (imported_ns_type_prefix_, self.extensiontype_))
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_supramolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_supramolecule_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -6083,7 +6083,7 @@ class cell_supramolecule_type(base_supramolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='cell_supramolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='cell_supramolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('cell_supramolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -6108,7 +6108,7 @@ class cell_supramolecule_type(base_supramolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='cell_supramolecule_type'):
         super(cell_supramolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='cell_supramolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='cell_supramolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='cell_supramolecule_type', fromsubclass_=False, pretty_print=True):
         super(cell_supramolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -6222,7 +6222,7 @@ class base_source_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_source_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_source_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('base_source_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -6257,7 +6257,7 @@ class base_source_type(GeneratedsSuper):
                 outfile.write(' xsi:type="%s%s"' % (imported_ns_type_prefix_, self.extensiontype_))
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_source_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_source_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -6516,7 +6516,7 @@ class complex_supramolecule_type(base_supramolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='complex_supramolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='complex_supramolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('complex_supramolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -6544,7 +6544,7 @@ class complex_supramolecule_type(base_supramolecule_type):
         if not self.chimera and 'chimera' not in already_processed:
             already_processed.add('chimera')
             outfile.write(' chimera="%s"' % self.gds_format_boolean(self.chimera, input_name='chimera'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='complex_supramolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='complex_supramolecule_type', fromsubclass_=False, pretty_print=True):
         super(complex_supramolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -6687,7 +6687,7 @@ class complex_source_type(base_source_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='complex_source_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='complex_source_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('complex_source_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -6712,7 +6712,7 @@ class complex_source_type(base_source_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='complex_source_type'):
         super(complex_source_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='complex_source_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='complex_source_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='complex_source_type', fromsubclass_=False, pretty_print=True):
         super(complex_source_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -6891,7 +6891,7 @@ class recombinant_source_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='recombinant_source_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='recombinant_source_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('recombinant_source_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -6918,7 +6918,7 @@ class recombinant_source_type(GeneratedsSuper):
         if self.database is not None and 'database' not in already_processed:
             already_processed.add('database')
             outfile.write(' database=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.database), input_name='database')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='recombinant_source_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='recombinant_source_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -7061,7 +7061,7 @@ class molecular_weight_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='molecular_weight_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='molecular_weight_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('molecular_weight_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -7086,7 +7086,7 @@ class molecular_weight_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='molecular_weight_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='molecular_weight_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='molecular_weight_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -7217,7 +7217,7 @@ class organelle_or_cellular_component_supramolecule_type(base_supramolecule_type
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='organelle_or_cellular_component_supramolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='organelle_or_cellular_component_supramolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('organelle_or_cellular_component_supramolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -7242,7 +7242,7 @@ class organelle_or_cellular_component_supramolecule_type(base_supramolecule_type
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='organelle_or_cellular_component_supramolecule_type'):
         super(organelle_or_cellular_component_supramolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='organelle_or_cellular_component_supramolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='organelle_or_cellular_component_supramolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='organelle_or_cellular_component_supramolecule_type', fromsubclass_=False, pretty_print=True):
         super(organelle_or_cellular_component_supramolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -7366,7 +7366,7 @@ class organelle_source_type(base_source_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='organelle_source_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='organelle_source_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('organelle_source_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -7391,7 +7391,7 @@ class organelle_source_type(base_source_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='organelle_source_type'):
         super(organelle_source_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='organelle_source_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='organelle_source_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='organelle_source_type', fromsubclass_=False, pretty_print=True):
         super(organelle_source_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -7564,7 +7564,7 @@ class sample_supramolecule_type(base_supramolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sample_supramolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sample_supramolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sample_supramolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -7589,7 +7589,7 @@ class sample_supramolecule_type(base_supramolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sample_supramolecule_type'):
         super(sample_supramolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sample_supramolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sample_supramolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sample_supramolecule_type', fromsubclass_=False, pretty_print=True):
         super(sample_supramolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -7703,7 +7703,7 @@ class sample_source_type(base_source_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sample_source_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sample_source_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sample_source_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -7728,7 +7728,7 @@ class sample_source_type(base_source_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sample_source_type'):
         super(sample_source_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sample_source_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sample_source_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sample_source_type', fromsubclass_=False, pretty_print=True):
         super(sample_source_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -7859,7 +7859,7 @@ class tissue_supramolecule_type(base_supramolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tissue_supramolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tissue_supramolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('tissue_supramolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -7884,7 +7884,7 @@ class tissue_supramolecule_type(base_supramolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='tissue_supramolecule_type'):
         super(tissue_supramolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tissue_supramolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tissue_supramolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tissue_supramolecule_type', fromsubclass_=False, pretty_print=True):
         super(tissue_supramolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -7971,7 +7971,7 @@ class tissue_source_type(base_source_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tissue_source_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tissue_source_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('tissue_source_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -7996,7 +7996,7 @@ class tissue_source_type(base_source_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='tissue_source_type'):
         super(tissue_source_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tissue_source_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tissue_source_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tissue_source_type', fromsubclass_=False, pretty_print=True):
         super(tissue_source_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -8245,7 +8245,7 @@ class virus_supramolecule_type(base_supramolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='virus_supramolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='virus_supramolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('virus_supramolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -8270,7 +8270,7 @@ class virus_supramolecule_type(base_supramolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='virus_supramolecule_type'):
         super(virus_supramolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='virus_supramolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='virus_supramolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='virus_supramolecule_type', fromsubclass_=False, pretty_print=True):
         super(virus_supramolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -8661,7 +8661,7 @@ class macromolecule_list_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromolecule_list_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromolecule_list_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('macromolecule_list_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -8686,7 +8686,7 @@ class macromolecule_list_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='macromolecule_list_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromolecule_list_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromolecule_list_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -8859,7 +8859,7 @@ class base_macromolecule_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_macromolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_macromolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('base_macromolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -8900,7 +8900,7 @@ class base_macromolecule_type(GeneratedsSuper):
                 outfile.write(' xsi:type="%s%s"' % (imported_ns_type_prefix_, self.extensiontype_))
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_macromolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_macromolecule_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -9085,7 +9085,7 @@ class macromolecule_source_type(base_source_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromolecule_source_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromolecule_source_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('macromolecule_source_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -9110,7 +9110,7 @@ class macromolecule_source_type(base_source_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='macromolecule_source_type'):
         super(macromolecule_source_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='macromolecule_source_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromolecule_source_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromolecule_source_type', fromsubclass_=False, pretty_print=True):
         super(macromolecule_source_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -9288,7 +9288,7 @@ class dna_macromolecule_type(base_macromolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dna_macromolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='dna_macromolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('dna_macromolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -9313,7 +9313,7 @@ class dna_macromolecule_type(base_macromolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='dna_macromolecule_type'):
         super(dna_macromolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='dna_macromolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dna_macromolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='dna_macromolecule_type', fromsubclass_=False, pretty_print=True):
         super(dna_macromolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -9451,7 +9451,7 @@ class em_label_macromolecule_type(base_macromolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='em_label_macromolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='em_label_macromolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('em_label_macromolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -9476,7 +9476,7 @@ class em_label_macromolecule_type(base_macromolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='em_label_macromolecule_type'):
         super(em_label_macromolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='em_label_macromolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='em_label_macromolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='em_label_macromolecule_type', fromsubclass_=False, pretty_print=True):
         super(em_label_macromolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -9598,7 +9598,7 @@ class ligand_macromolecule_type(base_macromolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='ligand_macromolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='ligand_macromolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('ligand_macromolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -9623,7 +9623,7 @@ class ligand_macromolecule_type(base_macromolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='ligand_macromolecule_type'):
         super(ligand_macromolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='ligand_macromolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='ligand_macromolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='ligand_macromolecule_type', fromsubclass_=False, pretty_print=True):
         super(ligand_macromolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -9754,7 +9754,7 @@ class other_macromolecule_type(base_macromolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='other_macromolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='other_macromolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('other_macromolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -9779,7 +9779,7 @@ class other_macromolecule_type(base_macromolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='other_macromolecule_type'):
         super(other_macromolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='other_macromolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='other_macromolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='other_macromolecule_type', fromsubclass_=False, pretty_print=True):
         super(other_macromolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -9972,7 +9972,7 @@ class protein_or_peptide_macromolecule_type(base_macromolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='protein_or_peptide_macromolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='protein_or_peptide_macromolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('protein_or_peptide_macromolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -9997,7 +9997,7 @@ class protein_or_peptide_macromolecule_type(base_macromolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='protein_or_peptide_macromolecule_type'):
         super(protein_or_peptide_macromolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='protein_or_peptide_macromolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='protein_or_peptide_macromolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='protein_or_peptide_macromolecule_type', fromsubclass_=False, pretty_print=True):
         super(protein_or_peptide_macromolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -10191,7 +10191,7 @@ class rna_macromolecule_type(base_macromolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='rna_macromolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='rna_macromolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('rna_macromolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -10216,7 +10216,7 @@ class rna_macromolecule_type(base_macromolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='rna_macromolecule_type'):
         super(rna_macromolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='rna_macromolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='rna_macromolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='rna_macromolecule_type', fromsubclass_=False, pretty_print=True):
         super(rna_macromolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -10402,7 +10402,7 @@ class saccharide_macromolecule_type(base_macromolecule_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='saccharide_macromolecule_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='saccharide_macromolecule_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('saccharide_macromolecule_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -10427,7 +10427,7 @@ class saccharide_macromolecule_type(base_macromolecule_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='saccharide_macromolecule_type'):
         super(saccharide_macromolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='saccharide_macromolecule_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='saccharide_macromolecule_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='saccharide_macromolecule_type', fromsubclass_=False, pretty_print=True):
         super(saccharide_macromolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -10611,7 +10611,7 @@ class structure_determination_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='structure_determination_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='structure_determination_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('structure_determination_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -10638,7 +10638,7 @@ class structure_determination_type(GeneratedsSuper):
         if self.structure_determination_id is not None and 'structure_determination_id' not in already_processed:
             already_processed.add('structure_determination_id')
             outfile.write(' structure_determination_id="%s"' % self.gds_format_integer(self.structure_determination_id, input_name='structure_determination_id'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='structure_determination_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='structure_determination_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -10817,7 +10817,7 @@ class macromolecules_and_complexes_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromolecules_and_complexes_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromolecules_and_complexes_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('macromolecules_and_complexes_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -10842,7 +10842,7 @@ class macromolecules_and_complexes_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='macromolecules_and_complexes_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromolecules_and_complexes_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromolecules_and_complexes_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -10984,7 +10984,7 @@ class base_preparation_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_preparation_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_preparation_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('base_preparation_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -11019,7 +11019,7 @@ class base_preparation_type(GeneratedsSuper):
                 outfile.write(' xsi:type="%s%s"' % (imported_ns_type_prefix_, self.extensiontype_))
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_preparation_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_preparation_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -11195,7 +11195,7 @@ class buffer_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='buffer_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='buffer_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('buffer_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -11220,7 +11220,7 @@ class buffer_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='buffer_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='buffer_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='buffer_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -11335,7 +11335,7 @@ class buffer_component_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='buffer_component_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='buffer_component_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('buffer_component_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -11360,7 +11360,7 @@ class buffer_component_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='buffer_component_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='buffer_component_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='buffer_component_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -11518,7 +11518,7 @@ class grid_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='grid_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='grid_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('grid_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -11543,7 +11543,7 @@ class grid_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='grid_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='grid_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='grid_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -11723,7 +11723,7 @@ class film_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='film_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='film_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('film_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -11750,7 +11750,7 @@ class film_type(GeneratedsSuper):
         if self.film_type_id is not None and 'film_type_id' not in already_processed:
             already_processed.add('film_type_id')
             outfile.write(' film_type_id="%s"' % self.gds_format_integer(self.film_type_id, input_name='film_type_id'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='film_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='film_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -11892,7 +11892,7 @@ class grid_pretreatment_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='grid_pretreatment_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='grid_pretreatment_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('grid_pretreatment_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -11917,7 +11917,7 @@ class grid_pretreatment_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='grid_pretreatment_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='grid_pretreatment_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='grid_pretreatment_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -12097,7 +12097,7 @@ class vitrification_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='vitrification_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='vitrification_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('vitrification_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -12122,7 +12122,7 @@ class vitrification_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='vitrification_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='vitrification_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='vitrification_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -12266,7 +12266,7 @@ class crystallography_preparation_type(base_preparation_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_preparation_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_preparation_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('crystallography_preparation_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -12291,7 +12291,7 @@ class crystallography_preparation_type(base_preparation_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='crystallography_preparation_type'):
         super(crystallography_preparation_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystallography_preparation_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_preparation_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_preparation_type', fromsubclass_=False, pretty_print=True):
         super(crystallography_preparation_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -12852,7 +12852,7 @@ class tomography_preparation_type(base_preparation_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tomography_preparation_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tomography_preparation_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('tomography_preparation_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -12877,7 +12877,7 @@ class tomography_preparation_type(base_preparation_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='tomography_preparation_type'):
         super(tomography_preparation_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tomography_preparation_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tomography_preparation_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tomography_preparation_type', fromsubclass_=False, pretty_print=True):
         super(tomography_preparation_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -13005,7 +13005,7 @@ class fiducial_marker_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='fiducial_marker_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='fiducial_marker_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('fiducial_marker_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -13030,7 +13030,7 @@ class fiducial_marker_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='fiducial_marker_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='fiducial_marker_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='fiducial_marker_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -14361,7 +14361,7 @@ class base_microscopy_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_microscopy_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_microscopy_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('base_microscopy_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -14396,7 +14396,7 @@ class base_microscopy_type(GeneratedsSuper):
                 outfile.write(' xsi:type="%s%s"' % (imported_ns_type_prefix_, self.extensiontype_))
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_microscopy_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_microscopy_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -14872,7 +14872,7 @@ class specialist_optics_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='specialist_optics_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='specialist_optics_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('specialist_optics_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -14897,7 +14897,7 @@ class specialist_optics_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='specialist_optics_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='specialist_optics_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='specialist_optics_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -15028,7 +15028,7 @@ class software_list_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='software_list_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='software_list_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('software_list_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -15053,7 +15053,7 @@ class software_list_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='software_list_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='software_list_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='software_list_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -15135,7 +15135,7 @@ class software_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='software_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='software_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('software_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -15160,7 +15160,7 @@ class software_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='software_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='software_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='software_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -15283,7 +15283,7 @@ class crystallography_microscopy_type(base_microscopy_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_microscopy_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_microscopy_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('crystallography_microscopy_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -15308,7 +15308,7 @@ class crystallography_microscopy_type(base_microscopy_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='crystallography_microscopy_type'):
         super(crystallography_microscopy_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystallography_microscopy_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_microscopy_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_microscopy_type', fromsubclass_=False, pretty_print=True):
         super(crystallography_microscopy_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -15408,7 +15408,7 @@ class tilt_series_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tilt_series_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tilt_series_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('tilt_series_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -15433,7 +15433,7 @@ class tilt_series_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='tilt_series_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tilt_series_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tilt_series_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -15535,7 +15535,7 @@ class axis_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='axis_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='axis_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('axis_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -15568,7 +15568,7 @@ class axis_type(GeneratedsSuper):
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='axis_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='axis_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -15824,7 +15824,7 @@ class tomography_microscopy_type(base_microscopy_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tomography_microscopy_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tomography_microscopy_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('tomography_microscopy_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -15849,7 +15849,7 @@ class tomography_microscopy_type(base_microscopy_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='tomography_microscopy_type'):
         super(tomography_microscopy_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tomography_microscopy_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tomography_microscopy_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tomography_microscopy_type', fromsubclass_=False, pretty_print=True):
         super(tomography_microscopy_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -15935,7 +15935,7 @@ class base_image_processing_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_image_processing_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_image_processing_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('base_image_processing_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -15970,7 +15970,7 @@ class base_image_processing_type(GeneratedsSuper):
                 outfile.write(' xsi:type="%s%s"' % (imported_ns_type_prefix_, self.extensiontype_))
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='base_image_processing_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='base_image_processing_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -16132,7 +16132,7 @@ class crystallography_processing_type(base_image_processing_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_processing_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_processing_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('crystallography_processing_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -16157,7 +16157,7 @@ class crystallography_processing_type(base_image_processing_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='crystallography_processing_type'):
         super(crystallography_processing_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystallography_processing_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_processing_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_processing_type', fromsubclass_=False, pretty_print=True):
         super(crystallography_processing_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -16320,7 +16320,7 @@ class applied_symmetry_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='applied_symmetry_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='applied_symmetry_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('applied_symmetry_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -16345,7 +16345,7 @@ class applied_symmetry_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='applied_symmetry_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='applied_symmetry_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='applied_symmetry_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -16468,7 +16468,7 @@ class helical_parameters_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='helical_parameters_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='helical_parameters_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('helical_parameters_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -16493,7 +16493,7 @@ class helical_parameters_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='helical_parameters_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='helical_parameters_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='helical_parameters_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -16613,7 +16613,7 @@ class reconstruction_filtering_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='reconstruction_filtering_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='reconstruction_filtering_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('reconstruction_filtering_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -16638,7 +16638,7 @@ class reconstruction_filtering_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='reconstruction_filtering_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='reconstruction_filtering_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='reconstruction_filtering_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -16775,7 +16775,7 @@ class background_masked_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='background_masked_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='background_masked_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('background_masked_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -16800,7 +16800,7 @@ class background_masked_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='background_masked_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='background_masked_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='background_masked_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -16932,7 +16932,7 @@ class crystal_parameters_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystal_parameters_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystal_parameters_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('crystal_parameters_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -16957,7 +16957,7 @@ class crystal_parameters_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='crystal_parameters_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystal_parameters_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystal_parameters_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -17097,7 +17097,7 @@ class unit_cell_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='unit_cell_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='unit_cell_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('unit_cell_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -17122,7 +17122,7 @@ class unit_cell_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='unit_cell_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='unit_cell_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='unit_cell_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -17511,7 +17511,7 @@ class starting_map_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='starting_map_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='starting_map_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('starting_map_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -17538,7 +17538,7 @@ class starting_map_type(GeneratedsSuper):
         if self.type_of_model is not None and 'type_of_model' not in already_processed:
             already_processed.add('type_of_model')
             outfile.write(' type_of_model=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.type_of_model), input_name='type_of_model')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='starting_map_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='starting_map_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -17698,7 +17698,7 @@ class pdb_model_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='pdb_model_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='pdb_model_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('pdb_model_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -17723,7 +17723,7 @@ class pdb_model_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='pdb_model_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='pdb_model_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='pdb_model_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -17852,7 +17852,7 @@ class chain_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='chain_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='chain_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('chain_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -17877,7 +17877,7 @@ class chain_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='chain_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='chain_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='chain_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -18013,7 +18013,7 @@ class ctf_correction_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='ctf_correction_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='ctf_correction_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('ctf_correction_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -18038,7 +18038,7 @@ class ctf_correction_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='ctf_correction_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='ctf_correction_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='ctf_correction_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -18167,7 +18167,7 @@ class molecular_replacement_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='molecular_replacement_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='molecular_replacement_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('molecular_replacement_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -18192,7 +18192,7 @@ class molecular_replacement_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='molecular_replacement_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='molecular_replacement_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='molecular_replacement_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -18346,7 +18346,7 @@ class crystallography_statistics_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_statistics_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_statistics_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('crystallography_statistics_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -18371,7 +18371,7 @@ class crystallography_statistics_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='crystallography_statistics_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_statistics_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_statistics_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -18625,7 +18625,7 @@ class helical_processing_type(base_image_processing_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='helical_processing_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='helical_processing_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('helical_processing_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -18650,7 +18650,7 @@ class helical_processing_type(base_image_processing_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='helical_processing_type'):
         super(helical_processing_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='helical_processing_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='helical_processing_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='helical_processing_type', fromsubclass_=False, pretty_print=True):
         super(helical_processing_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -18819,7 +18819,7 @@ class segment_selection_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='segment_selection_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='segment_selection_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('segment_selection_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -18844,7 +18844,7 @@ class segment_selection_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='segment_selection_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='segment_selection_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='segment_selection_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -18997,7 +18997,7 @@ class refinement_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='refinement_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='refinement_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('refinement_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -19022,7 +19022,7 @@ class refinement_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='refinement_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='refinement_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='refinement_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -19137,7 +19137,7 @@ class layer_lines_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='layer_lines_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='layer_lines_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('layer_lines_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -19162,7 +19162,7 @@ class layer_lines_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='layer_lines_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='layer_lines_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='layer_lines_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -19371,7 +19371,7 @@ class angle_assignment_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angle_assignment_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='angle_assignment_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('angle_assignment_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -19396,7 +19396,7 @@ class angle_assignment_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='angle_assignment_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angle_assignment_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='angle_assignment_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -19574,7 +19574,7 @@ class singleparticle_processing_type(base_image_processing_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='singleparticle_processing_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='singleparticle_processing_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('singleparticle_processing_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -19599,7 +19599,7 @@ class singleparticle_processing_type(base_image_processing_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='singleparticle_processing_type'):
         super(singleparticle_processing_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='singleparticle_processing_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='singleparticle_processing_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='singleparticle_processing_type', fromsubclass_=False, pretty_print=True):
         super(singleparticle_processing_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -19761,7 +19761,7 @@ class particle_selection_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='particle_selection_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='particle_selection_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('particle_selection_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -19786,7 +19786,7 @@ class particle_selection_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='particle_selection_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='particle_selection_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='particle_selection_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -19935,7 +19935,7 @@ class classification_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='classification_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='classification_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('classification_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -19960,7 +19960,7 @@ class classification_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='classification_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='classification_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='classification_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -20106,7 +20106,7 @@ class subtomogram_averaging_processing_type(base_image_processing_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='subtomogram_averaging_processing_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='subtomogram_averaging_processing_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('subtomogram_averaging_processing_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -20131,7 +20131,7 @@ class subtomogram_averaging_processing_type(base_image_processing_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='subtomogram_averaging_processing_type'):
         super(subtomogram_averaging_processing_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='subtomogram_averaging_processing_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='subtomogram_averaging_processing_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='subtomogram_averaging_processing_type', fromsubclass_=False, pretty_print=True):
         super(subtomogram_averaging_processing_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -20333,7 +20333,7 @@ class final_reconstruction_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_reconstruction_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_reconstruction_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_reconstruction_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -20366,7 +20366,7 @@ class final_reconstruction_type(GeneratedsSuper):
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_reconstruction_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_reconstruction_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -20538,7 +20538,7 @@ class tomography_processing_type(base_image_processing_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tomography_processing_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tomography_processing_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('tomography_processing_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -20563,7 +20563,7 @@ class tomography_processing_type(base_image_processing_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='tomography_processing_type'):
         super(tomography_processing_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tomography_processing_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tomography_processing_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tomography_processing_type', fromsubclass_=False, pretty_print=True):
         super(tomography_processing_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -20791,7 +20791,7 @@ class map_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='map_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='map_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('map_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -20821,7 +20821,7 @@ class map_type(GeneratedsSuper):
         if self.size_kbytes is not None and 'size_kbytes' not in already_processed:
             already_processed.add('size_kbytes')
             outfile.write(' size_kbytes="%s"' % self.gds_format_integer(self.size_kbytes, input_name='size_kbytes'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='map_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='map_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -21038,7 +21038,7 @@ class integer_vector_map_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='integer_vector_map_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='integer_vector_map_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('integer_vector_map_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -21063,7 +21063,7 @@ class integer_vector_map_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='integer_vector_map_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='integer_vector_map_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='integer_vector_map_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -21180,7 +21180,7 @@ class map_statistics_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='map_statistics_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='map_statistics_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('map_statistics_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -21205,7 +21205,7 @@ class map_statistics_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='map_statistics_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='map_statistics_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='map_statistics_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -21443,7 +21443,7 @@ class interpretation_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='interpretation_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='interpretation_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('interpretation_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -21468,7 +21468,7 @@ class interpretation_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='interpretation_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='interpretation_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='interpretation_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -21650,7 +21650,7 @@ class modelling_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='modelling_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='modelling_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('modelling_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -21675,7 +21675,7 @@ class modelling_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='modelling_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='modelling_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='modelling_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -21841,7 +21841,7 @@ class figure_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='figure_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='figure_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('figure_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -21866,7 +21866,7 @@ class figure_type(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='figure_type'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='figure_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='figure_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -21977,7 +21977,7 @@ class validation_type(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='validation_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='validation_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('validation_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -22010,7 +22010,7 @@ class validation_type(GeneratedsSuper):
             else:
                 outfile.write(' xsi:type="%s"' % self.extensiontype_)
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='validation_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='validation_type', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -22143,7 +22143,7 @@ class crystallography_validation_type(validation_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_validation_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_validation_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('crystallography_validation_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -22168,7 +22168,7 @@ class crystallography_validation_type(validation_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='crystallography_validation_type'):
         super(crystallography_validation_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystallography_validation_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystallography_validation_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystallography_validation_type', fromsubclass_=False, pretty_print=True):
         super(crystallography_validation_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -23078,7 +23078,7 @@ class structure_determination_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='structure_determination_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='structure_determination_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('structure_determination_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -23103,7 +23103,7 @@ class structure_determination_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='structure_determination_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='structure_determination_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='structure_determination_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -23180,7 +23180,7 @@ class validationType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='validationType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='validationType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('validationType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -23205,7 +23205,7 @@ class validationType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='validationType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='validationType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='validationType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -23332,7 +23332,7 @@ class sitesType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sitesType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sitesType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sitesType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -23357,7 +23357,7 @@ class sitesType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sitesType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sitesType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sitesType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -23497,7 +23497,7 @@ class key_datesType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='key_datesType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='key_datesType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('key_datesType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -23522,7 +23522,7 @@ class key_datesType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='key_datesType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='key_datesType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='key_datesType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -23636,7 +23636,7 @@ class obsolete_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsolete_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='obsolete_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('obsolete_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -23661,7 +23661,7 @@ class obsolete_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='obsolete_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='obsolete_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='obsolete_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -23738,7 +23738,7 @@ class superseded_by_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='superseded_by_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='superseded_by_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('superseded_by_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -23763,7 +23763,7 @@ class superseded_by_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='superseded_by_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='superseded_by_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='superseded_by_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -23840,7 +23840,7 @@ class grant_supportType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='grant_supportType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='grant_supportType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('grant_supportType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -23865,7 +23865,7 @@ class grant_supportType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='grant_supportType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='grant_supportType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='grant_supportType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -23972,7 +23972,7 @@ class microscopy_centerType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='microscopy_centerType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='microscopy_centerType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('microscopy_centerType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -23997,7 +23997,7 @@ class microscopy_centerType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='microscopy_centerType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='microscopy_centerType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='microscopy_centerType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -24190,7 +24190,7 @@ class authors_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='authors_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='authors_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('authors_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -24215,7 +24215,7 @@ class authors_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='authors_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='authors_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='authors_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -24588,7 +24588,7 @@ class citation_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='citation_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='citation_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('citation_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -24613,7 +24613,7 @@ class citation_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='citation_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='citation_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='citation_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -24689,7 +24689,7 @@ class primary_citationType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='primary_citationType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='primary_citationType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('primary_citationType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -24714,7 +24714,7 @@ class primary_citationType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='primary_citationType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='primary_citationType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='primary_citationType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -24805,7 +24805,7 @@ class secondary_citationType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='secondary_citationType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='secondary_citationType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('secondary_citationType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -24830,7 +24830,7 @@ class secondary_citationType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='secondary_citationType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='secondary_citationType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='secondary_citationType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -24930,7 +24930,7 @@ class auxiliary_link_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='auxiliary_link_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='auxiliary_link_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('auxiliary_link_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -24955,7 +24955,7 @@ class auxiliary_link_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='auxiliary_link_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='auxiliary_link_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='auxiliary_link_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -25254,7 +25254,7 @@ class relationshipType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='relationshipType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='relationshipType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('relationshipType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -25279,7 +25279,7 @@ class relationshipType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='relationshipType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='relationshipType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='relationshipType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -25388,7 +25388,7 @@ class relationshipType6(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='relationshipType6', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='relationshipType6', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('relationshipType6')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -25413,7 +25413,7 @@ class relationshipType6(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='relationshipType6'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='relationshipType6', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='relationshipType6', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -25508,7 +25508,7 @@ class supramolecule_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='supramolecule_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='supramolecule_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('supramolecule_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -25533,7 +25533,7 @@ class supramolecule_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='supramolecule_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='supramolecule_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='supramolecule_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -25758,7 +25758,7 @@ class macromolecule_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromolecule_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromolecule_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('macromolecule_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -25783,7 +25783,7 @@ class macromolecule_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='macromolecule_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromolecule_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromolecule_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -25893,7 +25893,7 @@ class macromoleculeType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromoleculeType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromoleculeType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('macromoleculeType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -25918,7 +25918,7 @@ class macromoleculeType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='macromoleculeType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='macromoleculeType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='macromoleculeType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -26368,7 +26368,7 @@ class virus_shellType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='virus_shellType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='virus_shellType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('virus_shellType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -26395,7 +26395,7 @@ class virus_shellType(GeneratedsSuper):
         if self.shell_id is not None and 'shell_id' not in already_processed:
             already_processed.add('shell_id')
             outfile.write(' shell_id="%s"' % self.gds_format_integer(self.shell_id, input_name='shell_id'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='virus_shellType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='virus_shellType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -26623,7 +26623,7 @@ class sequenceType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sequenceType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sequenceType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sequenceType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -26648,7 +26648,7 @@ class sequenceType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sequenceType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sequenceType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sequenceType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -26761,7 +26761,7 @@ class discrepancy_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='discrepancy_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='discrepancy_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('discrepancy_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -26786,7 +26786,7 @@ class discrepancy_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='discrepancy_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='discrepancy_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='discrepancy_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -27104,7 +27104,7 @@ class sequenceType18(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sequenceType18', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sequenceType18', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sequenceType18')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -27129,7 +27129,7 @@ class sequenceType18(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sequenceType18'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sequenceType18', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sequenceType18', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -27244,7 +27244,7 @@ class discrepancy_listType19(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='discrepancy_listType19', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='discrepancy_listType19', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('discrepancy_listType19')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -27269,7 +27269,7 @@ class discrepancy_listType19(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='discrepancy_listType19'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='discrepancy_listType19', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='discrepancy_listType19', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -27465,7 +27465,7 @@ class sequenceType22(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sequenceType22', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sequenceType22', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sequenceType22')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -27490,7 +27490,7 @@ class sequenceType22(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sequenceType22'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sequenceType22', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sequenceType22', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -27611,7 +27611,7 @@ class discrepancy_listType23(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='discrepancy_listType23', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='discrepancy_listType23', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('discrepancy_listType23')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -27636,7 +27636,7 @@ class discrepancy_listType23(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='discrepancy_listType23'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='discrepancy_listType23', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='discrepancy_listType23', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -27719,7 +27719,7 @@ class connectivityType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='connectivityType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='connectivityType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('connectivityType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -27744,7 +27744,7 @@ class connectivityType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='connectivityType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='connectivityType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='connectivityType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -27820,7 +27820,7 @@ class _n_linkType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='_n-linkType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='_n-linkType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('_n-linkType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -27845,7 +27845,7 @@ class _n_linkType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='_n-linkType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='_n-linkType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='_n-linkType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -27991,7 +27991,7 @@ class _c_linkType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='_c-linkType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='_c-linkType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('_c-linkType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -28016,7 +28016,7 @@ class _c_linkType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='_c-linkType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='_c-linkType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='_c-linkType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -28213,7 +28213,7 @@ class sequenceType27(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sequenceType27', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sequenceType27', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sequenceType27')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -28238,7 +28238,7 @@ class sequenceType27(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sequenceType27'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sequenceType27', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sequenceType27', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -28351,7 +28351,7 @@ class discrepancy_listType28(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='discrepancy_listType28', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='discrepancy_listType28', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('discrepancy_listType28')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -28376,7 +28376,7 @@ class discrepancy_listType28(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='discrepancy_listType28'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='discrepancy_listType28', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='discrepancy_listType28', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -28669,7 +28669,7 @@ class specimen_preparation_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='specimen_preparation_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='specimen_preparation_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('specimen_preparation_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -28694,7 +28694,7 @@ class specimen_preparation_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='specimen_preparation_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='specimen_preparation_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='specimen_preparation_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -28796,7 +28796,7 @@ class microscopy_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='microscopy_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='microscopy_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('microscopy_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -28821,7 +28821,7 @@ class microscopy_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='microscopy_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='microscopy_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='microscopy_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -29060,7 +29060,7 @@ class stainingType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='stainingType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='stainingType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('stainingType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -29085,7 +29085,7 @@ class stainingType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='stainingType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='stainingType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='stainingType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -29192,7 +29192,7 @@ class sugar_embeddingType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sugar_embeddingType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sugar_embeddingType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sugar_embeddingType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -29217,7 +29217,7 @@ class sugar_embeddingType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sugar_embeddingType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sugar_embeddingType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sugar_embeddingType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -29322,7 +29322,7 @@ class shadowingType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='shadowingType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='shadowingType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('shadowingType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -29347,7 +29347,7 @@ class shadowingType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='shadowingType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='shadowingType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='shadowingType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -30322,7 +30322,7 @@ class crystal_formationType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystal_formationType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystal_formationType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('crystal_formationType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -30347,7 +30347,7 @@ class crystal_formationType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='crystal_formationType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='crystal_formationType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='crystal_formationType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -30494,7 +30494,7 @@ class fiducial_markers_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='fiducial_markers_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='fiducial_markers_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('fiducial_markers_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -30519,7 +30519,7 @@ class fiducial_markers_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='fiducial_markers_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='fiducial_markers_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='fiducial_markers_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -30610,7 +30610,7 @@ class high_pressure_freezingType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_pressure_freezingType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='high_pressure_freezingType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('high_pressure_freezingType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -30635,7 +30635,7 @@ class high_pressure_freezingType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='high_pressure_freezingType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_pressure_freezingType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='high_pressure_freezingType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -30735,7 +30735,7 @@ class sectioningType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sectioningType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sectioningType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sectioningType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -30760,7 +30760,7 @@ class sectioningType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sectioningType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sectioningType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sectioningType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -30867,7 +30867,7 @@ class ultramicrotomyType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='ultramicrotomyType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='ultramicrotomyType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('ultramicrotomyType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -30892,7 +30892,7 @@ class ultramicrotomyType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='ultramicrotomyType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='ultramicrotomyType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='ultramicrotomyType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -31087,7 +31087,7 @@ class focused_ion_beamType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='focused_ion_beamType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='focused_ion_beamType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('focused_ion_beamType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -31112,7 +31112,7 @@ class focused_ion_beamType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='focused_ion_beamType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='focused_ion_beamType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='focused_ion_beamType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -31279,7 +31279,7 @@ class specimen_preparationsType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='specimen_preparationsType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='specimen_preparationsType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('specimen_preparationsType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -31304,7 +31304,7 @@ class specimen_preparationsType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='specimen_preparationsType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='specimen_preparationsType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='specimen_preparationsType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -32135,7 +32135,7 @@ class temperatureType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='temperatureType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='temperatureType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('temperatureType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -32160,7 +32160,7 @@ class temperatureType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='temperatureType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='temperatureType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='temperatureType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -32279,7 +32279,7 @@ class alignment_procedureType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='alignment_procedureType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='alignment_procedureType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('alignment_procedureType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -32304,7 +32304,7 @@ class alignment_procedureType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='alignment_procedureType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='alignment_procedureType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='alignment_procedureType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -32488,7 +32488,7 @@ class basicType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='basicType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='basicType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('basicType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -32513,7 +32513,7 @@ class basicType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='basicType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='basicType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='basicType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -32657,7 +32657,7 @@ class coma_freeType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='coma_freeType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='coma_freeType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('coma_freeType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -32682,7 +32682,7 @@ class coma_freeType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='coma_freeType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='coma_freeType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='coma_freeType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -32833,7 +32833,7 @@ class legacyType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='legacyType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='legacyType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('legacyType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -32858,7 +32858,7 @@ class legacyType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='legacyType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='legacyType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='legacyType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -32947,7 +32947,7 @@ class image_recording_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='image_recording_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='image_recording_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('image_recording_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -32972,7 +32972,7 @@ class image_recording_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='image_recording_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='image_recording_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='image_recording_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -33139,7 +33139,7 @@ class image_recordingType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='image_recordingType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='image_recordingType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('image_recordingType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -33166,7 +33166,7 @@ class image_recordingType(GeneratedsSuper):
         if self.image_recording_id is not None and 'image_recording_id' not in already_processed:
             already_processed.add('image_recording_id')
             outfile.write(' image_recording_id="%s"' % self.gds_format_integer(self.image_recording_id, input_name='image_recording_id'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='image_recordingType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='image_recordingType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -33510,7 +33510,7 @@ class digitization_detailsType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='digitization_detailsType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='digitization_detailsType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('digitization_detailsType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -33535,7 +33535,7 @@ class digitization_detailsType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='digitization_detailsType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='digitization_detailsType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='digitization_detailsType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -33648,7 +33648,7 @@ class dimensionsType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dimensionsType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='dimensionsType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('dimensionsType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -33673,7 +33673,7 @@ class dimensionsType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='dimensionsType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dimensionsType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='dimensionsType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -34267,7 +34267,7 @@ class energy_filterType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='energy_filterType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='energy_filterType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('energy_filterType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -34292,7 +34292,7 @@ class energy_filterType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='energy_filterType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='energy_filterType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='energy_filterType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -34844,7 +34844,7 @@ class tilt_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tilt_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tilt_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('tilt_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -34869,7 +34869,7 @@ class tilt_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='tilt_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='tilt_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='tilt_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -34943,7 +34943,7 @@ class axis2Type(axis_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='axis2Type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='axis2Type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('axis2Type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -34968,7 +34968,7 @@ class axis2Type(axis_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='axis2Type'):
         super(axis2Type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='axis2Type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='axis2Type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='axis2Type', fromsubclass_=False, pretty_print=True):
         super(axis2Type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -35679,7 +35679,7 @@ class spatial_filteringType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='spatial_filteringType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='spatial_filteringType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('spatial_filteringType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -35704,7 +35704,7 @@ class spatial_filteringType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='spatial_filteringType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='spatial_filteringType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='spatial_filteringType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -35997,7 +35997,7 @@ class sharpeningType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sharpeningType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sharpeningType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('sharpeningType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -36022,7 +36022,7 @@ class sharpeningType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='sharpeningType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='sharpeningType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='sharpeningType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -36114,7 +36114,7 @@ class b_factorSharpeningType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='b-factorSharpeningType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='b-factorSharpeningType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('b-factorSharpeningType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -36139,7 +36139,7 @@ class b_factorSharpeningType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='b-factorSharpeningType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='b-factorSharpeningType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='b-factorSharpeningType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -36339,7 +36339,7 @@ class otherType45(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='otherType45', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='otherType45', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('otherType45')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -36364,7 +36364,7 @@ class otherType45(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='otherType45'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='otherType45', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='otherType45', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -36463,7 +36463,7 @@ class dimensionsType46(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dimensionsType46', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='dimensionsType46', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('dimensionsType46')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -36488,7 +36488,7 @@ class dimensionsType46(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='dimensionsType46'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dimensionsType46', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='dimensionsType46', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -37017,7 +37017,7 @@ class random_conical_tiltType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='random_conical_tiltType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='random_conical_tiltType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('random_conical_tiltType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -37042,7 +37042,7 @@ class random_conical_tiltType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='random_conical_tiltType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='random_conical_tiltType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='random_conical_tiltType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -37275,7 +37275,7 @@ class orthogonal_tiltType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='orthogonal_tiltType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='orthogonal_tiltType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('orthogonal_tiltType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -37300,7 +37300,7 @@ class orthogonal_tiltType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='orthogonal_tiltType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='orthogonal_tiltType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='orthogonal_tiltType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -37643,7 +37643,7 @@ class phase_reversalType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='phase_reversalType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='phase_reversalType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('phase_reversalType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -37668,7 +37668,7 @@ class phase_reversalType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='phase_reversalType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='phase_reversalType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='phase_reversalType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -37773,7 +37773,7 @@ class amplitude_correctionType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='amplitude_correctionType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='amplitude_correctionType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('amplitude_correctionType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -37798,7 +37798,7 @@ class amplitude_correctionType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='amplitude_correctionType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='amplitude_correctionType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='amplitude_correctionType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -37911,7 +37911,7 @@ class starting_modelType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='starting_modelType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='starting_modelType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('starting_modelType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -37936,7 +37936,7 @@ class starting_modelType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='starting_modelType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='starting_modelType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='starting_modelType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -38027,7 +38027,7 @@ class resolution_rangeType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='resolution_rangeType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='resolution_rangeType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('resolution_rangeType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -38052,7 +38052,7 @@ class resolution_rangeType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='resolution_rangeType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='resolution_rangeType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='resolution_rangeType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -38446,7 +38446,7 @@ class shell_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='shell_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='shell_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('shell_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -38471,7 +38471,7 @@ class shell_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='shell_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='shell_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='shell_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -38580,7 +38580,7 @@ class shellType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='shellType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='shellType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('shellType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -38607,7 +38607,7 @@ class shellType(GeneratedsSuper):
         if self.shell_id is not None and 'shell_id' not in already_processed:
             already_processed.add('shell_id')
             outfile.write(' shell_id="%s"' % self.gds_format_integer(self.shell_id, input_name='shell_id'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='shellType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='shellType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -39245,7 +39245,7 @@ class starting_symmetryType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='starting_symmetryType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='starting_symmetryType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('starting_symmetryType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -39270,7 +39270,7 @@ class starting_symmetryType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='starting_symmetryType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='starting_symmetryType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='starting_symmetryType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -39359,7 +39359,7 @@ class helix_lengthType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='helix_lengthType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='helix_lengthType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('helix_lengthType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -39384,7 +39384,7 @@ class helix_lengthType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='helix_lengthType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='helix_lengthType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='helix_lengthType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -39710,7 +39710,7 @@ class indexingType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='indexingType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='indexingType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('indexingType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -39735,7 +39735,7 @@ class indexingType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='indexingType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='indexingType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='indexingType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -39817,7 +39817,7 @@ class projection_matching_processingType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='projection_matching_processingType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='projection_matching_processingType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('projection_matching_processingType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -39842,7 +39842,7 @@ class projection_matching_processingType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='projection_matching_processingType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='projection_matching_processingType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='projection_matching_processingType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -40067,7 +40067,7 @@ class final_multi_reference_alignmentType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_multi_reference_alignmentType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -40092,7 +40092,7 @@ class final_multi_reference_alignmentType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_multi_reference_alignmentType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -40331,7 +40331,7 @@ class final_multi_reference_alignmentType58(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType58', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_multi_reference_alignmentType58', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType58')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -40356,7 +40356,7 @@ class final_multi_reference_alignmentType58(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType58'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType58', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_multi_reference_alignmentType58', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -40602,7 +40602,7 @@ class extractionType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='extractionType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='extractionType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('extractionType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -40627,7 +40627,7 @@ class extractionType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='extractionType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='extractionType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='extractionType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -40774,7 +40774,7 @@ class final_multi_reference_alignmentType60(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType60', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_multi_reference_alignmentType60', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType60')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -40799,7 +40799,7 @@ class final_multi_reference_alignmentType60(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType60'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType60', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_multi_reference_alignmentType60', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -40934,7 +40934,7 @@ class extractionType61(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='extractionType61', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='extractionType61', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('extractionType61')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -40959,7 +40959,7 @@ class extractionType61(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='extractionType61'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='extractionType61', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='extractionType61', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -41106,7 +41106,7 @@ class final_multi_reference_alignmentType62(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType62', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_multi_reference_alignmentType62', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType62')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -41131,7 +41131,7 @@ class final_multi_reference_alignmentType62(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType62'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType62', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_multi_reference_alignmentType62', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -41376,7 +41376,7 @@ class originType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='originType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='originType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('originType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -41401,7 +41401,7 @@ class originType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='originType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='originType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='originType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -41505,7 +41505,7 @@ class spacingType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='spacingType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='spacingType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('spacingType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -41530,7 +41530,7 @@ class spacingType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='spacingType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='spacingType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='spacingType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -41661,7 +41661,7 @@ class cellType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='cellType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='cellType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('cellType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -41686,7 +41686,7 @@ class cellType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='cellType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='cellType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='cellType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -41853,7 +41853,7 @@ class axis_orderType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='axis_orderType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='axis_orderType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('axis_orderType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -41878,7 +41878,7 @@ class axis_orderType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='axis_orderType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='axis_orderType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='axis_orderType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -42000,7 +42000,7 @@ class pixel_spacingType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='pixel_spacingType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='pixel_spacingType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('pixel_spacingType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -42025,7 +42025,7 @@ class pixel_spacingType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='pixel_spacingType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='pixel_spacingType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='pixel_spacingType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -42118,7 +42118,7 @@ class contour_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='contour_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='contour_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('contour_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -42143,7 +42143,7 @@ class contour_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='contour_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='contour_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='contour_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -42240,7 +42240,7 @@ class contourType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='contourType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='contourType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('contourType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -42267,7 +42267,7 @@ class contourType(GeneratedsSuper):
         if self.primary is not None and 'primary' not in already_processed:
             already_processed.add('primary')
             outfile.write(' primary="%s"' % self.gds_format_boolean(self.primary, input_name='primary'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='contourType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='contourType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -42370,7 +42370,7 @@ class modelling_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='modelling_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='modelling_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('modelling_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -42395,7 +42395,7 @@ class modelling_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='modelling_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='modelling_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='modelling_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -42472,7 +42472,7 @@ class figure_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='figure_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='figure_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('figure_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -42497,7 +42497,7 @@ class figure_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='figure_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='figure_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='figure_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -42574,7 +42574,7 @@ class segmentation_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='segmentation_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='segmentation_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('segmentation_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -42599,7 +42599,7 @@ class segmentation_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='segmentation_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='segmentation_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='segmentation_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -42696,7 +42696,7 @@ class segmentationType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='segmentationType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='segmentationType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('segmentationType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -42721,7 +42721,7 @@ class segmentationType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='segmentationType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='segmentationType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='segmentationType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -42824,7 +42824,7 @@ class slices_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='slices_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='slices_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('slices_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -42849,7 +42849,7 @@ class slices_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='slices_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='slices_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='slices_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -42926,7 +42926,7 @@ class additional_map_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='additional_map_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='additional_map_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('additional_map_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -42951,7 +42951,7 @@ class additional_map_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='additional_map_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='additional_map_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='additional_map_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -43028,7 +43028,7 @@ class half_map_listType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='half_map_listType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='half_map_listType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('half_map_listType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -43053,7 +43053,7 @@ class half_map_listType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='half_map_listType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='half_map_listType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='half_map_listType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -43135,7 +43135,7 @@ class initial_modelType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='initial_modelType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='initial_modelType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('initial_modelType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -43160,7 +43160,7 @@ class initial_modelType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='initial_modelType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='initial_modelType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='initial_modelType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -43327,7 +43327,7 @@ class chainType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='chainType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='chainType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('chainType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -43352,7 +43352,7 @@ class chainType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='chainType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='chainType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='chainType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -43516,7 +43516,7 @@ class final_modelType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_modelType', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_modelType', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_modelType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -43541,7 +43541,7 @@ class final_modelType(GeneratedsSuper):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_modelType'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_modelType', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='final_modelType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -43637,7 +43637,7 @@ class subtomogram_final_reconstruction_type(final_reconstruction_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='subtomogram_final_reconstruction_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='subtomogram_final_reconstruction_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('subtomogram_final_reconstruction_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -43662,7 +43662,7 @@ class subtomogram_final_reconstruction_type(final_reconstruction_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='subtomogram_final_reconstruction_type'):
         super(subtomogram_final_reconstruction_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='subtomogram_final_reconstruction_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='subtomogram_final_reconstruction_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='subtomogram_final_reconstruction_type', fromsubclass_=False, pretty_print=True):
         super(subtomogram_final_reconstruction_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -43738,7 +43738,7 @@ class non_subtom_final_reconstruction_type(final_reconstruction_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='non_subtom_final_reconstruction_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='non_subtom_final_reconstruction_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('non_subtom_final_reconstruction_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -43763,7 +43763,7 @@ class non_subtom_final_reconstruction_type(final_reconstruction_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='non_subtom_final_reconstruction_type'):
         super(non_subtom_final_reconstruction_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='non_subtom_final_reconstruction_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='non_subtom_final_reconstruction_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='non_subtom_final_reconstruction_type', fromsubclass_=False, pretty_print=True):
         super(non_subtom_final_reconstruction_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -43853,7 +43853,7 @@ class cell_source_type(base_source_type):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='cell_source_type', pretty_print=True):
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='cell_source_type', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('cell_source_type')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -43878,7 +43878,7 @@ class cell_source_type(base_source_type):
             outfile.write('/>%s' % (eol_, ))
     def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='cell_source_type'):
         super(cell_source_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='cell_source_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='cell_source_type', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_=' xmlns:None="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" ', name_='cell_source_type', fromsubclass_=False, pretty_print=True):
         super(cell_source_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
         if pretty_print:
             eol_ = '\n'
@@ -44180,7 +44180,564 @@ RenameMappings_ = {
 # Mapping of namespaces to types defined in them
 # and the file in which each is defined.
 # simpleTypes are marked "ST" and complexTypes "CT".
-NamespaceToDefMappings_ = {}
+NamespaceToDefMappings_ = {'https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd': [('status_code_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('emdb_id_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('author_enums',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('author_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('ORCID_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('page_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('complex_category_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('pos_int_or_string_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_assembly_weights',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_shell_diameter',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('formula_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_concentration',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_angle_shadowing',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_thickness_shadowing',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_film_thickness',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_time_glow_discharge',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_pressure_glow_discharge',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_humidity_vitrification',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_temperature_vitrification',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_crystal_formation_temperature_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_diameter_colloidal_gold',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_temperature',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_microtome_thickness',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_focus_ion_voltage',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_focus_ion_current',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_focus_ion_dose_rate',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_focus_ion_initial_thickness',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_focus_ion_final_thickness',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_acceleration_voltage',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_c2_aperture_diameter',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_nominal_cs',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_defocus_min',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_defocus_max',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_magnification',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_energy_window',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_energy_filter_width',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_film_or_detector_model',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_scaning_interval',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_average_exposure_time_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_electron_dose',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_camera_length',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_angle_tomography',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_angle_increment',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('point_group_symmetry_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_rise_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_twist_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('reconstruction_algorithm_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('resolution_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_brestore_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_cell_dim',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_cell_angle',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_tilt_angle_random_conical',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_tilt_angle1Orthogonal',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_tilt_angle2Orthogonal',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('pdb_code_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('chain_pdb_id',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('correction_space_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('non_zero_float',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_angular_sampling',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('map_data_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('allowed_pixel_sampling',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'ST'),
+                                                                                               ('entry_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('admin_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('version_list_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('version_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('code_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('supersedes_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('grant_reference_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('contact_details_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('telephone_number_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('author_ORCID_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('author_order_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('crossreferences_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('emdb_cross_reference_list_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('emdb_cross_reference_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('pdb_cross_reference_list_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('pdb_cross_reference_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('auxiliary_link_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('sample_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('sci_name_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('base_supramolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('cell_supramolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('cell_source_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('base_source_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('organism_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('complex_supramolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('complex_source_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('recombinant_source_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('molecular_weight_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('organelle_or_cellular_component_supramolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('organelle_source_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('sample_supramolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('sample_source_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('tissue_supramolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('tissue_source_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('virus_supramolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('virus_species_name_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('virus_host_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('macromolecule_list_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('base_macromolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('macromolecule_source_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('dna_macromolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('em_label_macromolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('ligand_macromolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('other_macromolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('protein_or_peptide_macromolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('rna_macromolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('saccharide_macromolecule_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('structure_determination_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('macromolecules_and_complexes_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('base_preparation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('buffer_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('buffer_component_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('grid_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('film_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('grid_pretreatment_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('vitrification_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('crystallography_preparation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('crystal_formation_temperature_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('crystal_formation_time_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('helical_preparation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('single_particle_preparation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('subtomogram_averaging_preparation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('tomography_preparation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('fiducial_marker_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('fiducial_marker_diameter_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('temperature_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('ultramicrotomy_final_thickness_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('fib_voltage_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('fib_current_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('fib_dose_rate_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('fib_duration_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('fib_initial_thickness_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('fib_final_thickness_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('base_microscopy_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('residual_tilt_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('specialist_optics_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('software_list_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('software_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('crystallography_microscopy_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('tilt_series_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('axis_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('helical_microscopy_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('single_particle_microscopy_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('tomography_microscopy_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('base_image_processing_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('crystallography_processing_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('applied_symmetry_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('helical_parameters_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('non_subtom_final_reconstruction_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('reconstruction_filtering_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('background_masked_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('crystal_parameters_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('unit_cell_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('cell_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('cell_angle_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('starting_map_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('pdb_model_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('chain_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('ctf_correction_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('molecular_replacement_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('crystallography_statistics_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('helical_processing_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('segment_selection_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('refinement_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('layer_lines_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('angle_assignment_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('singleparticle_processing_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('particle_selection_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('classification_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('subtomogram_averaging_processing_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('subtomogram_final_reconstruction_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('final_reconstruction_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('tomography_processing_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('map_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('integer_vector_map_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('map_statistics_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('pixel_spacing_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('interpretation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('modelling_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('figure_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('validation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('crystallography_validation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('fsc_curve_validation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('layer_lines_validation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT'),
+                                                                                               ('structure_factors_validation_type',
+                                                                                                'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd',
+                                                                                                'CT')]}
 
 __all__ = [
     "_brestoreType",

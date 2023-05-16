@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" targetNamespace="https://github.com/emdb-empiar/emdb-schemas/blob/master/emdb_schemas/v3/v3_0_4_1/emdb.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:element name="emd" type="entry_type"/>
     <xs:complexType name="entry_type">
         <xs:sequence>
@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.4.0"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.4.1"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
