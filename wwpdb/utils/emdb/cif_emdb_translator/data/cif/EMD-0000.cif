@@ -193,12 +193,12 @@ _atom_sites.fract_transf_vector[3]      0.00000
 #
 _em_3d_fitting_list.3d_fitting_id       1
 _em_3d_fitting_list.id      1
-_em_3d_fitting_list.pdb_entry_id          pdb_00001aBc
+_em_3d_fitting_list.pdb_entry_id          pdber_00001aBc
 _em_3d_fitting_list.pdb_chain_id          A
 _em_3d_fitting_list.pdb_residue_range     1-324
 _em_3d_fitting_list.source_name      PDB
-_em_3d_fitting_list.type      experimental model
-_em_3d_fitting_list.details     TEST TO CHECK IF IT INCLUDES EM_FSC_CURVES.DETAILS
+_em_3d_fitting_list.type      'experimental model'
+_em_3d_fitting_list.details     'TEST TO CHECK IF IT INCLUDES EM_FSC_CURVES DETAILS'
 #
 _em_3d_fitting.entry_id          ? 
 _em_3d_fitting.id                1 
