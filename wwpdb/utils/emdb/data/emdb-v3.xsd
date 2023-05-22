@@ -3284,7 +3284,7 @@
     </xs:complexType>
     <xs:simpleType name="pdb_code_type">
         <xs:restriction base="xs:token">
-            <xs:pattern value="^\d[\dA-Za-z]{3}$|^pdb_\d{5}[\dA-Za-z]{3}$"/>
+            <xs:pattern value="\d[\dA-Za-z]{3}|pdb_\d{5}[\dA-Za-z]{3}"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="chain_type">
