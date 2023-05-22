@@ -10940,7 +10940,7 @@ class CifEMDBTranslator(object):
                                         """
                                         accession_code = get_cif_value("accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         access_code = get_cif_value("pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                        pdb_pattern = re.compile(r"^\d[\dA-Za-z]{3}$|^pdb_\d{5}[\dA-Za-z]{3}$")
+                                        pdb_pattern = re.compile(r"\d[\dA-Za-z]{3}|pdb_\d{5}[\dA-Za-z]{3}")
                                         if not pdb_pattern.match(access_code):
                                             txt = u"PDB id is not in the correct format"
                                             self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
