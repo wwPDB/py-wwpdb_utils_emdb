@@ -7740,11 +7740,13 @@ class CifEMDBTranslator(object):
                                 ali_cf = emdb.coma_freeType()
                                 if tilt is not None:
                                     ali_cf.set_residual_tilt(emdb.residual_tilt_type(valueOf_=float(tilt), units=const.U_MRAD))
-                                ali.set_coma_free(ali_cf)
+                                if ali_cf.has__content():
+                                    ali.set_coma_free(ali_cf)
                             elif align_proc == "OTHER":
                                 ali_other = emdb.otherType()
                                 ali.set_other(ali_other)
-                            mic.set_alignment_procedure(ali)
+                            if ali.has__content():
+                                mic.set_alignment_procedure(ali)
 
                     def set_el_specialist_optics(mic, mic_id):
                         """
@@ -10946,7 +10948,7 @@ class CifEMDBTranslator(object):
                                         """
                                         accession_code = get_cif_value("accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         access_code = get_cif_value("pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                        pdb_pattern = re.compile("^\d[\dA-Za-z]{3}$|^pdb_\d{5}[\dA-Za-z]{3}$")
+                                        pdb_pattern = re.compile("\d[\dA-Za-z]{3}|pdb_\d{5}[\dA-Za-z]{3}")
                                         if not pdb_pattern.match(access_code):
                                             txt = u"PDB id is not in the correct format"
                                             self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
@@ -10956,6 +10958,7 @@ class CifEMDBTranslator(object):
                                         if accession_code is not None and access_code is None:
                                             set_cif_value(model.set_access_code, "accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         if accession_code is not None and access_code is not None:
+                                            set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             if accession_code != access_code:
                                                 txt = u"Cannot be two access_codes. If both pdb_entry_id and accession_code are populated, then both should be same."
                                                 self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
@@ -10988,6 +10991,9 @@ class CifEMDBTranslator(object):
                                                 for b_id in c_ids:
                                                     set_cif_value(chain.set_chain_id, "chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=b_id)
                                             if ids_in is not None and ch_ids is not None:
+                                                ids = ids_in.split(",")
+                                                for a_id in ids:
+                                                    set_cif_value(chain.set_chain_id, "pdb_chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=a_id)
                                                 if ids_in != ch_ids:
                                                     txt = u"Cannot be two chain_ids. If both pdb_chain_id and chain_id are populated, then both should be same."
                                                     self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
@@ -11005,6 +11011,7 @@ class CifEMDBTranslator(object):
                                             if p_res_range is None and res_range is not None:
                                                 set_cif_value(chain.set_residue_range, "chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             if p_res_range is not None and res_range is not None:
+                                                set_cif_value(chain.set_residue_range, "pdb_chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                                 if p_res_range != res_range:
                                                     txt = u"Cannot be two chain_residue_range. If both pdb_chain_residue_range and chain_residue_range are populated, then both should be same."
                                                     self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
