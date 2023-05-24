@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+     Electron Microscopy Data Bank
+
+     XML Schema for FSC  version: 1.2
+
+     Revision history:
+     2013-04-25  1.2
+        * change xsd:decimal for xsd:float
+        * change min value of y from 0 to -1
+     
+     Contact: <help@emdatabank.org> for questions or suggestions.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+  <xs:element name="fsc" type="fscType"/>
+  <xs:complexType name="fscType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Contains a sequence of
+        coordinates. Axis names are fixed, depositor must supply the title.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="coordinate" type="coordType"/>
+    </xs:sequence>
+    <xs:attribute fixed="Resolution (A-1)" name="xaxis" type="xs:string" use="required"/>
+    <xs:attribute fixed="Correlation Coefficient" name="yaxis"
+      type="xs:string" use="required"/>
+    <xs:attribute name="title" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="coordType">
+    <xs:sequence>
+      <xs:element name="x" type="xType"/>
+      <xs:element name="y" type="yType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="xType">
+    <xs:restriction base="xs:float">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="yType">
+    <xs:restriction base="xs:float">
+      <xs:minInclusive value="-1.0"/>
+      <xs:maxInclusive value="1.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

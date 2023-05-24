@@ -1,0 +1,12 @@
+# Cleanup rbmq generated files
+da_top/rbmq/cacer*
+da_top/rbmq/certs
+da_top/rbmq/index*
+da_top/rbmq/private
+da_top/rbmq/serial*
+da_top/rbmq/server
+da_top/rbmq/ssl-client
+
+
+# emacs
+*~

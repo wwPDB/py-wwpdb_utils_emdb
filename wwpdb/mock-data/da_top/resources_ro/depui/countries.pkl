@@ -1,0 +1,753 @@
+(dp0
+S'Canada'
+p1
+S'RCSB'
+p2
+sS'Turkmenistan'
+p3
+S'PDBe'
+p4
+sS'Lithuania'
+p5
+g4
+sS'Venezuela, Bolivarian Republic Of'
+p6
+g2
+sS'Ethiopia'
+p7
+g4
+sS'Aruba'
+p8
+g2
+sS"Korea, Democratic People'S Republic Of"
+p9
+S'PDBj'
+p10
+sS'Swaziland'
+p11
+g4
+sS'Guinea-Bissau'
+p12
+g4
+sS'Argentina'
+p13
+g4
+sS'Cameroon'
+p14
+g4
+sS'Burkina Faso'
+p15
+g4
+sS'Bahrain'
+p16
+g4
+sS'Saudi Arabia'
+p17
+g4
+sS'Rwanda'
+p18
+g4
+sS'Bolivia, Plurinational State Of'
+p19
+g2
+sS'Cape Verde'
+p20
+g4
+sS'United States Minor Outlying Islands'
+p21
+S'RCSB'
+p22
+sS'Cocos (Keeling) Islands'
+p23
+g10
+sS'Faroe Islands'
+p24
+g4
+sS'Guatemala'
+p25
+g2
+sS'Kuwait'
+p26
+g4
+sS'Russian Federation'
+p27
+g4
+sS'Wallis And Futuna'
+p28
+g10
+sS'Saint Barthelemy'
+p29
+g2
+sS'Virgin Islands, British'
+p30
+g2
+sS'Spain'
+p31
+g4
+sS'Liberia'
+p32
+g4
+sS'Maldives'
+p33
+g4
+sS'Jamaica'
+p34
+g2
+sS'Iran, Islamic Republic Of'
+p35
+g4
+sS'Palestinian Territory'
+p36
+g22
+sS'Saint Kitts And Nevis'
+p37
+g2
+sS'Costa Rica'
+p38
+g2
+sS'Philippines'
+p39
+g10
+sS'Christmas Island'
+p40
+g10
+sS'Gabon'
+p41
+g4
+sS'Niue'
+p42
+g2
+sS'Monaco'
+p43
+g4
+sS"Lao People'S Democratic Republic"
+p44
+g10
+sS'New Zealand'
+p45
+g10
+sS'Yemen'
+p46
+g4
+sS'Jersey'
+p47
+g4
+sS'Pakistan'
+p48
+g4
+sS'Greenland'
+p49
+g4
+sS'Samoa'
+p50
+g2
+sS'British Indian Ocean Territory'
+p51
+g22
+sS'Norfolk Island'
+p52
+g10
+sS'United Arab Emirates'
+p53
+g4
+sS'Guam'
+p54
+g10
+sS'Viet Nam'
+p55
+g10
+sS'Azerbaijan'
+p56
+g4
+sS'Lesotho'
+p57
+g4
+sS'Saint Vincent And The Grenadines'
+p58
+g2
+sS'Kenya'
+p59
+g4
+sS'Tajikistan'
+p60
+g4
+sS'Turkey'
+p61
+g4
+sS'Afghanistan'
+p62
+g4
+sS'Northern Mariana Islands'
+p63
+g10
+sS'Mauritania'
+p64
+g4
+sS'Solomon Islands'
+p65
+g10
+sS'India'
+p66
+g10
+sS'Saint Lucia'
+p67
+g2
+sS'Hungary'
+p68
+g4
+sS'San Marino'
+p69
+g4
+sS'Cyprus'
+p70
+g4
+sS'French Polynesia'
+p71
+g2
+sS'France'
+p72
+g4
+sS'Syrian Arab Republic'
+p73
+g4
+sS'Bermuda'
+p74
+g2
+sS'Slovakia'
+p75
+g4
+sS'Somalia'
+p76
+g4
+sS'Peru'
+p77
+g2
+sS'Vanuatu'
+p78
+g10
+sS'Nauru'
+p79
+g22
+sS'Seychelles'
+p80
+g4
+sS'Norway'
+p81
+g4
+sS'Malawi'
+p82
+g4
+sS'Cook Islands'
+p83
+g2
+sS'Benin'
+p84
+g4
+sS'Libya'
+p85
+g4
+sS'Singapore'
+p86
+g10
+sS'Montenegro'
+p87
+g4
+sS'Djibouti'
+p88
+g4
+sS'Togo'
+p89
+g4
+sS'China'
+p90
+g10
+sS'Armenia'
+p91
+g4
+sS'Dominican Republic'
+p92
+g2
+sS'Germany'
+p93
+g4
+sS'Ukraine'
+p94
+g22
+sS'Ghana'
+p95
+g4
+sS'Tonga'
+p96
+g10
+sS'Congo, The Democratic Republic Of The'
+p97
+g4
+sS'Qatar'
+p98
+g4
+sS'Western Sahara'
+p99
+g22
+sS'Finland'
+p100
+g4
+sS'Central African Republic'
+p101
+g4
+sS'Mauritius'
+p102
+g4
+sS'Sweden'
+p103
+g4
+sS'Australia'
+p104
+g10
+sS'Antigua And Barbuda'
+p105
+g2
+sS'Macedonia'
+p106
+g4
+sS'Mali'
+p107
+g4
+sS'Cambodia'
+p108
+g10
+sS'American Samoa'
+p109
+g2
+sS'Bulgaria'
+p110
+g4
+sS'Virgin Islands, U.S.'
+p111
+g2
+sS'United States'
+p112
+g2
+sS'Romania'
+p113
+g4
+sS'Angola'
+p114
+g4
+sS'French Southern Territories'
+p115
+g22
+sS'Portugal'
+p116
+g4
+sS'South Africa'
+p117
+g4
+sS'Tokelau'
+p118
+g22
+sS'Macao'
+p119
+g22
+sS'Brunei Darussalam'
+p120
+g10
+sS'Saint Pierre And Miquelon'
+p121
+g4
+sS'Malaysia'
+p122
+g10
+sS'Senegal'
+p123
+g4
+sS'Mozambique'
+p124
+g4
+sS'Uganda'
+p125
+g4
+sS'Japan'
+p126
+g10
+sS'Niger'
+p127
+g4
+sS'South Sudan'
+p128
+g22
+sS'Brazil'
+p129
+g4
+sS'Tanzania, United Republic Of'
+p130
+g4
+sS'Pitcairn'
+p131
+g2
+sS'Guinea'
+p132
+g4
+sS'Panama'
+p133
+g2
+sS'Svalbard And Jan Mayen'
+p134
+g4
+sS'Luxembourg'
+p135
+g4
+sS'Saint Helena, Ascension And Tristan Da Cunha'
+p136
+g4
+sS'Bahamas'
+p137
+g2
+sS'Gibraltar'
+p138
+g4
+sS'Ireland'
+p139
+g4
+sS'Italy'
+p140
+g4
+sS'Nigeria'
+p141
+g4
+sS'Bonaire, Sint Eustatius And Saba'
+p142
+g22
+sS'Ecuador'
+p143
+g2
+sS'Moldova, Republic Of'
+p144
+g4
+sS'Belarus'
+p145
+g4
+sS'Algeria'
+p146
+g4
+sS'Slovenia'
+p147
+g4
+sS'El Salvador'
+p148
+g2
+sS'Tuvalu'
+p149
+g10
+sS'Czech Republic'
+p150
+g4
+sS'Heard Island And Mcdonald Islands'
+p151
+g22
+sS'Marshall Islands'
+p152
+g10
+sS'Chile'
+p153
+g2
+sS'Puerto Rico'
+p154
+g2
+sS'Belgium'
+p155
+g4
+sS'Kiribati'
+p156
+g10
+sS'Haiti'
+p157
+g2
+sS'Belize'
+p158
+g2
+sS'Hong Kong'
+p159
+g22
+sS'Sierra Leone'
+p160
+g4
+sS'Georgia'
+p161
+g4
+sS'Oman'
+p162
+g4
+sS'Mexico'
+p163
+g2
+sS'Gambia'
+p164
+g4
+sS'Poland'
+p165
+g4
+sS'Sao Tome And Principe'
+p166
+g4
+sS'Morocco'
+p167
+g4
+sS'Albania'
+p168
+g4
+sS'Namibia'
+p169
+g4
+sS'Mongolia'
+p170
+g10
+sS'Guernsey'
+p171
+g4
+sS'Thailand'
+p172
+g10
+sS'Switzerland'
+p173
+g4
+sS'Grenada'
+p174
+g2
+sS'Bangladesh'
+p175
+g10
+sS'Iraq'
+p176
+g4
+sS'Chad'
+p177
+g4
+sS'Estonia'
+p178
+g4
+sS'Uruguay'
+p179
+g4
+sS'South Georgia And The South Sandwich Islands'
+p180
+g22
+sS'Lebanon'
+p181
+g4
+sS'Uzbekistan'
+p182
+g4
+sS'Tunisia'
+p183
+g4
+sS'Falkland Islands (Malvinas)'
+p184
+g2
+sS'Holy See (Vatican City State)'
+p185
+g4
+sS'Timor-Leste'
+p186
+g10
+sS'Dominica'
+p187
+g2
+sS'Colombia'
+p188
+g2
+sS'Reunion'
+p189
+g22
+sS'Burundi'
+p190
+g4
+sS'Taiwan'
+p191
+g10
+sS'Fiji'
+p192
+g10
+sS'Barbados'
+p193
+g2
+sS'Madagascar'
+p194
+g4
+sS'Isle Of Man'
+p195
+g4
+sS'Palau'
+p196
+g10
+sS'Denmark'
+p197
+g4
+sS'Bhutan'
+p198
+g10
+sS'Sudan'
+p199
+g4
+sS'Liechtenstein'
+p200
+g4
+sS'Nepal'
+p201
+g10
+sS'Malta'
+p202
+g4
+sS'Netherlands'
+p203
+g4
+sS'Bosnia And Herzegovina'
+p204
+g4
+sS'Suriname'
+p205
+g4
+sS'Cayman Islands'
+p206
+g2
+sS'Anguilla'
+p207
+g2
+sS'Aland Islands'
+p208
+g22
+sS'Israel'
+p209
+g4
+sS'Indonesia'
+p210
+g10
+sS'Bouvet Island'
+p211
+g22
+sS'Turks And Caicos Islands'
+p212
+g2
+sS'Zambia'
+p213
+g4
+sS'Korea, Republic Of'
+p214
+g10
+sS'Austria'
+p215
+g4
+sS'Papua New Guinea'
+p216
+g10
+sS'Zimbabwe'
+p217
+g4
+sS'Jordan'
+p218
+g4
+sS'Martinique'
+p219
+g22
+sS'Curacao'
+p220
+g22
+sS'Kazakhstan'
+p221
+g10
+sS"Cote D'Ivoire"
+p222
+g4
+sS'Eritrea'
+p223
+g4
+sS'Kyrgyzstan'
+p224
+g10
+sS'Mayotte'
+p225
+g4
+sS'Montserrat'
+p226
+g2
+sS'New Caledonia'
+p227
+g10
+sS'Andorra'
+p228
+g4
+sS'Sri Lanka'
+p229
+g10
+sS'Iceland'
+p230
+g4
+sS'Latvia'
+p231
+g4
+sS'Sint Maarten (Dutch Part)'
+p232
+g22
+sS'Guyana'
+p233
+g2
+sS'Croatia'
+p234
+g4
+sS'Guadeloupe'
+p235
+g22
+sS'Micronesia, Federated States Of'
+p236
+g10
+sS'Saint Martin (French Part)'
+p237
+g2
+sS'Honduras'
+p238
+g2
+sS'Myanmar'
+p239
+g10
+sS'Equatorial Guinea'
+p240
+g4
+sS'Egypt'
+p241
+g4
+sS'Nicaragua'
+p242
+g2
+sS'Cuba'
+p243
+g2
+sS'Serbia'
+p244
+g4
+sS'Comoros'
+p245
+g4
+sS'United Kingdom'
+p246
+g4
+sS'Trinidad And Tobago'
+p247
+g2
+sS'Antarctica'
+p248
+g22
+sS'Congo'
+p249
+g4
+sS'Greece'
+p250
+g4
+sS'Paraguay'
+p251
+g2
+sS'French Guiana'
+p252
+g22
+sS'Botswana'
+p253
+g4
+s.

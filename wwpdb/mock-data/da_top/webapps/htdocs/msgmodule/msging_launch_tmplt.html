@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+
+<title>Msg: %(display_identifier)s</title>
+
+<link rel="stylesheet" type="text/css" media="all" href="/msgmodule/styles/oneColLiqCtrHdr.css" />
+
+<link rel="stylesheet" type="text/css" media="all" href="/msgmodule/styles/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/msgmodule/styles/jquery.dataTables.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/msgmodule/styles/jquery.dataTables.wwpdb.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/msgmodule/styles/dataTables.colReorder-1.1.3.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/msgmodule/styles/dataTables.tableTools-2.2.4.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/msgmodule/styles/themes/custom/jquery-ui-1.10.3.custom.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/msgmodule/styles/themes/custom/jquery-ui-1.10.3.custom.wwpdb.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/msgmodule/styles/msgmodule.css" />
+<!-- Found that needed below style in page as opposed to msgmodule.css for effects to be properly rendered in Firefox 31.1.0 (but not necessary for Chrome) -->
+<style type="text/css">
+#loading{
+        display:none;
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%%;
+        height:100%%;
+        background:rgba(255,255,255,0.8);
+        z-index:1000;
+}
+#loadingcontent{
+        display:table;
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%%;
+        height:100%%;
+        z-index:1200;
+}
+#loadingspinner{
+        display: table-cell;
+        vertical-align:middle;
+        width: 100%%;
+        text-align: center;
+        font-size:larger;
+        padding-top:80px;
+        z-index:1200;
+}
+</style>
+
+<script type="text/javascript">
+	var SESSION_ID = '%(sessionid)s';
+	var DEPID     = '%(identifier)s';
+        var DISPLAYID = '%(display_identifier)s';
+	var SESS_PATH_PREFIX = '%(session_url_prefix)s';
+	var FILE_SOURCE = '%(filesource)s';
+	var INSTANCE = '%(instance)s';
+	var CONTENT_TYPE = '%(content_type)s';
+	var ANNOTATOR = '%(annotator)s';
+	var EMBEDDED_VW = false;
+	var EM_ENTRY = false;
+	var EM_MAP_ONLY = false;
+	var EM_MAP_AND_MODEL = false;
+</script>
+<script type="text/javascript" src="/js/jquery-2.1.3/core/jquery-2.1.3.js"></script>
+<script type="text/javascript" src="/msgmodule/js/jquery/ui/jquery-ui.custom.min.js" defer></script>
+<script type="text/javascript" src="/js/jquery/plugins/jquery.form.min.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/jquery/plugins-src/jquery.hoverIntent.minified.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/jquery/plugins-src/jquery.bt-0.9.7.wwpdb.min.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/jquery/plugins-src/jquery.dataTables-1.10.5.min.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/jquery/plugins-src/dataTables.colReorder-1.1.3.min.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/jquery/plugins-src/dataTables.tableTools-2.2.4.wwpdb.min.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/depui.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/wfm.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/jquery/plugins-src/spin.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/jquery/plugins-src/jquery.spin.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/bootstrap.min.js" defer></script>
+<script type="text/javascript" src="/msgmodule/js/msging-main.min.js?v=20181126"></script>
+</head>
+<body class="">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#msging-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="/images/wwpdb_logo.gif" height="40" alt="logo" style="margin-top: 5px; margin-right: 15px;" />
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="msging-navbar">
+      <ul class="nav navbar-nav">
+        <li class=""><a href="#" class="get_content_type" id="get_content_type_msgs" name="msgs">Messages</a></li>
+        <li id="new_msg_menu" class="dropdown msg_view_only disabled">
+          <a id="new_msg_menu_link" href="#" class="dropdown-toggle disabled" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New Message <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="compose" id="cmps_default">Default</a></li>
+			<li><a href="#" class="compose" id="cmps_vldtn">Validation Report</a></li>
+			<li><a href="#" class="compose" id="cmps_approval-expl">Approval Explicit</a></li>
+			<li><a href="#" class="compose" id="cmps_approval-impl">Approval Implicit</a></li>
+			<li><a href="#" class="compose" id="cmps_reminder">Reminder</a></li>
+			<li><a href="#" class="compose" id="cmps_release-publ">Release w/ Publication</a></li>
+			<li><a href="#" class="compose" id="cmps_release-nopubl">Release w/o Publication</a></li>
+			<li><a href="#" class="compose" id="cmps_system-unlocked">System Unlocked</a></li>
+			<li><a href="#" class="compose" id="cmps_withdrawn">Withdrawn</a></li>
+          </ul>
+        </li>
+        <li class="msg_view_only" id="tmplts_loading_prompt"><a href="#" id="tmplts_loading_prompt_a" class="bg-warning"><strong>Loading message templates...</strong></a></li>
+        <li class="msg_view_only"><a href="#" id="threaded_view_toggle" name="threaded_view_toggle" >Switch to Message Thread View</a></li>
+        <li class="msg_view_only"><a href="#" id="get_draft_msgs" name="msgs" class="get_content_type">View Drafts</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      	<li class="notes_view_only"><a href="#" id="notes_flag_bmrb_toggle" name="notes_flag_bmrb_toggle" class="notes_nav hidden"></a></li>
+      	<li class="notes_view_only"><a href="#" id="notes_flag_toggle" name="notes_flag_toggle" class="notes_nav"></a></li>
+      	<li class="notes_view_only"><a href="#" id="get_draft_notes" name="notes" class="get_content_type notes_nav">View Drafts</a></li>      
+      	<li class="notes_view_only"><a href="#" class="compose notes_nav" id="new_note" name="new_note">New Note</a></li>
+      	<li class=""><a href="#" class="get_content_type notes_nav" id="get_content_type_notes" name="notes">Notes</a></li>
+        <li class=""><a href="#" class="get_content_type commhstry_nav" id="get_content_type_commhstry" name="commhstry">Full Correspondence History</a></li>
+        <li class="%(display_unlock)s"><a href="#" class="" id="unlock_depui" name="unlock_depui">Unlock DepUI</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div id="container">
+    
+<!-- #mainContent begins -->
+	<div id="mainContent" style="margin-left: 2.5%%;">
+		<div class="errmsg glblerr ui-state-error ui-corner-all noprint"></div>
+
+ 			<div class="noprint displaynone">
+				<form name="hlprfrm" id="hlprfrm" method="post" action="">
+					<input type="hidden" name="rowids" id="rowids" value="" />
+					<input type="hidden" name="sessionid" id="sessionid" value="%(sessionid)s" />
+	      			<input type="hidden" name="identifier" id="identifier" value="%(identifier)s" />
+	      			<input type="hidden" name="sender" id="msg_compose_sender" value="%(annotator)s" />
+	      			<input type="hidden" name="instance" id="instance" value="%(instance)s" />
+	      			<input type="hidden" name="filesource" id="filesource" value="%(filesource)s" />
+	      			<input type="hidden" name="content_type" id="hlprfrm_content_type" value="" />
+	      			<input type="hidden" name="caller" id="caller" value="%(caller)s" />
+	      			<input type="hidden" name="filePath" id="filePath" value="%(filepath)s" />
+	      			<input type="hidden" name="fileType" id="fileType" value="%(filetype)s" />
+	      			<input type="hidden" name="expmethod" id="expmethod" value="%(expmethod)s" />
+				</form>
+			</div>
+ 						
+			<div id="threaded_view_toggle_help" class="displaynone">
+	            <div style="font-size: .9em;">
+		            <p>Toggles view for "Messages" between:</p>
+		            <p>"Standard Sorting View" - where default ordering is reverse chronological order and annotator can manipulate sorting to be ascending/descending for any of the columns in view.</p>
+		            <p>or</p>
+		            <p>"Message Thread View" - where ordering is fixed in chronological order so that view of any message threads makes sense, i.e. indentation of messages is used to indicate parent-child relationships.</p>
+		        </div>
+	        </div>
+	        <div id="notes_flag_toggle_help" class="displaynone" style="font-size: .9em;">
+	            Turns the asterisk '*' flag for any notes off/on<br />
+		        (i.e. disables/enables the notes flag displayed in WFM UI)
+	        </div>
+	        <div id="notes_flag_bmrb_toggle_help" class="displaynone" style="font-size: .9em;">
+	            Turns the flag for any "BMRB" notes off/on<br />
+		        (i.e. disables/enables the "BMRB" notes flag displayed in WFM UI)
+	        </div>
+	        
+			<div id="msglist_panel" class="fltlft well well-sm" style="width: 95%%; ">
+						<div id="rslts_resize_container" style="overflow: hidden; padding-bottom: 10px; padding-right: 10px;">
+							<div id="rslts"></div>
+							<div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>
+						</div>
+			</div>
+			<br class="clearfloat"/>
+			<!-- #main msglist_panel ends with above /div -->
+
+		<br class="clearfloat" />
+		<div id="loading">
+	    	<div id="loadingcontent">
+		    	<p id="loadingspinner">
+		            Processing ...
+	        	</p>
+	      	</div>
+	    </div>
+		<div id="context_menu_content" class="displaynone">
+			<ul id="context_menu">
+				<!-- <li><a href="#" id="view_msg_nw_wndw" class="msg_context_menu_choice">View message in new window</a></li> -->
+				<li><a href="#" id="tag_msg_choice" class="msg_context_menu_choice">Tag message</a></li>
+				<li><a href="#" id="archv_msg" class="msg_context_menu_choice">Archive message</a></li>
+				<!-- <li><a href="#" id="fwd_msg" class="msg_context_menu_choice">Forward Message</a></li> -->
+			</ul>
+			
+			<div id="forward_msg" title="">
+				<div>
+					<br />
+					<label for="forward_msg_target_depid"><span class="strong">Forward to following Deposition IDs (please use commas when indicating more than one entry): </span></label>
+					<br />
+					<input type="text" name="target_identifier" id="forward_msg_target_depid" class="text ui-widget-content ui-corner-all" style="width:350px;margin-top:5px;" value="" />
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-primary" id="btn_collapse_msg_preview" type="button" data-toggle="collapse" data-target="#collapse_msg_preview" aria-expanded="false" aria-controls="collapse_msg_preview">
+		  Show Message View Panel
+		</button>
+		<!-- Button trigger modal 
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		  Launch demo modal
+		</button>
+		-->
+		
+		<br />
+		<br />
+		<div class="collapse well well-sm" id="collapse_msg_preview" style="width: 95%%;">
+			<div id="preview_hdr" style="overflow: hidden; padding-right: 10px; "><!-- border-style: solid; border-width: 1px; border-bottom-style: none; background: #F2F2F2;  -->
+				
+						<div class="fltlft">
+							<div style="margin:8px;"><span class="strong">SUBJECT: </span><span id="preview_msg_subject">TEST SUBJECT</span></div>
+							<div style="margin:8px;"><span class="strong">SENDER: </span><span id="preview_msg_sender">TEST SENDER</span></div>
+							<div style="margin:8px;"><span class="strong">DATETIME: </span><span id="preview_msg_timestamp">TEST TIMESTAMP</span></div>
+						</div>
+						<div id="preview_msg_actions" class="fltrgt" style="margin-right:5px; margin-top:8px; width: 15%%;">
+							<!-- <input style="margin-left: 5px; font-size: .8em;" class="fltrgt" id="redraw" name="redraw" value="RedrawTest" type="button"> -->
+							<input style="margin-left: 5px;" class="preview_msg_action_btn edit draft_view pull-right btn btn-primary" id="edit_preview" name="edit" value="Edit" type="button">
+							<input style="margin-left: 5px;" class="msg_view_only preview_msg_action_btn reply pull-right btn btn-primary" id="reply_preview" name="reply" value="Reply" type="button">
+							<input style="margin-left: 5px;" class="msg_view_only preview_msg_action_btn tag_msg pull-right btn btn-default" id="tag_preview" name="tag" value="Tag" type="button">
+							<input style="margin-left: 5px;" class="preview_msg_action_btn archive pull-right btn btn-default" id="archive_preview" name="archive" value="Archive" type="button">
+						</div>
+			</div>
+			<div id="resize_container" style="overflow: hidden; height: 252px; padding-bottom: 10px; padding-right: 10px;"><!-- border-style: solid; border-width: 1px; -->
+				<div id="preview_msg" class="" style="height: 250px;"> <!-- border-style: solid; border-width: 1px; -->
+						<input type="hidden" name="preview_msg_id" id="preview_msg_id" value="" />
+						
+						<div id="preview_msg_body" class="text ui-widget-content ui-corner-all" style="padding:10px;margin:8px;white-space:pre-wrap;overflow:auto;overflow-y:hidden; width: 95%%;">TEST MSG BODY</div>
+						<!-- <textarea cols="105" rows="15" name="message" id="preview_msg_body" class="text ui-widget-content ui-corner-all" style="margin-top:5px;padding:10px;"></textarea> -->
+						<div id="preview_parent_msg_div" class="displaynone">
+							<br />
+							<label for="preview_parent_msg" style="margin:8px; width: 15%%;"><span class="strong">IN REPLY TO:</span></label>
+							<div name="parent_message" id="preview_parent_msg" class="text ui-widget-content ui-corner-all" style="padding:10px;margin:8px;white-space:pre-wrap;overflow:auto;overflow-y:hidden;width: 95%%;"></div>
+						</div>
+						<div id="files_rfrncd_div" class="displaynone" style="width: 95%%;">
+							<br />
+							<br />
+							<label for="files_rfrncd" style="margin:8px; width: 15%%;"><span class="strong">FILES REFERENCED:</span></label>
+							<div name="files_rfrncd" id="files_rfrncd" class="text ui-widget-content ui-corner-all" style="padding:10px;margin:8px;"></div>
+						</div>
+						<br />
+				</div> <!--  end preview_msg -->
+				<div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>
+			</div>
+		</div>
+		
+		<div id="msg_dialog_content" >
+		<!-- Bootstrap Modal -->
+			<div id="msg_body_display" class="modal fade modal-wide" tabindex="-1" role="dialog" aria-labelledby="msg_body_display_lbl">
+			  <div class="modal-dialog modal-lg" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 25px"><span aria-hidden="true">&times;</span></button>
+			        <button type="button" class="btn btn-primary reply msg_view_only pull-right" id="reply_display" data-dismiss="modal" style="margin-left: 8px">Reply</button>
+			      	<button type="button" class="btn btn-default tag_msg msg_view_only pull-right" id="tag_display" style="margin-left: 8px">Tag</button>
+			      	<button type="button" class="btn btn-default archive pull-right" id="archive_display" data-dismiss="modal" style="margin-left: 8px">Archive</button>
+			      	<button type="button" class="btn btn-default cancel pull-right" id="cancel_display" data-dismiss="modal" style="margin-left: 8px">Close</button>
+			      	<h4 class="modal-title" id="msg_body_display_lbl"><span id="msg_subject">TEST SUBJECT</span></h4>
+			      </div>
+			      <div class="modal-body">
+			      	<div style="margin-bottom:7px;"><span class="strong">SENDER: </span><span id="msg_sender">TEST SENDER</span></div>
+					<div><span class="strong">DATETIME: </span><span id="msg_timestamp">TEST TIMESTAMP</span></div>
+					<input type="hidden" name="msg_id" id="msg_id" value="" />
+					<br />
+					<div><span class="strong">DEPOSITION ID: </span><span id="msg_dep_id">TEST DEP ID</span></div>
+					<!-- <div><span class="strong">ORDINAL ID: </span><span id="msg_ordinal_id">TEST ORDINAL ID</span></div>  -->
+					<br /><br /><br />
+					<label for="msg_body"><span class="strong">MESSAGE:</span></label>
+					<div id="msg_body" class="text ui-widget-content ui-corner-all" style="padding:10px;margin-top:10px;white-space:pre-wrap;overflow:auto;overflow-y:hidden;">TEST MSG BODY</div>
+					<div id="parent_msg_div" class="displaynone">
+						<br />
+						<br />
+						<label for="parent_msg"><span class="strong">IN REPLY TO:</span></label>
+						<div name="parent_message" id="parent_msg" class="text ui-widget-content ui-corner-all" style="padding:10px;margin-top:10px;white-space:pre-wrap;overflow:auto;overflow-y:hidden;"></div>
+					</div>
+					<div id="files_rfrncd_div_dialog" class="displaynone">
+						<br />
+						<br />
+						<label for="files_rfrncd_dialog"><span class="strong">FILES REFERENCED:</span></label>
+						<div name="files_rfrncd_dialog" id="files_rfrncd_dialog" class="text ui-widget-content ui-corner-all" style="padding:10px;margin-top:10px;"></div>
+					</div>
+			      </div>
+			      <div class="modal-footer">
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+			<div id="msg_compose" title="Compose %(new_cntnt_type_btnlbl)s" class="modal fade modal-wide"  tabindex="-1" role="dialog" aria-labelledby="msg_compose_lbl" data-backdrop="static">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 25px"><span aria-hidden="true">&times;</span></button>
+							<button type="button" class="btn btn-primary send pull-right" id="send_compose" style="margin-left: 8px">Send</button>
+							<button type="button" class="btn btn-default save_draft pull-right" id="save_draft_compose" data-dismiss="modal" style="margin-left: 8px">Save Draft</button>
+							<button type="button" class="btn btn-default cancel pull-right" id="cancel_compose" data-dismiss="modal" style="margin-left: 8px">Cancel</button>
+				        	<h4 class="modal-title" id="msg_compose_lbl">Compose Message</h4>
+				      	</div>
+				      	<div class="modal-body">
+				      		<!-- <p class="topcaption">Use form below to submit message.</p> -->
+							<form id="msg_compose_frm" enctype="multipart/form-data" method="post" onsubmit="return false;">
+								<input type="hidden" name="sessionid" id="msg_compose_sessionid" value="%(sessionid)s" />
+								<input type="hidden" name="context_type" id="msg_compose_context_type" value="" />
+								<input type="hidden" name="context_value" id="msg_compose_context_value" value="" />
+								<input type="hidden" name="sender" id="msg_compose_sender" value="%(annotator)s" />
+								<input type="hidden" name="msg_id" id="msg_compose_msg_id" value="" />
+								<input type="hidden" name="parent_msg_id" id="msg_compose_parent_msg_id" value="" />
+								<input type="hidden" name="expmethod" value="%(expmethod)s" />
+								
+								<input id="msg_compose_input_em_entry" type="hidden" name="em_entry" value="false" />
+								<input id="msg_compose_input_em_map_only" type="hidden" name="em_map_only" value="false" />
+								<input id="msg_compose_input_em_map_and_model" type="hidden" name="em_map_and_model" value="false" />
+								
+								<input type="hidden" name="identifier" id="msg_compose_dep_id" value="%(identifier)s"/>
+								<div class="form-group">
+									<label for="msg_compose_dep_id"><span class="strong">%(display_title)s: </span></label>
+									<p class="form-control-static" style="width:150px;margin-top:5px;margin-bottom:22px;">%(display_identifier)s</p>
+								</div>
+								<div class="form-group">
+									<label for="msg_compose_subject" ><span class="strong">SUBJECT:</span></label>
+									<input type="text" name="subject" id="msg_compose_subject" class="text ui-widget-content ui-corner-all" style="width:650px;margin-top:5px;" />
+								</div>
+								<div class="form-group">
+									<div id="msg_compose_assoc_files">
+										<br />
+										<label for="select_all_file_references" style="display: inline;" ><span class="strong">ASSOCIATE FILES:</span></label>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" id="select_all_file_references" />All
+												</label>
+											</div>
+											
+												<label id="checkbox_model" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="model"/>Coordinate file (CIF)
+												</label>
+												<label id="checkbox_model_pdb" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="model_pdb"/>Coordinate file (PDB)
+												</label>
+												<label id="checkbox_sf" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="sf"/>Structure factor file
+												</label>
+												<label id="checkbox_mr" class="checkbox-inline assoc_files_chckbox hidden">													
+													<input type="checkbox" name="msg_file_references" value="mr" class="nmr"/>NMR restraints file
+												</label>
+												<label id="checkbox_cs" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="cs" class="nmr"/>NMR chemical shifts file
+												</label>
+												<label id="checkbox_em-volume" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="em-volume"/>EM volume
+												</label>
+												<label id="checkbox_em-mask" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="em-mask"/>EM mask
+												</label>
+												<label id="checkbox_em-volume-header" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="em-volume-header"/>EM volume header
+												</label>
+											
+											<div class="checkbox">
+												<label id="checkbox_val-report" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="val-report"/>Validation report (PDF)
+												</label>
+												<label id="checkbox_val-report-full" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="val-report-full"/>Validation report full (PDF)
+												</label>
+												<label id="checkbox_val-data" class="checkbox-inline assoc_files_chckbox hidden">
+													<input type="checkbox" name="msg_file_references" value="val-data"/>Validation data (XML)
+												</label>
+												<br />
+												<br />
+											</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="msg_compose_body"><span class="strong" style="text-transform:uppercase;">%(new_cntnt_type_btnlbl)s:</span></label>
+									<textarea cols="105" rows="15" name="message" id="msg_compose_body" class="form-control" style="margin-top:5px;padding:10px;"></textarea>
+								</div>
+								<div id="msg_compose_parent_msg_div" class="hidden">
+									<br />
+									<label for="msg_compose_parent_msg"><span class="strong">IN REPLY TO:</span></label>
+									<div name="parent_message" id="msg_compose_parent_msg" class="text ui-widget-content ui-corner-all" style="padding:10px;margin-top:5px;white-space: pre-wrap;"></div>
+								</div>
+								<br />
+								<br />
+								<div id="msg_compose_attch_aux_file" class="form-group">
+									<label for="aux-file1"><span class="strong" id="span_attch_aux" data-toggle="tooltip" data-placement="top" title="Supported file types: %(known_file_extensions)s">ATTACH AUXILIARY FILE:</span></label><br />
+									<span id="aux-file-span1"><input type='file' size='50' id="aux-file1" name="aux-file1" class="c_%(identifier)s file_upload fltlft"/><input id="clear1" name="clear1" value="Clear" class="fltlft clearfile" style="padding: 1px; margin-left: 5px;" type="button" /><input id="addanother1" name="addanother1" value="Add Another File" class="fltlft addanother" style="padding: 1px; margin-left: 5px;" type="button" /></span><br /><br class="clearflt" />
+									<span id="aux-file-span2" class="hidden"><input type='file' size='50' id="aux-file2" name="aux-file2" class="c_%(identifier)s file_upload fltlft"/><input id="clear2" name="clear2" value="Clear" class="fltlft clearfile" style="padding: 1px; margin-left: 5px;" type="button" /><input id="addanother2" name="addanother2" value="Add Another File" class="fltlft addanother" style="padding: 1px; margin-left: 5px;" type="button" /></span><br /><br class="clearflt" />
+									<span id="aux-file-span3" class="hidden"><input type='file' size='50' id="aux-file3" name="aux-file3" class="c_%(identifier)s file_upload fltlft"/><input id="clear3" name="clear3" value="Clear" class="fltlft clearfile" style="padding: 1px; margin-left: 5px;" type="button" /></span><br /><br class="clearflt" />
+								</div>
+							</form>
+							
+						</div> <!-- modal body -->
+					</div> <!--  modal content -->
+				</div>
+			</div> <!-- id=msg_compse -->
+			
+			<div id="tag_msg" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tag_msg_lbl">
+			  <div class="modal-dialog modal-sm" role="document">
+			    <div class="modal-content">
+			    	<div class="modal-header">
+			    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        	<h4 class="modal-title" id="tag_msg_lbl">Tag Message</h4>
+			      	</div>
+			      	<div class="modal-body">
+			      		<div class="form-group">
+							<div class="checkbox">
+								<label id="chckbx_no_action_reqd">
+									<input type="checkbox" name="tag_msg" value="no_action_reqd"/>Clear "Action Required"
+								</label>
+							</div>
+						</div>
+						<label id="chckbx_unread" class="checkbox-inline">
+							<input type="checkbox" name="tag_msg" value="unread"/>Unread
+						</label>
+						<label id="chckbx_for_release" class="checkbox-inline">
+							<input type="checkbox" name="tag_msg" value="for_release"/>For Release
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="tag_msg_cancel" data-dismiss="modal">Cancel</button>
+			      		<button type="button" class="btn btn-primary" id="tag_msg_ok" data-dismiss="modal">OK</button>
+		      		</div>
+			    </div>
+			  </div>
+			</div>
+			
+			<div id="archive_msg" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="archive_msg_lbl">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			    	<div class="modal-header">
+			    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        	<h4 class="modal-title" id="archive_msg_lbl">Archive Message</h4>
+			      	</div>
+			      	<div class="modal-body">
+			      		<div class="form-group">
+			      			<label for="archive_msg_target_depid">Archive to following Deposition IDs (please use commas when indicating more than one entry): </label>
+    						<input type="text" class="form-control" id="archive_msg_target_depid" value="%(identifier)s">
+  						</div>
+			      </div>
+			      <div class="modal-footer">
+			      	<button type="button" class="btn btn-default" id="archive_msg_cancel" data-dismiss="modal">Cancel</button>
+			      	<button type="button" class="btn btn-primary" id="archive_msg_ok" data-dismiss="modal">Archive</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+		</div>  <!-- id=msg_dialog_content -->
+		
+	</div>  <!-- id=mainContent -->
+	
+	<!-- #mainContent ends with above /div -->
+<!-- #footer begins -->
+	<br class="clearfloat" />
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="text-center">
+	    	<p style="margin-top: 18px; color: #696;">&copy; 2015 wwPDB Messaging Module V2.0</p>
+	  </div>
+	</nav>
+<!-- #footer ends above -->
+</div>
+<!-- #container ends above-->
+</body>
+</html>
