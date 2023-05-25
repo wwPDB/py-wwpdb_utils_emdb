@@ -124,7 +124,7 @@ _pdbx_database_status.date_accepted_terms_and_conditions   2021-10-06
 # 
 _pdbx_database_related.db_name        EMDB 
 _pdbx_database_related.details        . 
-_pdbx_database_related.db_id          EMD-13682 
+_pdbx_database_related.db_id          EMD-13682
 _pdbx_database_related.content_type   'associated EM volume' 
 # 
 _citation.abstract                  ? 
@@ -195,10 +195,11 @@ _em_3d_fitting_list.3d_fitting_id       1
 _em_3d_fitting_list.id      1
 _em_3d_fitting_list.pdb_entry_id          pdb_00001abc
 _em_3d_fitting_list.pdb_chain_id          A
-_em_3d_fitting_list.pdb_residue_range     1-324
+_em_3d_fitting_list.pdb_chain_residue_range     1-324
 _em_3d_fitting_list.source_name      PDB
 _em_3d_fitting_list.type      'experimental model'
 _em_3d_fitting_list.details     'TEST TO CHECK IF IT INCLUDES EM_FSC_CURVES DETAILS'
+
 #
 _em_3d_fitting.entry_id          ? 
 _em_3d_fitting.id                1 

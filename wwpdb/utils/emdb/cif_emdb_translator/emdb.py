@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed May 10 13:02:59 2023 by generateDS.py version 2.41.5.
+# Generated Tue May 23 14:21:39 2023 by generateDS.py version 2.41.5.
 # Python 3.9.5 (default, May 18 2021, 12:31:01)  [Clang 10.0.0 ]
 #
 # Command line options:
@@ -5273,7 +5273,7 @@ class pdb_cross_reference_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_pdb_code_type_patterns_, ))
                 result = False
         return result
-    validate_pdb_code_type_patterns_ = [['^(^\\d[\\dA-Za-z]{3}$|^pdb_\\d{5}[\\dA-Za-z]{3}$)$']]
+    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
     def has__content(self):
         if (
             self.pdb_id is not None or
@@ -17689,7 +17689,7 @@ class pdb_model_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_pdb_code_type_patterns_, ))
                 result = False
         return result
-    validate_pdb_code_type_patterns_ = [['^(^\\d[\\dA-Za-z]{3}$|^pdb_\\d{5}[\\dA-Za-z]{3}$)$']]
+    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
     def has__content(self):
         if (
             self.pdb_id is not None or
@@ -37902,7 +37902,7 @@ class starting_modelType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_pdb_code_type_patterns_, ))
                 result = False
         return result
-    validate_pdb_code_type_patterns_ = [['^(^\\d[\\dA-Za-z]{3}$|^pdb_\\d{5}[\\dA-Za-z]{3}$)$']]
+    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
     def has__content(self):
         if (
             self.access_code is not None or
@@ -43506,7 +43506,7 @@ class final_modelType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_pdb_code_type_patterns_, ))
                 result = False
         return result
-    validate_pdb_code_type_patterns_ = [['^(^\\d[\\dA-Za-z]{3}$|^pdb_\\d{5}[\\dA-Za-z]{3}$)$']]
+    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
     def has__content(self):
         if (
             self.access_code is not None or

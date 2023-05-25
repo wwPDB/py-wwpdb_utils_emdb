@@ -3195,13 +3195,19 @@ class CifEMDBTranslator(object):
                     if "EMDB" in rel_entries_dict_in:
                         emdb_rel_list_in = rel_entries_dict_in["EMDB"]
                         for rel_in in emdb_rel_list_in:
-                            cross_ref = emdb.emdb_cross_reference_type()
-                            set_rel_el_emdb_id(cross_ref, rel_in)
-                            set_rel_el_relationship(cross_ref, rel_in)
-                            set_rel_el_details(cross_ref, rel_in)
+                            dict_rel_in = dict(rel_in)
+                            em_id = dict_rel_in['_pdbx_database_related.db_id']
+                            db2_in = assert_get_value(const.DATABASE_2, self.cif)
+                            dict_db2_in = dict(db2_in)
+                            emdb_id = dict_db2_in[('_database_2.database_id', 'EMDB')][1]
+                            if em_id != emdb_id:
+                                cross_ref = emdb.emdb_cross_reference_type()
+                                set_rel_el_emdb_id(cross_ref, rel_in)
+                                set_rel_el_relationship(cross_ref, rel_in)
+                                set_rel_el_details(cross_ref, rel_in)
 
-                            if cross_ref.has__content():
-                                emdb_ref_list.add_emdb_reference(cross_ref)
+                                if cross_ref.has__content():
+                                    emdb_ref_list.add_emdb_reference(cross_ref)
 
                 emdb_ref_list = emdb.emdb_cross_reference_list_type()
                 set_emdb_cross_ref_list_type(emdb_ref_list, x_ref_dict_in)
@@ -7734,11 +7740,13 @@ class CifEMDBTranslator(object):
                                 ali_cf = emdb.coma_freeType()
                                 if tilt is not None:
                                     ali_cf.set_residual_tilt(emdb.residual_tilt_type(valueOf_=float(tilt), units=const.U_MRAD))
-                                ali.set_coma_free(ali_cf)
+                                if ali_cf.has__content():
+                                    ali.set_coma_free(ali_cf)
                             elif align_proc == "OTHER":
                                 ali_other = emdb.otherType()
                                 ali.set_other(ali_other)
-                            mic.set_alignment_procedure(ali)
+                            if ali.has__content():
+                                mic.set_alignment_procedure(ali)
 
                     def set_el_specialist_optics(mic, mic_id):
                         """
@@ -10950,6 +10958,7 @@ class CifEMDBTranslator(object):
                                         if accession_code is not None and access_code is None:
                                             set_cif_value(model.set_access_code, "accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         if accession_code is not None and access_code is not None:
+                                            set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             if accession_code != access_code:
                                                 txt = u"Cannot be two access_codes. If both pdb_entry_id and accession_code are populated, then both should be same."
                                                 self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
@@ -10982,6 +10991,9 @@ class CifEMDBTranslator(object):
                                                 for b_id in c_ids:
                                                     set_cif_value(chain.set_chain_id, "chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=b_id)
                                             if ids_in is not None and ch_ids is not None:
+                                                ids = ids_in.split(",")
+                                                for a_id in ids:
+                                                    set_cif_value(chain.set_chain_id, "pdb_chain_id", const.EM_3D_FITTING_LIST, cif_list=model_in, cif_value=a_id)
                                                 if ids_in != ch_ids:
                                                     txt = u"Cannot be two chain_ids. If both pdb_chain_id and chain_id are populated, then both should be same."
                                                     self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
@@ -10999,6 +11011,7 @@ class CifEMDBTranslator(object):
                                             if p_res_range is None and res_range is not None:
                                                 set_cif_value(chain.set_residue_range, "chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             if p_res_range is not None and res_range is not None:
+                                                set_cif_value(chain.set_residue_range, "pdb_chain_residue_range", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                                 if p_res_range != res_range:
                                                     txt = u"Cannot be two chain_residue_range. If both pdb_chain_residue_range and chain_residue_range are populated, then both should be same."
                                                     self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
