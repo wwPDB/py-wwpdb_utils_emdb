@@ -3195,19 +3195,22 @@ class CifEMDBTranslator(object):
                     if "EMDB" in rel_entries_dict_in:
                         emdb_rel_list_in = rel_entries_dict_in["EMDB"]
                         for rel_in in emdb_rel_list_in:
-                            dict_rel_in = dict(rel_in)
-                            em_id = dict_rel_in['_pdbx_database_related.db_id']
+                            em_id = get_cif_value("db_id", const.PDBX_DATABASE_RELATED, rel_in)
                             db2_in = assert_get_value(const.DATABASE_2, self.cif)
-                            dict_db2_in = dict(db2_in)
-                            emdb_id = dict_db2_in[('_database_2.database_id', 'EMDB')][1]
-                            if em_id != emdb_id:
-                                cross_ref = emdb.emdb_cross_reference_type()
-                                set_rel_el_emdb_id(cross_ref, rel_in)
-                                set_rel_el_relationship(cross_ref, rel_in)
-                                set_rel_el_details(cross_ref, rel_in)
+                            db_id_dict = make_list_of_dicts(const.DATABASE_2, "database_id", db2_in, 2)
+                            if "EMDB" in db_id_dict:
+                                emdb_db_id = db_id_dict["EMDB"][0]
+                                if emdb_db_id is not None:
+                                    emdb_id = get_cif_value("database_code", const.DATABASE_2, emdb_db_id)
+                                    if emdb_id is not None:
+                                        if em_id != emdb_id:
+                                            cross_ref = emdb.emdb_cross_reference_type()
+                                            set_rel_el_emdb_id(cross_ref, rel_in)
+                                            set_rel_el_relationship(cross_ref, rel_in)
+                                            set_rel_el_details(cross_ref, rel_in)
 
-                                if cross_ref.has__content():
-                                    emdb_ref_list.add_emdb_reference(cross_ref)
+                                            if cross_ref.has__content():
+                                                emdb_ref_list.add_emdb_reference(cross_ref)
 
                 emdb_ref_list = emdb.emdb_cross_reference_list_type()
                 set_emdb_cross_ref_list_type(emdb_ref_list, x_ref_dict_in)
