@@ -109,7 +109,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.4.0"
+        XML_OUT_VERSION = "3.0.4.1"
 
         # Cif categories
         CITATION = "citation"
@@ -592,6 +592,7 @@ class CifEMDBTranslator(object):
             "_em_particle_selection.num_particles_selected": '<xs:element name="number_selected" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_software.name": '<xs:element name="name" type="xs:token" minOccurs="0"/>',
             "_em_software.version": '<xs:element name="version" type="xs:token" minOccurs="0"/>',
+            "_em_software.category": '<xs:element name="category" type="xs:token" minOccurs="0"/>',
             "_em_software.details": '<xs:element name="processing_details" type="xs:string" minOccurs="0"/>',
             "_em_specimen.concentration": '<xs:element name="concentration" minOccurs="0">',
             "_em_specimen.id": '<xs:element name="specimen_preparation_id" type="xs:positiveInteger"/>',
@@ -1799,6 +1800,13 @@ class CifEMDBTranslator(object):
                     """
                     set_cif_value(soft.set_version, "version", const.EM_SOFTWARE, cif_list=soft_in)
 
+                def set_el_category(soft, soft_in):
+                    """
+                    XSD: <xs:element name="category" type="xs:token" minOccurs="0"/>
+                    CIF: _em_software.category
+                    """
+                    set_cif_value(soft.set_category, "category", const.EM_SOFTWARE, cif_list=soft_in)
+
                 def set_el_processing_details(soft, soft_in):
                     """
                     XSD: <xs:element name="processing_details" type="xs:string" minOccurs="0"/>
@@ -1811,6 +1819,8 @@ class CifEMDBTranslator(object):
                 # element 2
                 set_el_version(soft, soft_in)
                 # element 3
+                set_el_category(soft, soft_in)
+                # element 4
                 set_el_processing_details(soft, soft_in)
 
             if software_category in category_dict:
