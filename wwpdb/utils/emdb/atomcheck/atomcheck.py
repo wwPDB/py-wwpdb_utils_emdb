@@ -42,9 +42,11 @@ def hasdisorder_atom(structure):
             return disorder_flag
     return disorder_flag
 
+
 def get_mapheader(map_fullname):
     header = mrcfile.open(map_fullname, permissive=True, header_only=True)
     return header.header
+
 
 def get_model(model_fullname):
     """
@@ -82,6 +84,7 @@ def get_model(model_fullname):
 
     return tmodel
 
+
 def header_check(header):
 
     crs = (header.mapc, header.mapr, header.maps)
@@ -94,6 +97,7 @@ def header_check(header):
         nstarts = (nstarts[crsindices[0]], nstarts[crsindices[1]], nstarts[crsindices[2]])
 
     return nxyz, nstarts
+
 
 def matrix_indices(nstarts, apixs, onecoor, header):
     """
@@ -124,6 +128,7 @@ def matrix_indices(nstarts, apixs, onecoor, header):
 
     return (xindex, yindex, zindex)
 
+
 def map_matrix(apixs, angs):
     """
 
@@ -135,16 +140,16 @@ def map_matrix(apixs, angs):
     :return:
     """
 
-    ang = (angs[0]*math.pi/180, angs[1]*math.pi/180, angs[2]*math.pi/180)
+    ang = (angs[0] * math.pi / 180, angs[1] * math.pi / 180, angs[2] * math.pi / 180)
     insidesqrt = 1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) - \
-                 math.cos(ang[0])**2 - \
-                 math.cos(ang[1])**2 - \
-                 math.cos(ang[2])**2
+        math.cos(ang[0])**2 - \
+        math.cos(ang[1])**2 - \
+        math.cos(ang[2])**2
 
-    cellvolume = apixs[0]*apixs[1]*apixs[2]*math.sqrt(insidesqrt)
+    cellvolume = apixs[0] * apixs[1] * apixs[2] * math.sqrt(insidesqrt)
 
-    m11 = 1/apixs[0]
-    m12 = -math.cos(ang[2])/(apixs[0]*math.sin(ang[2]))
+    m11 = 1 / apixs[0]
+    m12 = -math.cos(ang[2]) / (apixs[0] * math.sin(ang[2]))
 
     m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (cellvolume * math.sin(ang[2]))
     m21 = 0
@@ -157,6 +162,7 @@ def map_matrix(apixs, angs):
     matrix = np.asarray(prematrix)
 
     return matrix
+
 
 def get_indices(header, onecoor):
     """
@@ -200,9 +206,9 @@ def get_indices(header, onecoor):
     if header.cellb.alpha == header.cellb.beta == header.cellb.gamma == 90.:
         # Figure out the order of the x, y, z based on crs info in the header
         # crs = list(map.header[16:19])
-        crs = [header.mapc, header.mapr, header.maps]
+        # crs = [header.mapc, header.mapr, header.maps]
         # ordinds save the indices correspoding to x, y ,z
-        ordinds = [crs.index(1), crs.index(2), crs.index(3)]
+        # ordinds = [crs.index(1), crs.index(2), crs.index(3)]
 
         zindex = float(onecoor[2] - header.origin.z) / z_apix - nzstart
         yindex = float(onecoor[1] - header.origin.y) / y_apix - nystart
@@ -233,23 +239,23 @@ def get_indices(header, onecoor):
         # xindex, yindex, zindex = self.projection_indices(onecoor))
         xindex, yindex, zindex = matrix_indices(nxyzstart[1], apixs, onecoor, header)
 
-    zfloor = int(math.floor(zindex))
-    if zfloor >= map_zsize - 1:
-        zceil = zfloor
-    else:
-        zceil = zfloor + 1
+    # zfloor = int(math.floor(zindex))
+    # if zfloor >= map_zsize - 1:
+    #     zceil = zfloor
+    # else:
+    #     zceil = zfloor + 1
 
-    yfloor = int(math.floor(yindex))
-    if yfloor >= map_ysize - 1:
-        yceil = yfloor
-    else:
-        yceil = yfloor + 1
+    # yfloor = int(math.floor(yindex))
+    # if yfloor >= map_ysize - 1:
+    #     yceil = yfloor
+    # else:
+    #     yceil = yfloor + 1
 
-    xfloor = int(math.floor(xindex))
-    if xfloor >= map_xsize - 1:
-        xceil = xfloor
-    else:
-        xceil = xfloor + 1
+    # xfloor = int(math.floor(xindex))
+    # if xfloor >= map_xsize - 1:
+    #     xceil = xfloor
+    # else:
+    #     xceil = xfloor + 1
 
     # indices = np.array(np.meshgrid(np.arange(xfloor, xceil + 1), np.arange(yfloor, yceil + 1),
     #                                np.arange(zfloor, zceil + 1))).T.reshape(-1, 3)
@@ -257,6 +263,7 @@ def get_indices(header, onecoor):
 
     # return (indices, oneindex)
     return oneindex, nxyzstart[0]
+
 
 def check(model, header):
     atoms_outside_num = 0
@@ -275,6 +282,7 @@ def check(model, header):
     atom_outside_fraction = atoms_outside_num / atom_counter if atom_counter != 0 else 0
     return atoms_outside_num, atom_outside_fraction
 
+
 def read_args():
     """
         Read arguments
@@ -289,6 +297,7 @@ def read_args():
     parser.add_argument('--output', '-o', nargs='?', help='Output JSON file')
     args = parser.parse_args()
     return args.map, args.model, args.output
+
 
 if __name__ == '__main__':
     input_map, input_model, output_file = read_args()
