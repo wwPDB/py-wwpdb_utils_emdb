@@ -195,7 +195,7 @@ def get_indices(header, onecoor):
     # map_xsize = header.nx
 
     nxyzstart = header_check(header)
-    map_xsize, map_ysize, map_zsize = nxyzstart[0]
+    # map_xsize, map_ysize, map_zsize = nxyzstart[0]
     nxstart, nystart, nzstart = nxyzstart[1]
 
 ###########################
@@ -299,7 +299,7 @@ def read_args():
     return args.map, args.model, args.output
 
 
-if __name__ == '__main__':
+def main():
     input_map, input_model, output_file = read_args()
     if os.path.isfile(input_map) and os.path.isfile(input_model):
         header = get_mapheader(input_map)
@@ -324,3 +324,7 @@ if __name__ == '__main__':
         print('---------------------------------------')
     else:
         print('Please provide both volume map and model.')
+
+
+if __name__ == '__main__':
+    main()
