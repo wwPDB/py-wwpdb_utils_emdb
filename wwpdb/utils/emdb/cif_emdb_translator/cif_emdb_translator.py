@@ -5044,7 +5044,7 @@ class CifEMDBTranslator(object):
                     # element 7
                     set_el_recombinant_exp_flag()
 
-                def set_mol_seq(mol, ent_poly_in, ent_id_in, ent_ref_dict):
+                def set_mol_seq(mol, ent_poly_in, ent_id_in, ent_struct_ref_dict):
                     """
                     Set the sequence object of mol using entity_poly as input,
                     and also the external references using pdbx_struct_ref_seq_depositor_info
@@ -5053,7 +5053,7 @@ class CifEMDBTranslator(object):
                     @param mol: molecule object with a set_sequence method
                     @param ent_poly_in: cif entity_poly
                     @param ent_id_in: cif entity id
-                    @param ent_ref_dict: dictionary of pdbx_struct_ref_seq_depositor_info keyed by entity_id (dictionary of lists)
+                    @param ent_struct_ref_dict: dictionary of pdbx_struct_ref_seq_depositor_info keyed by entity_id (dictionary of lists)
                     XSD: <xs:element name="sequence"> is
                     .. a sequence of 3 elements
                     """
@@ -5250,11 +5250,11 @@ class CifEMDBTranslator(object):
                     .. a sequence of 5 elements
                     """
 
-                    def set_el_sequence(rna_mol, ent_poly_in, ent_id_in, ent_ref_dict):
+                    def set_el_sequence(rna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict):
                         """
                         XSD:  <xs:element name="sequence">
                         """
-                        set_mol_seq(rna_mol, ent_poly_in, ent_id_in, ent_ref_dict)
+                        set_mol_seq(rna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
 
                     def set_el_classification():
                         """
@@ -5300,7 +5300,7 @@ class CifEMDBTranslator(object):
                     # base
                     set_base_mol_with_dict(rna_mol, ent_in, ent_id_in, src_dicts)
                     # element 1
-                    set_el_sequence(rna_mol, ent_poly_in, ent_id_in, ent_ref_dict)
+                    set_el_sequence(rna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
                     # element 2
                     set_el_classification()
                     # element 3
@@ -5317,12 +5317,12 @@ class CifEMDBTranslator(object):
                     .. a sequence of 5 elements
                     """
 
-                    def set_el_sequence(dna_mol, ent_poly_in, ent_id_in, ent_ref_dict):
+                    def set_el_sequence(dna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict):
                         """
                         XSD: <xs:element name="sequence">
-                        CIF: in ent_ref_dict
+                        CIF: in ent_struct_ref_dict
                         """
-                        set_mol_seq(dna_mol, ent_poly_in, ent_id_in, ent_ref_dict)
+                        set_mol_seq(dna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
 
                     def set_el_classification(dna_mol):
                         """
@@ -5427,11 +5427,11 @@ class CifEMDBTranslator(object):
                         else:
                             set_cif_value(p_mol.set_enantiomer, cif_value="LEVO")
 
-                    def set_el_sequence(p_mol, ent_poly_in, ent_id_in, ent_ref_dict):
+                    def set_el_sequence(p_mol, ent_poly_in, ent_id_in, ent_structref_dict):
                         """
                         XSD: <xs:element name="sequence">
                         """
-                        set_mol_seq(p_mol, ent_poly_in, ent_id_in, ent_ref_dict)
+                        set_mol_seq(p_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
 
                     def set_el_ec_number(p_mol, ent_in):
                         """
@@ -5464,7 +5464,7 @@ class CifEMDBTranslator(object):
                     # element 2
                     set_el_enantiomer(p_mol, ent_type_in)
                     # element 3
-                    set_el_sequence(p_mol, ent_poly_in, ent_id_in, ent_ref_dict)
+                    set_el_sequence(p_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
                     # element 4
                     set_el_ec_number(p_mol, ent_in)
 
@@ -5515,11 +5515,11 @@ class CifEMDBTranslator(object):
                     .. a sequence of 5 elements
                     """
 
-                    def set_el_sequence(other_mol, ent_poly_in, ent_id_in, ent_ref_dict):
+                    def set_el_sequence(other_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict):
                         """
                         XSD: <xs:element name="sequence" minOccurs="0">
                         """
-                        set_mol_seq(other_mol, ent_poly_in, ent_id_in, ent_ref_dict)
+                        set_mol_seq(other_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
 
                     def set_el_classification():
                         """
@@ -5552,7 +5552,7 @@ class CifEMDBTranslator(object):
                     # base
                     set_base_mol_with_dict(other_mol, ent_in, ent_id_in, src_dicts)
                     # element 1
-                    set_el_sequence(other_mol, ent_poly_in, ent_id_in, ent_ref_dict)
+                    set_el_sequence(other_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
                     # element 2
                     set_el_classification()
                     # element 3
