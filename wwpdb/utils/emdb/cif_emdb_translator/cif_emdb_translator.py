@@ -3209,8 +3209,7 @@ class CifEMDBTranslator(object):
                     if "EMDB" in rel_entries_dict_in:
                         emdb_rel_list_in = rel_entries_dict_in["EMDB"]
                         for rel_in in emdb_rel_list_in:
-                            dict_rel_in = dict(rel_in)
-                            em_id = dict_rel_in['_pdbx_database_related.db_id']
+                            em_id = get_cif_value("db_id", const.PDBX_DATABASE_RELATED, rel_in)
                             db2_in = assert_get_value(const.DATABASE_2, self.cif)
                             dict_db2_in = { t[0]:t[1] for t in db2_in }
                             emdb_id = dict_db2_in[('_database_2.database_id', 'EMDB')][1]
