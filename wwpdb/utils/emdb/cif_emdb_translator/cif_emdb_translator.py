@@ -794,6 +794,9 @@ class CifEMDBTranslator(object):
             "_pdbx_entity_src_syn.ncbi_taxonomy_id": '<xs:attribute name="database">',
             "_entity_poly.pdbx_seq_one_letter_code": '<xs:element name="string" type="xs:token" minOccurs="0">',
             "_struct_ref.db_name": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
+            "_struct_ref.db_code": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
+            "_pdbx_struct_ref_seq_depositor_info.db_name": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
+            "_pdbx_struct_ref_seq_depositor_info.db_accession": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id": '<xs:attribute name="database">',
             "_entity_src_gen.pdbx_host_org_scientific_name": '<xs:element name="organism" type="organism_type"/>',
             "_entity.formula_weight": '<xs:element name="experimental" minOccurs="0">',
@@ -1343,6 +1346,7 @@ class CifEMDBTranslator(object):
                 const.PDBX_AUDIT_SUPPORT,
                 const.PDBX_CONTACT_AUTHOR,
                 const.STRUCT,
+                const.STRUCT_REF,
                 const.STRUCT_KEYWORDS,
                 const.PDBX_ENTITY_SRC_SYN,
                 const.EM_SUPERSEDE,
@@ -3208,7 +3212,7 @@ class CifEMDBTranslator(object):
                             dict_rel_in = dict(rel_in)
                             em_id = dict_rel_in['_pdbx_database_related.db_id']
                             db2_in = assert_get_value(const.DATABASE_2, self.cif)
-                            dict_db2_in = dict(db2_in)
+                            dict_db2_in = { t[0]:t[1] for t in db2_in }
                             emdb_id = dict_db2_in[('_database_2.database_id', 'EMDB')][1]
                             if em_id != emdb_id:
                                 cross_ref = emdb.emdb_cross_reference_type()
@@ -5079,24 +5083,47 @@ class CifEMDBTranslator(object):
                             XSD: <xs:element name="external_references" maxOccurs="unbounded" minOccurs="0"> has
                             .. 1 attribute
                             .. an extension of xs:token
+                            FOr Map-model entries:
                             CIF: _struct_ref.db_name UNP
                             CIF: _struct_ref.db_code ?
+                            For map only entries:
+                            CIF: _pdbx_struct_ref_seq_depositor_info.db_name UNP
+                            CIF: _pdbx_struct_ref_seq_depositor_info.db_accession ?
                             """
-                            db_code = get_cif_value("db_code", const.STRUCT_REF, rel_in)
-                            if db_code is not None:
-                                db_in = get_cif_value("db_name", const.STRUCT_REF, rel_in)
-                                if db_in == "UNP":
-                                    set_cif_value(cross_ref.set_type, "db_name", const.STRUCT_REF, cif_list=rel_in, cif_value="UNIPROTKB")
-                                    set_cif_value(cross_ref.set_valueOf_, "db_code", const.STRUCT_REF, cif_list=rel_in)
-                                elif db_in == "GB":
-                                    set_cif_value(cross_ref.set_type, "db_name", const.STRUCT_REF, cif_list=rel_in, cif_value="GENBANK")
-                                    set_cif_value(cross_ref.set_valueOf_, "db_code", const.STRUCT_REF, cif_list=rel_in)
-                                elif db_in is not None:
-                                    set_cif_value(cross_ref.set_type, "db_name", const.STRUCT_REF, cif_list=rel_in)
-                                    set_cif_value(cross_ref.set_valueOf_, "db_code", const.STRUCT_REF, cif_list=rel_in)
+                            db2_in = assert_get_value(const.DATABASE_2, self.cif)
+                            db_id_dict = make_list_of_dicts(const.DATABASE_2, "database_id", db2_in, 2)
+                            if "PDB" in db_id_dict:
+                                dict_db2_in = { t[0]:t[1] for t in db2_in }
+                                pdb_id = dict_db2_in[('_database_2.database_id', 'PDB')][1]
+                                if pdb_id is not None:
+                                    db_code = get_cif_value("db_code", const.STRUCT_REF, rel_in)
+                                    if db_code is not None:
+                                        db_in = get_cif_value("db_name", const.STRUCT_REF, rel_in)
+                                        if db_in == "UNP":
+                                            set_cif_value(cross_ref.set_type, "db_name", const.STRUCT_REF, cif_list=rel_in, cif_value="UNIPROTKB")
+                                            set_cif_value(cross_ref.set_valueOf_, "db_code", const.STRUCT_REF, cif_list=rel_in)
+                                        elif db_in == "GB":
+                                            set_cif_value(cross_ref.set_type, "db_name", const.STRUCT_REF, cif_list=rel_in, cif_value="GENBANK")
+                                            set_cif_value(cross_ref.set_valueOf_, "db_code", const.STRUCT_REF, cif_list=rel_in)
+                                        elif db_in is not None and db_in != "PDB":
+                                            set_cif_value(cross_ref.set_type, "db_name", const.STRUCT_REF, cif_list=rel_in)
+                                            set_cif_value(cross_ref.set_valueOf_, "db_code", const.STRUCT_REF, cif_list=rel_in)
+                            if "PDB" not in db_id_dict:
+                                db_code = get_cif_value("db_accession", const.PDBX_DEPOSITOR_INFO, rel_in)
+                                if db_code is not None:
+                                    db_in = get_cif_value("db_name", const.PDBX_DEPOSITOR_INFO, rel_in)
+                                    if db_in == "UNP":
+                                        set_cif_value(cross_ref.set_type, "db_name", const.PDBX_DEPOSITOR_INFO, cif_list=rel_in, cif_value="UNIPROTKB")
+                                        set_cif_value(cross_ref.set_valueOf_, "db_accession", const.PDBX_DEPOSITOR_INFO, cif_list=rel_in)
+                                    elif db_in == "GB":
+                                        set_cif_value(cross_ref.set_type, "db_name", const.PDBX_DEPOSITOR_INFO, cif_list=rel_in, cif_value="GENBANK")
+                                        set_cif_value(cross_ref.set_valueOf_, "db_accession", const.PDBX_DEPOSITOR_INFO, cif_list=rel_in)
+                                    elif db_in is not None and db_in != "PDB":
+                                        set_cif_value(cross_ref.set_type, "db_name", const.PDBX_DEPOSITOR_INFO, cif_list=rel_in)
+                                        set_cif_value(cross_ref.set_valueOf_, "db_accession", const.PDBX_DEPOSITOR_INFO, cif_list=rel_in)
 
-                        if ent_id_in in ent_ref_dict:
-                            ent_ref_list_in = ent_ref_dict[ent_id_in]
+                        if ent_id_in in ent_struct_ref_dict:
+                            ent_ref_list_in = ent_struct_ref_dict[ent_id_in]
                             for rel_in in ent_ref_list_in:
                                 cross_ref = emdb.external_referencesType()
                                 set_external_references_type(cross_ref, rel_in)
@@ -5591,6 +5618,10 @@ class CifEMDBTranslator(object):
                 ent_src_gen_dict = make_dict(const.ENTITY_SRC_GEN, const.K_ENTITY_ID)
                 ent_src_syn_dict = make_dict(const.PDBX_ENTITY_SRC_SYN, const.K_ENTITY_ID)
                 ent_ref_dict = make_list_of_dicts(const.PDBX_DEPOSITOR_INFO, const.K_ENTITY_ID)
+                struct_ref_dict = make_list_of_dicts(const.STRUCT_REF, const.K_ENTITY_ID)
+                ent_struct_ref_dict = {}
+                ent_struct_ref_dict = dict(ent_ref_dict)
+                ent_struct_ref_dict.update(struct_ref_dict)
                 src_dicts = {"ent_src_nat_dict": ent_src_nat_dict, "ent_src_gen_dict": ent_src_gen_dict, "ent_src_syn_dict": ent_src_syn_dict, "ent_ref_dict": ent_ref_dict}
                 entity_list_in = self.cif.get(const.ENTITY, None)
                 for ent_in in entity_list_in:
