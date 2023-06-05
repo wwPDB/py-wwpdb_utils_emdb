@@ -1,8 +1,0 @@
-These certificates are self signed ones for testing.
-
-Theye were created as follows:
-
-./cleanup.sh
-./generate_server_certs.sh
-./generate_client_keys.sh
-
