@@ -3212,7 +3212,7 @@ class CifEMDBTranslator(object):
                             dict_rel_in = dict(rel_in)
                             em_id = dict_rel_in['_pdbx_database_related.db_id']
                             db2_in = assert_get_value(const.DATABASE_2, self.cif)
-                            dict_db2_in = { t[0]:t[1] for t in db2_in }
+                            dict_db2_in = {t[0]: t[1] for t in db2_in}
                             emdb_id = dict_db2_in[('_database_2.database_id', 'EMDB')][1]
                             if em_id != emdb_id:
                                 cross_ref = emdb.emdb_cross_reference_type()
@@ -5073,7 +5073,7 @@ class CifEMDBTranslator(object):
                         CIF: ??
                         """
 
-                    def set_el_external_references(seq, ent_id_in, ent_ref_dict):
+                    def set_el_external_references(seq, ent_id_in, ent_struct_ref_dict):
                         """
                         XSD: <xs:element name="external_references" maxOccurs="unbounded" minOccurs="0">
                         """
@@ -5093,7 +5093,7 @@ class CifEMDBTranslator(object):
                             db2_in = assert_get_value(const.DATABASE_2, self.cif)
                             db_id_dict = make_list_of_dicts(const.DATABASE_2, "database_id", db2_in, 2)
                             if "PDB" in db_id_dict:
-                                dict_db2_in = { t[0]:t[1] for t in db2_in }
+                                dict_db2_in = {t[0]: t[1] for t in db2_in}
                                 pdb_id = dict_db2_in[('_database_2.database_id', 'PDB')][1]
                                 if pdb_id is not None:
                                     db_code = get_cif_value("db_code", const.STRUCT_REF, rel_in)
@@ -5136,7 +5136,7 @@ class CifEMDBTranslator(object):
                     # element 2
                     set_el_discrepancy_list()
                     # element 3
-                    set_el_external_references(seq, ent_id_in, ent_ref_dict)
+                    set_el_external_references(seq, ent_id_in, ent_struct_ref_dict)
 
                     if seq.has__content():
                         mol.set_sequence(seq)
