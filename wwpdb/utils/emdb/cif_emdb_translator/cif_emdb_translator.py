@@ -795,6 +795,7 @@ class CifEMDBTranslator(object):
             "_entity_poly.pdbx_seq_one_letter_code": '<xs:element name="string" type="xs:token" minOccurs="0">',
             "_struct_ref.db_name": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_struct_ref.db_code": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
+            "_struct_ref.pdbx_db_accession": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_pdbx_struct_ref_seq_depositor_info.db_name": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_pdbx_struct_ref_seq_depositor_info.db_accession": '<xs:element name="external_references" minOccurs="0" maxOccurs="unbounded">',
             "_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id": '<xs:attribute name="database">',
@@ -5044,7 +5045,7 @@ class CifEMDBTranslator(object):
                     # element 7
                     set_el_recombinant_exp_flag()
 
-                def set_mol_seq(mol, ent_poly_in, ent_id_in, ent_struct_ref_dict):
+                def set_mol_seq(mol, ent_poly_in, ent_id_in, ent_ref_dict):
                     """
                     Set the sequence object of mol using entity_poly as input,
                     and also the external references using pdbx_struct_ref_seq_depositor_info
@@ -5053,7 +5054,7 @@ class CifEMDBTranslator(object):
                     @param mol: molecule object with a set_sequence method
                     @param ent_poly_in: cif entity_poly
                     @param ent_id_in: cif entity id
-                    @param ent_struct_ref_dict: dictionary of pdbx_struct_ref_seq_depositor_info keyed by entity_id (dictionary of lists)
+                    @param ent_ref_dict: dictionary of pdbx_struct_ref_seq_depositor_info keyed by entity_id (dictionary of lists)
                     XSD: <xs:element name="sequence"> is
                     .. a sequence of 3 elements
                     """
@@ -5072,7 +5073,7 @@ class CifEMDBTranslator(object):
                         CIF: ??
                         """
 
-                    def set_el_external_references(seq, ent_id_in, ent_struct_ref_dict):
+                    def set_el_external_references(seq, ent_id_in, ent_ref_dict):
                         """
                         XSD: <xs:element name="external_references" maxOccurs="unbounded" minOccurs="0">
                         """
@@ -5100,7 +5101,7 @@ class CifEMDBTranslator(object):
                                         db_in = get_cif_value("db_name", const.STRUCT_REF, rel_in)
                                         if db_in == "UNP":
                                             set_cif_value(cross_ref.set_type, "db_name", const.STRUCT_REF, cif_list=rel_in, cif_value="UNIPROTKB")
-                                            set_cif_value(cross_ref.set_valueOf_, "db_code", const.STRUCT_REF, cif_list=rel_in)
+                                            set_cif_value(cross_ref.set_valueOf_, "pdbx_db_accession", const.STRUCT_REF, cif_list=rel_in)
                                         elif db_in == "GB":
                                             set_cif_value(cross_ref.set_type, "db_name", const.STRUCT_REF, cif_list=rel_in, cif_value="GENBANK")
                                             set_cif_value(cross_ref.set_valueOf_, "db_code", const.STRUCT_REF, cif_list=rel_in)
@@ -5121,8 +5122,8 @@ class CifEMDBTranslator(object):
                                         set_cif_value(cross_ref.set_type, "db_name", const.PDBX_DEPOSITOR_INFO, cif_list=rel_in)
                                         set_cif_value(cross_ref.set_valueOf_, "db_accession", const.PDBX_DEPOSITOR_INFO, cif_list=rel_in)
 
-                        if ent_id_in in ent_struct_ref_dict:
-                            ent_ref_list_in = ent_struct_ref_dict[ent_id_in]
+                        if ent_id_in in ent_ref_dict:
+                            ent_ref_list_in = ent_ref_dict[ent_id_in]
                             for rel_in in ent_ref_list_in:
                                 cross_ref = emdb.external_referencesType()
                                 set_external_references_type(cross_ref, rel_in)
@@ -5135,7 +5136,7 @@ class CifEMDBTranslator(object):
                     # element 2
                     set_el_discrepancy_list()
                     # element 3
-                    set_el_external_references(seq, ent_id_in, ent_struct_ref_dict)
+                    set_el_external_references(seq, ent_id_in, ent_ref_dict)
 
                     if seq.has__content():
                         mol.set_sequence(seq)
@@ -5250,11 +5251,11 @@ class CifEMDBTranslator(object):
                     .. a sequence of 5 elements
                     """
 
-                    def set_el_sequence(rna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict):
+                    def set_el_sequence(rna_mol, ent_poly_in, ent_id_in, src_dict):
                         """
                         XSD:  <xs:element name="sequence">
                         """
-                        set_mol_seq(rna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
+                        set_mol_seq(rna_mol, ent_poly_in, ent_id_in, src_dict)
 
                     def set_el_classification():
                         """
@@ -5300,7 +5301,7 @@ class CifEMDBTranslator(object):
                     # base
                     set_base_mol_with_dict(rna_mol, ent_in, ent_id_in, src_dicts)
                     # element 1
-                    set_el_sequence(rna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
+                    set_el_sequence(rna_mol, ent_poly_in, ent_id_in, ent_ref_dict)
                     # element 2
                     set_el_classification()
                     # element 3
@@ -5317,12 +5318,12 @@ class CifEMDBTranslator(object):
                     .. a sequence of 5 elements
                     """
 
-                    def set_el_sequence(dna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict):
+                    def set_el_sequence(dna_mol, ent_poly_in, ent_id_in, src_dict):
                         """
                         XSD: <xs:element name="sequence">
-                        CIF: in ent_struct_ref_dict
+                        CIF: in ent_ref_dict
                         """
-                        set_mol_seq(dna_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
+                        set_mol_seq(dna_mol, ent_poly_in, ent_id_in, src_dict)
 
                     def set_el_classification(dna_mol):
                         """
@@ -5427,11 +5428,11 @@ class CifEMDBTranslator(object):
                         else:
                             set_cif_value(p_mol.set_enantiomer, cif_value="LEVO")
 
-                    def set_el_sequence(p_mol, ent_poly_in, ent_id_in, ent_structref_dict):
+                    def set_el_sequence(p_mol, ent_poly_in, ent_id_in, src_dict):
                         """
                         XSD: <xs:element name="sequence">
                         """
-                        set_mol_seq(p_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
+                        set_mol_seq(p_mol, ent_poly_in, ent_id_in, src_dict)
 
                     def set_el_ec_number(p_mol, ent_in):
                         """
@@ -5464,7 +5465,7 @@ class CifEMDBTranslator(object):
                     # element 2
                     set_el_enantiomer(p_mol, ent_type_in)
                     # element 3
-                    set_el_sequence(p_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
+                    set_el_sequence(p_mol, ent_poly_in, ent_id_in, ent_ref_dict)
                     # element 4
                     set_el_ec_number(p_mol, ent_in)
 
@@ -5515,11 +5516,11 @@ class CifEMDBTranslator(object):
                     .. a sequence of 5 elements
                     """
 
-                    def set_el_sequence(other_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict):
+                    def set_el_sequence(other_mol, ent_poly_in, ent_id_in, src_dict):
                         """
                         XSD: <xs:element name="sequence" minOccurs="0">
                         """
-                        set_mol_seq(other_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
+                        set_mol_seq(other_mol, ent_poly_in, ent_id_in, src_dict)
 
                     def set_el_classification():
                         """
@@ -5552,7 +5553,7 @@ class CifEMDBTranslator(object):
                     # base
                     set_base_mol_with_dict(other_mol, ent_in, ent_id_in, src_dicts)
                     # element 1
-                    set_el_sequence(other_mol, ent_poly_in, ent_id_in, ent_struct_ref_dict)
+                    set_el_sequence(other_mol, ent_poly_in, ent_id_in, ent_ref_dict)
                     # element 2
                     set_el_classification()
                     # element 3
@@ -5618,9 +5619,7 @@ class CifEMDBTranslator(object):
                 ent_src_syn_dict = make_dict(const.PDBX_ENTITY_SRC_SYN, const.K_ENTITY_ID)
                 ent_ref_dict = make_list_of_dicts(const.PDBX_DEPOSITOR_INFO, const.K_ENTITY_ID)
                 struct_ref_dict = make_list_of_dicts(const.STRUCT_REF, const.K_ENTITY_ID)
-                ent_struct_ref_dict = {}
-                ent_struct_ref_dict = dict(ent_ref_dict)
-                ent_struct_ref_dict.update(struct_ref_dict)
+                ent_ref_dict.update(struct_ref_dict)
                 src_dicts = {"ent_src_nat_dict": ent_src_nat_dict, "ent_src_gen_dict": ent_src_gen_dict, "ent_src_syn_dict": ent_src_syn_dict, "ent_ref_dict": ent_ref_dict}
                 entity_list_in = self.cif.get(const.ENTITY, None)
                 for ent_in in entity_list_in:
@@ -10989,10 +10988,11 @@ class CifEMDBTranslator(object):
                                         accession_code = get_cif_value("accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         access_code = get_cif_value("pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         pdb_pattern = re.compile(r"\d[\dA-Za-z]{3}|pdb_\d{5}[\dA-Za-z]{3}")
-                                        if not pdb_pattern.match(access_code):
-                                            txt = u"PDB id is not in the correct format"
-                                            self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
-                                            self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                                        if access_code is not None:
+                                            if not pdb_pattern.match(str(access_code)):
+                                                txt = u"(%s) PDB id is not in the correct format" % access_code
+                                                self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
+                                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                                         if accession_code is None and access_code is not None:
                                             set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         if accession_code is not None and access_code is None:
@@ -11070,9 +11070,10 @@ class CifEMDBTranslator(object):
                                             CIF: _em_3d_fitting_list.source_name SwissModel
                                             """
                                             access_code = get_cif_value("pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
+                                            accession_code = get_cif_value("accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             sourcename = get_cif_value("source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                             set_cif_value(chain.set_source_name, "source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
-                                            if sourcename == "PDB" and access_code is None:
+                                            if sourcename == "PDB" and access_code is None and accession_code is None:
                                                 txt = u"Error! Missing PDB ID. If initial model is from PDB, then access code is mandatory."
                                                 self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
                                                 self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
