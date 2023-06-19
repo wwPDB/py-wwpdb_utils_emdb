@@ -3418,7 +3418,7 @@ class CifEMDBTranslator(object):
                     CIF: _em_entity_assembly_naturalsource.organism
                     """
                     a_dict = {
-                        const.ENTITY_SRC_NAT: "common_name",
+                        const.ENTITY_SRC_NAT: "pdbx_organism_scientific",
                         const.ENTITY_SRC_GEN: "pdbx_gene_src_scientific_name",
                         const.PDBX_ENTITY_SRC_SYN: "organism_scientific",
                         const.EM_ENTITY_ASSEMBLY_NATURALSOURCE: "organism",
