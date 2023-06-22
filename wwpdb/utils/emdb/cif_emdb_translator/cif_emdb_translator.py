@@ -1835,7 +1835,7 @@ class CifEMDBTranslator(object):
                 set_el_category(soft, soft_in)
                 # element 4
                 set_el_processing_details(soft, soft_in)
-            print("GOOL", software_category)
+
             if software_category in category_dict:
                 soft_list = emdb.software_list_type()
                 for soft_in in category_dict[software_category]:
@@ -11194,7 +11194,6 @@ class CifEMDBTranslator(object):
                             soft_dict_in = make_list_of_dicts(const.EM_SOFTWARE, const.K_IMAGE_PROCESSING_ID)
                             if ip_id_in in soft_dict_in:
                                 cat_soft_dict_in = make_list_of_dicts(const.EM_SOFTWARE, "category", soft_dict_in[ip_id_in])
-                                print("HERE", cat_soft_dict_in.keys())
 
                         modelling_list = emdb.modelling_listType()
                         modelling_list_in = self.cif.get(const.EM_3D_FITTING)
