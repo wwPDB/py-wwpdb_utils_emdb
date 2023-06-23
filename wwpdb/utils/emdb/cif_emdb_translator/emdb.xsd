@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.3.2"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.4.1"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -2643,6 +2643,32 @@
         <xs:sequence>
             <xs:element name="name" type="xs:token" minOccurs="0"/>
             <xs:element name="version" type="xs:token" minOccurs="0"/>
+            <xs:element name="category" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="CLASSIFICATION"/>
+                        <xs:enumeration value="CRYSTALLOGRAPHY MERGING"/>
+                        <xs:enumeration value="CTF CORRECTION"/>
+                        <xs:enumeration value="DIFFRACTION INDEXING"/>
+                        <xs:enumeration value="EWALD SPHERE CORRECTION"/>
+                        <xs:enumeration value="FINAL EULER ASSIGNMENT"/>
+                        <xs:enumeration value="IMAGE ACQUISITION"/>
+                        <xs:enumeration value="INITIAL EULER ASSIGNMENT"/>
+                        <xs:enumeration value="LATTICE DISTORTION CORRECTION"/>
+                        <xs:enumeration value="LAYERLINE INDEXING"/>
+                        <xs:enumeration value="MASKING"/>
+                        <xs:enumeration value="MODEL FITTING"/>
+                        <xs:enumeration value="MODEL REFINEMENT"/>
+                        <xs:enumeration value="MOLECULAR REPLACEMENT"/>
+                        <xs:enumeration value="OTHER"/>
+                        <xs:enumeration value="PARTICLE SELECTION"/>
+                        <xs:enumeration value="RECONSTRUCTION"/>
+                        <xs:enumeration value="SERIES ALIGNMENT"/>
+                        <xs:enumeration value="SYMMETRY DETERMINATION"/>
+                        <xs:enumeration value="VOLUME SELECTION"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="processing_details" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
@@ -2692,7 +2718,7 @@
             <xs:enumeration value="OTHER"/>
             <xs:enumeration value="PROSCAN TEM-PIV (2k x 2k)"/>
             <xs:enumeration value="SIA 15C (3k x 3k)"/>
-            <xs:enumeration value="TFS FALCON 4i (4k x 4x)"/>
+            <xs:enumeration value="TFS FALCON 4i (4k x 4k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F216 (2k x 2k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F224 (2k x 2k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F415 (4k x 4k)"/>
@@ -3284,7 +3310,7 @@
     </xs:complexType>
     <xs:simpleType name="pdb_code_type">
         <xs:restriction base="xs:token">
-            <xs:pattern value="\d[\dA-Za-z]{3}"/>
+            <xs:pattern value="\d[\dA-Za-z]{3}|pdb_\d{5}[\dA-Za-z]{3}"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="chain_type">

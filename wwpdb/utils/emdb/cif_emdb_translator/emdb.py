@@ -2,24 +2,24 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Thu Apr 27 09:16:02 2023 by generateDS.py version 2.41.4.
+# Generated Wed May 24 20:24:21 2023 by generateDS.py version 2.41.5.
 # Python 3.9.5 (default, May 18 2021, 12:31:01)  [Clang 10.0.0 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', '/Users/amudha/project/emdb_2_41_4.py')
+#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   /Users/amudha/IdeaProjects/emdb-schemas/emdb_schemas/v3/v3_0_3_2/emdb.xsd
+#   emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd
 #
 # Command line:
-#   /Users/amudha/Downloads/generateDS-2.41.4/generateDS.py --root-element="emd" -f -o "/Users/amudha/project/emdb_2_41_4.py" --no-warnings --external-encoding="utf-8" /Users/amudha/IdeaProjects/emdb-schemas/emdb_schemas/v3/v3_0_3_2/emdb.xsd
+#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_4_1/emdb.xsd
 #
 # Current working directory (os.getcwd()):
-#   amudha
+#   IdeaProjects
 #
 
 import sys
@@ -1063,7 +1063,7 @@ class allowed_film_or_detector_model(str, Enum):
     OTHER='OTHER'
     PROSCANTEMPIV_2_KX_2_K='PROSCAN TEM-PIV (2k x 2k)'
     SIA_15_C_3_KX_3_K='SIA 15C (3k x 3k)'
-    TFSFALCON_4_I_4_KX_4_X='TFS FALCON 4i (4k x 4x)'
+    TFSFALCON_4_I_4_KX_4_K='TFS FALCON 4i (4k x 4k)'
     TVIPSTEMCAMF_216_2_KX_2_K='TVIPS TEMCAM-F216 (2k x 2k)'
     TVIPSTEMCAMF_224_2_KX_2_K='TVIPS TEMCAM-F224 (2k x 2k)'
     TVIPSTEMCAMF_415_4_KX_4_K='TVIPS TEMCAM-F415 (4k x 4k)'
@@ -1147,6 +1147,29 @@ class categoryType43(str, Enum):
     DIRECTELECTRONDETECTOR='DIRECT ELECTRON DETECTOR'
     STORAGEPHOSPORIMAGEPLATES='STORAGE PHOSPOR (IMAGE PLATES)'
     FILM='FILM'
+
+
+class categoryType44(str, Enum):
+    CLASSIFICATION='CLASSIFICATION'
+    CRYSTALLOGRAPHYMERGING='CRYSTALLOGRAPHY MERGING'
+    CTFCORRECTION='CTF CORRECTION'
+    DIFFRACTIONINDEXING='DIFFRACTION INDEXING'
+    EWALDSPHERECORRECTION='EWALD SPHERE CORRECTION'
+    FINALEULERASSIGNMENT='FINAL EULER ASSIGNMENT'
+    IMAGEACQUISITION='IMAGE ACQUISITION'
+    INITIALEULERASSIGNMENT='INITIAL EULER ASSIGNMENT'
+    LATTICEDISTORTIONCORRECTION='LATTICE DISTORTION CORRECTION'
+    LAYERLINEINDEXING='LAYERLINE INDEXING'
+    MASKING='MASKING'
+    MODELFITTING='MODEL FITTING'
+    MODELREFINEMENT='MODEL REFINEMENT'
+    MOLECULARREPLACEMENT='MOLECULAR REPLACEMENT'
+    OTHER='OTHER'
+    PARTICLESELECTION='PARTICLE SELECTION'
+    RECONSTRUCTION='RECONSTRUCTION'
+    SERIESALIGNMENT='SERIES ALIGNMENT'
+    SYMMETRYDETERMINATION='SYMMETRY DETERMINATION'
+    VOLUMESELECTION='VOLUME SELECTION'
 
 
 class classificationType(str, Enum):
@@ -1680,7 +1703,7 @@ class typeType5(str, Enum):
     ASTM='ASTM'
 
 
-class typeType56(str, Enum):
+class typeType57(str, Enum):
     ANGULARRECONSTITUTION='ANGULAR RECONSTITUTION'
     COMMONLINE='COMMON LINE'
     NOTAPPLICABLE='NOT APPLICABLE'
@@ -1722,22 +1745,22 @@ class unitsType40(str, Enum):
     DAY='DAY'
 
 
-class unitsType47(str, Enum):
+class unitsType48(str, Enum):
     PIXEL='PIXEL'
     Å='Å'
 
 
-class unitsType49(str, Enum):
-    PIXEL='PIXEL'
-    Å='Å'
-
-
-class unitsType51(str, Enum):
+class unitsType50(str, Enum):
     PIXEL='PIXEL'
     Å='Å'
 
 
 class unitsType52(str, Enum):
+    PIXEL='PIXEL'
+    Å='Å'
+
+
+class unitsType53(str, Enum):
     PIXEL='PIXEL'
     Å='Å'
 
@@ -1763,7 +1786,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.3.2', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.4.2', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1849,7 +1872,7 @@ class entry_type(GeneratedsSuper):
                     self.validate_emdb_id_type_patterns_, value):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_emdb_id_type_patterns_, ))
     validate_emdb_id_type_patterns_ = [['^(EMD-\\d{4,})$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.admin is not None or
             self.crossreferences is not None or
@@ -1878,7 +1901,7 @@ class entry_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='entry_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='entry_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -1889,7 +1912,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.3.2" and 'version' not in already_processed:
+        if self.version != "3.0.4.2" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -2098,7 +2121,7 @@ class admin_type(GeneratedsSuper):
         return self.replace_existing_entry
     def set_replace_existing_entry(self, replace_existing_entry):
         self.replace_existing_entry = replace_existing_entry
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.status_history_list is not None or
             self.current_status is not None or
@@ -2134,7 +2157,7 @@ class admin_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='admin_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='admin_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -2334,7 +2357,7 @@ class version_list_type(GeneratedsSuper):
         self.status.insert(index, value)
     def replace_status_at(self, index, value):
         self.status[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.status
         ):
@@ -2357,7 +2380,7 @@ class version_list_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='version_list_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='version_list_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -2487,7 +2510,7 @@ class version_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on processing_siteType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.date is not None or
             self.code is not None or
@@ -2514,7 +2537,7 @@ class version_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='version_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='version_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -2664,7 +2687,7 @@ class code_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on status_code_type' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -2798,7 +2821,7 @@ class supersedes_type(GeneratedsSuper):
                 result = False
         return result
     validate_emdb_id_type_patterns_ = [['^(EMD-\\d{4,})$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.date is not None or
             self.entry is not None or
@@ -2823,7 +2846,7 @@ class supersedes_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='supersedes_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='supersedes_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -2932,7 +2955,7 @@ class grant_reference_type(GeneratedsSuper):
         return self.country
     def set_country(self, country):
         self.country = country
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.funding_body is not None or
             self.code is not None or
@@ -2957,7 +2980,7 @@ class grant_reference_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='grant_reference_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='grant_reference_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -3204,7 +3227,7 @@ class contact_details_type(GeneratedsSuper):
                 result = False
         return result
     validate_emailType_patterns_ = [['^([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4})$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.role is not None or
             self.title is not None or
@@ -3240,7 +3263,7 @@ class contact_details_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='contact_details_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='contact_details_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -3552,7 +3575,7 @@ class telephone_number_type(GeneratedsSuper):
                 result = False
         return result
     validate_localType_patterns_ = [['^(\\d+( ext. \\d+)?)$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.country is not None or
             self.area is not None or
@@ -3577,7 +3600,7 @@ class telephone_number_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='telephone_number_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='telephone_number_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -3709,7 +3732,7 @@ class author_ORCID_type(GeneratedsSuper):
                     self.validate_ORCID_type_patterns_, value):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_ORCID_type_patterns_, ))
     validate_ORCID_type_patterns_ = [['^([0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{3}X|[0-9]{4}))$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -3813,10 +3836,10 @@ class author_order_type(author_ORCID_type):
         self.order = order
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_) or
-            super(author_order_type, self)._hasContent()
+            super(author_order_type, self).has__content()
         ):
             return True
         else:
@@ -3923,7 +3946,7 @@ class crossreferences_type(GeneratedsSuper):
         return self.auxiliary_link_list
     def set_auxiliary_link_list(self, auxiliary_link_list):
         self.auxiliary_link_list = auxiliary_link_list
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.citation_list is not None or
             self.emdb_list is not None or
@@ -3949,7 +3972,7 @@ class crossreferences_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crossreferences_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='crossreferences_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -4037,7 +4060,7 @@ class citation_type(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -4060,7 +4083,7 @@ class citation_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='citation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='citation_type', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -4237,7 +4260,7 @@ class journal_citation(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minInclusive restriction on yearType' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.author or
             self.title is not None or
@@ -4272,7 +4295,7 @@ class journal_citation(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='journal_citation')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='journal_citation', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -4627,7 +4650,7 @@ class non_journal_citation(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minInclusive restriction on yearType3' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.author or
             self.editor or
@@ -4663,7 +4686,7 @@ class non_journal_citation(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='non_journal_citation')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='non_journal_citation', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -4904,7 +4927,7 @@ class emdb_cross_reference_list_type(GeneratedsSuper):
         self.emdb_reference.insert(index, value)
     def replace_emdb_reference_at(self, index, value):
         self.emdb_reference[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.emdb_reference
         ):
@@ -4927,7 +4950,7 @@ class emdb_cross_reference_list_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='emdb_cross_reference_list_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='emdb_cross_reference_list_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -5024,7 +5047,7 @@ class emdb_cross_reference_type(GeneratedsSuper):
                 result = False
         return result
     validate_emdb_id_type_patterns_ = [['^(EMD-\\d{4,})$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.emdb_id is not None or
             self.relationship is not None or
@@ -5049,7 +5072,7 @@ class emdb_cross_reference_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='emdb_cross_reference_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='emdb_cross_reference_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -5154,7 +5177,7 @@ class pdb_cross_reference_list_type(GeneratedsSuper):
         self.pdb_reference.insert(index, value)
     def replace_pdb_reference_at(self, index, value):
         self.pdb_reference[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.pdb_reference
         ):
@@ -5177,7 +5200,7 @@ class pdb_cross_reference_list_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='pdb_cross_reference_list_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='pdb_cross_reference_list_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -5273,8 +5296,8 @@ class pdb_cross_reference_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_pdb_code_type_patterns_, ))
                 result = False
         return result
-    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3})$']]
-    def _hasContent(self):
+    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
+    def has__content(self):
         if (
             self.pdb_id is not None or
             self.relationship is not None or
@@ -5299,7 +5322,7 @@ class pdb_cross_reference_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='pdb_cross_reference_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='pdb_cross_reference_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -5438,7 +5461,7 @@ class auxiliary_link_type(GeneratedsSuper):
                 result = False
         return result
     validate_linkType_patterns_ = [['^((https?|ftp)://.*)$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.type_ is not None or
             self.link is not None or
@@ -5463,7 +5486,7 @@ class auxiliary_link_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='auxiliary_link_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='auxiliary_link_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -5575,7 +5598,7 @@ class sample_type(GeneratedsSuper):
         return self.macromolecule_list
     def set_macromolecule_list(self, macromolecule_list):
         self.macromolecule_list = macromolecule_list
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.name is not None or
             self.supramolecule_list is not None or
@@ -5600,7 +5623,7 @@ class sample_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sample_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sample_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -5689,7 +5712,7 @@ class sci_name_type(GeneratedsSuper):
         self.synonym = synonym
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -5849,7 +5872,7 @@ class base_supramolecule_type(GeneratedsSuper):
         # Validate type pos_int_or_string_type, a restriction on None.
         pass
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.name is not None or
             self.category is not None or
@@ -5880,7 +5903,7 @@ class base_supramolecule_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='base_supramolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='base_supramolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -6074,11 +6097,11 @@ class cell_supramolecule_type(base_supramolecule_type):
         self.synthetic_source.insert(index, value)
     def replace_synthetic_source_at(self, index, value):
         self.synthetic_source[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.natural_source or
             self.synthetic_source or
-            super(cell_supramolecule_type, self)._hasContent()
+            super(cell_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -6099,7 +6122,7 @@ class cell_supramolecule_type(base_supramolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='cell_supramolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='cell_supramolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -6213,7 +6236,7 @@ class base_source_type(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on databaseType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.organism is not None or
             self.strain is not None or
@@ -6238,7 +6261,7 @@ class base_source_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='base_source_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='base_source_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -6358,7 +6381,7 @@ class organism_type(GeneratedsSuper):
         self.ncbi = ncbi
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -6504,14 +6527,14 @@ class complex_supramolecule_type(base_supramolecule_type):
         return self.chimera
     def set_chimera(self, chimera):
         self.chimera = chimera
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.natural_source or
             self.synthetic_source or
             self.recombinant_expression or
             self.molecular_weight is not None or
             self.ribosome_details is not None or
-            super(complex_supramolecule_type, self)._hasContent()
+            super(complex_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -6532,7 +6555,7 @@ class complex_supramolecule_type(base_supramolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='complex_supramolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='complex_supramolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -6675,14 +6698,14 @@ class complex_source_type(base_source_type):
         return self.cellular_location
     def set_cellular_location(self, cellular_location):
         self.cellular_location = cellular_location
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.organ is not None or
             self.tissue is not None or
             self.cell is not None or
             self.organelle is not None or
             self.cellular_location is not None or
-            super(complex_source_type, self)._hasContent()
+            super(complex_source_type, self).has__content()
         ):
             return True
         else:
@@ -6703,7 +6726,7 @@ class complex_source_type(base_source_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='complex_source_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='complex_source_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -6880,7 +6903,7 @@ class recombinant_source_type(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on databaseType12' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.recombinant_organism is not None or
             self.recombinant_strain is not None or
@@ -6907,7 +6930,7 @@ class recombinant_source_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='recombinant_source_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='recombinant_source_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -7052,7 +7075,7 @@ class molecular_weight_type(GeneratedsSuper):
         return self.method
     def set_method(self, method):
         self.method = method
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.experimental is not None or
             self.theoretical is not None or
@@ -7077,7 +7100,7 @@ class molecular_weight_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='molecular_weight_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='molecular_weight_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -7206,13 +7229,13 @@ class organelle_or_cellular_component_supramolecule_type(base_supramolecule_type
         return self.recombinant_expression
     def set_recombinant_expression(self, recombinant_expression):
         self.recombinant_expression = recombinant_expression
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.natural_source or
             self.synthetic_source or
             self.molecular_weight is not None or
             self.recombinant_expression is not None or
-            super(organelle_or_cellular_component_supramolecule_type, self)._hasContent()
+            super(organelle_or_cellular_component_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -7233,7 +7256,7 @@ class organelle_or_cellular_component_supramolecule_type(base_supramolecule_type
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='organelle_or_cellular_component_supramolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='organelle_or_cellular_component_supramolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -7354,14 +7377,14 @@ class organelle_source_type(base_source_type):
         return self.cellular_location
     def set_cellular_location(self, cellular_location):
         self.cellular_location = cellular_location
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.organ is not None or
             self.tissue is not None or
             self.cell is not None or
             self.organelle is not None or
             self.cellular_location is not None or
-            super(organelle_source_type, self)._hasContent()
+            super(organelle_source_type, self).has__content()
         ):
             return True
         else:
@@ -7382,7 +7405,7 @@ class organelle_source_type(base_source_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='organelle_source_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='organelle_source_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -7553,13 +7576,13 @@ class sample_supramolecule_type(base_supramolecule_type):
         return self.molecular_weight
     def set_molecular_weight(self, molecular_weight):
         self.molecular_weight = molecular_weight
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.natural_source or
             self.synthetic_source or
             self.number_unique_components is not None or
             self.molecular_weight is not None or
-            super(sample_supramolecule_type, self)._hasContent()
+            super(sample_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -7580,7 +7603,7 @@ class sample_supramolecule_type(base_supramolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sample_supramolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sample_supramolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -7693,12 +7716,12 @@ class sample_source_type(base_source_type):
         return self.cell
     def set_cell(self, cell):
         self.cell = cell
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.organ is not None or
             self.tissue is not None or
             self.cell is not None or
-            super(sample_source_type, self)._hasContent()
+            super(sample_source_type, self).has__content()
         ):
             return True
         else:
@@ -7719,7 +7742,7 @@ class sample_source_type(base_source_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sample_source_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sample_source_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -7850,11 +7873,11 @@ class tissue_supramolecule_type(base_supramolecule_type):
         self.sythetic_source.insert(index, value)
     def replace_sythetic_source_at(self, index, value):
         self.sythetic_source[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.natural_source or
             self.sythetic_source or
-            super(tissue_supramolecule_type, self)._hasContent()
+            super(tissue_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -7875,7 +7898,7 @@ class tissue_supramolecule_type(base_supramolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tissue_supramolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='tissue_supramolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -7962,11 +7985,11 @@ class tissue_source_type(base_source_type):
         return self.tissue
     def set_tissue(self, tissue):
         self.tissue = tissue
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.organ is not None or
             self.tissue is not None or
-            super(tissue_source_type, self)._hasContent()
+            super(tissue_source_type, self).has__content()
         ):
             return True
         else:
@@ -7987,7 +8010,7 @@ class tissue_source_type(base_source_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tissue_source_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='tissue_source_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -8223,7 +8246,7 @@ class virus_supramolecule_type(base_supramolecule_type):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on virus_isolateType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.sci_species_name is not None or
             self.sci_species_strain is not None or
@@ -8240,7 +8263,7 @@ class virus_supramolecule_type(base_supramolecule_type):
             self.sci_species_serotype is not None or
             self.sci_species_serocomplex is not None or
             self.sci_species_subspecies is not None or
-            super(virus_supramolecule_type, self)._hasContent()
+            super(virus_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -8261,7 +8284,7 @@ class virus_supramolecule_type(base_supramolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='virus_supramolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='virus_supramolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -8478,7 +8501,7 @@ class virus_species_name_type(GeneratedsSuper):
         self.ncbi = ncbi
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -8561,9 +8584,9 @@ class virus_host_type(base_source_type):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(virus_host_type, self)._hasContent()
+            super(virus_host_type, self).has__content()
         ):
             return True
         else:
@@ -8584,7 +8607,7 @@ class virus_host_type(base_source_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='virus_host_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='virus_host_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -8654,7 +8677,7 @@ class macromolecule_list_type(GeneratedsSuper):
         self.macromolecule.insert(index, value)
     def replace_macromolecule_at(self, index, value):
         self.macromolecule[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.macromolecule
         ):
@@ -8677,7 +8700,7 @@ class macromolecule_list_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='macromolecule_list_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='macromolecule_list_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -8846,7 +8869,7 @@ class base_macromolecule_type(GeneratedsSuper):
         # Validate type pos_int_or_string_type, a restriction on None.
         pass
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.name is not None or
             self.natural_source is not None or
@@ -8875,7 +8898,7 @@ class base_macromolecule_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='base_macromolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='base_macromolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -9073,14 +9096,14 @@ class macromolecule_source_type(base_source_type):
         return self.cellular_location
     def set_cellular_location(self, cellular_location):
         self.cellular_location = cellular_location
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.organ is not None or
             self.tissue is not None or
             self.cell is not None or
             self.organelle is not None or
             self.cellular_location is not None or
-            super(macromolecule_source_type, self)._hasContent()
+            super(macromolecule_source_type, self).has__content()
         ):
             return True
         else:
@@ -9101,7 +9124,7 @@ class macromolecule_source_type(base_source_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='macromolecule_source_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='macromolecule_source_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -9276,14 +9299,14 @@ class dna_macromolecule_type(base_macromolecule_type):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on classificationType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.sequence is not None or
             self.classification is not None or
             self.structure is not None or
             self.synthetic_flag is not None or
             self.synthetic_source is not None or
-            super(dna_macromolecule_type, self)._hasContent()
+            super(dna_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -9304,7 +9327,7 @@ class dna_macromolecule_type(base_macromolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='dna_macromolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='dna_macromolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -9442,11 +9465,11 @@ class em_label_macromolecule_type(base_macromolecule_type):
                 return False
             pass
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.formula is not None or
             self.synthetic_source is not None or
-            super(em_label_macromolecule_type, self)._hasContent()
+            super(em_label_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -9467,7 +9490,7 @@ class em_label_macromolecule_type(base_macromolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='em_label_macromolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='em_label_macromolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -9588,12 +9611,12 @@ class ligand_macromolecule_type(base_macromolecule_type):
                 return False
             pass
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.formula is not None or
             self.external_references or
             self.recombinant_expression is not None or
-            super(ligand_macromolecule_type, self)._hasContent()
+            super(ligand_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -9614,7 +9637,7 @@ class ligand_macromolecule_type(base_macromolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='ligand_macromolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='ligand_macromolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -9741,7 +9764,7 @@ class other_macromolecule_type(base_macromolecule_type):
         return self.synthetic_source
     def set_synthetic_source(self, synthetic_source):
         self.synthetic_source = synthetic_source
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.sequence is not None or
             self.classification is not None or
@@ -9749,7 +9772,7 @@ class other_macromolecule_type(base_macromolecule_type):
             self.structure is not None or
             self.synthetic_flag is not None or
             self.synthetic_source is not None or
-            super(other_macromolecule_type, self)._hasContent()
+            super(other_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -9770,7 +9793,7 @@ class other_macromolecule_type(base_macromolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='other_macromolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='other_macromolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -9960,14 +9983,14 @@ class protein_or_peptide_macromolecule_type(base_macromolecule_type):
                 result = False
         return result
     validate_ec_numberType_patterns_ = [['^(([1-7]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-)))(([ ]*,[ ]*)([1-6]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-))))*)$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.recombinant_expression is not None or
             self.synthetic_source is not None or
             self.enantiomer is not None or
             self.sequence is not None or
             self.ec_number or
-            super(protein_or_peptide_macromolecule_type, self)._hasContent()
+            super(protein_or_peptide_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -9988,7 +10011,7 @@ class protein_or_peptide_macromolecule_type(base_macromolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='protein_or_peptide_macromolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='protein_or_peptide_macromolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -10178,7 +10201,7 @@ class rna_macromolecule_type(base_macromolecule_type):
                 result = False
         return result
     validate_ec_numberType33_patterns_ = [['^(\\d+(\\.(\\d+|\\-)){3})$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.sequence is not None or
             self.classification is not None or
@@ -10186,7 +10209,7 @@ class rna_macromolecule_type(base_macromolecule_type):
             self.synthetic_flag is not None or
             self.synthetic_source is not None or
             self.ec_number or
-            super(rna_macromolecule_type, self)._hasContent()
+            super(rna_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -10207,7 +10230,7 @@ class rna_macromolecule_type(base_macromolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='rna_macromolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='rna_macromolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -10392,12 +10415,12 @@ class saccharide_macromolecule_type(base_macromolecule_type):
                 return False
             pass
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.enantiomer is not None or
             self.formula is not None or
             self.external_references or
-            super(saccharide_macromolecule_type, self)._hasContent()
+            super(saccharide_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -10418,7 +10441,7 @@ class saccharide_macromolecule_type(base_macromolecule_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='saccharide_macromolecule_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='saccharide_macromolecule_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -10599,7 +10622,7 @@ class structure_determination_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on aggregation_stateType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.method is not None or
             self.aggregation_state is not None or
@@ -10627,7 +10650,7 @@ class structure_determination_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='structure_determination_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='structure_determination_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -10809,7 +10832,7 @@ class macromolecules_and_complexes_type(GeneratedsSuper):
         self.complex_id.insert(index, value)
     def replace_complex_id_at(self, index, value):
         self.complex_id[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.macromolecule_id or
             self.complex_id
@@ -10833,7 +10856,7 @@ class macromolecules_and_complexes_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='macromolecules_and_complexes_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='macromolecules_and_complexes_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -10970,7 +10993,7 @@ class base_preparation_type(GeneratedsSuper):
         self.preparation_id = preparation_id
     def get_extensiontype_(self): return self.extensiontype_
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.concentration is not None or
             self.buffer is not None or
@@ -11000,7 +11023,7 @@ class base_preparation_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='base_preparation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='base_preparation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -11186,7 +11209,7 @@ class buffer_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on phType' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.ph is not None or
             self.component or
@@ -11211,7 +11234,7 @@ class buffer_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='buffer_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='buffer_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -11326,7 +11349,7 @@ class buffer_component_type(GeneratedsSuper):
                 return False
             pass
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.concentration is not None or
             self.formula is not None or
@@ -11351,7 +11374,7 @@ class buffer_component_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='buffer_component_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='buffer_component_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -11506,7 +11529,7 @@ class grid_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on materialType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.model is not None or
             self.material is not None or
@@ -11534,7 +11557,7 @@ class grid_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='grid_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='grid_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -11714,7 +11737,7 @@ class film_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on film_topologyType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.film_material is not None or
             self.film_topology is not None or
@@ -11739,7 +11762,7 @@ class film_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='film_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='film_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -11882,7 +11905,7 @@ class grid_pretreatment_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on atmosphereType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.type_ is not None or
             self.time is not None or
@@ -11908,7 +11931,7 @@ class grid_pretreatment_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='grid_pretreatment_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='grid_pretreatment_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -12084,7 +12107,7 @@ class vitrification_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on instrumentType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.cryogen_name is not None or
             self.chamber_humidity is not None or
@@ -12113,7 +12136,7 @@ class vitrification_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='vitrification_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='vitrification_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -12258,10 +12281,10 @@ class crystallography_preparation_type(base_preparation_type):
         return self.crystal_formation
     def set_crystal_formation(self, crystal_formation):
         self.crystal_formation = crystal_formation
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.crystal_formation is not None or
-            super(crystallography_preparation_type, self)._hasContent()
+            super(crystallography_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -12282,7 +12305,7 @@ class crystallography_preparation_type(base_preparation_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystallography_preparation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='crystallography_preparation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -12374,7 +12397,7 @@ class crystal_formation_temperature_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_crystal_formation_temperature_type' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -12490,7 +12513,7 @@ class crystal_formation_time_type(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType40' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -12573,9 +12596,9 @@ class helical_preparation_type(base_preparation_type):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(helical_preparation_type, self)._hasContent()
+            super(helical_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -12596,7 +12619,7 @@ class helical_preparation_type(base_preparation_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='helical_preparation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='helical_preparation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -12652,9 +12675,9 @@ class single_particle_preparation_type(base_preparation_type):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(single_particle_preparation_type, self)._hasContent()
+            super(single_particle_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -12675,7 +12698,7 @@ class single_particle_preparation_type(base_preparation_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='single_particle_preparation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='single_particle_preparation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -12731,9 +12754,9 @@ class subtomogram_averaging_preparation_type(base_preparation_type):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(subtomogram_averaging_preparation_type, self)._hasContent()
+            super(subtomogram_averaging_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -12754,7 +12777,7 @@ class subtomogram_averaging_preparation_type(base_preparation_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='subtomogram_averaging_preparation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='subtomogram_averaging_preparation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -12840,14 +12863,14 @@ class tomography_preparation_type(base_preparation_type):
         return self.sectioning
     def set_sectioning(self, sectioning):
         self.sectioning = sectioning
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.fiducial_markers_list is not None or
             self.high_pressure_freezing is not None or
             self.embedding_material is not None or
             self.cryo_protectant is not None or
             self.sectioning is not None or
-            super(tomography_preparation_type, self)._hasContent()
+            super(tomography_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -12868,7 +12891,7 @@ class tomography_preparation_type(base_preparation_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tomography_preparation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='tomography_preparation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -12996,7 +13019,7 @@ class fiducial_marker_type(GeneratedsSuper):
         return self.diameter
     def set_diameter(self, diameter):
         self.diameter = diameter
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.fiducial_type is not None or
             self.manufacturer is not None or
@@ -13021,7 +13044,7 @@ class fiducial_marker_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='fiducial_marker_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='fiducial_marker_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -13139,7 +13162,7 @@ class fiducial_marker_diameter_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_diameter_colloidal_gold' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -13246,7 +13269,7 @@ class temperature_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_temperature' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -13349,7 +13372,7 @@ class ultramicrotomy_final_thickness_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minInclusive restriction on allowed_microtome_thickness' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -13456,7 +13479,7 @@ class fib_voltage_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_focus_ion_voltage' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -13562,7 +13585,7 @@ class fib_current_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_focus_ion_current' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -13664,7 +13687,7 @@ class fib_dose_rate_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_focus_ion_dose_rate' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -13754,7 +13777,7 @@ class fib_duration_type(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -13861,7 +13884,7 @@ class fib_initial_thickness_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_focus_ion_initial_thickness' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -13964,7 +13987,7 @@ class fib_final_thickness_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minInclusive restriction on allowed_focus_ion_final_thickness' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -14329,7 +14352,7 @@ class base_microscopy_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on cooling_holder_cryogenType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.specimen_preparations is not None or
             self.microscope is not None or
@@ -14377,7 +14400,7 @@ class base_microscopy_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='base_microscopy_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='base_microscopy_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -14734,7 +14757,7 @@ class residual_tilt_type(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -14861,7 +14884,7 @@ class specialist_optics_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on phase_plateType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.phase_plate is not None or
             self.sph_aberration_corrector is not None or
@@ -14888,7 +14911,7 @@ class specialist_optics_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='specialist_optics_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='specialist_optics_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -15021,7 +15044,7 @@ class software_list_type(GeneratedsSuper):
         self.software.insert(index, value)
     def replace_software_at(self, index, value):
         self.software[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.software
         ):
@@ -15044,7 +15067,7 @@ class software_list_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='software_list_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='software_list_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -15087,7 +15110,7 @@ class software_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, name=None, version=None, processing_details=None, gds_collector_=None, **kwargs_):
+    def __init__(self, name=None, version=None, category=None, processing_details=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -15097,6 +15120,9 @@ class software_type(GeneratedsSuper):
         self.name_nsprefix_ = None
         self.version = version
         self.version_nsprefix_ = None
+        self.category = category
+        self.validate_categoryType44(self.category)
+        self.category_nsprefix_ = None
         self.processing_details = processing_details
         self.processing_details_nsprefix_ = None
     def factory(*args_, **kwargs_):
@@ -15122,14 +15148,34 @@ class software_type(GeneratedsSuper):
         return self.version
     def set_version(self, version):
         self.version = version
+    def get_category(self):
+        return self.category
+    def set_category(self, category):
+        self.category = category
     def get_processing_details(self):
         return self.processing_details
     def set_processing_details(self, processing_details):
         self.processing_details = processing_details
-    def _hasContent(self):
+    def validate_categoryType44(self, value):
+        result = True
+        # Validate type categoryType44, a restriction on xs:token.
+        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
+            if not isinstance(value, str):
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
+                return False
+            value = value
+            enumerations = ['CLASSIFICATION', 'CRYSTALLOGRAPHY MERGING', 'CTF CORRECTION', 'DIFFRACTION INDEXING', 'EWALD SPHERE CORRECTION', 'FINAL EULER ASSIGNMENT', 'IMAGE ACQUISITION', 'INITIAL EULER ASSIGNMENT', 'LATTICE DISTORTION CORRECTION', 'LAYERLINE INDEXING', 'MASKING', 'MODEL FITTING', 'MODEL REFINEMENT', 'MOLECULAR REPLACEMENT', 'OTHER', 'PARTICLE SELECTION', 'RECONSTRUCTION', 'SERIES ALIGNMENT', 'SYMMETRY DETERMINATION', 'VOLUME SELECTION']
+            if value not in enumerations:
+                lineno = self.gds_get_node_lineno_()
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on categoryType44' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                result = False
+        return result
+    def has__content(self):
         if (
             self.name is not None or
             self.version is not None or
+            self.category is not None or
             self.processing_details is not None
         ):
             return True
@@ -15151,7 +15197,7 @@ class software_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='software_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='software_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -15173,6 +15219,10 @@ class software_type(GeneratedsSuper):
             namespaceprefix_ = self.version_nsprefix_ + ':' if (UseCapturedNS_ and self.version_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
             outfile.write('<%sversion>%s</%sversion>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.version), input_name='version')), namespaceprefix_ , eol_))
+        if self.category is not None:
+            namespaceprefix_ = self.category_nsprefix_ + ':' if (UseCapturedNS_ and self.category_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%scategory>%s</%scategory>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.category), input_name='category')), namespaceprefix_ , eol_))
         if self.processing_details is not None:
             namespaceprefix_ = self.processing_details_nsprefix_ + ':' if (UseCapturedNS_ and self.processing_details_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
@@ -15211,6 +15261,18 @@ class software_type(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'version')
             self.version = value_
             self.version_nsprefix_ = child_.prefix
+        elif nodeName_ == 'category':
+            value_ = child_.text
+            if value_:
+                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
+            else:
+                value_ = ""
+            value_ = self.gds_parse_string(value_, node, 'category')
+            value_ = self.gds_validate_string(value_, node, 'category')
+            self.category = value_
+            self.category_nsprefix_ = child_.prefix
+            # validate type categoryType44
+            self.validate_categoryType44(self.category)
         elif nodeName_ == 'processing_details':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'processing_details')
@@ -15273,12 +15335,12 @@ class crystallography_microscopy_type(base_microscopy_type):
         self.tilt_series.insert(index, value)
     def replace_tilt_series_at(self, index, value):
         self.tilt_series[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.camera_length is not None or
             self.tilt_list is not None or
             self.tilt_series or
-            super(crystallography_microscopy_type, self)._hasContent()
+            super(crystallography_microscopy_type, self).has__content()
         ):
             return True
         else:
@@ -15299,7 +15361,7 @@ class crystallography_microscopy_type(base_microscopy_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystallography_microscopy_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='crystallography_microscopy_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -15399,7 +15461,7 @@ class tilt_series_type(GeneratedsSuper):
         return self.axis_rotation
     def set_axis_rotation(self, axis_rotation):
         self.axis_rotation = axis_rotation
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.axis1 is not None or
             self.axis2 is not None or
@@ -15424,7 +15486,7 @@ class tilt_series_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tilt_series_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='tilt_series_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -15526,7 +15588,7 @@ class axis_type(GeneratedsSuper):
         self.angle_increment = angle_increment
     def get_extensiontype_(self): return self.extensiontype_
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.min_angle is not None or
             self.max_angle is not None or
@@ -15551,7 +15613,7 @@ class axis_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='axis_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='axis_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -15643,9 +15705,9 @@ class helical_microscopy_type(base_microscopy_type):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(helical_microscopy_type, self)._hasContent()
+            super(helical_microscopy_type, self).has__content()
         ):
             return True
         else:
@@ -15666,7 +15728,7 @@ class helical_microscopy_type(base_microscopy_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='helical_microscopy_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='helical_microscopy_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -15722,9 +15784,9 @@ class single_particle_microscopy_type(base_microscopy_type):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(single_particle_microscopy_type, self)._hasContent()
+            super(single_particle_microscopy_type, self).has__content()
         ):
             return True
         else:
@@ -15745,7 +15807,7 @@ class single_particle_microscopy_type(base_microscopy_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='single_particle_microscopy_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='single_particle_microscopy_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -15816,10 +15878,10 @@ class tomography_microscopy_type(base_microscopy_type):
         self.tilt_series.insert(index, value)
     def replace_tilt_series_at(self, index, value):
         self.tilt_series[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.tilt_series or
-            super(tomography_microscopy_type, self)._hasContent()
+            super(tomography_microscopy_type, self).has__content()
         ):
             return True
         else:
@@ -15840,7 +15902,7 @@ class tomography_microscopy_type(base_microscopy_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tomography_microscopy_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='tomography_microscopy_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -15927,7 +15989,7 @@ class base_image_processing_type(GeneratedsSuper):
         self.image_processing_id = image_processing_id
     def get_extensiontype_(self): return self.extensiontype_
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.image_recording_id is not None or
             self.details is not None
@@ -15951,7 +16013,7 @@ class base_image_processing_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='base_image_processing_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='base_image_processing_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -16116,7 +16178,7 @@ class crystallography_processing_type(base_image_processing_type):
         return self.crystallography_statistics
     def set_crystallography_statistics(self, crystallography_statistics):
         self.crystallography_statistics = crystallography_statistics
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.final_reconstruction is not None or
             self.crystal_parameters is not None or
@@ -16127,7 +16189,7 @@ class crystallography_processing_type(base_image_processing_type):
             self.symmetry_determination_software_list is not None or
             self.merging_software_list is not None or
             self.crystallography_statistics is not None or
-            super(crystallography_processing_type, self)._hasContent()
+            super(crystallography_processing_type, self).has__content()
         ):
             return True
         else:
@@ -16148,7 +16210,7 @@ class crystallography_processing_type(base_image_processing_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystallography_processing_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='crystallography_processing_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -16311,7 +16373,7 @@ class applied_symmetry_type(GeneratedsSuper):
                 result = False
         return result
     validate_point_groupType_patterns_ = [['^(C\\d+|D\\d+|O|T|I)$'], ['^(C\\d+|D\\d+|O|T|I)$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.space_group is not None or
             self.point_group is not None or
@@ -16336,7 +16398,7 @@ class applied_symmetry_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='applied_symmetry_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='applied_symmetry_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -16459,7 +16521,7 @@ class helical_parameters_type(GeneratedsSuper):
                 result = False
         return result
     validate_axial_symmetryType_patterns_ = [['^([C|D][1-9][0-9]*)$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.delta_z is not None or
             self.delta_phi is not None or
@@ -16484,7 +16546,7 @@ class helical_parameters_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='helical_parameters_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='helical_parameters_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -16602,7 +16664,7 @@ class reconstruction_filtering_type(GeneratedsSuper):
         return self.other
     def set_other(self, other):
         self.other = other
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.background_masked is not None or
             self.spatial_filtering is not None or
@@ -16629,7 +16691,7 @@ class reconstruction_filtering_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='reconstruction_filtering_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='reconstruction_filtering_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -16693,7 +16755,7 @@ class reconstruction_filtering_type(GeneratedsSuper):
             self.b_factorSharpening = obj_
             obj_.original_tagname_ = 'b-factorSharpening'
         elif nodeName_ == 'other':
-            obj_ = otherType45.factory(parent_object_=self)
+            obj_ = otherType46.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.other = obj_
             obj_.original_tagname_ = 'other'
@@ -16765,7 +16827,7 @@ class background_masked_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on geometrical_shapeType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.geometrical_shape is not None or
             self.dimensions is not None or
@@ -16791,7 +16853,7 @@ class background_masked_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='background_masked_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='background_masked_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -16846,7 +16908,7 @@ class background_masked_type(GeneratedsSuper):
             # validate type geometrical_shapeType
             self.validate_geometrical_shapeType(self.geometrical_shape)
         elif nodeName_ == 'dimensions':
-            obj_ = dimensionsType46.factory(parent_object_=self)
+            obj_ = dimensionsType47.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.dimensions = obj_
             obj_.original_tagname_ = 'dimensions'
@@ -16923,7 +16985,7 @@ class crystal_parameters_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on plane_groupType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.unit_cell is not None or
             self.plane_group is not None or
@@ -16948,7 +17010,7 @@ class crystal_parameters_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystal_parameters_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='crystal_parameters_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -17084,7 +17146,7 @@ class unit_cell_type(GeneratedsSuper):
         return self.beta
     def set_beta(self, beta):
         self.beta = beta
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.a is not None or
             self.b is not None or
@@ -17113,7 +17175,7 @@ class unit_cell_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='unit_cell_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='unit_cell_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -17247,7 +17309,7 @@ class cell_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_cell_dim' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -17354,7 +17416,7 @@ class cell_angle_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxExclusive restriction on allowed_cell_angle' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -17498,7 +17560,7 @@ class starting_map_type(GeneratedsSuper):
                 result = False
         return result
     validate_emdb_id_type_patterns_ = [['^(EMD-\\d{4,})$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.random_conical_tilt is not None or
             self.orthogonal_tilt is not None or
@@ -17527,7 +17589,7 @@ class starting_map_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='starting_map_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='starting_map_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -17689,8 +17751,8 @@ class pdb_model_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_pdb_code_type_patterns_, ))
                 result = False
         return result
-    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3})$']]
-    def _hasContent(self):
+    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
+    def has__content(self):
         if (
             self.pdb_id is not None or
             self.chain_id_list is not None
@@ -17714,7 +17776,7 @@ class pdb_model_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='pdb_model_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='pdb_model_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -17844,7 +17906,7 @@ class chain_type(GeneratedsSuper):
                 result = False
         return result
     validate_residue_rangeType_patterns_ = [['^(\\d+-\\d+)$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.chain_id or
             self.residue_range is not None
@@ -17868,7 +17930,7 @@ class chain_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='chain_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='chain_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -18002,7 +18064,7 @@ class ctf_correction_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on correction_operationType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.phase_reversal is not None or
             self.amplitude_correction is not None or
@@ -18029,7 +18091,7 @@ class ctf_correction_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='ctf_correction_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='ctf_correction_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -18158,7 +18220,7 @@ class molecular_replacement_type(GeneratedsSuper):
         return self.software_list
     def set_software_list(self, software_list):
         self.software_list = software_list
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.starting_model or
             self.resolution_range is not None or
@@ -18183,7 +18245,7 @@ class molecular_replacement_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='molecular_replacement_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='molecular_replacement_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -18329,7 +18391,7 @@ class crystallography_statistics_type(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_intensities_measured is not None or
             self.number_structure_factors is not None or
@@ -18362,7 +18424,7 @@ class crystallography_statistics_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystallography_statistics_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='crystallography_statistics_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -18493,7 +18555,7 @@ class crystallography_statistics_type(GeneratedsSuper):
             self.phase_error_rejection_criteria = value_
             self.phase_error_rejection_criteria_nsprefix_ = child_.prefix
         elif nodeName_ == 'high_resolution':
-            obj_ = high_resolutionType53.factory(parent_object_=self)
+            obj_ = high_resolutionType54.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.high_resolution = obj_
             obj_.original_tagname_ = 'high_resolution'
@@ -18609,7 +18671,7 @@ class helical_processing_type(base_image_processing_type):
         return self.crystal_parameters
     def set_crystal_parameters(self, crystal_parameters):
         self.crystal_parameters = crystal_parameters
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.final_reconstruction is not None or
             self.ctf_correction is not None or
@@ -18620,7 +18682,7 @@ class helical_processing_type(base_image_processing_type):
             self.initial_angle_assignment is not None or
             self.final_angle_assignment is not None or
             self.crystal_parameters is not None or
-            super(helical_processing_type, self)._hasContent()
+            super(helical_processing_type, self).has__content()
         ):
             return True
         else:
@@ -18641,7 +18703,7 @@ class helical_processing_type(base_image_processing_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='helical_processing_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='helical_processing_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -18807,7 +18869,7 @@ class segment_selection_type(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_selected is not None or
             self.segment_length is not None or
@@ -18835,7 +18897,7 @@ class segment_selection_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='segment_selection_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='segment_selection_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -18987,7 +19049,7 @@ class refinement_type(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.startup_model or
             self.starting_symmetry or
@@ -19013,7 +19075,7 @@ class refinement_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='refinement_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='refinement_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -19127,7 +19189,7 @@ class layer_lines_type(GeneratedsSuper):
         return self.indexing
     def set_indexing(self, indexing):
         self.indexing = indexing
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_helices is not None or
             self.helix_length is not None or
@@ -19153,7 +19215,7 @@ class layer_lines_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='layer_lines_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='layer_lines_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -19245,7 +19307,7 @@ class number_helices(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -19268,7 +19330,7 @@ class number_helices(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='number_helices')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='number_helices', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -19307,7 +19369,7 @@ class angle_assignment_type(GeneratedsSuper):
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
         self.type_ = type_
-        self.validate_typeType56(self.type_)
+        self.validate_typeType57(self.type_)
         self.type__nsprefix_ = None
         self.projection_matching_processing = projection_matching_processing
         self.projection_matching_processing_nsprefix_ = None
@@ -19346,9 +19408,9 @@ class angle_assignment_type(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def validate_typeType56(self, value):
+    def validate_typeType57(self, value):
         result = True
-        # Validate type typeType56, a restriction on xs:token.
+        # Validate type typeType57, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -19358,10 +19420,10 @@ class angle_assignment_type(GeneratedsSuper):
             enumerations = ['ANGULAR RECONSTITUTION', 'COMMON LINE', 'NOT APPLICABLE', 'OTHER', 'PROJECTION MATCHING', 'RANDOM ASSIGNMENT', 'MAXIMUM LIKELIHOOD']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType56' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType57' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.type_ is not None or
             self.projection_matching_processing is not None or
@@ -19387,7 +19449,7 @@ class angle_assignment_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='angle_assignment_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='angle_assignment_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -19439,8 +19501,8 @@ class angle_assignment_type(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'type')
             self.type_ = value_
             self.type_nsprefix_ = child_.prefix
-            # validate type typeType56
-            self.validate_typeType56(self.type_)
+            # validate type typeType57
+            self.validate_typeType57(self.type_)
         elif nodeName_ == 'projection_matching_processing':
             obj_ = projection_matching_processingType.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
@@ -19558,7 +19620,7 @@ class singleparticle_processing_type(base_image_processing_type):
         return self.final_three_d_classification
     def set_final_three_d_classification(self, final_three_d_classification):
         self.final_three_d_classification = final_three_d_classification
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.particle_selection or
             self.ctf_correction is not None or
@@ -19569,7 +19631,7 @@ class singleparticle_processing_type(base_image_processing_type):
             self.final_multi_reference_alignment is not None or
             self.final_two_d_classification is not None or
             self.final_three_d_classification is not None or
-            super(singleparticle_processing_type, self)._hasContent()
+            super(singleparticle_processing_type, self).has__content()
         ):
             return True
         else:
@@ -19590,7 +19652,7 @@ class singleparticle_processing_type(base_image_processing_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='singleparticle_processing_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='singleparticle_processing_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -19750,7 +19812,7 @@ class particle_selection_type(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_selected is not None or
             self.reference_model is not None or
@@ -19777,7 +19839,7 @@ class particle_selection_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='particle_selection_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='particle_selection_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -19925,7 +19987,7 @@ class classification_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on average_number_members_per_classType' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_classes is not None or
             self.average_number_members_per_class is not None or
@@ -19951,7 +20013,7 @@ class classification_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='classification_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='classification_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -20092,7 +20154,7 @@ class subtomogram_averaging_processing_type(base_image_processing_type):
         return self.crystal_parameters
     def set_crystal_parameters(self, crystal_parameters):
         self.crystal_parameters = crystal_parameters
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.final_reconstruction is not None or
             self.extraction is not None or
@@ -20101,7 +20163,7 @@ class subtomogram_averaging_processing_type(base_image_processing_type):
             self.final_three_d_classification is not None or
             self.final_angle_assignment is not None or
             self.crystal_parameters is not None or
-            super(subtomogram_averaging_processing_type, self)._hasContent()
+            super(subtomogram_averaging_processing_type, self).has__content()
         ):
             return True
         else:
@@ -20122,7 +20184,7 @@ class subtomogram_averaging_processing_type(base_image_processing_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='subtomogram_averaging_processing_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='subtomogram_averaging_processing_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -20188,7 +20250,7 @@ class subtomogram_averaging_processing_type(base_image_processing_type):
             self.ctf_correction = obj_
             obj_.original_tagname_ = 'ctf_correction'
         elif nodeName_ == 'final_multi_reference_alignment':
-            obj_ = final_multi_reference_alignmentType60.factory(parent_object_=self)
+            obj_ = final_multi_reference_alignmentType61.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.final_multi_reference_alignment = obj_
             obj_.original_tagname_ = 'final_multi_reference_alignment'
@@ -20319,7 +20381,7 @@ class final_reconstruction_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on resolution_methodType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_classes_used is not None or
             self.applied_symmetry is not None or
@@ -20349,7 +20411,7 @@ class final_reconstruction_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='final_reconstruction_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='final_reconstruction_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -20527,13 +20589,13 @@ class tomography_processing_type(base_image_processing_type):
         return self.crystal_parameters
     def set_crystal_parameters(self, crystal_parameters):
         self.crystal_parameters = crystal_parameters
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.final_reconstruction is not None or
             self.series_aligment_software_list is not None or
             self.ctf_correction is not None or
             self.crystal_parameters is not None or
-            super(tomography_processing_type, self)._hasContent()
+            super(tomography_processing_type, self).has__content()
         ):
             return True
         else:
@@ -20554,7 +20616,7 @@ class tomography_processing_type(base_image_processing_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tomography_processing_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='tomography_processing_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -20771,7 +20833,7 @@ class map_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on map_data_type' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.file is not None or
             self.symmetry is not None or
@@ -20807,7 +20869,7 @@ class map_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='map_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='map_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -21029,7 +21091,7 @@ class integer_vector_map_type(GeneratedsSuper):
         return self.sec
     def set_sec(self, sec):
         self.sec = sec
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.col is not None or
             self.row is not None or
@@ -21054,7 +21116,7 @@ class integer_vector_map_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='integer_vector_map_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='integer_vector_map_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -21170,7 +21232,7 @@ class map_statistics_type(GeneratedsSuper):
         return self.std
     def set_std(self, std):
         self.std = std
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.minimum is not None or
             self.maximum is not None or
@@ -21196,7 +21258,7 @@ class map_statistics_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='map_statistics_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='map_statistics_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -21314,7 +21376,7 @@ class pixel_spacing_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_pixel_sampling' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -21431,7 +21493,7 @@ class interpretation_type(GeneratedsSuper):
         return self.half_map_list
     def set_half_map_list(self, half_map_list):
         self.half_map_list = half_map_list
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.modelling_list is not None or
             self.figure_list is not None or
@@ -21459,7 +21521,7 @@ class interpretation_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='interpretation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='interpretation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -21636,7 +21698,7 @@ class modelling_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on refinement_protocolType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.initial_model or
             self.final_model is not None or
@@ -21666,7 +21728,7 @@ class modelling_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='modelling_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='modelling_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -21792,7 +21854,7 @@ class figure_type(GeneratedsSuper):
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
         self.file = file
-        self.validate_fileType65(self.file)
+        self.validate_fileType66(self.file)
         self.file_nsprefix_ = None
         self.details = details
         self.details_nsprefix_ = None
@@ -21819,21 +21881,21 @@ class figure_type(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def validate_fileType65(self, value):
+    def validate_fileType66(self, value):
         result = True
-        # Validate type fileType65, a restriction on xs:token.
+        # Validate type fileType66, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_fileType65_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_fileType65_patterns_, ))
+                    self.validate_fileType66_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_fileType66_patterns_, ))
                 result = False
         return result
-    validate_fileType65_patterns_ = [['^(emd_\\d{4,}.+)$']]
-    def _hasContent(self):
+    validate_fileType66_patterns_ = [['^(emd_\\d{4,}.+)$']]
+    def has__content(self):
         if (
             self.file is not None or
             self.details is not None
@@ -21857,7 +21919,7 @@ class figure_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='figure_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='figure_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -21903,8 +21965,8 @@ class figure_type(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'file')
             self.file = value_
             self.file_nsprefix_ = child_.prefix
-            # validate type fileType65
-            self.validate_fileType65(self.file)
+            # validate type fileType66
+            self.validate_fileType66(self.file)
         elif nodeName_ == 'details':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'details')
@@ -21925,7 +21987,7 @@ class validation_type(GeneratedsSuper):
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
         self.file = file
-        self.validate_fileType66(self.file)
+        self.validate_fileType67(self.file)
         self.file_nsprefix_ = None
         self.details = details
         self.details_nsprefix_ = None
@@ -21955,21 +22017,21 @@ class validation_type(GeneratedsSuper):
         self.details = details
     def get_extensiontype_(self): return self.extensiontype_
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
-    def validate_fileType66(self, value):
+    def validate_fileType67(self, value):
         result = True
-        # Validate type fileType66, a restriction on xs:token.
+        # Validate type fileType67, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_fileType66_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_fileType66_patterns_, ))
+                    self.validate_fileType67_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_fileType67_patterns_, ))
                 result = False
         return result
-    validate_fileType66_patterns_ = [['^(emd_\\d{4,}_fsc(_[1-9]{1,})*.xml)$']]
-    def _hasContent(self):
+    validate_fileType67_patterns_ = [['^(emd_\\d{4,}_fsc(_[1-9]{1,})*.xml)$']]
+    def has__content(self):
         if (
             self.file is not None or
             self.details is not None
@@ -21993,7 +22055,7 @@ class validation_type(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='validation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='validation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -22050,8 +22112,8 @@ class validation_type(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'file')
             self.file = value_
             self.file_nsprefix_ = child_.prefix
-            # validate type fileType66
-            self.validate_fileType66(self.file)
+            # validate type fileType67
+            self.validate_fileType67(self.file)
         elif nodeName_ == 'details':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'details')
@@ -22129,7 +22191,7 @@ class crystallography_validation_type(validation_type):
         return self.data_completeness
     def set_data_completeness(self, data_completeness):
         self.data_completeness = data_completeness
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.parallel_resolution is not None or
             self.perpendicular_resolution is not None or
@@ -22138,7 +22200,7 @@ class crystallography_validation_type(validation_type):
             self.weighted_phase_residual is not None or
             self.weighted_r_factor is not None or
             self.data_completeness is not None or
-            super(crystallography_validation_type, self)._hasContent()
+            super(crystallography_validation_type, self).has__content()
         ):
             return True
         else:
@@ -22159,7 +22221,7 @@ class crystallography_validation_type(validation_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystallography_validation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='crystallography_validation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -22287,7 +22349,7 @@ class parallel_resolution(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -22310,7 +22372,7 @@ class parallel_resolution(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='parallel_resolution')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='parallel_resolution', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -22363,7 +22425,7 @@ class perpendicular_resolution(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -22386,7 +22448,7 @@ class perpendicular_resolution(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='perpendicular_resolution')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='perpendicular_resolution', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -22439,7 +22501,7 @@ class number_observed_reflections(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -22462,7 +22524,7 @@ class number_observed_reflections(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='number_observed_reflections')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='number_observed_reflections', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -22515,7 +22577,7 @@ class number_unique_reflections(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -22538,7 +22600,7 @@ class number_unique_reflections(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='number_unique_reflections')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='number_unique_reflections', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -22591,7 +22653,7 @@ class weighted_phase_residual(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -22614,7 +22676,7 @@ class weighted_phase_residual(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='weighted_phase_residual')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='weighted_phase_residual', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -22667,7 +22729,7 @@ class weighted_r_factor(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -22690,7 +22752,7 @@ class weighted_r_factor(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='weighted_r_factor')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='weighted_r_factor', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -22743,7 +22805,7 @@ class data_completeness(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -22766,7 +22828,7 @@ class data_completeness(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='data_completeness')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='data_completeness', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -22820,9 +22882,9 @@ class fsc_curve_validation_type(validation_type):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(fsc_curve_validation_type, self)._hasContent()
+            super(fsc_curve_validation_type, self).has__content()
         ):
             return True
         else:
@@ -22843,7 +22905,7 @@ class fsc_curve_validation_type(validation_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='fsc_curve_validation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='fsc_curve_validation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -22899,9 +22961,9 @@ class layer_lines_validation_type(validation_type):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(layer_lines_validation_type, self)._hasContent()
+            super(layer_lines_validation_type, self).has__content()
         ):
             return True
         else:
@@ -22922,7 +22984,7 @@ class layer_lines_validation_type(validation_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='layer_lines_validation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='layer_lines_validation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -22978,9 +23040,9 @@ class structure_factors_validation_type(validation_type):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(structure_factors_validation_type, self)._hasContent()
+            super(structure_factors_validation_type, self).has__content()
         ):
             return True
         else:
@@ -23001,7 +23063,7 @@ class structure_factors_validation_type(validation_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='structure_factors_validation_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='structure_factors_validation_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -23071,7 +23133,7 @@ class structure_determination_listType(GeneratedsSuper):
         self.structure_determination.insert(index, value)
     def replace_structure_determination_at(self, index, value):
         self.structure_determination[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.structure_determination
         ):
@@ -23094,7 +23156,7 @@ class structure_determination_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='structure_determination_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='structure_determination_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -23173,7 +23235,7 @@ class validationType(GeneratedsSuper):
         self.validation_method.insert(index, value)
     def replace_validation_method_at(self, index, value):
         self.validation_method[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.validation_method
         ):
@@ -23196,7 +23258,7 @@ class validationType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='validationType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='validationType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -23324,7 +23386,7 @@ class sitesType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on last_processingType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.deposition is not None or
             self.last_processing is not None
@@ -23348,7 +23410,7 @@ class sitesType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sitesType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sitesType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -23486,7 +23548,7 @@ class key_datesType(GeneratedsSuper):
         return self.update
     def set_update(self, update):
         self.update = update
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.deposition is not None or
             self.header_release is not None or
@@ -23513,7 +23575,7 @@ class key_datesType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='key_datesType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='key_datesType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -23629,7 +23691,7 @@ class obsolete_listType(GeneratedsSuper):
         self.entry.insert(index, value)
     def replace_entry_at(self, index, value):
         self.entry[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.entry
         ):
@@ -23652,7 +23714,7 @@ class obsolete_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='obsolete_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='obsolete_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -23731,7 +23793,7 @@ class superseded_by_listType(GeneratedsSuper):
         self.entry.insert(index, value)
     def replace_entry_at(self, index, value):
         self.entry[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.entry
         ):
@@ -23754,7 +23816,7 @@ class superseded_by_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='superseded_by_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='superseded_by_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -23833,7 +23895,7 @@ class grant_supportType(GeneratedsSuper):
         self.grant_reference.insert(index, value)
     def replace_grant_reference_at(self, index, value):
         self.grant_reference[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.grant_reference
         ):
@@ -23856,7 +23918,7 @@ class grant_supportType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='grant_supportType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='grant_supportType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -23964,7 +24026,7 @@ class microscopy_centerType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on countryType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.name is not None or
             self.country is not None
@@ -23988,7 +24050,7 @@ class microscopy_centerType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='microscopy_centerType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='microscopy_centerType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -24083,9 +24145,9 @@ class contact_authorType(contact_details_type):
         return self.private
     def set_private(self, private):
         self.private = private
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(contact_authorType, self)._hasContent()
+            super(contact_authorType, self).has__content()
         ):
             return True
         else:
@@ -24106,7 +24168,7 @@ class contact_authorType(contact_details_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='contact_authorType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='contact_authorType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -24183,7 +24245,7 @@ class authors_listType(GeneratedsSuper):
         self.author.insert(index, value)
     def replace_author_at(self, index, value):
         self.author[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.author
         ):
@@ -24206,7 +24268,7 @@ class authors_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='authors_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='authors_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -24278,9 +24340,9 @@ class statusType(version_type):
         return self.status_id
     def set_status_id(self, status_id):
         self.status_id = status_id
-    def _hasContent(self):
+    def has__content(self):
         if (
-            super(statusType, self)._hasContent()
+            super(statusType, self).has__content()
         ):
             return True
         else:
@@ -24301,7 +24363,7 @@ class statusType(version_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='statusType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='statusType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -24374,7 +24436,7 @@ class annotatorType(GeneratedsSuper):
         self.private = private
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -24477,7 +24539,7 @@ class organizationType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -24580,7 +24642,7 @@ class citation_listType(GeneratedsSuper):
         self.secondary_citation.insert(index, value)
     def replace_secondary_citation_at(self, index, value):
         self.secondary_citation[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.primary_citation is not None or
             self.secondary_citation
@@ -24604,7 +24666,7 @@ class citation_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='citation_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='citation_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -24682,7 +24744,7 @@ class primary_citationType(GeneratedsSuper):
         return self.citation_type
     def set_citation_type(self, citation_type):
         self.citation_type = citation_type
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.citation_type is not None
         ):
@@ -24705,7 +24767,7 @@ class primary_citationType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='primary_citationType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='primary_citationType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -24798,7 +24860,7 @@ class secondary_citationType(GeneratedsSuper):
         return self.citation_type
     def set_citation_type(self, citation_type):
         self.citation_type = citation_type
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.citation_type is not None
         ):
@@ -24821,7 +24883,7 @@ class secondary_citationType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='secondary_citationType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='secondary_citationType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -24923,7 +24985,7 @@ class auxiliary_link_listType(GeneratedsSuper):
         self.auxiliary_link.insert(index, value)
     def replace_auxiliary_link_at(self, index, value):
         self.auxiliary_link[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.auxiliary_link
         ):
@@ -24946,7 +25008,7 @@ class auxiliary_link_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='auxiliary_link_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='auxiliary_link_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -25032,7 +25094,7 @@ class external_referencesType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType2' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -25136,7 +25198,7 @@ class external_referencesType4(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType5' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -25246,7 +25308,7 @@ class relationshipType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on in_frameType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.in_frame is not None or
             self.other is not None
@@ -25270,7 +25332,7 @@ class relationshipType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='relationshipType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='relationshipType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -25380,7 +25442,7 @@ class relationshipType6(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on in_frameType7' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.in_frame is not None or
             self.other is not None
@@ -25404,7 +25466,7 @@ class relationshipType6(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='relationshipType6')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='relationshipType6', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -25501,7 +25563,7 @@ class supramolecule_listType(GeneratedsSuper):
         self.supramolecule.insert(index, value)
     def replace_supramolecule_at(self, index, value):
         self.supramolecule[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.supramolecule
         ):
@@ -25524,7 +25586,7 @@ class supramolecule_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='supramolecule_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='supramolecule_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -25654,7 +25716,7 @@ class categoryType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType9' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -25751,7 +25813,7 @@ class macromolecule_listType(GeneratedsSuper):
         self.macromolecule.insert(index, value)
     def replace_macromolecule_at(self, index, value):
         self.macromolecule[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.macromolecule
         ):
@@ -25774,7 +25836,7 @@ class macromolecule_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='macromolecule_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='macromolecule_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -25885,7 +25947,7 @@ class macromoleculeType(GeneratedsSuper):
         return self.number_of_copies
     def set_number_of_copies(self, number_of_copies):
         self.number_of_copies = number_of_copies
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.macromolecule_id is not None or
             self.number_of_copies is not None
@@ -25909,7 +25971,7 @@ class macromoleculeType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='macromoleculeType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='macromoleculeType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -26011,7 +26073,7 @@ class external_referencesType10(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType11' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -26132,7 +26194,7 @@ class experimentalType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -26253,7 +26315,7 @@ class theoreticalType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType13' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -26359,7 +26421,7 @@ class virus_shellType(GeneratedsSuper):
         return self.shell_id
     def set_shell_id(self, shell_id):
         self.shell_id = shell_id
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.name is not None or
             self.diameter is not None or
@@ -26384,7 +26446,7 @@ class virus_shellType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='virus_shellType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='virus_shellType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -26507,7 +26569,7 @@ class diameterType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_shell_diameter' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -26614,7 +26676,7 @@ class sequenceType(GeneratedsSuper):
         self.external_references.insert(index, value)
     def replace_external_references_at(self, index, value):
         self.external_references[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.string is not None or
             self.discrepancy_list is not None or
@@ -26639,7 +26701,7 @@ class sequenceType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sequenceType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sequenceType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -26754,7 +26816,7 @@ class discrepancy_listType(GeneratedsSuper):
                 result = False
         return result
     validate_discrepancyType_patterns_ = [['^([ ARNDCEQGHILKMFPSTWYVUOBZJX\\(\\)]\\d+[ ARNDCEQGHILKMFPSTWYVUOBZJX\\(\\)])$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.discrepancy
         ):
@@ -26777,7 +26839,7 @@ class discrepancy_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='discrepancy_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='discrepancy_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -26871,7 +26933,7 @@ class external_referencesType14(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType15' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -26975,7 +27037,7 @@ class external_referencesType16(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType17' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -27095,7 +27157,7 @@ class sequenceType18(GeneratedsSuper):
                 return False
             pass
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.string is not None or
             self.discrepancy_list is not None or
@@ -27120,7 +27182,7 @@ class sequenceType18(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sequenceType18')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sequenceType18', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -27237,7 +27299,7 @@ class discrepancy_listType19(GeneratedsSuper):
                 result = False
         return result
     validate_discrepancyType20_patterns_ = [['^([AGCTRYSWKMBDHVN\\.-]\\d+[AGCTRYSWKMBDHVN\\.-])$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.discrepancy
         ):
@@ -27260,7 +27322,7 @@ class discrepancy_listType19(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='discrepancy_listType19')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='discrepancy_listType19', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -27341,7 +27403,7 @@ class external_referencesType21(GeneratedsSuper):
         self.type_ = type_
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -27455,7 +27517,7 @@ class sequenceType22(GeneratedsSuper):
         self.external_references.insert(index, value)
     def replace_external_references_at(self, index, value):
         self.external_references[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.string is not None or
             self.discrepancy_list is not None or
@@ -27481,7 +27543,7 @@ class sequenceType22(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sequenceType22')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sequenceType22', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -27604,7 +27666,7 @@ class discrepancy_listType23(GeneratedsSuper):
                 result = False
         return result
     validate_discrepancyType24_patterns_ = [['^([ARNDCEQGHILKMFPSTWYVUOBZJX]\\d+[ARNDCEQGHILKMFPSTWYVUOBZJX])$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.discrepancy
         ):
@@ -27627,7 +27689,7 @@ class discrepancy_listType23(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='discrepancy_listType23')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='discrepancy_listType23', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -27711,7 +27773,7 @@ class connectivityType(GeneratedsSuper):
         return self._c_link
     def set__c_link(self, _c_link):
         self._c_link = _c_link
-    def _hasContent(self):
+    def has__content(self):
         if (
             self._n_link is not None or
             self._c_link is not None
@@ -27735,7 +27797,7 @@ class connectivityType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='connectivityType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='connectivityType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -27813,7 +27875,7 @@ class _n_linkType(GeneratedsSuper):
         return self.molecule_id
     def set_molecule_id(self, molecule_id):
         self.molecule_id = molecule_id
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.molecule_id is not None
         ):
@@ -27836,7 +27898,7 @@ class _n_linkType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='_n-linkType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='_n-linkType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -27902,7 +27964,7 @@ class molecule_id(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -27925,7 +27987,7 @@ class molecule_id(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='molecule_id')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='molecule_id', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -27984,7 +28046,7 @@ class _c_linkType(GeneratedsSuper):
         return self.molecule_id
     def set_molecule_id(self, molecule_id):
         self.molecule_id = molecule_id
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.molecule_id is not None
         ):
@@ -28007,7 +28069,7 @@ class _c_linkType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='_c-linkType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='_c-linkType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -28095,7 +28157,7 @@ class external_referencesType25(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType26' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -28204,7 +28266,7 @@ class sequenceType27(GeneratedsSuper):
         self.external_references.insert(index, value)
     def replace_external_references_at(self, index, value):
         self.external_references[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.string is not None or
             self.discrepancy_list is not None or
@@ -28229,7 +28291,7 @@ class sequenceType27(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sequenceType27')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sequenceType27', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -28344,7 +28406,7 @@ class discrepancy_listType28(GeneratedsSuper):
                 result = False
         return result
     validate_discrepancyType29_patterns_ = [['^([ ARNDCEQGHILKMFPSTWYVUOBZJX\\(\\)]\\d+[ ARNDCEQGHILKMFPSTWYVUOBZJX\\(\\)])$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.discrepancy
         ):
@@ -28367,7 +28429,7 @@ class discrepancy_listType28(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='discrepancy_listType28')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='discrepancy_listType28', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -28461,7 +28523,7 @@ class external_referencesType30(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType31' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -28565,7 +28627,7 @@ class external_referencesType35(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType36' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -28662,7 +28724,7 @@ class specimen_preparation_listType(GeneratedsSuper):
         self.specimen_preparation.insert(index, value)
     def replace_specimen_preparation_at(self, index, value):
         self.specimen_preparation[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.specimen_preparation
         ):
@@ -28685,7 +28747,7 @@ class specimen_preparation_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='specimen_preparation_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='specimen_preparation_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -28789,7 +28851,7 @@ class microscopy_listType(GeneratedsSuper):
         self.microscopy.insert(index, value)
     def replace_microscopy_at(self, index, value):
         self.microscopy[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.microscopy
         ):
@@ -28812,7 +28874,7 @@ class microscopy_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='microscopy_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='microscopy_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -28936,7 +28998,7 @@ class concentrationType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType37' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -29051,7 +29113,7 @@ class stainingType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on typeType38' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.type_ is not None or
             self.material is not None or
@@ -29076,7 +29138,7 @@ class stainingType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='stainingType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='stainingType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -29184,7 +29246,7 @@ class sugar_embeddingType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.material is not None or
             self.details is not None
@@ -29208,7 +29270,7 @@ class sugar_embeddingType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sugar_embeddingType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sugar_embeddingType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -29312,7 +29374,7 @@ class shadowingType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.material is not None or
             self.angle is not None or
@@ -29338,7 +29400,7 @@ class shadowingType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='shadowingType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='shadowingType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -29460,7 +29522,7 @@ class angleType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_angle_shadowing' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -29567,7 +29629,7 @@ class thicknessType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_thickness_shadowing' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -29670,7 +29732,7 @@ class concentrationType39(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_concentration' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -29773,7 +29835,7 @@ class film_thicknessType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minInclusive restriction on allowed_film_thickness' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -29876,7 +29938,7 @@ class timeType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_time_glow_discharge' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -29979,7 +30041,7 @@ class pressureType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minInclusive restriction on allowed_pressure_glow_discharge' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -30086,7 +30148,7 @@ class chamber_humidityType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_humidity_vitrification' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -30186,7 +30248,7 @@ class chamber_temperatureType(GeneratedsSuper):
                 return False
             pass
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -30309,7 +30371,7 @@ class crystal_formationType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.lipid_protein_ratio is not None or
             self.lipid_mixture is not None or
@@ -30338,7 +30400,7 @@ class crystal_formationType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='crystal_formationType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='crystal_formationType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -30487,7 +30549,7 @@ class fiducial_markers_listType(GeneratedsSuper):
         self.fiducial_marker.insert(index, value)
     def replace_fiducial_marker_at(self, index, value):
         self.fiducial_marker[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.fiducial_marker
         ):
@@ -30510,7 +30572,7 @@ class fiducial_markers_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='fiducial_markers_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='fiducial_markers_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -30602,7 +30664,7 @@ class high_pressure_freezingType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on instrumentType41' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.instrument is not None or
             self.details is not None
@@ -30626,7 +30688,7 @@ class high_pressure_freezingType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='high_pressure_freezingType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='high_pressure_freezingType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -30726,7 +30788,7 @@ class sectioningType(GeneratedsSuper):
         return self.other_sectioning
     def set_other_sectioning(self, other_sectioning):
         self.other_sectioning = other_sectioning
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.ultramicrotomy is not None or
             self.focused_ion_beam is not None or
@@ -30751,7 +30813,7 @@ class sectioningType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sectioningType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sectioningType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -30857,7 +30919,7 @@ class ultramicrotomyType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.instrument is not None or
             self.temperature is not None or
@@ -30883,7 +30945,7 @@ class ultramicrotomyType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='ultramicrotomyType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='ultramicrotomyType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -31071,7 +31133,7 @@ class focused_ion_beamType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on ionType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.instrument is not None or
             self.ion is not None or
@@ -31103,7 +31165,7 @@ class focused_ion_beamType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='focused_ion_beamType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='focused_ion_beamType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -31272,7 +31334,7 @@ class specimen_preparationsType(GeneratedsSuper):
         self.specimen_preparation_id.insert(index, value)
     def replace_specimen_preparation_id_at(self, index, value):
         self.specimen_preparation_id[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.specimen_preparation_id
         ):
@@ -31295,7 +31357,7 @@ class specimen_preparationsType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='specimen_preparationsType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='specimen_preparationsType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -31385,7 +31447,7 @@ class acceleration_voltageType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minInclusive restriction on allowed_acceleration_voltage' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -31492,7 +31554,7 @@ class c2_aperture_diameterType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_c2_aperture_diameter' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -31599,7 +31661,7 @@ class nominal_csType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_nominal_cs' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -31706,7 +31768,7 @@ class nominal_defocus_minType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_defocus_min' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -31813,7 +31875,7 @@ class calibrated_defocus_minType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_defocus_min' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -31920,7 +31982,7 @@ class nominal_defocus_maxType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_defocus_max' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -32027,7 +32089,7 @@ class calibrated_defocus_maxType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_defocus_max' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -32126,7 +32188,7 @@ class temperatureType(GeneratedsSuper):
         return self.temperature_average
     def set_temperature_average(self, temperature_average):
         self.temperature_average = temperature_average
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.temperature_min is not None or
             self.temperature_max is not None or
@@ -32151,7 +32213,7 @@ class temperatureType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='temperatureType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='temperatureType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -32267,7 +32329,7 @@ class alignment_procedureType(GeneratedsSuper):
         return self.legacy
     def set_legacy(self, legacy):
         self.legacy = legacy
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.none is not None or
             self.basic is not None or
@@ -32295,7 +32357,7 @@ class alignment_procedureType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='alignment_procedureType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='alignment_procedureType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -32399,7 +32461,7 @@ class noneType(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -32422,7 +32484,7 @@ class noneType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='noneType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='noneType', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -32481,7 +32543,7 @@ class basicType(GeneratedsSuper):
         return self.residual_tilt
     def set_residual_tilt(self, residual_tilt):
         self.residual_tilt = residual_tilt
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.residual_tilt is not None
         ):
@@ -32504,7 +32566,7 @@ class basicType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='basicType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='basicType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -32568,7 +32630,7 @@ class zemlin_tableauType(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -32591,7 +32653,7 @@ class zemlin_tableauType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='zemlin_tableauType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='zemlin_tableauType', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -32650,7 +32712,7 @@ class coma_freeType(GeneratedsSuper):
         return self.residual_tilt
     def set_residual_tilt(self, residual_tilt):
         self.residual_tilt = residual_tilt
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.residual_tilt is not None
         ):
@@ -32673,7 +32735,7 @@ class coma_freeType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='coma_freeType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='coma_freeType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -32737,7 +32799,7 @@ class otherType(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -32760,7 +32822,7 @@ class otherType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='otherType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='otherType', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -32825,7 +32887,7 @@ class legacyType(GeneratedsSuper):
         return self.electron_beam_tilt_params
     def set_electron_beam_tilt_params(self, electron_beam_tilt_params):
         self.electron_beam_tilt_params = electron_beam_tilt_params
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.astigmatism is not None or
             self.electron_beam_tilt_params is not None
@@ -32849,7 +32911,7 @@ class legacyType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='legacyType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='legacyType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -32940,7 +33002,7 @@ class image_recording_listType(GeneratedsSuper):
         self.image_recording.insert(index, value)
     def replace_image_recording_at(self, index, value):
         self.image_recording[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.image_recording
         ):
@@ -32963,7 +33025,7 @@ class image_recording_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='image_recording_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='image_recording_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -33121,7 +33183,7 @@ class image_recordingType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on detector_modeType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.film_or_detector_model is not None or
             self.detector_mode is not None or
@@ -33155,7 +33217,7 @@ class image_recordingType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='image_recordingType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='image_recordingType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -33360,7 +33422,7 @@ class film_or_detector_modelType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['AGFA SCIENTA FILM', 'DIRECT ELECTRON APOLLO (4k x 4k)', 'DIRECT ELECTRON DE-10 (5k x 4k)', 'DIRECT ELECTRON DE-12 (4k x 3k)', 'DIRECT ELECTRON DE-16 (4k x 4k)', 'DIRECT ELECTRON DE-20 (5k x 3k)', 'DIRECT ELECTRON DE-64 (8k x 8k)', 'FEI CETA (4k x 4k)', 'FEI EAGLE (2k x 2k)', 'FEI EAGLE (4k x 4k)', 'FEI FALCON I (4k x 4k)', 'FEI FALCON II (4k x 4k)', 'FEI FALCON III (4k x 4k)', 'FEI FALCON IV (4k x 4k)', 'GATAN K2 (4k x 4k)', 'GATAN K2 BASE (4k x 4k)', 'GATAN K2 IS (4k x 4k)', 'GATAN K2 QUANTUM (4k x 4k)', 'GATAN K2 SUMMIT (4k x 4k)', 'GATAN K3 (6k x 4k)', 'GATAN K3 BIOQUANTUM (6k x 4k)', 'GATAN MULTISCAN', 'GATAN ORIUS SC1000 (4k x 2.7k)', 'GATAN ORIUS SC200 (2k x 2k)', 'GATAN ORIUS SC600 (2.7k x 2.7k)', 'GATAN ULTRASCAN 1000 (2k x 2k)', 'GATAN ULTRASCAN 10000 (10k x 10k)', 'GATAN ULTRASCAN 4000 (4k x 4k)', 'GENERIC CCD', 'GENERIC CCD (2k x 2k)', 'GENERIC CCD (4k x 4k)', 'GENERIC FILM', 'GENERIC GATAN', 'GENERIC GATAN (2k x 2k)', 'GENERIC GATAN (4k x 4k)', 'GENERIC IMAGE PLATES', 'GENERIC TVIPS', 'GENERIC TVIPS (2k x 2k)', 'GENERIC TVIPS (4k x 4k)', 'KODAK 4489 FILM', 'KODAK SO-163 FILM', 'OTHER', 'PROSCAN TEM-PIV (2k x 2k)', 'SIA 15C (3k x 3k)', 'TFS FALCON 4i (4k x 4x)', 'TVIPS TEMCAM-F216 (2k x 2k)', 'TVIPS TEMCAM-F224 (2k x 2k)', 'TVIPS TEMCAM-F415 (4k x 4k)', 'TVIPS TEMCAM-F416 (4k x 4k)', 'TVIPS TEMCAM-F816 (8k x 8k)']
+            enumerations = ['AGFA SCIENTA FILM', 'DIRECT ELECTRON APOLLO (4k x 4k)', 'DIRECT ELECTRON DE-10 (5k x 4k)', 'DIRECT ELECTRON DE-12 (4k x 3k)', 'DIRECT ELECTRON DE-16 (4k x 4k)', 'DIRECT ELECTRON DE-20 (5k x 3k)', 'DIRECT ELECTRON DE-64 (8k x 8k)', 'FEI CETA (4k x 4k)', 'FEI EAGLE (2k x 2k)', 'FEI EAGLE (4k x 4k)', 'FEI FALCON I (4k x 4k)', 'FEI FALCON II (4k x 4k)', 'FEI FALCON III (4k x 4k)', 'FEI FALCON IV (4k x 4k)', 'GATAN K2 (4k x 4k)', 'GATAN K2 BASE (4k x 4k)', 'GATAN K2 IS (4k x 4k)', 'GATAN K2 QUANTUM (4k x 4k)', 'GATAN K2 SUMMIT (4k x 4k)', 'GATAN K3 (6k x 4k)', 'GATAN K3 BIOQUANTUM (6k x 4k)', 'GATAN MULTISCAN', 'GATAN ORIUS SC1000 (4k x 2.7k)', 'GATAN ORIUS SC200 (2k x 2k)', 'GATAN ORIUS SC600 (2.7k x 2.7k)', 'GATAN ULTRASCAN 1000 (2k x 2k)', 'GATAN ULTRASCAN 10000 (10k x 10k)', 'GATAN ULTRASCAN 4000 (4k x 4k)', 'GENERIC CCD', 'GENERIC CCD (2k x 2k)', 'GENERIC CCD (4k x 4k)', 'GENERIC FILM', 'GENERIC GATAN', 'GENERIC GATAN (2k x 2k)', 'GENERIC GATAN (4k x 4k)', 'GENERIC IMAGE PLATES', 'GENERIC TVIPS', 'GENERIC TVIPS (2k x 2k)', 'GENERIC TVIPS (4k x 4k)', 'KODAK 4489 FILM', 'KODAK SO-163 FILM', 'OTHER', 'PROSCAN TEM-PIV (2k x 2k)', 'SIA 15C (3k x 3k)', 'TFS FALCON 4i (4k x 4k)', 'TVIPS TEMCAM-F216 (2k x 2k)', 'TVIPS TEMCAM-F224 (2k x 2k)', 'TVIPS TEMCAM-F415 (4k x 4k)', 'TVIPS TEMCAM-F416 (4k x 4k)', 'TVIPS TEMCAM-F816 (8k x 8k)']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on allowed_film_or_detector_model' % {"value" : encode_str_2_3(value), "lineno": lineno} )
@@ -33379,7 +33441,7 @@ class film_or_detector_modelType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on categoryType43' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -33500,7 +33562,7 @@ class digitization_detailsType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on scannerType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.scanner is not None or
             self.dimensions is not None or
@@ -33526,7 +33588,7 @@ class digitization_detailsType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='digitization_detailsType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='digitization_detailsType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -33640,7 +33702,7 @@ class dimensionsType(GeneratedsSuper):
         return self.height
     def set_height(self, height):
         self.height = height
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.width is not None or
             self.height is not None
@@ -33664,7 +33726,7 @@ class dimensionsType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='dimensionsType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='dimensionsType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -33745,7 +33807,7 @@ class widthType(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -33835,7 +33897,7 @@ class heightType(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -33938,7 +34000,7 @@ class sampling_intervalType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_scaning_interval' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -34045,7 +34107,7 @@ class average_exposure_timeType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxExclusive restriction on allowed_average_exposure_time_type' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -34152,7 +34214,7 @@ class average_electron_dose_per_imageType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_electron_dose' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -34257,7 +34319,7 @@ class energy_filterType(GeneratedsSuper):
         return self.upper_energy_threshold
     def set_upper_energy_threshold(self, upper_energy_threshold):
         self.upper_energy_threshold = upper_energy_threshold
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.name is not None or
             self.slit_width is not None or
@@ -34283,7 +34345,7 @@ class energy_filterType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='energy_filterType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='energy_filterType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -34403,7 +34465,7 @@ class slit_widthType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_energy_filter_width' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -34510,7 +34572,7 @@ class lower_energy_thresholdType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_energy_window' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -34617,7 +34679,7 @@ class upper_energy_thresholdType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_energy_window' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -34724,7 +34786,7 @@ class camera_lengthType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_camera_length' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -34820,9 +34882,9 @@ class tilt_listType(GeneratedsSuper):
         self.angle.insert(index, value)
     def replace_angle_at(self, index, value):
         self.angle[index] = value
-    def validate_angleType44(self, value):
+    def validate_angleType45(self, value):
         result = True
-        # Validate type angleType44, a restriction on xs:float.
+        # Validate type angleType45, a restriction on xs:float.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, float):
                 lineno = self.gds_get_node_lineno_()
@@ -34830,14 +34892,14 @@ class tilt_listType(GeneratedsSuper):
                 return False
             if value < -70:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minInclusive restriction on angleType44' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minInclusive restriction on angleType45' % {"value": value, "lineno": lineno} )
                 result = False
             if value > 70:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on angleType44' % {"value": value, "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on angleType45' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.angle
         ):
@@ -34860,7 +34922,7 @@ class tilt_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='tilt_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='tilt_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -34898,8 +34960,8 @@ class tilt_listType(GeneratedsSuper):
             fval_ = self.gds_validate_float(fval_, node, 'angle')
             self.angle.append(fval_)
             self.angle_nsprefix_ = child_.prefix
-            # validate type angleType44
-            self.validate_angleType44(self.angle[-1])
+            # validate type angleType45
+            self.validate_angleType45(self.angle[-1])
 # end class tilt_listType
 
 
@@ -34935,10 +34997,10 @@ class axis2Type(axis_type):
         return self.axis_rotation
     def set_axis_rotation(self, axis_rotation):
         self.axis_rotation = axis_rotation
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.axis_rotation is not None or
-            super(axis2Type, self)._hasContent()
+            super(axis2Type, self).has__content()
         ):
             return True
         else:
@@ -34959,7 +35021,7 @@ class axis2Type(axis_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='axis2Type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='axis2Type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -35036,7 +35098,7 @@ class axis_rotationType(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -35143,7 +35205,7 @@ class min_angleType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxExclusive restriction on allowed_angle_tomography' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -35249,7 +35311,7 @@ class max_angleType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxExclusive restriction on allowed_angle_tomography' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -35355,7 +35417,7 @@ class angle_incrementType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxExclusive restriction on allowed_angle_increment' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -35457,7 +35519,7 @@ class delta_zType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_rise_type' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -35557,7 +35619,7 @@ class delta_phiType(GeneratedsSuper):
                 return False
             pass
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -35668,7 +35730,7 @@ class spatial_filteringType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.low_frequency_cutoff is not None or
             self.high_frequency_cutoff is not None or
@@ -35695,7 +35757,7 @@ class spatial_filteringType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='spatial_filteringType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='spatial_filteringType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -35808,7 +35870,7 @@ class low_frequency_cutoffType(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -35897,7 +35959,7 @@ class high_frequency_cutoffType(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -35989,7 +36051,7 @@ class sharpeningType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.software_list is not None or
             self.details is not None
@@ -36013,7 +36075,7 @@ class sharpeningType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='sharpeningType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='sharpeningType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -36105,7 +36167,7 @@ class b_factorSharpeningType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self._brestore is not None or
             self.software_list is not None or
@@ -36130,7 +36192,7 @@ class b_factorSharpeningType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='b-factorSharpeningType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='b-factorSharpeningType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -36238,7 +36300,7 @@ class _brestoreType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxExclusive restriction on allowed_brestore_type' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -36294,7 +36356,7 @@ class _brestoreType(GeneratedsSuper):
 # end class _brestoreType
 
 
-class otherType45(GeneratedsSuper):
+class otherType46(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -36311,13 +36373,13 @@ class otherType45(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, otherType45)
+                CurrentSubclassModule_, otherType46)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if otherType45.subclass:
-            return otherType45.subclass(*args_, **kwargs_)
+        if otherType46.subclass:
+            return otherType46.subclass(*args_, **kwargs_)
         else:
-            return otherType45(*args_, **kwargs_)
+            return otherType46(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -36331,7 +36393,7 @@ class otherType45(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.software_list is not None or
             self.details is not None
@@ -36339,32 +36401,32 @@ class otherType45(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='otherType45', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('otherType45')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='otherType46', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('otherType46')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'otherType45':
+        if self.original_tagname_ is not None and name_ == 'otherType46':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='otherType45')
-        if self._hasContent():
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='otherType46')
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
-            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='otherType45', pretty_print=pretty_print)
+            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='otherType46', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='otherType45'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='otherType46'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='otherType45', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='otherType46', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -36401,10 +36463,10 @@ class otherType45(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'details')
             self.details = value_
             self.details_nsprefix_ = child_.prefix
-# end class otherType45
+# end class otherType46
 
 
-class dimensionsType46(GeneratedsSuper):
+class dimensionsType47(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -36425,13 +36487,13 @@ class dimensionsType46(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, dimensionsType46)
+                CurrentSubclassModule_, dimensionsType47)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if dimensionsType46.subclass:
-            return dimensionsType46.subclass(*args_, **kwargs_)
+        if dimensionsType47.subclass:
+            return dimensionsType47.subclass(*args_, **kwargs_)
         else:
-            return dimensionsType46(*args_, **kwargs_)
+            return dimensionsType47(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -36453,7 +36515,7 @@ class dimensionsType46(GeneratedsSuper):
         return self.depth
     def set_depth(self, depth):
         self.depth = depth
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.radius is not None or
             self.width is not None or
@@ -36463,32 +36525,32 @@ class dimensionsType46(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dimensionsType46', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('dimensionsType46')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dimensionsType47', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('dimensionsType47')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'dimensionsType46':
+        if self.original_tagname_ is not None and name_ == 'dimensionsType47':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='dimensionsType46')
-        if self._hasContent():
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='dimensionsType47')
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
-            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='dimensionsType46', pretty_print=pretty_print)
+            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='dimensionsType47', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='dimensionsType46'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='dimensionsType47'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dimensionsType46', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='dimensionsType47', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -36525,12 +36587,12 @@ class dimensionsType46(GeneratedsSuper):
             self.radius = obj_
             obj_.original_tagname_ = 'radius'
         elif nodeName_ == 'width':
-            obj_ = widthType48.factory(parent_object_=self)
+            obj_ = widthType49.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.width = obj_
             obj_.original_tagname_ = 'width'
         elif nodeName_ == 'height':
-            obj_ = heightType50.factory(parent_object_=self)
+            obj_ = heightType51.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.height = obj_
             obj_.original_tagname_ = 'height'
@@ -36539,7 +36601,7 @@ class dimensionsType46(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.depth = obj_
             obj_.original_tagname_ = 'depth'
-# end class dimensionsType46
+# end class dimensionsType47
 
 
 class radiusType(GeneratedsSuper):
@@ -36576,8 +36638,8 @@ class radiusType(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def validate_unitsType47(self, value):
-        # Validate type unitsType47, a restriction on xs:token.
+    def validate_unitsType48(self, value):
+        # Validate type unitsType48, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -36587,9 +36649,9 @@ class radiusType(GeneratedsSuper):
             enumerations = ['PIXEL', 'Å']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType47' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType48' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -36640,13 +36702,13 @@ class radiusType(GeneratedsSuper):
             already_processed.add('units')
             self.units = value
             self.units = ' '.join(self.units.split())
-            self.validate_unitsType47(self.units)    # validate type unitsType47
+            self.validate_unitsType48(self.units)    # validate type unitsType48
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         pass
 # end class radiusType
 
 
-class widthType48(GeneratedsSuper):
+class widthType49(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -36662,13 +36724,13 @@ class widthType48(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, widthType48)
+                CurrentSubclassModule_, widthType49)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if widthType48.subclass:
-            return widthType48.subclass(*args_, **kwargs_)
+        if widthType49.subclass:
+            return widthType49.subclass(*args_, **kwargs_)
         else:
-            return widthType48(*args_, **kwargs_)
+            return widthType49(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -36680,8 +36742,8 @@ class widthType48(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def validate_unitsType49(self, value):
-        # Validate type unitsType49, a restriction on xs:token.
+    def validate_unitsType50(self, value):
+        # Validate type unitsType50, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -36691,40 +36753,40 @@ class widthType48(GeneratedsSuper):
             enumerations = ['PIXEL', 'Å']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType49' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType50' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='widthType48', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('widthType48')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='widthType49', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('widthType49')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'widthType48':
+        if self.original_tagname_ is not None and name_ == 'widthType49':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='widthType48')
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='widthType49')
         outfile.write('>')
         self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
         outfile.write(self.convert_unicode(self.valueOf_))
         outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='widthType48'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='widthType49'):
         if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='widthType48', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='widthType49', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
@@ -36744,13 +36806,13 @@ class widthType48(GeneratedsSuper):
             already_processed.add('units')
             self.units = value
             self.units = ' '.join(self.units.split())
-            self.validate_unitsType49(self.units)    # validate type unitsType49
+            self.validate_unitsType50(self.units)    # validate type unitsType50
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         pass
-# end class widthType48
+# end class widthType49
 
 
-class heightType50(GeneratedsSuper):
+class heightType51(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -36766,13 +36828,13 @@ class heightType50(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, heightType50)
+                CurrentSubclassModule_, heightType51)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if heightType50.subclass:
-            return heightType50.subclass(*args_, **kwargs_)
+        if heightType51.subclass:
+            return heightType51.subclass(*args_, **kwargs_)
         else:
-            return heightType50(*args_, **kwargs_)
+            return heightType51(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -36784,8 +36846,8 @@ class heightType50(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def validate_unitsType51(self, value):
-        # Validate type unitsType51, a restriction on xs:token.
+    def validate_unitsType52(self, value):
+        # Validate type unitsType52, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -36795,40 +36857,40 @@ class heightType50(GeneratedsSuper):
             enumerations = ['PIXEL', 'Å']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType51' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType52' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='heightType50', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('heightType50')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='heightType51', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('heightType51')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'heightType50':
+        if self.original_tagname_ is not None and name_ == 'heightType51':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='heightType50')
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='heightType51')
         outfile.write('>')
         self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
         outfile.write(self.convert_unicode(self.valueOf_))
         outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='heightType50'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='heightType51'):
         if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='heightType50', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='heightType51', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
@@ -36848,10 +36910,10 @@ class heightType50(GeneratedsSuper):
             already_processed.add('units')
             self.units = value
             self.units = ' '.join(self.units.split())
-            self.validate_unitsType51(self.units)    # validate type unitsType51
+            self.validate_unitsType52(self.units)    # validate type unitsType52
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         pass
-# end class heightType50
+# end class heightType51
 
 
 class depthType(GeneratedsSuper):
@@ -36888,8 +36950,8 @@ class depthType(GeneratedsSuper):
         self.units = units
     def get_valueOf_(self): return self.valueOf_
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
-    def validate_unitsType52(self, value):
-        # Validate type unitsType52, a restriction on xs:token.
+    def validate_unitsType53(self, value):
+        # Validate type unitsType53, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
@@ -36899,9 +36961,9 @@ class depthType(GeneratedsSuper):
             enumerations = ['PIXEL', 'Å']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType52' % {"value" : encode_str_2_3(value), "lineno": lineno} )
+                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on unitsType53' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -36952,7 +37014,7 @@ class depthType(GeneratedsSuper):
             already_processed.add('units')
             self.units = value
             self.units = ' '.join(self.units.split())
-            self.validate_unitsType52(self.units)    # validate type unitsType52
+            self.validate_unitsType53(self.units)    # validate type unitsType53
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         pass
 # end class depthType
@@ -37007,7 +37069,7 @@ class random_conical_tiltType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_images is not None or
             self.tilt_angle is not None or
@@ -37033,7 +37095,7 @@ class random_conical_tiltType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='random_conical_tiltType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='random_conical_tiltType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -37153,7 +37215,7 @@ class tilt_angleType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_tilt_angle_random_conical' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -37264,7 +37326,7 @@ class orthogonal_tiltType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.software_list is not None or
             self.number_images is not None or
@@ -37291,7 +37353,7 @@ class orthogonal_tiltType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='orthogonal_tiltType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='orthogonal_tiltType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -37419,7 +37481,7 @@ class tilt_angle1Type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_tilt_angle1Orthogonal' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -37526,7 +37588,7 @@ class tilt_angle2Type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_tilt_angle2Orthogonal' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -37635,7 +37697,7 @@ class phase_reversalType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on correction_space_type' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.anisotropic is not None or
             self.correction_space is not None
@@ -37659,7 +37721,7 @@ class phase_reversalType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='phase_reversalType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='phase_reversalType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -37765,7 +37827,7 @@ class amplitude_correctionType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on correction_space_type' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.factor is not None or
             self.correction_space is not None
@@ -37789,7 +37851,7 @@ class amplitude_correctionType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='amplitude_correctionType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='amplitude_correctionType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -37902,8 +37964,8 @@ class starting_modelType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_pdb_code_type_patterns_, ))
                 result = False
         return result
-    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3})$']]
-    def _hasContent(self):
+    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
+    def has__content(self):
         if (
             self.access_code is not None or
             self.chain
@@ -37927,7 +37989,7 @@ class starting_modelType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='starting_modelType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='starting_modelType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -38019,7 +38081,7 @@ class resolution_rangeType(GeneratedsSuper):
         return self.low_resolution
     def set_low_resolution(self, low_resolution):
         self.low_resolution = low_resolution
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.high_resolution is not None or
             self.low_resolution is not None
@@ -38043,7 +38105,7 @@ class resolution_rangeType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='resolution_rangeType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='resolution_rangeType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -38137,7 +38199,7 @@ class high_resolutionType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on resolution_type' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -38240,7 +38302,7 @@ class low_resolutionType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on resolution_type' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -38296,7 +38358,7 @@ class low_resolutionType(GeneratedsSuper):
 # end class low_resolutionType
 
 
-class high_resolutionType53(GeneratedsSuper):
+class high_resolutionType54(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -38312,13 +38374,13 @@ class high_resolutionType53(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, high_resolutionType53)
+                CurrentSubclassModule_, high_resolutionType54)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if high_resolutionType53.subclass:
-            return high_resolutionType53.subclass(*args_, **kwargs_)
+        if high_resolutionType54.subclass:
+            return high_resolutionType54.subclass(*args_, **kwargs_)
         else:
-            return high_resolutionType53(*args_, **kwargs_)
+            return high_resolutionType54(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -38343,38 +38405,38 @@ class high_resolutionType53(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on resolution_type' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_resolutionType53', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('high_resolutionType53')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_resolutionType54', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('high_resolutionType54')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'high_resolutionType53':
+        if self.original_tagname_ is not None and name_ == 'high_resolutionType54':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='high_resolutionType53')
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='high_resolutionType54')
         outfile.write('>')
         self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
         outfile.write(self.convert_unicode(self.valueOf_))
         outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='high_resolutionType53'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='high_resolutionType54'):
         if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_resolutionType53', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_resolutionType54', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
@@ -38396,7 +38458,7 @@ class high_resolutionType53(GeneratedsSuper):
             self.units = ' '.join(self.units.split())
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         pass
-# end class high_resolutionType53
+# end class high_resolutionType54
 
 
 class shell_listType(GeneratedsSuper):
@@ -38439,7 +38501,7 @@ class shell_listType(GeneratedsSuper):
         self.shell.insert(index, value)
     def replace_shell_at(self, index, value):
         self.shell[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.shell
         ):
@@ -38462,7 +38524,7 @@ class shell_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='shell_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='shell_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -38568,7 +38630,7 @@ class shellType(GeneratedsSuper):
         return self.shell_id
     def set_shell_id(self, shell_id):
         self.shell_id = shell_id
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.high_resolution is not None or
             self.low_resolution is not None or
@@ -38596,7 +38658,7 @@ class shellType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='shellType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='shellType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -38654,12 +38716,12 @@ class shellType(GeneratedsSuper):
                 raise_parse_error(node, 'Invalid PositiveInteger')
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         if nodeName_ == 'high_resolution':
-            obj_ = high_resolutionType54.factory(parent_object_=self)
+            obj_ = high_resolutionType55.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.high_resolution = obj_
             obj_.original_tagname_ = 'high_resolution'
         elif nodeName_ == 'low_resolution':
-            obj_ = low_resolutionType55.factory(parent_object_=self)
+            obj_ = low_resolutionType56.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.low_resolution = obj_
             obj_.original_tagname_ = 'low_resolution'
@@ -38692,7 +38754,7 @@ class shellType(GeneratedsSuper):
 # end class shellType
 
 
-class high_resolutionType54(GeneratedsSuper):
+class high_resolutionType55(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -38708,13 +38770,13 @@ class high_resolutionType54(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, high_resolutionType54)
+                CurrentSubclassModule_, high_resolutionType55)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if high_resolutionType54.subclass:
-            return high_resolutionType54.subclass(*args_, **kwargs_)
+        if high_resolutionType55.subclass:
+            return high_resolutionType55.subclass(*args_, **kwargs_)
         else:
-            return high_resolutionType54(*args_, **kwargs_)
+            return high_resolutionType55(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -38739,38 +38801,38 @@ class high_resolutionType54(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on resolution_type' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_resolutionType54', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('high_resolutionType54')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_resolutionType55', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('high_resolutionType55')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'high_resolutionType54':
+        if self.original_tagname_ is not None and name_ == 'high_resolutionType55':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='high_resolutionType54')
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='high_resolutionType55')
         outfile.write('>')
         self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
         outfile.write(self.convert_unicode(self.valueOf_))
         outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='high_resolutionType54'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='high_resolutionType55'):
         if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_resolutionType54', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='high_resolutionType55', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
@@ -38792,10 +38854,10 @@ class high_resolutionType54(GeneratedsSuper):
             self.units = ' '.join(self.units.split())
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         pass
-# end class high_resolutionType54
+# end class high_resolutionType55
 
 
-class low_resolutionType55(GeneratedsSuper):
+class low_resolutionType56(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -38811,13 +38873,13 @@ class low_resolutionType55(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, low_resolutionType55)
+                CurrentSubclassModule_, low_resolutionType56)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if low_resolutionType55.subclass:
-            return low_resolutionType55.subclass(*args_, **kwargs_)
+        if low_resolutionType56.subclass:
+            return low_resolutionType56.subclass(*args_, **kwargs_)
         else:
-            return low_resolutionType55(*args_, **kwargs_)
+            return low_resolutionType56(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -38842,38 +38904,38 @@ class low_resolutionType55(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on resolution_type' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='low_resolutionType55', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('low_resolutionType55')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='low_resolutionType56', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('low_resolutionType56')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'low_resolutionType55':
+        if self.original_tagname_ is not None and name_ == 'low_resolutionType56':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='low_resolutionType55')
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='low_resolutionType56')
         outfile.write('>')
         self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
         outfile.write(self.convert_unicode(self.valueOf_))
         outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='low_resolutionType55'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='low_resolutionType56'):
         if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='low_resolutionType55', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='low_resolutionType56', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
@@ -38895,7 +38957,7 @@ class low_resolutionType55(GeneratedsSuper):
             self.units = ' '.join(self.units.split())
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         pass
-# end class low_resolutionType55
+# end class low_resolutionType56
 
 
 class segment_lengthType(GeneratedsSuper):
@@ -38945,7 +39007,7 @@ class segment_lengthType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on non_zero_float' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -39048,7 +39110,7 @@ class segment_overlapType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on non_zero_float' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -39151,7 +39213,7 @@ class total_filament_lengthType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on non_zero_float' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -39238,7 +39300,7 @@ class starting_symmetryType(GeneratedsSuper):
         return self.helical_parameters
     def set_helical_parameters(self, helical_parameters):
         self.helical_parameters = helical_parameters
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.helical_parameters is not None
         ):
@@ -39261,7 +39323,7 @@ class starting_symmetryType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='starting_symmetryType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='starting_symmetryType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -39349,7 +39411,7 @@ class helix_lengthType(GeneratedsSuper):
         return self.software_list
     def set_software_list(self, software_list):
         self.software_list = software_list
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.min is not None or
             self.max is not None or
@@ -39375,7 +39437,7 @@ class helix_lengthType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='helix_lengthType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='helix_lengthType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -39469,7 +39531,7 @@ class min(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -39492,7 +39554,7 @@ class min(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='min')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='min', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -39545,7 +39607,7 @@ class max(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -39568,7 +39630,7 @@ class max(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='max')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='max', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -39621,7 +39683,7 @@ class average(GeneratedsSuper):
         return self.ns_prefix_
     def set_ns_prefix_(self, ns_prefix):
         self.ns_prefix_ = ns_prefix
-    def _hasContent(self):
+    def has__content(self):
         if (
 
         ):
@@ -39644,7 +39706,7 @@ class average(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='average')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='average', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
@@ -39703,7 +39765,7 @@ class indexingType(GeneratedsSuper):
         return self.software_list
     def set_software_list(self, software_list):
         self.software_list = software_list
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.software_list is not None
         ):
@@ -39726,7 +39788,7 @@ class indexingType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='indexingType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='indexingType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -39808,7 +39870,7 @@ class projection_matching_processingType(GeneratedsSuper):
         return self.angular_sampling
     def set_angular_sampling(self, angular_sampling):
         self.angular_sampling = angular_sampling
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_reference_projections is not None or
             self.merit_function is not None or
@@ -39833,7 +39895,7 @@ class projection_matching_processingType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='projection_matching_processingType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='projection_matching_processingType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -39945,7 +40007,7 @@ class angular_samplingType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_angular_sampling' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -40056,7 +40118,7 @@ class final_multi_reference_alignmentType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_reference_projections is not None or
             self.merit_function is not None or
@@ -40083,7 +40145,7 @@ class final_multi_reference_alignmentType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='final_multi_reference_alignmentType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='final_multi_reference_alignmentType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -40144,7 +40206,7 @@ class final_multi_reference_alignmentType(GeneratedsSuper):
             self.merit_function = value_
             self.merit_function_nsprefix_ = child_.prefix
         elif nodeName_ == 'angular_sampling':
-            obj_ = angular_samplingType57.factory(parent_object_=self)
+            obj_ = angular_samplingType58.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.angular_sampling = obj_
             obj_.original_tagname_ = 'angular_sampling'
@@ -40162,7 +40224,7 @@ class final_multi_reference_alignmentType(GeneratedsSuper):
 # end class final_multi_reference_alignmentType
 
 
-class angular_samplingType57(GeneratedsSuper):
+class angular_samplingType58(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -40178,13 +40240,13 @@ class angular_samplingType57(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, angular_samplingType57)
+                CurrentSubclassModule_, angular_samplingType58)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if angular_samplingType57.subclass:
-            return angular_samplingType57.subclass(*args_, **kwargs_)
+        if angular_samplingType58.subclass:
+            return angular_samplingType58.subclass(*args_, **kwargs_)
         else:
-            return angular_samplingType57(*args_, **kwargs_)
+            return angular_samplingType58(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -40209,38 +40271,38 @@ class angular_samplingType57(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_angular_sampling' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angular_samplingType57', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('angular_samplingType57')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angular_samplingType58', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('angular_samplingType58')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'angular_samplingType57':
+        if self.original_tagname_ is not None and name_ == 'angular_samplingType58':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='angular_samplingType57')
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='angular_samplingType58')
         outfile.write('>')
         self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
         outfile.write(self.convert_unicode(self.valueOf_))
         outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='angular_samplingType57'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='angular_samplingType58'):
         if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angular_samplingType57', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angular_samplingType58', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
@@ -40262,10 +40324,10 @@ class angular_samplingType57(GeneratedsSuper):
             self.units = ' '.join(self.units.split())
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         pass
-# end class angular_samplingType57
+# end class angular_samplingType58
 
 
-class final_multi_reference_alignmentType58(GeneratedsSuper):
+class final_multi_reference_alignmentType59(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -40288,13 +40350,13 @@ class final_multi_reference_alignmentType58(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, final_multi_reference_alignmentType58)
+                CurrentSubclassModule_, final_multi_reference_alignmentType59)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if final_multi_reference_alignmentType58.subclass:
-            return final_multi_reference_alignmentType58.subclass(*args_, **kwargs_)
+        if final_multi_reference_alignmentType59.subclass:
+            return final_multi_reference_alignmentType59.subclass(*args_, **kwargs_)
         else:
-            return final_multi_reference_alignmentType58(*args_, **kwargs_)
+            return final_multi_reference_alignmentType59(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -40320,7 +40382,7 @@ class final_multi_reference_alignmentType58(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_reference_projections is not None or
             self.merit_function is not None or
@@ -40331,32 +40393,32 @@ class final_multi_reference_alignmentType58(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType58', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType58')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType59', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType59')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'final_multi_reference_alignmentType58':
+        if self.original_tagname_ is not None and name_ == 'final_multi_reference_alignmentType59':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='final_multi_reference_alignmentType58')
-        if self._hasContent():
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='final_multi_reference_alignmentType59')
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
-            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='final_multi_reference_alignmentType58', pretty_print=pretty_print)
+            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='final_multi_reference_alignmentType59', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType58'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType59'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType58', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType59', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -40408,7 +40470,7 @@ class final_multi_reference_alignmentType58(GeneratedsSuper):
             self.merit_function = value_
             self.merit_function_nsprefix_ = child_.prefix
         elif nodeName_ == 'angular_sampling':
-            obj_ = angular_samplingType59.factory(parent_object_=self)
+            obj_ = angular_samplingType60.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
             self.angular_sampling = obj_
             obj_.original_tagname_ = 'angular_sampling'
@@ -40423,10 +40485,10 @@ class final_multi_reference_alignmentType58(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'details')
             self.details = value_
             self.details_nsprefix_ = child_.prefix
-# end class final_multi_reference_alignmentType58
+# end class final_multi_reference_alignmentType59
 
 
-class angular_samplingType59(GeneratedsSuper):
+class angular_samplingType60(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -40442,13 +40504,13 @@ class angular_samplingType59(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, angular_samplingType59)
+                CurrentSubclassModule_, angular_samplingType60)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if angular_samplingType59.subclass:
-            return angular_samplingType59.subclass(*args_, **kwargs_)
+        if angular_samplingType60.subclass:
+            return angular_samplingType60.subclass(*args_, **kwargs_)
         else:
-            return angular_samplingType59(*args_, **kwargs_)
+            return angular_samplingType60(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -40473,38 +40535,38 @@ class angular_samplingType59(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd minExclusive restriction on allowed_angular_sampling' % {"value": value, "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angular_samplingType59', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('angular_samplingType59')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angular_samplingType60', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('angular_samplingType60')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'angular_samplingType59':
+        if self.original_tagname_ is not None and name_ == 'angular_samplingType60':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='angular_samplingType59')
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='angular_samplingType60')
         outfile.write('>')
         self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_, pretty_print=pretty_print)
         outfile.write(self.convert_unicode(self.valueOf_))
         outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='angular_samplingType59'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='angular_samplingType60'):
         if self.units is not None and 'units' not in already_processed:
             already_processed.add('units')
             outfile.write(' units=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.units), input_name='units')), ))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angular_samplingType59', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='angular_samplingType60', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
@@ -40526,7 +40588,7 @@ class angular_samplingType59(GeneratedsSuper):
             self.units = ' '.join(self.units.split())
     def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
         pass
-# end class angular_samplingType59
+# end class angular_samplingType60
 
 
 class extractionType(GeneratedsSuper):
@@ -40590,7 +40652,7 @@ class extractionType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_tomograms is not None or
             self.number_images_used is not None or
@@ -40618,7 +40680,7 @@ class extractionType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='extractionType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='extractionType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -40715,7 +40777,7 @@ class extractionType(GeneratedsSuper):
 # end class extractionType
 
 
-class final_multi_reference_alignmentType60(GeneratedsSuper):
+class final_multi_reference_alignmentType61(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -40736,13 +40798,13 @@ class final_multi_reference_alignmentType60(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, final_multi_reference_alignmentType60)
+                CurrentSubclassModule_, final_multi_reference_alignmentType61)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if final_multi_reference_alignmentType60.subclass:
-            return final_multi_reference_alignmentType60.subclass(*args_, **kwargs_)
+        if final_multi_reference_alignmentType61.subclass:
+            return final_multi_reference_alignmentType61.subclass(*args_, **kwargs_)
         else:
-            return final_multi_reference_alignmentType60(*args_, **kwargs_)
+            return final_multi_reference_alignmentType61(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -40764,7 +40826,7 @@ class final_multi_reference_alignmentType60(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_reference_projections is not None or
             self.merit_function is not None or
@@ -40774,32 +40836,32 @@ class final_multi_reference_alignmentType60(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType60', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType60')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType61', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType61')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'final_multi_reference_alignmentType60':
+        if self.original_tagname_ is not None and name_ == 'final_multi_reference_alignmentType61':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='final_multi_reference_alignmentType60')
-        if self._hasContent():
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='final_multi_reference_alignmentType61')
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
-            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='final_multi_reference_alignmentType60', pretty_print=pretty_print)
+            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='final_multi_reference_alignmentType61', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType60'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType61'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType60', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType61', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -40858,10 +40920,10 @@ class final_multi_reference_alignmentType60(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'details')
             self.details = value_
             self.details_nsprefix_ = child_.prefix
-# end class final_multi_reference_alignmentType60
+# end class final_multi_reference_alignmentType61
 
 
-class extractionType61(GeneratedsSuper):
+class extractionType62(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -40886,13 +40948,13 @@ class extractionType61(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, extractionType61)
+                CurrentSubclassModule_, extractionType62)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if extractionType61.subclass:
-            return extractionType61.subclass(*args_, **kwargs_)
+        if extractionType62.subclass:
+            return extractionType62.subclass(*args_, **kwargs_)
         else:
-            return extractionType61(*args_, **kwargs_)
+            return extractionType62(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -40922,7 +40984,7 @@ class extractionType61(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_tomograms is not None or
             self.number_images_used is not None or
@@ -40934,32 +40996,32 @@ class extractionType61(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='extractionType61', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('extractionType61')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='extractionType62', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('extractionType62')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'extractionType61':
+        if self.original_tagname_ is not None and name_ == 'extractionType62':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='extractionType61')
-        if self._hasContent():
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='extractionType62')
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
-            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='extractionType61', pretty_print=pretty_print)
+            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='extractionType62', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='extractionType61'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='extractionType62'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='extractionType61', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='extractionType62', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -41044,10 +41106,10 @@ class extractionType61(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'details')
             self.details = value_
             self.details_nsprefix_ = child_.prefix
-# end class extractionType61
+# end class extractionType62
 
 
-class final_multi_reference_alignmentType62(GeneratedsSuper):
+class final_multi_reference_alignmentType63(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
@@ -41068,13 +41130,13 @@ class final_multi_reference_alignmentType62(GeneratedsSuper):
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, final_multi_reference_alignmentType62)
+                CurrentSubclassModule_, final_multi_reference_alignmentType63)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if final_multi_reference_alignmentType62.subclass:
-            return final_multi_reference_alignmentType62.subclass(*args_, **kwargs_)
+        if final_multi_reference_alignmentType63.subclass:
+            return final_multi_reference_alignmentType63.subclass(*args_, **kwargs_)
         else:
-            return final_multi_reference_alignmentType62(*args_, **kwargs_)
+            return final_multi_reference_alignmentType63(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_ns_prefix_(self):
         return self.ns_prefix_
@@ -41096,7 +41158,7 @@ class final_multi_reference_alignmentType62(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_reference_projections is not None or
             self.merit_function is not None or
@@ -41106,32 +41168,32 @@ class final_multi_reference_alignmentType62(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType62', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType62')
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType63', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('final_multi_reference_alignmentType63')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'final_multi_reference_alignmentType62':
+        if self.original_tagname_ is not None and name_ == 'final_multi_reference_alignmentType63':
             name_ = self.original_tagname_
         if UseCapturedNS_ and self.ns_prefix_:
             namespaceprefix_ = self.ns_prefix_ + ':'
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='final_multi_reference_alignmentType62')
-        if self._hasContent():
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='final_multi_reference_alignmentType63')
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
-            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='final_multi_reference_alignmentType62', pretty_print=pretty_print)
+            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='final_multi_reference_alignmentType63', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType62'):
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='final_multi_reference_alignmentType63'):
         pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType62', fromsubclass_=False, pretty_print=True):
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='final_multi_reference_alignmentType63', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -41190,7 +41252,7 @@ class final_multi_reference_alignmentType62(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'details')
             self.details = value_
             self.details_nsprefix_ = child_.prefix
-# end class final_multi_reference_alignmentType62
+# end class final_multi_reference_alignmentType63
 
 
 class resolutionType(GeneratedsSuper):
@@ -41259,7 +41321,7 @@ class resolutionType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on res_typeType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-    def _hasContent(self):
+    def has__content(self):
         if (
             (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
@@ -41367,7 +41429,7 @@ class originType(GeneratedsSuper):
         return self.sec
     def set_sec(self, sec):
         self.sec = sec
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.col is not None or
             self.row is not None or
@@ -41392,7 +41454,7 @@ class originType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='originType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='originType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -41496,7 +41558,7 @@ class spacingType(GeneratedsSuper):
         return self.z
     def set_z(self, z):
         self.z = z
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.x is not None or
             self.y is not None or
@@ -41521,7 +41583,7 @@ class spacingType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='spacingType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='spacingType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -41649,7 +41711,7 @@ class cellType(GeneratedsSuper):
         return self.gamma
     def set_gamma(self, gamma):
         self.gamma = gamma
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.a is not None or
             self.b is not None or
@@ -41677,7 +41739,7 @@ class cellType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='cellType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='cellType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -41844,7 +41906,7 @@ class axis_orderType(GeneratedsSuper):
                 result = False
         return result
     validate_slowType_patterns_ = [['^(X|Y|Z)$']]
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.fast is not None or
             self.medium is not None or
@@ -41869,7 +41931,7 @@ class axis_orderType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='axis_orderType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='axis_orderType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -41991,7 +42053,7 @@ class pixel_spacingType(GeneratedsSuper):
         return self.z
     def set_z(self, z):
         self.z = z
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.x is not None or
             self.y is not None or
@@ -42016,7 +42078,7 @@ class pixel_spacingType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='pixel_spacingType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='pixel_spacingType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -42111,7 +42173,7 @@ class contour_listType(GeneratedsSuper):
         self.contour.insert(index, value)
     def replace_contour_at(self, index, value):
         self.contour[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.contour
         ):
@@ -42134,7 +42196,7 @@ class contour_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='contour_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='contour_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -42232,7 +42294,7 @@ class contourType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on sourceType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.level is not None or
             self.source is not None
@@ -42256,7 +42318,7 @@ class contourType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='contourType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='contourType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -42363,7 +42425,7 @@ class modelling_listType(GeneratedsSuper):
         self.modelling.insert(index, value)
     def replace_modelling_at(self, index, value):
         self.modelling[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.modelling
         ):
@@ -42386,7 +42448,7 @@ class modelling_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='modelling_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='modelling_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -42465,7 +42527,7 @@ class figure_listType(GeneratedsSuper):
         self.figure.insert(index, value)
     def replace_figure_at(self, index, value):
         self.figure[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.figure
         ):
@@ -42488,7 +42550,7 @@ class figure_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='figure_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='figure_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -42567,7 +42629,7 @@ class segmentation_listType(GeneratedsSuper):
         self.segmentation.insert(index, value)
     def replace_segmentation_at(self, index, value):
         self.segmentation[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.segmentation
         ):
@@ -42590,7 +42652,7 @@ class segmentation_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='segmentation_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='segmentation_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -42640,7 +42702,7 @@ class segmentationType(GeneratedsSuper):
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
         self.file = file
-        self.validate_fileType63(self.file)
+        self.validate_fileType64(self.file)
         self.file_nsprefix_ = None
         self.details = details
         self.details_nsprefix_ = None
@@ -42673,21 +42735,21 @@ class segmentationType(GeneratedsSuper):
         return self.mask_details
     def set_mask_details(self, mask_details):
         self.mask_details = mask_details
-    def validate_fileType63(self, value):
+    def validate_fileType64(self, value):
         result = True
-        # Validate type fileType63, a restriction on xs:token.
+        # Validate type fileType64, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_fileType63_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_fileType63_patterns_, ))
+                    self.validate_fileType64_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_fileType64_patterns_, ))
                 result = False
         return result
-    validate_fileType63_patterns_ = [['^([emd_\\d{4,}]+.*)$']]
-    def _hasContent(self):
+    validate_fileType64_patterns_ = [['^([emd_\\d{4,}]+.*)$']]
+    def has__content(self):
         if (
             self.file is not None or
             self.details is not None or
@@ -42712,7 +42774,7 @@ class segmentationType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='segmentationType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='segmentationType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -42761,8 +42823,8 @@ class segmentationType(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'file')
             self.file = value_
             self.file_nsprefix_ = child_.prefix
-            # validate type fileType63
-            self.validate_fileType63(self.file)
+            # validate type fileType64
+            self.validate_fileType64(self.file)
         elif nodeName_ == 'details':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'details')
@@ -42817,7 +42879,7 @@ class slices_listType(GeneratedsSuper):
         self.slice.insert(index, value)
     def replace_slice_at(self, index, value):
         self.slice[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.slice
         ):
@@ -42840,7 +42902,7 @@ class slices_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='slices_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='slices_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -42919,7 +42981,7 @@ class additional_map_listType(GeneratedsSuper):
         self.additional_map.insert(index, value)
     def replace_additional_map_at(self, index, value):
         self.additional_map[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.additional_map
         ):
@@ -42942,7 +43004,7 @@ class additional_map_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='additional_map_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='additional_map_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -43021,7 +43083,7 @@ class half_map_listType(GeneratedsSuper):
         self.half_map.insert(index, value)
     def replace_half_map_at(self, index, value):
         self.half_map[index] = value
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.half_map
         ):
@@ -43044,7 +43106,7 @@ class half_map_listType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='half_map_listType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='half_map_listType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -43126,7 +43188,7 @@ class initial_modelType(GeneratedsSuper):
         return self.details
     def set_details(self, details):
         self.details = details
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.access_code is not None or
             self.chain is not None or
@@ -43151,7 +43213,7 @@ class initial_modelType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='initial_modelType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='initial_modelType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -43227,7 +43289,7 @@ class chainType(GeneratedsSuper):
         self.chain_id = chain_id
         self.chain_id_nsprefix_ = None
         self.residue_range = residue_range
-        self.validate_residue_rangeType64(self.residue_range)
+        self.validate_residue_rangeType65(self.residue_range)
         self.residue_range_nsprefix_ = None
         self.number_of_copies_in_final_model = number_of_copies_in_final_model
         self.number_of_copies_in_final_model_nsprefix_ = None
@@ -43272,20 +43334,20 @@ class chainType(GeneratedsSuper):
         return self.initial_model_type
     def set_initial_model_type(self, initial_model_type):
         self.initial_model_type = initial_model_type
-    def validate_residue_rangeType64(self, value):
+    def validate_residue_rangeType65(self, value):
         result = True
-        # Validate type residue_rangeType64, a restriction on xs:token.
+        # Validate type residue_rangeType65, a restriction on xs:token.
         if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
             if not isinstance(value, str):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             if not self.gds_validate_simple_patterns(
-                    self.validate_residue_rangeType64_patterns_, value):
-                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_residue_rangeType64_patterns_, ))
+                    self.validate_residue_rangeType65_patterns_, value):
+                self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_residue_rangeType65_patterns_, ))
                 result = False
         return result
-    validate_residue_rangeType64_patterns_ = [['^(\\d+-\\d+)$']]
+    validate_residue_rangeType65_patterns_ = [['^(\\d+-\\d+)$']]
     def validate_source_nameType(self, value):
         result = True
         # Validate type source_nameType, a restriction on xs:string.
@@ -43316,7 +43378,7 @@ class chainType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on initial_model_typeType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
         return result
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.chain_id is not None or
             self.residue_range is not None or
@@ -43343,7 +43405,7 @@ class chainType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='chainType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='chainType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -43411,8 +43473,8 @@ class chainType(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'residue_range')
             self.residue_range = value_
             self.residue_range_nsprefix_ = child_.prefix
-            # validate type residue_rangeType64
-            self.validate_residue_rangeType64(self.residue_range)
+            # validate type residue_rangeType65
+            self.validate_residue_rangeType65(self.residue_range)
         elif nodeName_ == 'number_of_copies_in_final_model' and child_.text:
             sval_ = child_.text
             ival_ = self.gds_parse_integer(sval_, node, 'number_of_copies_in_final_model')
@@ -43506,8 +43568,8 @@ class final_modelType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_pdb_code_type_patterns_, ))
                 result = False
         return result
-    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3})$']]
-    def _hasContent(self):
+    validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
+    def has__content(self):
         if (
             self.access_code is not None or
             self.chain or
@@ -43532,7 +43594,7 @@ class final_modelType(GeneratedsSuper):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='final_modelType')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='final_modelType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -43629,10 +43691,10 @@ class subtomogram_final_reconstruction_type(final_reconstruction_type):
         return self.number_subtomograms_used
     def set_number_subtomograms_used(self, number_subtomograms_used):
         self.number_subtomograms_used = number_subtomograms_used
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_subtomograms_used is not None or
-            super(subtomogram_final_reconstruction_type, self)._hasContent()
+            super(subtomogram_final_reconstruction_type, self).has__content()
         ):
             return True
         else:
@@ -43653,7 +43715,7 @@ class subtomogram_final_reconstruction_type(final_reconstruction_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='subtomogram_final_reconstruction_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='subtomogram_final_reconstruction_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -43730,10 +43792,10 @@ class non_subtom_final_reconstruction_type(final_reconstruction_type):
         return self.number_images_used
     def set_number_images_used(self, number_images_used):
         self.number_images_used = number_images_used
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.number_images_used is not None or
-            super(non_subtom_final_reconstruction_type, self)._hasContent()
+            super(non_subtom_final_reconstruction_type, self).has__content()
         ):
             return True
         else:
@@ -43754,7 +43816,7 @@ class non_subtom_final_reconstruction_type(final_reconstruction_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='non_subtom_final_reconstruction_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='non_subtom_final_reconstruction_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -43843,12 +43905,12 @@ class cell_source_type(base_source_type):
         return self.cell
     def set_cell(self, cell):
         self.cell = cell
-    def _hasContent(self):
+    def has__content(self):
         if (
             self.organ is not None or
             self.tissue is not None or
             self.cell is not None or
-            super(cell_source_type, self)._hasContent()
+            super(cell_source_type, self).has__content()
         ):
             return True
         else:
@@ -43869,7 +43931,7 @@ class cell_source_type(base_source_type):
         outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
         self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='cell_source_type')
-        if self._hasContent():
+        if self.has__content():
             outfile.write('>%s' % (eol_, ))
             self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='cell_source_type', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
@@ -44146,8 +44208,8 @@ def parseLiteral(inFileName, silence=False, print_warnings=True):
         doc = None
         rootNode = None
     if not silence:
-        sys.stdout.write('#from emdb_2_41_4 import *\n\n')
-        sys.stdout.write('import emdb_2_41_4 as model_\n\n')
+        sys.stdout.write('#from emdb import *\n\n')
+        sys.stdout.write('import emdb as model_\n\n')
         sys.stdout.write('rootObj = model_.rootClass(\n')
         rootObj.exportLiteral(sys.stdout, 0, name_=rootTag)
         sys.stdout.write(')\n')
@@ -44195,8 +44257,8 @@ __all__ = [
     "angle_assignment_type",
     "angle_incrementType",
     "angular_samplingType",
-    "angular_samplingType57",
-    "angular_samplingType59",
+    "angular_samplingType58",
+    "angular_samplingType60",
     "annotatorType",
     "applied_symmetry_type",
     "author_ORCID_type",
@@ -44268,7 +44330,7 @@ __all__ = [
     "diameterType",
     "digitization_detailsType",
     "dimensionsType",
-    "dimensionsType46",
+    "dimensionsType47",
     "discrepancy_listType",
     "discrepancy_listType19",
     "discrepancy_listType23",
@@ -44290,7 +44352,7 @@ __all__ = [
     "external_referencesType35",
     "external_referencesType4",
     "extractionType",
-    "extractionType61",
+    "extractionType62",
     "fib_current_type",
     "fib_dose_rate_type",
     "fib_duration_type",
@@ -44307,9 +44369,9 @@ __all__ = [
     "film_type",
     "final_modelType",
     "final_multi_reference_alignmentType",
-    "final_multi_reference_alignmentType58",
-    "final_multi_reference_alignmentType60",
-    "final_multi_reference_alignmentType62",
+    "final_multi_reference_alignmentType59",
+    "final_multi_reference_alignmentType61",
+    "final_multi_reference_alignmentType63",
     "final_reconstruction_type",
     "focused_ion_beamType",
     "fsc_curve_validation_type",
@@ -44319,7 +44381,7 @@ __all__ = [
     "grid_type",
     "half_map_listType",
     "heightType",
-    "heightType50",
+    "heightType51",
     "helical_microscopy_type",
     "helical_parameters_type",
     "helical_preparation_type",
@@ -44328,8 +44390,8 @@ __all__ = [
     "high_frequency_cutoffType",
     "high_pressure_freezingType",
     "high_resolutionType",
-    "high_resolutionType53",
     "high_resolutionType54",
+    "high_resolutionType55",
     "image_recordingType",
     "image_recording_listType",
     "indexingType",
@@ -44344,7 +44406,7 @@ __all__ = [
     "ligand_macromolecule_type",
     "low_frequency_cutoffType",
     "low_resolutionType",
-    "low_resolutionType55",
+    "low_resolutionType56",
     "lower_energy_thresholdType",
     "macromoleculeType",
     "macromolecule_listType",
@@ -44381,7 +44443,7 @@ __all__ = [
     "originType",
     "orthogonal_tiltType",
     "otherType",
-    "otherType45",
+    "otherType46",
     "other_macromolecule_type",
     "parallel_resolution",
     "particle_selection_type",
@@ -44489,6 +44551,6 @@ __all__ = [
     "weighted_phase_residual",
     "weighted_r_factor",
     "widthType",
-    "widthType48",
+    "widthType49",
     "zemlin_tableauType"
 ]
