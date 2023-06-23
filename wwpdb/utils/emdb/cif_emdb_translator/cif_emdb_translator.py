@@ -2485,7 +2485,7 @@ class CifEMDBTranslator(object):
                      ... 1 element of author_ORCID_type
                     """
 
-                    def set_author_orcid_type(author_with_ORCID, auth_in, same_as_pdb):
+                    def set_author_orcid_type(author_with_ORCID, auth_in):
                         """
                         XSD: <xs:complexType name="author_ORCID_type"> extends author_type and hashttps://rcsbpdb.atlassian.net/browse/DAOTHER-2725has
                         ... 1 attribute
@@ -2509,7 +2509,7 @@ class CifEMDBTranslator(object):
 
                     for _auth_id, auth_in in authors_in.items():
                         author_with_orcid = emdb.author_ORCID_type()
-                        set_author_orcid_type(author_with_orcid, auth_in, same_as_pdb)
+                        set_author_orcid_type(author_with_orcid, auth_in)
                         authors_list.add_author(author_with_orcid)
 
                 authors_in = {}
