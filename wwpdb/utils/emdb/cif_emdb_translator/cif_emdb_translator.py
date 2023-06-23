@@ -2479,7 +2479,7 @@ class CifEMDBTranslator(object):
                         ? 'Second-Second, B.' 2  0000-0001-6748-9339
                 """
 
-                def set_authors_list_type(authors_list, authors_in, same_as_pdb):
+                def set_authors_list_type(authors_list, authors_in):
                     """
                     XSD: <xs:element name="authors_list"> has
                      ... 1 element of author_ORCID_type
@@ -2522,7 +2522,7 @@ class CifEMDBTranslator(object):
                     authors_in = make_dict(const.EM_AUTHOR_LIST, "ordinal", 2)
 
                 authors_list = emdb.authors_listType()
-                set_authors_list_type(authors_list, authors_in, same_as_pdb)
+                set_authors_list_type(authors_list, authors_in)
                 admin.set_authors_list(authors_list)
 
             def set_el_details():
