@@ -2458,13 +2458,7 @@ class CifEMDBTranslator(object):
                     YES: CIF: _struct.title
                     NO: CIF: _em_admin.title
                 """
-                same_as_pdb = get_cif_value("same_title_as_pdb", const.EM_DEPUI)
-                if same_as_pdb == "YES":
-                    # CIF: _struct.title
-                    set_cif_value(admin.set_title, "title", const.STRUCT)
-                else:
-                    # CIF: _em_admin.title
-                    set_cif_value(admin.set_title, "title", const.EM_ADMIN)
+                set_cif_value(admin.set_title, "title", const.EM_ADMIN)
 
             def set_el_authors_list(admin):
                 """
@@ -2485,13 +2479,13 @@ class CifEMDBTranslator(object):
                         ? 'Second-Second, B.' 2  0000-0001-6748-9339
                 """
 
-                def set_authors_list_type(authors_list, authors_in, same_as_pdb):
+                def set_authors_list_type(authors_list, authors_in):
                     """
                     XSD: <xs:element name="authors_list"> has
                      ... 1 element of author_ORCID_type
                     """
 
-                    def set_author_orcid_type(author_with_ORCID, auth_in, same_as_pdb):
+                    def set_author_orcid_type(author_with_ORCID, auth_in):
                         """
                         XSD: <xs:complexType name="author_ORCID_type"> extends author_type and hashttps://rcsbpdb.atlassian.net/browse/DAOTHER-2725has
                         ... 1 attribute
@@ -2501,14 +2495,9 @@ class CifEMDBTranslator(object):
                                  _em_author_list.author             'Turner, J.'
                                  _em_author_list.identifier_ORCID   0000-0002-5251-4674
                         """
-                        if same_as_pdb == "YES":
-                            # CIF: _audit_author
-                            set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.AUDIT_AUTHOR, cif_list=auth_in)
-                            author = get_cif_value("name", const.AUDIT_AUTHOR, cif_list=auth_in)
-                        else:
-                            # CIF: _em_author_list
-                            set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST, cif_list=auth_in)
-                            author = get_cif_value("author", const.EM_AUTHOR_LIST, cif_list=auth_in)
+
+                        set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST, cif_list=auth_in)
+                        author = get_cif_value("author", const.EM_AUTHOR_LIST, cif_list=auth_in)
 
                         fmt_auth = format_author(author)
                         if fmt_auth != "":
@@ -2520,7 +2509,7 @@ class CifEMDBTranslator(object):
 
                     for _auth_id, auth_in in authors_in.items():
                         author_with_orcid = emdb.author_ORCID_type()
-                        set_author_orcid_type(author_with_orcid, auth_in, same_as_pdb)
+                        set_author_orcid_type(author_with_orcid, auth_in)
                         authors_list.add_author(author_with_orcid)
 
                 authors_in = {}
@@ -2533,7 +2522,7 @@ class CifEMDBTranslator(object):
                     authors_in = make_dict(const.EM_AUTHOR_LIST, "ordinal", 2)
 
                 authors_list = emdb.authors_listType()
-                set_authors_list_type(authors_list, authors_in, same_as_pdb)
+                set_authors_list_type(authors_list, authors_in)
                 admin.set_authors_list(authors_list)
 
             def set_el_details():
