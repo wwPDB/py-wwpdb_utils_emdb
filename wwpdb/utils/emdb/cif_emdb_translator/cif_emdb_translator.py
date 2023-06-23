@@ -2458,7 +2458,6 @@ class CifEMDBTranslator(object):
                     YES: CIF: _struct.title
                     NO: CIF: _em_admin.title
                 """
-                same_as_pdb = get_cif_value("same_title_as_pdb", const.EM_DEPUI)
                 set_cif_value(admin.set_title, "title", const.EM_ADMIN)
 
             def set_el_authors_list(admin):
