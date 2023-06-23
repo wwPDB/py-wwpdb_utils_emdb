@@ -2512,14 +2512,7 @@ class CifEMDBTranslator(object):
                         set_author_orcid_type(author_with_orcid, auth_in)
                         authors_list.add_author(author_with_orcid)
 
-                authors_in = {}
-                same_as_pdb = get_cif_value("same_authors_as_pdb", const.EM_DEPUI)
-                if same_as_pdb == "YES":
-                    # CIF: _audit_author
-                    authors_in = make_dict(const.AUDIT_AUTHOR, "pdbx_ordinal", 2)
-                else:  # same_as_pdb == 'NO' or None
-                    # CIF: _em_author_list
-                    authors_in = make_dict(const.EM_AUTHOR_LIST, "ordinal", 2)
+                authors_in = make_dict(const.EM_AUTHOR_LIST, "ordinal", 2)
 
                 authors_list = emdb.authors_listType()
                 set_authors_list_type(authors_list, authors_in)
