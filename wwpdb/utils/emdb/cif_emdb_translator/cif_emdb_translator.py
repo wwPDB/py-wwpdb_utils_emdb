@@ -109,7 +109,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.4.1"
+        XML_OUT_VERSION = "3.0.4.0"
 
         # Cif categories
         CITATION = "citation"
@@ -600,7 +600,6 @@ class CifEMDBTranslator(object):
             "_em_particle_selection.num_particles_selected": '<xs:element name="number_selected" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_software.name": '<xs:element name="name" type="xs:token" minOccurs="0"/>',
             "_em_software.version": '<xs:element name="version" type="xs:token" minOccurs="0"/>',
-            "_em_software.category": '<xs:element name="category" type="xs:token" minOccurs="0"/>',
             "_em_software.details": '<xs:element name="processing_details" type="xs:string" minOccurs="0"/>',
             "_em_specimen.concentration": '<xs:element name="concentration" minOccurs="0">',
             "_em_specimen.id": '<xs:element name="specimen_preparation_id" type="xs:positiveInteger"/>',
@@ -1813,13 +1812,6 @@ class CifEMDBTranslator(object):
                     """
                     set_cif_value(soft.set_version, "version", const.EM_SOFTWARE, cif_list=soft_in)
 
-                def set_el_category(soft, soft_in):
-                    """
-                    XSD: <xs:element name="category" type="xs:token" minOccurs="0"/>
-                    CIF: _em_software.category
-                    """
-                    set_cif_value(soft.set_category, "category", const.EM_SOFTWARE, cif_list=soft_in)
-
                 def set_el_processing_details(soft, soft_in):
                     """
                     XSD: <xs:element name="processing_details" type="xs:string" minOccurs="0"/>
@@ -1832,8 +1824,6 @@ class CifEMDBTranslator(object):
                 # element 2
                 set_el_version(soft, soft_in)
                 # element 3
-                set_el_category(soft, soft_in)
-                # element 4
                 set_el_processing_details(soft, soft_in)
 
             if software_category in category_dict:
@@ -2466,13 +2456,7 @@ class CifEMDBTranslator(object):
                     YES: CIF: _struct.title
                     NO: CIF: _em_admin.title
                 """
-                same_as_pdb = get_cif_value("same_title_as_pdb", const.EM_DEPUI)
-                if same_as_pdb == "YES":
-                    # CIF: _struct.title
-                    set_cif_value(admin.set_title, "title", const.STRUCT)
-                else:
-                    # CIF: _em_admin.title
-                    set_cif_value(admin.set_title, "title", const.EM_ADMIN)
+                set_cif_value(admin.set_title, "title", const.EM_ADMIN)
 
             def set_el_authors_list(admin):
                 """
@@ -2493,13 +2477,13 @@ class CifEMDBTranslator(object):
                         ? 'Second-Second, B.' 2  0000-0001-6748-9339
                 """
 
-                def set_authors_list_type(authors_list, authors_in, same_as_pdb):
+                def set_authors_list_type(authors_list, authors_in):
                     """
                     XSD: <xs:element name="authors_list"> has
                      ... 1 element of author_ORCID_type
                     """
 
-                    def set_author_orcid_type(author_with_ORCID, auth_in, same_as_pdb):
+                    def set_author_orcid_type(author_with_ORCID, auth_in):
                         """
                         XSD: <xs:complexType name="author_ORCID_type"> extends author_type and hashttps://rcsbpdb.atlassian.net/browse/DAOTHER-2725has
                         ... 1 attribute
@@ -2509,14 +2493,9 @@ class CifEMDBTranslator(object):
                                  _em_author_list.author             'Turner, J.'
                                  _em_author_list.identifier_ORCID   0000-0002-5251-4674
                         """
-                        if same_as_pdb == "YES":
-                            # CIF: _audit_author
-                            set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.AUDIT_AUTHOR, cif_list=auth_in)
-                            author = get_cif_value("name", const.AUDIT_AUTHOR, cif_list=auth_in)
-                        else:
-                            # CIF: _em_author_list
-                            set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST, cif_list=auth_in)
-                            author = get_cif_value("author", const.EM_AUTHOR_LIST, cif_list=auth_in)
+
+                        set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST, cif_list=auth_in)
+                        author = get_cif_value("author", const.EM_AUTHOR_LIST, cif_list=auth_in)
 
                         fmt_auth = format_author(author)
                         if fmt_auth != "":
@@ -2528,20 +2507,13 @@ class CifEMDBTranslator(object):
 
                     for _auth_id, auth_in in authors_in.items():
                         author_with_orcid = emdb.author_ORCID_type()
-                        set_author_orcid_type(author_with_orcid, auth_in, same_as_pdb)
+                        set_author_orcid_type(author_with_orcid, auth_in)
                         authors_list.add_author(author_with_orcid)
 
-                authors_in = {}
-                same_as_pdb = get_cif_value("same_authors_as_pdb", const.EM_DEPUI)
-                if same_as_pdb == "YES":
-                    # CIF: _audit_author
-                    authors_in = make_dict(const.AUDIT_AUTHOR, "pdbx_ordinal", 2)
-                else:  # same_as_pdb == 'NO' or None
-                    # CIF: _em_author_list
-                    authors_in = make_dict(const.EM_AUTHOR_LIST, "ordinal", 2)
+                authors_in = make_dict(const.EM_AUTHOR_LIST, "ordinal", 2)
 
                 authors_list = emdb.authors_listType()
-                set_authors_list_type(authors_list, authors_in, same_as_pdb)
+                set_authors_list_type(authors_list, authors_in)
                 admin.set_authors_list(authors_list)
 
             def set_el_details():
@@ -7787,8 +7759,7 @@ class CifEMDBTranslator(object):
                                 ali_cf = emdb.coma_freeType()
                                 if tilt is not None:
                                     ali_cf.set_residual_tilt(emdb.residual_tilt_type(valueOf_=float(tilt), units=const.U_MRAD))
-                                if ali_cf.has__content():
-                                    ali.set_coma_free(ali_cf)
+                                ali.set_coma_free(ali_cf)
                             elif align_proc == "OTHER":
                                 ali_other = emdb.otherType()
                                 ali.set_other(ali_other)

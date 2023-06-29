@@ -325,6 +325,16 @@ def main():
     else:
         print('Please provide both volume map and model.')
 
+        if output_file:
+            result_dict = {
+                'em_volume': '',
+                'model': '',
+                'atomsoutside': 0,
+                'fraction': 0
+            }
+            with open(output_file, "w") as fw:
+                json.dump(result_dict, fw)
+
 
 if __name__ == '__main__':
     main()
