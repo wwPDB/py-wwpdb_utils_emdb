@@ -7751,8 +7751,7 @@ class CifEMDBTranslator(object):
                                 ali_cf = emdb.coma_freeType()
                                 if tilt is not None:
                                     ali_cf.set_residual_tilt(emdb.residual_tilt_type(valueOf_=float(tilt), units=const.U_MRAD))
-                                if ali_cf.has__content():
-                                    ali.set_coma_free(ali_cf)
+                                ali.set_coma_free(ali_cf)
                             elif align_proc == "OTHER":
                                 ali_other = emdb.otherType()
                                 ali.set_other(ali_other)
