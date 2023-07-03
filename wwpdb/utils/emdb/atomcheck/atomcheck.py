@@ -1,10 +1,6 @@
 #!/usr/bin/env python
-
-import json
 import mrcfile
-from Bio.PDB import MMCIFParser
-from Bio.PDB.mmcifio import MMCIFIO
-from Bio.PDB.PDBIO import Select
+from Bio.PDB.MMCIF2Dict import MMCIF2Dict
 import os
 import sys
 import argparse
@@ -12,41 +8,10 @@ import math
 import numpy as np
 
 
-class NotDisordered(Select):
-    """
-
-        Class used to select non-disordered atom from biopython structure instance
-
-    """
-
-    def accept_atom(self, atom):
-        """
-            Accept only atoms that at "A"
-        :param atom: atom instance from biopython library
-        :return: True or False
-        """
-        if (not atom.is_disordered()) or atom.get_altloc() == "A":
-            atom.set_altloc(" ")
-            return True
-        else:
-            return False
-
-
-def hasdisorder_atom(structure):
-
-    ress = structure.get_residues()
-    disorder_flag = False
-    for res in ress:
-        if res.is_disordered() == 1:
-            disorder_flag = True
-            return disorder_flag
-    return disorder_flag
-
 
 def get_mapheader(map_fullname):
     header = mrcfile.open(map_fullname, permissive=True, header_only=True)
     return header.header
-
 
 def get_model(model_fullname):
     """
@@ -55,35 +20,21 @@ def get_model(model_fullname):
     :return: Biopython model object
     """
 
-    p = MMCIFParser()
-    io = MMCIFIO()
-    orgfilename = model_fullname
-    structure = p.get_structure('t', model_fullname)
-    if len(structure.get_list()) > 1:
-        orgmodel = model_fullname + '_org.cif'
-        os.rename(model_fullname, orgmodel)
-        fstructure = structure[0]
-        io.set_structure(fstructure)
-        io.save(model_fullname)
-        usedframe = p.get_structure('first', model_fullname)
-        print('!!!There are multiple models in the cif file. Here we only use the first for calculation.')
-    else:
-        usedframe = structure
+    mmcif_dict = MMCIF2Dict(model_fullname)
+    structure = []
+    x = mmcif_dict['_atom_site.Cartn_x']
+    y = mmcif_dict['_atom_site.Cartn_y']
+    z = mmcif_dict['_atom_site.Cartn_z']
+    for x, y, z in zip(x, y, z):
+        try:
+            newx = float(x)
+            newy = float(y)
+            newz = float(z)
+            structure.append((newx, newy, newz))
+        except ValueError:
+            continue
 
-    if hasdisorder_atom(usedframe):
-        model_fullname = model_fullname + '_Alt_A.cif'
-        io.set_structure(usedframe)
-        print('There are alternative atom in the model here we only use A for calculations and saved as {}'
-              .format(model_fullname))
-        io.save(model_fullname, select=NotDisordered())
-        newstructure = p.get_structure('t', model_fullname)
-    else:
-        newstructure = usedframe
-    setattr(newstructure, "filename", orgfilename)
-    tmodel = newstructure
-
-    return tmodel
-
+    return structure
 
 def header_check(header):
 
@@ -98,7 +49,6 @@ def header_check(header):
 
     return nxyz, nstarts
 
-
 def matrix_indices(nstarts, apixs, onecoor, header):
     """
 
@@ -107,27 +57,14 @@ def matrix_indices(nstarts, apixs, onecoor, header):
     :return:
     """
 
-    # Method 2: by using the fractional coordinate matrix
-    # Chosen as the main function for the current implementation
-
-    # Figure out the order of the x, y, z based on crs info in the header
-    # crs = list(self.map.header[16:19])
-    # crs = [header.mapc, header.mapr, header.maps]
-    # ordinds save the indices correspoding to x, y ,z
-    # ordinds = [crs.index(1), crs.index(2), crs.index(3)]
-    # angs = self.map.header[13:16]
     angs = [header.cellb.alpha, header.cellb.beta, header.cellb.gamma]
     matrix = map_matrix(apixs, angs)
     result = matrix.dot(np.asarray(onecoor))
-    # xindex = result[0] - self.map.header[4 + ordinds[0]]
-    # yindex = result[1] - self.map.header[4 + ordinds[1]]
-    # zindex = result[2] - self.map.header[4 + ordinds[2]]
     xindex = result[0] - nstarts[0]
     yindex = result[1] - nstarts[1]
     zindex = result[2] - nstarts[2]
 
     return (xindex, yindex, zindex)
-
 
 def map_matrix(apixs, angs):
     """
@@ -140,16 +77,16 @@ def map_matrix(apixs, angs):
     :return:
     """
 
-    ang = (angs[0] * math.pi / 180, angs[1] * math.pi / 180, angs[2] * math.pi / 180)
+    ang = (angs[0]*math.pi/180, angs[1]*math.pi/180, angs[2]*math.pi/180)
     insidesqrt = 1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) - \
-        math.cos(ang[0])**2 - \
-        math.cos(ang[1])**2 - \
-        math.cos(ang[2])**2
+                 math.cos(ang[0])**2 - \
+                 math.cos(ang[1])**2 - \
+                 math.cos(ang[2])**2
 
-    cellvolume = apixs[0] * apixs[1] * apixs[2] * math.sqrt(insidesqrt)
+    cellvolume = apixs[0]*apixs[1]*apixs[2]*math.sqrt(insidesqrt)
 
-    m11 = 1 / apixs[0]
-    m12 = -math.cos(ang[2]) / (apixs[0] * math.sin(ang[2]))
+    m11 = 1/apixs[0]
+    m12 = -math.cos(ang[2])/(apixs[0]*math.sin(ang[2]))
 
     m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (cellvolume * math.sin(ang[2]))
     m21 = 0
@@ -162,7 +99,6 @@ def map_matrix(apixs, angs):
     matrix = np.asarray(prematrix)
 
     return matrix
-
 
 def get_indices(header, onecoor):
     """
@@ -177,7 +113,6 @@ def get_indices(header, onecoor):
 
             """
 
-    # For non-cubic or skewed density maps, they might have different apix on different axises
     zdim = header.cella.z
     znintervals = header.mz
     z_apix = zdim / znintervals
@@ -190,90 +125,54 @@ def get_indices(header, onecoor):
     xnintervals = header.mx
     x_apix = xdim / xnintervals
 
-    # map_zsize = header.nz
-    # map_ysize = header.ny
-    # map_xsize = header.nx
 
     nxyzstart = header_check(header)
-    # map_xsize, map_ysize, map_zsize = nxyzstart[0]
+    map_xsize, map_ysize, map_zsize = nxyzstart[0]
     nxstart, nystart, nzstart = nxyzstart[1]
 
-###########################
-    # header_check(header)
-    # exit()
 
-    # if map.header[13] == map.header[14] == map.header[15] == 90.:
+
     if header.cellb.alpha == header.cellb.beta == header.cellb.gamma == 90.:
-        # Figure out the order of the x, y, z based on crs info in the header
-        # crs = list(map.header[16:19])
-        # crs = [header.mapc, header.mapr, header.maps]
-        # ordinds save the indices correspoding to x, y ,z
-        # ordinds = [crs.index(1), crs.index(2), crs.index(3)]
+        crs = [header.mapc, header.mapr, header.maps]
+        ordinds = [crs.index(1), crs.index(2), crs.index(3)]
 
         zindex = float(onecoor[2] - header.origin.z) / z_apix - nzstart
         yindex = float(onecoor[1] - header.origin.y) / y_apix - nystart
         xindex = float(onecoor[0] - header.origin.x) / x_apix - nxstart
 
-        # zfloor = int(floor(zindex))
-        # if zfloor >= map_zsize - 1:
-        #     zceil = zfloor
-        # else:
-        #     zceil = zfloor + 1
-        #
-        # yfloor = int(floor(yindex))
-        # if yfloor >= map_ysize - 1:
-        #     yceil = yfloor
-        # else:
-        #     yceil = yfloor + 1
-        #
-        # xfloor = int(floor(xindex))
-        # if xfloor >= map_xsize - 1:
-        #     xceil = xfloor
-        # else:
-        #     xceil = xfloor + 1
+
     else:
-        # Method 2: by using the fractional coordinate matrix
-        # Chosen as the primary for the current implementation
         apixs = [x_apix, y_apix, z_apix]
-        # Method 1: by using the atom projection on planes
-        # xindex, yindex, zindex = self.projection_indices(onecoor))
         xindex, yindex, zindex = matrix_indices(nxyzstart[1], apixs, onecoor, header)
 
-    # zfloor = int(math.floor(zindex))
-    # if zfloor >= map_zsize - 1:
-    #     zceil = zfloor
-    # else:
-    #     zceil = zfloor + 1
+    zfloor = int(math.floor(zindex))
+    if zfloor >= map_zsize - 1:
+        zceil = zfloor
+    else:
+        zceil = zfloor + 1
 
-    # yfloor = int(math.floor(yindex))
-    # if yfloor >= map_ysize - 1:
-    #     yceil = yfloor
-    # else:
-    #     yceil = yfloor + 1
+    yfloor = int(math.floor(yindex))
+    if yfloor >= map_ysize - 1:
+        yceil = yfloor
+    else:
+        yceil = yfloor + 1
 
-    # xfloor = int(math.floor(xindex))
-    # if xfloor >= map_xsize - 1:
-    #     xceil = xfloor
-    # else:
-    #     xceil = xfloor + 1
+    xfloor = int(math.floor(xindex))
+    if xfloor >= map_xsize - 1:
+        xceil = xfloor
+    else:
+        xceil = xfloor + 1
 
-    # indices = np.array(np.meshgrid(np.arange(xfloor, xceil + 1), np.arange(yfloor, yceil + 1),
-    #                                np.arange(zfloor, zceil + 1))).T.reshape(-1, 3)
     oneindex = [xindex, yindex, zindex]
 
-    # return (indices, oneindex)
     return oneindex, nxyzstart[0]
-
 
 def check(model, header):
     atoms_outside_num = 0
     atom_counter = 0
-    for atom in model.get_atoms():
-        # if atom.name.startswith('H') or atom.get_parent().resname == 'HOH':
-        #     continue
+    for atom in model:
         atom_counter += 1
-        onecoor = atom.coord
-        oneindex, nxyz = get_indices(header, onecoor)
+        oneindex, nxyz = get_indices(header, atom)
         if oneindex[0] > nxyz[0] - 1 or oneindex[0] < 0 or \
                 oneindex[1] > nxyz[1] - 1 or oneindex[1] < 0 or \
                 oneindex[2] > nxyz[2] - 1 or oneindex[2] < 0:
