@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Tue May 23 14:21:39 2023 by generateDS.py version 2.41.5.
+# Generated Thu Jun 29 17:57:55 2023 by generateDS.py version 2.41.5.
 # Python 3.9.5 (default, May 18 2021, 12:31:01)  [Clang 10.0.0 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_4_0/emdb.py')
+#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_5_0/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb-schemas/emdb_schemas/v3/v3_0_4_0/emdb.xsd
+#   emdb-schemas/emdb_schemas/v3/v3_0_5_0/emdb.xsd
 #
 # Command line:
-#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_4_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_4_0/emdb.xsd
+#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_5_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_5_0/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   IdeaProjects
@@ -1763,7 +1763,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.4.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.5.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1889,7 +1889,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.4.0" and 'version' not in already_processed:
+        if self.version != "3.0.5.0" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -3878,7 +3878,7 @@ class crossreferences_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, citation_list=None, emdb_list=None, pdb_list=None, auxiliary_link_list=None, gds_collector_=None, **kwargs_):
+    def __init__(self, citation_list=None, emdb_list=None, pdb_list=None, other_db_list=None, auxiliary_link_list=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -3890,6 +3890,8 @@ class crossreferences_type(GeneratedsSuper):
         self.emdb_list_nsprefix_ = None
         self.pdb_list = pdb_list
         self.pdb_list_nsprefix_ = None
+        self.other_db_list = other_db_list
+        self.other_db_list_nsprefix_ = None
         self.auxiliary_link_list = auxiliary_link_list
         self.auxiliary_link_list_nsprefix_ = None
     def factory(*args_, **kwargs_):
@@ -3919,6 +3921,10 @@ class crossreferences_type(GeneratedsSuper):
         return self.pdb_list
     def set_pdb_list(self, pdb_list):
         self.pdb_list = pdb_list
+    def get_other_db_list(self):
+        return self.other_db_list
+    def set_other_db_list(self, other_db_list):
+        self.other_db_list = other_db_list
     def get_auxiliary_link_list(self):
         return self.auxiliary_link_list
     def set_auxiliary_link_list(self, auxiliary_link_list):
@@ -3928,6 +3934,7 @@ class crossreferences_type(GeneratedsSuper):
             self.citation_list is not None or
             self.emdb_list is not None or
             self.pdb_list is not None or
+            self.other_db_list is not None or
             self.auxiliary_link_list is not None
         ):
             return True
@@ -3972,6 +3979,9 @@ class crossreferences_type(GeneratedsSuper):
         if self.pdb_list is not None:
             namespaceprefix_ = self.pdb_list_nsprefix_ + ':' if (UseCapturedNS_ and self.pdb_list_nsprefix_) else ''
             self.pdb_list.export(outfile, level, namespaceprefix_, namespacedef_='', name_='pdb_list', pretty_print=pretty_print)
+        if self.other_db_list is not None:
+            namespaceprefix_ = self.other_db_list_nsprefix_ + ':' if (UseCapturedNS_ and self.other_db_list_nsprefix_) else ''
+            self.other_db_list.export(outfile, level, namespaceprefix_, namespacedef_='', name_='other_db_list', pretty_print=pretty_print)
         if self.auxiliary_link_list is not None:
             namespaceprefix_ = self.auxiliary_link_list_nsprefix_ + ':' if (UseCapturedNS_ and self.auxiliary_link_list_nsprefix_) else ''
             self.auxiliary_link_list.export(outfile, level, namespaceprefix_, namespacedef_='', name_='auxiliary_link_list', pretty_print=pretty_print)
@@ -4004,6 +4014,11 @@ class crossreferences_type(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.pdb_list = obj_
             obj_.original_tagname_ = 'pdb_list'
+        elif nodeName_ == 'other_db_list':
+            obj_ = other_db_cross_reference_list_type.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.other_db_list = obj_
+            obj_.original_tagname_ = 'other_db_list'
         elif nodeName_ == 'auxiliary_link_list':
             obj_ = auxiliary_link_listType.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
@@ -5362,6 +5377,266 @@ class pdb_cross_reference_type(GeneratedsSuper):
             self.details = value_
             self.details_nsprefix_ = child_.prefix
 # end class pdb_cross_reference_type
+
+
+class other_db_cross_reference_list_type(GeneratedsSuper):
+    __hash__ = GeneratedsSuper.__hash__
+    subclass = None
+    superclass = None
+    def __init__(self, db_reference=None, gds_collector_=None, **kwargs_):
+        self.gds_collector_ = gds_collector_
+        self.gds_elementtree_node_ = None
+        self.original_tagname_ = None
+        self.parent_object_ = kwargs_.get('parent_object_')
+        self.ns_prefix_ = None
+        if db_reference is None:
+            self.db_reference = []
+        else:
+            self.db_reference = db_reference
+        self.db_reference_nsprefix_ = None
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, other_db_cross_reference_list_type)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if other_db_cross_reference_list_type.subclass:
+            return other_db_cross_reference_list_type.subclass(*args_, **kwargs_)
+        else:
+            return other_db_cross_reference_list_type(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_ns_prefix_(self):
+        return self.ns_prefix_
+    def set_ns_prefix_(self, ns_prefix):
+        self.ns_prefix_ = ns_prefix
+    def get_db_reference(self):
+        return self.db_reference
+    def set_db_reference(self, db_reference):
+        self.db_reference = db_reference
+    def add_db_reference(self, value):
+        self.db_reference.append(value)
+    def insert_db_reference_at(self, index, value):
+        self.db_reference.insert(index, value)
+    def replace_db_reference_at(self, index, value):
+        self.db_reference[index] = value
+    def has__content(self):
+        if (
+            self.db_reference
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='other_db_cross_reference_list_type', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('other_db_cross_reference_list_type')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None and name_ == 'other_db_cross_reference_list_type':
+            name_ = self.original_tagname_
+        if UseCapturedNS_ and self.ns_prefix_:
+            namespaceprefix_ = self.ns_prefix_ + ':'
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='other_db_cross_reference_list_type')
+        if self.has__content():
+            outfile.write('>%s' % (eol_, ))
+            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='other_db_cross_reference_list_type', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='other_db_cross_reference_list_type'):
+        pass
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='other_db_cross_reference_list_type', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        for db_reference_ in self.db_reference:
+            namespaceprefix_ = self.db_reference_nsprefix_ + ':' if (UseCapturedNS_ and self.db_reference_nsprefix_) else ''
+            db_reference_.export(outfile, level, namespaceprefix_, namespacedef_='', name_='db_reference', pretty_print=pretty_print)
+    def build(self, node, gds_collector_=None):
+        self.gds_collector_ = gds_collector_
+        if SaveElementTreeNode:
+            self.gds_elementtree_node_ = node
+        already_processed = set()
+        self.ns_prefix_ = node.prefix
+        self._buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self._buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
+        return self
+    def _buildAttributes(self, node, attrs, already_processed):
+        pass
+    def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
+        if nodeName_ == 'db_reference':
+            obj_ = other_db_cross_reference_type.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.db_reference.append(obj_)
+            obj_.original_tagname_ = 'db_reference'
+# end class other_db_cross_reference_list_type
+
+
+class other_db_cross_reference_type(GeneratedsSuper):
+    __hash__ = GeneratedsSuper.__hash__
+    subclass = None
+    superclass = None
+    def __init__(self, db_name=None, accession_id=None, content_type=None, details=None, gds_collector_=None, **kwargs_):
+        self.gds_collector_ = gds_collector_
+        self.gds_elementtree_node_ = None
+        self.original_tagname_ = None
+        self.parent_object_ = kwargs_.get('parent_object_')
+        self.ns_prefix_ = None
+        self.db_name = db_name
+        self.db_name_nsprefix_ = None
+        self.accession_id = accession_id
+        self.accession_id_nsprefix_ = None
+        self.content_type = content_type
+        self.content_type_nsprefix_ = None
+        self.details = details
+        self.details_nsprefix_ = None
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, other_db_cross_reference_type)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if other_db_cross_reference_type.subclass:
+            return other_db_cross_reference_type.subclass(*args_, **kwargs_)
+        else:
+            return other_db_cross_reference_type(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_ns_prefix_(self):
+        return self.ns_prefix_
+    def set_ns_prefix_(self, ns_prefix):
+        self.ns_prefix_ = ns_prefix
+    def get_db_name(self):
+        return self.db_name
+    def set_db_name(self, db_name):
+        self.db_name = db_name
+    def get_accession_id(self):
+        return self.accession_id
+    def set_accession_id(self, accession_id):
+        self.accession_id = accession_id
+    def get_content_type(self):
+        return self.content_type
+    def set_content_type(self, content_type):
+        self.content_type = content_type
+    def get_details(self):
+        return self.details
+    def set_details(self, details):
+        self.details = details
+    def has__content(self):
+        if (
+            self.db_name is not None or
+            self.accession_id is not None or
+            self.content_type is not None or
+            self.details is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='other_db_cross_reference_type', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('other_db_cross_reference_type')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None and name_ == 'other_db_cross_reference_type':
+            name_ = self.original_tagname_
+        if UseCapturedNS_ and self.ns_prefix_:
+            namespaceprefix_ = self.ns_prefix_ + ':'
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='other_db_cross_reference_type')
+        if self.has__content():
+            outfile.write('>%s' % (eol_, ))
+            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='other_db_cross_reference_type', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='other_db_cross_reference_type'):
+        pass
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='other_db_cross_reference_type', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.db_name is not None:
+            namespaceprefix_ = self.db_name_nsprefix_ + ':' if (UseCapturedNS_ and self.db_name_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sdb_name>%s</%sdb_name>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.db_name), input_name='db_name')), namespaceprefix_ , eol_))
+        if self.accession_id is not None:
+            namespaceprefix_ = self.accession_id_nsprefix_ + ':' if (UseCapturedNS_ and self.accession_id_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%saccession_id>%s</%saccession_id>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.accession_id), input_name='accession_id')), namespaceprefix_ , eol_))
+        if self.content_type is not None:
+            namespaceprefix_ = self.content_type_nsprefix_ + ':' if (UseCapturedNS_ and self.content_type_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%scontent_type>%s</%scontent_type>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.content_type), input_name='content_type')), namespaceprefix_ , eol_))
+        if self.details is not None:
+            namespaceprefix_ = self.details_nsprefix_ + ':' if (UseCapturedNS_ and self.details_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sdetails>%s</%sdetails>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.details), input_name='details')), namespaceprefix_ , eol_))
+    def build(self, node, gds_collector_=None):
+        self.gds_collector_ = gds_collector_
+        if SaveElementTreeNode:
+            self.gds_elementtree_node_ = node
+        already_processed = set()
+        self.ns_prefix_ = node.prefix
+        self._buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self._buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
+        return self
+    def _buildAttributes(self, node, attrs, already_processed):
+        pass
+    def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
+        if nodeName_ == 'db_name':
+            value_ = child_.text
+            if value_:
+                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
+            else:
+                value_ = ""
+            value_ = self.gds_parse_string(value_, node, 'db_name')
+            value_ = self.gds_validate_string(value_, node, 'db_name')
+            self.db_name = value_
+            self.db_name_nsprefix_ = child_.prefix
+        elif nodeName_ == 'accession_id':
+            value_ = child_.text
+            if value_:
+                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
+            else:
+                value_ = ""
+            value_ = self.gds_parse_string(value_, node, 'accession_id')
+            value_ = self.gds_validate_string(value_, node, 'accession_id')
+            self.accession_id = value_
+            self.accession_id_nsprefix_ = child_.prefix
+        elif nodeName_ == 'content_type':
+            value_ = child_.text
+            if value_:
+                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
+            else:
+                value_ = ""
+            value_ = self.gds_parse_string(value_, node, 'content_type')
+            value_ = self.gds_validate_string(value_, node, 'content_type')
+            self.content_type = value_
+            self.content_type_nsprefix_ = child_.prefix
+        elif nodeName_ == 'details':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'details')
+            value_ = self.gds_validate_string(value_, node, 'details')
+            self.details = value_
+            self.details_nsprefix_ = child_.prefix
+# end class other_db_cross_reference_type
 
 
 class auxiliary_link_type(GeneratedsSuper):
@@ -44382,6 +44657,8 @@ __all__ = [
     "orthogonal_tiltType",
     "otherType",
     "otherType45",
+    "other_db_cross_reference_list_type",
+    "other_db_cross_reference_type",
     "other_macromolecule_type",
     "parallel_resolution",
     "particle_selection_type",

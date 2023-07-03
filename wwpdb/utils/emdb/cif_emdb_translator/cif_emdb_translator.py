@@ -109,7 +109,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.4.0"
+        XML_OUT_VERSION = "3.0.5.0"
 
         # Cif categories
         CITATION = "citation"
@@ -735,6 +735,7 @@ class CifEMDBTranslator(object):
             "_citation.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_citation.book_title": '<xs:element name="title" type="xs:token"/>',
             "_citation.book_publisher": '<xs:element name="publisher" type="xs:token" minOccurs="0"/>',
+            "_pdbx_database_related.db_name": '<xs:element name="db_name" type="token"/>',
             "_pdbx_database_related.db_id": '<xs:element name="emdb_id" type="emdb_id_type"/>',
             "_pdbx_database_related.content_type": '<xs:element name="relationship" minOccurs="0">',
             "_pdbx_database_related.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
@@ -3221,7 +3222,7 @@ class CifEMDBTranslator(object):
                     ..is a sequence of 3 elements
                     """
 
-                    def set_el_emdb_id(pdb_ref, pdb_ref_in):
+                    def set_el_pdb_id(pdb_ref, pdb_ref_in):
                         """
                         XSD: <xs:element name="emdb_id" type="emdb_id_type"/>
                         CIF: _em_db_reference.access_code
@@ -3264,7 +3265,7 @@ class CifEMDBTranslator(object):
                         if any(x is not None for x in [el_emdb_id, el_details]):
                             pdb_ref = emdb.pdb_cross_reference_type()
                             # element 1
-                            set_el_emdb_id(pdb_ref, pdb_ref_in)
+                            set_el_pdb_id(pdb_ref, pdb_ref_in)
                             # element 2
                             set_el_relationship(pdb_ref, pdb_ref_in)
                             # element 3
@@ -3275,6 +3276,66 @@ class CifEMDBTranslator(object):
                     set_pdb_cross_ref_list_type(pdb_ref_list, x_ref_dict_in)
                     if pdb_ref_list.has__content():
                         cross_references.set_pdb_list(pdb_ref_list)
+
+            def set_el_other_db_list(cross_references, other_db_ref_dict_in):
+                """
+                <xs:element name="other_db_list"
+                    type="other_cross_reference_list_type"
+                    minOccurs="0">
+                """
+
+                def set_other_db_cross_ref_list_type(other_db_ref_list, other_db_ref_dict_in):
+                    """
+                    XSD: <xs:element name="other_db_list" type="other_db_cross_reference_list_type" minOccurs="0">
+                    ..has only one element of
+                    <xs:element name="db_reference" type="db_cross_reference_type" maxOccurs="unbounded"/>
+                    ..is a sequence of 4 elements
+                    """
+
+                    def set_ref_el_db_name(other_db_ref, other_db_ref_in):
+                        """
+                        XSD: <xs:element name="db_name" type="token"/>
+                        CIF: _pdbx_database_related.db_name (MANDATORY)
+                        """
+                        set_cif_value(other_db_ref.set_db_name, "db_name", const.PDBX_DATABASE_RELATED, cif_list=other_db_ref_in)
+
+                    def set_ref_el_accession_id(other_db_ref, other_db_ref_in):
+                        """
+                        XSD: <xs:element name="accession_id" type="token"/>
+                        CIF: _pdbx_database_related.db_id (MANDATORY)
+                        """
+                        set_cif_value(other_db_ref.set_accession_id, "db_id", const.PDBX_DATABASE_RELATED, cif_list=other_db_ref_in)
+
+                    def set_ref_el_content_type(other_db_ref, other_db_ref_in):
+                        """
+                        XSD: <xs:element name="content_type" minOccurs="0" type="xs:string"/>
+                        CIF: _pdbx_database_related.details
+                        """
+                        set_cif_value(other_db_ref.set_content_type, "content_type", const.PDBX_DATABASE_RELATED, cif_list=other_db_ref_in)
+
+                    def set_ref_el_details(other_db_ref, other_db_ref_in):
+                        """
+                        XSD: <xs:element name="details" minOccurs="0" type="xs:string"/>
+                        CIF: _pdbx_database_related.details
+                        """
+                        set_cif_value(other_db_ref.set_details, "details", const.PDBX_DATABASE_RELATED, cif_list=other_db_ref_in)
+
+                    if "SASBDB" in other_db_ref_dict_in:
+                        other_db_ref_list_in = other_db_ref_dict_in["SASBDB"]
+                        for other_db_ref_in in other_db_ref_list_in:
+                            other_db_ref = emdb.other_db_cross_reference_type()
+                            set_ref_el_db_name(other_db_ref, other_db_ref_in)
+                            set_ref_el_accession_id(other_db_ref, other_db_ref_in)
+                            set_ref_el_content_type(other_db_ref, other_db_ref_in)
+                            set_ref_el_details(other_db_ref, other_db_ref_in)
+
+                            if other_db_ref.has__content():
+                                other_db_ref_list.add_db_reference(other_db_ref)
+
+                other_db_ref_list = emdb.other_db_cross_reference_list_type()
+                set_other_db_cross_ref_list_type(other_db_ref_list, other_db_ref_dict_in)
+                if other_db_ref_list.has__content():
+                    cross_references.set_other_db_list(other_db_ref_list)
 
             def set_el_auxiliary_link_list(cross_references):
                 """
@@ -3333,6 +3394,9 @@ class CifEMDBTranslator(object):
             # element 3
             set_el_pdb_list(cross_references, x_ref_dict_in)
             # element 4
+            other_db_ref_dict_in = make_list_of_dicts(const.PDBX_DATABASE_RELATED, "db_name")
+            set_el_other_db_list(cross_references, other_db_ref_dict_in)
+            # element 5
             set_el_auxiliary_link_list(cross_references)
 
         def set_sample_type(sample):
