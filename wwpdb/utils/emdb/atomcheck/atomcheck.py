@@ -82,9 +82,9 @@ def map_matrix(apixs, angs):
 
     ang = (angs[0] * math.pi / 180, angs[1] * math.pi / 180, angs[2] * math.pi / 180)
     insidesqrt = 1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) - \
-                 math.cos(ang[0]) ** 2 - \
-                 math.cos(ang[1]) ** 2 - \
-                 math.cos(ang[2]) ** 2
+        math.cos(ang[0]) ** 2 - \
+        math.cos(ang[1]) ** 2 - \
+        math.cos(ang[2]) ** 2
 
     cellvolume = apixs[0] * apixs[1] * apixs[2] * math.sqrt(insidesqrt)
 
@@ -92,11 +92,11 @@ def map_matrix(apixs, angs):
     m12 = - math.cos(ang[2]) / (apixs[0] * math.sin(ang[2]))
 
     m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (
-            cellvolume * math.sin(ang[2]))
+        cellvolume * math.sin(ang[2]))
     m21 = 0
     m22 = 1 / (apixs[1] * math.sin(ang[2]))
     m23 = apixs[0] * apixs[2] * (math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0])) / (
-            cellvolume * math.sin(ang[2]))
+        cellvolume * math.sin(ang[2]))
     m31 = 0
     m32 = 0
     m33 = apixs[0] * apixs[1] * math.sin(ang[2]) / cellvolume
