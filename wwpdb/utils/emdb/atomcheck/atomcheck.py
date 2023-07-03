@@ -39,7 +39,6 @@ def get_model(model_fullname):
 
 
 def header_check(header):
-
     crs = (header.mapc, header.mapr, header.maps)
     crsindices = (crs.index(1), crs.index(2), crs.index(3))
     nstarts = (header.nxstart, header.nystart, header.nzstart)
@@ -83,19 +82,21 @@ def map_matrix(apixs, angs):
 
     ang = (angs[0] * math.pi / 180, angs[1] * math.pi / 180, angs[2] * math.pi / 180)
     insidesqrt = 1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) - \
-         math.cos(ang[0])**2 - \
-         math.cos(ang[1])**2 - \
-         math.cos(ang[2])**2
+                 math.cos(ang[0]) ** 2 - \
+                 math.cos(ang[1]) ** 2 - \
+                 math.cos(ang[2]) ** 2
 
     cellvolume = apixs[0] * apixs[1] * apixs[2] * math.sqrt(insidesqrt)
 
     m11 = 1 / apixs[0]
     m12 = - math.cos(ang[2]) / (apixs[0] * math.sin(ang[2]))
 
-    m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (cellvolume * math.sin(ang[2]))
+    m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (
+            cellvolume * math.sin(ang[2]))
     m21 = 0
     m22 = 1 / (apixs[1] * math.sin(ang[2]))
-    m23 = apixs[0] * apixs[2] * (math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0])) / (cellvolume * math.sin(ang[2]))
+    m23 = apixs[0] * apixs[2] * (math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0])) / (
+            cellvolume * math.sin(ang[2]))
     m31 = 0
     m32 = 0
     m33 = apixs[0] * apixs[1] * math.sin(ang[2]) / cellvolume
@@ -131,7 +132,6 @@ def get_indices(header, onecoor):
     nxstart, nystart, nzstart = nxyzstart[1]
 
     if header.cellb.alpha == header.cellb.beta == header.cellb.gamma == 90.:
-        crs = [header.mapc, header.mapr, header.maps]
         zindex = float(onecoor[2] - header.origin.z) / z_apix - nzstart
         yindex = float(onecoor[1] - header.origin.y) / y_apix - nystart
         xindex = float(onecoor[0] - header.origin.x) / x_apix - nxstart
@@ -195,7 +195,8 @@ def main():
         result_str = 'map:                           {}\n' \
                      'model:                         {}\n' \
                      'Number of atoms outside box:   {}\n' \
-                     'Fraction of atoms outside box: {}'.format(os.path.basename(input_map), os.path.basename(input_model), result[0], result[1])
+                     'Fraction of atoms outside box: {}'.format(os.path.basename(input_map),
+                                                                os.path.basename(input_model), result[0], result[1])
         print(result_str)
         print('---------------------------------------')
     else:
