@@ -9,10 +9,10 @@ import numpy as np
 import json
 
 
-
 def get_mapheader(map_fullname):
     header = mrcfile.open(map_fullname, permissive=True, header_only=True)
     return header.header
+
 
 def get_model(model_fullname):
     """
@@ -37,6 +37,7 @@ def get_model(model_fullname):
 
     return structure
 
+
 def header_check(header):
 
     crs = (header.mapc, header.mapr, header.maps)
@@ -49,6 +50,7 @@ def header_check(header):
         nstarts = (nstarts[crsindices[0]], nstarts[crsindices[1]], nstarts[crsindices[2]])
 
     return nxyz, nstarts
+
 
 def matrix_indices(nstarts, apixs, onecoor, header):
     """
@@ -67,6 +69,7 @@ def matrix_indices(nstarts, apixs, onecoor, header):
 
     return (xindex, yindex, zindex)
 
+
 def map_matrix(apixs, angs):
     """
 
@@ -78,16 +81,16 @@ def map_matrix(apixs, angs):
     :return:
     """
 
-    ang = (angs[0]*math.pi/180, angs[1]*math.pi/180, angs[2]*math.pi/180)
+    ang = (angs[0] * math.pi / 180, angs[1] * math.pi / 180, angs[2] * math.pi / 180)
     insidesqrt = 1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) - \
-                 math.cos(ang[0])**2 - \
-                 math.cos(ang[1])**2 - \
-                 math.cos(ang[2])**2
+         math.cos(ang[0])**2 - \
+         math.cos(ang[1])**2 - \
+         math.cos(ang[2])**2
 
-    cellvolume = apixs[0]*apixs[1]*apixs[2]*math.sqrt(insidesqrt)
+    cellvolume = apixs[0] * apixs[1] * apixs[2] * math.sqrt(insidesqrt)
 
-    m11 = 1/apixs[0]
-    m12 = -math.cos(ang[2])/(apixs[0]*math.sin(ang[2]))
+    m11 = 1 / apixs[0]
+    m12 = - math.cos(ang[2]) / (apixs[0] * math.sin(ang[2]))
 
     m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (cellvolume * math.sin(ang[2]))
     m21 = 0
@@ -101,18 +104,16 @@ def map_matrix(apixs, angs):
 
     return matrix
 
+
 def get_indices(header, onecoor):
     """
-
-                Find one atom's indices correspoding to its cubic or plane
-                the 8 (cubic) or 4 (plane) indices are saved in indices variable
-
-            :param map: Density map instance from TEMPy.MapParser
-            :param onecoor: List contains the atom coordinates in (x, y, z) order
-            :return: Tuple contains two list of index: first has the 8 or 4 indices in the cubic;
-                     second has the float index of the input atom
-
-            """
+    Find one atom's indices correspoding to its cubic or plane
+    the 8 (cubic) or 4 (plane) indices are saved in indices variable
+    :param map: Density map instance from TEMPy.MapParser
+    :param onecoor: List contains the atom coordinates in (x, y, z) order
+    :return: Tuple contains two list of index: first has the 8 or 4 indices in the cubic;
+             second has the float index of the input atom
+    """
 
     zdim = header.cella.z
     znintervals = header.mz
@@ -126,47 +127,22 @@ def get_indices(header, onecoor):
     xnintervals = header.mx
     x_apix = xdim / xnintervals
 
-
     nxyzstart = header_check(header)
-    map_xsize, map_ysize, map_zsize = nxyzstart[0]
     nxstart, nystart, nzstart = nxyzstart[1]
-
-
 
     if header.cellb.alpha == header.cellb.beta == header.cellb.gamma == 90.:
         crs = [header.mapc, header.mapr, header.maps]
-        ordinds = [crs.index(1), crs.index(2), crs.index(3)]
-
         zindex = float(onecoor[2] - header.origin.z) / z_apix - nzstart
         yindex = float(onecoor[1] - header.origin.y) / y_apix - nystart
         xindex = float(onecoor[0] - header.origin.x) / x_apix - nxstart
-
-
     else:
         apixs = [x_apix, y_apix, z_apix]
         xindex, yindex, zindex = matrix_indices(nxyzstart[1], apixs, onecoor, header)
 
-    zfloor = int(math.floor(zindex))
-    if zfloor >= map_zsize - 1:
-        zceil = zfloor
-    else:
-        zceil = zfloor + 1
-
-    yfloor = int(math.floor(yindex))
-    if yfloor >= map_ysize - 1:
-        yceil = yfloor
-    else:
-        yceil = yfloor + 1
-
-    xfloor = int(math.floor(xindex))
-    if xfloor >= map_xsize - 1:
-        xceil = xfloor
-    else:
-        xceil = xfloor + 1
-
     oneindex = [xindex, yindex, zindex]
 
     return oneindex, nxyzstart[0]
+
 
 def check(model, header):
     atoms_outside_num = 0
