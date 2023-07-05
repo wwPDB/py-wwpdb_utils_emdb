@@ -262,7 +262,7 @@ _em_imaging.nominal_defocus_min             3000
 _em_imaging.nominal_magnification           33000 
 _em_imaging.recording_temperature_maximum   ? 
 _em_imaging.recording_temperature_minimum   ? 
-_em_imaging.residual_tilt                   ? 
+_em_imaging.residual_tilt                   ?
 _em_imaging.specimen_holder_model           ? 
 _em_imaging.specimen_id                     1 
 # 

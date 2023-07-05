@@ -215,10 +215,10 @@ class CifEMDBTranslator(object):
         SOFT_MODEL_FITTING = "MODEL FITTING"
         SOFT_PARTICLE_SELECTION = "PARTICLE SELECTION"
         SOFT_RECONSTRUCTION = "RECONSTRUCTION"
-        MOLECULAR_REPLACEMENT = "MOLECULAR REPLACEMENT"
-        LATTICE_DISTORTION_CORRECTION = "LATTICE DISTORTION CORRECTION"
-        SYMMETRY_DETERMINATION = "SYMMETRY DETERMINATION"
-        CRYSTALLOGRAPHY_MERGING = "CRYSTALLOGRAPHY MERGING"
+        SOFT_MOLECULAR_REPLACEMENT = "MOLECULAR REPLACEMENT"
+        SOFT_LATTICE_DISTORTION_CORRECTION = "LATTICE DISTORTION CORRECTION"
+        SOFT_SYMMETRY_DETERMINATION = "SYMMETRY DETERMINATION"
+        SOFT_CRYSTALLOGRAPHY_MERGING = "CRYSTALLOGRAPHY MERGING"
 
         # EM methods
         EMM_EC = "electronCrystallography"
@@ -3390,7 +3390,7 @@ class CifEMDBTranslator(object):
                     CIF: _em_entity_assembly_naturalsource.organism
                     """
                     a_dict = {
-                        const.ENTITY_SRC_NAT: "common_name",
+                        const.ENTITY_SRC_NAT: "pdbx_organism_scientific",
                         const.ENTITY_SRC_GEN: "pdbx_gene_src_scientific_name",
                         const.PDBX_ENTITY_SRC_SYN: "organism_scientific",
                         const.EM_ENTITY_ASSEMBLY_NATURALSOURCE: "organism",
@@ -9649,7 +9649,7 @@ class CifEMDBTranslator(object):
                                 """
                                 XSD: <xs:element name="software_list" type="software_list_type" minOccurs="0"/>
                                 """
-                                set_software_list(const.MOLECULAR_REPLACEMENT, cryst_dicts["cat_soft_dict_in"], mol_repl.set_software_list)
+                                set_software_list(const.SOFT_MOLECULAR_REPLACEMENT, cryst_dicts["cat_soft_dict_in"], mol_repl.set_software_list)
 
                             # element 1
                             set_el_starting_model()
@@ -9667,19 +9667,19 @@ class CifEMDBTranslator(object):
                         """
                         XSD: <xs:element name="lattice_distortion_correction_software_list" type="software_list_type" minOccurs="0"/>
                         """
-                        set_software_list(const.LATTICE_DISTORTION_CORRECTION, cryst_dicts["cat_soft_dict_in"], im_proc.set_lattice_distortion_correction_software_list)
+                        set_software_list(const.SOFT_LATTICE_DISTORTION_CORRECTION, cryst_dicts["cat_soft_dict_in"], im_proc.set_lattice_distortion_correction_software_list)
 
                     def set_el_sym_det_software_list(im_proc, cryst_dicts):
                         """
                         XSD: <xs:element name="symmetry_determination_software_list" type="software_list_type" minOccurs="0"/>
                         """
-                        set_software_list(const.SYMMETRY_DETERMINATION, cryst_dicts["cat_soft_dict_in"], im_proc.set_symmetry_determination_software_list)
+                        set_software_list(const.SOFT_SYMMETRY_DETERMINATION, cryst_dicts["cat_soft_dict_in"], im_proc.set_symmetry_determination_software_list)
 
                     def set_el_merging_software_list(im_proc, cryst_dicts):
                         """
                         XSD: <xs:element name="merging_software_list" type="software_list_type" minOccurs="0"/>
                         """
-                        set_software_list(const.CRYSTALLOGRAPHY_MERGING, cryst_dicts["cat_soft_dict_in"], im_proc.set_merging_software_list)
+                        set_software_list(const.SOFT_CRYSTALLOGRAPHY_MERGING, cryst_dicts["cat_soft_dict_in"], im_proc.set_merging_software_list)
 
                     def set_el_cryst_statistics(im_proc, cryst_dicts):
                         """
@@ -10012,7 +10012,7 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="series_aligment_software_list" type="software_list_type" minOccurs="0"/>
                         """
                         cat_soft_dict_in = tomo_dicts["cat_soft_dict_in"]
-                        set_software_list(const.LATTICE_DISTORTION_CORRECTION, cat_soft_dict_in, im_proc.set_series_aligment_software_list)
+                        set_software_list(const.SOFT_LATTICE_DISTORTION_CORRECTION, cat_soft_dict_in, im_proc.set_series_aligment_software_list)
 
                     def set_el_ctf_correction(im_proc, ip_id_in, tomo_dicts):
                         """
