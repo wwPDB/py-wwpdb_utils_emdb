@@ -219,14 +219,6 @@ class CifEMDBTranslator(object):
         SOFT_LATTICE_DISTORTION_CORRECTION = "LATTICE DISTORTION CORRECTION"
         SOFT_SYMMETRY_DETERMINATION = "SYMMETRY DETERMINATION"
         SOFT_CRYSTALLOGRAPHY_MERGING = "CRYSTALLOGRAPHY MERGING"
-        SOFT_DIFFRACTION_INDEXING = "DIFFRACTION INDEXING"
-        SOFT_EWALD_SPHERE_CORRECTION = "EWALD SPHERE CORRECTION"
-        SOFT_LAYERLINE_INDEXING = "LAYERLINE INDEXING"
-        SOFT_MASKING = "MASKING"
-        SOFT_MODEL_REFINEMENT = "MODEL REFINEMENT"
-        SOFT_OTHER = "OTHER"
-        SOFT_SERIES_ALIGNMENT = "SERIES ALIGNMENT"
-        SOFT_VOLUME_SELECTION = "VOLUME SELECTION"
 
         # EM methods
         EMM_EC = "electronCrystallography"
@@ -10084,7 +10076,7 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="series_aligment_software_list" type="software_list_type" minOccurs="0"/>
                         """
                         cat_soft_dict_in = tomo_dicts["cat_soft_dict_in"]
-                        set_software_list(const.LATTICE_DISTORTION_CORRECTION, cat_soft_dict_in, im_proc.set_series_aligment_software_list)
+                        set_software_list(const.SOFT_LATTICE_DISTORTION_CORRECTION, cat_soft_dict_in, im_proc.set_series_aligment_software_list)
 
                     def set_el_ctf_correction(im_proc, ip_id_in, tomo_dicts):
                         """
