@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.4.0"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.5.0"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -453,6 +453,7 @@
             </xs:element>
             <xs:element name="emdb_list" type="emdb_cross_reference_list_type" minOccurs="0"/>
             <xs:element name="pdb_list" type="pdb_cross_reference_list_type" minOccurs="0"/>
+            <xs:element name="other_db_list" type="other_db_cross_reference_list_type" minOccurs="0"/>
             <xs:element name="auxiliary_link_list" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence minOccurs="1" maxOccurs="1">
@@ -633,6 +634,20 @@
                     </xs:choice>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="details" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="other_db_cross_reference_list_type">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="db_reference" type="other_db_cross_reference_type"
+                maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="other_db_cross_reference_type">
+        <xs:sequence>
+            <xs:element name="db_name" type="xs:token"/>
+            <xs:element name="accession_id" type="xs:token"/>
+            <xs:element name="content_type" type="xs:token" minOccurs="0"/>
             <xs:element name="details" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
