@@ -11350,7 +11350,7 @@ class CifEMDBTranslator(object):
                             msk_file = msk_map.get_file()
                             set_cif_value(msk_map.set_file, cif_value=msk_file)
                             if msk_map.has__content():
-                                        msk_map_list.add_mask(msk_map)
+                                msk_map_list.add_mask(msk_map)
                         if msk_map_list.has__content():
                             intrp.set_mask_list(msk_map_list)
 
