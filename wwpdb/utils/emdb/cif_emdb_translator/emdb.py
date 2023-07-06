@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Thu Jun 29 17:57:55 2023 by generateDS.py version 2.41.5.
+# Generated Wed Jul  5 16:17:44 2023 by generateDS.py version 2.41.5.
 # Python 3.9.5 (default, May 18 2021, 12:31:01)  [Clang 10.0.0 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_5_0/emdb.py')
+#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_6_0/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb-schemas/emdb_schemas/v3/v3_0_5_0/emdb.xsd
+#   emdb-schemas/emdb_schemas/v3/v3_0_6_0/emdb.xsd
 #
 # Command line:
-#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_5_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_5_0/emdb.xsd
+#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_6_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_6_0/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   IdeaProjects
@@ -1763,7 +1763,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.5.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.6.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1889,7 +1889,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.5.0" and 'version' not in already_processed:
+        if self.version != "3.0.6.0" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -21649,7 +21649,7 @@ class interpretation_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, modelling_list=None, figure_list=None, segmentation_list=None, slices_list=None, additional_map_list=None, half_map_list=None, gds_collector_=None, **kwargs_):
+    def __init__(self, modelling_list=None, figure_list=None, segmentation_list=None, slices_list=None, additional_map_list=None, half_map_list=None, mask_list=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -21667,6 +21667,8 @@ class interpretation_type(GeneratedsSuper):
         self.additional_map_list_nsprefix_ = None
         self.half_map_list = half_map_list
         self.half_map_list_nsprefix_ = None
+        self.mask_list = mask_list
+        self.mask_list_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -21706,6 +21708,10 @@ class interpretation_type(GeneratedsSuper):
         return self.half_map_list
     def set_half_map_list(self, half_map_list):
         self.half_map_list = half_map_list
+    def get_mask_list(self):
+        return self.mask_list
+    def set_mask_list(self, mask_list):
+        self.mask_list = mask_list
     def has__content(self):
         if (
             self.modelling_list is not None or
@@ -21713,7 +21719,8 @@ class interpretation_type(GeneratedsSuper):
             self.segmentation_list is not None or
             self.slices_list is not None or
             self.additional_map_list is not None or
-            self.half_map_list is not None
+            self.half_map_list is not None or
+            self.mask_list is not None
         ):
             return True
         else:
@@ -21766,6 +21773,9 @@ class interpretation_type(GeneratedsSuper):
         if self.half_map_list is not None:
             namespaceprefix_ = self.half_map_list_nsprefix_ + ':' if (UseCapturedNS_ and self.half_map_list_nsprefix_) else ''
             self.half_map_list.export(outfile, level, namespaceprefix_, namespacedef_='', name_='half_map_list', pretty_print=pretty_print)
+        if self.mask_list is not None:
+            namespaceprefix_ = self.mask_list_nsprefix_ + ':' if (UseCapturedNS_ and self.mask_list_nsprefix_) else ''
+            self.mask_list.export(outfile, level, namespaceprefix_, namespacedef_='', name_='mask_list', pretty_print=pretty_print)
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -21810,6 +21820,11 @@ class interpretation_type(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.half_map_list = obj_
             obj_.original_tagname_ = 'half_map_list'
+        elif nodeName_ == 'mask_list':
+            obj_ = mask_listType.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.mask_list = obj_
+            obj_.original_tagname_ = 'mask_list'
 # end class interpretation_type
 
 
@@ -43358,6 +43373,108 @@ class half_map_listType(GeneratedsSuper):
 # end class half_map_listType
 
 
+class mask_listType(GeneratedsSuper):
+    __hash__ = GeneratedsSuper.__hash__
+    subclass = None
+    superclass = None
+    def __init__(self, mask=None, gds_collector_=None, **kwargs_):
+        self.gds_collector_ = gds_collector_
+        self.gds_elementtree_node_ = None
+        self.original_tagname_ = None
+        self.parent_object_ = kwargs_.get('parent_object_')
+        self.ns_prefix_ = None
+        if mask is None:
+            self.mask = []
+        else:
+            self.mask = mask
+        self.mask_nsprefix_ = None
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, mask_listType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if mask_listType.subclass:
+            return mask_listType.subclass(*args_, **kwargs_)
+        else:
+            return mask_listType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_ns_prefix_(self):
+        return self.ns_prefix_
+    def set_ns_prefix_(self, ns_prefix):
+        self.ns_prefix_ = ns_prefix
+    def get_mask(self):
+        return self.mask
+    def set_mask(self, mask):
+        self.mask = mask
+    def add_mask(self, value):
+        self.mask.append(value)
+    def insert_mask_at(self, index, value):
+        self.mask.insert(index, value)
+    def replace_mask_at(self, index, value):
+        self.mask[index] = value
+    def has__content(self):
+        if (
+            self.mask
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='mask_listType', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('mask_listType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None and name_ == 'mask_listType':
+            name_ = self.original_tagname_
+        if UseCapturedNS_ and self.ns_prefix_:
+            namespaceprefix_ = self.ns_prefix_ + ':'
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='mask_listType')
+        if self.has__content():
+            outfile.write('>%s' % (eol_, ))
+            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='mask_listType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='mask_listType'):
+        pass
+    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='mask_listType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        for mask_ in self.mask:
+            namespaceprefix_ = self.mask_nsprefix_ + ':' if (UseCapturedNS_ and self.mask_nsprefix_) else ''
+            mask_.export(outfile, level, namespaceprefix_, namespacedef_='', name_='mask', pretty_print=pretty_print)
+    def build(self, node, gds_collector_=None):
+        self.gds_collector_ = gds_collector_
+        if SaveElementTreeNode:
+            self.gds_elementtree_node_ = node
+        already_processed = set()
+        self.ns_prefix_ = node.prefix
+        self._buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self._buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
+        return self
+    def _buildAttributes(self, node, attrs, already_processed):
+        pass
+    def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
+        if nodeName_ == 'mask':
+            obj_ = map_type.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.mask.append(obj_)
+            obj_.original_tagname_ = 'mask'
+# end class mask_listType
+
+
 class initial_modelType(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
@@ -44628,6 +44745,7 @@ __all__ = [
     "macromolecules_and_complexes_type",
     "map_statistics_type",
     "map_type",
+    "mask_listType",
     "max",
     "max_angleType",
     "microscopy_centerType",

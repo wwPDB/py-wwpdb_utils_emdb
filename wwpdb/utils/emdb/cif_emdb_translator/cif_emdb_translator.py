@@ -10742,6 +10742,22 @@ class CifEMDBTranslator(object):
                                             self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.info_title + txt)
                                         )
                                         self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
+                            if map_type == "mask":
+                                cntr_level = get_cif_value("contour_level", const.EM_MAP, cif_list=map_in)
+                                if cntr_level is not None:
+                                    if not isinstance(cntr_level, str):
+                                        set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, fmt=float)
+                                    else:
+                                        # contour level is a string; check if the string can be converted
+                                        if is_number(cntr_level.lstrip("+-")):
+                                            cl_float = float(cntr_level.lstrip("+-"))
+                                            set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, cif_value=cl_float)
+                                        else:
+                                            txt = u"Contour level is given as a text value of %s. This is not correct. It should be a number." % cntr_level
+                                            self.current_entry_log.error_logs.append(
+                                                self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt)
+                                            )
+                                            self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
 
                         def set_el_source(cntr, map_in):
                             """
@@ -11322,6 +11338,22 @@ class CifEMDBTranslator(object):
                         if hf_map_list.has__content():
                             intrp.set_half_map_list(hf_map_list)
 
+                    def set_el_mask_list(intrp, map_dict_in):
+                        """
+                        XSD: <xs:element name="mask_list" minOccurs="0">
+                        """
+
+                        msk_map_list_in = map_dict_in[const.MAP_MASK] if const.MAP_MASK in map_dict_in else []
+                        msk_map_list = emdb.mask_listType()
+                        for msk_map_in in msk_map_list_in:
+                            msk_map = make_map(msk_map_in, get_canonical_map_name(msk_map_in, "MASK"))
+                            msk_file = msk_map.get_file()
+                            set_cif_value(msk_map.set_file, cif_value=msk_file)
+                            if msk_map.has__content():
+                                msk_map_list.add_mask(msk_map)
+                        if msk_map_list.has__content():
+                            intrp.set_mask_list(msk_map_list)
+
                     # element 1
                     set_el_modelling_list(intrp)
                     # element 2
@@ -11334,6 +11366,8 @@ class CifEMDBTranslator(object):
                     set_el_additional_map_list(intrp, map_dict_in)
                     # element 6
                     set_el_half_map_list(intrp, map_dict_in)
+                    # element 7
+                    set_el_mask_list(intrp, map_dict_in)
 
                 map_dict_in = make_list_of_dicts(const.EM_MAP, "type")
                 intrp = emdb.interpretation_type()
