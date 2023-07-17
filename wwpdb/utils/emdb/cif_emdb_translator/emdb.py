@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Jul  5 16:17:44 2023 by generateDS.py version 2.41.5.
+# Generated Thu Jul 13 14:03:32 2023 by generateDS.py version 2.41.5.
 # Python 3.9.5 (default, May 18 2021, 12:31:01)  [Clang 10.0.0 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_6_0/emdb.py')
+#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_7_0/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb-schemas/emdb_schemas/v3/v3_0_6_0/emdb.xsd
+#   emdb-schemas/emdb_schemas/v3/v3_0_7_0/emdb.xsd
 #
 # Command line:
-#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_6_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_6_0/emdb.xsd
+#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_7_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_7_0/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   IdeaProjects
@@ -1763,7 +1763,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.6.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.7.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1889,7 +1889,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.6.0" and 'version' not in already_processed:
+        if self.version != "3.0.7.0" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -6427,7 +6427,7 @@ class base_source_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None, extensiontype_=None, gds_collector_=None, **kwargs_):
+    def __init__(self, database=None, synthetically_produced=None, organism=None, strain=None, synonym_organism=None, details=None, extensiontype_=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -6435,12 +6435,16 @@ class base_source_type(GeneratedsSuper):
         self.ns_prefix_ = None
         self.database = _cast(None, database)
         self.database_nsprefix_ = None
+        self.synthetically_produced = _cast(bool, synthetically_produced)
+        self.synthetically_produced_nsprefix_ = None
         self.organism = organism
         self.organism_nsprefix_ = None
         self.strain = strain
         self.strain_nsprefix_ = None
         self.synonym_organism = synonym_organism
         self.synonym_organism_nsprefix_ = None
+        self.details = details
+        self.details_nsprefix_ = None
         self.extensiontype_ = extensiontype_
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
@@ -6469,10 +6473,18 @@ class base_source_type(GeneratedsSuper):
         return self.synonym_organism
     def set_synonym_organism(self, synonym_organism):
         self.synonym_organism = synonym_organism
+    def get_details(self):
+        return self.details
+    def set_details(self, details):
+        self.details = details
     def get_database(self):
         return self.database
     def set_database(self, database):
         self.database = database
+    def get_synthetically_produced(self):
+        return self.synthetically_produced
+    def set_synthetically_produced(self, synthetically_produced):
+        self.synthetically_produced = synthetically_produced
     def get_extensiontype_(self): return self.extensiontype_
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
     def validate_databaseType(self, value):
@@ -6492,7 +6504,8 @@ class base_source_type(GeneratedsSuper):
         if (
             self.organism is not None or
             self.strain is not None or
-            self.synonym_organism is not None
+            self.synonym_organism is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -6524,6 +6537,9 @@ class base_source_type(GeneratedsSuper):
         if self.database is not None and 'database' not in already_processed:
             already_processed.add('database')
             outfile.write(' database=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.database), input_name='database')), ))
+        if self.synthetically_produced is not None and 'synthetically_produced' not in already_processed:
+            already_processed.add('synthetically_produced')
+            outfile.write(' synthetically_produced="%s"' % self.gds_format_boolean(self.synthetically_produced, input_name='synthetically_produced'))
         if self.extensiontype_ is not None and 'xsi:type' not in already_processed:
             already_processed.add('xsi:type')
             outfile.write(' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"')
@@ -6548,6 +6564,10 @@ class base_source_type(GeneratedsSuper):
             namespaceprefix_ = self.synonym_organism_nsprefix_ + ':' if (UseCapturedNS_ and self.synonym_organism_nsprefix_) else ''
             showIndent(outfile, level, pretty_print)
             outfile.write('<%ssynonym_organism>%s</%ssynonym_organism>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.synonym_organism), input_name='synonym_organism')), namespaceprefix_ , eol_))
+        if self.details is not None:
+            namespaceprefix_ = self.details_nsprefix_ + ':' if (UseCapturedNS_ and self.details_nsprefix_) else ''
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<%sdetails>%s</%sdetails>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.details), input_name='details')), namespaceprefix_ , eol_))
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -6566,6 +6586,15 @@ class base_source_type(GeneratedsSuper):
             self.database = value
             self.database = ' '.join(self.database.split())
             self.validate_databaseType(self.database)    # validate type databaseType
+        value = find_attr_value_('synthetically_produced', node)
+        if value is not None and 'synthetically_produced' not in already_processed:
+            already_processed.add('synthetically_produced')
+            if value in ('true', '1'):
+                self.synthetically_produced = True
+            elif value in ('false', '0'):
+                self.synthetically_produced = False
+            else:
+                raise_parse_error(node, 'Bad boolean attribute')
         value = find_attr_value_('xsi:type', node)
         if value is not None and 'xsi:type' not in already_processed:
             already_processed.add('xsi:type')
@@ -6596,6 +6625,12 @@ class base_source_type(GeneratedsSuper):
             value_ = self.gds_validate_string(value_, node, 'synonym_organism')
             self.synonym_organism = value_
             self.synonym_organism_nsprefix_ = child_.prefix
+        elif nodeName_ == 'details':
+            value_ = child_.text
+            value_ = self.gds_parse_string(value_, node, 'details')
+            value_ = self.gds_validate_string(value_, node, 'details')
+            self.details = value_
+            self.details_nsprefix_ = child_.prefix
 # end class base_source_type
 
 
@@ -6898,13 +6933,13 @@ class complex_source_type(base_source_type):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = base_source_type
-    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None, organ=None, tissue=None, cell=None, organelle=None, cellular_location=None, gds_collector_=None, **kwargs_):
+    def __init__(self, database=None, synthetically_produced=None, organism=None, strain=None, synonym_organism=None, details=None, organ=None, tissue=None, cell=None, organelle=None, cellular_location=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
-        super(globals().get("complex_source_type"), self).__init__(database, organism, strain, synonym_organism,  **kwargs_)
+        super(globals().get("complex_source_type"), self).__init__(database, synthetically_produced, organism, strain, synonym_organism, details,  **kwargs_)
         self.organ = organ
         self.organ_nsprefix_ = None
         self.tissue = tissue
@@ -7577,13 +7612,13 @@ class organelle_source_type(base_source_type):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = base_source_type
-    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None, organ=None, tissue=None, cell=None, organelle=None, cellular_location=None, gds_collector_=None, **kwargs_):
+    def __init__(self, database=None, synthetically_produced=None, organism=None, strain=None, synonym_organism=None, details=None, organ=None, tissue=None, cell=None, organelle=None, cellular_location=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
-        super(globals().get("organelle_source_type"), self).__init__(database, organism, strain, synonym_organism,  **kwargs_)
+        super(globals().get("organelle_source_type"), self).__init__(database, synthetically_produced, organism, strain, synonym_organism, details,  **kwargs_)
         self.organ = organ
         self.organ_nsprefix_ = None
         self.tissue = tissue
@@ -7928,13 +7963,13 @@ class sample_source_type(base_source_type):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = base_source_type
-    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None, organ=None, tissue=None, cell=None, gds_collector_=None, **kwargs_):
+    def __init__(self, database=None, synthetically_produced=None, organism=None, strain=None, synonym_organism=None, details=None, organ=None, tissue=None, cell=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
-        super(globals().get("sample_source_type"), self).__init__(database, organism, strain, synonym_organism,  **kwargs_)
+        super(globals().get("sample_source_type"), self).__init__(database, synthetically_produced, organism, strain, synonym_organism, details,  **kwargs_)
         self.organ = organ
         self.organ_nsprefix_ = None
         self.tissue = tissue
@@ -8203,13 +8238,13 @@ class tissue_source_type(base_source_type):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = base_source_type
-    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None, organ=None, tissue=None, gds_collector_=None, **kwargs_):
+    def __init__(self, database=None, synthetically_produced=None, organism=None, strain=None, synonym_organism=None, details=None, organ=None, tissue=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
-        super(globals().get("tissue_source_type"), self).__init__(database, organism, strain, synonym_organism,  **kwargs_)
+        super(globals().get("tissue_source_type"), self).__init__(database, synthetically_produced, organism, strain, synonym_organism, details,  **kwargs_)
         self.organ = organ
         self.organ_nsprefix_ = None
         self.tissue = tissue
@@ -8814,13 +8849,13 @@ class virus_host_type(base_source_type):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = base_source_type
-    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None, gds_collector_=None, **kwargs_):
+    def __init__(self, database=None, synthetically_produced=None, organism=None, strain=None, synonym_organism=None, details=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
-        super(globals().get("virus_host_type"), self).__init__(database, organism, strain, synonym_organism,  **kwargs_)
+        super(globals().get("virus_host_type"), self).__init__(database, synthetically_produced, organism, strain, synonym_organism, details,  **kwargs_)
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -9296,13 +9331,13 @@ class macromolecule_source_type(base_source_type):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = base_source_type
-    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None, organ=None, tissue=None, cell=None, organelle=None, cellular_location=None, gds_collector_=None, **kwargs_):
+    def __init__(self, database=None, synthetically_produced=None, organism=None, strain=None, synonym_organism=None, details=None, organ=None, tissue=None, cell=None, organelle=None, cellular_location=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
-        super(globals().get("macromolecule_source_type"), self).__init__(database, organism, strain, synonym_organism,  **kwargs_)
+        super(globals().get("macromolecule_source_type"), self).__init__(database, synthetically_produced, organism, strain, synonym_organism, details,  **kwargs_)
         self.organ = organ
         self.organ_nsprefix_ = None
         self.tissue = tissue
@@ -44195,13 +44230,13 @@ class cell_source_type(base_source_type):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = base_source_type
-    def __init__(self, database=None, organism=None, strain=None, synonym_organism=None, organ=None, tissue=None, cell=None, gds_collector_=None, **kwargs_):
+    def __init__(self, database=None, synthetically_produced=None, organism=None, strain=None, synonym_organism=None, details=None, organ=None, tissue=None, cell=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
         self.parent_object_ = kwargs_.get('parent_object_')
         self.ns_prefix_ = None
-        super(globals().get("cell_source_type"), self).__init__(database, organism, strain, synonym_organism,  **kwargs_)
+        super(globals().get("cell_source_type"), self).__init__(database, synthetically_produced, organism, strain, synonym_organism, details,  **kwargs_)
         self.organ = organ
         self.organ_nsprefix_ = None
         self.tissue = tissue

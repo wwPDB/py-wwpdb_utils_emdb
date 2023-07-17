@@ -109,7 +109,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.5.0"
+        XML_OUT_VERSION = "3.0.7.0"
 
         # Cif categories
         CITATION = "citation"
@@ -533,6 +533,7 @@ class CifEMDBTranslator(object):
             "_em_entity_assembly_naturalsource.strain": '<xs:element name="sci_species_strain" type="xs:string" minOccurs="0" maxOccurs="1"/>',
             "_em_entity_assembly_naturalsource.ncbi_tax_id": '<xs:attribute name="database">',
             "_em_entity_assembly_naturalsource.organism": '<xs:element name="organism" type="organism_type"/>',
+            "_em_entity_assembly_naturalsource.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
             "_em_entity_assembly_synthetic.organ": '<xs:element name="organ" type="xs:token" minOccurs="0"/>',
             "_em_entity_assembly_synthetic.tissue": '<xs:element name="tissue" type="xs:token" minOccurs="0">',
             "_em_entity_assembly_synthetic.cell": '<xs:element name="cell" type="xs:token" minOccurs="0">',
@@ -3412,7 +3413,7 @@ class CifEMDBTranslator(object):
                 @param cif_category: _entity_src_nat, _entity_src_gen, _pdbx_entity_src_syn or _em_entity_assembly_naturalsource
                 @param src_in:
                 XSD: <xs:complexType name="base_source_type"> has
-                    .. 1 attribute and
+                    .. 2 attribute and
                     .. 3 elements
                 """
 
@@ -3429,7 +3430,7 @@ class CifEMDBTranslator(object):
                         const.ENTITY_SRC_NAT: "pdbx_ncbi_taxonomy_id",
                         const.ENTITY_SRC_GEN: "pdbx_gene_src_ncbi_taxonomy_id",
                         const.PDBX_ENTITY_SRC_SYN: "ncbi_taxonomy_id",
-                        const.EM_ENTITY_ASSEMBLY_NATURALSOURCE: "ncbi_tax_id",
+                        const.EM_ENTITY_ASSEMBLY_NATURALSOURCE: "ncbi_tax_id"
                     }
                     if cif_category is not None:
                         cif_key = a_dict.get(cif_category, None)
@@ -3442,6 +3443,20 @@ class CifEMDBTranslator(object):
                             set_cif_value(src.set_database, cif_key, cif_category, cif_list=src_in, cif_value="NCBI")
 
                     return tax_id_in
+
+                def set_attr_synthetically_produced(src_in):
+                    """
+                    XSD: <xs:attribute name="synthetically_produced">/>
+                    CIF: _em_entity_assembly_source.source YES
+                    """
+                    source_dict = make_dict(const.EM_ENTITY_ASSEMBLY, "id")
+                    for i in source_dict.keys():
+                        assembly_type = get_cif_value("source", const.EM_ENTITY_ASSEMBLY, source_dict[i])
+                        assembly_id = get_cif_value("id", const.EM_ENTITY_ASSEMBLY, source_dict[i])
+                        if assembly_type == "SYNTHETIC":
+                            nat_src_id = get_cif_value("id", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, src_in)
+                            if assembly_id == nat_src_id:
+                                set_cif_value(src.set_synthetically_produced, cif_value=True)
 
                 def set_el_organism(src, tax_id_in, cif_category, src_in):
                     """
@@ -3545,13 +3560,28 @@ class CifEMDBTranslator(object):
                     Deprecated (2014-10-21)
                     """
 
+                def set_el_details(src, cif_category, src_in):
+                    """
+                    XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
+                    XPath: /element(*,base_source_type)/details
+                    CIF: _em_entity_assembly_naturalsource.details
+                    """
+                    det = get_cif_value("details", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, src_in)
+                    if det is not None:
+                        set_cif_value(src.set_details, "details", cif_category, cif_list=src_in)
+
+                # attribute 1
                 tax_id_in = set_attr_database(src, cif_category, src_in)
+                # attribute 2
+                set_attr_synthetically_produced(src_in)
                 # element 1
                 set_el_organism(src, tax_id_in, cif_category, src_in)
                 # element 2
                 set_el_strain(src, cif_category, src_in)
                 # element 3
                 set_el_synonym_organism()
+                # element 4
+                set_el_details(src, cif_category, src_in)
 
             def get_rec_exp_dict(ent_id_in, src_dicts, cif_cat_in, is_supramolecule):
                 """

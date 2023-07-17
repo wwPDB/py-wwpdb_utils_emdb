@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.6.0"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.7.0"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -791,6 +791,7 @@
             <xs:element name="organism" type="organism_type"/>
             <xs:element name="strain" type="xs:token" minOccurs="0"/>
             <xs:element name="synonym_organism" type="xs:token" minOccurs="0"/>
+            <xs:element name="details" type="xs:string" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="database">
             <xs:simpleType>
@@ -799,6 +800,7 @@
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
+        <xs:attribute name="synthetically_produced" type="xs:boolean"/>
     </xs:complexType>
     <xs:complexType name="organism_type">
         <xs:simpleContent>
