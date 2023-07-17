@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.7.1"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.7.2"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -2166,6 +2166,7 @@
                         <xs:enumeration value="JEOL 1200EXII"/>
                         <xs:enumeration value="JEOL 1230"/>
                         <xs:enumeration value="JEOL 1400"/>
+                        <xs:enumeration value="JEOL 1400/HR + YPS FEG"/>
                         <xs:enumeration value="JEOL 2000EX"/>
                         <xs:enumeration value="JEOL 2000EXII"/>
                         <xs:enumeration value="JEOL 2010"/>
