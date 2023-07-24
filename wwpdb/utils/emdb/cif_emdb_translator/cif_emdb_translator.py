@@ -11066,14 +11066,16 @@ class CifEMDBTranslator(object):
                                         CIF: _em_3d_fitting_list.entry_id  1EHZ
                                         pattern "d[dA-Za-z]{3}"
                                         """
+                                        db_name = get_cif_value("source_name", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         accession_code = get_cif_value("accession_code", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         access_code = get_cif_value("pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         pdb_pattern = re.compile(r"\d[\dA-Za-z]{3}|pdb_\d{5}[\dA-Za-z]{3}")
-                                        if access_code is not None:
-                                            if not pdb_pattern.match(str(access_code)):
-                                                txt = u"(%s) PDB id is not in the correct format" % access_code
-                                                self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
-                                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                                        if db_name == "PDB":
+                                            if access_code is not None:
+                                                if not pdb_pattern.match(str(access_code)):
+                                                    txt = u"(%s) PDB id is not in the correct format" % access_code
+                                                    self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
+                                                    self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                                         if accession_code is None and access_code is not None:
                                             set_cif_value(model.set_access_code, "pdb_entry_id", const.EM_3D_FITTING_LIST, cif_list=model_in)
                                         if accession_code is not None and access_code is None:
