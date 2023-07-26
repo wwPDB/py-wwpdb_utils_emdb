@@ -110,6 +110,7 @@ class CifEMDBTranslator(object):
         """
 
         XML_OUT_VERSION = "3.0.7.2"
+        XML_VERSION = XML_OUT_VERSION.replace('.', '_')
 
         # Cif categories
         CITATION = "citation"
@@ -975,6 +976,13 @@ class CifEMDBTranslator(object):
         self.entry_in_translation_log = None
         # create_xml enables the XML out to be created - if False the creation of the output file and its validation shouldn't happen
         self.create_xml = True
+        emdb.GenerateDSNamespaceDefs_ = {
+            "entry_type": 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+                          'xsi:noNamespaceSchemaLocation="https://ftp.ebi.ac.uk/pub/databases/em_ebi/emdb_related/emdb-schemas/'
+                          'emdb_schemas/v3/v{0}/emdb.xsd" '
+                          'version="{1}"'.format(self.Constants.XML_VERSION, self.Constants.XML_OUT_VERSION)
+        }
+        emdb.GenerateDSNamespaceTypePrefixes_ = {}
 
     @property
     def is_translation_log_empty(self):
