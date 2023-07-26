@@ -109,7 +109,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.7.2"
+        XML_OUT_VERSION = "3.0.8.0"
 
         # Cif categories
         CITATION = "citation"
@@ -4161,6 +4161,81 @@ class CifEMDBTranslator(object):
                         # element 4
                         set_el_ribosome_details()
 
+                    def set_protein_nucleic_acid_supramolecule_type(protein_na_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample):
+                        """
+                        XSD: <xs:element name="protein_nucleic_acid_supramolecule" substitutionGroup="supramolecule" type="protein_nucleic_acid_supramolecule_type"/> is
+                        .. an extension of base="base_supramolecule_type" with
+                        .. 1 attribute and
+                        .. a sequence of 3 elements
+                        """
+
+                        def set_attr_chimera(protein_na_sup_mol, sup_in):
+                            """
+                            XSD: <xs:attribute fixed="true" name="chimera" type="xs:boolean"/>
+                            CIF: _em_entity_assembly.chimera ?/YES (NO cannot be given)
+                            """
+                            set_cif_value(protein_na_sup_mol.set_chimera, "chimera", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, fmt=bool)
+
+                        def set_el_natural_source(protein_na_sup_mol, sup_mol_id_in, sup_mol_dicts):
+                            """
+                            XSD: <xs:element name="natural_source" type="protein_nucleic_acid_source_type" minOccurs="0"/> is
+                            .. an extension of base="base_source_type" and
+                            .. a sequence of organ, tissue, cell, organelle and cellular location
+                            """
+                            nat_src_dict_in = sup_mol_dicts["nat_src_dict_in"]
+                            if sup_mol_id_in in nat_src_dict_in:
+                                sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
+                                cmpx_dict = {"add_nat_src": True, "add_organ": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
+                                protein_nucleic_acid_natural_source_type_list = []
+                                attr_ncbis = []
+                                el_organisms = []
+                                el_strains = []
+                                for src_in in sup_mol_dict_in:
+                                    attr_ncbi = get_cif_value("ncbi_tax_id", const.EM_VIRUS_NATURAL_HOST, cif_list=src_in)
+                                    attr_ncbis.extend([attr_ncbi])
+                                    el_organism = get_cif_value("organism", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, cif_list=src_in)
+                                    el_organisms.extend([el_organism])
+                                    el_strain = get_cif_value("strain", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, cif_list=src_in)
+                                    el_strains.extend([el_strain])
+                                protein_nucleic_acid_natural_source_type_list.extend(attr_ncbis)
+                                protein_nucleic_acid_natural_source_type_list.extend(el_organisms)
+                                protein_nucleic_acid_natural_source_type_list.extend(el_strains)
+                                if any(x is not None for x in protein_nucleic_acid_natural_source_type_list):
+                                    cns = emdb.protein_nucleic_acid_source_type()
+                                    set_sup_mol_nat_src(cns, protein_na_sup_mol, const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, sup_mol_dict_in, cmpx_dict)
+
+                        def set_el_recombinant_expression(protein_na_sup_mol, sup_mol_id_in, rec_exp_dict_in):
+                            """
+                            XSD: <xs:element name="recombinant_expression" type="recombinant_source_type" maxOccurs="unbounded" minOccurs="0">
+                            """
+                            set_sup_mol_rec_exp(protein_na_sup_mol, sup_mol_id_in, rec_exp_dict_in, add_rec_exp=True)
+
+                        def set_el_molecular_weight(protein_na_sup_mol, sup_mol_id_in, s_mol_wt_dict_in):
+                            """
+                            XSD: <xs:element name="molecular_weight" type="molecular_weight_type" minOccurs="0" />
+                            """
+                            if sup_mol_id_in in s_mol_wt_dict_in:
+                                set_sup_mol_weight(protein_na_sup_mol, s_mol_wt_dict_in[sup_mol_id_in])
+
+                        # set up the supramolecule specific tagname explicitly
+                        # as DSgenerate doesn't provide it
+                        protein_na_type = get_cif_value("type", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+                        if protein_na_type == "PROTEIN":
+                            protein_na_sup_mol.original_tagname_ = "protein_supramolecule"
+                        elif protein_na_type == "NUCLEIC ACID":
+                            protein_na_sup_mol.original_tagname_ = "nucleic_acid_supramolecule"
+                        # the extension
+                        set_base_sup_mol(protein_na_sup_mol, sup_in, sup_mol_id_in, sample)
+                        # attribute 1
+                        set_attr_chimera(protein_na_sup_mol, sup_in)
+                        # element 1
+                        set_el_natural_source(protein_na_sup_mol, sup_mol_id_in, sup_mol_dicts)
+                        # element 2
+                        rec_exp_dict_in = get_rec_exp_dict(sup_mol_id_in, sup_mol_dicts, sup_in, is_supramolecule=True)
+                        set_el_recombinant_expression(protein_na_sup_mol, sup_mol_id_in, rec_exp_dict_in)
+                        # element 3
+                        set_el_molecular_weight(protein_na_sup_mol, sup_mol_id_in, sup_mol_dicts["s_mol_wt_dict_in"])
+
                     def set_virus_supramolecule_type(virus_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample):
                         """
                         XSD: <xs:element name="virus_supramolecule" substitutionGroup="supramolecule" type="virus_supramolecule_type"/>
@@ -4711,6 +4786,11 @@ class CifEMDBTranslator(object):
                                         set_complex_supramolecule_type(complex_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
                                         if complex_sup_mol.has__content():
                                             sup_list.add_supramolecule(complex_sup_mol)
+                                    elif sup_type in ["PROTEIN", "NUCLEIC ACID"]:
+                                        protein_na_sup_mol = emdb.protein_nucleic_acid_supramolecule_type()
+                                        set_protein_nucleic_acid_supramolecule_type(protein_na_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
+                                        if protein_na_sup_mol.has__content():
+                                            sup_list.add_supramolecule(protein_na_sup_mol)
                                     elif sup_type == "VIRUS":
                                         virus_sup_mol = emdb.virus_supramolecule_type()
                                         set_virus_supramolecule_type(virus_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
