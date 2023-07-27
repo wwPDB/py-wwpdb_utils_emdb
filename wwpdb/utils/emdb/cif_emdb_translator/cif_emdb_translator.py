@@ -110,6 +110,7 @@ class CifEMDBTranslator(object):
         """
 
         XML_OUT_VERSION = "3.0.8.0"
+        XML_VERSION = XML_OUT_VERSION.replace('.', '_')
 
         # Cif categories
         CITATION = "citation"
@@ -975,6 +976,13 @@ class CifEMDBTranslator(object):
         self.entry_in_translation_log = None
         # create_xml enables the XML out to be created - if False the creation of the output file and its validation shouldn't happen
         self.create_xml = True
+        emdb.GenerateDSNamespaceDefs_ = {
+            "entry_type": 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+                          'xsi:noNamespaceSchemaLocation="https://ftp.ebi.ac.uk/pub/databases/em_ebi/emdb_related/emdb-schemas/'
+                          'emdb_schemas/v3/v{0}/emdb.xsd" '
+                          'version="{1}"'.format(self.Constants.XML_VERSION, self.Constants.XML_OUT_VERSION)
+        }
+        emdb.GenerateDSNamespaceTypePrefixes_ = {}
 
     @property
     def is_translation_log_empty(self):
@@ -3454,7 +3462,7 @@ class CifEMDBTranslator(object):
                         assembly_type = get_cif_value("source", const.EM_ENTITY_ASSEMBLY, source_dict[i])
                         assembly_id = get_cif_value("id", const.EM_ENTITY_ASSEMBLY, source_dict[i])
                         if assembly_type == "SYNTHETIC":
-                            nat_src_id = get_cif_value("id", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, src_in)
+                            nat_src_id = get_cif_value("entity_assembly_id", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, src_in)
                             if assembly_id == nat_src_id:
                                 set_cif_value(src.set_synthetically_produced, cif_value=True)
 
