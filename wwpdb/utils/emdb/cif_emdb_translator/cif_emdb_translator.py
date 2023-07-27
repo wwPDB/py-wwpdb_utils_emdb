@@ -3462,7 +3462,7 @@ class CifEMDBTranslator(object):
                         assembly_type = get_cif_value("source", const.EM_ENTITY_ASSEMBLY, source_dict[i])
                         assembly_id = get_cif_value("id", const.EM_ENTITY_ASSEMBLY, source_dict[i])
                         if assembly_type == "SYNTHETIC":
-                            nat_src_id = get_cif_value("id", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, src_in)
+                            nat_src_id = get_cif_value("entity_assembly_id", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, src_in)
                             if assembly_id == nat_src_id:
                                 set_cif_value(src.set_synthetically_produced, cif_value=True)
 
