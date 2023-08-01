@@ -58,7 +58,7 @@ class Cif(object):
 
     def __getitem__(self, item):
         # Handle if abc in self.cif - key is an integer
-        if type(item) == int:
+        if type(item) == int:  # noqa: E721
             nl = self.__block.getObjNameList()
             if item >= len(nl):
                 raise StopIteration
