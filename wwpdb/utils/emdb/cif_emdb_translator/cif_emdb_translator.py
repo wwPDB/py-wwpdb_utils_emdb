@@ -58,7 +58,7 @@ class Cif(object):
 
     def __getitem__(self, item):
         # Handle if abc in self.cif - key is an integer
-        if type(item) == int:
+        if type(item) == int:  # noqa: E721
             nl = self.__block.getObjNameList()
             if item >= len(nl):
                 raise StopIteration
@@ -109,7 +109,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.7.2"
+        XML_OUT_VERSION = "3.0.8.0"
         XML_VERSION = XML_OUT_VERSION.replace('.', '_')
 
         # Cif categories
@@ -3469,7 +3469,7 @@ class CifEMDBTranslator(object):
                 def set_el_organism(src, tax_id_in, cif_category, src_in):
                     """
                     XSD: <xs:element name="organism" type="organism_type">
-                    CIF: _entity_src_nat.common_name
+                    CIF: _entity_src_nat.pdbx_organism_scientific
                     CIF: _entity_src_gen.pdbx_gene_src_scientific_name
                     CIF: _pdbx_entity_src_syn.organism_scientific
                     For some entries _entity_src_nat.common_name is not given but _entity_src_nat.pdbx_organism_scientific is
@@ -11378,22 +11378,6 @@ class CifEMDBTranslator(object):
                         if hf_map_list.has__content():
                             intrp.set_half_map_list(hf_map_list)
 
-                    def set_el_mask_list(intrp, map_dict_in):
-                        """
-                        XSD: <xs:element name="mask_list" minOccurs="0">
-                        """
-
-                        msk_map_list_in = map_dict_in[const.MAP_MASK] if const.MAP_MASK in map_dict_in else []
-                        msk_map_list = emdb.mask_listType()
-                        for msk_map_in in msk_map_list_in:
-                            msk_map = make_map(msk_map_in, get_canonical_map_name(msk_map_in, "MASK"))
-                            msk_file = msk_map.get_file()
-                            set_cif_value(msk_map.set_file, cif_value=msk_file)
-                            if msk_map.has__content():
-                                msk_map_list.add_mask(msk_map)
-                        if msk_map_list.has__content():
-                            intrp.set_mask_list(msk_map_list)
-
                     # element 1
                     set_el_modelling_list(intrp)
                     # element 2
@@ -11406,8 +11390,6 @@ class CifEMDBTranslator(object):
                     set_el_additional_map_list(intrp, map_dict_in)
                     # element 6
                     set_el_half_map_list(intrp, map_dict_in)
-                    # element 7
-                    set_el_mask_list(intrp, map_dict_in)
 
                 map_dict_in = make_list_of_dicts(const.EM_MAP, "type")
                 intrp = emdb.interpretation_type()
