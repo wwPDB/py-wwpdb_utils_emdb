@@ -841,19 +841,6 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    <xs:complexType name="protein_nucleic_acid_source_type">
-        <xs:complexContent>
-            <xs:extension base="base_source_type">
-                <xs:sequence>
-                    <xs:element name="organ" type="xs:token" minOccurs="0"/>
-                    <xs:element name="tissue" type="xs:token" minOccurs="0"/>
-                    <xs:element name="cell" type="xs:token" minOccurs="0"/>
-                    <xs:element name="organelle" type="xs:token" minOccurs="0"/>
-                    <xs:element name="cellular_location" type="xs:token" minOccurs="0"/>
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
     <xs:complexType name="recombinant_source_type">
         <xs:sequence>
             <xs:element name="recombinant_organism" type="organism_type"/>
@@ -913,26 +900,6 @@
             <xs:maxInclusive value="1000000000.0"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:element name="protein_supramolecule" substitutionGroup="supramolecule"
-        type="protein_nucleic_acid_supramolecule_type"/>
-    <xs:complexType name="protein_nucleic_acid_supramolecule_type">
-        <xs:complexContent>
-            <xs:extension base="base_supramolecule_type">
-                <xs:sequence>
-                    <xs:element name="natural_source" type="protein_nucleic_acid_source_type"
-                        minOccurs="0" maxOccurs="unbounded"/>
-                    <xs:element name="synthetic_source" type="protein_nucleic_acid_source_type"
-                        minOccurs="0" maxOccurs="unbounded"/>
-                    <xs:element name="recombinant_expression" type="recombinant_source_type"
-                        minOccurs="0" maxOccurs="unbounded"/>
-                    <xs:element name="molecular_weight" type="molecular_weight_type" minOccurs="0"/>
-                </xs:sequence>
-                <xs:attribute name="chimera" type="xs:boolean" fixed="true"/>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-    <xs:element name="nucleic_acid_supramolecule" substitutionGroup="supramolecule"
-        type="protein_nucleic_acid_supramolecule_type"/>
     <xs:element name="organelle_or_cellular_component_supramolecule"
         substitutionGroup="supramolecule" type="organelle_or_cellular_component_supramolecule_type"/>
     <xs:complexType name="organelle_or_cellular_component_supramolecule_type">
@@ -4027,13 +3994,6 @@
                 </xs:complexType>
             </xs:element>
             -->
-            <xs:element minOccurs="0" name="mask_list">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element maxOccurs="unbounded" name="mask" type="map_type"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="modelling_type">

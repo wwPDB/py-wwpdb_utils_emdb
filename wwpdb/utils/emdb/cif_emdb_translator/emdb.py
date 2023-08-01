@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Jul 26 14:19:12 2023 by generateDS.py version 2.41.5.
+# Generated Tue Aug  1 11:24:30 2023 by generateDS.py version 2.41.5.
 # Python 3.9.5 (default, May 18 2021, 12:31:01)  [Clang 10.0.0 ]
 #
 # Command line options:
@@ -7118,193 +7118,6 @@ class complex_source_type(base_source_type):
 # end class complex_source_type
 
 
-class protein_nucleic_acid_source_type(base_source_type):
-    __hash__ = GeneratedsSuper.__hash__
-    subclass = None
-    superclass = base_source_type
-    def __init__(self, database=None, synthetically_produced=None, organism=None, strain=None, synonym_organism=None, details=None, organ=None, tissue=None, cell=None, organelle=None, cellular_location=None, gds_collector_=None, **kwargs_):
-        self.gds_collector_ = gds_collector_
-        self.gds_elementtree_node_ = None
-        self.original_tagname_ = None
-        self.parent_object_ = kwargs_.get('parent_object_')
-        self.ns_prefix_ = None
-        super(globals().get("protein_nucleic_acid_source_type"), self).__init__(database, synthetically_produced, organism, strain, synonym_organism, details,  **kwargs_)
-        self.organ = organ
-        self.organ_nsprefix_ = None
-        self.tissue = tissue
-        self.tissue_nsprefix_ = None
-        self.cell = cell
-        self.cell_nsprefix_ = None
-        self.organelle = organelle
-        self.organelle_nsprefix_ = None
-        self.cellular_location = cellular_location
-        self.cellular_location_nsprefix_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, protein_nucleic_acid_source_type)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if protein_nucleic_acid_source_type.subclass:
-            return protein_nucleic_acid_source_type.subclass(*args_, **kwargs_)
-        else:
-            return protein_nucleic_acid_source_type(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_ns_prefix_(self):
-        return self.ns_prefix_
-    def set_ns_prefix_(self, ns_prefix):
-        self.ns_prefix_ = ns_prefix
-    def get_organ(self):
-        return self.organ
-    def set_organ(self, organ):
-        self.organ = organ
-    def get_tissue(self):
-        return self.tissue
-    def set_tissue(self, tissue):
-        self.tissue = tissue
-    def get_cell(self):
-        return self.cell
-    def set_cell(self, cell):
-        self.cell = cell
-    def get_organelle(self):
-        return self.organelle
-    def set_organelle(self, organelle):
-        self.organelle = organelle
-    def get_cellular_location(self):
-        return self.cellular_location
-    def set_cellular_location(self, cellular_location):
-        self.cellular_location = cellular_location
-    def has__content(self):
-        if (
-            self.organ is not None or
-            self.tissue is not None or
-            self.cell is not None or
-            self.organelle is not None or
-            self.cellular_location is not None or
-            super(protein_nucleic_acid_source_type, self).has__content()
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='protein_nucleic_acid_source_type', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('protein_nucleic_acid_source_type')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'protein_nucleic_acid_source_type':
-            name_ = self.original_tagname_
-        if UseCapturedNS_ and self.ns_prefix_:
-            namespaceprefix_ = self.ns_prefix_ + ':'
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='protein_nucleic_acid_source_type')
-        if self.has__content():
-            outfile.write('>%s' % (eol_, ))
-            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='protein_nucleic_acid_source_type', pretty_print=pretty_print)
-            showIndent(outfile, level, pretty_print)
-            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='protein_nucleic_acid_source_type'):
-        super(protein_nucleic_acid_source_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='protein_nucleic_acid_source_type')
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='protein_nucleic_acid_source_type', fromsubclass_=False, pretty_print=True):
-        super(protein_nucleic_acid_source_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.organ is not None:
-            namespaceprefix_ = self.organ_nsprefix_ + ':' if (UseCapturedNS_ and self.organ_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%sorgan>%s</%sorgan>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.organ), input_name='organ')), namespaceprefix_ , eol_))
-        if self.tissue is not None:
-            namespaceprefix_ = self.tissue_nsprefix_ + ':' if (UseCapturedNS_ and self.tissue_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%stissue>%s</%stissue>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.tissue), input_name='tissue')), namespaceprefix_ , eol_))
-        if self.cell is not None:
-            namespaceprefix_ = self.cell_nsprefix_ + ':' if (UseCapturedNS_ and self.cell_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%scell>%s</%scell>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.cell), input_name='cell')), namespaceprefix_ , eol_))
-        if self.organelle is not None:
-            namespaceprefix_ = self.organelle_nsprefix_ + ':' if (UseCapturedNS_ and self.organelle_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%sorganelle>%s</%sorganelle>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.organelle), input_name='organelle')), namespaceprefix_ , eol_))
-        if self.cellular_location is not None:
-            namespaceprefix_ = self.cellular_location_nsprefix_ + ':' if (UseCapturedNS_ and self.cellular_location_nsprefix_) else ''
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%scellular_location>%s</%scellular_location>%s' % (namespaceprefix_ , self.gds_encode(self.gds_format_string(quote_xml(self.cellular_location), input_name='cellular_location')), namespaceprefix_ , eol_))
-    def build(self, node, gds_collector_=None):
-        self.gds_collector_ = gds_collector_
-        if SaveElementTreeNode:
-            self.gds_elementtree_node_ = node
-        already_processed = set()
-        self.ns_prefix_ = node.prefix
-        self._buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self._buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
-        return self
-    def _buildAttributes(self, node, attrs, already_processed):
-        super(protein_nucleic_acid_source_type, self)._buildAttributes(node, attrs, already_processed)
-    def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
-        if nodeName_ == 'organ':
-            value_ = child_.text
-            if value_:
-                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
-            else:
-                value_ = ""
-            value_ = self.gds_parse_string(value_, node, 'organ')
-            value_ = self.gds_validate_string(value_, node, 'organ')
-            self.organ = value_
-            self.organ_nsprefix_ = child_.prefix
-        elif nodeName_ == 'tissue':
-            value_ = child_.text
-            if value_:
-                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
-            else:
-                value_ = ""
-            value_ = self.gds_parse_string(value_, node, 'tissue')
-            value_ = self.gds_validate_string(value_, node, 'tissue')
-            self.tissue = value_
-            self.tissue_nsprefix_ = child_.prefix
-        elif nodeName_ == 'cell':
-            value_ = child_.text
-            if value_:
-                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
-            else:
-                value_ = ""
-            value_ = self.gds_parse_string(value_, node, 'cell')
-            value_ = self.gds_validate_string(value_, node, 'cell')
-            self.cell = value_
-            self.cell_nsprefix_ = child_.prefix
-        elif nodeName_ == 'organelle':
-            value_ = child_.text
-            if value_:
-                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
-            else:
-                value_ = ""
-            value_ = self.gds_parse_string(value_, node, 'organelle')
-            value_ = self.gds_validate_string(value_, node, 'organelle')
-            self.organelle = value_
-            self.organelle_nsprefix_ = child_.prefix
-        elif nodeName_ == 'cellular_location':
-            value_ = child_.text
-            if value_:
-                value_ = re_.sub(String_cleanup_pat_, " ", value_).strip()
-            else:
-                value_ = ""
-            value_ = self.gds_parse_string(value_, node, 'cellular_location')
-            value_ = self.gds_validate_string(value_, node, 'cellular_location')
-            self.cellular_location = value_
-            self.cellular_location_nsprefix_ = child_.prefix
-        super(protein_nucleic_acid_source_type, self)._buildChildren(child_, node, nodeName_, True)
-# end class protein_nucleic_acid_source_type
-
-
 class recombinant_source_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
@@ -7635,193 +7448,6 @@ class molecular_weight_type(GeneratedsSuper):
             self.method = value_
             self.method_nsprefix_ = child_.prefix
 # end class molecular_weight_type
-
-
-class protein_nucleic_acid_supramolecule_type(base_supramolecule_type):
-    __hash__ = GeneratedsSuper.__hash__
-    subclass = None
-    superclass = base_supramolecule_type
-    def __init__(self, supramolecule_id=None, name=None, category=None, parent=None, macromolecule_list=None, details=None, number_of_copies=None, oligomeric_state=None, external_references=None, recombinant_exp_flag=None, chimera=True, natural_source=None, synthetic_source=None, recombinant_expression=None, molecular_weight=None, gds_collector_=None, **kwargs_):
-        self.gds_collector_ = gds_collector_
-        self.gds_elementtree_node_ = None
-        self.original_tagname_ = None
-        self.parent_object_ = kwargs_.get('parent_object_')
-        self.ns_prefix_ = None
-        super(globals().get("protein_nucleic_acid_supramolecule_type"), self).__init__(supramolecule_id, name, category, parent, macromolecule_list, details, number_of_copies, oligomeric_state, external_references, recombinant_exp_flag,  **kwargs_)
-        self.chimera = _cast(bool, chimera)
-        self.chimera_nsprefix_ = None
-        if natural_source is None:
-            self.natural_source = []
-        else:
-            self.natural_source = natural_source
-        self.natural_source_nsprefix_ = None
-        if synthetic_source is None:
-            self.synthetic_source = []
-        else:
-            self.synthetic_source = synthetic_source
-        self.synthetic_source_nsprefix_ = None
-        if recombinant_expression is None:
-            self.recombinant_expression = []
-        else:
-            self.recombinant_expression = recombinant_expression
-        self.recombinant_expression_nsprefix_ = None
-        self.molecular_weight = molecular_weight
-        self.molecular_weight_nsprefix_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, protein_nucleic_acid_supramolecule_type)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if protein_nucleic_acid_supramolecule_type.subclass:
-            return protein_nucleic_acid_supramolecule_type.subclass(*args_, **kwargs_)
-        else:
-            return protein_nucleic_acid_supramolecule_type(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_ns_prefix_(self):
-        return self.ns_prefix_
-    def set_ns_prefix_(self, ns_prefix):
-        self.ns_prefix_ = ns_prefix
-    def get_natural_source(self):
-        return self.natural_source
-    def set_natural_source(self, natural_source):
-        self.natural_source = natural_source
-    def add_natural_source(self, value):
-        self.natural_source.append(value)
-    def insert_natural_source_at(self, index, value):
-        self.natural_source.insert(index, value)
-    def replace_natural_source_at(self, index, value):
-        self.natural_source[index] = value
-    def get_synthetic_source(self):
-        return self.synthetic_source
-    def set_synthetic_source(self, synthetic_source):
-        self.synthetic_source = synthetic_source
-    def add_synthetic_source(self, value):
-        self.synthetic_source.append(value)
-    def insert_synthetic_source_at(self, index, value):
-        self.synthetic_source.insert(index, value)
-    def replace_synthetic_source_at(self, index, value):
-        self.synthetic_source[index] = value
-    def get_recombinant_expression(self):
-        return self.recombinant_expression
-    def set_recombinant_expression(self, recombinant_expression):
-        self.recombinant_expression = recombinant_expression
-    def add_recombinant_expression(self, value):
-        self.recombinant_expression.append(value)
-    def insert_recombinant_expression_at(self, index, value):
-        self.recombinant_expression.insert(index, value)
-    def replace_recombinant_expression_at(self, index, value):
-        self.recombinant_expression[index] = value
-    def get_molecular_weight(self):
-        return self.molecular_weight
-    def set_molecular_weight(self, molecular_weight):
-        self.molecular_weight = molecular_weight
-    def get_chimera(self):
-        return self.chimera
-    def set_chimera(self, chimera):
-        self.chimera = chimera
-    def has__content(self):
-        if (
-            self.natural_source or
-            self.synthetic_source or
-            self.recombinant_expression or
-            self.molecular_weight is not None or
-            super(protein_nucleic_acid_supramolecule_type, self).has__content()
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='protein_nucleic_acid_supramolecule_type', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('protein_nucleic_acid_supramolecule_type')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'protein_nucleic_acid_supramolecule_type':
-            name_ = self.original_tagname_
-        if UseCapturedNS_ and self.ns_prefix_:
-            namespaceprefix_ = self.ns_prefix_ + ':'
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='protein_nucleic_acid_supramolecule_type')
-        if self.has__content():
-            outfile.write('>%s' % (eol_, ))
-            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='protein_nucleic_acid_supramolecule_type', pretty_print=pretty_print)
-            showIndent(outfile, level, pretty_print)
-            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='protein_nucleic_acid_supramolecule_type'):
-        super(protein_nucleic_acid_supramolecule_type, self)._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='protein_nucleic_acid_supramolecule_type')
-        if not self.chimera and 'chimera' not in already_processed:
-            already_processed.add('chimera')
-            outfile.write(' chimera="%s"' % self.gds_format_boolean(self.chimera, input_name='chimera'))
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='protein_nucleic_acid_supramolecule_type', fromsubclass_=False, pretty_print=True):
-        super(protein_nucleic_acid_supramolecule_type, self)._exportChildren(outfile, level, namespaceprefix_, namespacedef_, name_, True, pretty_print=pretty_print)
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        for natural_source_ in self.natural_source:
-            namespaceprefix_ = self.natural_source_nsprefix_ + ':' if (UseCapturedNS_ and self.natural_source_nsprefix_) else ''
-            natural_source_.export(outfile, level, namespaceprefix_, namespacedef_='', name_='natural_source', pretty_print=pretty_print)
-        for synthetic_source_ in self.synthetic_source:
-            namespaceprefix_ = self.synthetic_source_nsprefix_ + ':' if (UseCapturedNS_ and self.synthetic_source_nsprefix_) else ''
-            synthetic_source_.export(outfile, level, namespaceprefix_, namespacedef_='', name_='synthetic_source', pretty_print=pretty_print)
-        for recombinant_expression_ in self.recombinant_expression:
-            namespaceprefix_ = self.recombinant_expression_nsprefix_ + ':' if (UseCapturedNS_ and self.recombinant_expression_nsprefix_) else ''
-            recombinant_expression_.export(outfile, level, namespaceprefix_, namespacedef_='', name_='recombinant_expression', pretty_print=pretty_print)
-        if self.molecular_weight is not None:
-            namespaceprefix_ = self.molecular_weight_nsprefix_ + ':' if (UseCapturedNS_ and self.molecular_weight_nsprefix_) else ''
-            self.molecular_weight.export(outfile, level, namespaceprefix_, namespacedef_='', name_='molecular_weight', pretty_print=pretty_print)
-    def build(self, node, gds_collector_=None):
-        self.gds_collector_ = gds_collector_
-        if SaveElementTreeNode:
-            self.gds_elementtree_node_ = node
-        already_processed = set()
-        self.ns_prefix_ = node.prefix
-        self._buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self._buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
-        return self
-    def _buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('chimera', node)
-        if value is not None and 'chimera' not in already_processed:
-            already_processed.add('chimera')
-            if value in ('true', '1'):
-                self.chimera = True
-            elif value in ('false', '0'):
-                self.chimera = False
-            else:
-                raise_parse_error(node, 'Bad boolean attribute')
-        super(protein_nucleic_acid_supramolecule_type, self)._buildAttributes(node, attrs, already_processed)
-    def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
-        if nodeName_ == 'natural_source':
-            obj_ = protein_nucleic_acid_source_type.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.natural_source.append(obj_)
-            obj_.original_tagname_ = 'natural_source'
-        elif nodeName_ == 'synthetic_source':
-            obj_ = protein_nucleic_acid_source_type.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.synthetic_source.append(obj_)
-            obj_.original_tagname_ = 'synthetic_source'
-        elif nodeName_ == 'recombinant_expression':
-            obj_ = recombinant_source_type.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.recombinant_expression.append(obj_)
-            obj_.original_tagname_ = 'recombinant_expression'
-        elif nodeName_ == 'molecular_weight':
-            obj_ = molecular_weight_type.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.molecular_weight = obj_
-            obj_.original_tagname_ = 'molecular_weight'
-        super(protein_nucleic_acid_supramolecule_type, self)._buildChildren(child_, node, nodeName_, True)
-# end class protein_nucleic_acid_supramolecule_type
 
 
 class organelle_or_cellular_component_supramolecule_type(base_supramolecule_type):
@@ -22060,7 +21686,7 @@ class interpretation_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, modelling_list=None, figure_list=None, segmentation_list=None, slices_list=None, additional_map_list=None, half_map_list=None, mask_list=None, gds_collector_=None, **kwargs_):
+    def __init__(self, modelling_list=None, figure_list=None, segmentation_list=None, slices_list=None, additional_map_list=None, half_map_list=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -22078,8 +21704,6 @@ class interpretation_type(GeneratedsSuper):
         self.additional_map_list_nsprefix_ = None
         self.half_map_list = half_map_list
         self.half_map_list_nsprefix_ = None
-        self.mask_list = mask_list
-        self.mask_list_nsprefix_ = None
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
@@ -22119,10 +21743,6 @@ class interpretation_type(GeneratedsSuper):
         return self.half_map_list
     def set_half_map_list(self, half_map_list):
         self.half_map_list = half_map_list
-    def get_mask_list(self):
-        return self.mask_list
-    def set_mask_list(self, mask_list):
-        self.mask_list = mask_list
     def has__content(self):
         if (
             self.modelling_list is not None or
@@ -22130,8 +21750,7 @@ class interpretation_type(GeneratedsSuper):
             self.segmentation_list is not None or
             self.slices_list is not None or
             self.additional_map_list is not None or
-            self.half_map_list is not None or
-            self.mask_list is not None
+            self.half_map_list is not None
         ):
             return True
         else:
@@ -22184,9 +21803,6 @@ class interpretation_type(GeneratedsSuper):
         if self.half_map_list is not None:
             namespaceprefix_ = self.half_map_list_nsprefix_ + ':' if (UseCapturedNS_ and self.half_map_list_nsprefix_) else ''
             self.half_map_list.export(outfile, level, namespaceprefix_, namespacedef_='', name_='half_map_list', pretty_print=pretty_print)
-        if self.mask_list is not None:
-            namespaceprefix_ = self.mask_list_nsprefix_ + ':' if (UseCapturedNS_ and self.mask_list_nsprefix_) else ''
-            self.mask_list.export(outfile, level, namespaceprefix_, namespacedef_='', name_='mask_list', pretty_print=pretty_print)
     def build(self, node, gds_collector_=None):
         self.gds_collector_ = gds_collector_
         if SaveElementTreeNode:
@@ -22231,11 +21847,6 @@ class interpretation_type(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.half_map_list = obj_
             obj_.original_tagname_ = 'half_map_list'
-        elif nodeName_ == 'mask_list':
-            obj_ = mask_listType.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.mask_list = obj_
-            obj_.original_tagname_ = 'mask_list'
 # end class interpretation_type
 
 
@@ -26271,16 +25882,6 @@ class supramolecule_listType(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.supramolecule.append(obj_)
             obj_.original_tagname_ = 'complex_supramolecule'
-        elif nodeName_ == 'protein_supramolecule':
-            obj_ = protein_nucleic_acid_supramolecule_type.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.supramolecule.append(obj_)
-            obj_.original_tagname_ = 'protein_supramolecule'
-        elif nodeName_ == 'nucleic_acid_supramolecule':
-            obj_ = protein_nucleic_acid_supramolecule_type.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.supramolecule.append(obj_)
-            obj_.original_tagname_ = 'nucleic_acid_supramolecule'
         elif nodeName_ == 'organelle_or_cellular_component_supramolecule':
             obj_ = organelle_or_cellular_component_supramolecule_type.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
@@ -43794,108 +43395,6 @@ class half_map_listType(GeneratedsSuper):
 # end class half_map_listType
 
 
-class mask_listType(GeneratedsSuper):
-    __hash__ = GeneratedsSuper.__hash__
-    subclass = None
-    superclass = None
-    def __init__(self, mask=None, gds_collector_=None, **kwargs_):
-        self.gds_collector_ = gds_collector_
-        self.gds_elementtree_node_ = None
-        self.original_tagname_ = None
-        self.parent_object_ = kwargs_.get('parent_object_')
-        self.ns_prefix_ = None
-        if mask is None:
-            self.mask = []
-        else:
-            self.mask = mask
-        self.mask_nsprefix_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, mask_listType)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if mask_listType.subclass:
-            return mask_listType.subclass(*args_, **kwargs_)
-        else:
-            return mask_listType(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_ns_prefix_(self):
-        return self.ns_prefix_
-    def set_ns_prefix_(self, ns_prefix):
-        self.ns_prefix_ = ns_prefix
-    def get_mask(self):
-        return self.mask
-    def set_mask(self, mask):
-        self.mask = mask
-    def add_mask(self, value):
-        self.mask.append(value)
-    def insert_mask_at(self, index, value):
-        self.mask.insert(index, value)
-    def replace_mask_at(self, index, value):
-        self.mask[index] = value
-    def has__content(self):
-        if (
-            self.mask
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='mask_listType', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('mask_listType')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None and name_ == 'mask_listType':
-            name_ = self.original_tagname_
-        if UseCapturedNS_ and self.ns_prefix_:
-            namespaceprefix_ = self.ns_prefix_ + ':'
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespaceprefix_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self._exportAttributes(outfile, level, already_processed, namespaceprefix_, name_='mask_listType')
-        if self.has__content():
-            outfile.write('>%s' % (eol_, ))
-            self._exportChildren(outfile, level + 1, namespaceprefix_, namespacedef_, name_='mask_listType', pretty_print=pretty_print)
-            showIndent(outfile, level, pretty_print)
-            outfile.write('</%s%s>%s' % (namespaceprefix_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def _exportAttributes(self, outfile, level, already_processed, namespaceprefix_='', name_='mask_listType'):
-        pass
-    def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='mask_listType', fromsubclass_=False, pretty_print=True):
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        for mask_ in self.mask:
-            namespaceprefix_ = self.mask_nsprefix_ + ':' if (UseCapturedNS_ and self.mask_nsprefix_) else ''
-            mask_.export(outfile, level, namespaceprefix_, namespacedef_='', name_='mask', pretty_print=pretty_print)
-    def build(self, node, gds_collector_=None):
-        self.gds_collector_ = gds_collector_
-        if SaveElementTreeNode:
-            self.gds_elementtree_node_ = node
-        already_processed = set()
-        self.ns_prefix_ = node.prefix
-        self._buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self._buildChildren(child, node, nodeName_, gds_collector_=gds_collector_)
-        return self
-    def _buildAttributes(self, node, attrs, already_processed):
-        pass
-    def _buildChildren(self, child_, node, nodeName_, fromsubclass_=False, gds_collector_=None):
-        if nodeName_ == 'mask':
-            obj_ = map_type.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.mask.append(obj_)
-            obj_.original_tagname_ = 'mask'
-# end class mask_listType
-
-
 class initial_modelType(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
@@ -44776,11 +44275,9 @@ GDSClassesMapping = {
     'ligand': ligand_macromolecule_type,
     'macromolecule': base_macromolecule_type,
     'microscopy': base_microscopy_type,
-    'nucleic_acid_supramolecule': protein_nucleic_acid_supramolecule_type,
     'organelle_or_cellular_component_supramolecule': organelle_or_cellular_component_supramolecule_type,
     'other_macromolecule': other_macromolecule_type,
     'protein_or_peptide': protein_or_peptide_macromolecule_type,
-    'protein_supramolecule': protein_nucleic_acid_supramolecule_type,
     'rna': rna_macromolecule_type,
     'saccharide': saccharide_macromolecule_type,
     'sample_supramolecule': sample_supramolecule_type,
@@ -45168,7 +44665,6 @@ __all__ = [
     "macromolecules_and_complexes_type",
     "map_statistics_type",
     "map_type",
-    "mask_listType",
     "max",
     "max_angleType",
     "microscopy_centerType",
@@ -45213,8 +44709,6 @@ __all__ = [
     "pressureType",
     "primary_citationType",
     "projection_matching_processingType",
-    "protein_nucleic_acid_source_type",
-    "protein_nucleic_acid_supramolecule_type",
     "protein_or_peptide_macromolecule_type",
     "radiusType",
     "random_conical_tiltType",
