@@ -73,7 +73,8 @@ class EMDBXmlToCifTranslator(object):
 
     def translate_xml_to_cif(self, input_xml_file, output_cif_file=None):
         """
-        The method reads 'input_xml_file' and writes the result of a xml-to-cif translation of data from 'input_xml_file' into 'output_mmcif_file'
+        The method reads 'input_xml_file' and writes the result of a xml-to-cif translation of data from
+        'input_xml_file' into 'output_mmcif_file'
 
         :param input_xml_file: an XML file; EMDB entry header file; a v3.x EMDB file
         :param output_cif_file: a cif file
@@ -81,7 +82,8 @@ class EMDBXmlToCifTranslator(object):
         """
         translated_successfully = False
 
-        # before translating starts, the input file needs to be read; at this point the input file is still not read and the flag should not be set
+        # before translating starts, the input file needs to be read;
+        # at this point the input file is still not read and the flag should not be set
         if not self.__emdb_header_file_read:
             # data object has been created and initialised when the translator object was created
             if self.data:
@@ -95,10 +97,12 @@ class EMDBXmlToCifTranslator(object):
                             if self.logging and self.translation_log:
                                 self.__logger_set = True
                     if not self.__emdb_header_file_translated:
-                        # Already set for a translation: input XML file is read, EMDB meta data object created and logger established
+                        # Already set for a translation: input XML file is read, EMDB metadata object created and
+                        # the logger established
                         # Still needed: output filename and cif object
                         if not output_cif_file:
-                            # If the output file is not give a default output file name is used; output file is always written
+                            # If the output file is not give a default output file name is used;
+                            # output file is always written
                             output_cif_file = self.DEFAULT_OUTPUT_FILENAME
                         # Create a CIF object within the EMDBData object to write the output mmcif file
                         self.data.cif = CIF(output_cif_file)

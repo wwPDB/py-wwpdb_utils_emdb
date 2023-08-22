@@ -37,7 +37,7 @@ class CIF(object):
     def add_container(self, container_id):
         """
         This method provides the basic functionality to set up a container
-        :param container_id: a string; an mmcif category e.g. 'emd_admin'
+        :param container_id: a string; mmcif category e.g. 'emd_admin'
         :return:
         """
         added = False
@@ -52,7 +52,7 @@ class CIF(object):
     def prepare_container(self, container_id):
         """
         Creates a container is it doesn't exist using either provided value or the dummy value
-        :param container_id: a string; an mmcif category e.g. 'emd_admin'
+        :param container_id: a string; mmcif category e.g. 'emd_admin'
         :return:
         """
         if not self.__container:
@@ -64,13 +64,13 @@ class CIF(object):
     def add_category(self, category_id, items):
         """
         This method creates a data category object, adds all items to it and appends it to the container
-        :param category_id: a string; an mmcif category e.g. 'emd_admin'
+        :param category_id: a string; mmcif category e.g. 'emd_admin'
         :param items: a list of strings; each element in the list is an item of mmcif category as defined by category_id
         :return: a list of strings; each element represents a value for the corresponding element in data_items
         """
         category = DataCategory(category_id)
         for item in items:
-                category.appendAttribute(item)
+            category.appendAttribute(item)
         self.__container.append(category)
 
     #
@@ -97,7 +97,7 @@ class CIF(object):
     def insert_data(self, category_id, data_list):
         """
         This method appends the data in data_list to the container labeled category_id
-        :param category_id: a string; an mmcif category e.g. 'emd_admin'
+        :param category_id: a string; mmcif category e.g. 'emd_admin'
         :param data_list:
         :return:
         """
@@ -106,21 +106,23 @@ class CIF(object):
             return
         if any(isinstance(el, list) for el in data_list):
             if all(isinstance(i, int) for i in data_list[0]):
-                id = [x for x in data_list[0]]
-                new_list = [list(t) for t in zip(id, data_list[1])]
+                cat_id = [x for x in data_list[0]]
+                new_list = [list(t) for t in zip(cat_id, data_list[1])]
                 cat_obj.extend(new_list)
             else:
-                updated_list = [v for i in data_list for v in (i if isinstance(i,list) else [i])]
+                updated_list = [v for i in data_list for v in (i if isinstance(i, list) else [i])]
                 cat_obj.append(updated_list)
         else:
             cat_obj.append(data_list)
         print("ENDMAP", cat_obj)
+
     def insert_data_into_category(self, category_id, data_items, data_list):
         """
         Helper method: calls two other methods, one to add a category and its items into a container and
         another to insert the data for the category items
-        :param category_id: a string; an mmcif category e.g. 'emd_admin'
-        :param data_items: a list of strings; each element in the list is an item of mmcif category as defined by category_id
+        :param category_id: a string; mmcif category e.g. 'emd_admin'
+        :param data_items: a list of strings; each element in the list is an item of mmcif category as
+                           defined by category_id
         :param data_list: a list of strings; each element represents a value for the corresponding element in data_items
         :return:
         """

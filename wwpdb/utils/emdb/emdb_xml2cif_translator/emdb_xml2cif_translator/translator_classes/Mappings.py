@@ -5,10 +5,10 @@ import emdb_xml2cif_translator.input_files
 class Mappings(object):
     """
     This class contains tools and containers for serving mappings described in the input file MAPPINGS_FILENAME.
-    Its tools manage the load of the mappings from MAPPINGS_FILENAME to populate a dictionary with the mappings logic
+    Its tools manage the load of the mappings from MAPPINGS_FILENAME to populate a dictionary with the "mappings" logic
      (self.mappings_logic).
-    The logic is to be used when preparing a container (dictionary) of values for the CIF output in a combination with the values
-    read from the XML input file that is to be converted into a CIF file.
+    The logic is to be used when preparing a container (dictionary) of values for the CIF output
+     in a combination with the values read from the XML input file that is to be converted into a CIF file.
     """
     # input text file containing the mapping logic from any EMDB v3.x XML header file into an _emd mmcif file
     MAPPINGS_LOGIC_FILENAME = 'emdb-xml2cif-mappings.txt'
@@ -28,10 +28,9 @@ class Mappings(object):
     # other constants
     XML_VALUE_UPPER = 'XML_VALUE'
     IDs = 'IDs'
-    N = 'N' ##for index
-    S = 'S' ##for splitting into items and data
-    B = 'B' ##for boolean
-    D = 'D' ##for writting the XML_VALUE into a dictionary
+    N = 'N'
+    B = 'B'
+    D = 'D'
 
     def __init__(self):
         """
@@ -59,18 +58,21 @@ class Mappings(object):
         a. and b. are found in one mapping (a line of text) from MAPPINGS_LOGIC_FILENAME (one whole line of text)
         e.g. emd.admin.title emd_admin.title.XML_VALUE
 
-        Populates the mappings logic dictionary with a call to the class method load_mappings()
+        Populates the "mappings" logic dictionary with a call to the class method load_mappings()
         """
         # Mapping logic is a dictionary of dictionaries (one for each mapping)
         self.mappings = {}
-        # read the input text file with the mapping logic and populate the mappings logic dictionary
+        # read the input text file with the mapping logic and populate the "mappings" logic dictionary
         self.load_mappings()
 
     def get_mapping_logic_value(self, mapping_logic, mapping_logic_key):
         """
         Method to be called by other classes. Providing a key for a mapping logic, its value is returned
-        :param mapping_logic: a constant defined in this class; a value from the first column from the input text file containing log. e.g. MAP_EMD_EMDB_ID
-        :param mapping_logic_key: a constant defined in this class and contained in each mapping logic; can be {XML_MAPPING, XML_VALUE, EXTRAS, CIF_MAPPINGS}
+        :param mapping_logic: a constant defined in this class;
+                              a value from the first column from the input text file containing log.
+                              e.g. MAP_EMD_EMDB_ID
+        :param mapping_logic_key: a constant defined in this class and contained in each mapping logic;
+                                  can be {XML_MAPPING, XML_VALUE, EXTRAS, CIF_MAPPINGS}
         :return: The value for mapping_logic_key within mapping_logic; None if mapping_logic doesn't exist
         """
         # get the dictionary containing mapping for requested mapping logic
@@ -149,12 +151,14 @@ class Mappings(object):
 
     def load_mappings(self):
         """
-        This method opens and reads the text file containing the xml to mmcif emd mappings located in the input_files project folder
+        This method opens and reads the text file containing the xml to mmcif emd mappings
+        located in the input_files project folder
         :param self:
         :return loaded: a boolean; True if the input text file can be opened and is read
         """
         loaded = False
-        mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__), self.MAPPINGS_LOGIC_FILENAME)
+        mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__),
+                                     self.MAPPINGS_LOGIC_FILENAME)
         f = open(mappings_file, 'r')
         if f:
             while True:
@@ -168,7 +172,8 @@ class Mappings(object):
 
     def read_one_mapping(self, line):
         """
-        Helper method; Interprets one line from MAPPINGS_LOGIC_FILENAME and stores the logic and values into mappings logic dictionary
+        Helper method.
+        Interprets one line from MAPPINGS_LOGIC_FILENAME and stores the logic and values into mappings logic dictionary
         :param line: a string; one line of text from the MAPPINGS_LOGIC_FILENAME file; it's not an empty string;
                     contains the logic of how one xml attribute or element is to be represented in the mmcif file;
                     xml mapping to cif mapping is a one-to-many relationship;
@@ -177,8 +182,9 @@ class Mappings(object):
                         where
                         'emd.admin.title' is the representation of the title sub-element within the XML input file
                         and
-                        'emd_admin.title.XML_VALUE' represents a notation where the item 'title' will be written within the _emd_admin category and
-                                                    it's value is what is read from 'emd.admin.title'
+                        'emd_admin.title.XML_VALUE' represents a notation where
+                        the item 'title' will be written within the _emd_admin category and
+                        its value is what is read from 'emd.admin.title'
         :return read: a boolean; True if the mapping logic given in line is read
         """
         read = False
@@ -246,10 +252,13 @@ class Mappings(object):
 
     def read_cif_mappings(self, input_cif_mappings):
         """
-        Helper method. Reads all cif mappings given in one line within the text input file containing all xml to cif mappings logic
-        :param is_list: a boolean; True if the data will be a list
+        Helper method.
+        Reads all cif mappings given in one line within the text input file containing all xml to cif mappings logic
+
         :param input_cif_mappings: a string representing cif mapping as 'cif category'.'cif item 1'.'value to use'
-        :return cif_mappings: a dictionary containing dictionaries (one for each cif category found in the cif mappings)
+        :return cif_mappings: a dictionary;
+                              contains dictionaries (one for each cif category found in the cif mappings)
+
                             cif_mappings = {
                                 'cif category': {
                                     self.ITEMS: ['cif item 1'],
@@ -265,9 +274,11 @@ class Mappings(object):
                                     self.DATA: [EMDB, XML_VALUE]
                                 }
                             }
-                            where XML_VALUE is the value read from emd@emdb_id (the value given for 'emdb_id attribute in the 'emd' element)
-                            e.g for case where the cif mappings are different cif categories
-                            'emd.admin.sites.deposition emd_admin.deposition_site.XML_VALUE pdbx_database_status.deposit_site.XML_VALUE'
+            where XML_VALUE is the value read from emd@emdb_id
+            (the value given for 'emdb_id attribute in the 'emd' element)
+
+            e.g. for case where the cif mappings are different cif categories
+            'emd.admin.sites.deposition emd_admin.deposition_site.XML_VALUE pdbx_database_status.deposit_site.XML_VALUE'
                             cif_mappings = {
                                 emd_admin: {
                                     self.ITEMS: [deposition_site],
@@ -314,7 +325,7 @@ class Mappings(object):
 
     def map_xml_value_to_code(self, xml_value, xml_mapping_code, optional_value=None):
         """
-        This method stores the value for the XML element or attribute for the mapping that corresponds to the mapping code
+        Stores the value for the XML element or attribute for the mapping that corresponds to the mapping code
         :param optional_value:
         :param xml_value: a string; a value from XML
         :param xml_mapping_code: a string; its format is
@@ -361,6 +372,3 @@ class Mappings(object):
             value_set = True
 
         return value_set
-
-
-
