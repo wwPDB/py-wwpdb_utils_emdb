@@ -5,6 +5,7 @@ import emdb_xml2cif_translator.input_files
 from emdb_xml2cif_translator.translator_classes.EMDBXmlToCifTranslator import EMDBXmlToCifTranslator
 from emdb_xml2cif_translator.translator_classes.LoggingUtil import LoggingUtil
 
+
 def main():
     """
     This script calls EMDBXmlToCifTranslator to translate
@@ -37,7 +38,7 @@ def main():
         "info": {
             "log_file": {
                 "log": True,
-                "name": "/Users/amudha/IdeaProjects/py-wwpdb_utils_emdb/wwpdb/utils/emdb/emdb_xml2cif_translator/emdb_xml2cif_translator/logs/info.log"
+                "name": "info.log"
             },
             "log_stream": {
                 "log": True,
@@ -47,7 +48,7 @@ def main():
         "warn": {
             "log_file": {
                 "log": True,
-                "name": "/Users/amudha/IdeaProjects/py-wwpdb_utils_emdb/wwpdb/utils/emdb/emdb_xml2cif_translator/emdb_xml2cif_translator/logs/warn.log"
+                "name": "warn.log"
             },
             "log_stream": {
                 "log": True,
@@ -57,7 +58,7 @@ def main():
         "error": {
             "log_file": {
                 "log": True,
-                "name": "/Users/amudha/IdeaProjects/py-wwpdb_utils_emdb/wwpdb/utils/emdb/emdb_xml2cif_translator/emdb_xml2cif_translator/logs/error.log"
+                "name": "error.log"
             },
             "log_stream": {
                 "log": True,

@@ -140,13 +140,11 @@ class Mappings(object):
                                     if dict_key == "ASTM":
                                         new_items.append("journal_id_ASTM")
                                 dict_data = list(value.values())
-                                print(new_items, dict_data)
                                 cif_mappings.get(a_cif_mapping_key).get(self.ITEMS).extend(new_items)
                                 cif_mappings.get(a_cif_mapping_key).get(self.DATA).clear()
                                 cif_mappings.get(a_cif_mapping_key).get(self.DATA).extend(dict_data)
 
                 values_set = True
-                # print("END", cif_mappings)
         return values_set
 
     def load_mappings(self):
