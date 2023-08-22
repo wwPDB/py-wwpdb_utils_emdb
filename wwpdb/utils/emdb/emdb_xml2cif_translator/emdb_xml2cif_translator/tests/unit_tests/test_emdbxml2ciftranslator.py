@@ -1,6 +1,8 @@
 
 import pytest
 import sys
+sys.path.append('/wwpdb/utils/emdb/emdb_xml2cif_translator/translator_classes')
+
 from translator_classes.EMDBXmlToCifTranslator import EMDBXmlToCifTranslator
 from translator_classes.CIF import CIF
 from translator_classes.EMDBMetadata import EMDBMetadata

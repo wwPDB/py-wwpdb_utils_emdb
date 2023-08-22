@@ -1,16 +1,13 @@
-
-from translator_classes.CIF import CIF
-from translator_classes.EMDBMetadata import EMDBMetadata
-from translator_classes.LoggingUtil import LoggingUtil
+import sys
+from emdb_xml2cif_translator.translator_classes.CIF import CIF
+from emdb_xml2cif_translator.translator_classes.EMDBMetadata import EMDBMetadata
+from emdb_xml2cif_translator.translator_classes.LoggingUtil import LoggingUtil
 import os
 import errno
-import sys
 
 file_nf_error = Exception
 if sys.version_info.major == 3:
     file_nf_error = FileNotFoundError
-elif sys.version_info.major == 2:
-    file_nf_error = IOError
 
 
 class EMDBXmlToCifTranslator(object):

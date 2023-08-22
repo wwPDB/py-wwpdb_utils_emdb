@@ -70,7 +70,7 @@ class CIF(object):
         """
         category = DataCategory(category_id)
         for item in items:
-            category.appendAttribute(item)
+                category.appendAttribute(item)
         self.__container.append(category)
 
     #
@@ -105,17 +105,16 @@ class CIF(object):
         if cat_obj is None:
             return
         if any(isinstance(el, list) for el in data_list):
-            # print(data_list)
-            for data_ord in data_list[0]:
-                new_list = []
-                ord_index = data_list[0].index(data_ord)
-                new_list.append(ord_index)
-                new_list.append(data_list[1][ord_index])
-                # print(new_list)
-                cat_obj.append(new_list)
+            if all(isinstance(i, int) for i in data_list[0]):
+                id = [x for x in data_list[0]]
+                new_list = [list(t) for t in zip(id, data_list[1])]
+                cat_obj.extend(new_list)
+            else:
+                updated_list = [v for i in data_list for v in (i if isinstance(i,list) else [i])]
+                cat_obj.append(updated_list)
         else:
             cat_obj.append(data_list)
-
+        print("ENDMAP", cat_obj)
     def insert_data_into_category(self, category_id, data_items, data_list):
         """
         Helper method: calls two other methods, one to add a category and its items into a container and

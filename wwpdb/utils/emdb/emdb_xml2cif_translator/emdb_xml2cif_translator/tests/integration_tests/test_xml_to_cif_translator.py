@@ -1,11 +1,9 @@
-
 import os
-import test_data.xml
-import test_data.cif
-import input_files
-from translator_classes.EMDBXmlToCifTranslator import EMDBXmlToCifTranslator
-from translator_classes.LoggingUtil import LoggingUtil
-
+import emdb_xml2cif_translator.test_data.xml
+import emdb_xml2cif_translator.test_data.cif
+import emdb_xml2cif_translator.input_files
+from emdb_xml2cif_translator.translator_classes.EMDBXmlToCifTranslator import EMDBXmlToCifTranslator
+from emdb_xml2cif_translator.translator_classes.LoggingUtil import LoggingUtil
 
 def main():
     """
@@ -29,9 +27,9 @@ def main():
             """
     # print(usage)
 
-    xml_input_file_0001 = os.path.join(test_data.xml.__path__[0], "emd-0001.xml")
+    xml_input_file_0001 = os.path.join(emdb_xml2cif_translator.test_data.xml.__path__[0], "emd-0001.xml")
 
-    cif_output_file_0001 = os.path.join(test_data.cif.__path__[0], "emd-0001.cif")
+    cif_output_file_0001 = os.path.join(emdb_xml2cif_translator.test_data.cif.__path__[0], "emd-0001.cif")
 
     translation_list = {xml_input_file_0001: cif_output_file_0001}
 
@@ -39,7 +37,7 @@ def main():
         "info": {
             "log_file": {
                 "log": True,
-                "name": "/Users/sanja/IdeaProjects/emdb-xml2cif-translator/logs/info.log"
+                "name": "/Users/amudha/IdeaProjects/py-wwpdb_utils_emdb/wwpdb/utils/emdb/emdb_xml2cif_translator/emdb_xml2cif_translator/logs/info.log"
             },
             "log_stream": {
                 "log": True,
@@ -49,7 +47,7 @@ def main():
         "warn": {
             "log_file": {
                 "log": True,
-                "name": "/Users/sanja/IdeaProjects/emdb-xml2cif-translator/logs/warn.log"
+                "name": "/Users/amudha/IdeaProjects/py-wwpdb_utils_emdb/wwpdb/utils/emdb/emdb_xml2cif_translator/emdb_xml2cif_translator/logs/warn.log"
             },
             "log_stream": {
                 "log": True,
@@ -59,7 +57,7 @@ def main():
         "error": {
             "log_file": {
                 "log": True,
-                "name": "/Users/sanja/IdeaProjects/emdb-xml2cif-translator/logs/error.log"
+                "name": "/Users/amudha/IdeaProjects/py-wwpdb_utils_emdb/wwpdb/utils/emdb/emdb_xml2cif_translator/emdb_xml2cif_translator/logs/error.log"
             },
             "log_stream": {
                 "log": True,
@@ -71,7 +69,7 @@ def main():
 
     logging_utility = LoggingUtil(logging_params)
 
-    mapping_file = os.path.join(input_files.__path__[0], "sample-mappings.txt")
+    mapping_file = os.path.join(emdb_xml2cif_translator.input_files.__path__[0], "sample-mappings.txt")
 
     for xml_input_file, cif_output_file in translation_list.items():
         translator = EMDBXmlToCifTranslator(logging_utility)

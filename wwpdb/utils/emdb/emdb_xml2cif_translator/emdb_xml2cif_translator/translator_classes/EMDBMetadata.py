@@ -1,5 +1,4 @@
-
-from translator_classes.Mappings import Mappings
+from emdb_xml2cif_translator.translator_classes.Mappings import Mappings
 from lxml import objectify
 
 
@@ -60,7 +59,8 @@ class EMDBMetadata(object):
 
     def store_xml_values_to_mappings_recursively(self, el, parent_tag=None):
         """
-        This method iterates through the XML (emd) object, matches an element or attribute with its counterpart in mappings (self.map_utils.mappings_logic)
+        This method iterates through the XML (emd) object, matches an element or attribute with
+        its counterpart in mappings (self.map_utils.mappings_logic)
         If the mapping requires XML_VALUE, the XML value from emd is written
 
         :param parent_tag: a string; generated from appending elements names for the use in recursive calls
@@ -74,7 +74,7 @@ class EMDBMetadata(object):
             if el.attrib:
                 for attrib_key, attrib_val in el.attrib.items():
                     attrib_tag = '@'.join((acc_tag, attrib_key))
-                    self.mappings_in.map_xml_value_to_code(attrib_val, attrib_tag)
+                    self.mappings_in.map_xml_value_to_code(attrib_val, attrib_tag, el.text)
             # map element's values
             self.mappings_in.map_xml_value_to_code(el.text, acc_tag)
             # check is el has children (sub-elements)

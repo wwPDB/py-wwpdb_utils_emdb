@@ -1,11 +1,12 @@
 import os
-import input_files
+import emdb_xml2cif_translator.input_files
 
 
 class Mappings(object):
     """
     This class contains tools and containers for serving mappings described in the input file MAPPINGS_FILENAME.
-    Its tools manage the load of the mappings from MAPPINGS_FILENAME to populate a dictionary with the mappings logic (self.mappings_logic).
+    Its tools manage the load of the mappings from MAPPINGS_FILENAME to populate a dictionary with the mappings logic
+     (self.mappings_logic).
     The logic is to be used when preparing a container (dictionary) of values for the CIF output in a combination with the values
     read from the XML input file that is to be converted into a CIF file.
     """
@@ -27,7 +28,10 @@ class Mappings(object):
     # other constants
     XML_VALUE_UPPER = 'XML_VALUE'
     IDs = 'IDs'
-    N = 'N'
+    N = 'N' ##for index
+    S = 'S' ##for splitting into items and data
+    B = 'B' ##for boolean
+    D = 'D' ##for writting the XML_VALUE into a dictionary
 
     def __init__(self):
         """
@@ -85,24 +89,62 @@ class Mappings(object):
         :return values_set: a boolean; True when the xml values are set into all mappings
         """
         values_set = False
-        # print(self.mappings)
         for mapping in self.mappings.values():
             xml_value = mapping.get(self.XML_VALUE)
             cif_mappings = mapping.get(self.CIF_MAPPINGS)
             if cif_mappings:
                 for a_cif_mapping_key, a_cif_mapping in cif_mappings.items():
+                    keys = a_cif_mapping.get(self.ITEMS)
                     values = a_cif_mapping.get(self.DATA)
+                    list_values = []
                     for value in values:
                         if value == self.XML_VALUE_UPPER:
-                            values = list(map(lambda x: x if x != value else xml_value, values))
+                            list_values = list(map(lambda x: x if x != value else xml_value, values))
+                            if list_values[0]:
+                                if list_values[0] == "FULLOVERLAP":
+                                    list_values[0] = "IN FRAME"
+                                if list_values[0] == "unknown":
+                                    list_values[0] = "OTHER"
                         if value == self.N:
                             length_list = [xml_value.index(i) + 1 for i in xml_value]
-                            values = list(map(lambda x: x if x != value else length_list, values))
-                    # print(cif_mappings, xml_value, values)
+                            list_values = list(map(lambda x: x if x != value else length_list, values))
+                        if value == self.B:
+                            [attrib] = list(map(lambda x: x if x != value else xml_value, values))
+                            if attrib:
+                                if attrib == "true":
+                                    list_values = "N"
+                                if attrib == "false":
+                                    list_values = "Y"
                     cif_mappings.get(a_cif_mapping_key).get(self.DATA).clear()
-                    cif_mappings.get(a_cif_mapping_key).get(self.DATA).extend(values)
-                values_set = True
+                    cif_mappings.get(a_cif_mapping_key).get(self.DATA).extend(list_values)
+                    # items = []
+                    # split_values = []
+                    for key in keys:
+                        if key == self.D:
+                            cif_mappings.get(a_cif_mapping_key).get(self.ITEMS).clear()
+                            for value in values:
+                                new_items = []
+                                for dict_key in value:
+                                    if dict_key == "PUBMED":
+                                        new_items.append("pdbx_database_id_PubMed")
+                                    if dict_key == "DOI":
+                                        new_items.append("pdbx_database_id_DOI")
+                                    if dict_key == "PATENT":
+                                        new_items.append("pdbx_database_id_patent")
+                                    if dict_key == "ISSN":
+                                        new_items.append("journal_id_ISSN")
+                                    if dict_key == "CSD":
+                                        new_items.append("journal_id_CSD")
+                                    if dict_key == "ASTM":
+                                        new_items.append("journal_id_ASTM")
+                                dict_data = list(value.values())
+                                print(new_items, dict_data)
+                                cif_mappings.get(a_cif_mapping_key).get(self.ITEMS).extend(new_items)
+                                cif_mappings.get(a_cif_mapping_key).get(self.DATA).clear()
+                                cif_mappings.get(a_cif_mapping_key).get(self.DATA).extend(dict_data)
 
+                values_set = True
+                # print("END", cif_mappings)
         return values_set
 
     def load_mappings(self):
@@ -112,7 +154,7 @@ class Mappings(object):
         :return loaded: a boolean; True if the input text file can be opened and is read
         """
         loaded = False
-        mappings_file = os.path.join(os.path.dirname(input_files.__file__), self.MAPPINGS_LOGIC_FILENAME)
+        mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__), self.MAPPINGS_LOGIC_FILENAME)
         f = open(mappings_file, 'r')
         if f:
             while True:
@@ -142,12 +184,19 @@ class Mappings(object):
         read = False
         # flag noting if the XML value is coming from a list
         is_list = False
+        # flag noting if the XML value is coming from a dictionary
+        is_dict = False
+
         # check if XML mapping is coming from a list
-        if line[0] == 'N':
-            is_list = True
-        if is_list:
+        if line:
+            if line[0] in ['N', 'S', 'B']:
+                is_list = True
+            elif line[0] in ['D']:
+                is_dict = True
+
+        if is_list or is_dict:
             # remove the leading 'N:' from the xml mapping
-            line = line.replace('N:', '')
+            line = line[2:]
 
         # save the mappings into a list
         line_mappings = line.rstrip().split(' ')
@@ -155,10 +204,18 @@ class Mappings(object):
         xml_mapping = line_mappings[0]
         # xml mapping is unique; use it as a dict key
         # create this line's mapping now
-        if not is_list:
+
+        if is_list:
             mapping = {
                 xml_mapping: {
-                    self.XML_VALUE: '',
+                    self.XML_VALUE: [],
+                    self.EXTRAS: [],
+                    self.CIF_MAPPINGS: {}}
+                }
+        elif is_dict:
+            mapping = {
+                xml_mapping: {
+                    self.XML_VALUE: {},
                     self.EXTRAS: [],
                     self.CIF_MAPPINGS: {}
                 }
@@ -166,11 +223,12 @@ class Mappings(object):
         else:
             mapping = {
                 xml_mapping: {
-                    self.XML_VALUE: [],
+                    self.XML_VALUE: '',
                     self.EXTRAS: [],
                     self.CIF_MAPPINGS: {}
                 }
             }
+
         # the rest of the mappings are cif mappings
         if len(line_mappings) > 1:
             # there is at least one cif mapping
@@ -180,10 +238,10 @@ class Mappings(object):
                 mapping.get(xml_mapping).get(self.CIF_MAPPINGS).update(cif_mappings)
                 # both xml mapping and cif mappings are now read; set the return flag
                 read = True
-        # the line information is read and its mapping logic dictionary is created, add it to the dictionary containing all mappings logic
+        # the line information is read and its mapping logic dictionary is created,
+        # add it to the dictionary containing all mappings logic
         if mapping:
             self.mappings.update(mapping)
-
         return read
 
     def read_cif_mappings(self, input_cif_mappings):
@@ -220,6 +278,8 @@ class Mappings(object):
                                     self.DATA: [XML_VALUE]
                                 }
                             }
+                            Add example for a dictionary here
+
         """
         cif_mappings = {}
         for input_cif_mapping in input_cif_mappings:
@@ -250,12 +310,12 @@ class Mappings(object):
                 # add read items and values
                 cif_mappings.get(category_id).get(self.ITEMS).extend(items_ids)
                 cif_mappings.get(category_id).get(self.DATA).extend(items_values)
-
         return cif_mappings
 
-    def map_xml_value_to_code(self, xml_value, xml_mapping_code):
+    def map_xml_value_to_code(self, xml_value, xml_mapping_code, optional_value=None):
         """
         This method stores the value for the XML element or attribute for the mapping that corresponds to the mapping code
+        :param optional_value:
         :param xml_value: a string; a value from XML
         :param xml_mapping_code: a string; its format is
             a. 'element'.'child'.'grandchild' for elements; e.g. emd.admin.title
@@ -263,10 +323,16 @@ class Mappings(object):
         :return map_successful: a boolean; True when value is set
         """
         map_successful = False
-        mapping_key = [mapping for mapping, sub in self.mappings.items() if mapping == xml_mapping_code]
-        if len(mapping_key) == 1:
-            self.set_mapping_xml_value(xml_value, mapping_key[0])
-            map_successful = True
+        for mapping, sub in self.mappings.items():
+            if mapping == xml_mapping_code:
+                self.set_mapping_xml_value(xml_value, mapping)
+                map_successful = True
+            elif optional_value:
+                if xml_mapping_code in mapping and '&' in mapping:
+                    # get the element XML value
+                    # el_part = xml_mapping_code.split('@')[0]
+                    self.set_mapping_xml_value({xml_value: optional_value}, mapping)
+                    map_successful = True
 
         return map_successful
 
@@ -288,6 +354,8 @@ class Mappings(object):
             xml_value_object = self.mappings.get(mapping).get(self.XML_VALUE)
             if isinstance(xml_value_object, list):
                 xml_value_object.append(value)
+            elif isinstance(xml_value_object, dict):
+                xml_value_object.update(value)
             else:
                 self.mappings.get(mapping)[self.XML_VALUE] = value
             value_set = True
