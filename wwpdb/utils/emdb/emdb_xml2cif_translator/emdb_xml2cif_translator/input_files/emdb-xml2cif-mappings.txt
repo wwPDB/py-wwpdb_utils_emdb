@@ -1,6 +1,6 @@
 emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 #
-#<emd>.<admin>.<current_status>
+##<emd>.<admin>.<current_status>
 #emd.admin.current_status.date em_admin.last_update.XML_VALUE
 #emd.admin.current_status.code em_admin.current_status.XML_VALUE
 #emd.admin.current_status.processing_site pdbx_database_status.process_site.XML_VALUE
@@ -36,15 +36,19 @@ emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.year citation.year.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.language citation.language.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.details citation.details.XML_VALUE
+#D:emd.crossreferences.citation_list.primary_citation.journal_citation.external_references@type.& citation.D.XML_VALUE
 #emd.crossreferences.pdb_list.pdb_reference.pdb_id em_db_reference.db_name.PDB em_db_reference.access_code.XML_VALUE
 #emd.crossreferences.pdb_list.pdb_reference.relationship.in_frame em_db_reference.relationship.XML_VALUE
 #
-D:emd.crossreferences.citation_list.primary_citation.journal_citation.external_references@type.& citation.D.XML_VALUE
-#
-#<emd>.<sample>
+emd.crossreferences.emdb_list.emdb_reference
+#emd.crossreferences.emdb_list.emdb_reference.emdb_id pdbx_database_related.db_name.EMDB pdbx_database_related.db_id.XML_VALUE
+#emd.crossreferences.emdb_list.emdb_reference.details pdbx_database_related.details.XML_VALUE
+#emd.crossreferences.emdb_list.emdb_reference.relationship.other pdbx_database_related.content_type.XML_VALUE
+
+##<emd>.<sample>
 #emd.sample.name
 #
-#<emd>.<map>
+##<emd>.<map>
 #emd.map@format em_map.format.XML_VALUE
 #emd.map@size_kbytes em_map.size_kb.XML_VALUE
 #emd.map.file em_map.file.XML_VALUE

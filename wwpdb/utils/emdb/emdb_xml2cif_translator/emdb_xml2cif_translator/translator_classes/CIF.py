@@ -114,7 +114,7 @@ class CIF(object):
                 cat_obj.append(updated_list)
         else:
             cat_obj.append(data_list)
-        print("ENDMAP", cat_obj)
+        # print("ENDMAP", cat_obj)
 
     def insert_data_into_category(self, category_id, data_items, data_list):
         """

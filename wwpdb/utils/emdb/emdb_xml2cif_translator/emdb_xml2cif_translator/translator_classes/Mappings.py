@@ -16,7 +16,7 @@ class Mappings(object):
     # mappings logic dictionary constants
     XML_MAPPING = 'xml_mapping'
     XML_VALUE = 'xml_value'
-    EXTRAS = 'extras'
+    LOGIC = 'logic'
     CIF_MAPPINGS = 'cif_mappings'
     CATEGORY_ID = 'category_id'
     ITEMS = 'items'
@@ -38,7 +38,11 @@ class Mappings(object):
         self.mappings = {
             xml mapping 1: {
                 'xml_value': '',
-                'extras': [],
+                'logic': {
+                    cif category: {
+                        'items_logic': [],
+                        'data_logic': []
+                    },
                 'cif_mappings': {
                     cif category: {
                         'items': [],
@@ -93,59 +97,72 @@ class Mappings(object):
         values_set = False
         for mapping in self.mappings.values():
             xml_value = mapping.get(self.XML_VALUE)
-            cif_mappings = mapping.get(self.CIF_MAPPINGS)
-            if cif_mappings:
-                for a_cif_mapping_key, a_cif_mapping in cif_mappings.items():
-                    keys = a_cif_mapping.get(self.ITEMS)
-                    values = a_cif_mapping.get(self.DATA)
+            all_logic = mapping.get(self.LOGIC)
+            if all_logic:
+                for a_logic_key, a_logic_value in all_logic.items():
+                    logic_keys = a_logic_value.get(self.ITEMS)
+                    logic_values = a_logic_value.get(self.DATA)
                     list_values = []
-                    for value in values:
-                        if value == self.XML_VALUE_UPPER:
-                            list_values = list(map(lambda x: x if x != value else xml_value, values))
+                    for logic_value in logic_values:
+                        if logic_value == self.XML_VALUE_UPPER:
+                            list_values = list(map(lambda x: x if x != logic_value else xml_value, logic_values))
                             if list_values[0]:
                                 if list_values[0] == "FULLOVERLAP":
                                     list_values[0] = "IN FRAME"
                                 if list_values[0] == "unknown":
                                     list_values[0] = "OTHER"
-                        if value == self.N:
-                            length_list = [xml_value.index(i) + 1 for i in xml_value]
-                            list_values = list(map(lambda x: x if x != value else length_list, values))
-                        if value == self.B:
-                            [attrib] = list(map(lambda x: x if x != value else xml_value, values))
-                            if attrib:
-                                if attrib == "true":
-                                    list_values = "N"
-                                if attrib == "false":
-                                    list_values = "Y"
-                    cif_mappings.get(a_cif_mapping_key).get(self.DATA).clear()
-                    cif_mappings.get(a_cif_mapping_key).get(self.DATA).extend(list_values)
-                    # items = []
-                    # split_values = []
-                    for key in keys:
-                        if key == self.D:
-                            cif_mappings.get(a_cif_mapping_key).get(self.ITEMS).clear()
-                            for value in values:
-                                new_items = []
-                                for dict_key in value:
-                                    if dict_key == "PUBMED":
-                                        new_items.append("pdbx_database_id_PubMed")
-                                    if dict_key == "DOI":
-                                        new_items.append("pdbx_database_id_DOI")
-                                    if dict_key == "PATENT":
-                                        new_items.append("pdbx_database_id_patent")
-                                    if dict_key == "ISSN":
-                                        new_items.append("journal_id_ISSN")
-                                    if dict_key == "CSD":
-                                        new_items.append("journal_id_CSD")
-                                    if dict_key == "ASTM":
-                                        new_items.append("journal_id_ASTM")
-                                dict_data = list(value.values())
-                                cif_mappings.get(a_cif_mapping_key).get(self.ITEMS).extend(new_items)
-                                cif_mappings.get(a_cif_mapping_key).get(self.DATA).clear()
-                                cif_mappings.get(a_cif_mapping_key).get(self.DATA).extend(dict_data)
+                        if logic_value == self.N:
+                            n_values = [xml_value.index(i) + 1 for i in xml_value] # [1, 2, 3]
+                            list_values.append(n_values)
+                            list_values.append(xml_value) # [[1, 2, 3], [name1, name2, name3]]
+                            break
+                        if logic_value == self.B:
+                            if xml_value == "true":
+                                list_values.append("N")
+                            elif xml_value == "false":
+                                list_values.append("Y")
+                    cif_mapping = self.create_cif_mapping_dict(a_logic_key, logic_keys, list_values)
+                    mapping.get(self.CIF_MAPPINGS).update(cif_mapping)
 
+                    for logic_key in logic_keys:
+                        if logic_key == self.D:
+                            new_items, dict_data = [], []
+                            for dict_key in xml_value:
+                                dict_data.append(xml_value.get(dict_key))
+                                if dict_key == "PUBMED":
+                                    new_items.append("pdbx_database_id_PubMed")
+                                if dict_key == "DOI":
+                                    new_items.append("pdbx_database_id_DOI")
+                                if dict_key == "PATENT":
+                                    new_items.append("pdbx_database_id_patent")
+                                if dict_key == "ISSN":
+                                    new_items.append("journal_id_ISSN")
+                                if dict_key == "CSD":
+                                    new_items.append("journal_id_CSD")
+                                if dict_key == "ASTM":
+                                    new_items.append("journal_id_ASTM")
+                            cif_mapping = self.create_cif_mapping_dict(a_logic_key, new_items, dict_data)
+                            mapping.get(self.CIF_MAPPINGS).update(cif_mapping)
                 values_set = True
         return values_set
+
+    def create_cif_mapping_dict(self, cif_cat_key, cif_items, cif_values):
+        """
+
+        :param cif_cat_key:
+        :param cif_items:
+        :param cif_values:
+        :return:
+        """
+        one_mapping = {
+            cif_cat_key:
+            {
+                self.ITEMS: cif_items,
+                self.DATA: cif_values
+            }
+        }
+
+        return one_mapping
 
     def load_mappings(self):
         """
@@ -165,6 +182,7 @@ class Mappings(object):
                     break
                 elif line[0] != '#':
                     self.read_one_mapping(line)
+
             loaded = True
         return loaded
 
@@ -213,14 +231,14 @@ class Mappings(object):
             mapping = {
                 xml_mapping: {
                     self.XML_VALUE: [],
-                    self.EXTRAS: [],
+                    self.LOGIC: {},
                     self.CIF_MAPPINGS: {}}
                 }
         elif is_dict:
             mapping = {
                 xml_mapping: {
                     self.XML_VALUE: {},
-                    self.EXTRAS: [],
+                    self.LOGIC: {},
                     self.CIF_MAPPINGS: {}
                 }
             }
@@ -228,7 +246,7 @@ class Mappings(object):
             mapping = {
                 xml_mapping: {
                     self.XML_VALUE: '',
-                    self.EXTRAS: [],
+                    self.LOGIC: {},
                     self.CIF_MAPPINGS: {}
                 }
             }
@@ -236,10 +254,10 @@ class Mappings(object):
         # the rest of the mappings are cif mappings
         if len(line_mappings) > 1:
             # there is at least one cif mapping
-            cif_mappings = self.read_cif_mappings(line_mappings[1:])
-            if cif_mappings:
-                # cif mappings are read; add them into the mapping logic dictionary
-                mapping.get(xml_mapping).get(self.CIF_MAPPINGS).update(cif_mappings)
+            logic = self.read_logic(line_mappings[1:])
+            if logic:
+                # all logic is read; add them into the logic dictionary
+                mapping.get(xml_mapping).get(self.LOGIC).update(logic)
                 # both xml mapping and cif mappings are now read; set the return flag
                 read = True
         # the line information is read and its mapping logic dictionary is created,
@@ -248,16 +266,16 @@ class Mappings(object):
             self.mappings.update(mapping)
         return read
 
-    def read_cif_mappings(self, input_cif_mappings):
+    def read_logic(self, input_all_logic):
         """
         Helper method.
         Reads all cif mappings given in one line within the text input file containing all xml to cif mappings logic
 
-        :param input_cif_mappings: a string representing cif mapping as 'cif category'.'cif item 1'.'value to use'
+        :param input_all_logic: a string representing cif mapping as 'cif category'.'cif item 1'.'value to use'
         :return cif_mappings: a dictionary;
                               contains dictionaries (one for each cif category found in the cif mappings)
 
-                            cif_mappings = {
+                            logic = {
                                 'cif category': {
                                     self.ITEMS: ['cif item 1'],
                                     self.DATA: ['value to use']
@@ -266,7 +284,7 @@ class Mappings(object):
                             e.g. for cases where one xml value writes to two different cif categories:
                             'emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE'
                             the dictionary is:
-                            cif_mappings = {
+                            logic = {
                                 database_2: {
                                     self.ITEMS: [database_id, database_code],
                                     self.DATA: [EMDB, XML_VALUE]
@@ -277,7 +295,7 @@ class Mappings(object):
 
             e.g. for case where the cif mappings are different cif categories
             'emd.admin.sites.deposition emd_admin.deposition_site.XML_VALUE pdbx_database_status.deposit_site.XML_VALUE'
-                            cif_mappings = {
+                            logic = {
                                 emd_admin: {
                                     self.ITEMS: [deposition_site],
                                     self.DATA: [XML_VALUE]
@@ -287,17 +305,17 @@ class Mappings(object):
                                     self.DATA: [XML_VALUE]
                                 }
                             }
-                            Add example for a dictionary here
+                            TODO: Add example for a dictionary here
 
         """
-        cif_mappings = {}
-        for input_cif_mapping in input_cif_mappings:
+        all_logic = {}
+        for input_logic in input_all_logic:
             items_ids = []
             items_values = []
-            cif_mapping = {}
+            logic = {}
 
             # get the cif category and its items; here referred as cif components
-            cif_components = input_cif_mapping.split('.')
+            cif_components = input_logic.split('.')
             if len(cif_components) > 0:
                 # the first cif component is the cif category
                 category_id = cif_components[0]
@@ -308,18 +326,18 @@ class Mappings(object):
                         # the second cif component is the value for the item
                         items_values.append(cif_components[2])
                 # create dictionary to hold the cif mappings
-                if category_id not in cif_mappings.keys():
-                    cif_mapping = {
+                if category_id not in all_logic.keys():
+                    logic = {
                         category_id: {
                             self.ITEMS: [],
                             self.DATA: []
                         }
                     }
-                cif_mappings.update(cif_mapping)
+                all_logic.update(logic)
                 # add read items and values
-                cif_mappings.get(category_id).get(self.ITEMS).extend(items_ids)
-                cif_mappings.get(category_id).get(self.DATA).extend(items_values)
-        return cif_mappings
+                all_logic.get(category_id).get(self.ITEMS).extend(items_ids)
+                all_logic.get(category_id).get(self.DATA).extend(items_values)
+        return all_logic
 
     def map_xml_value_to_code(self, xml_value, xml_mapping_code, optional_value=None):
         """
