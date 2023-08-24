@@ -105,13 +105,16 @@ class CIF(object):
         if cat_obj is None:
             return
         if any(isinstance(el, list) for el in data_list):
-            if all(isinstance(i, int) for i in data_list[0]):
-                cat_id = [x for x in data_list[0]]
-                new_list = [list(t) for t in zip(cat_id, data_list[1])]
-                cat_obj.extend(new_list)
-            else:
-                updated_list = [v for i in data_list for v in (i if isinstance(i, list) else [i])]
-                cat_obj.append(updated_list)
+            cat_id = [x for x in data_list[0]]
+            new_list = [list(t) for t in zip(cat_id, data_list[1])]
+            cat_obj.extend(new_list)
+            # if all(isinstance(i, int) for i in data_list[0]):
+            #     cat_id = [x for x in data_list[0]]
+            #     new_list = [list(t) for t in zip(cat_id, data_list[1])]
+            #     cat_obj.extend(new_list)
+            # else:
+            #     updated_list = [v for i in data_list for v in (i if isinstance(i, list) else [i])]
+            #     cat_obj.append(updated_list)
         else:
             cat_obj.append(data_list)
         # print("ENDMAP", cat_obj)

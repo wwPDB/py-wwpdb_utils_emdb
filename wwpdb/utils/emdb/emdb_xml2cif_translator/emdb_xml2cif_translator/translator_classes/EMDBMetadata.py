@@ -54,7 +54,8 @@ class EMDBMetadata(object):
                     # cif data is now ready;
                     # before starting with cif mappings prepare cif container using EMDB ID value from XML file
                     if self.cif.prepare_container(self.mappings_in.get_mapping_logic_value(
-                            self.mappings_in.MAP_EMD_EMDB_ID, self.mappings_in.XML_VALUE).replace('-', '_').lower()):
+                            self.mappings_in.Const.MAP_EMD_EMDB_ID,
+                            self.mappings_in.Const.XML_VALUE).replace('-', '_').lower()):
                         # insert data into the cif object container
                         self.add_data_into_cif_container()
                         processed = True
@@ -100,8 +101,8 @@ class EMDBMetadata(object):
         cif_mappings = self.collate_cif_categories()
         for cif_category_id, cif_category_data in cif_mappings.items():
             self.cif.insert_data_into_category(cif_category_id,
-                                               cif_category_data.get(self.mappings_in.ITEMS),
-                                               cif_category_data.get(self.mappings_in.DATA))
+                                               cif_category_data.get(self.mappings_in.Const.ITEMS),
+                                               cif_category_data.get(self.mappings_in.Const.DATA))
 
     def collate_cif_categories(self):
         """
@@ -112,15 +113,15 @@ class EMDBMetadata(object):
         """
         cif_ready_mappings = {}
         for mapping_code, mapping in self.mappings_in.mappings.items():
-            cif_mappings = mapping.get(self.mappings_in.CIF_MAPPINGS)
+            cif_mappings = mapping.get(self.mappings_in.Const.CIF_MAPPINGS)
             for cif_mapping, cif_values in cif_mappings.items():
                 if cif_ready_mappings.get(cif_mapping) is None:
                     cif_ready_mappings.update({cif_mapping: cif_values})
                 else:
                     # the category already exists; append lists of items and data to those in the category
-                    items_append = cif_values.get(self.mappings_in.ITEMS)
-                    data_append = cif_values.get(self.mappings_in.DATA)
-                    cif_ready_mappings.get(cif_mapping).get(self.mappings_in.ITEMS).extend(items_append)
-                    cif_ready_mappings.get(cif_mapping).get(self.mappings_in.DATA).extend(data_append)
+                    items_append = cif_values.get(self.mappings_in.Const.ITEMS)
+                    data_append = cif_values.get(self.mappings_in.Const.DATA)
+                    cif_ready_mappings.get(cif_mapping).get(self.mappings_in.Const.ITEMS).extend(items_append)
+                    cif_ready_mappings.get(cif_mapping).get(self.mappings_in.Const.DATA).extend(data_append)
 
         return cif_ready_mappings

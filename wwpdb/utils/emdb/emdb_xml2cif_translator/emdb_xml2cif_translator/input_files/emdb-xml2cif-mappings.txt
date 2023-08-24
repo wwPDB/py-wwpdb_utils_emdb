@@ -21,11 +21,11 @@ emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 #emd.admin.title em_admin.title.XML_VALUE struct.title.XML_VALUE
 #
 ##<emd>.<admin>.<authors_list>.<[author]>
-#N:emd.admin.authors_list.author em_author_list.ordinal.N em_author_list.author.XML_VALUE
+N:emd.admin.authors_list.author em_author_list.ordinal.N em_author_list.author.XML_VALUE
 #
 ##<emd>.<crossreferences>.<citation_list>.<primary_citation>.<journal_citation>
 #emd.crossreferences.citation_list.primary_citation.journal_citation@published citation.unpublished_flag.B
-#N:emd.crossreferences.citation_list.primary_citation.journal_citation.author citation_author.ordinal.N citation_author.name.XML_VALUE
+N:emd.crossreferences.citation_list.primary_citation.journal_citation.author citation_author.ordinal.N citation_author.name.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.title citation.title.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.journal_abbreviation citation.journal_abbrev.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.country citation.country.XML_VALUE
@@ -40,10 +40,9 @@ emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 #emd.crossreferences.pdb_list.pdb_reference.pdb_id em_db_reference.db_name.PDB em_db_reference.access_code.XML_VALUE
 #emd.crossreferences.pdb_list.pdb_reference.relationship.in_frame em_db_reference.relationship.XML_VALUE
 #
-emd.crossreferences.emdb_list.emdb_reference
-#emd.crossreferences.emdb_list.emdb_reference.emdb_id pdbx_database_related.db_name.EMDB pdbx_database_related.db_id.XML_VALUE
-#emd.crossreferences.emdb_list.emdb_reference.details pdbx_database_related.details.XML_VALUE
-#emd.crossreferences.emdb_list.emdb_reference.relationship.other pdbx_database_related.content_type.XML_VALUE
+M:emd.crossreferences.emdb_list.emdb_reference.emdb_id pdbx_database_related.db_name.EMDB pdbx_database_related.db_id.XML_VALUE
+#M:emd.crossreferences.emdb_list.emdb_reference.details pdbx_database_related.details.XML_VALUE
+#M:emd.crossreferences.emdb_list.emdb_reference.relationship.other pdbx_database_related.content_type.XML_VALUE
 
 ##<emd>.<sample>
 #emd.sample.name

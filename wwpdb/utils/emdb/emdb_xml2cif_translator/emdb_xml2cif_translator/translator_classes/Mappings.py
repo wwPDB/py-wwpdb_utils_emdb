@@ -5,44 +5,53 @@ import emdb_xml2cif_translator.input_files
 class Mappings(object):
     """
     This class contains tools and containers for serving mappings described in the input file MAPPINGS_FILENAME.
+
     Its tools manage the load of the mappings from MAPPINGS_FILENAME to populate a dictionary with the "mappings" logic
-     (self.mappings_logic).
-    The logic is to be used when preparing a container (dictionary) of values for the CIF output
-     in a combination with the values read from the XML input file that is to be converted into a CIF file.
+
+    The logic is used when preparing a container (dictionary) of values for the CIF output
+
     """
-    # input text file containing the mapping logic from any EMDB v3.x XML header file into an _emd mmcif file
-    MAPPINGS_LOGIC_FILENAME = 'emdb-xml2cif-mappings.txt'
+    class Const(object):
+        """
 
-    # mappings logic dictionary constants
-    XML_MAPPING = 'xml_mapping'
-    XML_VALUE = 'xml_value'
-    LOGIC = 'logic'
-    CIF_MAPPINGS = 'cif_mappings'
-    CATEGORY_ID = 'category_id'
-    ITEMS = 'items'
-    DATA = 'data'
+        """
+        # input text file containing the mapping logic from any EMDB v3.x XML header file into an _emd mmcif file
+        MAPPINGS_LOGIC_FILENAME = 'emdb-xml2cif-mappings.txt'
 
-    # mappings logic mappings keys
-    MAP_EMD_EMDB_ID = 'emd@emdb_id'
+        # mappings logic dictionary constants
+        XML_MAPPING = 'xml_mapping'
+        XML_VALUE = 'xml_value'
+        LOGIC = 'logic'
+        CIF_MAPPINGS = 'cif_mappings'
+        CATEGORY_ID = 'category_id'
+        ITEMS = 'items'
+        DATA = 'data'
 
-    # other constants
-    XML_VALUE_UPPER = 'XML_VALUE'
-    IDs = 'IDs'
-    N = 'N'
-    B = 'B'
-    D = 'D'
+        # mappings logic mappings keys
+        MAP_EMD_EMDB_ID = 'emd@emdb_id'
+
+        # other constants
+        XML_VALUE_UPPER = 'XML_VALUE'
+        IDs = 'IDs'
+        N = 'N'
+        B = 'B'
+        D = 'D'
+        M = 'M'
 
     def __init__(self):
         """
         Initialises (xml to cif) mappings as an empty dictionary in the following format:
-        self.mappings = {
+        self.mappings =
+        {
             xml mapping 1: {
                 'xml_value': '',
                 'logic': {
+                    multiples: False,
                     cif category: {
                         'items_logic': [],
                         'data_logic': []
-                    },
+                    }
+                },
                 'cif_mappings': {
                     cif category: {
                         'items': [],
@@ -51,6 +60,7 @@ class Mappings(object):
                     ...
                 }
             }
+
             ...
             xml mapping N: {
 
@@ -69,101 +79,6 @@ class Mappings(object):
         # read the input text file with the mapping logic and populate the "mappings" logic dictionary
         self.load_mappings()
 
-    def get_mapping_logic_value(self, mapping_logic, mapping_logic_key):
-        """
-        Method to be called by other classes. Providing a key for a mapping logic, its value is returned
-        :param mapping_logic: a constant defined in this class;
-                              a value from the first column from the input text file containing log.
-                              e.g. MAP_EMD_EMDB_ID
-        :param mapping_logic_key: a constant defined in this class and contained in each mapping logic;
-                                  can be {XML_MAPPING, XML_VALUE, EXTRAS, CIF_MAPPINGS}
-        :return: The value for mapping_logic_key within mapping_logic; None if mapping_logic doesn't exist
-        """
-        # get the dictionary containing mapping for requested mapping logic
-        mapping_logic_dict = self.mappings.get(mapping_logic)
-        if mapping_logic_dict:
-            # the mapping logic requested exists in the mappings dictionary;
-            # return the value for the mapping logic key
-            return mapping_logic_dict.get(mapping_logic_key)
-        else:
-            # mapping logic is not in the mappings logic dictionary; None to return
-            return None
-
-    def set_cif_mappings_values(self):
-        """
-        This method sets the values for each category item in the mappings logic
-        :return values_set: a boolean; True when the xml values are set into all mappings
-        """
-        values_set = False
-        for mapping in self.mappings.values():
-            xml_value = mapping.get(self.XML_VALUE)
-            all_logic = mapping.get(self.LOGIC)
-            if all_logic:
-                for a_logic_key, a_logic_value in all_logic.items():
-                    logic_keys = a_logic_value.get(self.ITEMS)
-                    logic_values = a_logic_value.get(self.DATA)
-                    list_values = []
-                    for logic_value in logic_values:
-                        if logic_value == self.XML_VALUE_UPPER:
-                            list_values = list(map(lambda x: x if x != logic_value else xml_value, logic_values))
-                            if list_values[0]:
-                                if list_values[0] == "FULLOVERLAP":
-                                    list_values[0] = "IN FRAME"
-                                if list_values[0] == "unknown":
-                                    list_values[0] = "OTHER"
-                        if logic_value == self.N:
-                            n_values = [xml_value.index(i) + 1 for i in xml_value] # [1, 2, 3]
-                            list_values.append(n_values)
-                            list_values.append(xml_value) # [[1, 2, 3], [name1, name2, name3]]
-                            break
-                        if logic_value == self.B:
-                            if xml_value == "true":
-                                list_values.append("N")
-                            elif xml_value == "false":
-                                list_values.append("Y")
-                    cif_mapping = self.create_cif_mapping_dict(a_logic_key, logic_keys, list_values)
-                    mapping.get(self.CIF_MAPPINGS).update(cif_mapping)
-
-                    for logic_key in logic_keys:
-                        if logic_key == self.D:
-                            new_items, dict_data = [], []
-                            for dict_key in xml_value:
-                                dict_data.append(xml_value.get(dict_key))
-                                if dict_key == "PUBMED":
-                                    new_items.append("pdbx_database_id_PubMed")
-                                if dict_key == "DOI":
-                                    new_items.append("pdbx_database_id_DOI")
-                                if dict_key == "PATENT":
-                                    new_items.append("pdbx_database_id_patent")
-                                if dict_key == "ISSN":
-                                    new_items.append("journal_id_ISSN")
-                                if dict_key == "CSD":
-                                    new_items.append("journal_id_CSD")
-                                if dict_key == "ASTM":
-                                    new_items.append("journal_id_ASTM")
-                            cif_mapping = self.create_cif_mapping_dict(a_logic_key, new_items, dict_data)
-                            mapping.get(self.CIF_MAPPINGS).update(cif_mapping)
-                values_set = True
-        return values_set
-
-    def create_cif_mapping_dict(self, cif_cat_key, cif_items, cif_values):
-        """
-
-        :param cif_cat_key:
-        :param cif_items:
-        :param cif_values:
-        :return:
-        """
-        one_mapping = {
-            cif_cat_key:
-            {
-                self.ITEMS: cif_items,
-                self.DATA: cif_values
-            }
-        }
-
-        return one_mapping
-
     def load_mappings(self):
         """
         This method opens and reads the text file containing the xml to mmcif emd mappings
@@ -173,7 +88,7 @@ class Mappings(object):
         """
         loaded = False
         mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__),
-                                     self.MAPPINGS_LOGIC_FILENAME)
+                                     self.Const.MAPPINGS_LOGIC_FILENAME)
         f = open(mappings_file, 'r')
         if f:
             while True:
@@ -208,16 +123,21 @@ class Mappings(object):
         is_list = False
         # flag noting if the XML value is coming from a dictionary
         is_dict = False
+        # a flag for multiple instances
+        is_multiple = False
 
         # check if XML mapping is coming from a list
         if line:
-            if line[0] in ['N', 'S', 'B']:
+            if line[0] in ['N']:
                 is_list = True
             elif line[0] in ['D']:
                 is_dict = True
+            elif line[0] in ['M']:
+                is_multiple = True
+                is_list = True
 
-        if is_list or is_dict:
-            # remove the leading 'N:' from the xml mapping
+        if is_list or is_dict or is_multiple:
+            # remove the leading anchor (e.g. 'N:') from the xml mapping
             line = line[2:]
 
         # save the mappings into a list
@@ -230,34 +150,34 @@ class Mappings(object):
         if is_list:
             mapping = {
                 xml_mapping: {
-                    self.XML_VALUE: [],
-                    self.LOGIC: {},
-                    self.CIF_MAPPINGS: {}}
-                }
+                    self.Const.XML_VALUE: [],
+                    self.Const.LOGIC: {},
+                    self.Const.CIF_MAPPINGS: {}}
+            }
         elif is_dict:
             mapping = {
                 xml_mapping: {
-                    self.XML_VALUE: {},
-                    self.LOGIC: {},
-                    self.CIF_MAPPINGS: {}
+                    self.Const.XML_VALUE: {},
+                    self.Const.LOGIC: {},
+                    self.Const.CIF_MAPPINGS: {}
                 }
             }
         else:
             mapping = {
                 xml_mapping: {
-                    self.XML_VALUE: '',
-                    self.LOGIC: {},
-                    self.CIF_MAPPINGS: {}
+                    self.Const.XML_VALUE: '',
+                    self.Const.LOGIC: {},
+                    self.Const.CIF_MAPPINGS: {}
                 }
             }
 
         # the rest of the mappings are cif mappings
         if len(line_mappings) > 1:
             # there is at least one cif mapping
-            logic = self.read_logic(line_mappings[1:])
+            logic = self.read_logic(line_mappings[1:], is_multiple)
             if logic:
                 # all logic is read; add them into the logic dictionary
-                mapping.get(xml_mapping).get(self.LOGIC).update(logic)
+                mapping.get(xml_mapping).get(self.Const.LOGIC).update(logic)
                 # both xml mapping and cif mappings are now read; set the return flag
                 read = True
         # the line information is read and its mapping logic dictionary is created,
@@ -266,14 +186,15 @@ class Mappings(object):
             self.mappings.update(mapping)
         return read
 
-    def read_logic(self, input_all_logic):
+    def read_logic(self, input_all_logic, is_multiple):
         """
         Helper method.
         Reads all cif mappings given in one line within the text input file containing all xml to cif mappings logic
 
+        :param is_multiple: A flag; If True one cif item will have multiple values
         :param input_all_logic: a string representing cif mapping as 'cif category'.'cif item 1'.'value to use'
         :return cif_mappings: a dictionary;
-                              contains dictionaries (one for each cif category found in the cif mappings)
+            contains dictionaries (one for each cif category found in the cif mappings)
 
                             logic = {
                                 'cif category': {
@@ -281,10 +202,10 @@ class Mappings(object):
                                     self.DATA: ['value to use']
                                 }
                             }
-                            e.g. for cases where one xml value writes to two different cif categories:
-                            'emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE'
-                            the dictionary is:
-                            logic = {
+            e.g. for cases where one xml value writes to two different cif categories:
+            'emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE' the dictionary is:
+
+                    logic = {
                                 database_2: {
                                     self.ITEMS: [database_id, database_code],
                                     self.DATA: [EMDB, XML_VALUE]
@@ -295,7 +216,7 @@ class Mappings(object):
 
             e.g. for case where the cif mappings are different cif categories
             'emd.admin.sites.deposition emd_admin.deposition_site.XML_VALUE pdbx_database_status.deposit_site.XML_VALUE'
-                            logic = {
+                    logic = {
                                 emd_admin: {
                                     self.ITEMS: [deposition_site],
                                     self.DATA: [XML_VALUE]
@@ -306,6 +227,15 @@ class Mappings(object):
                                 }
                             }
                             TODO: Add example for a dictionary here
+
+
+            For multiples:
+                    logic = {
+                                'emd.crossreferences.emdb_list.emdb_reference.emdb_id': {
+                                    self.ITEMS: ['pdbx_database_related.db_name', 'pdbx_database_related.db_id'],
+                                    self.DATA: [['EMDB'], [XML_VALUE]]
+                                }
+                            }
 
         """
         all_logic = {}
@@ -324,20 +254,127 @@ class Mappings(object):
                     items_ids.append(cif_components[1])
                     if len(cif_components) > 2:
                         # the second cif component is the value for the item
-                        items_values.append(cif_components[2])
+                        if is_multiple:
+                            items_values.append([cif_components[2]])
+                        else:
+                            items_values.append(cif_components[2])
                 # create dictionary to hold the cif mappings
                 if category_id not in all_logic.keys():
                     logic = {
                         category_id: {
-                            self.ITEMS: [],
-                            self.DATA: []
+                            self.Const.ITEMS: [],
+                            self.Const.DATA: []
                         }
                     }
+
                 all_logic.update(logic)
                 # add read items and values
-                all_logic.get(category_id).get(self.ITEMS).extend(items_ids)
-                all_logic.get(category_id).get(self.DATA).extend(items_values)
+                all_logic.get(category_id).get(self.Const.ITEMS).extend(items_ids)
+                all_logic.get(category_id).get(self.Const.DATA).extend(items_values)
+
         return all_logic
+
+    def get_mapping_logic_value(self, mapping_logic, mapping_logic_key):
+        """
+        Method to be called by other classes. Providing a key for a mapping logic, its value is returned
+        :param mapping_logic: a constant defined in this class;
+                              a value from the first column from the input text file containing log.
+                              e.g. MAP_EMD_EMDB_ID
+        :param mapping_logic_key: a constant defined in this class and contained in each mapping logic;
+                                  can be {XML_MAPPING, XML_VALUE, EXTRAS, CIF_MAPPINGS}
+        :return: The value for mapping_logic_key within mapping_logic; None if mapping_logic doesn't exist
+        """
+        # get the dictionary containing mapping for requested mapping logic
+        mapping_logic_dict = self.mappings.get(mapping_logic)
+        if mapping_logic_dict:
+            # the mapping logic requested exists in the mappings dictionary;
+            # return the value for the mapping logic key
+            return mapping_logic_dict.get(mapping_logic_key)
+        else:
+            # mapping logic is not in the mappings logic dictionary; None to return
+            return None
+
+    def set_cif_mappings_values(self):
+        """
+        This method sets the values for each category item in the mappings logic
+        :return values_set: a boolean; True when the xml values are set into all mappings
+        """
+        values_set = False
+        for mapping in self.mappings.values():
+            xml_value = mapping.get(self.Const.XML_VALUE)
+            all_logic = mapping.get(self.Const.LOGIC)
+            if all_logic:
+                for a_logic_key, a_logic_value in all_logic.items():
+                    logic_keys = a_logic_value.get(self.Const.ITEMS)
+                    logic_values = a_logic_value.get(self.Const.DATA)
+                    list_values = []
+                    for logic_value in logic_values:
+                        if logic_value == self.Const.XML_VALUE_UPPER:
+                            list_values = list(map(lambda x: x if x != logic_value else xml_value, logic_values))
+                            if list_values[0]:
+                                if list_values[0] == "FULLOVERLAP":
+                                    list_values[0] = "IN FRAME"
+                                if list_values[0] == "unknown":
+                                    list_values[0] = "OTHER"
+                        if logic_value == self.Const.N:
+                            n_values = [xml_value.index(i) + 1 for i in xml_value]
+                            list_values.append(n_values)
+                            list_values.append(xml_value)
+                            break
+                        if logic_value == self.Const.B:
+                            if xml_value == "true":
+                                list_values.append("N")
+                            elif xml_value == "false":
+                                list_values.append("Y")
+                        if isinstance(logic_value, list):
+                            # this is a mulitple
+                            if self.Const.XML_VALUE_UPPER in logic_value:
+                                list_values.append(xml_value)
+                            else:
+                                # this is a constant; it needs to be repeated by the len(xml_value)
+                                list_values.append(logic_value * len(xml_value))
+                    cif_mapping = self.create_cif_mapping_dict(a_logic_key, logic_keys, list_values)
+                    mapping.get(self.Const.CIF_MAPPINGS).update(cif_mapping)
+
+                    for logic_key in logic_keys:
+                        if logic_key == self.Const.D:
+                            new_items, dict_data = [], []
+                            for dict_key in xml_value:
+                                dict_data.append(xml_value.get(dict_key))
+                                if dict_key == "PUBMED":
+                                    new_items.append("pdbx_database_id_PubMed")
+                                if dict_key == "DOI":
+                                    new_items.append("pdbx_database_id_DOI")
+                                if dict_key == "PATENT":
+                                    new_items.append("pdbx_database_id_patent")
+                                if dict_key == "ISSN":
+                                    new_items.append("journal_id_ISSN")
+                                if dict_key == "CSD":
+                                    new_items.append("journal_id_CSD")
+                                if dict_key == "ASTM":
+                                    new_items.append("journal_id_ASTM")
+                            cif_mapping = self.create_cif_mapping_dict(a_logic_key, new_items, dict_data)
+                            mapping.get(self.Const.CIF_MAPPINGS).update(cif_mapping)
+                values_set = True
+        return values_set
+
+    def create_cif_mapping_dict(self, cif_cat_key, cif_items, cif_values):
+        """
+
+        :param cif_cat_key:
+        :param cif_items:
+        :param cif_values:
+        :return:
+        """
+        one_mapping = {
+            cif_cat_key:
+            {
+                self.Const.ITEMS: cif_items,
+                self.Const.DATA: cif_values
+            }
+        }
+
+        return one_mapping
 
     def map_xml_value_to_code(self, xml_value, xml_mapping_code, optional_value=None):
         """
@@ -378,13 +415,13 @@ class Mappings(object):
         """
         value_set = False
         if self.mappings.get(mapping):
-            xml_value_object = self.mappings.get(mapping).get(self.XML_VALUE)
+            xml_value_object = self.mappings.get(mapping).get(self.Const.XML_VALUE)
             if isinstance(xml_value_object, list):
                 xml_value_object.append(value)
             elif isinstance(xml_value_object, dict):
                 xml_value_object.update(value)
             else:
-                self.mappings.get(mapping)[self.XML_VALUE] = value
+                self.mappings.get(mapping)[self.Const.XML_VALUE] = value
             value_set = True
 
         return value_set
