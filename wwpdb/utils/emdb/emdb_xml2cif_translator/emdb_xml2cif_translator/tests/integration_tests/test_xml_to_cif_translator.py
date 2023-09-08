@@ -9,7 +9,7 @@ from emdb_xml2cif_translator.translator_classes.LoggingUtil import LoggingUtil
 def main():
     """
     This script calls EMDBXmlToCifTranslator to translate
-    an EMDB v3.x XML header file into an mmcif file
+    an EMDB v3.x XML header file into a mmcif file
     """
     usage = """
             test_xml_to_cif_translator.py [options]
