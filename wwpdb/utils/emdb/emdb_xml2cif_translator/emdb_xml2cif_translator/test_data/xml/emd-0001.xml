@@ -55,6 +55,7 @@
                 <relationship>
                     <other>other EM volume</other>
                 </relationship>
+                <details>test</details>
             </emdb_reference>
             <emdb_reference>
                 <emdb_id>EMD-0001</emdb_id>
@@ -70,6 +71,7 @@
                 <relationship>
                     <in_frame>FULLOVERLAP</in_frame>
                 </relationship>
+                <details>CHECK</details>
             </pdb_reference>
         </pdb_list>
     </crossreferences>
@@ -345,7 +347,7 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                 <single_particle_preparation preparation_id="1">
                     <concentration units="mg/mL">0.5</concentration>
                     <buffer>
-                        <ph>8.</ph>
+                        <ph>8.0</ph>
                         <component>
                             <concentration units="mM">10.0</concentration>
                             <formula>Tris-HCL</formula>

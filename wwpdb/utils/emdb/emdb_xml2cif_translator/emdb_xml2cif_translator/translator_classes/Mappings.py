@@ -1,4 +1,4 @@
-import os
+import os, re
 import emdb_xml2cif_translator.input_files
 
 
@@ -37,6 +37,7 @@ class Mappings(object):
         B = 'B'
         D = 'D'
         M = 'M'
+        E = 'E'
 
     def __init__(self):
         """
@@ -142,48 +143,72 @@ class Mappings(object):
 
         # save the mappings into a list
         line_mappings = line.rstrip().split(' ')
+
+        xml_maps= []
         # the first mapping is always a xml mapping
-        xml_mapping = line_mappings[0]
-        # xml mapping is unique; use it as a dict key
-        # create this line's mapping now
-
-        if is_list:
-            mapping = {
-                xml_mapping: {
-                    self.Const.XML_VALUE: [],
-                    self.Const.LOGIC: {},
-                    self.Const.CIF_MAPPINGS: {}}
-            }
-        elif is_dict:
-            mapping = {
-                xml_mapping: {
-                    self.Const.XML_VALUE: {},
-                    self.Const.LOGIC: {},
-                    self.Const.CIF_MAPPINGS: {}
-                }
-            }
+        if 'S$' in line_mappings[0]:
+            substitution = re.split('S\$|\$S', line_mappings[0])
+            count = len(substitution)
+            sub_ele = substitution[1].split("|")
+            for sub in sub_ele:
+                if count == 2:
+                    xml_map = substitution[0]+sub
+                    xml_maps.append(xml_map)
+                if count == 3 :
+                    xml_map = substitution[0]+sub+substitution[2]
+                    xml_maps.append(xml_map)
         else:
-            mapping = {
-                xml_mapping: {
-                    self.Const.XML_VALUE: '',
-                    self.Const.LOGIC: {},
-                    self.Const.CIF_MAPPINGS: {}
-                }
-            }
+            xml_maps.append(line_mappings[0])
 
+        mappings = {}
+        if xml_maps:
+            for xml_mapping in xml_maps:
+                # xml mapping is unique; use it as a dict key
+                # create this line's mapping now
+                if is_list:
+                    mapping = {
+                        xml_mapping: {
+                            self.Const.XML_VALUE: [],
+                            self.Const.LOGIC: {},
+                            self.Const.CIF_MAPPINGS: {}}
+                    }
+                    if mapping:
+                        mappings.update(mapping)
+                elif is_dict:
+                    mapping = {
+                        xml_mapping: {
+                            self.Const.XML_VALUE: {},
+                            self.Const.LOGIC: {},
+                            self.Const.CIF_MAPPINGS: {}
+                        }
+                    }
+                    if mapping:
+                        mappings.update(mapping)
+                else:
+                    mapping = {
+                        xml_mapping: {
+                            self.Const.XML_VALUE: '',
+                            self.Const.LOGIC: {},
+                            self.Const.CIF_MAPPINGS: {}
+                        }
+                    }
+                    if mapping:
+                        mappings.update(mapping)
         # the rest of the mappings are cif mappings
         if len(line_mappings) > 1:
             # there is at least one cif mapping
             logic = self.read_logic(line_mappings[1:], is_multiple)
             if logic:
+                for map in mappings:
                 # all logic is read; add them into the logic dictionary
-                mapping.get(xml_mapping).get(self.Const.LOGIC).update(logic)
-                # both xml mapping and cif mappings are now read; set the return flag
-                read = True
+                    mappings.get(map).get(self.Const.LOGIC).update(logic)
+                    # both xml mapping and cif mappings are now read; set the return flag
+                    read = True
         # the line information is read and its mapping logic dictionary is created,
         # add it to the dictionary containing all mappings logic
-        if mapping:
-            self.mappings.update(mapping)
+        if mappings:
+            self.mappings.update(mappings)
+
         return read
 
     def read_logic(self, input_all_logic, is_multiple):
@@ -307,8 +332,12 @@ class Mappings(object):
                 for a_logic_key, a_logic_value in all_logic.items():
                     logic_keys = a_logic_value.get(self.Const.ITEMS)
                     logic_values = a_logic_value.get(self.Const.DATA)
+                    logic_k, logic_v = '', ''
                     list_values = []
+                    list_item = []
                     for logic_value in logic_values:
+                        if '$' in logic_value:
+                            logic_k, logic_v = [str(i) for i in logic_value.split("$")]
                         if logic_value == self.Const.XML_VALUE_UPPER:
                             list_values = list(map(lambda x: x if x != logic_value else xml_value, logic_values))
                             if list_values[0]:
@@ -326,13 +355,12 @@ class Mappings(object):
                                 list_values.append("N")
                             elif xml_value == "false":
                                 list_values.append("Y")
-                        if isinstance(logic_value, list):
-                            # this is a mulitple
+                        if logic_k == self.Const.E:
                             if self.Const.XML_VALUE_UPPER in logic_value:
-                                list_values.append(xml_value)
+                                list_item.append(xml_value)
                             else:
-                                # this is a constant; it needs to be repeated by the len(xml_value)
-                                list_values.append(logic_value * len(xml_value))
+                                list_item.append([logic_v, logic_v])
+                            list_values = list_item
                     cif_mapping = self.create_cif_mapping_dict(a_logic_key, logic_keys, list_values)
                     mapping.get(self.Const.CIF_MAPPINGS).update(cif_mapping)
 
@@ -356,6 +384,7 @@ class Mappings(object):
                             cif_mapping = self.create_cif_mapping_dict(a_logic_key, new_items, dict_data)
                             mapping.get(self.Const.CIF_MAPPINGS).update(cif_mapping)
                 values_set = True
+
         return values_set
 
     def create_cif_mapping_dict(self, cif_cat_key, cif_items, cif_values):
@@ -393,11 +422,8 @@ class Mappings(object):
                 map_successful = True
             elif optional_value:
                 if xml_mapping_code in mapping and '&' in mapping:
-                    # get the element XML value
-                    # el_part = xml_mapping_code.split('@')[0]
                     self.set_mapping_xml_value({xml_value: optional_value}, mapping)
                     map_successful = True
-
         return map_successful
 
     def set_mapping_xml_value(self, value, mapping):
@@ -423,5 +449,4 @@ class Mappings(object):
             else:
                 self.mappings.get(mapping)[self.Const.XML_VALUE] = value
             value_set = True
-
         return value_set

@@ -104,20 +104,13 @@ class CIF(object):
         cat_obj = self.__container.getObj(category_id)
         if cat_obj is None:
             return
-        if any(isinstance(el, list) for el in data_list):
-            cat_id = [x for x in data_list[0]]
-            new_list = [list(t) for t in zip(cat_id, data_list[1])]
-            cat_obj.extend(new_list)
-            # if all(isinstance(i, int) for i in data_list[0]):
-            #     cat_id = [x for x in data_list[0]]
-            #     new_list = [list(t) for t in zip(cat_id, data_list[1])]
-            #     cat_obj.extend(new_list)
-            # else:
-            #     updated_list = [v for i in data_list for v in (i if isinstance(i, list) else [i])]
-            #     cat_obj.append(updated_list)
+
+        if all(isinstance(i, list) for i in data_list):
+            list_values = [list(t) for t in zip(*data_list)]
+            cat_obj.extend(list_values)
         else:
             cat_obj.append(data_list)
-        # print("ENDMAP", cat_obj)
+        # print("END-MAP", cat_obj)
 
     def insert_data_into_category(self, category_id, data_items, data_list):
         """
@@ -129,6 +122,27 @@ class CIF(object):
         :param data_list: a list of strings; each element represents a value for the corresponding element in data_items
         :return:
         """
-        # print('INSERT DATA INTO CATEGORY:', category_id, data_items, data_list)
-        self.add_category(category_id, data_items)
-        self.insert_data(category_id, data_list)
+        data_ids, data_values = [], []
+        if len(data_items) == len(set(data_items)):
+            data_ids = data_items
+            data_values = data_list
+        elif len(data_items) != len(set(data_items)):
+            for j, i in enumerate(data_items):
+                if i not in data_ids:
+                    data_ids.append(i)
+                    data_i = data_items[j: j+2]
+                    data_i5 = data_items[j: j+5]
+                    data_v = data_list[j: j+5]
+                    if data_i[0] != data_i[1]:
+                        data_values.append(data_list[j])
+                    if all(x==data_i5[0] for x in data_i5):
+                        data_v = ['' if i is None else i for i in data_v]
+                        if all(ele == '' for ele in data_v):
+                            data_values.append('')
+                        else:
+                            data_value = [i for i in data_v if i]
+                            for d in data_value:
+                                data_values.append(d)
+
+        self.add_category(category_id, data_ids)
+        self.insert_data(category_id, data_values)
