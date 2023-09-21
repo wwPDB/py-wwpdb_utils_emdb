@@ -28,12 +28,22 @@ class LoadMap:
     def load(self):
         """
         Load map file and extract relevant information.
+
+        Raises:
+            FileNotFoundError: If the file is not found.
+            Exception: If an error occurs during file loading.
         """
-        with mrcfile.open(self.file, mode='r', permissive=True) as mrc:
-            self.dimensions = np.array((mrc.header.nx, mrc.header.ny, mrc.header.nz)).tolist()
-            self.size = [round(x, 2) for x in mrc.header.cella.tolist()]
-            self.offset = np.array((mrc.header.nxstart, mrc.header.nystart, mrc.header.nzstart)).tolist()
-            self.pixel_size = [round(x, 2) for x in mrc.voxel_size.tolist()]
+        try:
+            with mrcfile.open(self.file, mode='r', permissive=True) as mrc:
+                self.dimensions = np.array((mrc.header.nx, mrc.header.ny, mrc.header.nz)).tolist()
+                self.size = [round(x, 2) for x in mrc.header.cella.tolist()]
+                self.offset = np.array((mrc.header.nxstart, mrc.header.nystart, mrc.header.nzstart)).tolist()
+                self.pixel_size = [round(x, 2) for x in mrc.voxel_size.tolist()]
+        except FileNotFoundError:
+            raise FileNotFoundError(f"File not found: {self.file}")
+        except Exception as e:
+            raise Exception(f"An error occurred while loading the file: {str(e)}")
+
 
     def extremities(self):
         """
@@ -97,8 +107,8 @@ class UploadMapCheck:
         Args:
             json_data (dict): JSON data containing map information.
         """
-        self.input = json_data
-        self.output = None
+        self.input_data = json_data
+        self.output_data = None
 
     def check_all_maps(self):
         """
@@ -107,13 +117,13 @@ class UploadMapCheck:
         Returns:
             dict: Dictionary containing the check results.
         """
-        primmap = LoadMap(self.input['primary_map'])
+        primmap = LoadMap(self.input_data.get('primary_map', None))
         primmap.load()
-        othermaps = [LoadMap(self.input['other_maps'][i]) for i in range(len(self.input['other_maps']))]
+        othermaps = [LoadMap(self.input_data['other_maps'][i]) for i in range(len(self.input_data['other_maps']))]
         for othermap in othermaps:
             othermap.load()
 
-        self.output = {
+        self.output_data = {
             'primary_map': {
                 'path': primmap.file,
                 'dimensions': primmap.dimensions,
@@ -128,17 +138,17 @@ class UploadMapCheck:
             'other_maps': {}
         }
         for othermap in othermaps:
-            self.output['primary_map']['smaller_or_equal'][othermap.file] = primmap.smaller_or_equal(othermap)
-            self.output['primary_map']['is_inside'][othermap.file] = primmap.is_inside(othermap)
-            self.output['primary_map']['acceptable_pixel_size'][othermap.file], \
-                self.output['primary_map']['pixel_size_is_multiple'][othermap.file] = primmap.acceptable_pixel_size(othermap)
-            self.output['other_maps'][othermap.file] = {
+            self.output_data['primary_map']['smaller_or_equal'][othermap.file] = primmap.smaller_or_equal(othermap)
+            self.output_data['primary_map']['is_inside'][othermap.file] = primmap.is_inside(othermap)
+            self.output_data['primary_map']['acceptable_pixel_size'][othermap.file], \
+                self.output_data['primary_map']['pixel_size_is_multiple'][othermap.file] = primmap.acceptable_pixel_size(othermap)
+            self.output_data['other_maps'][othermap.file] = {
                 'dimensions': othermap.dimensions,
                 'size': othermap.size,
                 'offset': othermap.offset,
                 'pixel_size': othermap.pixel_size
             }
-        return self.output
+        return self.output_data
 
     def __repr__(self):
         """
@@ -147,9 +157,9 @@ class UploadMapCheck:
         Returns:
             str: String representation.
         """
-        if not self.output:
-            return str(self.input)
-        return str(self.output)
+        if not self.output_data:
+            return str(self.input_data)
+        return str(self.output_data)
 
 
 def run_uploaded_map_checks(input_json_file, output_json_file):
@@ -163,12 +173,19 @@ def run_uploaded_map_checks(input_json_file, output_json_file):
     Returns:
         bool: True if the checks were successful, False otherwise.
     """
-    with open(input_json_file, 'r') as infile:
-        data = json.load(infile)
-    result = UploadMapCheck(data).check_all_maps()
-    with open(output_json_file, 'w') as outfile:
-        json.dump(result, outfile, separators=(',', ':'), sort_keys=False, indent=4)
-    return True
+    try:
+        with open(input_json_file, 'r') as infile:
+            data = json.load(infile)
+        result = UploadMapCheck(data).check_all_maps()
+        with open(output_json_file, 'w') as outfile:
+            json.dump(result, outfile, separators=(',', ':'), sort_keys=False, indent=4)
+        return True
+    except FileNotFoundError:
+        print(f"Error: Input JSON file not found: {input_json_file}")
+        return False
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return False
 
 
 def main():
@@ -195,4 +212,9 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(0) if main() else sys.exit(1)
+    try:
+        result = main()
+        sys.exit(0 if result else 1)
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        sys.exit(1)
