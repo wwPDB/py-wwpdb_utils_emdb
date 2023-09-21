@@ -8,8 +8,17 @@ import sys
 
 
 class LoadMap:
+    """
+    Class for loading and processing map files.
+    """
 
     def __init__(self, path2file):
+        """
+        Initialize a LoadMap instance.
+
+        Args:
+            path2file (str): Path to the map file.
+        """
         self.file = path2file
         self.dimensions = None
         self.size = None
@@ -17,6 +26,9 @@ class LoadMap:
         self.pixel_size = None
 
     def load(self):
+        """
+        Load map file and extract relevant information.
+        """
         with mrcfile.open(self.file, mode='r', permissive=True) as mrc:
             self.dimensions = np.array((mrc.header.nx, mrc.header.ny, mrc.header.nz)).tolist()
             self.size = [round(x, 2) for x in mrc.header.cella.tolist()]
@@ -24,29 +36,77 @@ class LoadMap:
             self.pixel_size = [round(x, 2) for x in mrc.voxel_size.tolist()]
 
     def extremities(self):
+        """
+        Calculate the origin and end points of the map.
+
+        Returns:
+            tuple: Origin and end points as lists.
+        """
         origin = np.array(self.offset) * np.array(self.pixel_size)
         end = origin + np.array(self.size)
         return origin.tolist(), end.tolist()
 
     def smaller_or_equal(self, another_map):
+        """
+        Check if the map is smaller or equal to another map in size.
+
+        Args:
+            another_map (LoadMap): Another LoadMap instance.
+
+        Returns:
+            bool: True if smaller or equal, False otherwise.
+        """
         return all(self.size <= another_map.size)
 
     def is_inside(self, another_map):
+        """
+        Check if the map is completely inside another map.
+
+        Args:
+            another_map (LoadMap): Another LoadMap instance.
+
+        Returns:
+            bool: True if completely inside, False otherwise.
+        """
         origin1, end1 = self.extremities()
         origin2, end2 = another_map.extremities()
         return all(origin2 <= origin1) and all(end1 <= end2)
 
     def acceptable_pixel_size(self, another_map):
+        """
+        Check if the pixel size of the map is acceptable compared to another map.
+
+        Args:
+            another_map (LoadMap): Another LoadMap instance.
+
+        Returns:
+            tuple: Two boolean values indicating pixel size acceptability and if it's a multiple.
+        """
         return all(another_map.pixel_size, self.pixel_size), all(self.pixel_size % another_map.pixel_size == 0)
 
 
 class UploadMapCheck:
+    """
+    Class for checking uploaded maps.
+    """
 
     def __init__(self, json_data):
+        """
+        Initialize an UploadMapCheck instance.
+
+        Args:
+            json_data (dict): JSON data containing map information.
+        """
         self.input = json_data
         self.output = None
 
     def check_all_maps(self):
+        """
+        Check all maps provided in the JSON input.
+
+        Returns:
+            dict: Dictionary containing the check results.
+        """
         primmap = LoadMap(self.input['primary_map'])
         primmap.load()
         othermaps = [LoadMap(self.input['other_maps'][i]) for i in range(len(self.input['other_maps']))]
@@ -63,7 +123,7 @@ class UploadMapCheck:
                 'smaller_or_equal': {},
                 'is_inside': {},
                 'acceptable_pixel_size': {},
-                'pixel_size_is_multiple':{}
+                'pixel_size_is_multiple': {}
             },
             'other_maps': {}
         }
@@ -81,12 +141,28 @@ class UploadMapCheck:
         return self.output
 
     def __repr__(self):
+        """
+        Return a string representation of the UploadMapCheck instance.
+
+        Returns:
+            str: String representation.
+        """
         if not self.output:
             return str(self.input)
         return str(self.output)
 
 
 def run_uploaded_map_checks(input_json_file, output_json_file):
+    """
+    Run the map checks and write the results to an output JSON file.
+
+    Args:
+        input_json_file (str): Path to the input JSON file.
+        output_json_file (str): Path to the output JSON file.
+
+    Returns:
+        bool: True if the checks were successful, False otherwise.
+    """
     with open(input_json_file, 'r') as infile:
         data = json.load(infile)
     result = UploadMapCheck(data).check_all_maps()
@@ -96,6 +172,12 @@ def run_uploaded_map_checks(input_json_file, output_json_file):
 
 
 def main():
+    """
+    Main function to parse command-line arguments and execute map checks.
+
+    Returns:
+        int: 0 if successful, 1 if there was an error.
+    """
     description = """
     Takes the path from a json file, then do some checks on maps 
     and writes the results in another json file.
