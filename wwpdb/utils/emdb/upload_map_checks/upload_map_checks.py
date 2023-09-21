@@ -7,19 +7,6 @@ import json
 import sys
 
 
-def le(array1, array2) -> bool:
-    result = list(map(lambda x: x[0] <= x[1], list(zip(array1, array2))))
-    return sum(result) == len(result)
-
-
-def multiple(array1, array2) -> bool:
-    try:
-        result = list(map(lambda x: x[0] % x[1] == 0, list(zip(array1, array2))))
-    except ZeroDivisionError:
-        return False
-    return sum(result) == len(result)
-
-
 class LoadMap:
 
     def __init__(self, path2file):
@@ -42,15 +29,15 @@ class LoadMap:
         return origin.tolist(), end.tolist()
 
     def smaller_or_equal(self, another_map):
-        return le(self.size, another_map.size)
+        return all(self.size <= another_map.size)
 
     def is_inside(self, another_map):
         origin1, end1 = self.extremities()
         origin2, end2 = another_map.extremities()
-        return le(origin2, origin1) and le(end1, end2)
+        return all(origin2 <= origin1) and all(end1 <= end2)
 
     def acceptable_pixel_size(self, another_map):
-        return le(another_map.pixel_size, self.pixel_size), multiple(self.pixel_size, another_map.pixel_size)
+        return all(another_map.pixel_size, self.pixel_size), all(self.pixel_size % another_map.pixel_size == 0)
 
 
 class UploadMapCheck:
