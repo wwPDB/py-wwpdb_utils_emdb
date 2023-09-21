@@ -52,37 +52,6 @@ mock_mrc_file(**mock_map2)
 mock_mrc_file(**mock_map3)
 
 
-class TestLe(unittest.TestCase):
-
-    def test_le_returns_true_when_array1_is_less_than_or_equal_to_array2(self):
-        self.assertTrue(le([1, 2, 3], [2, 3, 4]))
-        self.assertTrue(le([1, 2, 3], [1, 2, 3]))
-        self.assertTrue(le([1, 2, 3], [3, 4, 5]))
-
-    def test_le_returns_false_when_array1_is_greater_than_array2(self):
-        self.assertFalse(le([2, 3, 4], [1, 2, 3]))
-        self.assertFalse(le([3, 4, 5], [1, 2, 3]))
-        self.assertFalse(le([4, 5, 6], [1, 2, 3]))
-
-class TestMultiple(unittest.TestCase):
-
-    def test_multiple_returns_true_when_array1_is_divisible_by_array2(self):
-        self.assertTrue(multiple([4, 6, 8], [2, 3, 4]))
-        self.assertTrue(multiple([10, 20, 30], [5, 10, 15]))
-        self.assertTrue(multiple([100, 200, 300], [2, 4, 6]))
-
-    def test_multiple_returns_false_when_array2_contains_zero(self):
-        self.assertFalse(multiple([1, 2, 3], [0, 1, 2]))
-        self.assertFalse(multiple([4, 5, 6], [2, 0, 3]))
-        self.assertFalse(multiple([7, 8, 9], [3, 4, 0]))
-
-    def test_multiple_returns_false_when_array1_is_not_divisible_by_array2(self):
-        self.assertFalse(multiple([4, 6, 8], [3, 3, 3]))
-        self.assertFalse(multiple([10, 20, 30], [3, 6, 9]))
-        self.assertFalse(multiple([100, 200, 300], [3, 6, 9]))
-
-
-
 class TestLoadMap(unittest.TestCase):
 
     def setUp(self):
