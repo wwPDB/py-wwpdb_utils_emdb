@@ -126,16 +126,19 @@ class CIF(object):
         if len(data_items) == len(set(data_items)):
             data_ids = data_items
             data_values = data_list
+
         elif len(data_items) != len(set(data_items)):
             for j, i in enumerate(data_items):
                 if i not in data_ids:
+                    dict_items = {i:data_items.count(i) for i in data_items}
+                    nsub = max(dict_items.values())
                     data_ids.append(i)
                     data_i = data_items[j: j+2]
-                    data_i5 = data_items[j: j+5]
-                    data_v = data_list[j: j+5]
+                    data_nsub = data_items[j: j+nsub]
+                    data_v = data_list[j: j+nsub]
                     if data_i[0] != data_i[1]:
                         data_values.append(data_list[j])
-                    if all(x==data_i5[0] for x in data_i5):
+                    if all(x==data_nsub[0] for x in data_nsub):
                         data_v = ['' if i is None else i for i in data_v]
                         if all(ele == '' for ele in data_v):
                             data_values.append('')

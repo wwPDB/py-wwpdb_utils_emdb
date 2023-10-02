@@ -55,7 +55,6 @@
                 <relationship>
                     <other>other EM volume</other>
                 </relationship>
-                <details>test</details>
             </emdb_reference>
             <emdb_reference>
                 <emdb_id>EMD-0001</emdb_id>

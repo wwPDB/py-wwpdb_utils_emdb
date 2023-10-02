@@ -1,6 +1,7 @@
 
 from emdb_xml2cif_translator.translator_classes.Mappings import Mappings
 from lxml import objectify
+import xml.etree.ElementTree as ET
 
 
 class EMDBMetadata(object):
@@ -49,7 +50,7 @@ class EMDBMetadata(object):
         if self.xml_tree_created:
             # use XML values to store them in the mappings logic
             if self.store_xml_values_to_mappings_recursively(self.emd):
-                # by having the xml values, use the mappings logic to create the cif ready dictionary
+                # by having the xml values, use the mappings logic to create the cif ready dictionaryœ
                 if self.mappings_in.set_cif_mappings_values():
                     # cif data is now ready;
                     # before starting with cif mappings prepare cif container using EMDB ID value from XML file
@@ -59,7 +60,6 @@ class EMDBMetadata(object):
                         # insert data into the cif object container
                         self.add_data_into_cif_container()
                         processed = True
-
         return processed
 
     def store_xml_values_to_mappings_recursively(self, el, parent_tag=None):
@@ -73,6 +73,7 @@ class EMDBMetadata(object):
         :return finished_successfully: a boolean; True if the recursion is finished successfully
         """
         finished_successfully = False
+
         if el is not None:
             acc_tag = '.'.join(filter(None, (parent_tag, el.tag)))
             # map element's attributes values
@@ -92,6 +93,19 @@ class EMDBMetadata(object):
             finished_successfully = True
 
         return finished_successfully
+
+    def list_mapping(self, xml_mapping):
+        sub_elements = []
+        tree = ET.parse(self.filename_in)
+        root = tree.getroot()
+        xml_elem = xml_mapping.rsplit(".", 1)
+        for elem in root.findall(xml_elem[0]):
+            sub_elem = elem.find(xml_elem[1])
+            if sub_elem is None:
+                sub_elements.append('')
+            else:
+                sub_elements.append(sub_elem.text)
+        return sub_elements
 
     def add_data_into_cif_container(self):
         """
