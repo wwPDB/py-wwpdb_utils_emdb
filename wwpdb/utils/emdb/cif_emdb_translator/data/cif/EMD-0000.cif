@@ -122,10 +122,13 @@ _pdbx_database_status.skip_PDB_REMARK                      ?
 _pdbx_database_status.title_suppression                    N 
 _pdbx_database_status.date_accepted_terms_and_conditions   2021-10-06 
 # 
-_pdbx_database_related.db_name        EMDB 
-_pdbx_database_related.details        . 
-_pdbx_database_related.db_id          EMD-13682
-_pdbx_database_related.content_type   'associated EM volume' 
+_pdbx_database_related.db_name
+_pdbx_database_related.details
+_pdbx_database_related.db_id
+_pdbx_database_related.content_type
+EMDB ? EMD-13682 'associated EM volume'
+EMDB ? EMD-13683 'focused EM volume'
+EMDB ? EMD-13684 'consensus EM volume'
 # 
 _citation.abstract                  ? 
 _citation.abstract_id_CAS           ? 
