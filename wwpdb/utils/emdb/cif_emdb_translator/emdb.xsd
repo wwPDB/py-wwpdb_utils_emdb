@@ -3,7 +3,13 @@
     <xs:element name="emd" type="entry_type"/>
     <xs:complexType name="entry_type">
         <xs:sequence>
-            <xs:element name="admin" type="admin_type"/>
+            <xs:element name="admin">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="admin_type"> </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="crossreferences" type="crossreferences_type"/>
             <xs:element name="sample" type="sample_type"/>
             <xs:element name="structure_determination_list">
@@ -25,7 +31,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.8.0"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.9.0"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -136,6 +142,7 @@
             <xs:element name="keywords" type="xs:string" minOccurs="0"/>
             <xs:element name="replace_existing_entry" type="xs:boolean" minOccurs="0"/>
         </xs:sequence>
+        <xs:attribute name="composite_map" type="xs:boolean"/>
     </xs:complexType>
     <xs:complexType name="version_list_type">
         <xs:sequence>

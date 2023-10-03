@@ -30,7 +30,7 @@ _database_2.database_code
 _database_2.pdbx_database_accession 
 _database_2.pdbx_DOI 
 WWPDB D_1292118478 ? ? 
-EMDB  EMD-13682    ? ? 
+EMDB  EMD-136820    ? ?
 # 
 _struct_keywords.entry_id        D_1292118478 
 _struct_keywords.text            'virus, autophagy, membrane, CYTOSOLIC PROTEIN'
@@ -304,8 +304,7 @@ _em_admin.map_release_date              ?
 _em_admin.obsoleted_date                ? 
 _em_admin.replace_existing_entry_flag   NO 
 _em_admin.title                         'In situ subtomogram average of autophagosome-associated protein filament' 
-_em_admin.header_release_date           ?
-_em_admin.composite_map                 YES
+_em_admin.header_release_date           ? 
 # 
 loop_
 _em_author_list.ordinal 

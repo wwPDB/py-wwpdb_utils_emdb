@@ -622,6 +622,7 @@ class CifEMDBTranslator(object):
             "_em_admin.title": '<xs:element name="title" type="xs:token">',
             "_em_admin.details": '<xs:element name="details" type="xs:token" minOccurs="0">',
             "_em_admin.keywords": '<xs:element name="keywords" type="xs:token" minOccurs="0">',
+            "_em_admin.composite_map": '<xs:element name="composite_map" type="xs:boolean">',
             "_em_euler_angle_assignment.type": '<xs:element name="type">',
             "_em_euler_angle_assignment.proj_matching_num_projections": '<xs:element name="number_reference_projections" type="xs:positiveInteger" minOccurs="0"/>',
             "_em_euler_angle_assignment.proj_matching_merit_function": '<xs:element name="merit_function" type="xs:token" minOccurs="0"/>',
@@ -1939,6 +1940,16 @@ class CifEMDBTranslator(object):
                 # element 5
                 set_el_details(admin_status)
 
+            def set_attr_composite_map(admin):
+                """
+                XSD: <xs:attribute name="composite_map" type="xs:boolean">
+                CIF: _em_admin.composite_map
+                """
+                composite = get_cif_value("composite_map", const.EM_ADMIN)
+                if composite is not None and composite == "YES":
+                    set_cif_value(admin.set_composite_map, cif_value=True)
+
+
             def set_el_status_history_list():
                 """
                 XSD: <xs:element name="status_history_list" type="version_list_type" minOccurs="0">
@@ -2540,6 +2551,8 @@ class CifEMDBTranslator(object):
                 DEPRECATED (2014-10-21)
                 """
 
+            #attribute 1
+            set_attr_composite_map(admin)
             # element 1
             set_el_status_history_list()
             # element 2
