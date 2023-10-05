@@ -92,7 +92,7 @@ class LoadMap:
         Returns:
             tuple: Two boolean values indicating pixel size acceptability and if it's a multiple.
         """
-        return all(another_map.pixel_size, self.pixel_size), all(self.pixel_size % another_map.pixel_size == 0)
+        return all(another_map.pixel_size <= self.pixel_size), all(self.pixel_size % another_map.pixel_size == 0)
 
 
 class UploadMapCheck:
