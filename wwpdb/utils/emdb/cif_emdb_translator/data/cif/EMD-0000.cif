@@ -127,8 +127,6 @@ _pdbx_database_related.details
 _pdbx_database_related.db_id
 _pdbx_database_related.content_type
 EMDB ? EMD-13682 'associated EM volume'
-EMDB ? EMD-13683 'focused EM volume'
-EMDB ? EMD-13684 'consensus EM volume'
 # 
 _citation.abstract                  ? 
 _citation.abstract_id_CAS           ? 

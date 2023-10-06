@@ -7725,7 +7725,7 @@ class CifEMDBTranslator(object):
                             cif_list=mic_in,
                             constructor=emdb.nominal_defocus_minType,
                             units=const.U_MICROM,
-                            fmt=lambda x: float(x) * 0.001,
+                            fmt=lambda x: round((float(x) * 0.001), 4),
                         )
 
                     def set_el_calibrated_defocus_min(mic, mic_in):
