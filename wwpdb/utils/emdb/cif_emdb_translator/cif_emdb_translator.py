@@ -109,7 +109,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.9.0"
+        XML_OUT_VERSION = "3.0.9.1"
         XML_VERSION = XML_OUT_VERSION.replace('.', '_')
 
         # Cif categories
@@ -6682,7 +6682,7 @@ class CifEMDBTranslator(object):
                         """
                         details_txt = u""
                         instrument = get_cif_value("instrument", const.EM_FOCUSED_ION_BEAM, cif_list=fib_in)
-                        allowed_instruments = {"DB235", "OTHER"}
+                        allowed_instruments = {"DB235", "TFS/FEI AQUILOS", "TFS/FEI AQUILOS 2", "TFS/FEI HELIOS NANOLAB 600i", "TFS/FEI SCIOS DUALBEAM", "TFS/FEI SCIOS 2 DUALBEAM", "OTHER"}
                         if instrument is not None:
                             if instrument in allowed_instruments:
                                 set_cif_value(fib.set_instrument, "instrument", const.EM_FOCUSED_ION_BEAM, cif_list=fib_in)
@@ -6789,7 +6789,7 @@ class CifEMDBTranslator(object):
                         all_details = ""
                         current_details = get_cif_value("details", const.EM_FOCUSED_ION_BEAM, cif_list=fib_in)
                         if current_details is not None:
-                            all_details = ". ".join((current_details, details_txt))
+                            all_details = "".join((current_details, details_txt))
                         else:
                             all_details = details_txt
                         set_cif_value(fib.set_details, "details", const.EM_FOCUSED_ION_BEAM, cif_list=fib_in, cif_value=all_details)

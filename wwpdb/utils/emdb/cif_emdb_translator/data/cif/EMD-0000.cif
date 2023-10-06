@@ -242,7 +242,7 @@ _em_entity_assembly.source           NATURAL
 _em_entity_assembly.type             CELL 
 _em_entity_assembly.chimera          ? 
 _em_entity_assembly.entity_id_list   ? 
-# 
+#
 _em_imaging.id                              1 
 _em_imaging.entry_id                        ? 
 _em_imaging.accelerating_voltage            300 

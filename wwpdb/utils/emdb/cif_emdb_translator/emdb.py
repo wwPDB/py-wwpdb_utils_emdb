@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Tue Oct  3 16:35:59 2023 by generateDS.py version 2.41.5.
+# Generated Fri Oct  6 14:27:42 2023 by generateDS.py version 2.41.5.
 # Python 3.9.5 (default, May 18 2021, 12:31:01)  [Clang 10.0.0 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_9_0/emdb.py')
+#   ('-o', 'emdb-schemas/emdb_schemas/v3/v3_0_9_1/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb-schemas/emdb_schemas/v3/v3_0_9_0/emdb.xsd
+#   emdb-schemas/emdb_schemas/v3/v3_0_9_1/emdb.xsd
 #
 # Command line:
-#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_9_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_9_0/emdb.xsd
+#   /Users/amudha/project/generateDS-2.41.5/generateDS.py --root-element="emd" -f -o "emdb-schemas/emdb_schemas/v3/v3_0_9_1/emdb.py" --no-warnings --external-encoding="utf-8" emdb-schemas/emdb_schemas/v3/v3_0_9_1/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   IdeaProjects
@@ -1327,6 +1327,11 @@ class instrumentType41(str, Enum):
 
 class instrumentType42(str, Enum):
     DB_235='DB235'
+    TFSFEIAQUILOS='TFS/FEI AQUILOS'
+    TFSFEIAQUILOS_2='TFS/FEI AQUILOS 2'
+    TFSFEISCIOSDUALBEAM='TFS/FEI SCIOS DUALBEAM'
+    TFSFEISCIOS_2DUALBEAM='TFS/FEI SCIOS 2 DUALBEAM'
+    TFSFEIHELIOSNANOLAB_600_I='TFS/FEI HELIOS NANOLAB 600i'
     OTHER='OTHER'
 
 
@@ -1765,7 +1770,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.9.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.9.1', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1891,7 +1896,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.9.0" and 'version' not in already_processed:
+        if self.version != "3.0.9.1" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -31472,7 +31477,7 @@ class focused_ion_beamType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['DB235', 'OTHER']
+            enumerations = ['DB235', 'TFS/FEI AQUILOS', 'TFS/FEI AQUILOS 2', 'TFS/FEI SCIOS DUALBEAM', 'TFS/FEI SCIOS 2 DUALBEAM', 'TFS/FEI HELIOS NANOLAB 600i', 'OTHER']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on instrumentType42' % {"value" : encode_str_2_3(value), "lineno": lineno} )
