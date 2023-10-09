@@ -24,7 +24,7 @@ emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 #N:emd.admin.authors_list.author em_author_list.ordinal.N em_author_list.author.XML_VALUE
 #
 ##<emd>.<crossreferences>.<citation_list>.<primary_citation>.<journal_citation>
-#emd.crossreferences.citation_list.primary_citation.journal_citation@published citation.unpublished_flag.B
+emd.crossreferences.citation_list.primary_citation.journal_citation@published citation.unpublished_flag.B
 #N:emd.crossreferences.citation_list.primary_citation.journal_citation.author citation_author.ordinal.N citation_author.name.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.title citation.title.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.journal_abbreviation citation.journal_abbrev.XML_VALUE
@@ -36,11 +36,11 @@ emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.year citation.year.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.language citation.language.XML_VALUE
 #emd.crossreferences.citation_list.primary_citation.journal_citation.details citation.details.XML_VALUE
-D:emd.crossreferences.citation_list.primary_citation.journal_citation.external_references@type.& citation.D.XML_VALUE
-MSTART:3
-N:emd.crossreferences.emdb_list.emdb_reference.emdb_id pdbx_database_related.db_name.E$EMDB pdbx_database_related.db_id.XML_VALUE
-N:emd.crossreferences.emdb_list.emdb_reference.relationship.other pdbx_database_related.content_type.XML_VALUE
-N:emd.crossreferences.emdb_list.emdb_reference.details pdbx_database_related.details.XML_VALUE
+#D:emd.crossreferences.citation_list.primary_citation.journal_citation.external_references@type.& citation.D.XML_VALUE
+#MSTART:3
+#N:emd.crossreferences.emdb_list.emdb_reference.emdb_id pdbx_database_related.db_name.E$EMDB pdbx_database_related.db_id.XML_VALUE
+#N:emd.crossreferences.emdb_list.emdb_reference.relationship.other pdbx_database_related.content_type.XML_VALUE
+#N:emd.crossreferences.emdb_list.emdb_reference.details pdbx_database_related.details.XML_VALUE
 #
 #MSTART:3
 #N:emd.crossreferences.pdb_list.pdb_reference.pdb_id em_db_reference.db_name.E$PDB em_db_reference.access_code.XML_VALUE

@@ -91,20 +91,17 @@ class Mappings(object):
         loaded = False
         mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__),
                                      self.Const.MAPPINGS_LOGIC_FILENAME)
-        f = open(mappings_file, 'r')
-        if f:
-            while True:
-                line = f.readline()
-
-                if len(line) == 0:
-                    break
-                if line[0] != '#' and not line.startswith("MSTART:"):
-                    self.read_one_mapping(line)
-                if line.startswith("MSTART:"):
-                    N = int(line.split(":")[1])
-                    lines = [line for line in f][:N]
-                    if lines:
-                        self.read_multiple_mapping(lines)
+        if os.path.isfile(mappings_file):
+            f = open(mappings_file, 'r').read().split("\n")
+            for line in f:
+                if len(line) != 0:
+                    if line[0] != '#' and not line.startswith("MSTART:"):
+                        self.read_one_mapping(line)
+                    if line.startswith("MSTART:"):
+                        N = int(line.split(":")[1])
+                        lines = [line for line in f][:N]
+                        if lines:
+                            self.read_multiple_mapping(lines)
 
             loaded = True
         return loaded
@@ -477,6 +474,7 @@ class Mappings(object):
         :return map_successful: a boolean; True when value is set
         """
         map_successful = False
+        # print(self.mappings.items())
         for mapping, sub in self.mappings.items():
             if mapping == xml_mapping_code:
                 self.set_mapping_xml_value(xml_value, mapping)
@@ -510,5 +508,5 @@ class Mappings(object):
             else:
                 self.mappings.get(mapping)[self.Const.XML_VALUE] = value
             value_set = True
-
+        # print(self.mappings)
         return value_set

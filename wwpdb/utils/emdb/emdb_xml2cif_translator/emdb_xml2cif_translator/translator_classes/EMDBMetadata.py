@@ -1,7 +1,9 @@
 
+import os
 from emdb_xml2cif_translator.translator_classes.Mappings import Mappings
 from lxml import objectify
 import xml.etree.ElementTree as ET
+import emdb_xml2cif_translator.input_files
 
 
 class EMDBMetadata(object):
@@ -22,6 +24,7 @@ class EMDBMetadata(object):
         self.mappings_in = Mappings()
         self.cif = None
         self.emd = None
+        self.MAPPINGS_LOGIC_FILENAME = 'emdb-xml2cif-mappings.txt'
 
     def parse_into_xml_tree(self, emdb_header_file_in):
         """
@@ -33,9 +36,11 @@ class EMDBMetadata(object):
         # store the input file name; the EMDB ID contained in it might be different to the one in the file
         self.filename_in = emdb_header_file_in
         if not self.xml_tree_created:
-            with open(emdb_header_file_in) as f:
-                xml = f.read().encode()
-            self.emd = objectify.fromstring(xml)
+            tree = ET.parse(self.filename_in)
+            self.emd = tree.getroot()
+            # with open(emdb_header_file_in) as f:
+            #     xml = f.read().encode()
+            # self.emd = objectify.fromstring(xml)
             if self.emd is not None:
                 self.xml_tree_created = True
 
@@ -48,18 +53,26 @@ class EMDBMetadata(object):
         """
         processed = False
         if self.xml_tree_created:
-            # use XML values to store them in the mappings logic
-            if self.store_xml_values_to_mappings_recursively(self.emd):
-                # by having the xml values, use the mappings logic to create the cif ready dictionaryœ
-                if self.mappings_in.set_cif_mappings_values():
-                    # cif data is now ready;
-                    # before starting with cif mappings prepare cif container using EMDB ID value from XML file
-                    if self.cif.prepare_container(self.mappings_in.get_mapping_logic_value(
-                            self.mappings_in.Const.MAP_EMD_EMDB_ID,
-                            self.mappings_in.Const.XML_VALUE).replace('-', '_').lower()):
-                        # insert data into the cif object container
-                        self.add_data_into_cif_container()
-                        processed = True
+            ###use XML values to store them in the mappings logic
+            # if self.store_xml_values_to_mappings_recursively(self.emd):
+            mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__),
+                                         self.MAPPINGS_LOGIC_FILENAME)
+            if os.path.isfile(mappings_file):
+                f = open(mappings_file, 'r').read().split("\n")
+                for line in f:
+                    if len(line) != 0:
+                        if line[0] != '#' and not line.startswith("MSTART:"):
+                            if self.find_xml_values_to_mappings(line):
+                                #by having the xml values, use the mappings logic to create the cif ready dictionary
+                                if self.mappings_in.set_cif_mappings_values():
+                                    # cif data is now ready;
+                                    # before starting with cif mappings prepare cif container using EMDB ID value from XML file
+                                    if self.cif.prepare_container(self.mappings_in.get_mapping_logic_value(
+                                            self.mappings_in.Const.MAP_EMD_EMDB_ID,
+                                            self.mappings_in.Const.XML_VALUE).replace('-', '_').lower()):
+                                        # insert data into the cif object container
+                                        self.add_data_into_cif_container()
+                                        processed = True
         return processed
 
     def store_xml_values_to_mappings_recursively(self, el, parent_tag=None):
@@ -94,18 +107,37 @@ class EMDBMetadata(object):
 
         return finished_successfully
 
-    def list_mapping(self, xml_mapping):
-        sub_elements = []
-        tree = ET.parse(self.filename_in)
-        root = tree.getroot()
-        xml_elem = xml_mapping.rsplit(".", 1)
-        for elem in root.findall(xml_elem[0]):
-            sub_elem = elem.find(xml_elem[1])
-            if sub_elem is None:
-                sub_elements.append('')
+    def find_xml_values_to_mappings(self, line):
+        finished_successfully = False
+        root = self.emd
+        xml_part = line.split(" ")[0]
+
+        if "@" in xml_part:
+            xml_elem = xml_part.rsplit("@", 1)
+            if not '.' in xml_elem[0]:
+                for attrib_key, attrib_val in root.attrib.items():
+                    attrib_tag = '@'.join((xml_elem[0], attrib_key))
+                    self.mappings_in.map_xml_value_to_code(attrib_val, attrib_tag, root.text)
             else:
-                sub_elements.append(sub_elem.text)
-        return sub_elements
+                el = xml_elem[0].split(".",1)[1].replace('.', '/')
+                attrib_key = xml_elem[1]
+                el = root.find(el)
+                attrib_val = el.get(attrib_key)
+                self.mappings_in.map_xml_value_to_code(attrib_val, attrib_key, el.text)
+            finished_successfully = True
+        else:
+            elem = xml_part.split(".", 1)[1]
+            tags = elem.rsplit('.', 1)[0].replace('.', '/')
+            item = elem.rsplit('.', 1)[1]
+            if ":" in xml_part:
+                xml_part = xml_part.split(":")[1]
+            for elem in root.findall(tags):
+                sub_elem = elem.find(item)
+                sub_elements = "''" if sub_elem is None else str(sub_elem.text)
+                self.mappings_in.map_xml_value_to_code(sub_elements, xml_part)
+            finished_successfully = True
+
+        return finished_successfully
 
     def add_data_into_cif_container(self):
         """

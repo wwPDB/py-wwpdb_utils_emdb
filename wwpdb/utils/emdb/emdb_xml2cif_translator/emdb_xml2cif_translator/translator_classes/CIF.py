@@ -123,6 +123,7 @@ class CIF(object):
         :return:
         """
         data_ids, data_values = [], []
+        # print(data_items, "DL", data_list)
         if len(data_items) == len(set(data_items)):
             data_ids = data_items
             data_values = data_list
