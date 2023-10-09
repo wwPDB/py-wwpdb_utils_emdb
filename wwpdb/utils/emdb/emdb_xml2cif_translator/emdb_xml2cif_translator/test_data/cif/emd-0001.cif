@@ -2,4 +2,108 @@ data_emd_0001
 
 _database_2.database_code  EMDB
 _database_2.database_id    EMD-0001
+#
+_em_admin.last_update          2018-10-17
+_em_admin.current_status       REL
+_em_admin.details              .
+_em_admin.deposition_site      PDBe
+_em_admin.deposition_date      2018-05-04
+_em_admin.header_release_date  2018-06-06
+_em_admin.map_release_date     2018-07-04
+_em_admin.obsoleted_date       .
+_em_admin.title                "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
+#
+_pdbx_database_status.process_site  PDBe
+_pdbx_database_status.deposit_site  PDBe
+#
+_struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
+#
+_em_author_list.ordinal  1
+_em_author_list.author   "Glyde R"
+#
+_citation.unpublished_flag  N
+_citation.title             "Structures of Bacterial RNA Polymerase Complexes Reveal the Mechanism of DNA Loading and Transcription Initiation."
+_citation.journal_abbrev    "Mol. Cell"
+_citation.country           US
+_citation.journal_issue     .
+_citation.journal_volume    70
+_citation.page_first        1111
+_citation.page_last         1120.e3
+_citation.year              2018
+_citation.language          English
+_citation.details           "citation cross-references"
+#
+_citation_author.ordinal  1
+_citation_author.name     "Glyde R"
+#
+loop_
+_pdbx_database_related.db_id
+_pdbx_database_related.db_name
+_pdbx_database_related.content_type
+_pdbx_database_related.details
+EMDB  EMD-4397  "other EM volume"       .  
+EMDB  EMD-0001  "associated EM volume"  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  
+#
+_em_db_reference.access_code   PDB
+_em_db_reference.db_name       6gh5
+_em_db_reference.relationship  FULLOVERLAP
+_em_db_reference.details       CHECK
+#
+_em_experiment.id                     1
+_em_experiment.reconstruction_method  singleParticle
+_em_experiment.aggregation_state      particle
+#
+_em_map.format                CCP4
+_em_map.size_kb               67109
+_em_map.file                  emd_0001.map.gz
+_em_map.symmetry_space_group  1
+_em_map.data_type             "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)"
+_em_map.dimensions_col        256
+_em_map.dimensions_row        256
+_em_map.dimensions_sec        256
+_em_map.origin_col            0
+_em_map.origin_row            0
+_em_map.origin_sec            0
+_em_map.spacing_x             256
+_em_map.spacing_y             256
+_em_map.spacing_z             256
+_em_map.cell_a                1.0
+_em_map.cell_b                1.0
+_em_map.cell_c                1.0
+_em_map.cell_alpha            90.0
+_em_map.cell_beta             90.0
+_em_map.cell_gamma            90.0
+_em_map.axis_order_fast       X
+_em_map.axis_order_medium     Y
+_em_map.axis_order_slow       Z
+_em_map.statistics_minimum    -0.10788548
+_em_map.statistics_maximum    0.22688344
+_em_map.statistics_average    0.000012941896
+_em_map.statistics_std        0.0077065425
+_em_map.pixel_spacing_x       1.06
+_em_map.pixel_spacing_y       1.06
+_em_map.pixel_spacing_z       1.06
+_em_map.contour_level         0.018
+_em_map.contour_level_source  EMDB
+_em_map.label                 ::::EMDATABANK.org::::EMD-0001::::
+_em_map.details               .
+#
+_em_3d_fitting.entry_id         4AKG
+_em_3d_fitting.pdb_chain_id     A
+_em_3d_fitting.method           .
+_em_3d_fitting.target_criteria  .
+_em_3d_fitting.details          .
+_em_3d_fitting.overall_b_value  .
+_em_3d_fitting.ref_space        REAL
+_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
+#
+_em_software.name     Chimera
+_em_software.version  4.3
+_em_software.details  Fitting
+#
+_em_interpret_figure.file     emd_6607.png
+_em_interpret_figure.details  .
+#
+_em_fsc_curve.file     emd_6549_fsc.xml
+_em_fsc_curve.details  "fsc curve"
 ##

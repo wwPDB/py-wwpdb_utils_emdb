@@ -110,7 +110,7 @@ class CIF(object):
             cat_obj.extend(list_values)
         else:
             cat_obj.append(data_list)
-        # print("END-MAP", cat_obj)
+        print("END-MAP", cat_obj)
 
     def insert_data_into_category(self, category_id, data_items, data_list):
         """
