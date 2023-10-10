@@ -58,13 +58,7 @@ class EMDBMetadata(object):
             mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__),
                                          self.MAPPINGS_LOGIC_FILENAME)
             if self.find_xml_values_to_mappings(mappings_file):
-            # if os.path.isfile(mappings_file):
-            #     f = open(mappings_file, 'r').read().split("\n")
-            #     for line in f:
-            #         if len(line) != 0:
-            #             if line[0] != '#' and not line.startswith("MSTART:"):
-            #                 if self.find_xml_values_to_mappings(line):
-                            #by having the xml values, use the mappings logic to create the cif ready dictionary
+                #by having the xml values, use the mappings logic to create the cif ready dictionary
                 if self.mappings_in.set_cif_mappings_values():
                     # cif data is now ready;
                     # before starting with cif mappings prepare cif container using EMDB ID value from XML file

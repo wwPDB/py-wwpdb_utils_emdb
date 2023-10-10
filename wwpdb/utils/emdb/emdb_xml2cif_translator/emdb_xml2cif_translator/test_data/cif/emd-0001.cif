@@ -1,7 +1,7 @@
 data_emd_0001
 
-_database_2.database_code  EMDB
-_database_2.database_id    EMD-0001
+_database_2.database_id    EMDB
+_database_2.database_code  EMD-0001
 #
 _em_admin.last_update          2018-10-17
 _em_admin.current_status       REL
@@ -18,8 +18,8 @@ _pdbx_database_status.deposit_site  PDBe
 #
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
-_em_author_list.ordinal  1
-_em_author_list.author   "Glyde R"
+_em_author_list.author   1
+_em_author_list.ordinal  "Glyde R"
 #
 _citation.unpublished_flag  N
 _citation.title             "Structures of Bacterial RNA Polymerase Complexes Reveal the Mechanism of DNA Loading and Transcription Initiation."
@@ -33,8 +33,8 @@ _citation.year              2018
 _citation.language          English
 _citation.details           "citation cross-references"
 #
-_citation_author.ordinal  1
-_citation_author.name     "Glyde R"
+_citation_author.name     1
+_citation_author.ordinal  "Glyde R"
 #
 loop_
 _pdbx_database_related.db_id
@@ -44,8 +44,8 @@ _pdbx_database_related.details
 EMDB  EMD-4397  "other EM volume"       .  
 EMDB  EMD-0001  "associated EM volume"  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  
 #
-_em_db_reference.access_code   PDB
-_em_db_reference.db_name       6gh5
+_em_db_reference.db_name       PDB
+_em_db_reference.access_code   6gh5
 _em_db_reference.relationship  FULLOVERLAP
 _em_db_reference.details       CHECK
 #
