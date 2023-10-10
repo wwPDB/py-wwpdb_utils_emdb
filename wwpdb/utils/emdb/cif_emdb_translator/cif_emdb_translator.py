@@ -1951,7 +1951,6 @@ class CifEMDBTranslator(object):
                 if composite is not None and composite == "YES":
                     set_cif_value(admin.set_composite_map, cif_value=True)
 
-
             def set_el_status_history_list():
                 """
                 XSD: <xs:element name="status_history_list" type="version_list_type" minOccurs="0">
@@ -2553,7 +2552,7 @@ class CifEMDBTranslator(object):
                 DEPRECATED (2014-10-21)
                 """
 
-            #attribute 1
+            # attribute 1
             set_attr_composite_map(admin)
             # element 1
             set_el_status_history_list()
