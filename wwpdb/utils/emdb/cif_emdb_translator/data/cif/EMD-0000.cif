@@ -304,7 +304,8 @@ _em_admin.map_release_date              ?
 _em_admin.obsoleted_date                ? 
 _em_admin.replace_existing_entry_flag   NO 
 _em_admin.title                         'In situ subtomogram average of autophagosome-associated protein filament' 
-_em_admin.header_release_date           ? 
+_em_admin.header_release_date           ?
+_em_admin.composite_map                 YES
 # 
 loop_
 _em_author_list.ordinal 

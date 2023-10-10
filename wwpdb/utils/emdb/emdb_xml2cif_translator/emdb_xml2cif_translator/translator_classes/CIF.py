@@ -37,7 +37,7 @@ class CIF(object):
     def add_container(self, container_id):
         """
         This method provides the basic functionality to set up a container
-        :param container_id: a string; an mmcif category e.g. 'emd_admin'
+        :param container_id: a string; mmcif category e.g. 'emd_admin'
         :return:
         """
         added = False
@@ -52,7 +52,7 @@ class CIF(object):
     def prepare_container(self, container_id):
         """
         Creates a container is it doesn't exist using either provided value or the dummy value
-        :param container_id: a string; an mmcif category e.g. 'emd_admin'
+        :param container_id: a string; mmcif category e.g. 'emd_admin'
         :return:
         """
         if not self.__container:
@@ -64,7 +64,7 @@ class CIF(object):
     def add_category(self, category_id, items):
         """
         This method creates a data category object, adds all items to it and appends it to the container
-        :param category_id: a string; an mmcif category e.g. 'emd_admin'
+        :param category_id: a string; mmcif category e.g. 'emd_admin'
         :param items: a list of strings; each element in the list is an item of mmcif category as defined by category_id
         :return: a list of strings; each element represents a value for the corresponding element in data_items
         """
@@ -97,34 +97,55 @@ class CIF(object):
     def insert_data(self, category_id, data_list):
         """
         This method appends the data in data_list to the container labeled category_id
-        :param category_id: a string; an mmcif category e.g. 'emd_admin'
+        :param category_id: a string; mmcif category e.g. 'emd_admin'
         :param data_list:
         :return:
         """
         cat_obj = self.__container.getObj(category_id)
         if cat_obj is None:
             return
-        if any(isinstance(el, list) for el in data_list):
-            # print(data_list)
-            for data_ord in data_list[0]:
-                new_list = []
-                ord_index = data_list[0].index(data_ord)
-                new_list.append(ord_index)
-                new_list.append(data_list[1][ord_index])
-                # print(new_list)
-                cat_obj.append(new_list)
+
+        if all(isinstance(i, list) for i in data_list):
+            list_values = [list(t) for t in zip(*data_list)]
+            cat_obj.extend(list_values)
         else:
             cat_obj.append(data_list)
+        # print("END-MAP", cat_obj)
 
     def insert_data_into_category(self, category_id, data_items, data_list):
         """
         Helper method: calls two other methods, one to add a category and its items into a container and
         another to insert the data for the category items
-        :param category_id: a string; an mmcif category e.g. 'emd_admin'
-        :param data_items: a list of strings; each element in the list is an item of mmcif category as defined by category_id
+        :param category_id: a string; mmcif category e.g. 'emd_admin'
+        :param data_items: a list of strings; each element in the list is an item of mmcif category as
+                           defined by category_id
         :param data_list: a list of strings; each element represents a value for the corresponding element in data_items
         :return:
         """
-        # print('INSERT DATA INTO CATEGORY:', category_id, data_items, data_list)
-        self.add_category(category_id, data_items)
-        self.insert_data(category_id, data_list)
+        data_ids, data_values = [], []
+        if len(data_items) == len(set(data_items)):
+            data_ids = data_items
+            data_values = data_list
+
+        elif len(data_items) != len(set(data_items)):
+            for j, i in enumerate(data_items):
+                if i not in data_ids:
+                    dict_items = {i:data_items.count(i) for i in data_items}
+                    nsub = max(dict_items.values())
+                    data_ids.append(i)
+                    data_i = data_items[j: j+2]
+                    data_nsub = data_items[j: j+nsub]
+                    data_v = data_list[j: j+nsub]
+                    if data_i[0] != data_i[1]:
+                        data_values.append(data_list[j])
+                    if all(x==data_nsub[0] for x in data_nsub):
+                        data_v = ['' if i is None else i for i in data_v]
+                        if all(ele == '' for ele in data_v):
+                            data_values.append('')
+                        else:
+                            data_value = [i for i in data_v if i]
+                            for d in data_value:
+                                data_values.append(d)
+
+        self.add_category(category_id, data_ids)
+        self.insert_data(category_id, data_values)

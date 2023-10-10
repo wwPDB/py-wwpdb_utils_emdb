@@ -39,6 +39,8 @@
                     <first_page>1111</first_page>
                     <last_page>1120.e3</last_page>
                     <year>2018</year>
+                    <language>English</language>
+                    <details>citation cross-references</details>
                     <external_references type="PUBMED">29932903</external_references>
                     <external_references type="DOI">doi:10.1016/j.molcel.2018.05.021</external_references>
                     <external_references type="ISSN">1097-4164</external_references>
@@ -68,6 +70,7 @@
                 <relationship>
                     <in_frame>FULLOVERLAP</in_frame>
                 </relationship>
+                <details>CHECK</details>
             </pdb_reference>
         </pdb_list>
     </crossreferences>
@@ -343,7 +346,7 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                 <single_particle_preparation preparation_id="1">
                     <concentration units="mg/mL">0.5</concentration>
                     <buffer>
-                        <ph>8.</ph>
+                        <ph>8.0</ph>
                         <component>
                             <concentration units="mM">10.0</concentration>
                             <formula>Tris-HCL</formula>
@@ -469,9 +472,90 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
     <interpretation>
         <modelling_list>
             <modelling>
+                <initial_model>
+                    <access_code>4AKG</access_code>
+                    <chain>
+                        <chain_id>A</chain_id>
+                    </chain>
+                </initial_model>
                 <refinement_protocol>RIGID BODY FIT</refinement_protocol>
+                <software_list>
+                    <software>
+                        <name>Chimera</name>
+                        <version>4.3</version>
+                        <processing_details>Fitting</processing_details>
+                    </software>
+                </software_list>
                 <refinement_space>REAL</refinement_space>
             </modelling>
         </modelling_list>
+        <figure_list>
+            <figure>
+                <file>emd_6607.png</file>
+            </figure>
+        </figure_list>
+        <segmentation_list>
+            <segmentation>
+                <mask_details format="CCP4" size_kbytes="600">
+                    <file>emd_0001.map.gz</file>
+                    <symmetry>
+                        <space_group>1</space_group>
+                    </symmetry>
+                    <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
+                    <dimensions>
+                        <col>256</col>
+                        <row>256</row>
+                        <sec>256</sec>
+                    </dimensions>
+                    <origin>
+                        <col>0</col>
+                        <row>0</row>
+                        <sec>0</sec>
+                    </origin>
+                    <spacing>
+                        <x>256</x>
+                        <y>256</y>
+                        <z>256</z>
+                    </spacing>
+                    <cell>
+                        <a units="&#8491;">1.0</a>
+                        <b units="&#8491;">1.0</b>
+                        <c units="&#8491;">1.0</c>
+                        <alpha units="deg">90.0</alpha>
+                        <beta units="deg">90.0</beta>
+                        <gamma units="deg">90.0</gamma>
+                    </cell>
+                    <axis_order>
+                        <fast>X</fast>
+                        <medium>Y</medium>
+                        <slow>Z</slow>
+                    </axis_order>
+                    <statistics>
+                        <minimum>-0.10788548</minimum>
+                        <maximum>0.22688344</maximum>
+                        <average>0.000012941896</average>
+                        <std>0.0077065425</std>
+                    </statistics>
+                    <pixel_spacing>
+                        <x units="&#8491;">1.06</x>
+                        <y units="&#8491;">1.06</y>
+                        <z units="&#8491;">1.06</z>
+                    </pixel_spacing>
+                    <contour_list>
+                        <contour primary="true">
+                            <level>0.018</level>
+                            <source>EMDB</source>
+                        </contour>
+                    </contour_list>
+                    <label>MASK</label>
+                </mask_details>
+            </segmentation>
+        </segmentation_list>
     </interpretation>
+    <validation>
+        <fsc_curve>
+            <file>emd_6549_fsc.xml</file>
+            <details>fsc curve</details>
+        </fsc_curve>
+    </validation>
 </emd>
