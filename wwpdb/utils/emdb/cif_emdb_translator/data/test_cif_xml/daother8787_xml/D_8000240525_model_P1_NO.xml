@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ftp.ebi.ac.uk/pub/databases/em_ebi/emdb_related/emdb-schemas/emdb_schemas/v3/v3_0_9_0/emdb.xsd" version="3.0.9.0" emdb_id="EMD-20531">
+    <admin>
+        <current_status>
+            <date>2022-11-29</date>
+            <code>AUCO</code>
+            <processing_site>RCSB</processing_site>
+        </current_status>
+        <sites>
+            <deposition>RCSB</deposition>
+            <last_processing>RCSB</last_processing>
+        </sites>
+        <key_dates>
+            <deposition>2021-12-16</deposition>
+            <update>2022-11-29</update>
+        </key_dates>
+        <grant_support>
+            <grant_reference>
+                <funding_body>Medical Research Council (MRC, United Kingdom)</funding_body>
+                <country>United Kingdom</country>
+            </grant_reference>
+        </grant_support>
+        <title>test tomo</title>
+        <authors_list>
+            <author ORCID="0000-0002-5251-4674">Turner J</author>
+        </authors_list>
+        <keywords>test tomo</keywords>
+    </admin>
+    <crossreferences>
+        <citation_list>
+            <primary_citation>
+                <non_journal_citation published="false">
+                    <author order="2">Turner J</author>
+                    <publisher_location></publisher_location>
+                </non_journal_citation>
+            </primary_citation>
+        </citation_list>
+        <emdb_list>
+            <emdb_reference>
+                <emdb_id>EMD-20532</emdb_id>
+            </emdb_reference>
+            <emdb_reference>
+                <emdb_id>EMD-20533</emdb_id>
+            </emdb_reference>
+        </emdb_list>
+    </crossreferences>
+    <sample>
+        <name>test tomo</name>
+        <supramolecule_list>
+            <complex_supramolecule supramolecule_id="1">
+                <name>test tomo</name>
+                <parent>0</parent>
+                <macromolecule_list>
+                    <macromolecule>
+                        <macromolecule_id>1</macromolecule_id>
+                    </macromolecule>
+                </macromolecule_list>
+                <natural_source database="NCBI">
+                    <organism ncbi="11320">Influenza A virus</organism>
+                </natural_source>
+            </complex_supramolecule>
+        </supramolecule_list>
+        <macromolecule_list>
+            <protein_or_peptide macromolecule_id="1">
+                <name>test</name>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>blah blah blah</string>
+                </sequence>
+            </protein_or_peptide>
+        </macromolecule_list>
+    </sample>
+    <structure_determination_list>
+        <structure_determination structure_determination_id="1">
+            <method>tomography</method>
+            <aggregation_state>particle</aggregation_state>
+            <specimen_preparation_list>
+                <tomography_preparation preparation_id="1">
+                    <buffer>
+                        <ph>7.0</ph>
+                    </buffer>
+                    <vitrification>
+                        <cryogen_name>ETHANE</cryogen_name>
+                    </vitrification>
+                    <sectioning>
+                        <other_sectioning>NO SECTIONING</other_sectioning>
+                    </sectioning>
+                </tomography_preparation>
+            </specimen_preparation_list>
+            <microscopy_list>
+                <tomography_microscopy microscopy_id="1">
+                    <microscope>FEI TITAN KRIOS</microscope>
+                    <illumination_mode>FLOOD BEAM</illumination_mode>
+                    <imaging_mode>BRIGHT FIELD</imaging_mode>
+                    <electron_source>FIELD EMISSION GUN</electron_source>
+                    <acceleration_voltage units="kV">300</acceleration_voltage>
+                    <nominal_defocus_min units="µm">1.0</nominal_defocus_min>
+                    <nominal_defocus_max units="µm">6.0</nominal_defocus_max>
+                    <image_recording_list>
+                        <image_recording image_recording_id="1">
+                            <film_or_detector_model>FEI FALCON III (4k x 4k)</film_or_detector_model>
+                            <digitization_details/>
+                            <average_electron_dose_per_image units="e/Å^2">60.0</average_electron_dose_per_image>
+                        </image_recording>
+                    </image_recording_list>
+                </tomography_microscopy>
+            </microscopy_list>
+            <tomography_processing image_processing_id="1">
+                <image_recording_id>1</image_recording_id>
+                <final_reconstruction>
+                    <resolution_method>OTHER</resolution_method>
+                    <number_images_used>37</number_images_used>
+                </final_reconstruction>
+            </tomography_processing>
+        </structure_determination>
+    </structure_determination_list>
+    <map format="CCP4" size_kbytes="604516">
+        <file>emd_20531.map.gz</file>
+        <symmetry>
+            <space_group>1</space_group>
+        </symmetry>
+        <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
+        <dimensions>
+            <col>959</col>
+            <row>927</row>
+            <sec>170</sec>
+        </dimensions>
+        <origin>
+            <col>16</col>
+            <row>-16</row>
+            <sec>85</sec>
+        </origin>
+        <spacing>
+            <x>959</x>
+            <y>927</y>
+            <z>170</z>
+        </spacing>
+        <cell>
+            <a units="Å">6732.18</a>
+            <b units="Å">6507.54</b>
+            <c units="Å">1193.4</c>
+            <alpha units="deg">90.0</alpha>
+            <beta units="deg">90.0</beta>
+            <gamma units="deg">90.0</gamma>
+        </cell>
+        <axis_order>
+            <fast>X</fast>
+            <medium>Y</medium>
+            <slow>Z</slow>
+        </axis_order>
+        <statistics>
+            <minimum>-461.720550000000003</minimum>
+            <maximum>464.153840000000002</maximum>
+            <average>2.5857236</average>
+            <std>76.560730000000007</std>
+        </statistics>
+        <pixel_spacing>
+            <x units="Å">7.02</x>
+            <y units="Å">7.02</y>
+            <z units="Å">7.02</z>
+        </pixel_spacing>
+        <contour_list>
+            <contour primary="true">
+                <source>AUTHOR</source>
+            </contour>
+        </contour_list>
+        <label>::::EMDATABANK.org::::D_8000240525::::                                          </label>
+    </map>
+</emd>

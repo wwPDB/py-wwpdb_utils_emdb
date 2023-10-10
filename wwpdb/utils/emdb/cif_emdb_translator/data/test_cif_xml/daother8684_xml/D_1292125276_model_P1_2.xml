@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ftp.ebi.ac.uk/pub/databases/em_ebi/emdb_related/emdb-schemas/emdb_schemas/v3/v3_0_9_0/emdb.xsd" version="3.0.9.0" emdb_id="EMD-16019">
+    <admin>
+        <current_status>
+            <date>2023-05-31</date>
+            <code>REL</code>
+            <processing_site>PDBe</processing_site>
+        </current_status>
+        <sites>
+            <deposition>PDBe</deposition>
+            <last_processing>PDBe</last_processing>
+        </sites>
+        <key_dates>
+            <deposition>2022-10-24</deposition>
+            <header_release>2023-05-31</header_release>
+            <map_release>2023-05-31</map_release>
+            <update>2023-05-31</update>
+        </key_dates>
+        <grant_support>
+            <grant_reference>
+                <funding_body>Wellcome Trust</funding_body>
+                <country>United Kingdom</country>
+            </grant_reference>
+            <grant_reference>
+                <funding_body>Medical Research Council (MRC, United Kingdom)</funding_body>
+                <country>United Kingdom</country>
+            </grant_reference>
+        </grant_support>
+        <title>Sarkosyl-extracted AppNL-G-F Abeta42 fibril structure (Methoxy-X04-labelled mice)</title>
+        <authors_list>
+            <author>Wilkinson M</author>
+            <author>Leistner C</author>
+            <author>Burgess A</author>
+            <author>Goodfellow S</author>
+            <author>Deuchars S</author>
+            <author>Ranson NA</author>
+            <author>Radford SE</author>
+            <author>Frank RAW</author>
+        </authors_list>
+        <keywords>Amyloid, fibril, helical, cross-beta, beta amyloid, PROTEIN FIBRIL, ex vivo, arctic mutant, alzheimers disease</keywords>
+    </admin>
+    <crossreferences>
+        <citation_list>
+            <primary_citation>
+                <journal_citation published="true">
+                    <author order="1">Leistner C</author>
+                    <author ORCID="0000-0001-5490-613X" order="2">Wilkinson M</author>
+                    <author ORCID="0000-0002-9643-3163" order="3">Burgess A</author>
+                    <author ORCID="0000-0002-7171-0494" order="4">Lovatt M</author>
+                    <author order="5">Goodbody S</author>
+                    <author ORCID="0000-0002-8389-4120" order="6">Xu Y</author>
+                    <author order="7">Deuchars S</author>
+                    <author ORCID="0000-0002-3079-8039" order="8">Radford SE</author>
+                    <author ORCID="0000-0002-3640-5275" order="9">Ranson NA</author>
+                    <author ORCID="0000-0001-9724-9547" order="10">Frank RAW</author>
+                    <title>The in-tissue molecular architecture of beta-amyloid pathology in the mammalian brain.</title>
+                    <journal_abbreviation>Nat Commun</journal_abbreviation>
+                    <country>UK</country>
+                    <volume>14</volume>
+                    <first_page>2833</first_page>
+                    <last_page>2833</last_page>
+                    <year>2023</year>
+                    <external_references type="PUBMED">37198197</external_references>
+                    <external_references type="DOI">doi:10.1038/s41467-023-38495-5</external_references>
+                    <external_references type="ISSN">2041-1723</external_references>
+                </journal_citation>
+            </primary_citation>
+        </citation_list>
+        <pdb_list>
+            <pdb_reference>
+                <pdb_id>8bfb</pdb_id>
+                <relationship>
+                    <in_frame>FULLOVERLAP</in_frame>
+                </relationship>
+            </pdb_reference>
+        </pdb_list>
+    </crossreferences>
+    <sample>
+        <name>Sarkosyl-extracted AppNL-G-F Abeta42 fibril</name>
+        <supramolecule_list>
+            <complex_supramolecule supramolecule_id="1">
+                <name>Sarkosyl-extracted AppNL-G-F Abeta42 fibril</name>
+                <parent>0</parent>
+                <macromolecule_list>
+                    <macromolecule>
+                        <macromolecule_id>1</macromolecule_id>
+                    </macromolecule>
+                </macromolecule_list>
+                <details>Fibrils purified from mouse brain labelled with Methoxy-X04</details>
+                <natural_source database="NCBI">
+                    <organism ncbi="10090">Mus musculus</organism>
+                    <strain>AppNLGF</strain>
+                    <tissue>Brain</tissue>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="kDa/nm">4.441</theoretical>
+                </molecular_weight>
+            </complex_supramolecule>
+        </supramolecule_list>
+        <macromolecule_list>
+            <protein_or_peptide macromolecule_id="1">
+                <name>Amyloid-beta precursor protein</name>
+                <natural_source database="NCBI">
+                    <organism ncbi="10090">Mus musculus</organism>
+                    <tissue>Brain</tissue>
+                </natural_source>
+                <molecular_weight>
+                    <theoretical units="MDa">0.0044480249999999995</theoretical>
+                </molecular_weight>
+                <details>Humanised Abeta42 from App^NL-G-F mice with arctic mutation (E22G)</details>
+                <number_of_copies>10</number_of_copies>
+                <enantiomer>LEVO</enantiomer>
+                <sequence>
+                    <string>DAEFRHDSGYEVHHQKLVFFAGDVGSNKGAIIGLMVGGVVIA</string>
+                    <external_references type="UNIPROTKB">P05067</external_references>
+                </sequence>
+            </protein_or_peptide>
+        </macromolecule_list>
+    </sample>
+    <structure_determination_list>
+        <structure_determination structure_determination_id="1">
+            <method>helical</method>
+            <aggregation_state>filament</aggregation_state>
+            <specimen_preparation_list>
+                <helical_preparation preparation_id="1">
+                    <buffer>
+                        <ph>7.4</ph>
+                        <component>
+                            <concentration units="mM">50.0</concentration>
+                            <formula>NaCl</formula>
+                            <name>sodium chloride</name>
+                        </component>
+                        <component>
+                            <concentration units="mM">20.0</concentration>
+                            <name>Tris-HCl</name>
+                        </component>
+                    </buffer>
+                    <grid>
+                        <model>C-flat-1.2/1.3</model>
+                        <material>COPPER</material>
+                        <mesh>300</mesh>
+                        <support_film film_type_id="1">
+                            <film_material>CARBON</film_material>
+                            <film_topology>HOLEY</film_topology>
+                        </support_film>
+                        <pretreatment>
+                            <type>PLASMA CLEANING</type>
+                            <time units="s">60</time>
+                        </pretreatment>
+                    </grid>
+                    <vitrification>
+                        <cryogen_name>ETHANE</cryogen_name>
+                        <chamber_humidity units="percentage">90</chamber_humidity>
+                        <chamber_temperature units="K">277</chamber_temperature>
+                        <instrument>FEI VITROBOT MARK IV</instrument>
+                        <details>6s blot. </details>
+                    </vitrification>
+                    <details>Sarkosyl-insoluble fibrils from App^NL-G-F mouse brain labelled with Methoxy-X04</details>
+                </helical_preparation>
+            </specimen_preparation_list>
+            <microscopy_list>
+                <helical_microscopy microscopy_id="1">
+                    <microscope>FEI TITAN KRIOS</microscope>
+                    <illumination_mode>FLOOD BEAM</illumination_mode>
+                    <imaging_mode>BRIGHT FIELD</imaging_mode>
+                    <electron_source>FIELD EMISSION GUN</electron_source>
+                    <acceleration_voltage units="kV">300</acceleration_voltage>
+                    <c2_aperture_diameter units="µm">50.0</c2_aperture_diameter>
+                    <nominal_cs units="mm">2.7</nominal_cs>
+                    <nominal_defocus_min units="µm">140.025</nominal_defocus_min>
+                    <nominal_defocus_max units="µm">290.045</nominal_defocus_max>
+                    <nominal_magnification>130000.0</nominal_magnification>
+                    <specimen_holder_model>FEI TITAN KRIOS AUTOGRID HOLDER</specimen_holder_model>
+                    <alignment_procedure>
+                        <coma_free/>
+                    </alignment_procedure>
+                    <specialist_optics>
+                        <energy_filter>
+                            <name>TFS Selectris</name>
+                            <slit_width units="eV">10</slit_width>
+                        </energy_filter>
+                    </specialist_optics>
+                    <image_recording_list>
+                        <image_recording image_recording_id="1">
+                            <film_or_detector_model>FEI FALCON IV (4k x 4k)</film_or_detector_model>
+                            <number_grids_imaged>1</number_grids_imaged>
+                            <number_real_images>4165</number_real_images>
+                            <average_exposure_time units="s">6.0</average_exposure_time>
+                            <average_electron_dose_per_image units="e/Å^2">41.0</average_electron_dose_per_image>
+                            <details>1442 raw EER frames were collected per image and combined into 40 fractions for processing</details>
+                        </image_recording>
+                    </image_recording_list>
+                </helical_microscopy>
+            </microscopy_list>
+            <helical_processing image_processing_id="1">
+                <image_recording_id>1</image_recording_id>
+                <final_reconstruction>
+                    <applied_symmetry>
+                        <helical_parameters>
+                            <delta_z units="Å">2.414</delta_z>
+                            <delta_phi units="deg">179.355</delta_phi>
+                            <axial_symmetry>C1</axial_symmetry>
+                        </helical_parameters>
+                    </applied_symmetry>
+                    <resolution units="Å" res_type="BY AUTHOR">3.2</resolution>
+                    <resolution_method>FSC 0.143 CUT-OFF</resolution_method>
+                    <software_list>
+                        <software>
+                            <name>RELION</name>
+                            <version>4.0</version>
+                        </software>
+                    </software_list>
+                    <number_images_used>3640</number_images_used>
+                </final_reconstruction>
+                <segment_selection>
+                    <number_selected>136214</number_selected>
+                    <software_list>
+                        <software>
+                            <name>crYOLO</name>
+                        </software>
+                    </software_list>
+                    <details>Manually picked a subset of images to train a model for automatic fibril segment picking in crYOLO</details>
+                </segment_selection>
+                <startup_model type_of_model="INSILICO MODEL">
+                    <details>Model generated from 2D class averages using relion_helix_inimodel2d</details>
+                </startup_model>
+                <final_angle_assignment>
+                    <type>NOT APPLICABLE</type>
+                    <software_list>
+                        <software>
+                            <name>RELION</name>
+                            <version>4.0</version>
+                        </software>
+                    </software_list>
+                </final_angle_assignment>
+            </helical_processing>
+        </structure_determination>
+    </structure_determination_list>
+    <map format="CCP4" size_kbytes="67109">
+        <file>emd_16019.map.gz</file>
+        <symmetry>
+            <space_group>1</space_group>
+        </symmetry>
+        <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
+        <dimensions>
+            <col>256</col>
+            <row>256</row>
+            <sec>256</sec>
+        </dimensions>
+        <origin>
+            <col>0</col>
+            <row>0</row>
+            <sec>0</sec>
+        </origin>
+        <spacing>
+            <x>256</x>
+            <y>256</y>
+            <z>256</z>
+        </spacing>
+        <cell>
+            <a units="Å">240.64</a>
+            <b units="Å">240.64</b>
+            <c units="Å">240.64</c>
+            <alpha units="deg">90.0</alpha>
+            <beta units="deg">90.0</beta>
+            <gamma units="deg">90.0</gamma>
+        </cell>
+        <axis_order>
+            <fast>X</fast>
+            <medium>Y</medium>
+            <slow>Z</slow>
+        </axis_order>
+        <statistics>
+            <minimum>-0.042240314</minimum>
+            <maximum>0.06871328</maximum>
+            <average>0.00016212047</average>
+            <std>0.003495169</std>
+        </statistics>
+        <pixel_spacing>
+            <x units="Å">0.94</x>
+            <y units="Å">0.94</y>
+            <z units="Å">0.94</z>
+        </pixel_spacing>
+        <contour_list>
+            <contour primary="true">
+                <level>0.012</level>
+                <source>AUTHOR</source>
+            </contour>
+        </contour_list>
+        <label>::::EMDATABANK.org::::EMD-16019::::</label>
+        <annotation_details>CryoEM map for extracted AppNLGF Abeta42 fibril after MOX04 labelling</annotation_details>
+    </map>
+    <interpretation>
+        <modelling_list>
+            <modelling>
+                <refinement_protocol>AB INITIO MODEL</refinement_protocol>
+                <target_criteria>Correlation coefficient</target_criteria>
+                <refinement_space>REAL</refinement_space>
+                <overall_bvalue>52.0</overall_bvalue>
+            </modelling>
+        </modelling_list>
+        <half_map_list>
+            <half_map format="CCP4" size_kbytes="67109">
+                <file>emd_16019_half_map_1.map.gz</file>
+                <symmetry>
+                    <space_group>1</space_group>
+                </symmetry>
+                <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
+                <dimensions>
+                    <col>256</col>
+                    <row>256</row>
+                    <sec>256</sec>
+                </dimensions>
+                <origin>
+                    <col>0</col>
+                    <row>0</row>
+                    <sec>0</sec>
+                </origin>
+                <spacing>
+                    <x>256</x>
+                    <y>256</y>
+                    <z>256</z>
+                </spacing>
+                <cell>
+                    <a units="Å">240.64</a>
+                    <b units="Å">240.64</b>
+                    <c units="Å">240.64</c>
+                    <alpha units="deg">90.0</alpha>
+                    <beta units="deg">90.0</beta>
+                    <gamma units="deg">90.0</gamma>
+                </cell>
+                <axis_order>
+                    <fast>X</fast>
+                    <medium>Y</medium>
+                    <slow>Z</slow>
+                </axis_order>
+                <statistics>
+                    <minimum>-0.049923822</minimum>
+                    <maximum>0.06740792</maximum>
+                    <average>0.000067185276</average>
+                    <std>0.00567416</std>
+                </statistics>
+                <pixel_spacing>
+                    <x units="Å">0.94</x>
+                    <y units="Å">0.94</y>
+                    <z units="Å">0.94</z>
+                </pixel_spacing>
+                <contour_list>
+                    <contour primary="true">
+                        <source>AUTHOR</source>
+                    </contour>
+                </contour_list>
+                <label>::::EMDATABANK.org::::EMD-16019::::</label>
+                <annotation_details>halfmap2</annotation_details>
+            </half_map>
+            <half_map format="CCP4" size_kbytes="67109">
+                <file>emd_16019_half_map_2.map.gz</file>
+                <symmetry>
+                    <space_group>1</space_group>
+                </symmetry>
+                <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
+                <dimensions>
+                    <col>256</col>
+                    <row>256</row>
+                    <sec>256</sec>
+                </dimensions>
+                <origin>
+                    <col>0</col>
+                    <row>0</row>
+                    <sec>0</sec>
+                </origin>
+                <spacing>
+                    <x>256</x>
+                    <y>256</y>
+                    <z>256</z>
+                </spacing>
+                <cell>
+                    <a units="Å">240.64</a>
+                    <b units="Å">240.64</b>
+                    <c units="Å">240.64</c>
+                    <alpha units="deg">90.0</alpha>
+                    <beta units="deg">90.0</beta>
+                    <gamma units="deg">90.0</gamma>
+                </cell>
+                <axis_order>
+                    <fast>X</fast>
+                    <medium>Y</medium>
+                    <slow>Z</slow>
+                </axis_order>
+                <statistics>
+                    <minimum>-0.053714175</minimum>
+                    <maximum>0.06384071</maximum>
+                    <average>0.00007685235</average>
+                    <std>0.005174428</std>
+                </statistics>
+                <pixel_spacing>
+                    <x units="Å">0.94</x>
+                    <y units="Å">0.94</y>
+                    <z units="Å">0.94</z>
+                </pixel_spacing>
+                <contour_list>
+                    <contour primary="true">
+                        <source>AUTHOR</source>
+                    </contour>
+                </contour_list>
+                <label>::::EMDATABANK.org::::EMD-16019::::</label>
+                <annotation_details>halfmap1</annotation_details>
+            </half_map>
+        </half_map_list>
+    </interpretation>
+</emd>
