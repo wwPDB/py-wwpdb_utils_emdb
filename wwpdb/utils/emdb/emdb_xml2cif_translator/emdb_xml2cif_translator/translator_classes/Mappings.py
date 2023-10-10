@@ -1,5 +1,4 @@
 import os, re
-import itertools
 import emdb_xml2cif_translator.input_files
 
 
@@ -263,12 +262,6 @@ class Mappings(object):
                 else:
                     logic[cat_id]["data"].append(value)
 
-        # if logic:
-        #     for map in mappings:
-        #         mappings.get(map).get(self.Const.LOGIC).update(logic)
-        #         read = True
-        # if mappings:
-        #     self.mappings.update(mappings)
         return read
 
     def read_logic(self, input_all_logic, is_multiple):

@@ -123,6 +123,15 @@ class EMDBMetadata(object):
                                 el = root.find(el)
                                 attrib_val = el.get(attrib_key)
                                 self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, el.text)
+                        elif "^" in xml_part:
+                            if ":" in xml_part:
+                                xml_part = xml_part.split(":")[1]
+                            tags = xml_part.split("^", 1)[0].split('.',1)[1].replace('.', '/')
+                            item = xml_part.rsplit('^', 1)[1]
+                            for elem in root.findall(tags):
+                                sub_elem = elem.findall(item)
+                                for sub in sub_elem:
+                                    self.mappings_in.map_xml_value_to_code(sub.text, xml_part)
                         else:
                             elem = xml_part.split(".", 1)[1]
                             tags = elem.rsplit('.', 1)[0].replace('.', '/')
