@@ -299,6 +299,8 @@ class CifEMDBTranslator(object):
         # Other constants
         CIF_EMDB_ASSOC = "associated EM volume"
         CIF_EMDB_OTHER = "other EM volume"
+        CIF_EMDB_CONSENSUS = "consensus EM volume"
+        CIF_EMDB_FOCUSED = "focused EM volume"
         CIF_AUTHOR_RE = re.compile(r"^([A-Za-z0-9 \'\-.]+), (([A-Z\-]+\.)*)")
         CIF_HALF_MAP_RE = re.compile(r"^D_[0-9]+\_em\-half\-volume\_P([0-9]+)\.map")
         CIF_ADD_MAP_RE = re.compile(r"^D_[0-9]+\_em\-additional\-volume\_P([0-9]+)\.map")
@@ -3176,6 +3178,12 @@ class CifEMDBTranslator(object):
                         elif content_type == const.CIF_EMDB_OTHER:
                             cross_ref.set_relationship(emdb.relationshipType(other=const.CIF_EMDB_OTHER))
                             txt = u"The value (%s) is given to (cross_ref.set_relationship)." % const.CIF_EMDB_OTHER
+                        elif content_type == const.CIF_EMDB_CONSENSUS:
+                            cross_ref.set_relationship(emdb.relationshipType(other=const.CIF_EMDB_CONSENSUS))
+                            txt = u"The value (%s) is given to (cross_ref.set_relationship)." % const.CIF_EMDB_CONSENSUS
+                        elif content_type == const.CIF_EMDB_FOCUSED:
+                            cross_ref.set_relationship(emdb.relationshipType(other=const.CIF_EMDB_FOCUSED))
+                            txt = u"The value (%s) is given to (cross_ref.set_relationship)." % const.CIF_EMDB_FOCUSED
                         else:
                             txt = u"No value is given to (cross_ref.set_relationship)."
                         if txt is not None:
