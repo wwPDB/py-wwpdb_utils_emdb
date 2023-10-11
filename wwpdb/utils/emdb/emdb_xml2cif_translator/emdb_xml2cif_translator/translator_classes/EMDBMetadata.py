@@ -110,6 +110,9 @@ class EMDBMetadata(object):
                 if len(line) != 0:
                     if line[0] != '#' and not line.startswith("MSTART:"):
                         xml_part = line.split(" ")[0]
+                        elem_dict = {}
+                        if ":" in xml_part:
+                            xml_part = xml_part.split(":")[1]
 
                         if "@" in xml_part:
                             xml_elem = xml_part.rsplit("@", 1)
@@ -124,20 +127,21 @@ class EMDBMetadata(object):
                                 attrib_val = el.get(attrib_key)
                                 self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, el.text)
                         elif "^" in xml_part:
-                            if ":" in xml_part:
-                                xml_part = xml_part.split(":")[1]
                             tags = xml_part.split("^", 1)[0].split('.',1)[1].replace('.', '/')
-                            item = xml_part.rsplit('^', 1)[1]
+                            item = xml_part.rsplit('^', 1)[1].split('&',1)[0]
                             for elem in root.findall(tags):
                                 sub_elem = elem.findall(item)
                                 for sub in sub_elem:
-                                    self.mappings_in.map_xml_value_to_code(sub.text, xml_part)
+                                    if "&" in xml_part:
+                                        attrib_key = xml_part.rsplit('^', 1)[1].split('&',1)[1]
+                                        attrib_val = sub.get(attrib_key)
+                                        elem_dict[attrib_val] = sub.text
+                                        self.mappings_in.map_xml_value_to_code(elem_dict, xml_part)
+                                    else:
+                                        self.mappings_in.map_xml_value_to_code(sub.text, xml_part)
                         else:
-                            elem = xml_part.split(".", 1)[1]
-                            tags = elem.rsplit('.', 1)[0].replace('.', '/')
-                            item = elem.rsplit('.', 1)[1]
-                            if ":" in xml_part:
-                                xml_part = xml_part.split(":")[1]
+                            elem = xml_part.split(".", 1)[1].replace('.', '/')
+                            tags, item = elem.rsplit('/', 1)
                             for elem in root.findall(tags):
                                 sub_elem = elem.find(item)
                                 sub_elements = '' if sub_elem is None else str(sub_elem.text)

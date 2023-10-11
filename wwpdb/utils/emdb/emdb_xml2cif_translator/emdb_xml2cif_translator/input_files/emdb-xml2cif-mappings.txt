@@ -1,29 +1,29 @@
 emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 
-<emd>.<admin>.<current_status>
+##<emd>.<admin>.<current_status>
 emd.admin.current_status.date em_admin.last_update.XML_VALUE
 emd.admin.current_status.code em_admin.current_status.XML_VALUE
 emd.admin.current_status.processing_site pdbx_database_status.process_site.XML_VALUE
 emd.admin.current_status.details em_admin.details.XML_VALUE
 
-#<emd>.<admin>.<sites>
+##<emd>.<admin>.<sites>
 emd.admin.sites.deposition em_admin.deposition_site.XML_VALUE pdbx_database_status.deposit_site.XML_VALUE
 ###emd.admin.sites.last_processing pdbx_database_status.process_site.XML_VALUE
 
-#<emd>.<admin>.<key_dates>
+##<emd>.<admin>.<key_dates>
 emd.admin.key_dates.deposition em_admin.deposition_date.XML_VALUE
 emd.admin.key_dates.header_release em_admin.header_release_date.XML_VALUE
 emd.admin.key_dates.map_release em_admin.map_release_date.XML_VALUE
 emd.admin.key_dates.obsolete em_admin.obsoleted_date.XML_VALUE
 ###emd.admin.key_dates.update em_admin.last_update.XML_VALUE
 
-#<emd>.<admin>.<title>: IF em_depui.same_title_as_pdb: YES: struct.title.XML_VALUE; NO: em_admin.title.XML_VALUE????!!!
+##<emd>.<admin>.<title>: IF em_depui.same_title_as_pdb: YES: struct.title.XML_VALUE; NO: em_admin.title.XML_VALUE????!!!
 emd.admin.title em_admin.title.XML_VALUE struct.title.XML_VALUE
 
-#<emd>.<admin>.<authors_list>.<[author]>
+##<emd>.<admin>.<authors_list>.<[author]>
 N:emd.admin.authors_list^author em_author_list.ordinal.N em_author_list.author.XML_VALUE
 
-#<emd>.<crossreferences>.<citation_list>.<primary_citation>.<journal_citation>
+##<emd>.<crossreferences>.<citation_list>.<primary_citation>.<journal_citation>
 emd.crossreferences.citation_list.primary_citation.journal_citation@published citation.unpublished_flag.B
 N:emd.crossreferences.citation_list.primary_citation.journal_citation^author citation_author.ordinal.N citation_author.name.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.title citation.title.XML_VALUE
@@ -36,7 +36,7 @@ emd.crossreferences.citation_list.primary_citation.journal_citation.last_page ci
 emd.crossreferences.citation_list.primary_citation.journal_citation.year citation.year.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.language citation.language.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.details citation.details.XML_VALUE
-D:emd.crossreferences.citation_list.primary_citation.journal_citation.external_references@type.& citation.D.XML_VALUE
+D:emd.crossreferences.citation_list.primary_citation.journal_citation^external_references&type citation.D.XML_VALUE
 N:emd.crossreferences.emdb_list.emdb_reference.emdb_id pdbx_database_related.db_name.E$EMDB pdbx_database_related.db_id.XML_VALUE
 N:emd.crossreferences.emdb_list.emdb_reference.relationship.other pdbx_database_related.content_type.XML_VALUE
 N:emd.crossreferences.emdb_list.emdb_reference.details pdbx_database_related.details.XML_VALUE
@@ -52,7 +52,7 @@ emd.structure_determination_list.structure_determination@structure_determination
 emd.structure_determination_list.structure_determination.method em_experiment.reconstruction_method.XML_VALUE
 emd.structure_determination_list.structure_determination.aggregation_state em_experiment.aggregation_state.XML_VALUE
 
-#emd.structure_determination_list.structure_determination.specimen_preparation_list.S$single_particle_preparation@preparation_id em_specimen.id.XML_VALUE
+##emd.structure_determination_list.structure_determination.specimen_preparation_list.S$single_particle_preparation@preparation_id em_specimen.id.XML_VALUE
 #emd.structure_determination_list.structure_determination.specimen_preparation_list.S$single_particle_preparation|tomography_preparation|subtomogram_averaging_preparation|crystallography_preparation|helical_preparation$S.concentration em_specimen.concentration.XML_VALUE
 #emd.structure_determination_list.structure_determination.specimen_preparation_list.S$single_particle_preparation|tomography_preparation|subtomogram_averaging_preparation|crystallography_preparation|helical_preparation$S.buffer.ph em_buffer.pH.XML_VALUE
 ##N:emd.structure_determination_list.structure_determination.specimen_preparation_list.S$single_particle_preparation|tomography_preparation|subtomogram_averaging_preparation|crystallography_preparation|helical_preparation$S.buffer.component.concentration em_buffer_component.concentration.XML_VALUE
