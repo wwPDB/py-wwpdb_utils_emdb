@@ -467,6 +467,7 @@ class Mappings(object):
         :return map_successful: a boolean; True when value is set
         """
         map_successful = False
+        # print(self.mappings)
         for mapping, sub in self.mappings.items():
             if mapping == xml_mapping_code:
                 self.set_mapping_xml_value(xml_value, mapping)

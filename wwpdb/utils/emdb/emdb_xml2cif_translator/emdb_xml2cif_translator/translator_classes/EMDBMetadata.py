@@ -1,5 +1,5 @@
 
-import os
+import os, re
 from emdb_xml2cif_translator.translator_classes.Mappings import Mappings
 from lxml import objectify
 import xml.etree.ElementTree as ET
@@ -111,10 +111,11 @@ class EMDBMetadata(object):
                     if line[0] != '#' and not line.startswith("MSTART:"):
                         xml_part = line.split(" ")[0]
                         elem_dict = {}
+                        xml_slices = []
                         if ":" in xml_part:
                             xml_part = xml_part.split(":")[1]
 
-                        if "@" in xml_part:
+                        if "@" in xml_part and "S$" not in xml_part:
                             xml_elem = xml_part.rsplit("@", 1)
                             if not '.' in xml_elem[0]:
                                 for attrib_key, attrib_val in root.attrib.items():
@@ -139,6 +140,31 @@ class EMDBMetadata(object):
                                         self.mappings_in.map_xml_value_to_code(elem_dict, xml_part)
                                     else:
                                         self.mappings_in.map_xml_value_to_code(sub.text, xml_part)
+                        elif 'S$' in xml_part:
+                            substitution = re.split('S\$|\$S', xml_part)
+                            count = len(substitution)
+                            sub_ele = substitution[1].split("|")
+                            for sub in sub_ele:
+                                if count == 2:
+                                    xml_slice = substitution[0]+sub
+                                    xml_slices.append(xml_slice)
+                                if count == 3 :
+                                    xml_slice = substitution[0]+sub+substitution[2]
+                                    xml_slices.append(xml_slice)
+                            for slice in xml_slices:
+                                elem = slice.split(".",1)[1].replace(".", "/")
+                                if '@' in slice:
+                                    tags, attrib_key = elem.split('@', 1)
+                                    el = root.find(tags)
+                                    if el is not None:
+                                        attrib_val = el.get(attrib_key)
+                                        self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
+                                if not "@" in slice:
+                                    tags, item = elem.rsplit('/', 1)
+                                    for elem in root.findall(tags):
+                                        sub_elem = elem.find(item)
+                                        sub_elements = '' if sub_elem is None else str(sub_elem.text)
+                                        self.mappings_in.map_xml_value_to_code(sub_elements, slice)
                         else:
                             elem = xml_part.split(".", 1)[1].replace('.', '/')
                             tags, item = elem.rsplit('/', 1)

@@ -364,6 +364,7 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                         </component>
                     </buffer>
                     <grid>
+                        <support_film film_type_id="1"/>
                         <model>Quantifoil R1.2/1.3</model>
                         <material>COPPER</material>
                     </grid>
