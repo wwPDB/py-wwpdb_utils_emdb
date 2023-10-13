@@ -1,7 +1,7 @@
 data_emd_0001
 
-_database_2.database_code  EMDB
-_database_2.database_id    EMD-0001
+_database_2.database_id    EMDB
+_database_2.database_code  EMD-0001
 #
 _em_admin.last_update          2018-10-17
 _em_admin.current_status       REL
@@ -19,8 +19,8 @@ _pdbx_database_status.deposit_site  PDBe
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_author_list.author
 _em_author_list.ordinal
+_em_author_list.author
 1  "Glyde R"  
 2  "Ye FZ"  
 3  "Zhang XD"  
@@ -36,10 +36,10 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.journal_id_CSD           29932903
+_citation.pdbx_database_id_PubMed  29932903
 _citation.journal_id_ASTM          doi:10.1016/j.molcel.2018.05.021
 _citation.journal_id_ISSN          1097-4164
-_citation.pdbx_database_id_PubMed  2168
+_citation.journal_id_CSD           2168
 _citation.pdbx_database_id_DOI     MOCEFL
 #
 loop_
@@ -75,6 +75,15 @@ _em_specimen.details        .
 #
 _em_buffer.pH       8.0
 _em_buffer.details  ?
+#
+loop_
+_em_buffer_component.concentration
+_em_buffer_component.concentration_units
+_em_buffer_component.formula
+_em_buffer_component.name
+ 10.0  mM  Tris-HCL  "Tris hydrochloride"  
+150.0  mM  NaCL      "sodium chloride"  
+ 10.0  mM  MgCl2     "magnesium chloride"  
 #
 _em_staining.type      .
 _em_staining.material  .

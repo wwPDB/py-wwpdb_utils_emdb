@@ -160,10 +160,16 @@ class EMDBMetadata(object):
                                         attrib_val = el.get(attrib_key)
                                         self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
                                 if not "@" in slice:
-                                    tags, item = elem.rsplit('/', 1)
+                                    if "&" in slice:
+                                        tags, item = elem.rsplit('&', 1)
+                                    else:
+                                        tags, item = elem.rsplit('/', 1)
                                     for elem in root.findall(tags):
-                                        sub_elem = elem.find(item)
-                                        sub_elements = '' if sub_elem is None else str(sub_elem.text)
+                                        if "&" in slice:
+                                            sub_elements = elem.get(item)
+                                        else:
+                                            sub_elem = elem.find(item)
+                                            sub_elements = '' if sub_elem is None else str(sub_elem.text)
                                         self.mappings_in.map_xml_value_to_code(sub_elements, slice)
                         else:
                             elem = xml_part.split(".", 1)[1].replace('.', '/')
