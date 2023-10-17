@@ -1,7 +1,7 @@
 data_emd_0001
 
-_database_2.database_id    EMDB
-_database_2.database_code  EMD-0001
+_database_2.database_code  EMDB
+_database_2.database_id    EMD-0001
 #
 _em_admin.last_update          2018-10-17
 _em_admin.current_status       REL
@@ -36,11 +36,11 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.pdbx_database_id_PubMed  29932903
-_citation.journal_id_ASTM          doi:10.1016/j.molcel.2018.05.021
-_citation.journal_id_ISSN          1097-4164
-_citation.journal_id_CSD           2168
-_citation.pdbx_database_id_DOI     MOCEFL
+_citation.journal_id_CSD           29932903
+_citation.pdbx_database_id_DOI     doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_ASTM          1097-4164
+_citation.pdbx_database_id_PubMed  2168
+_citation.journal_id_ISSN          MOCEFL
 #
 loop_
 _citation_author.ordinal
@@ -53,15 +53,15 @@ _citation_author.name
 6  "Zhang X"  
 #
 loop_
-_pdbx_database_related.db_id
 _pdbx_database_related.db_name
+_pdbx_database_related.db_id
 _pdbx_database_related.content_type
 _pdbx_database_related.details
 EMDB  EMD-4397  "other EM volume"       .  
 EMDB  EMD-0001  "associated EM volume"  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  
 #
-_em_db_reference.access_code   PDB
-_em_db_reference.db_name       6gh5
+_em_db_reference.db_name       PDB
+_em_db_reference.access_code   6gh5
 _em_db_reference.relationship  FULLOVERLAP
 _em_db_reference.details       CHECK
 #
@@ -69,28 +69,32 @@ _em_experiment.id                     1
 _em_experiment.reconstruction_method  singleParticle
 _em_experiment.aggregation_state      particle
 #
-_em_specimen.id             1
-_em_specimen.concentration  0.5
-_em_specimen.details        .
-#
-_em_buffer.pH       8.0
-_em_buffer.details  ?
+loop_
+_em_specimen.id
+_em_specimen.concentration
+_em_specimen.details
+1  0.5  .  
+2  0.5  .  
 #
 loop_
+_em_buffer.pH
+_em_buffer.details
+8.0  .  
+9.0  "buffer details"  
+#
+loop_
+_em_buffer_component.id
 _em_buffer_component.concentration
 _em_buffer_component.concentration_units
 _em_buffer_component.formula
 _em_buffer_component.name
- 10.0  mM  Tris-HCL  "Tris hydrochloride"  
-150.0  mM  NaCL      "sodium chloride"  
- 10.0  mM  MgCl2     "magnesium chloride"  
+1   10.0  mM  Tris-HCL  "Tris hydrochloride"  
+2  150.0  mM  NaCL      "sodium chloride"  
+3   10.0  mM  MgCl2     "magnesium chloride"  
+4   12.0  mM  TriHCL    hydrochloride  
+5   15.0  mM  NaCL2     chloride  
 #
-_em_staining.type      .
-_em_staining.material  .
-_em_staining.details   .
-#
-_em_embedding.material  .
-_em_embedding.details   .
+_em_embedding.details  .
 #
 _em_shadowing.material   .
 _em_shadowing.angle      .
@@ -119,6 +123,27 @@ _em_vitrification.instrument            "FEI VITROBOT MARK IV"
 _em_vitrification.details               None
 _em_vitrification.timed_resolved_state  .
 _em_vitrification.method                .
+#
+loop_
+_em_imaging.id
+_em_imaging.microscope_model
+_em_imaging.illumination_mode
+_em_imaging.mode
+_em_imaging.electron_source
+_em_imaging.accelarating_voltage
+_em_imaging.c2_aperture_diameter
+_em_imaging.nominal_cs
+_em_imaging.nominal_defocus_min
+_em_imaging.calibrated_defocus_min
+_em_imaging.nominal_defocus_max
+_em_imaging.calibrated_defocus_max
+_em_imaging.nominal_magnification
+_em_imaging.calibrated_magnification
+_em_imaging.specimen_holder_model
+_em_imaging.cryogen
+_em_imaging.details
+1  "FEI TITAN KRIOS"  OTHER  "BRIGHT FIELD"  "FIELD EMISSION GUN"  300  .  .  .  .  .  .  .  .  .  .  .  
+2  "FEI TITAN "       OTHER  FIELD           .                       .  .  .  .  .  .  .  .  .  .  .  .  
 #
 _em_map.format                CCP4
 _em_map.size_kb               67109

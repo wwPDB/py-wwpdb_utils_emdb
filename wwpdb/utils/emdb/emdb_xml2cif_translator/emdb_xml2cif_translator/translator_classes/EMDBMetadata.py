@@ -54,7 +54,7 @@ class EMDBMetadata(object):
         processed = False
         if self.xml_tree_created:
             ###use XML values to store them in the mappings logic
-            # if self.store_xml_values_to_mappings_recursively(self.emd):
+            ## if self.store_xml_values_to_mappings_recursively(self.emd):
             mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__),
                                          self.MAPPINGS_LOGIC_FILENAME)
             if self.find_xml_values_to_mappings(mappings_file):
@@ -112,6 +112,8 @@ class EMDBMetadata(object):
                         xml_part = line.split(" ")[0]
                         elem_dict = {}
                         xml_slices = []
+                        index = 0
+
                         if ":" in xml_part:
                             xml_part = xml_part.split(":")[1]
 
@@ -159,18 +161,25 @@ class EMDBMetadata(object):
                                     if el is not None:
                                         attrib_val = el.get(attrib_key)
                                         self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
-                                if not "@" in slice:
+                                if not "@" in slice and not "$I$" in slice:
                                     if "&" in slice:
                                         tags, item = elem.rsplit('&', 1)
                                     else:
                                         tags, item = elem.rsplit('/', 1)
-                                    for elem in root.findall(tags):
+                                    for element in root.findall(tags):
                                         if "&" in slice:
-                                            sub_elements = elem.get(item)
+                                            sub_elements = element.get(item)
                                         else:
-                                            sub_elem = elem.find(item)
+                                            sub_elem = element.find(item)
                                             sub_elements = '' if sub_elem is None else str(sub_elem.text)
                                         self.mappings_in.map_xml_value_to_code(sub_elements, slice)
+                                if "$I$" in slice:
+                                    tags, item = elem.rsplit('$I$', 1)
+                                    for element in root.findall(tags):
+                                        sub_elem = element.findall(item)
+                                        for ind in range(1, len(sub_elem)+1):
+                                            index += 1
+                                            self.mappings_in.map_xml_value_to_code(str(index), slice)
                         else:
                             elem = xml_part.split(".", 1)[1].replace('.', '/')
                             tags, item = elem.rsplit('/', 1)

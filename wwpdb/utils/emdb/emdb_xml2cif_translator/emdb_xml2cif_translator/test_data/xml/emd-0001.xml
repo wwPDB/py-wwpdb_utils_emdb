@@ -376,6 +376,23 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                         <details />
                     </vitrification>
                 </single_particle_preparation>
+                <single_particle_preparation preparation_id="2">
+                    <concentration units="mg/mL">0.5</concentration>
+                    <buffer>
+                        <ph>9.0</ph>
+                        <component>
+                            <concentration units="mM">12.0</concentration>
+                            <formula>TriHCL</formula>
+                            <name>hydrochloride</name>
+                        </component>
+                        <component>
+                            <concentration units="mM">15.0</concentration>
+                            <formula>NaCL2</formula>
+                            <name>chloride</name>
+                        </component>
+                        <details>buffer details</details>
+                    </buffer>
+                </single_particle_preparation>
             </specimen_preparation_list>
             <microscopy_list>
                 <single_particle_microscopy microscopy_id="1">
@@ -391,6 +408,11 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                             <average_electron_dose_per_image units="e/&#8491;^2">45.0</average_electron_dose_per_image>
                         </image_recording>
                     </image_recording_list>
+                </single_particle_microscopy>
+                <single_particle_microscopy microscopy_id="2">
+                    <microscope>FEI TITAN </microscope>
+                    <illumination_mode>OTHER</illumination_mode>
+                    <imaging_mode>FIELD</imaging_mode>
                 </single_particle_microscopy>
             </microscopy_list>
             <singleparticle_processing image_processing_id="1">
