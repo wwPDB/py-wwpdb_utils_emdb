@@ -173,13 +173,23 @@ class EMDBMetadata(object):
                                             sub_elem = element.find(item)
                                             sub_elements = '' if sub_elem is None else str(sub_elem.text)
                                         self.mappings_in.map_xml_value_to_code(sub_elements, slice)
-                                if "$I$" in slice:
-                                    tags, item = elem.rsplit('$I$', 1)
+                                if "$I$" in slice or "M$" in slice:
+                                    if "$I$" in slice:
+                                        tags, item = elem.rsplit('$I$', 1)
+                                    elif "M$" in slice:
+                                        tags, items = elem.rsplit('M$', 1)
+                                        att, item = items.rsplit('|', 1)
                                     for element in root.findall(tags):
                                         sub_elem = element.findall(item)
-                                        for ind in range(1, len(sub_elem)+1):
-                                            index += 1
-                                            self.mappings_in.map_xml_value_to_code(str(index), slice)
+                                        if "$I$" in slice:
+                                            for ind in range(1, len(sub_elem)+1):
+                                                index += 1
+                                                self.mappings_in.map_xml_value_to_code(str(index), slice)
+                                        elif "M$" in slice:
+                                            attrib = element.get(att)
+                                            for ind in range(1, len(sub_elem)+1):
+                                                self.mappings_in.map_xml_value_to_code(str(attrib), slice)
+
                         else:
                             elem = xml_part.split(".", 1)[1].replace('.', '/')
                             tags, item = elem.rsplit('/', 1)
