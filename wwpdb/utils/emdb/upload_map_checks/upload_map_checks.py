@@ -24,6 +24,7 @@ class LoadMap:
         self.size = None
         self.offset = None
         self.pixel_size = None
+        self.epsilon = 1e-10
 
     def load(self):
         """
@@ -66,7 +67,7 @@ class LoadMap:
         Returns:
             bool: True if smaller or equal, False otherwise.
         """
-        return all(self.size <= another_map.size)
+        return all(np.array(self.size) - np.array(another_map.size) <= self.epsilon)
 
     def is_inside(self, another_map):
         """
@@ -78,9 +79,23 @@ class LoadMap:
         Returns:
             bool: True if completely inside, False otherwise.
         """
-        origin1, end1 = self.extremities()
-        origin2, end2 = another_map.extremities()
-        return all(origin2 <= origin1) and all(end1 <= end2)
+        origin1, end1 = np.array(self.extremities())
+        origin2, end2 = np.array(another_map.extremities())
+        return all(origin2 - origin1 <= self.epsilon) and all(end1 - end2 <= self.epsilon)
+
+    def acceptable_pixel_size(self, another_map):
+        """
+        Check if the pixel size of the map is acceptable compared to another map.
+
+        Args:
+            another_map (LoadMap): Another LoadMap instance.
+
+        Returns:
+            tuple: Two boolean values indicating pixel size acceptability and if it's a multiple.
+        """
+        diff = np.array(self.pixel_size) - np.array(another_map.pixel_size)
+        modulo = np.array(self.pixel_size) % np.array(another_map.pixel_size)
+        return all(diff <= self.epsilon), all(modulo <= self.epsilon)
 
     def acceptable_pixel_size(self, another_map):
         """
