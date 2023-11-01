@@ -107,6 +107,10 @@ class CIF(object):
 
         if all(isinstance(i, list) for i in data_list):
             list_values = [list(t) for t in zip(*data_list)]
+            # if all(item == "" for sublist in list_values for item in sublist):
+            #     list_val = list_values[0]
+            #     cat_obj.append(list_val)
+            # else:
             cat_obj.extend(list_values)
         else:
             cat_obj.append(data_list)

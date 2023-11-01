@@ -500,4 +500,5 @@ class Mappings(object):
             else:
                 self.mappings.get(mapping)[self.Const.XML_VALUE] = value
             value_set = True
+        # print(self.mappings)
         return value_set

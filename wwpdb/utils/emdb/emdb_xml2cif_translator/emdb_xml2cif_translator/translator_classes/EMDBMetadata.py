@@ -110,6 +110,7 @@ class EMDBMetadata(object):
                 if len(line) != 0:
                     if line[0] != '#' and not line.startswith("MSTART:"):
                         xml_part = line.split(" ")[0]
+                        tags, item, att, parent_elem, sub_elements = '', '', '', '', ''
                         elem_dict = {}
                         xml_slices = []
                         index = 0
@@ -124,19 +125,19 @@ class EMDBMetadata(object):
                                     attrib_tag = '@'.join((xml_elem[0], attrib_key))
                                     self.mappings_in.map_xml_value_to_code(attrib_val, attrib_tag, root.text)
                             else:
-                                el = xml_elem[0].split(".",1)[1].replace('.', '/')
+                                el = xml_elem[0].split(".", 1)[1].replace('.', '/')
                                 attrib_key = xml_elem[1]
                                 el = root.find(el)
                                 attrib_val = el.get(attrib_key)
                                 self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, el.text)
                         elif "^" in xml_part:
-                            tags = xml_part.split("^", 1)[0].split('.',1)[1].replace('.', '/')
-                            item = xml_part.rsplit('^', 1)[1].split('&',1)[0]
+                            tags = xml_part.split("^", 1)[0].split('.', 1)[1].replace('.', '/')
+                            item = xml_part.rsplit('^', 1)[1].split('&', 1)[0]
                             for elem in root.findall(tags):
                                 sub_elem = elem.findall(item)
                                 for sub in sub_elem:
                                     if "&" in xml_part:
-                                        attrib_key = xml_part.rsplit('^', 1)[1].split('&',1)[1]
+                                        attrib_key = xml_part.rsplit('^', 1)[1].split('&', 1)[1]
                                         attrib_val = sub.get(attrib_key)
                                         elem_dict[attrib_val] = sub.text
                                         self.mappings_in.map_xml_value_to_code(elem_dict, xml_part)
@@ -148,36 +149,45 @@ class EMDBMetadata(object):
                             sub_ele = substitution[1].split("|")
                             for sub in sub_ele:
                                 if count == 2:
-                                    xml_slice = substitution[0]+sub
+                                    xml_slice = substitution[0]+sub+"!"
                                     xml_slices.append(xml_slice)
-                                if count == 3 :
-                                    xml_slice = substitution[0]+sub+substitution[2]
+                                if count == 3:
+                                    xml_slice = substitution[0]+sub+"!"+substitution[2]
                                     xml_slices.append(xml_slice)
                             for slice in xml_slices:
-                                elem = slice.split(".",1)[1].replace(".", "/")
+                                parent_elem = slice.split("!", 1)[0].split(".", 1)[1].replace(".", "/")
+                                elem = slice.replace("!", '').split(".", 1)[1].replace(".", "/")
+                                slice = slice.replace("!", '')
                                 if '@' in slice:
                                     tags, attrib_key = elem.split('@', 1)
                                     el = root.find(tags)
                                     if el is not None:
                                         attrib_val = el.get(attrib_key)
                                         self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
-                                if not "@" in slice and not "$I$" in slice:
+                                if not "@" in slice and not "$I$" in slice and not "R$" in slice:
                                     if "&" in slice:
                                         tags, item = elem.rsplit('&', 1)
                                     else:
                                         tags, item = elem.rsplit('/', 1)
-                                    for element in root.findall(tags):
-                                        if "&" in slice:
-                                            sub_elements = element.get(item)
-                                        else:
-                                            sub_elem = element.find(item)
-                                            sub_elements = '' if sub_elem is None else str(sub_elem.text)
-                                        self.mappings_in.map_xml_value_to_code(sub_elements, slice)
-                                if "$I$" in slice or "M$" in slice:
+                                    find_elem = root.findall(tags)
+                                    find_parent_elem = root.findall(parent_elem)
+                                    if find_elem:
+                                        for element in root.findall(tags):
+                                            if "&" in slice:
+                                                sub_elements = element.get(item)
+                                            else:
+                                                sub_elem = element.find(item)
+                                                sub_elements = '' if sub_elem is None else str(sub_elem.text)
+                                            self.mappings_in.map_xml_value_to_code(sub_elements, slice)
+                                    else:
+                                        if find_parent_elem:
+                                            for l in range(len(find_parent_elem)):
+                                                self.mappings_in.map_xml_value_to_code('', slice)
+                                if "$I$" in slice or "R$" in slice:
                                     if "$I$" in slice:
                                         tags, item = elem.rsplit('$I$', 1)
-                                    elif "M$" in slice:
-                                        tags, items = elem.rsplit('M$', 1)
+                                    elif "R$" in slice:
+                                        tags, items = elem.rsplit('R$', 1)
                                         att, item = items.rsplit('|', 1)
                                     for element in root.findall(tags):
                                         sub_elem = element.findall(item)
@@ -185,7 +195,7 @@ class EMDBMetadata(object):
                                             for ind in range(1, len(sub_elem)+1):
                                                 index += 1
                                                 self.mappings_in.map_xml_value_to_code(str(index), slice)
-                                        elif "M$" in slice:
+                                        elif "R$" in slice:
                                             attrib = element.get(att)
                                             for ind in range(1, len(sub_elem)+1):
                                                 self.mappings_in.map_xml_value_to_code(str(attrib), slice)
