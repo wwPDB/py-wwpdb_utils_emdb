@@ -1,7 +1,7 @@
 data_emd_0001
 
-_database_2.database_id    EMDB
-_database_2.database_code  EMD-0001
+_database_2.database_code  EMDB
+_database_2.database_id    EMD-0001
 #
 _em_admin.last_update          2018-10-17
 _em_admin.current_status       REL
@@ -36,15 +36,15 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.pdbx_database_id_PubMed  29932903
-_citation.journal_id_ASTM          doi:10.1016/j.molcel.2018.05.021
-_citation.journal_id_CSD           1097-4164
-_citation.pdbx_database_id_DOI     2168
-_citation.journal_id_ISSN          MOCEFL
+_citation.journal_id_ISSN          29932903
+_citation.pdbx_database_id_PubMed  doi:10.1016/j.molcel.2018.05.021
+_citation.pdbx_database_id_DOI     1097-4164
+_citation.journal_id_ASTM          2168
+_citation.journal_id_CSD           MOCEFL
 #
 loop_
-_citation_author.ordinal
 _citation_author.name
+_citation_author.ordinal
 1  "Glyde R"  
 2  "Ye F"  
 3  "Jovanovic M"  
@@ -142,32 +142,71 @@ _em_vitrification.details               None
 _em_vitrification.timed_resolved_state  .
 _em_vitrification.method                .
 #
+_em_imaging.id                             1
+_em_imaging.microscope_model               "FEI TITAN KRIOS"
+_em_imaging.illumination_mode              OTHER
+_em_imaging.mode                           "BRIGHT FIELD"
+_em_imaging.electron_source                "FIELD EMISSION GUN"
+_em_imaging.accelarating_voltage           300
+_em_imaging.c2_aperture_diameter           .
+_em_imaging.nominal_cs                     .
+_em_imaging.nominal_defocus_min            .
+_em_imaging.calibrated_defocus_min         .
+_em_imaging.nominal_defocus_max            .
+_em_imaging.calibrated_defocus_max         .
+_em_imaging.nominal_magnification          .
+_em_imaging.calibrated_magnification       .
+_em_imaging.specimen_holder_model          .
+_em_imaging.cryogen                        .
+_em_imaging.recording_temperature_minimum  .
+_em_imaging.recording_temperature_maximum  .
+_em_imaging.recording_temperature_average  .
+_em_imaging.recording_alignment_procedure  None
+_em_imaging.details                        .
+_em_imaging.date                           .
+_em_imaging.tilt_angle_min                 .
+_em_imaging.tilt_angle_max                 .
+#
 loop_
-_em_imaging.id
-_em_imaging.microscope_model
-_em_imaging.illumination_mode
-_em_imaging.mode
-_em_imaging.electron_source
-_em_imaging.accelarating_voltage
-_em_imaging.c2_aperture_diameter
-_em_imaging.nominal_cs
-_em_imaging.nominal_defocus_min
-_em_imaging.calibrated_defocus_min
-_em_imaging.nominal_defocus_max
-_em_imaging.calibrated_defocus_max
-_em_imaging.nominal_magnification
-_em_imaging.calibrated_magnification
-_em_imaging.specimen_holder_model
-_em_imaging.cryogen
-_em_imaging.recording_temperature_minimum
-_em_imaging.recording_temperature_maximum
-_em_imaging.recording_temperature_average
-_em_imaging.details
-_em_imaging.date
-_em_imaging.tilt_angle_min
-_em_imaging.tilt_angle_max
-1  "FEI TITAN KRIOS"  OTHER  "BRIGHT FIELD"  "FIELD EMISSION GUN"  300  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  
-2  "FEI TITAN "       OTHER  FIELD           .                       .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  
+_em_imaging_optics.phase_plate
+_em_imaging_optics.energyfilter_name
+_em_imaging_optics.details
+.  .  .  
+.  .  .  
+#
+loop_
+__em_imaging_optics.sph_aberration_corrector
+__em_imaging_optics.chr_aberration_corrector
+__em_imaging_optics.energyfilter_slit_width
+__em_imaging_optics.energyfilter_lower
+__em_imaging_optics.energyfilter_upper
+.  .  .  .  .  
+.  .  .  .  .  
+#
+loop_
+__em_software.name
+__em_software.version
+__em_software.details
+.  .  .  
+.  .  .  
+#
+loop_
+__em_image_scans.scanner_model
+__em_image_scans.dimension_width
+__em_image_scans.dimension_height
+__em_image_scans.sampling_interval
+__em_image_scans.used_frames_per_image
+.  .  .  .  .  
+.  .  .  .  .  
+#
+loop_
+__em_imaging.specimen_holder_model
+.  
+.  
+#
+__em_image_processing.id                  1
+__em_image_processing.image_recording_id  1
+__em_image_processing.details             .
 #
 _em_map.format                CCP4
 _em_map.size_kb               67109

@@ -408,6 +408,9 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                             <average_electron_dose_per_image units="e/&#8491;^2">45.0</average_electron_dose_per_image>
                         </image_recording>
                     </image_recording_list>
+                    <alignment_procedure>
+                        <coma_free></coma_free>
+                    </alignment_procedure>
                 </single_particle_microscopy>
                 <single_particle_microscopy microscopy_id="2">
                     <microscope>FEI TITAN </microscope>
