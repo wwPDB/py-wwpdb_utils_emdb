@@ -1,4 +1,6 @@
-import os, re
+
+import os
+import re
 import emdb_xml2cif_translator.input_files
 
 
@@ -36,7 +38,6 @@ class Mappings(object):
         N = 'N'
         B = 'B'
         D = 'D'
-        M = 'M'
         E = 'E'
 
     def __init__(self):
@@ -94,15 +95,11 @@ class Mappings(object):
             f = open(mappings_file, 'r').read().split("\n")
             for line in f:
                 if len(line) != 0:
-                    if line[0] != '#' and not line.startswith("MSTART:"):
+                    if line[0] != '#':
                         self.read_one_mapping(line)
-                    if line.startswith("MSTART:"):
-                        N = int(line.split(":")[1])
-                        lines = [line for line in f][:N]
-                        if lines:
-                            self.read_multiple_mapping(lines)
 
             loaded = True
+
         return loaded
 
     def read_one_mapping(self, line):
@@ -137,9 +134,6 @@ class Mappings(object):
                 is_list = True
             elif line[0] in ['D']:
                 is_dict = True
-            # elif line[0] in ['M']:
-            #     is_multiple = True
-            #     is_dict = True
 
         if is_list or is_dict or is_multiple:
             # remove the leading anchor (e.g. 'N:') from the xml mapping
@@ -212,55 +206,6 @@ class Mappings(object):
         # add it to the dictionary containing all mappings logic
         if mappings:
             self.mappings.update(mappings)
-        return read
-
-    def read_multiple_mapping(self, lines):
-        read = False
-
-        if lines:
-            is_multiple = True
-            dict_items = {}
-            for line in lines:
-                line_mappings = line.rstrip().split(' ')
-
-                xml_maps= []
-                xml_maps.append(line_mappings[0])
-
-                mappings = {}
-                if xml_maps:
-                    for xml_mapping in xml_maps:
-                        if is_multiple:
-                            mapping = {
-                                xml_mapping: {
-                                    self.Const.XML_VALUE: [],
-                                    self.Const.LOGIC: {},
-                                    self.Const.CIF_MAPPINGS: {}
-                                }
-                            }
-                            if mapping:
-                                mappings.update(mapping)
-                logic = {}
-                if len(line_mappings) == 2:
-                    cif_components = line_mappings[1].split('.')
-                    dict_items[cif_components[-2]] = cif_components[-1]
-                if len(line_mappings) > 2:
-                    for lmap in line_mappings[1:]:
-                        cif_components = lmap.split('.')
-                        dict_items[cif_components[-2]] = cif_components[-1]
-
-            cat_id = cif_components[0]
-            for key, value in dict_items.items():
-                if cat_id not in logic:
-                    logic[cat_id] = {}
-                if "items" not in logic[cat_id]:
-                    logic[cat_id]["items"] = [key]
-                else:
-                    logic[cat_id]["items"].append(key)
-
-                if "data" not in logic[cat_id]:
-                    logic[cat_id]["data"] = [value]
-                else:
-                    logic[cat_id]["data"].append(value)
 
         return read
 
@@ -475,6 +420,7 @@ class Mappings(object):
                 if xml_mapping_code in mapping and '&' in mapping:
                     self.set_mapping_xml_value({xml_value: optional_value}, mapping)
                     map_successful = True
+
         return map_successful
 
     def set_mapping_xml_value(self, value, mapping):
@@ -500,5 +446,5 @@ class Mappings(object):
             else:
                 self.mappings.get(mapping)[self.Const.XML_VALUE] = value
             value_set = True
-        # print(self.mappings)
+
         return value_set

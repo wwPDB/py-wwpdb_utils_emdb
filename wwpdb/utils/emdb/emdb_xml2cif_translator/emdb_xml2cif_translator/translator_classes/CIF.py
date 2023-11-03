@@ -47,6 +47,7 @@ class CIF(object):
         self.__dataList.append(self.__container)
         if self.__container is not None:
             added = True
+
         return added
 
     def prepare_container(self, container_id):

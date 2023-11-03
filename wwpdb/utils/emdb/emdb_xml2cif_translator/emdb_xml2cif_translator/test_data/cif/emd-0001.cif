@@ -19,8 +19,8 @@ _pdbx_database_status.deposit_site  PDBe
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_author_list.author
 _em_author_list.ordinal
+_em_author_list.author
 1  "Glyde R"  
 2  "Ye FZ"  
 3  "Zhang XD"  
@@ -37,14 +37,14 @@ _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
 _citation.journal_id_ASTM          29932903
-_citation.pdbx_database_id_PubMed  doi:10.1016/j.molcel.2018.05.021
-_citation.journal_id_CSD           1097-4164
-_citation.pdbx_database_id_DOI     2168
-_citation.journal_id_ISSN          MOCEFL
+_citation.journal_id_CSD           doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_ISSN          1097-4164
+_citation.pdbx_database_id_PubMed  2168
+_citation.pdbx_database_id_DOI     MOCEFL
 #
 loop_
-_citation_author.ordinal
 _citation_author.name
+_citation_author.ordinal
 1  "Glyde R"  
 2  "Ye F"  
 3  "Jovanovic M"  
@@ -53,8 +53,8 @@ _citation_author.name
 6  "Zhang X"  
 #
 loop_
-_pdbx_database_related.db_name
 _pdbx_database_related.db_id
+_pdbx_database_related.db_name
 _pdbx_database_related.content_type
 _pdbx_database_related.details
 EMDB  EMD-4397  "other EM volume"       .  

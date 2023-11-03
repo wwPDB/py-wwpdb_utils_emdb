@@ -1,7 +1,7 @@
 
-import os, re
+import os
+import re
 from emdb_xml2cif_translator.translator_classes.Mappings import Mappings
-from lxml import objectify
 import xml.etree.ElementTree as ET
 import emdb_xml2cif_translator.input_files
 
@@ -38,9 +38,6 @@ class EMDBMetadata(object):
         if not self.xml_tree_created:
             tree = ET.parse(self.filename_in)
             self.emd = tree.getroot()
-            # with open(emdb_header_file_in) as f:
-            #     xml = f.read().encode()
-            # self.emd = objectify.fromstring(xml)
             if self.emd is not None:
                 self.xml_tree_created = True
 
@@ -54,7 +51,6 @@ class EMDBMetadata(object):
         processed = False
         if self.xml_tree_created:
             ###use XML values to store them in the mappings logic
-            ## if self.store_xml_values_to_mappings_recursively(self.emd):
             mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__),
                                          self.MAPPINGS_LOGIC_FILENAME)
             if self.find_xml_values_to_mappings(mappings_file):
@@ -68,39 +64,8 @@ class EMDBMetadata(object):
                         # insert data into the cif object container
                         self.add_data_into_cif_container()
                         processed = True
+
         return processed
-
-    def store_xml_values_to_mappings_recursively(self, el, parent_tag=None):
-        """
-        This method iterates through the XML (emd) object, matches an element or attribute with
-        its counterpart in mappings (self.map_utils.mappings_logic)
-        If the mapping requires XML_VALUE, the XML value from emd is written
-
-        :param parent_tag: a string; generated from appending elements names for the use in recursive calls
-        :param el: a key in self.emd; represents an element of an XML file
-        :return finished_successfully: a boolean; True if the recursion is finished successfully
-        """
-        finished_successfully = False
-
-        if el is not None:
-            acc_tag = '.'.join(filter(None, (parent_tag, el.tag)))
-            # map element's attributes values
-            if el.attrib:
-                for attrib_key, attrib_val in el.attrib.items():
-                    attrib_tag = '@'.join((acc_tag, attrib_key))
-                    self.mappings_in.map_xml_value_to_code(attrib_val, attrib_tag, el.text)
-            # map element's values
-            self.mappings_in.map_xml_value_to_code(el.text, acc_tag)
-            # check is el has children (sub-elements)
-            children = el.getchildren()
-            if children:
-                # el has children; call itself for each child to find their values, attributes and children
-                for child in children:
-                    self.store_xml_values_to_mappings_recursively(child, acc_tag)
-            # all done - success?
-            finished_successfully = True
-
-        return finished_successfully
 
     def find_xml_values_to_mappings(self, mappings_file):
         root = self.emd
@@ -207,6 +172,7 @@ class EMDBMetadata(object):
                                 sub_elem = elem.find(item)
                                 sub_elements = '' if sub_elem is None else str(sub_elem.text)
                                 self.mappings_in.map_xml_value_to_code(sub_elements, xml_part)
+
         return True
 
     def add_data_into_cif_container(self):
