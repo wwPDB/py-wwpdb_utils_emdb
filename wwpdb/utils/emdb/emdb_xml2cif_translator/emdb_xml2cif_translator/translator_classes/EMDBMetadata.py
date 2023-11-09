@@ -68,23 +68,24 @@ class EMDBMetadata(object):
         return processed
 
     def find_xml_values_to_mappings(self, mappings_file):
+        """
+       This method reads through the XML (emd) object, finds an element or attribute with
+       its counterpart in mappings (self.map_utils.mappings_logic)
+       If the mapping requires XML_VALUE, the XML value from emd is written
+       """
         root = self.emd
         if os.path.isfile(mappings_file):
             f = open(mappings_file, 'r').read().split("\n")
             for line in f:
                 if len(line) != 0:
-                    if line[0] != '#' and not line.startswith("MSTART:"):
+                    if line[0] != '#':
                         xml_part = line.split(" ")[0]
-                        tags, item, att, parent_elem, sub_elements = '', '', '', '', ''
-                        elem_dict = {}
-                        xml_slices = []
-                        index = 0
 
-                        if ":" in xml_part:
+                        if ':' in xml_part:
                             xml_part = xml_part.split(":")[1]
 
-                        if "@" in xml_part and "S$" not in xml_part:
-                            xml_elem = xml_part.rsplit("@", 1)
+                        if '@' in xml_part and 'S$' not in xml_part:
+                            xml_elem = xml_part.rsplit('@', 1)
                             if not '.' in xml_elem[0]:
                                 for attrib_key, attrib_val in root.attrib.items():
                                     attrib_tag = '@'.join((xml_elem[0], attrib_key))
@@ -95,76 +96,10 @@ class EMDBMetadata(object):
                                 el = root.find(el)
                                 attrib_val = el.get(attrib_key)
                                 self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, el.text)
-                        elif "^" in xml_part:
-                            tags = xml_part.split("^", 1)[0].split('.', 1)[1].replace('.', '/')
-                            item = xml_part.rsplit('^', 1)[1].split('&', 1)[0]
-                            for elem in root.findall(tags):
-                                sub_elem = elem.findall(item)
-                                for sub in sub_elem:
-                                    if "&" in xml_part:
-                                        attrib_key = xml_part.rsplit('^', 1)[1].split('&', 1)[1]
-                                        attrib_val = sub.get(attrib_key)
-                                        elem_dict[attrib_val] = sub.text
-                                        self.mappings_in.map_xml_value_to_code(elem_dict, xml_part)
-                                    else:
-                                        self.mappings_in.map_xml_value_to_code(sub.text, xml_part)
+                        elif '^' in xml_part:
+                            self.multiple_same_element(root, xml_part)
                         elif 'S$' in xml_part:
-                            substitution = re.split('S\$|\$S', xml_part)
-                            count = len(substitution)
-                            sub_ele = substitution[1].split("|")
-                            for sub in sub_ele:
-                                if count == 2:
-                                    xml_slice = substitution[0]+sub+"!"
-                                    xml_slices.append(xml_slice)
-                                if count == 3:
-                                    xml_slice = substitution[0]+sub+"!"+substitution[2]
-                                    xml_slices.append(xml_slice)
-                            for slice in xml_slices:
-                                parent_elem = slice.split("!", 1)[0].split(".", 1)[1].replace(".", "/")
-                                elem = slice.replace("!", '').split(".", 1)[1].replace(".", "/")
-                                slice = slice.replace("!", '')
-                                if '@' in slice:
-                                    tags, attrib_key = elem.split('@', 1)
-                                    el = root.find(tags)
-                                    if el is not None:
-                                        attrib_val = el.get(attrib_key)
-                                        self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
-                                if not "@" in slice and not "$I$" in slice and not "R$" in slice:
-                                    if "&" in slice:
-                                        tags, item = elem.rsplit('&', 1)
-                                    else:
-                                        tags, item = elem.rsplit('/', 1)
-                                    find_elem = root.findall(tags)
-                                    find_parent_elem = root.findall(parent_elem)
-                                    if find_elem:
-                                        for element in root.findall(tags):
-                                            if "&" in slice:
-                                                sub_elements = element.get(item)
-                                            else:
-                                                sub_elem = element.find(item)
-                                                sub_elements = '' if sub_elem is None else str(sub_elem.text)
-                                            self.mappings_in.map_xml_value_to_code(sub_elements, slice)
-                                    else:
-                                        if find_parent_elem:
-                                            for l in range(len(find_parent_elem)):
-                                                self.mappings_in.map_xml_value_to_code('', slice)
-                                if "$I$" in slice or "R$" in slice:
-                                    if "$I$" in slice:
-                                        tags, item = elem.rsplit('$I$', 1)
-                                    elif "R$" in slice:
-                                        tags, items = elem.rsplit('R$', 1)
-                                        att, item = items.rsplit('|', 1)
-                                    for element in root.findall(tags):
-                                        sub_elem = element.findall(item)
-                                        if "$I$" in slice:
-                                            for ind in range(1, len(sub_elem)+1):
-                                                index += 1
-                                                self.mappings_in.map_xml_value_to_code(str(index), slice)
-                                        elif "R$" in slice:
-                                            attrib = element.get(att)
-                                            for ind in range(1, len(sub_elem)+1):
-                                                self.mappings_in.map_xml_value_to_code(str(attrib), slice)
-
+                            self.substitution_groups(root, xml_part)
                         else:
                             elem = xml_part.split(".", 1)[1].replace('.', '/')
                             tags, item = elem.rsplit('/', 1)
@@ -174,6 +109,143 @@ class EMDBMetadata(object):
                                 self.mappings_in.map_xml_value_to_code(sub_elements, xml_part)
 
         return True
+
+    def multiple_same_element(self, root, xml_part):
+        """
+        This method writes the XML_VALUES if there are multiple child elements with same name in the parent element
+        """
+        elem_dict = {}
+        tags = xml_part.split('^', 1)[0].split('.', 1)[1].replace('.', '/')
+        item = xml_part.rsplit('^', 1)[1].split('&', 1)[0]
+        for elem in root.findall(tags):
+            sub_elem = elem.findall(item)
+            for sub in sub_elem:
+                if '&' in xml_part:
+                    attrib_key = xml_part.rsplit('^', 1)[1].split('&', 1)[1]
+                    attrib_val = sub.get(attrib_key)
+                    elem_dict[attrib_val] = sub.text
+                    self.mappings_in.map_xml_value_to_code(elem_dict, xml_part)
+                else:
+                    self.mappings_in.map_xml_value_to_code(sub.text, xml_part)
+
+    def substitution_groups(self, root, xml_part):
+        """
+        This method writes the substitution group's XML_VALUES for all the special anchors used in the input file
+        """
+        tags, item, att, parent_elem, sub_elements = '', '', '', '', ''
+        xml_slices, otherwise_slices, list_id, list_elem, attrib_index = [], [], [], [], []
+        index = 0
+        substitution = re.split('S\$|\$S', xml_part)
+        count = len(substitution)
+        sub_ele = substitution[1].split("|")
+        for sub in sub_ele:
+            if count == 2:
+                xml_slice = substitution[0]+sub+"!"
+                xml_slices.append(xml_slice)
+            if count == 3:
+                xml_slice = substitution[0]+sub+"!"+substitution[2]
+                xml_slices.append(xml_slice)
+        for slice in xml_slices:
+            parent_elem = slice.split("!", 1)[0].split(".", 1)[1].replace(".", "/")
+            elem = slice.replace("!", '').split(".", 1)[1].replace(".", "/")
+            slice = slice.replace("!", '')
+            elem_item = parent_elem.rsplit("/", 1)[1].split("_", 1)[0]
+            find_type = root.findall(parent_elem)
+            if '>' in slice and find_type:
+                self.mappings_in.map_xml_value_to_code(elem_item, slice)
+            if '@' in slice:
+                tags, attrib_key = elem.split('@', 1)
+                el = root.find(tags)
+                if el is not None:
+                    attrib_val = el.get(attrib_key)
+                    self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
+            if not any(char in slice for char in ['@', '$I$', 'R$', '%', '>', 'E$']):
+                if '&' in slice:
+                    tags, item = elem.rsplit('&', 1)
+                else:
+                    tags, item = elem.rsplit('/', 1)
+                find_elem = root.findall(tags)
+                find_parent_elem = root.findall(parent_elem)
+                if find_elem:
+                    for element in root.findall(tags):
+                        if '&' in slice:
+                            sub_elements = element.get(item)
+                        else:
+                            sub_elem = element.find(item)
+                            sub_elements = '' if sub_elem is None else str(sub_elem.text)
+                        self.mappings_in.map_xml_value_to_code(sub_elements, slice)
+                else:
+                    if find_parent_elem:
+                        for l in range(len(find_parent_elem)):
+                            self.mappings_in.map_xml_value_to_code('', slice)
+            if any(char in slice for char in ['$I$', 'R$', '%', 'E$']):
+                if '$I$' in slice:
+                    tags, item = elem.rsplit('$I$', 1)
+                elif 'R$' in slice and not 'E$' in slice:
+                    tags, items = elem.rsplit('R$', 1)
+                    att, item = items.rsplit('|', 1)
+                elif 'E$' in slice:
+                    either_one = re.split('E\$|\$E', slice)
+                    combined = either_one[1].split("|")
+                    for each in combined:
+                        otherwise_slice = either_one[0]+each+either_one[2]
+                        otherwise_slices.append(otherwise_slice)
+                    for sl in otherwise_slices:
+                        if '&' in sl:
+                            tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("&", 1)
+                        elif 'R$' in slice:
+                            tags, items = elem.rsplit('R$', 1)
+                            att, item = items.split('|', 1)
+                        else:
+                            tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
+                # elif "%" in slice:
+                #     tags, items = elem.rsplit('%', 1)
+                #     item, att = items.rsplit('*', 1)
+                #     parent_element = root.findall(parent_elem)
+                #     for par_attrib in parent_element:
+                #         attrib = par_attrib.get(att)
+                #         attrib_index.append(attrib)
+                for element in root.findall(tags):
+                    sub_elem = element.findall(item)
+                    selem = element.find(item)
+                    if '$I$' in slice:
+                        for ind in range(1, len(sub_elem)+1):
+                            index += 1
+                            self.mappings_in.map_xml_value_to_code(str(index), slice)
+                    elif 'R$' in slice and not 'E$' in slice:
+                        attrib = element.get(att)
+                        for ind in range(1, len(sub_elem)+1):
+                            self.mappings_in.map_xml_value_to_code(str(attrib), slice)
+                    elif 'E$' in slice:
+                        if '&' in slice:
+                            sub_elements = element.get(item)
+                            self.mappings_in.map_xml_value_to_code(str(sub_elements), slice)
+                        elif '?' in slice:
+                            if item == "theoretical?":
+                                self.mappings_in.map_xml_value_to_code('NO', slice)
+                            elif item == "experimental?":
+                                self.mappings_in.map_xml_value_to_code('YES', slice)
+                            else:
+                                self.mappings_in.map_xml_value_to_code('', slice)
+                        elif 'I$' in slice:
+                            for ind in range(0, (len(sub_elem))+1):
+                                self.mappings_in.map_xml_value_to_code(str(index+1), slice)
+                                index += 1
+                        elif 'R$' in slice:
+                            attrib = element.get(att)
+                            for ind in range(0, len(sub_elem)+1):
+                                self.mappings_in.map_xml_value_to_code(str(attrib), slice)
+                        else:
+                            if selem is not None:
+                                self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
+                    # elif "%" in slice:
+                    #     list_elem.append(selem.text)
+                    #     if not list_elem:
+                    #         list_elem = ''
+                    #     for x in attrib_index:
+                    #         list_id.insert((int(x)-1),list_elem)
+                    #     self.mappings_in.map_xml_value_to_code(list_element, slice)
+
 
     def add_data_into_cif_container(self):
         """

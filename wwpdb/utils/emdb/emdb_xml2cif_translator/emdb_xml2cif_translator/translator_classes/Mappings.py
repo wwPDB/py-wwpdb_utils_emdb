@@ -38,7 +38,7 @@ class Mappings(object):
         N = 'N'
         B = 'B'
         D = 'D'
-        E = 'E'
+        M = 'M'
 
     def __init__(self):
         """
@@ -350,7 +350,7 @@ class Mappings(object):
                                 list_values.append("N")
                             elif xml_value == "false":
                                 list_values.append("Y")
-                        if logic_k == self.Const.E:
+                        if logic_k == self.Const.M:
                             if self.Const.XML_VALUE_UPPER in logic_value:
                                 list_item.append(xml_value)
                             else:
