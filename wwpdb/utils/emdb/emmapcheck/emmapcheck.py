@@ -260,6 +260,7 @@ def main():
         print(f"Result written to {filename}")
 
         return 0
+    return 1
 
 # Main script execution
 if __name__ == "__main__":
