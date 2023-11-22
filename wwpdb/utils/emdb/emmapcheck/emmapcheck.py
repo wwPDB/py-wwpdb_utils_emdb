@@ -253,8 +253,12 @@ def main():
 
         # Writing results to output JSON file
         parentdir = os.path.dirname(args.primmap)
-        basename, _ = os.path.splitext(args.primmap)
-        filename = args.output or f'{os.path.join(parentdir, basename)}-emmapchecks.json'
+        basename = os.path.basename(args.primmap)
+        # Split the basename and handle double extensions
+        root, ext = os.path.splitext(basename)
+        if ext in ['.gz', '.bz2', '.xz']:
+            root, _ = os.path.splitext(root)
+        filename = args.output or f'{os.path.join(parentdir, root)}-emmapchecks.json'
         with open(filename, 'w') as f:
             json.dump(result, f, indent=4)
         print(f"Result written to {filename}")
