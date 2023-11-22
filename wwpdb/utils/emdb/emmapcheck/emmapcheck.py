@@ -7,6 +7,7 @@ import numpy as np
 import math
 import json
 import mrcfile
+import hashlib
 from Bio.PDB.MMCIF2Dict import MMCIF2Dict
 
 
@@ -22,6 +23,7 @@ class EMMap:
             path2file (str): Path to the map file.
         """
         self.file = path2file
+        self.hash = None
         self.header = None
         self.nxyz = None
         self.nstarts = None
@@ -39,6 +41,7 @@ class EMMap:
             Exception: If an error occurs during file loading.
         """
         try:
+            self.md5_checksum()
             with mrcfile.open(self.file, mode='r', permissive=True) as mrc:
                 self.header = mrc.header
                 self.size = [round(x, 2) for x in self.header.cella.tolist()]
@@ -54,6 +57,16 @@ class EMMap:
             raise FileNotFoundError(f"File not found: {self.file}")
         except Exception as e:
             raise Exception(f"An error occurred while loading the file: {str(e)}")
+
+    def md5_checksum(self):
+        hash_md5 = hashlib.md5()
+        with open(self.file, "rb") as f:
+            # Depending on your file format, you might need to skip the header
+            # before starting to read the data
+            # f.seek(header_size)
+            for chunk in iter(lambda: f.read(4096), b""):
+                hash_md5.update(chunk)
+        self.hash = hash_md5.hexdigest()
 
     def extremities(self):
         """
@@ -182,12 +195,19 @@ class Validator:
         """
         result = {
             'em_volume': os.path.basename(self.em_map.file),
+            'checksum': self.em_map.hash,
             'map_checks': {},
             'model_checks': {}
         }
-        
+
+        distinct_halfmaps = set()
+
         # Check the conditions between em_map and each half_map
         for i, half_map in enumerate(self.half_maps):
+            # Add MD5 checksum for half-map
+            distinct_halfmaps.add(half_map.hash)
+            # Check if primary map and half-map are identical
+            is_identical = half_map.hash == self.em_map.hash
             # Check if the size of half_map is smaller or equal to the primary map
             smaller_or_equal = self.em_map.smaller_or_equal(half_map)
             # Check if half_map is completely inside the primary map
@@ -195,15 +215,21 @@ class Validator:
             # Check if the pixel sizes are the same or multiples
             same_pixel_size, pixel_size_is_multiple = self.em_map.acceptable_pixel_size(half_map)             
             result['map_checks'].update({
-                f'half_map_{i+1}_checks': {
+                'identical_half-maps': None,
+                f'half-map_{i+1}_checks': {
                     'em_volume': os.path.basename(half_map.file),
+                    'checksum': half_map.hash,
+                    'is_identical': is_identical,
                     'smaller_or_equal': smaller_or_equal,
                     'is_inside': is_inside,
                     'same_pixel_size': same_pixel_size,
                     'pixel_size_is_multiple': pixel_size_is_multiple
                 }
             })
-        
+
+        # Check for identical half-maps
+        result['map_checks']['identical_half-maps'] = len(distinct_halfmaps) == 1
+
         # Check conditions for the model only if a model is provided
         if self.model:
             atoms_outside_num = 0  # Initialize counter for atoms outside the primary map
