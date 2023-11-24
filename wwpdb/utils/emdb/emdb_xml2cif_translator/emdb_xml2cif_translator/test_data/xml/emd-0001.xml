@@ -164,6 +164,26 @@
                     <recombinant_organism ncbi="32630">synthetic construct</recombinant_organism>
                 </recombinant_expression>
             </complex_supramolecule>
+            <virus_supramolecule supramolecule_id="5">
+                <name synonym="bacteriophage PRD1">Enterobacteria phage PRD1</name>
+                <details>a T=25 virion</details>
+                <sci_species_name ncbi="10658">Enterobacteria phage PRD1</sci_species_name>
+                <natural_host database="NCBI">
+                    <organism ncbi="28901">Salmonella enterica</organism>
+                    <synonym_organism>BACTERIA(EUBACTERIA)</synonym_organism>
+                </natural_host>
+                <host_system database="NCBI"> </host_system>
+                <virus_shell shell_id="1">
+                    <name>P3</name>
+                    <diameter units="Å">70</diameter>
+                    <triangulation>25</triangulation>
+                </virus_shell>
+                <virus_type>VIRION</virus_type>
+                <virus_isolate>STRAIN</virus_isolate>
+                <virus_enveloped>false</virus_enveloped>
+                <virus_empty>false</virus_empty>
+                <syn_species_name>bacteriophage PRD1</syn_species_name>
+            </virus_supramolecule>
         </supramolecule_list>
         <macromolecule_list>
             <protein_or_peptide macromolecule_id="1">

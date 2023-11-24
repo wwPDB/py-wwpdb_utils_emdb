@@ -1,38 +1,323 @@
 data_emd_0001
 
-_database_2.database_code  EMDB
-_database_2.database_id    EMD-0001
+_database_2.database_id    EMDB
+_database_2.database_code  EMD-0001
 #
-_em_entity_assembly.assembly_id  1
-_em_entity_assembly.name         "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
-_em_entity_assembly.go_id        .
-_em_entity_assembly.parent_id    0
-_em_entity_assembly.details      .
-_em_entity_assembly.type         complex
+_em_admin.last_update          2018-10-17
+_em_admin.current_status       REL
+_em_admin.details              .
+_em_admin.deposition_site      PDBe
+_em_admin.deposition_date      2018-05-04
+_em_admin.header_release_date  2018-06-06
+_em_admin.map_release_date     2018-07-04
+_em_admin.obsoleted_date       .
+_em_admin.title                "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
+#
+_pdbx_database_status.process_site  PDBe
+_pdbx_database_status.deposit_site  PDBe
+#
+_struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_entity_assembly_naturalsource.ncbi_tax_id
-_em_entity_assembly_naturalsource.organism
-_em_entity_assembly_naturalsource.strain
-83333  "Escherichia coli K-12"  .  
-  573  "Klebsiella pneumoniae"  .  
-  573  "Klebsiella pneumoniae"  .  
+_em_author_list.author
+_em_author_list.ordinal
+1  "Glyde R"  
+2  "Ye FZ"  
+3  "Zhang XD"  
+#
+_citation.unpublished_flag         N
+_citation.title                    "Structures of Bacterial RNA Polymerase Complexes Reveal the Mechanism of DNA Loading and Transcription Initiation."
+_citation.journal_abbrev           "Mol. Cell"
+_citation.country                  US
+_citation.journal_issue            .
+_citation.journal_volume           70
+_citation.page_first               1111
+_citation.page_last                1120.e3
+_citation.year                     2018
+_citation.language                 English
+_citation.details                  "citation cross-references"
+_citation.journal_id_CSD           29932903
+_citation.pdbx_database_id_DOI     doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_ISSN          1097-4164
+_citation.pdbx_database_id_PubMed  2168
+_citation.journal_id_ASTM          MOCEFL
+#
+loop_
+_citation_author.name
+_citation_author.ordinal
+1  "Glyde R"  
+2  "Ye F"  
+3  "Jovanovic M"  
+4  "Kotta-Loizou I"  
+5  "Buck M"  
+6  "Zhang X"  
+#
+loop_
+_pdbx_database_related.db_id
+_pdbx_database_related.db_name
+_pdbx_database_related.content_type
+_pdbx_database_related.details
+EMDB  EMD-4397  "other EM volume"       .  
+EMDB  EMD-0001  "associated EM volume"  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  
+#
+_em_db_reference.access_code   PDB
+_em_db_reference.db_name       6gh5
+_em_db_reference.relationship  FULLOVERLAP
+_em_db_reference.details       CHECK
+#
+_em_entity_assembly_naturalsource.ncbi_tax_id        83333
+_em_entity_assembly_naturalsource.organism           .
+_em_entity_assembly_naturalsource.strain             "Escherichia coli K-12"
+_em_entity_assembly_naturalsource.details            .
+_em_entity_assembly_naturalsource.organ              .
+_em_entity_assembly_naturalsource.tissue             .
+_em_entity_assembly_naturalsource.cell               .
+_em_entity_assembly_naturalsource.organelle          .
+_em_entity_assembly_naturalsource.cellular_location  .
+#
+_em_entity_assembly_synthetic.ncbi_tax_id        .
+_em_entity_assembly_synthetic.organism           .
+_em_entity_assembly_synthetic.strain             .
+_em_entity_assembly_synthetic.details            .
+_em_entity_assembly_synthetic.organ              .
+_em_entity_assembly_synthetic.tissue             .
+_em_entity_assembly_synthetic.cell               .
+_em_entity_assembly_synthetic.organelle          .
+_em_entity_assembly_synthetic.cellular_location  .
 #
 _em_entity_assembly_molwt.entity_assembly_id  1
-_em_entity_assembly_molwt.id                  1
-_em_entity_assembly_molwt.units               MDa
-_em_entity_assembly_molwt.experimental_flag   NO
-_em_entity_assembly_molwt.value               0.490
-_em_entity_assembly_molwt.method              .
+_em_entity_assembly_molwt.id                  5
+_em_entity_assembly_molwt.units               1
+_em_entity_assembly_molwt.experimental_flag   5
+_em_entity_assembly_molwt.value               MDa
+_em_entity_assembly_molwt.method              NO
+#
+_em_virus_entity.entity_assembly_id  5
+_em_virus_entity.id                  1
+_em_virus_entity.empty               false
+_em_virus_entity.enveloped           false
+_em_virus_entity.virus_isolate       STRAIN
+_em_virus_entity.virus_type          VIRION
+#
+_em_virus_shell.entity_assembly_id  5
+_em_virus_shell.id                  1
+_em_virus_shell.name                P3
+_em_virus_shell.diameter            70
+_em_virus_shell.triangulation       25
+#
+_em_virus_natural_host.entity_assembly_id  5
+_em_virus_natural_host.id                  1
+_em_virus_natural_host.ncbi_tax_id         28901
+_em_virus_natural_host.organism            "Salmonella enterica"
+_em_virus_natural_host.strain              .
 #
 loop_
-_em_entity_assembly_recombinant.entity_assembly_id
-_em_entity_assembly_recombinant.id
-_em_entity_assembly_recombinant.ncbi_tax_id
-_em_entity_assembly_recombinant.organism
-_em_entity_assembly_recombinant.strain
-_em_entity_assembly_recombinant.cell
-2  1  866768  "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  .  .  
-3  2   83333  "Escherichia coli K-12"                      .  .  
-4  3   32630  "synthetic construct"                        .  .  
+_entity.id
+_entity.pdbx_mutation
+_entity.pdbx_description
+_entity.details
+_entity.pdbx_number_of_molecules
+6  1  ?     ?     "nifH promoter template DNA"  
+7  2  ?     ?     "nifH promoter non-template DNA"  
+#
+_em_experiment.id                     1
+_em_experiment.reconstruction_method  singleParticle
+_em_experiment.aggregation_state      particle
+#
+loop_
+_em_specimen.id
+_em_specimen.concentration
+_em_specimen.details
+1  0.5  .  
+2  0.5  .  
+#
+loop_
+_em_buffer.pH
+_em_buffer.details
+8.0  .  
+9.0  "buffer details"  
+#
+loop_
+_em_buffer_component.buffer_id
+_em_buffer_component.id
+_em_buffer_component.concentration
+_em_buffer_component.concentration_units
+_em_buffer_component.formula
+_em_buffer_component.name
+1  1   10.0  mM  Tris-HCL  "Tris hydrochloride"  
+1  2  150.0  mM  NaCL      "sodium chloride"  
+1  3   10.0  mM  MgCl2     "magnesium chloride"  
+2  4   12.0  mM  TriHCL    hydrochloride  
+2  5   15.0  mM  NaCL2     chloride  
+#
+loop_
+_em_staining.type
+_em_staining.material
+_em_staining.details
+.  .  .  
+.  .  .  
+#
+loop_
+_em_embedding.material
+_em_embedding.details
+.  .  
+.  .  
+#
+loop_
+_em_shadowing.material
+_em_shadowing.angle
+_em_shadowing.thickness
+_em_shadowing.details
+.  .  .  .  
+.  .  .  .  
+#
+_em_sample_support.grid_type       "Quantifoil R1.2/1.3"
+_em_sample_support.grid_material   COPPER
+_em_sample_support.grid_mesh_size  .
+_em_sample_support.details         .
+#
+_em_support_film.id         1
+_em_support_film.materail   .
+_em_support_film.topology   .
+_em_support_film.thickness  .
+#
+loop_
+_em_grid_pretreatment.type
+_em_grid_pretreatment.time
+_em_grid_pretreatment.atmosphere
+_em_grid_pretreatment.pressure
+.  .  .  .  
+.  .  .  .  
+#
+_em_vitrification.cryogen_name          ETHANE
+_em_vitrification.chamber_humidity      95
+_em_vitrification.chamber_temperature   277
+_em_vitrification.instrument            "FEI VITROBOT MARK IV"
+_em_vitrification.details               None
+_em_vitrification.timed_resolved_state  .
+_em_vitrification.method                .
+#
+loop_
+_em_imaging.id
+_em_imaging.microscope_model
+_em_imaging.illumination_mode
+_em_imaging.mode
+_em_imaging.electron_source
+_em_imaging.accelarating_voltage
+_em_imaging.c2_aperture_diameter
+_em_imaging.nominal_cs
+_em_imaging.nominal_defocus_min
+_em_imaging.calibrated_defocus_min
+_em_imaging.nominal_defocus_max
+_em_imaging.calibrated_defocus_max
+_em_imaging.nominal_magnification
+_em_imaging.calibrated_magnification
+_em_imaging.specimen_holder_model
+_em_imaging.cryogen
+_em_imaging.recording_temperature_minimum
+_em_imaging.recording_temperature_maximum
+_em_imaging.recording_temperature_average
+_em_imaging.astigmatism
+_em_imaging.electron_beam_tilt_params
+_em_imaging.details
+_em_imaging.date
+_em_imaging.tilt_angle_min
+_em_imaging.tilt_angle_max
+1  "FEI TITAN KRIOS"  OTHER  "BRIGHT FIELD"  "FIELD EMISSION GUN"  300  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  
+2  "FEI TITAN "       OTHER  FIELD           .                       .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  
+#
+loop_
+_em_imaging_optics.phase_plate
+_em_imaging_optics.energyfilter_name
+_em_imaging_optics.details
+.  .  .  
+.  .  .  
+#
+loop_
+__em_imaging_optics.sph_aberration_corrector
+__em_imaging_optics.chr_aberration_corrector
+__em_imaging_optics.energyfilter_slit_width
+__em_imaging_optics.energyfilter_lower
+__em_imaging_optics.energyfilter_upper
+.  .  .  .  .  
+.  .  .  .  .  
+#
+loop_
+__em_software.name
+__em_software.version
+__em_software.details
+.  .  .  
+.  .  .  
+#
+loop_
+__em_image_scans.scanner_model
+__em_image_scans.dimension_width
+__em_image_scans.dimension_height
+__em_image_scans.sampling_interval
+__em_image_scans.used_frames_per_image
+.  .  .  .  .  
+.  .  .  .  .  
+#
+loop_
+__em_imaging.specimen_holder_model
+.  
+.  
+#
+__em_image_processing.id                  1
+__em_image_processing.image_recording_id  1
+__em_image_processing.details             .
+#
+_em_map.format                CCP4
+_em_map.size_kb               67109
+_em_map.file                  emd_0001.map.gz
+_em_map.symmetry_space_group  1
+_em_map.data_type             "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)"
+_em_map.dimensions_col        256
+_em_map.dimensions_row        256
+_em_map.dimensions_sec        256
+_em_map.origin_col            0
+_em_map.origin_row            0
+_em_map.origin_sec            0
+_em_map.spacing_x             256
+_em_map.spacing_y             256
+_em_map.spacing_z             256
+_em_map.cell_a                1.0
+_em_map.cell_b                1.0
+_em_map.cell_c                1.0
+_em_map.cell_alpha            90.0
+_em_map.cell_beta             90.0
+_em_map.cell_gamma            90.0
+_em_map.axis_order_fast       X
+_em_map.axis_order_medium     Y
+_em_map.axis_order_slow       Z
+_em_map.statistics_minimum    -0.10788548
+_em_map.statistics_maximum    0.22688344
+_em_map.statistics_average    0.000012941896
+_em_map.statistics_std        0.0077065425
+_em_map.pixel_spacing_x       1.06
+_em_map.pixel_spacing_y       1.06
+_em_map.pixel_spacing_z       1.06
+_em_map.contour_level         0.018
+_em_map.contour_level_source  EMDB
+_em_map.label                 ::::EMDATABANK.org::::EMD-0001::::
+_em_map.details               .
+#
+_em_3d_fitting.entry_id         4AKG
+_em_3d_fitting.pdb_chain_id     A
+_em_3d_fitting.method           .
+_em_3d_fitting.target_criteria  .
+_em_3d_fitting.details          .
+_em_3d_fitting.overall_b_value  .
+_em_3d_fitting.ref_space        REAL
+_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
+#
+_em_software.name     Chimera
+_em_software.version  4.3
+_em_software.details  Fitting
+#
+_em_interpret_figure.file     emd_6607.png
+_em_interpret_figure.details  .
+#
+_em_fsc_curve.file     emd_6549_fsc.xml
+_em_fsc_curve.details  "fsc curve"
 ##

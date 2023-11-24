@@ -236,7 +236,9 @@ class EMDBMetadata(object):
                             for ind in range(0, len(sub_elem)+1):
                                 self.mappings_in.map_xml_value_to_code(str(attrib), slice)
                         else:
-                            if selem is not None:
+                            if selem is None:
+                                self.mappings_in.map_xml_value_to_code('', slice)
+                            else:
                                 self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
                     # elif "%" in slice:
                     #     list_elem.append(selem.text)
