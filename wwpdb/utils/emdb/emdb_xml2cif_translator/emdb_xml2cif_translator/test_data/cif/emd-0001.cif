@@ -36,15 +36,15 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.journal_id_CSD           29932903
-_citation.pdbx_database_id_DOI     doi:10.1016/j.molcel.2018.05.021
-_citation.journal_id_ISSN          1097-4164
-_citation.pdbx_database_id_PubMed  2168
-_citation.journal_id_ASTM          MOCEFL
+_citation.pdbx_database_id_PubMed  29932903
+_citation.journal_id_ASTM          doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_CSD           1097-4164
+_citation.journal_id_ISSN          2168
+_citation.pdbx_database_id_DOI     MOCEFL
 #
 loop_
-_citation_author.name
 _citation_author.ordinal
+_citation_author.name
 1  "Glyde R"  
 2  "Ye F"  
 3  "Jovanovic M"  
@@ -92,6 +92,14 @@ _em_entity_assembly_molwt.experimental_flag   5
 _em_entity_assembly_molwt.value               MDa
 _em_entity_assembly_molwt.method              NO
 #
+_em_entity_assembly_recombinant.entity_assembly_id  1
+_em_entity_assembly_recombinant.id                  5
+_em_entity_assembly_recombinant.ncbi_tax_id         866768
+_em_entity_assembly_recombinant.organism            .
+_em_entity_assembly_recombinant.strain              "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"
+_em_entity_assembly_recombinant.cell                .
+_em_entity_assembly_recombinant.plasmid             .
+#
 _em_virus_entity.entity_assembly_id  5
 _em_virus_entity.id                  1
 _em_virus_entity.empty               false
@@ -107,7 +115,7 @@ _em_virus_shell.triangulation       25
 #
 _em_virus_natural_host.entity_assembly_id  5
 _em_virus_natural_host.id                  1
-_em_virus_natural_host.ncbi_tax_id         28901
+_em_virus_natural_host.ncbi_tax_id         ?
 _em_virus_natural_host.organism            "Salmonella enterica"
 _em_virus_natural_host.strain              .
 #

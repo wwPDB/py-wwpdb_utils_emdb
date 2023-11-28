@@ -208,7 +208,7 @@ class EMDBMetadata(object):
                 for element in root.findall(tags):
                     sub_elem = element.findall(item)
                     selem = element.find(item)
-                    if '$I$' in slice:
+                    if '$I$' in slice and not 'E$' in slice:
                         for ind in range(1, len(sub_elem)+1):
                             index += 1
                             self.mappings_in.map_xml_value_to_code(str(index), slice)
