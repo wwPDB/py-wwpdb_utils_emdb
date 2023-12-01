@@ -39,6 +39,7 @@ class Mappings(object):
         B = 'B'
         D = 'D'
         M = 'M'
+        T = 'T'
 
     def __init__(self):
         """
@@ -320,7 +321,7 @@ class Mappings(object):
         :return values_set: a boolean; True when the xml values are set into all mappings
         """
         values_set = False
-        for mapping in self.mappings.values():
+        for mapping_key, mapping in self.mappings.items():
             xml_value = mapping.get(self.Const.XML_VALUE)
             all_logic = mapping.get(self.Const.LOGIC)
             if all_logic:

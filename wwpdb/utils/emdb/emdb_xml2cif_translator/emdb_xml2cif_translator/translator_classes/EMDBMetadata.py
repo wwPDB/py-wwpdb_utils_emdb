@@ -149,10 +149,15 @@ class EMDBMetadata(object):
             parent_elem = slice.split("!", 1)[0].split(".", 1)[1].replace(".", "/")
             elem = slice.replace("!", '').split(".", 1)[1].replace(".", "/")
             slice = slice.replace("!", '')
-            elem_item = parent_elem.rsplit("/", 1)[1].split("_", 1)[0]
             find_type = root.findall(parent_elem)
             if '>' in slice and find_type:
-                self.mappings_in.map_xml_value_to_code(elem_item, slice)
+                for supra_type in find_type:
+                    supramolecule_type = (supra_type.tag).split("_", 1)[0]
+                    if supramolecule_type == "complex":
+                        ribo = supra_type.find("ribosome-details")
+                        if ribo is not None:
+                            supramolecule_type = "ribosome"
+                    self.mappings_in.map_xml_value_to_code(str(supramolecule_type).upper(), slice)
             if '@' in slice:
                 tags, attrib_key = elem.split('@', 1)
                 el = root.find(tags)
@@ -205,6 +210,10 @@ class EMDBMetadata(object):
                 #     for par_attrib in parent_element:
                 #         attrib = par_attrib.get(att)
                 #         attrib_index.append(attrib)
+                # supratype = root.find(tags)
+                # for target in root.findall('.//*[@supramolecule_id]'):
+                #     print(target.tag, target.attrib)
+                #   self.mappings_in.map_xml_value_to_code(child.tag, slice)
                 for element in root.findall(tags):
                     sub_elem = element.findall(item)
                     selem = element.find(item)
