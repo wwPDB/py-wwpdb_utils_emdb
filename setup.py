@@ -46,9 +46,8 @@ setup(
         "mmcif",
         "argparse",
         "mrcfile",
+        "biopython",
         "numpy",
-        "json",
-        "sys",
         "wwpdb.utils.config>=0.22.2"
     ],
     packages=find_packages(exclude=["wwpdb.utils.tests-emdb", "mock-data", "tests.*", "wwpdb.utils.emdb/cif_emdb)translator/*test*.py"]),
