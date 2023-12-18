@@ -6,7 +6,7 @@
 
 emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 
-###<emd>.<admin>.<current_status>
+##<emd>.<admin>.<current_status>
 #emd.admin.current_status.date em_admin.last_update.XML_VALUE
 #emd.admin.current_status.code em_admin.current_status.XML_VALUE
 #emd.admin.current_status.processing_site pdbx_database_status.process_site.XML_VALUE
@@ -53,7 +53,7 @@ emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 #####<emd>.<sample>
 ####emd.sample.name em_entity_assembly.name.XML_VALUE
 #
-N:emd.sample.supramolecule_list.S$cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule$S&supramolecule_id em_entity_assembly.assembly_id.XML_VALUE
+#N:emd.sample.supramolecule_list.S$cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule$S&supramolecule_id em_entity_assembly.assembly_id.XML_VALUE
 N:emd.sample.supramolecule_list.S$cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule$S> em_entity_assembly.type.XML_VALUE
 N:emd.sample.supramolecule_list.S$cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule$S.name em_entity_assembly.name.XML_VALUE
 N:emd.sample.supramolecule_list.S$cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule$S.category em_entity_assembly.go_id.XML_VALUE
@@ -89,7 +89,7 @@ N:emd.sample.supramolecule_list.S$cell_supramolecule|complex_supramolecule|organ
 #N:emd.sample.supramolecule_list.S$complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|virus_supramolecule$S.molecular_weight.E$experimental|theoretical$E em_entity_assembly_molwt.value.XML_VALUE
 #N:emd.sample.supramolecule_list.S$complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|virus_supramolecule$S.molecular_weight.method em_entity_assembly_molwt.method.XML_VALUE
 #
-#N:emd.sample.supramolecule_list.S$complex_supramolecule|organelle_or_cellular_component_supramolecule|virus_supramolecule$SR$supramolecule_id| em_entity_assembly_recombinant.entity_assembly_id.XML_VALUE
+#N:emd.sample.supramolecule_list.S$complex_supramolecule|organelle_or_cellular_component_supramolecule|virus_supramolecule$SR$supramolecule_id|E$recombinant_expression|host_system$E em_entity_assembly_recombinant.entity_assembly_id.XML_VALUE
 #N:emd.sample.supramolecule_list.S$complex_supramolecule|organelle_or_cellular_component_supramolecule|virus_supramolecule$S$I$E$recombinant_expression|host_system$E em_entity_assembly_recombinant.id.XML_VALUE
 #N:emd.sample.supramolecule_list.S$complex_supramolecule.recombinant_expression|organelle_or_cellular_component_supramolecule.recombinant_expression|virus_supramolecule.host_system$S.recombinant_organism&ncbi em_entity_assembly_recombinant.ncbi_tax_id.XML_VALUE
 #N:emd.sample.supramolecule_list.S$complex_supramolecule.recombinant_expression|organelle_or_cellular_component_supramolecule.recombinant_expression|virus_supramolecule.host_system$S.recombinant_organism em_entity_assembly_recombinant.organism.XML_VALUE
@@ -123,14 +123,16 @@ N:emd.sample.supramolecule_list.S$cell_supramolecule|complex_supramolecule|organ
 #N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host&database em_virus_synthetic.ncbi_tax_id.XML_VALUE
 #N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host.organism em_virus_synthetic.organism.XML_VALUE
 #N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host.strain em_virus_synthetic.strain.XML_VALUE
-#
-#N:emd.sample.macromolecule_list.S$dna|em_lable|ligand|other_macromolecule|protein_or_peptide|rna|saccharide$S&macromolecule_id entity.id.XML_VALUE
-#N:emd.sample.macromolecule_list.S$dna|em_lable|ligand|other_macromolecule|protein_or_peptide|rna|saccharide$S&mutant entity.pdbx_mutation.XML_VALUE
-#
-#N:emd.sample.macromolecule_list.S$dna|em_lable|ligand|other_macromolecule|protein_or_peptide|rna|saccharide$S.name entity.pdbx_description.XML_VALUE
-#N:emd.sample.macromolecule_list.S$dna|em_lable|ligand|other_macromolecule|protein_or_peptide|rna|saccharide$S.details entity.details.XML_VALUE
-#N:emd.sample.macromolecule_list.S$dna|em_lable|ligand|other_macromolecule|protein_or_peptide|rna|saccharide$S.number_of_copies entity.pdbx_number_of_molecules.XML_VALUE
-#
+
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S&macromolecule_id entity.id.XML_VALUE entity_poly.entity_id.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S&mutant entity.pdbx_mutation.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S.name entity.pdbx_description.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S.details entity.details.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S.number_of_copies entity.pdbx_number_of_molecules.XML_VALUE
+
+###N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S entity_poly.type.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S.sequence.string entity_poly.pdbx_seq_one_letter_code.XML_VALUE
+
 #####<emd>.<structure_determination_list>
 #emd.structure_determination_list.structure_determination@structure_determination_id em_experiment.id.XML_VALUE
 #emd.structure_determination_list.structure_determination.method em_experiment.reconstruction_method.XML_VALUE

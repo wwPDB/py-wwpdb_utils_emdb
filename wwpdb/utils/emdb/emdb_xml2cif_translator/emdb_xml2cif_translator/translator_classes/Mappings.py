@@ -153,17 +153,24 @@ class Mappings(object):
                 if count == 2:
                     xml_map = substitution[0]+sub
                     xml_maps.append(xml_map)
-                if count == 3 :
+                if count == 3:
                     xml_map = substitution[0]+sub+substitution[2]
                     xml_maps.append(xml_map)
         else:
             xml_maps.append(line_mappings[0])
 
+
         mappings = {}
         if xml_maps:
-            for xml_mapping in xml_maps:
+            for xml_mapp in xml_maps:
                 # xml mapping is unique; use it as a dict key
                 # create this line's mapping now
+                if "_supramolecule" in xml_mapp:
+                    xml_mapping = re.sub(r'[^.]+_supramolecule', 'all_supramolecule', xml_mapp)
+                elif "macromolecule_list" in xml_mapp:
+                    xml_mapping = re.sub(r'(protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xml_mapp)
+                else:
+                    xml_mapping = xml_mapp
                 if is_list:
                     mapping = {
                         xml_mapping: {

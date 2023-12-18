@@ -165,6 +165,9 @@
                     <recombinant_organism ncbi="32630">synthetic construct</recombinant_organism>
                 </recombinant_expression>
             </complex_supramolecule>
+            <virus_supramolecule supramolecule_id="5">
+                <name>Virus_test</name>
+            </virus_supramolecule>
         </supramolecule_list>
         <macromolecule_list>
             <protein_or_peptide macromolecule_id="1">

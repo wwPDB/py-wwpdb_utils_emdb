@@ -137,6 +137,8 @@ class EMDBMetadata(object):
         index = 0
         substitution = re.split('S\$|\$S', xml_part)
         count = len(substitution)
+        # sub_list, all_sub = substitution[1].split("?")
+        # sub_ele = sub_list.split("|")
         sub_ele = substitution[1].split("|")
         for sub in sub_ele:
             if count == 2:
@@ -150,6 +152,12 @@ class EMDBMetadata(object):
             elem = slice.replace("!", '').split(".", 1)[1].replace(".", "/")
             slice = slice.replace("!", '')
             find_type = root.findall(parent_elem)
+            if "_supramolecule" in slice:
+                slice = re.sub(r'[^.]+_supramolecule', 'all_supramolecule', slice)
+            elif "macromolecule_list" in slice:
+                slice = re.sub(r'(protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', slice)
+            else:
+                slice = slice
             if '>' in slice and find_type:
                 for supra_type in find_type:
                     supramolecule_type = (supra_type.tag).split("_", 1)[0]
