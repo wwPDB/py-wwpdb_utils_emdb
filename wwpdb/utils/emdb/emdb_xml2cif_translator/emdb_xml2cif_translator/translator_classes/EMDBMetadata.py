@@ -153,11 +153,14 @@ class EMDBMetadata(object):
             slice = slice.replace("!", '')
             find_type = root.findall(parent_elem)
             if "_supramolecule" in slice:
-                slice = re.sub(r'[^.]+_supramolecule', 'all_supramolecule', slice)
+                # slice = re.sub(r'[^.]+_supramolecule', 'all_supramolecule', slice)
+                slice = re.sub(r'(cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule)', 'all_supramolecules', slice)
+                slice = re.sub(r'sci_species_name', 'natural_source', slice)
             elif "macromolecule_list" in slice:
                 slice = re.sub(r'(protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', slice)
             else:
                 slice = slice
+
             if '>' in slice and find_type:
                 for supra_type in find_type:
                     supramolecule_type = (supra_type.tag).split("_", 1)[0]
