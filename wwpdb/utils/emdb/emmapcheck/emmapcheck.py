@@ -79,17 +79,43 @@ class EMMap:
         end = origin + np.array(self.size)
         return origin.tolist(), end.tolist()
 
-    def smaller_or_equal(self, another_map):
+    def same_box_size(self, another_map):
         """
-        Check if the map is smaller or equal to another map in size.
+        Check if the map box has the same box size as another map.
 
         Args:
             another_map (EMMap): Another EMMap instance.
 
         Returns:
-            bool: True if smaller or equal, False otherwise.
+            bool: True if same box size, False otherwise.
         """
         return all(np.array(self.size) - np.array(another_map.size) <= self.epsilon)
+
+    def smaller_box_size(self, another_map):
+        """
+        Check if the map box has a smaller box size than another map.
+
+        Args:
+            another_map (EMMap): Another EMMap instance.
+
+        Returns:
+            bool: True if smaller box size, False otherwise.
+        """
+        return all(np.array(self.size) < np.array(another_map.size))
+    
+    def overlaps(self, another_map):
+        """
+        Check if the map overlaps another map.
+
+        Args:
+            another_map (EMMap): Another EMMap instance.
+
+        Returns:
+            bool: True if overlaps, False otherwise.
+        """
+        origin1, end1 = np.array(self.extremities())
+        origin2, end2 = np.array(another_map.extremities())
+        return all(origin1 - end2 <= self.epsilon) and all(origin2 - end1 <= self.epsilon)
 
     def is_inside(self, another_map):
         """
@@ -103,21 +129,33 @@ class EMMap:
         """
         origin1, end1 = np.array(self.extremities())
         origin2, end2 = np.array(another_map.extremities())
-        return all(origin2 - origin1 <= self.epsilon) and all(end1 - end2 <= self.epsilon)
-
-    def acceptable_pixel_size(self, another_map):
+        return all(origin1 >= origin2) and all(end1 <= end2)
+    
+    def same_pixel_size(self, another_map):
         """
-        Check if the pixel size of the map is acceptable compared to another map.
+        Check if the pixel size of the map is the same as another map.
 
         Args:
             another_map (EMMap): Another EMMap instance.
 
         Returns:
-            tuple: Two boolean values indicating pixel size acceptability and if it's a multiple.
+            bool: True if same pixel size, False otherwise.
         """
         diff = np.array(self.pixel_size) - np.array(another_map.pixel_size)
+        return all(diff <= self.epsilon)
+    
+    def pixel_size_is_multiple(self, another_map):
+        """
+        Check if the pixel size of the map is a multiple of another map.
+
+        Args:
+            another_map (EMMap): Another EMMap instance.
+
+        Returns:
+            bool: True if pixel size is a multiple, False otherwise.
+        """
         modulo = np.array(self.pixel_size) % np.array(another_map.pixel_size)
-        return all(diff <= self.epsilon), all(modulo <= self.epsilon)
+        return all(modulo <= self.epsilon)
 
 
 class Model:
@@ -196,39 +234,70 @@ class Validator:
         result = {
             'em_volume': os.path.basename(self.em_map.file),
             'checksum': self.em_map.hash,
-            'map_checks': {},
-            'model_checks': {}
+            'primary_map_checks': {
+                'em_volume': os.path.basename(self.em_map.file),
+                'checksum': self.em_map.hash,
+                'is_identical': None,
+                'smaller_or_equal_box_size': None,
+                'fits_inside': None,
+                'same_pixel_size': None,
+                'pixel_size_is_multiple': None
+            }
         }
+        if self.half_maps and len(self.half_maps) == 2:
+            result['half-map_checks'] = {
+                'identical_half-maps': None
+            }
+        
+        if self.model:
+            result['model_checks'] = {
+                'num_atoms_outside': None,
+                'fraction_atoms_outside': None
+            }
 
-        distinct_halfmaps = set()
 
-        # Check the conditions between em_map and each half_map
-        for i, half_map in enumerate(self.half_maps):
-            # Add MD5 checksum for half-map
-            distinct_halfmaps.add(half_map.hash)
-            # Check if primary map and half-map are identical
-            is_identical = half_map.hash == self.em_map.hash
-            # Check if the size of half_map is smaller or equal to the primary map
-            smaller_or_equal = self.em_map.smaller_or_equal(half_map)
-            # Check if half_map is completely inside the primary map
-            is_inside = self.em_map.is_inside(half_map)
-            # Check if the pixel sizes are the same or multiples
-            same_pixel_size, pixel_size_is_multiple = self.em_map.acceptable_pixel_size(half_map)             
-            result['map_checks'].update({
-                'identical_half-maps': None,
-                f'half-map_{i+1}_checks': {
-                    'em_volume': os.path.basename(half_map.file),
-                    'checksum': half_map.hash,
-                    'is_identical': is_identical,
-                    'smaller_or_equal': smaller_or_equal,
-                    'is_inside': is_inside,
-                    'same_pixel_size': same_pixel_size,
-                    'pixel_size_is_multiple': pixel_size_is_multiple
-                }
-            })
+        # Perform MD5 checksum for half-maps
+        distinct_halfmaps = set([half_map.hash for half_map in self.half_maps])
 
         # Check for identical half-maps
-        result['map_checks']['identical_half-maps'] = len(distinct_halfmaps) == 1
+        result['half-map_checks']['identical_half-maps'] = len(distinct_halfmaps) == 1
+        
+        if not result['half-map_checks']['identical_half-maps']:
+            
+            # Comparisons between half-maps
+            if self.half_maps and len(self.half_maps) == 2:
+                
+                # Check if the half-maps have the same box size
+                result['half-map_checks']['same_box_size'] = self.half_maps[0].same_box_size(self.half_maps[1])
+
+                # Check if the half-maps have the same pixel size
+                result['half-map_checks']['same_pixel_size'] = self.half_maps[0].same_pixel_size(self.half_maps[1])
+
+                # Check if the half-maps overlap
+                result['half-map_checks']['overlap'] = self.half_maps[0].overlaps(self.half_maps[1])
+            
+            # Comparisons between primary map and each half-map
+            for i, half_map in enumerate(self.half_maps):
+                # Check if primary map and half-map are identical
+                is_identical = half_map.hash == self.em_map.hash
+                # Check if the size of half-map is smaller or equal to the primary map
+                smaller_or_equal = self.em_map.smaller_or_equal(half_map)
+                # Check if half-map is completely inside the primary map
+                is_inside = self.em_map.is_inside(half_map)
+                # Check if the pixel sizes are the same or multiples
+                same_pixel_size, pixel_size_is_multiple = self.em_map.acceptable_pixel_size(half_map)             
+                result['primary_map_checks'].update({
+                    f'half-map_{i+1}_checks': {
+                        'em_volume': os.path.basename(half_map.file),
+                        'checksum': half_map.hash,
+                        'is_identical': is_identical,
+                        'smaller_or_equal': smaller_or_equal,
+                        'is_inside': is_inside,
+                        'same_pixel_size': same_pixel_size,
+                        'pixel_size_is_multiple': pixel_size_is_multiple
+                    }
+                })
+
 
         # Check conditions for the model only if a model is provided
         if self.model:
