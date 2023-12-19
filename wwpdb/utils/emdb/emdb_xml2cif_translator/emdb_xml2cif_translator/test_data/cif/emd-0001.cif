@@ -1,7 +1,7 @@
 data_emd_0001
 
-_database_2.database_id    EMDB
-_database_2.database_code  EMD-0001
+_database_2.database_code  EMDB
+_database_2.database_id    EMD-0001
 #
 _em_admin.last_update          2018-10-17
 _em_admin.current_status       REL
@@ -19,8 +19,8 @@ _pdbx_database_status.deposit_site  PDBe
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_author_list.ordinal
 _em_author_list.author
+_em_author_list.ordinal
 1  "Glyde R"  
 2  "Ye FZ"  
 3  "Zhang XD"  
@@ -36,11 +36,11 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.journal_id_ASTM          29932903
-_citation.pdbx_database_id_DOI     doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_ISSN          29932903
+_citation.pdbx_database_id_PubMed  doi:10.1016/j.molcel.2018.05.021
 _citation.journal_id_CSD           1097-4164
-_citation.pdbx_database_id_PubMed  2168
-_citation.journal_id_ISSN          MOCEFL
+_citation.journal_id_ASTM          2168
+_citation.pdbx_database_id_DOI     MOCEFL
 #
 loop_
 _citation_author.ordinal
@@ -53,8 +53,8 @@ _citation_author.name
 6  "Zhang X"  
 #
 loop_
-_pdbx_database_related.db_id
 _pdbx_database_related.db_name
+_pdbx_database_related.db_id
 _pdbx_database_related.content_type
 _pdbx_database_related.details
 EMDB  EMD-4397  "other EM volume"       .  
@@ -107,6 +107,13 @@ _em_entity_assembly_synthetic.cellular_location
 .  .  .  .  .  .  .  .  .  
 .  .  .  .  .  .  .  .  .  
 .  .  .  .  .  .  .  .  .  
+#
+_em_entity_assembly_molwt.entity_assembly_id  1
+_em_entity_assembly_molwt.id                  1
+_em_entity_assembly_molwt.units               MDa
+_em_entity_assembly_molwt.experimental_flag   NO
+_em_entity_assembly_molwt.value               0.490
+_em_entity_assembly_molwt.method              .
 #
 loop_
 _em_entity_assembly_recombinant.entity_assembly_id

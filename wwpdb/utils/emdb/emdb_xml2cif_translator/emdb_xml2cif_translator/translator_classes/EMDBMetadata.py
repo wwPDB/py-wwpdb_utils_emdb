@@ -150,16 +150,16 @@ class EMDBMetadata(object):
         for slice in xml_slices:
             parent_elem = slice.split("!", 1)[0].split(".", 1)[1].replace(".", "/")
             elem = slice.replace("!", '').split(".", 1)[1].replace(".", "/")
-            slice = slice.replace("!", '')
+            xslice = slice.replace("!", '')
             find_type = root.findall(parent_elem)
             if "_supramolecule" in slice:
                 # slice = re.sub(r'[^.]+_supramolecule', 'all_supramolecule', slice)
-                slice = re.sub(r'(cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule)', 'all_supramolecules', slice)
+                slice = re.sub(r'(cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule)', 'all_supramolecules', xslice)
                 slice = re.sub(r'sci_species_name', 'natural_source', slice)
             elif "macromolecule_list" in slice:
-                slice = re.sub(r'(protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', slice)
+                slice = re.sub(r'(protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xslice)
             else:
-                slice = slice
+                slice = xslice
 
             if '>' in slice and find_type:
                 for supra_type in find_type:
@@ -201,7 +201,7 @@ class EMDBMetadata(object):
                     tags, items = elem.rsplit('R$', 1)
                     att, item = items.rsplit('|', 1)
                 elif 'E$' in slice:
-                    either_one = re.split('E\$|\$E', slice)
+                    either_one = re.split('E\$|\$E', xslice)
                     combined = either_one[1].split("|")
                     for each in combined:
                         otherwise_slice = either_one[0]+each+either_one[2]
