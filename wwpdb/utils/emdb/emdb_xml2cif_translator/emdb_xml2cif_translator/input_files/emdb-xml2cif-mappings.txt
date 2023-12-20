@@ -124,14 +124,23 @@ N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host&database 
 N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host.organism em_virus_synthetic.organism.XML_VALUE
 N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host.strain em_virus_synthetic.strain.XML_VALUE
 
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S&macromolecule_id entity.id.XML_VALUE entity_poly.entity_id.XML_VALUE
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S&mutant entity.pdbx_mutation.XML_VALUE
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S.name entity.pdbx_description.XML_VALUE
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S.details entity.details.XML_VALUE
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S.number_of_copies entity.pdbx_number_of_molecules.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S&macromolecule_id entity.id.XML_VALUE entity_poly.entity_id.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S> entity.type.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.E$natural_source.organism|recombinant_expression.recombinant_organism$E entity.src_method.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.name entity.pdbx_description.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.number_of_copies entity.pdbx_number_of_molecules.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.ec_number entity.pdbx_ec.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S&mutant entity.pdbx_mutation.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.details entity.details.XML_VALUE
 
-###N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S entity_poly.type.XML_VALUE
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide$S.sequence.string entity_poly.pdbx_seq_one_letter_code.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.sequence.string entity_poly.pdbx_seq_one_letter_code.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.molecular_weight.E$experimental|theoretical$E entity.formula_weight.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.molecular_weight.method entity.pdbx_formula_weight_exptl_method.XML_VALUE
+
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.organism entity_src_gen.pdbx_gene_src_scientific_name.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.organism&ncbi entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.recombinant_expression.recombinant_organism entity_src_gen.pdbx_host_org_scientific_name.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.recombinant_expression.recombinant_organism&ncbi entity_src_gen.pdbx_host_org_ncbi_taxonomy_id.XML_VALUE
 
 #####<emd>.<structure_determination_list>
 emd.structure_determination_list.structure_determination@structure_determination_id em_experiment.id.XML_VALUE

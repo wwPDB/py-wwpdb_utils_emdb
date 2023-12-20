@@ -137,8 +137,6 @@ class EMDBMetadata(object):
         index = 0
         substitution = re.split('S\$|\$S', xml_part)
         count = len(substitution)
-        # sub_list, all_sub = substitution[1].split("?")
-        # sub_ele = sub_list.split("|")
         sub_ele = substitution[1].split("|")
         for sub in sub_ele:
             if count == 2:
@@ -157,24 +155,32 @@ class EMDBMetadata(object):
                 slice = re.sub(r'(cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule)', 'all_supramolecules', xslice)
                 slice = re.sub(r'sci_species_name', 'natural_source', slice)
             elif "macromolecule_list" in slice:
-                slice = re.sub(r'(protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xslice)
+                slice = re.sub(r'(protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xslice)
             else:
                 slice = xslice
 
             if '>' in slice and find_type:
-                for supra_type in find_type:
-                    supramolecule_type = (supra_type.tag).split("_", 1)[0]
-                    if supramolecule_type == "complex":
-                        ribo = supra_type.find("ribosome-details")
+                for mol_type in find_type:
+                    molecule_type = (mol_type.tag).split("_", 1)[0]
+                    if molecule_type == "complex":
+                        ribo = mol_type.find("ribosome-details")
                         if ribo is not None:
-                            supramolecule_type = "ribosome"
-                    self.mappings_in.map_xml_value_to_code(str(supramolecule_type).upper(), slice)
+                            molecule_type = "ribosome"
+                    if "_supramolecule" in mol_type.tag:
+                        self.mappings_in.map_xml_value_to_code(str(molecule_type).upper(), slice)
+                    else:
+                        if molecule_type in ["protein", "em", "other", "dna", "rna", "saccharide"]:
+                            self.mappings_in.map_xml_value_to_code("polymer", slice)
+                        if molecule_type == "ligand":
+                            self.mappings_in.map_xml_value_to_code("non-polymer", slice)
+
             if '@' in slice:
                 tags, attrib_key = elem.split('@', 1)
                 el = root.find(tags)
                 if el is not None:
                     attrib_val = el.get(attrib_key)
                     self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
+
             if not any(char in slice for char in ['@', '$I$', 'R$', '%', '>', 'E$']):
                 if '&' in slice:
                     tags, item = elem.rsplit('&', 1)
@@ -194,6 +200,7 @@ class EMDBMetadata(object):
                     if find_parent_elem:
                         for l in range(len(find_parent_elem)):
                             self.mappings_in.map_xml_value_to_code('', slice)
+
             if any(char in slice for char in ['$I$', 'R$', '%', 'E$']):
                 if '$I$' in slice:
                     tags, item = elem.rsplit('$I$', 1)
@@ -259,7 +266,18 @@ class EMDBMetadata(object):
                             if selem is None:
                                 self.mappings_in.map_xml_value_to_code('', slice)
                             else:
-                                self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
+                                svalue = selem.text
+                                if "recombinant_expression" in tags:
+                                    svalue = "man"
+                                elif "natural_source" in tags:
+                                    svalue = "nat"
+                                elif svalue == "syntheic construct":
+                                    svalue = "syn"
+                                else:
+                                    matches = ["experimental", "theortical"]
+                                    if any(x in slice for x in matches):
+                                        svalue = round((float(selem.text)*10**6),2)
+                                self.mappings_in.map_xml_value_to_code(str(svalue), slice)
                     # elif "%" in slice:
                     #     list_elem.append(selem.text)
                     #     if not list_elem:

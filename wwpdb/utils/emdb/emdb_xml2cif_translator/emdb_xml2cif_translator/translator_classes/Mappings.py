@@ -165,11 +165,10 @@ class Mappings(object):
             for xml_mapp in xml_maps:
                 # xml mapping is unique; use it as a dict key
                 if "_supramolecule" in xml_mapp:
-                    # xml_mapping = re.sub(r'[^.]+_supramolecule', 'all_supramolecule', xml_mapp)
                     xml_mapping = re.sub(r'(cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule)', 'all_supramolecules', xml_mapp)
                     xml_mapping = re.sub(r'sci_species_name', 'natural_source', xml_mapping)
                 elif "macromolecule_list" in xml_mapp:
-                    xml_mapping = re.sub(r'(protein_or_peptide|em_lable|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xml_mapp)
+                    xml_mapping = re.sub(r'(protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xml_mapp)
                 else:
                     xml_mapping = xml_mapp
                 # create this line's mapping now
