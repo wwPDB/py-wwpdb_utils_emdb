@@ -152,6 +152,15 @@ N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macro
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.organelle entity_src_nat.pdbx_organelle.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.cellular_location entity_src_nat.pdbx_cellular_location.XML_VALUE
 
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.synthetic_source.organism&ncbi pdbx_entity_src_syn.ncbi_tax_id.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.synthetic_source.organism pdbx_entity_src_syn.organism.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.synthetic_source.strain pdbx_entity_src_syn.strain.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.synthetic_source.details pdbx_entity_src_syn.details.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.synthetic_source.organ pdbx_entity_src_syn.organ.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.synthetic_source.tissue pdbx_entity_src_syn.tissue.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.synthetic_source.cell pdbx_entity_src_syn.cell.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.synthetic_source.organelle pdbx_entity_src_syn.organelle.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.synthetic_source.cellular_location pdbx_entity_src_syn.cellular_location.XML_VALUE
 
 
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.recombinant_expression.recombinant_strain entity_src_gen.gene_src_strain.XML_VALUE

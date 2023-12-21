@@ -19,8 +19,8 @@ _pdbx_database_status.deposit_site  PDBe
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_author_list.ordinal
 _em_author_list.author
+_em_author_list.ordinal
 1  "Glyde R"  
 2  "Ye FZ"  
 3  "Zhang XD"  
@@ -36,15 +36,15 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.journal_id_ASTM          29932903
-_citation.journal_id_ISSN          doi:10.1016/j.molcel.2018.05.021
-_citation.pdbx_database_id_PubMed  1097-4164
+_citation.journal_id_CSD           29932903
+_citation.pdbx_database_id_PubMed  doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_ISSN          1097-4164
 _citation.pdbx_database_id_DOI     2168
-_citation.journal_id_CSD           MOCEFL
+_citation.journal_id_ASTM          MOCEFL
 #
 loop_
-_citation_author.ordinal
 _citation_author.name
+_citation_author.ordinal
 1  "Glyde R"  
 2  "Ye F"  
 3  "Jovanovic M"  
@@ -257,6 +257,24 @@ _entity_src_gen.gene_src_strain
 "Escherichia coli K-12"                       83333  .  
 .                                                 .  .  
 .                                                 .  .  
+#
+loop_
+_pdbx_entity_src_syn.ncbi_tax_id
+_pdbx_entity_src_syn.organism
+_pdbx_entity_src_syn.strain
+_pdbx_entity_src_syn.details
+_pdbx_entity_src_syn.organ
+_pdbx_entity_src_syn.tissue
+_pdbx_entity_src_syn.cell
+_pdbx_entity_src_syn.organelle
+_pdbx_entity_src_syn.cellular_location
+.  .  .  .  .  .  .  .  .  
+.  .  .  .  .  .  .  .  .  
+.  .  .  .  .  .  .  .  .  
+.  .  .  .  .  .  .  .  .  
+.  .  .  .  .  .  .  .  .  
+.  .  .  .  .  .  .  .  .  
+.  .  .  .  .  .  .  .  .  
 #
 _em_experiment.id                     1
 _em_experiment.reconstruction_method  singleParticle
