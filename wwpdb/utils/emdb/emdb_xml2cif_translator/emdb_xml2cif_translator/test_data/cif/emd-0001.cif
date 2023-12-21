@@ -1,7 +1,7 @@
 data_emd_0001
 
-_database_2.database_id    EMDB
-_database_2.database_code  EMD-0001
+_database_2.database_code  EMDB
+_database_2.database_id    EMD-0001
 #
 _em_admin.last_update          2018-10-17
 _em_admin.current_status       REL
@@ -19,8 +19,8 @@ _pdbx_database_status.deposit_site  PDBe
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_author_list.author
 _em_author_list.ordinal
+_em_author_list.author
 1  "Glyde R"  
 2  "Ye FZ"  
 3  "Zhang XD"  
@@ -36,15 +36,15 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.journal_id_CSD           29932903
-_citation.pdbx_database_id_DOI     doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_ASTM          29932903
+_citation.journal_id_ISSN          doi:10.1016/j.molcel.2018.05.021
 _citation.pdbx_database_id_PubMed  1097-4164
-_citation.journal_id_ASTM          2168
-_citation.journal_id_ISSN          MOCEFL
+_citation.pdbx_database_id_DOI     2168
+_citation.journal_id_CSD           MOCEFL
 #
 loop_
-_citation_author.name
 _citation_author.ordinal
+_citation_author.name
 1  "Glyde R"  
 2  "Ye F"  
 3  "Jovanovic M"  
@@ -229,17 +229,34 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
   
 #
 loop_
-_entity_src_gen.pdbx_gene_src_scientific_name
-_entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id
+_entity_src_nat.pdbx_organism_scientific
+_entity_src_nat.pdbx_ncbi_taxonomy_id
+_entity_src_nat.strain
+_entity_src_nat.details
+_entity_src_nat.pdbx_organ
+_entity_src_nat.tissue
+_entity_src_nat.pdbx_cell
+_entity_src_nat.pdbx_organelle
+_entity_src_nat.pdbx_cellular_location
+"Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
+"Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
+"Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
+"Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
+"Klebsiella pneumoniae"            573  .  .  .  .  .  .  .  
+"Klebsiella pneumoniae"            573  .  .  .  .  .  .  .  
+"Klebsiella pneumoniae"            573  .  .  .  .  .  .  .  
+#
+loop_
 _entity_src_gen.pdbx_host_org_scientific_name
 _entity_src_gen.pdbx_host_org_ncbi_taxonomy_id
-"Escherichia coli (strain K12)"  83333  "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  
-"Escherichia coli (strain K12)"  83333  "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  
-"Escherichia coli (strain K12)"  83333  "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  
-"Escherichia coli (strain K12)"  83333  "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  
-"Klebsiella pneumoniae"            573  "Escherichia coli K-12"                       83333  
-"Klebsiella pneumoniae"            573  .                                                 .  
-"Klebsiella pneumoniae"            573  .                                                 .  
+_entity_src_gen.gene_src_strain
+"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  
+"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  
+"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  
+"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  
+"Escherichia coli K-12"                       83333  .  
+.                                                 .  .  
+.                                                 .  .  
 #
 _em_experiment.id                     1
 _em_experiment.reconstruction_method  singleParticle

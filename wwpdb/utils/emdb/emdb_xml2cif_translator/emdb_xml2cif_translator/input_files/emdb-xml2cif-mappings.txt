@@ -142,7 +142,21 @@ N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macro
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.recombinant_expression.recombinant_organism entity_src_gen.pdbx_host_org_scientific_name.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.recombinant_expression.recombinant_organism&ncbi entity_src_gen.pdbx_host_org_ncbi_taxonomy_id.XML_VALUE
 
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.organism&ncbi entity_src_nat.pdbx_ncbi_taxonomy_id.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.organism entity_src_nat.pdbx_organism_scientific.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.strain entity_src_nat.strain.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.details entity_src_nat.details.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.organ entity_src_nat.pdbx_organ.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.tissue entity_src_nat.tissue.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.cell entity_src_nat.pdbx_cell.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.organelle entity_src_nat.pdbx_organelle.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.cellular_location entity_src_nat.pdbx_cellular_location.XML_VALUE
+
+
+
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.recombinant_expression.recombinant_strain entity_src_gen.gene_src_strain.XML_VALUE
 #####<emd>.<structure_determination_list>
+
 emd.structure_determination_list.structure_determination@structure_determination_id em_experiment.id.XML_VALUE
 emd.structure_determination_list.structure_determination.method em_experiment.reconstruction_method.XML_VALUE
 emd.structure_determination_list.structure_determination.aggregation_state em_experiment.aggregation_state.XML_VALUE
