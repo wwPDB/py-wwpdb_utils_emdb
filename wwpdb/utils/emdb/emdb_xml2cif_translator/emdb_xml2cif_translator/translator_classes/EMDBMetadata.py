@@ -94,8 +94,9 @@ class EMDBMetadata(object):
                                 el = xml_elem[0].split(".", 1)[1].replace('.', '/')
                                 attrib_key = xml_elem[1]
                                 el = root.find(el)
-                                attrib_val = el.get(attrib_key)
-                                self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, el.text)
+                                if el:
+                                    attrib_val = el.get(attrib_key)
+                                    self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, el.text)
                         elif '^' in xml_part:
                             self.multiple_same_element(root, xml_part)
                         elif 'S$' in xml_part:

@@ -19,8 +19,8 @@ _pdbx_database_status.deposit_site  PDBe
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_author_list.author
 _em_author_list.ordinal
+_em_author_list.author
 1  "Glyde R"  
 2  "Ye FZ"  
 3  "Zhang XD"  
@@ -36,15 +36,15 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.journal_id_CSD           29932903
-_citation.pdbx_database_id_PubMed  doi:10.1016/j.molcel.2018.05.021
-_citation.journal_id_ISSN          1097-4164
+_citation.pdbx_database_id_PubMed  29932903
+_citation.journal_id_ISSN          doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_ASTM          1097-4164
 _citation.pdbx_database_id_DOI     2168
-_citation.journal_id_ASTM          MOCEFL
+_citation.journal_id_CSD           MOCEFL
 #
 loop_
-_citation_author.name
 _citation_author.ordinal
+_citation_author.name
 1  "Glyde R"  
 2  "Ye F"  
 3  "Jovanovic M"  
@@ -53,8 +53,8 @@ _citation_author.ordinal
 6  "Zhang X"  
 #
 loop_
-_pdbx_database_related.db_id
 _pdbx_database_related.db_name
+_pdbx_database_related.db_id
 _pdbx_database_related.content_type
 _pdbx_database_related.details
 EMDB  EMD-4397  "other EM volume"       .  
@@ -131,18 +131,17 @@ loop_
 _entity.id
 _entity.type
 _entity.src_method
-_entity.pdbx_description
 _entity.pdbx_number_of_molecules
 _entity.pdbx_ec
 _entity.pdbx_mutation
 _entity.details
 _entity.formula_weight
 _entity.pdbx_formula_weight_exptl_method
-1  polymer  man  "DNA-directed RNA polymerase subunit alpha"                                                                                                                   2  2.7.7.6  ?     .   36558.68  .  
-2  polymer  man  "DNA-directed RNA polymerase subunit beta"                                                                                                                    1  2.7.7.6  ?     .  150820.88  .  
-3  polymer  man  "DNA-directed RNA polymerase subunit beta'"                                                                                                                   1  2.7.7.6  ?     .  155366.78  .  
-4  polymer  man  "DNA-directed RNA polymerase subunit omega"                                                                                                                   1  2.7.7.6  ?     .   10249.55  .  
-5  polymer  man  "RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor"  1  2.7.7.6  ?     .   54723.08  .  
+1  polymer  man  2  2.7.7.6  ?     .   36558.68  .  
+2  polymer  man  1  2.7.7.6  ?     .  150820.88  .  
+3  polymer  man  1  2.7.7.6  ?     .  155366.78  .  
+4  polymer  man  1  2.7.7.6  ?     .   10249.55  .  
+5  polymer  man  1  2.7.7.6  ?     .   54723.08  .  
 #
 loop_
 _entity_poly.entity_id
@@ -250,13 +249,15 @@ loop_
 _entity_src_gen.pdbx_host_org_scientific_name
 _entity_src_gen.pdbx_host_org_ncbi_taxonomy_id
 _entity_src_gen.gene_src_strain
-"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  
-"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  
-"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  
-"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  
-"Escherichia coli K-12"                       83333  .  
-.                                                 .  .  
-.                                                 .  .  
+_entity_src_gen.gene_src_cell
+_entity_src_gen.pdbx_gene_src_plasmid
+"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
+"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
+"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
+"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
+"Escherichia coli K-12"                       83333  .  .  .  
+.                                                 .  .  .  .  
+.                                                 .  .  .  .  
 #
 loop_
 _pdbx_entity_src_syn.ncbi_tax_id
