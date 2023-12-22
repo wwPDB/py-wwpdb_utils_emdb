@@ -1,7 +1,7 @@
 data_emd_0001
 
-_database_2.database_code  EMDB
-_database_2.database_id    EMD-0001
+_database_2.database_id    EMDB
+_database_2.database_code  EMD-0001
 #
 _em_admin.last_update          2018-10-17
 _em_admin.current_status       REL
@@ -19,8 +19,8 @@ _pdbx_database_status.deposit_site  PDBe
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_author_list.ordinal
 _em_author_list.author
+_em_author_list.ordinal
 1  "Glyde R"  
 2  "Ye FZ"  
 3  "Zhang XD"  
@@ -36,15 +36,15 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.pdbx_database_id_PubMed  29932903
+_citation.pdbx_database_id_DOI     29932903
 _citation.journal_id_ISSN          doi:10.1016/j.molcel.2018.05.021
 _citation.journal_id_ASTM          1097-4164
-_citation.pdbx_database_id_DOI     2168
+_citation.pdbx_database_id_PubMed  2168
 _citation.journal_id_CSD           MOCEFL
 #
 loop_
-_citation_author.ordinal
 _citation_author.name
+_citation_author.ordinal
 1  "Glyde R"  
 2  "Ye F"  
 3  "Jovanovic M"  
@@ -53,15 +53,15 @@ _citation_author.name
 6  "Zhang X"  
 #
 loop_
-_pdbx_database_related.db_name
 _pdbx_database_related.db_id
+_pdbx_database_related.db_name
 _pdbx_database_related.content_type
 _pdbx_database_related.details
 EMDB  EMD-4397  "other EM volume"       .  
 EMDB  EMD-0001  "associated EM volume"  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  
 #
-_em_db_reference.access_code   PDB
-_em_db_reference.db_name       6gh5
+_em_db_reference.db_name       PDB
+_em_db_reference.access_code   6gh5
 _em_db_reference.relationship  FULLOVERLAP
 _em_db_reference.details       CHECK
 #

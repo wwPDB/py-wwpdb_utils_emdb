@@ -1,8 +1,8 @@
 #### Usage of special anchors 1. @ for getting the attrib value 2. N for lists 3. D for mapping as dictionary 4. ^ multiple same element
 #### 5. B for boolean value 6. S$(substitutions seperated by |)$S for substitution groups 7. $I$ for creating running number ids for that specific mmcif category-item
 #### 8. R$ referral mmcif category-item'|'to the specific mmcif category-item' 9. % making a list for cif file from all same sub-element (should be used along
-#### with * to mention the attribute name that needs to break down the list) 10. > for defining the category type with respect to the element name 11. M$ multiply the same value several times
-#### 12. E$ either one of the elements present 13. ? to write a boolean when either one is present
+#### with * to mention the attribute name that needs to break down the list) 10. > for defining the supra and macro type with respect to the element name 11. M$ multiply the same value several times
+#### 12. < for defining the macromolecule entity_poly.type 13. E$ either one of the elements present 14. ? to write a boolean when either one is present 1
 
 emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 
@@ -132,10 +132,11 @@ N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macro
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.ec_number entity.pdbx_ec.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S&mutant entity.pdbx_mutation.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.details entity.details.XML_VALUE
-
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.sequence.string entity_poly.pdbx_seq_one_letter_code.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.molecular_weight.E$experimental|theoretical$E entity.formula_weight.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.molecular_weight.method entity.pdbx_formula_weight_exptl_method.XML_VALUE
+
+N:emd.sample.macromolecule_list.S$protein_or_peptide.enantiomer|em_label.other|other_macromolecule.classification|dna.classification|rna.classification|saccharide.enantiomer$S< entity_poly.type.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.sequence.string entity_poly.pdbx_seq_one_letter_code.XML_VALUE
 
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.organism entity_src_gen.pdbx_gene_src_scientific_name.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.natural_source.organism&ncbi entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id.XML_VALUE

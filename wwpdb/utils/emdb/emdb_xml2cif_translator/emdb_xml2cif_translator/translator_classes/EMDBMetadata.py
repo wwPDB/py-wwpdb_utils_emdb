@@ -175,6 +175,26 @@ class EMDBMetadata(object):
                         if molecule_type == "ligand":
                             self.mappings_in.map_xml_value_to_code("non-polymer", slice)
 
+            if '<' in slice and find_type:
+                tags, item = xslice.split(".", 1)[1].replace(".", "/").replace("<", '').rsplit("/", 1)
+                for element in root.findall(tags):
+                    selem = element.find(item)
+                    for mol_type in find_type:
+                        if mol_type == "rna":
+                            self.mappings_in.map_xml_value_to_code("polyribonucleotide", slice)
+                        elif mol_type == "dna":
+                            self.mappings_in.map_xml_value_to_code("polydeoxyribonucleotide", slice)
+                        elif mol_type in ["protein_or_peptide", "other_macromolecule"]:
+                            if selem.text == "LEVO":
+                                self.mappings_in.map_xml_value_to_code("polypeptide(L)", slice)
+                            if selem.text == "DEXTRO":
+                                self.mappings_in.map_xml_value_to_code("polypeptide(D)", slice)
+                        elif mol_type == "saccharide":
+                            if selem.text == "DEXTRO":
+                                self.mappings_in.map_xml_value_to_code("polysaccharide(D)", slice)
+                            if selem.text == "LEVO":
+                                self.mappings_in.map_xml_value_to_code("polysaccharide(L)", slice)
+
             if '@' in slice:
                 tags, attrib_key = elem.split('@', 1)
                 el = root.find(tags)
