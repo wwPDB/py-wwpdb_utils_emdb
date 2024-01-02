@@ -52,10 +52,16 @@ class EMMap:
                 crs = (self.header.mapc, self.header.mapr, self.header.maps)
                 crsindices = (crs.index(1), crs.index(2), crs.index(3))
                 if crs != (1, 2, 3):
-                    self.nxyz = np.array(
-                        (self.nxyz[crsindices[0]], self.nxyz[crsindices[1]], self.nxyz[crsindices[2]])).tolist()
-                    self.nstarts = np.array((self.nstarts[crsindices[0]], self.nstarts[crsindices[1]],
-                                             self.nstarts[crsindices[2]])).tolist()
+                    self.nxyz = np.array((
+                        self.nxyz[crsindices[0]],
+                        self.nxyz[crsindices[1]],
+                        self.nxyz[crsindices[2]]
+                    )).tolist()
+                    self.nstarts = np.array((
+                        self.nstarts[crsindices[0]],
+                        self.nstarts[crsindices[1]],
+                        self.nstarts[crsindices[2]]
+                    )).tolist()
         except FileNotFoundError:
             raise FileNotFoundError(f"File not found: {self.file}")
         except Exception as e:
@@ -135,7 +141,7 @@ class EMMap:
         """
         origin1, end1 = np.array(self.extremities())
         origin2, end2 = np.array(another_map.extremities())
-        return all(origin1 >= origin2) and all(end1 <= end2)
+        return all(origin1 > origin2) and all(end1 < end2)
 
     def same_pixel_size(self, another_map):
         """
@@ -201,7 +207,6 @@ class Validator:
         self.em_map = em_map
         self.half_maps = half_maps
         self.model = model
-        self.result = None
 
     def _map_matrix(self, apixs, angs):
         # Convert angles to radians
@@ -254,8 +259,9 @@ class Validator:
         Perform a series of checks to validate and compare EM maps and structural models.
 
         For maps, it compares the half maps if provided, and compares each half map to the primary map.
-        For each half map, it checks whether the size is smaller or equal to the primary map,
-        whether the half map is completely inside the primary map, and whether the pixel sizes are the same or multiples.
+        For each pair of maps, it checks if they are identical, if they have the same box size, if one has a smaller box
+        size than the other, if they overlap, if one fits inside the other, if they have the same pixel size, and if
+        one has a pixel size that is a multiple of the other.
 
         For the model, it checks the number and fraction of atoms outside the primary EM map.
 
