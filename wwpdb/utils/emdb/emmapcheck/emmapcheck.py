@@ -15,6 +15,7 @@ class EMMap:
     """
     Class representing an Electron Microscopy (EM) map.
     """
+
     def __init__(self, path2file):
         """
         Initialize an EMMap instance.
@@ -51,14 +52,19 @@ class EMMap:
                 crs = (self.header.mapc, self.header.mapr, self.header.maps)
                 crsindices = (crs.index(1), crs.index(2), crs.index(3))
                 if crs != (1, 2, 3):
-                    self.nxyz = np.array((self.nxyz[crsindices[0]], self.nxyz[crsindices[1]], self.nxyz[crsindices[2]])).tolist()
-                    self.nstarts = np.array((self.nstarts[crsindices[0]], self.nstarts[crsindices[1]], self.nstarts[crsindices[2]])).tolist()
+                    self.nxyz = np.array(
+                        (self.nxyz[crsindices[0]], self.nxyz[crsindices[1]], self.nxyz[crsindices[2]])).tolist()
+                    self.nstarts = np.array((self.nstarts[crsindices[0]], self.nstarts[crsindices[1]],
+                                             self.nstarts[crsindices[2]])).tolist()
         except FileNotFoundError:
             raise FileNotFoundError(f"File not found: {self.file}")
         except Exception as e:
             raise Exception(f"An error occurred while loading the file: {str(e)}")
 
     def md5_checksum(self):
+        """
+        Calculate the MD5 checksum of the map file.
+        """
         hash_md5 = hashlib.md5()
         with open(self.file, "rb") as f:
             # Depending on your file format, you might need to skip the header
@@ -102,7 +108,7 @@ class EMMap:
             bool: True if smaller box size, False otherwise.
         """
         return all(np.array(self.size) < np.array(another_map.size))
-    
+
     def overlaps(self, another_map):
         """
         Check if the map overlaps another map.
@@ -115,9 +121,9 @@ class EMMap:
         """
         origin1, end1 = np.array(self.extremities())
         origin2, end2 = np.array(another_map.extremities())
-        return all(origin1 - end2 <= self.epsilon) and all(origin2 - end1 <= self.epsilon)
+        return all(origin1 - origin2 <= self.epsilon) and all(end1 - end2 <= self.epsilon)
 
-    def is_inside(self, another_map):
+    def fits_inside(self, another_map):
         """
         Check if the map is completely inside another map.
 
@@ -130,7 +136,7 @@ class EMMap:
         origin1, end1 = np.array(self.extremities())
         origin2, end2 = np.array(another_map.extremities())
         return all(origin1 >= origin2) and all(end1 <= end2)
-    
+
     def same_pixel_size(self, another_map):
         """
         Check if the pixel size of the map is the same as another map.
@@ -143,7 +149,7 @@ class EMMap:
         """
         diff = np.array(self.pixel_size) - np.array(another_map.pixel_size)
         return all(diff <= self.epsilon)
-    
+
     def pixel_size_is_multiple(self, another_map):
         """
         Check if the pixel size of the map is a multiple of another map.
@@ -162,6 +168,7 @@ class Model:
     """
     Class representing a structural model in MMCIF format.
     """
+
     def __init__(self, path2model):
         """
         Initialize a Model instance.
@@ -181,7 +188,8 @@ class Validator:
     """
     Class for validating and comparing EM maps and models.
     """
-    def __init__(self, em_map, half_maps=[], model=None):
+
+    def __init__(self, em_map, half_maps=None, model=None):
         """
         Initialize a Validator instance.
 
@@ -193,6 +201,7 @@ class Validator:
         self.em_map = em_map
         self.half_maps = half_maps
         self.model = model
+        self.result = None
 
     def _map_matrix(self, apixs, angs):
         # Convert angles to radians
@@ -210,7 +219,8 @@ class Validator:
         angs = [self.em_map.header.cellb.alpha, self.em_map.header.cellb.beta, self.em_map.header.cellb.gamma]
         matrix = self._map_matrix(apixs, angs)
         result = matrix.dot(np.asarray(onecoor))
-        return result[0] - self.em_map.nstarts[0], result[1] - self.em_map.nstarts[1], result[2] - self.em_map.nstarts[2]
+        return result[0] - self.em_map.nstarts[0], result[1] - self.em_map.nstarts[1], result[2] - self.em_map.nstarts[
+            2]
 
     def _get_indices(self, onecoor):
         apixs = [self.em_map.header.cella.x / self.em_map.nxyz[0],
@@ -219,100 +229,63 @@ class Validator:
         oneindex = self._matrix_indices(apixs, onecoor)
         return oneindex, self.em_map.nxyz
 
+    def _compare_maps(self, map1, map2):
+        result = {
+            # Check if the maps are identical
+            'identical': map1.hash == map2.hash
+        }
+        if not result['identical']:
+            # Check if the maps have the same box size
+            result['same_box_size'] = map1.same_box_size(map2)
+            # Check if the maps have a smaller box size
+            result['smaller_box_size'] = map1.smaller_box_size(map2)
+            # Check if the maps overlap
+            result['overlap'] = map1.overlaps(map2)
+            # Check if the maps fit inside each other
+            result['fits_inside'] = map1.fits_inside(map2)
+            # Check if the maps have the same pixel size
+            result['same_pixel_size'] = map1.same_pixel_size(map2)
+            # Check if the maps have pixel size that is a multiple
+            result['pixel_size_is_multiple'] = map1.pixel_size_is_multiple(map2)
+        return result
+
     def check(self):
         """
         Perform a series of checks to validate and compare EM maps and structural models.
-        
+
+        For maps, it compares the half maps if provided, and compares each half map to the primary map.
         For each half map, it checks whether the size is smaller or equal to the primary map,
         whether the half map is completely inside the primary map, and whether the pixel sizes are the same or multiples.
 
         For the model, it checks the number and fraction of atoms outside the primary EM map.
-        
+
         Returns:
             dict: Results of the checks.
         """
-        result = {
-            'em_volume': os.path.basename(self.em_map.file),
-            'checksum': self.em_map.hash,
-            'primary_map_checks': {
-                'em_volume': os.path.basename(self.em_map.file),
-                'checksum': self.em_map.hash,
-                'is_identical': None,
-                'smaller_or_equal_box_size': None,
-                'fits_inside': None,
-                'same_pixel_size': None,
-                'pixel_size_is_multiple': None
-            }
-        }
-        if self.half_maps and len(self.half_maps) == 2:
-            result['half-map_checks'] = {
-                'identical_half-maps': None
-            }
-        
+        result = {}
+
+        if self.half_maps:
+            result.update({
+                'half_maps': {
+                    'to_each_other': self._compare_maps(self.half_maps[0],
+                                                                      self.half_maps[1]),  # Compare half maps
+                    'to_primary_map': [self._compare_maps(self.em_map, half_map) for half_map in
+                                                     self.half_maps]  # Compare half maps to primary map
+                }
+            })
+
         if self.model:
-            result['model_checks'] = {
-                'num_atoms_outside': None,
-                'fraction_atoms_outside': None
-            }
-
-
-        # Perform MD5 checksum for half-maps
-        distinct_halfmaps = set([half_map.hash for half_map in self.half_maps])
-
-        # Check for identical half-maps
-        result['half-map_checks']['identical_half-maps'] = len(distinct_halfmaps) == 1
-        
-        if not result['half-map_checks']['identical_half-maps']:
-            
-            # Comparisons between half-maps
-            if self.half_maps and len(self.half_maps) == 2:
-                
-                # Check if the half-maps have the same box size
-                result['half-map_checks']['same_box_size'] = self.half_maps[0].same_box_size(self.half_maps[1])
-
-                # Check if the half-maps have the same pixel size
-                result['half-map_checks']['same_pixel_size'] = self.half_maps[0].same_pixel_size(self.half_maps[1])
-
-                # Check if the half-maps overlap
-                result['half-map_checks']['overlap'] = self.half_maps[0].overlaps(self.half_maps[1])
-            
-            # Comparisons between primary map and each half-map
-            for i, half_map in enumerate(self.half_maps):
-                # Check if primary map and half-map are identical
-                is_identical = half_map.hash == self.em_map.hash
-                # Check if the size of half-map is smaller or equal to the primary map
-                smaller_or_equal = self.em_map.smaller_or_equal(half_map)
-                # Check if half-map is completely inside the primary map
-                is_inside = self.em_map.is_inside(half_map)
-                # Check if the pixel sizes are the same or multiples
-                same_pixel_size, pixel_size_is_multiple = self.em_map.acceptable_pixel_size(half_map)             
-                result['primary_map_checks'].update({
-                    f'half-map_{i+1}_checks': {
-                        'em_volume': os.path.basename(half_map.file),
-                        'checksum': half_map.hash,
-                        'is_identical': is_identical,
-                        'smaller_or_equal': smaller_or_equal,
-                        'is_inside': is_inside,
-                        'same_pixel_size': same_pixel_size,
-                        'pixel_size_is_multiple': pixel_size_is_multiple
-                    }
-                })
-
-
-        # Check conditions for the model only if a model is provided
-        if self.model:
-            atoms_outside_num = 0  # Initialize counter for atoms outside the primary map
+            num_atoms_outside = 0  # Initialize counter for atoms outside the primary map
             for atom in self.model.structure:
                 atom_index, nxyz = self._get_indices(atom)
                 # Check if the atom is outside the primary map boundaries
                 if any(coord < 0 or coord >= nxyz[i] for i, coord in enumerate(atom_index)):
-                    atoms_outside_num += 1
-            # Calculate the fraction of atoms outside the primary map
-            atom_outside_fraction = atoms_outside_num / len(self.model.structure)
-            result['model_checks'].update({
-                'num_atoms_outside': atoms_outside_num,
-                'fraction_atoms_outside': atom_outside_fraction
-            })
+                    num_atoms_outside += 1
+            result['model'] = {
+                'num_atoms_outside': num_atoms_outside,
+                # Calculate the fraction of atoms outside the primary map
+                'fraction_atoms_outside': num_atoms_outside / len(self.model.structure)
+            }
 
         return result
 
@@ -327,7 +300,7 @@ def main():
     parser.add_argument("primmap", help="Input MRC primary map file")
     parser.add_argument("--halfmaps", nargs=2, help="Input MRC half maps", required=False)
     parser.add_argument("--model", help="Input MMCIF model file", required=False)
-    parser.add_argument("--output", help="Output JSON file", required=False)   
+    parser.add_argument("--output", help="Output JSON file", required=False)
     args = parser.parse_args()
 
     # Checking if files exist and loading data
@@ -360,6 +333,7 @@ def main():
 
         return 0
     return 1
+
 
 # Main script execution
 if __name__ == "__main__":
