@@ -292,7 +292,7 @@ QAVTAIAEGRR</string>
                 <recombinant_expression database="NCBI">
                     <recombinant_organism ncbi="83333">Escherichia coli K-12</recombinant_organism>
                 </recombinant_expression>
-                <enantiomer>LEVO</enantiomer>
+                <enantiomer>DEXTRO</enantiomer>
                 <sequence>
                     <string>MGSSHHHHHHSSGLVPRGSHMKQGLQLRLSQQLAMTPQLQQAIRLLQLSTLELQQELQQALESNPLLEQTDLHDEVEAKE
 VEDRESLDTVDALEQKEMPDELPLDASWDEIYTAGTPSGNGVDYQDDELPVYQGETTQTLQDYLMWQVELTPFTDTDRAI

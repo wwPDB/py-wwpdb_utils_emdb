@@ -133,7 +133,7 @@ class EMDBMetadata(object):
         """
         This method writes the substitution group's XML_VALUES for all the special anchors used in the input file
         """
-        tags, item, att, parent_elem, sub_elements = '', '', '', '', ''
+        tags, item, att, parent_elem, sub_elements, enantio = '', '', '', '', '', ''
         xml_slices, otherwise_slices, list_id, list_elem, attrib_index = [], [], [], [], []
         index = 0
         substitution = re.split('S\$|\$S', xml_part)
@@ -178,22 +178,29 @@ class EMDBMetadata(object):
             if '<' in slice and find_type:
                 tags, item = xslice.split(".", 1)[1].replace(".", "/").replace("<", '').rsplit("/", 1)
                 for element in root.findall(tags):
-                    selem = element.find(item)
-                    for mol_type in find_type:
+                    for mol_types in find_type:
+                        mol_type = (mol_types.tag).split("_", 1)[0]
+                        if mol_type == "protein" or mol_type == "other":
+                            selem = element.find(item)
+                            if selem.text == "LEVO":
+                                enantio = "polypeptide(L)"
+                            elif selem.text == "DEXTRO":
+                                enantio = "polypeptide(D)"
+                        if mol_type == "saccharide":
+                            selem = element.find(item)
+                            if selem.text == "DEXTRO":
+                                enantio = "polysaccharide(D)"
+                            elif selem.text == "LEVO":
+                                enantio = "polysaccharide(L)"
                         if mol_type == "rna":
-                            self.mappings_in.map_xml_value_to_code("polyribonucleotide", slice)
-                        elif mol_type == "dna":
-                            self.mappings_in.map_xml_value_to_code("polydeoxyribonucleotide", slice)
-                        elif mol_type in ["protein_or_peptide", "other_macromolecule"]:
-                            if selem.text == "LEVO":
-                                self.mappings_in.map_xml_value_to_code("polypeptide(L)", slice)
-                            if selem.text == "DEXTRO":
-                                self.mappings_in.map_xml_value_to_code("polypeptide(D)", slice)
-                        elif mol_type == "saccharide":
-                            if selem.text == "DEXTRO":
-                                self.mappings_in.map_xml_value_to_code("polysaccharide(D)", slice)
-                            if selem.text == "LEVO":
-                                self.mappings_in.map_xml_value_to_code("polysaccharide(L)", slice)
+                            se = element.find("classification")
+                            if se is not None:
+                                enantio = "polyribonucleotide"
+                        if mol_type == "dna":
+                            se = element.find("classification")
+                            if se is not None:
+                                enantio = "polydeoxyribonucleotide"
+                        self.mappings_in.map_xml_value_to_code(enantio, slice)
 
             if '@' in slice:
                 tags, attrib_key = elem.split('@', 1)
