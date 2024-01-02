@@ -272,12 +272,8 @@ class Validator:
 
         if self.half_maps:
             result.update({
-                'half_maps': {
-                    'to_each_other': self._compare_maps(self.half_maps[0],
-                                                                      self.half_maps[1]),  # Compare half maps
-                    'to_primary_map': [self._compare_maps(self.em_map, half_map) for half_map in
-                                                     self.half_maps]  # Compare half maps to primary map
-                }
+                'half_maps': self._compare_maps(self.half_maps[0], self.half_maps[1]),  # Compare half maps to each other
+                'primary_map': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]  # Compare primary map to each half map
             })
 
         if self.model:
