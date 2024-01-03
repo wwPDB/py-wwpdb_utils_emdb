@@ -152,5 +152,26 @@ class CIF(object):
                             for d in data_value:
                                 data_values.append(d)
 
+        deduping_data_values = self.deduping_empty_values(data_ids, data_values)
         self.add_category(category_id, data_ids)
-        self.insert_data(category_id, data_values)
+        self.insert_data(category_id, deduping_data_values)
+
+    def deduping_empty_values(self, data_ids, data_values):
+        deduping_data_values = []
+        empty_data_values = all(all(not element for element in sub_list) for sub_list in data_values)
+        if empty_data_values is True:
+            if len(data_values) > 1:
+                subs = iter(data_values)
+                subs_len = len(next(subs))
+                equal_subs = all(len(sub) == subs_len for sub in subs)
+                if equal_subs:
+                    if len(data_ids) == len(data_values[0]):
+                        deduping_data_values = data_values[0]
+                    else:
+                        deduping_data_values = [None] * len(data_ids)
+            else:
+                deduping_data_values = [None] * len(data_ids)
+        else:
+            deduping_data_values = data_values
+        return deduping_data_values
+
