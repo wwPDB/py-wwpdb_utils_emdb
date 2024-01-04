@@ -2,7 +2,8 @@
 #### 5. B for boolean value 6. S$(substitutions seperated by |)$S for substitution groups 7. $I$ for creating running number ids for that specific mmcif category-item
 #### 8. R$ referral mmcif category-item'|'to the specific mmcif category-item' 9. % making a list for cif file from all same sub-element (should be used along
 #### with * to mention the attribute name that needs to break down the list) 10. > for defining the supra and macro type with respect to the element name 11. M$ multiply the same value several times
-#### 12. < for defining the macromolecule entity_poly.type 13. E$ either one of the elements present 14. ? to write a boolean when either one is present 1
+#### 12. < for defining the macromolecule entity_poly.type 13. E$$E either one of the elements present 14. ? to write a boolean when either one is present 15. A$$A multiple elements are present
+#### 16. U$ to have a different dictionary key ß
 
 emd@emdb_id database_2.database_id.EMDB database_2.database_code.XML_VALUE
 
@@ -50,8 +51,8 @@ N:emd.crossreferences.pdb_list.pdb_reference.pdb_id em_db_reference.db_name.M$PD
 N:emd.crossreferences.pdb_list.pdb_reference.relationship.in_frame em_db_reference.relationship.XML_VALUE
 N:emd.crossreferences.pdb_list.pdb_reference.details em_db_reference.details.XML_VALUE
 
-####<emd>.<sample>
-###emd.sample.name em_entity_assembly.name.XML_VALUE
+#####<emd>.<sample>
+####emd.sample.name em_entity_assembly.name.XML_VALUE
 
 N:emd.sample.supramolecule_list.S$cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule$S&supramolecule_id em_entity_assembly.assembly_id.XML_VALUE
 N:emd.sample.supramolecule_list.S$cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule$S> em_entity_assembly.type.XML_VALUE
@@ -126,7 +127,7 @@ N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host.strain em
 
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S&macromolecule_id entity.id.XML_VALUE entity_poly.entity_id.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S> entity.type.XML_VALUE
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.E$natural_source.organism|recombinant_expression.recombinant_organism$E entity.src_method.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.A$natural_source.organism|recombinant_expression.recombinant_organism$A entity.src_method.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.name entity.pdbx_description.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.number_of_copies entity.pdbx_number_of_molecules.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.ec_number entity.pdbx_ec.XML_VALUE
@@ -168,10 +169,10 @@ N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macro
 
 N:emd.sample.macromolecule_list.ligand@macromolecule_id pdbx_entity_nonpoly.entity_id.XML_VALUE
 N:emd.sample.macromolecule_list.ligand.formula pdbx_entity_nonpoly.comp_id.XML_VALUE
-N:emd.sample.macromolecule_list.ligand.name pdbx_entity_nonpoly.name.XML_VALUE
+N:emd.sample.macromolecule_list.U$ligand.name pdbx_entity_nonpoly.name.XML_VALUE
 
 
-#######<emd>.<structure_determination_list>
+######<emd>.<structure_determination_list>
 
 emd.structure_determination_list.structure_determination@structure_determination_id em_experiment.id.XML_VALUE
 emd.structure_determination_list.structure_determination.method em_experiment.reconstruction_method.XML_VALUE

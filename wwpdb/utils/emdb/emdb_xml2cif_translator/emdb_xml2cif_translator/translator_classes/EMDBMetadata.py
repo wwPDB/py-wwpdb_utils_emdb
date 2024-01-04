@@ -104,6 +104,8 @@ class EMDBMetadata(object):
                         else:
                             elem = xml_part.split(".", 1)[1].replace('.', '/')
                             tags, item = elem.rsplit('/', 1)
+                            if "U$" in tags:
+                                tags = tags.replace("US", '')
                             for elem in root.findall(tags):
                                 sub_elem = elem.find(item)
                                 sub_elements = '' if sub_elem is None else str(sub_elem.text)
@@ -134,7 +136,7 @@ class EMDBMetadata(object):
         This method writes the substitution group's XML_VALUES for all the special anchors used in the input file
         """
         tags, item, att, parent_elem, sub_elements, enantio = '', '', '', '', '', ''
-        xml_slices, otherwise_slices, list_id, list_elem, attrib_index = [], [], [], [], []
+        xml_slices, other_slices, list_id, list_elem, attrib_index = [], [], [], [], []
         index = 0
         substitution = re.split('S\$|\$S', xml_part)
         count = len(substitution)
@@ -229,82 +231,73 @@ class EMDBMetadata(object):
                         for l in range(len(find_parent_elem)):
                             self.mappings_in.map_xml_value_to_code('', slice)
 
-            if any(char in slice for char in ['$I$', 'R$', '%', 'E$']):
+            if any(char in slice for char in ['$I$', 'R$', '%']):
                 if '$I$' in slice:
                     tags, item = elem.rsplit('$I$', 1)
-                elif 'R$' in slice and not 'E$' in slice:
+                elif 'R$' in slice:
                     tags, items = elem.rsplit('R$', 1)
                     att, item = items.rsplit('|', 1)
-                elif 'E$' in slice:
-                    either_one = re.split('E\$|\$E', xslice)
-                    combined = either_one[1].split("|")
-                    for each in combined:
-                        otherwise_slice = either_one[0]+each+either_one[2]
-                        otherwise_slices.append(otherwise_slice)
-                    for sl in otherwise_slices:
-                        if '&' in sl:
-                            tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("&", 1)
-                        elif 'R$' in slice:
-                            tags, items = elem.rsplit('R$', 1)
-                            att, item = items.split('|', 1)
-                        else:
-                            tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
-                # elif "%" in slice:
-                #     tags, items = elem.rsplit('%', 1)
-                #     item, att = items.rsplit('*', 1)
-                #     parent_element = root.findall(parent_elem)
-                #     for par_attrib in parent_element:
-                #         attrib = par_attrib.get(att)
-                #         attrib_index.append(attrib)
-                # supratype = root.find(tags)
-                # for target in root.findall('.//*[@supramolecule_id]'):
-                #     print(target.tag, target.attrib)
-                #   self.mappings_in.map_xml_value_to_code(child.tag, slice)
                 for element in root.findall(tags):
                     sub_elem = element.findall(item)
-                    selem = element.find(item)
-                    if '$I$' in slice and not 'E$' in slice:
+                    if '$I$' in slice:
                         for ind in range(1, len(sub_elem)+1):
                             index += 1
                             self.mappings_in.map_xml_value_to_code(str(index), slice)
-                    elif 'R$' in slice and not 'E$' in slice:
+                    elif 'R$' in slice:
                         attrib = element.get(att)
                         for ind in range(1, len(sub_elem)+1):
                             self.mappings_in.map_xml_value_to_code(str(attrib), slice)
-                    elif 'E$' in slice:
-                        if '&' in slice:
-                            sub_elements = element.get(item)
-                            self.mappings_in.map_xml_value_to_code(str(sub_elements), slice)
-                        elif '?' in slice:
-                            if item == "theoretical?":
-                                self.mappings_in.map_xml_value_to_code('NO', slice)
-                            elif item == "experimental?":
-                                self.mappings_in.map_xml_value_to_code('YES', slice)
-                            else:
-                                self.mappings_in.map_xml_value_to_code('', slice)
-                        elif 'I$' in slice:
-                            for ind in range(0, (len(sub_elem))+1):
-                                self.mappings_in.map_xml_value_to_code(str(index+1), slice)
-                                index += 1
-                        elif 'R$' in slice:
-                            attrib = element.get(att)
-                            for ind in range(0, len(sub_elem)+1):
-                                self.mappings_in.map_xml_value_to_code(str(attrib), slice)
+
+            if 'E$' in slice:
+                either_one = re.split('E\$|\$E', xslice)
+                other_slices = self.spliting_anchors(either_one)
+                for sl in other_slices:
+                    if '&' in sl:
+                        tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("&", 1)
+                    elif 'R$' in slice:
+                        tags, items = elem.rsplit('R$', 1)
+                        att, item = items.split('|', 1)
+                    else:
+                        tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
+                    # elif "%" in slice:
+                    #     tags, items = elem.rsplit('%', 1)
+                    #     item, att = items.rsplit('*', 1)
+                    #     parent_element = root.findall(parent_elem)
+                    #     for par_attrib in parent_element:
+                    #         attrib = par_attrib.get(att)
+                    #         attrib_index.append(attrib)
+                    # supratype = root.find(tags)
+                    # for target in root.findall('.//*[@supramolecule_id]'):
+                    #     print(target.tag, target.attrib)
+                    #   self.mappings_in.map_xml_value_to_code(child.tag, slice)
+                for element in root.findall(tags):
+                    sub_elem = element.findall(item)
+                    selem = element.find(item)
+                    if '&' in slice:
+                        sub_elements = element.get(item)
+                        self.mappings_in.map_xml_value_to_code(str(sub_elements), slice)
+                    elif '?' in slice:
+                        if item == "theoretical?":
+                            self.mappings_in.map_xml_value_to_code('NO', slice)
+                        elif item == "experimental?":
+                            self.mappings_in.map_xml_value_to_code('YES', slice)
                         else:
-                            if selem is None:
-                                self.mappings_in.map_xml_value_to_code('', slice)
-                            else:
-                                svalue = selem.text
-                                if "recombinant_expression" in tags:
-                                    svalue = "man"
-                                elif "natural_source" in tags:
-                                    svalue = "nat"
-                                elif svalue == "syntheic construct":
-                                    svalue = "syn"
-                                else:
-                                    matches = ["experimental", "theortical"]
-                                    if any(x in slice for x in matches):
-                                        svalue = round((float(selem.text)*10**6),2)
+                            self.mappings_in.map_xml_value_to_code('', slice)
+                    elif 'I$' in slice:
+                        for ind in range(0, (len(sub_elem))+1):
+                            self.mappings_in.map_xml_value_to_code(str(index+1), slice)
+                            index += 1
+                    elif 'R$' in slice:
+                        attrib = element.get(att)
+                        for ind in range(0, len(sub_elem)+1):
+                            self.mappings_in.map_xml_value_to_code(str(attrib), slice)
+                    else:
+                        if selem is None:
+                            self.mappings_in.map_xml_value_to_code('', slice)
+                        else:
+                            matches = ["experimental", "theortical"]
+                            if any(x in slice for x in matches):
+                                svalue = round((float(selem.text)*10**6),2)
                                 self.mappings_in.map_xml_value_to_code(str(svalue), slice)
                     # elif "%" in slice:
                     #     list_elem.append(selem.text)
@@ -314,6 +307,32 @@ class EMDBMetadata(object):
                     #         list_id.insert((int(x)-1),list_elem)
                     #     self.mappings_in.map_xml_value_to_code(list_element, slice)
 
+            if 'A$' in slice:
+                either_one = re.split('A\$|\$A', xslice)
+                other_slices = self.spliting_anchors(either_one)
+                for sl in other_slices:
+                    tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
+                    for element in root.findall(tags):
+                        selem = element.find(item)
+                        if selem is None:
+                            self.mappings_in.map_xml_value_to_code('', slice)
+                        else:
+                            svalue = selem.text
+                            if "recombinant_expression" in tags:
+                                svalue = "man"
+                            if "natural_source" in tags:
+                                svalue = "nat"
+                            elif svalue == "syntheic construct":
+                                svalue = "syn"
+                            self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+
+    def spliting_anchors(self, either_one):
+        other_slices = []
+        combined = either_one[1].split("|")
+        for each in combined:
+            other_slice = either_one[0]+each+either_one[2]
+            other_slices.append(other_slice)
+        return other_slices
 
     def add_data_into_cif_container(self):
         """
