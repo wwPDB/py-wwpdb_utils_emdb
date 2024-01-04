@@ -28,9 +28,16 @@ class EMMap:
         self.header = None
         self.nxyz = None
         self.nstarts = None
-        self.size = None
+        self.box_size = None
         self.pixel_size = None
-        self.epsilon = 1e-10
+        self.origin = None
+        self.end = None
+        # Epsilon to use as tolerance for floating point comparisons
+        self.epsilon = np.finfo(np.float32).eps
+        # Lambda to check whether a value is greater than or equal to another value, by using epsilon as tolerance
+        self.ge = lambda x, y: x >= y - self.epsilon
+        # Lambda to check whether a value is less than or equal to another value, by using epsilon as tolerance
+        self.le = lambda x, y: x <= y + self.epsilon
         self.load()
 
     def load(self):
@@ -45,10 +52,13 @@ class EMMap:
             self.md5_checksum()
             with mrcfile.open(self.file, mode='r', permissive=True) as mrc:
                 self.header = mrc.header
-                self.size = [round(x, 2) for x in self.header.cella.tolist()]
-                self.pixel_size = [round(x, 2) for x in mrc.voxel_size.tolist()]
+                self.box_size = self.header.cella.tolist()
+                self.pixel_size = mrc.voxel_size.tolist()
                 self.nxyz = np.array((self.header.nx, self.header.ny, self.header.nz)).tolist()
-                self.nstarts = np.array((self.header.nxstart, self.header.nystart, self.header.nzstart)).tolist()
+                nstarts = np.array((self.header.nxstart, self.header.nystart, self.header.nzstart))
+                origin = nstarts * np.array(self.pixel_size)
+                end = origin + np.array(self.box_size)
+                self.nstarts, self.origin, self.end = nstarts.tolist(), origin.tolist(), end.tolist()
                 crs = (self.header.mapc, self.header.mapr, self.header.maps)
                 crsindices = (crs.index(1), crs.index(2), crs.index(3))
                 if crs != (1, 2, 3):
@@ -80,17 +90,6 @@ class EMMap:
                 hash_md5.update(chunk)
         self.hash = hash_md5.hexdigest()
 
-    def extremities(self):
-        """
-        Calculate the origin and end points of the map.
-
-        Returns:
-            tuple: Origin and end points as lists.
-        """
-        origin = np.array(self.nstarts) * np.array(self.pixel_size)
-        end = origin + np.array(self.size)
-        return origin.tolist(), end.tolist()
-
     def same_box_size(self, another_map):
         """
         Check if the map box has the same box size as another map.
@@ -101,19 +100,20 @@ class EMMap:
         Returns:
             bool: True if same box size, False otherwise.
         """
-        return all(np.array(self.size) - np.array(another_map.size) <= self.epsilon)
+        return all(np.array(self.box_size) - np.array(another_map.box_size) <= self.epsilon)
 
-    def smaller_box_size(self, another_map):
+    def box_size_less_or_equal(self, another_map):
         """
-        Check if the map box has a smaller box size than another map.
+        Check if the map box has a smaller or same box size than another map.
 
         Args:
             another_map (EMMap): Another EMMap instance.
 
         Returns:
-            bool: True if smaller box size, False otherwise.
+            bool: True if smaller or same box size, False otherwise.
         """
-        return all(np.array(self.size) < np.array(another_map.size))
+        return all(self.le(np.array(self.box_size), np.array(another_map.box_size)))
+
 
     def overlaps(self, another_map):
         """
@@ -125,9 +125,10 @@ class EMMap:
         Returns:
             bool: True if overlaps, False otherwise.
         """
-        origin1, end1 = np.array(self.extremities())
-        origin2, end2 = np.array(another_map.extremities())
-        return all(origin1 - origin2 <= self.epsilon) and all(end1 - end2 <= self.epsilon)
+        origin1, end1 = np.array(self.origin), np.array(self.end)
+        origin2, end2 = np.array(another_map.origin), np.array(another_map.end)
+        # Check whether the absolute difference between the origin and end coordinates is less than epsilon
+        return all(abs(origin1 - origin2) <= self.epsilon) and all(abs(end1 - end2) <= self.epsilon)
 
     def fits_inside(self, another_map):
         """
@@ -139,9 +140,12 @@ class EMMap:
         Returns:
             bool: True if completely inside, False otherwise.
         """
-        origin1, end1 = np.array(self.extremities())
-        origin2, end2 = np.array(another_map.extremities())
-        return all(origin1 > origin2) and all(end1 < end2)
+        origin1, end1 = np.array(self.origin), np.array(self.end)
+        origin2, end2 = np.array(another_map.origin), np.array(another_map.end)
+        # Check whether the origin and end coordinates are greater than or equal to the origin and end coordinates of
+        # the other map, respectively
+        return all(self.ge(origin1, origin2)) and all(self.le(end1, end2))
+
 
     def same_pixel_size(self, another_map):
         """
@@ -236,23 +240,72 @@ class Validator:
 
     def _compare_maps(self, map1, map2):
         result = {
-            # Check if the maps are identical
-            'identical': map1.hash == map2.hash
+            'em_volumes': [
+                {
+                    'name': os.path.basename(map1.file),
+                    'checksum': map1.hash
+                },
+                {
+                    'name': os.path.basename(map2.file),
+                    'checksum': map2.hash
+                }
+            ],
+            'map_checks': {
+                'identical': map1.hash == map2.hash
+            }
         }
-        if not result['identical']:
+        if not result['map_checks']['identical']:
             # Check if the maps have the same box size
-            result['same_box_size'] = map1.same_box_size(map2)
-            # Check if the maps have a smaller box size
-            result['smaller_box_size'] = map1.smaller_box_size(map2)
-            # Check if the maps overlap
-            result['overlap'] = map1.overlaps(map2)
-            # Check if the maps fit inside each other
-            result['fits_inside'] = map1.fits_inside(map2)
+            same_box_size, box_size_less_or_equal = map1.same_box_size(map2), False
+            result['map_checks']['same_box_size'] = same_box_size
+            if not same_box_size:
+                result['em_volumes'][0].update({
+                    'box_size': [round(x, 2) for x in map1.box_size]
+                })
+                result['em_volumes'][1].update({
+                    'box_size': [round(x, 2) for x in map2.box_size]
+                })
+                # Check if the map box has a smaller or same box size than another map
+                result['map_checks']['box_size_less_or_equal'] = map1.box_size_less_or_equal(map2)
             # Check if the maps have the same pixel size
-            result['same_pixel_size'] = map1.same_pixel_size(map2)
-            # Check if the maps have pixel size that is a multiple
-            result['pixel_size_is_multiple'] = map1.pixel_size_is_multiple(map2)
+            same_pixel_size = map1.same_pixel_size(map2)
+            result['map_checks']['same_pixel_size'] = same_pixel_size
+            if not same_pixel_size:
+                result['em_volumes'][0].update({
+                    'pixel_size': [round(x, 2) for x in map1.pixel_size]
+                })
+                result['em_volumes'][1].update({
+                    'pixel_size': [round(x, 2) for x in map2.pixel_size]
+                })
+                # Check if the maps have pixel size that is a multiple
+                result['map_checks']['pixel_size_is_multiple'] = map1.pixel_size_is_multiple(map2)
+            # Check if the maps overlap
+            overlap = map1.overlaps(map2)
+            result['map_checks']['overlap'] = overlap
+            if not overlap:
+                result['em_volumes'][0].update({
+                    'origin': [round(x, 2) for x in map1.origin],
+                    'end': [round(x, 2) for x in map1.end]
+                })
+                result['em_volumes'][1].update({
+                    'origin': [round(x, 2) for x in map2.origin],
+                    'end': [round(x, 2) for x in map2.end]
+                })
+                # Check if the maps fit inside each other
+                result['map_checks']['fits_inside'] = map1.fits_inside(map2)
+            
         return result
+    
+    def _get_atoms_outside(self):
+        num_atoms_outside = 0  # Initialize counter for atoms outside the primary map
+        for atom in self.model.structure:
+            atom_index, nxyz = self._get_indices(atom)
+            # Check if the atom is outside the primary map boundaries
+            if any(coord < 0 or coord >= nxyz[i] for i, coord in enumerate(atom_index)):
+                num_atoms_outside += 1
+        # Calculate the fraction of atoms outside the primary map
+        fraction_atoms_outside = num_atoms_outside / len(self.model.structure)
+        return num_atoms_outside, fraction_atoms_outside
 
     def check(self):
         """
@@ -277,16 +330,11 @@ class Validator:
             })
 
         if self.model:
-            num_atoms_outside = 0  # Initialize counter for atoms outside the primary map
-            for atom in self.model.structure:
-                atom_index, nxyz = self._get_indices(atom)
-                # Check if the atom is outside the primary map boundaries
-                if any(coord < 0 or coord >= nxyz[i] for i, coord in enumerate(atom_index)):
-                    num_atoms_outside += 1
-            result['model'] = {
+            num_atoms_outside, fraction_atoms_outside = self._get_atoms_outside()
+            result['map_to_model'] = {
                 'num_atoms_outside': num_atoms_outside,
                 # Calculate the fraction of atoms outside the primary map
-                'fraction_atoms_outside': num_atoms_outside / len(self.model.structure)
+                'fraction_atoms_outside': fraction_atoms_outside
             }
 
         return result
