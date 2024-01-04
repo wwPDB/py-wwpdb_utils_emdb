@@ -102,7 +102,7 @@ class EMMap:
         """
         return all(np.array(self.box_size) - np.array(another_map.box_size) <= self.epsilon)
 
-    def box_size_less_or_equal(self, another_map):
+    def same_or_smaller_box_size(self, another_map):
         """
         Check if the map box has a smaller or same box size than another map.
 
@@ -256,7 +256,7 @@ class Validator:
         }
         if not result['map_checks']['identical']:
             # Check if the maps have the same box size
-            same_box_size, box_size_less_or_equal = map1.same_box_size(map2), False
+            same_box_size, same_or_smaller_box_size = map1.same_box_size(map2), False
             result['map_checks']['same_box_size'] = same_box_size
             if not same_box_size:
                 result['em_volumes'][0].update({
@@ -266,7 +266,7 @@ class Validator:
                     'box_size': [round(x, 2) for x in map2.box_size]
                 })
                 # Check if the map box has a smaller or same box size than another map
-                result['map_checks']['box_size_less_or_equal'] = map1.box_size_less_or_equal(map2)
+                result['map_checks']['same_or_smaller_box_size'] = map1.same_or_smaller_box_size(map2)
             # Check if the maps have the same pixel size
             same_pixel_size = map1.same_pixel_size(map2)
             result['map_checks']['same_pixel_size'] = same_pixel_size
