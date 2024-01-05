@@ -19,8 +19,8 @@ _pdbx_database_status.deposit_site  PDBe
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_author_list.author
 _em_author_list.ordinal
+_em_author_list.author
 1  "Glyde R"  
 2  "Ye FZ"  
 3  "Zhang XD"  
@@ -36,11 +36,11 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.journal_id_ASTM          29932903
-_citation.journal_id_ISSN          doi:10.1016/j.molcel.2018.05.021
-_citation.journal_id_CSD           1097-4164
-_citation.pdbx_database_id_PubMed  2168
-_citation.pdbx_database_id_DOI     MOCEFL
+_citation.pdbx_database_id_PubMed  29932903
+_citation.pdbx_database_id_DOI     doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_ISSN          1097-4164
+_citation.journal_id_CSD           2168
+_citation.journal_id_ASTM          MOCEFL
 #
 loop_
 _citation_author.ordinal
@@ -60,8 +60,8 @@ _pdbx_database_related.details
 EMDB  EMD-4397  "other EM volume"       .  
 EMDB  EMD-0001  "associated EM volume"  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  
 #
-_em_db_reference.access_code   PDB
-_em_db_reference.db_name       6gh5
+_em_db_reference.db_name       PDB
+_em_db_reference.access_code   6gh5
 _em_db_reference.relationship  FULLOVERLAP
 _em_db_reference.details       CHECK
 #
@@ -132,13 +132,13 @@ _entity.pdbx_mutation
 _entity.details
 _entity.formula_weight
 _entity.pdbx_formula_weight_exptl_method
-1  polymer  man  "DNA-directed RNA polymerase subunit alpha"                                                                                                                   2  2.7.7.6  ?     .   36558.68  .  
-2  polymer  man  "DNA-directed RNA polymerase subunit beta"                                                                                                                    1  2.7.7.6  ?     .  150820.88  .  
-3  polymer  man  "DNA-directed RNA polymerase subunit beta'"                                                                                                                   1  2.7.7.6  ?     .  155366.78  .  
-4  polymer  man  "DNA-directed RNA polymerase subunit omega"                                                                                                                   1  2.7.7.6  ?     .   10249.55  .  
-5  polymer  man  "RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor"  1  2.7.7.6  ?     .   54723.08  .  
-6  polymer  nat  "nifH promoter template DNA"                                                                                                                                  1  .        ?     .   19404.41  .  
-7  polymer  nat  "nifH promoter non-template DNA"                                                                                                                              1  .        ?     .   19487.44  .  
+1  polymer  man  "DNA-directed RNA polymerase subunit alpha"  2  2.7.7.6  ?     .   36558.68  .  
+2  polymer  man  "DNA-directed RNA polymerase subunit beta"   1  2.7.7.6  ?     .  150820.88  .  
+3  polymer  man  "DNA-directed RNA polymerase subunit beta'"  1  2.7.7.6  ?     .  155366.78  .  
+4  polymer  man  "DNA-directed RNA polymerase subunit omega"  1  2.7.7.6  ?     .   10249.55  .  
+5  polymer  man  "RNA polymerase sigma-54 factor"             1  2.7.7.6  ?     .   54723.08  .  
+6  polymer  nat  "nifH promoter template DNA"                 1  .        ?     .   19404.41  .  
+7  polymer  nat  "nifH promoter non-template DNA"             1  .        ?     .   19487.44  .  
 #
 loop_
 _entity_poly.entity_id

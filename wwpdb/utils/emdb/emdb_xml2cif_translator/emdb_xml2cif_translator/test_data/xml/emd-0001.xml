@@ -281,7 +281,7 @@ QAVTAIAEGRR</string>
                 <ec_number>2.7.7.6</ec_number>
             </protein_or_peptide>
             <protein_or_peptide macromolecule_id="5">
-                <name>RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor</name>
+                <name>RNA polymerase sigma-54 factor</name>
                 <natural_source database="NCBI">
                     <organism ncbi="573">Klebsiella pneumoniae</organism>
                 </natural_source>

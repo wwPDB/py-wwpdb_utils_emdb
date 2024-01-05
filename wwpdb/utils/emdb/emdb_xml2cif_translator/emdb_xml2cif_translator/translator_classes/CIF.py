@@ -74,27 +74,6 @@ class CIF(object):
             category.appendAttribute(item)
         self.__container.append(category)
 
-    #
-    # def update_single_row_value(self, category_id, item_name, row, value):
-    #     """Update value in single row
-    #     """
-    #     catObj = self.__container.getObj(category_id)
-    #     if catObj is None:
-    #         return
-    #     #
-    #     catObj.setValue(value, item_name, row)
-    #
-    # def update_multiple_rows_value(self, category_id, item_name, value):
-    #     """Update value in multiple rows
-    #     """
-    #     cat_obj = self.__container.getObj(category_id)
-    #     if cat_obj is None:
-    #         return
-    #     #
-    #     row_no = cat_obj.getRowCount()
-    #     for row in range(0, row_no):
-    #         cat_obj.setValue(value, item_name, row)
-
     def insert_data(self, category_id, data_list):
         """
         This method appends the data in data_list to the container labeled category_id

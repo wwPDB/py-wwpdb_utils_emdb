@@ -357,7 +357,7 @@ class EMDBMetadata(object):
         for mapping_code, mapping in self.mappings_in.mappings.items():
             cif_mappings = mapping.get(self.mappings_in.Const.CIF_MAPPINGS)
             for cif_mapping, cif_values in cif_mappings.items():
-                cif_v = list(set(cif_values['items']))
+                cif_v = list(dict.fromkeys(cif_values['items']))
                 cif_values['items'] = cif_v
                 if cif_ready_mappings.get(cif_mapping) is None:
                     cif_ready_mappings.update({cif_mapping: cif_values})
