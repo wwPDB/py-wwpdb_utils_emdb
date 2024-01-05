@@ -127,7 +127,7 @@ N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host.strain em
 
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S&macromolecule_id entity.id.XML_VALUE entity_poly.entity_id.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S> entity.type.XML_VALUE
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.A$natural_source.organism|recombinant_expression.recombinant_organism$A entity.src_method.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.A$recombinant_expression.recombinant_organism$A entity.src_method.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.name entity.pdbx_description.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.number_of_copies entity.pdbx_number_of_molecules.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.ec_number entity.pdbx_ec.XML_VALUE

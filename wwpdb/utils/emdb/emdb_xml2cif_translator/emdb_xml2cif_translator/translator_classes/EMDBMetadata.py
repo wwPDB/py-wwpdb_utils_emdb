@@ -154,7 +154,6 @@ class EMDBMetadata(object):
             xslice = slice.replace("!", '')
             find_type = root.findall(parent_elem)
             if "_supramolecule" in slice:
-                # slice = re.sub(r'[^.]+_supramolecule', 'all_supramolecule', slice)
                 slice = re.sub(r'(cell_supramolecule|complex_supramolecule|organelle_or_cellular_component_supramolecule|sample_supramolecule|tissue_supramolecule|virus_supramolecule)', 'all_supramolecules', xslice)
                 slice = re.sub(r'sci_species_name', 'natural_source', slice)
             elif "macromolecule_list" in slice:
@@ -211,7 +210,7 @@ class EMDBMetadata(object):
                     attrib_val = el.get(attrib_key)
                     self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
 
-            if not any(char in slice for char in ['@', '$I$', 'R$', '%', '>', 'E$']):
+            if not any(char in slice for char in ['@', '$I$', 'R$', '%', '>', 'E$', 'A$']):
                 if '&' in slice:
                     tags, item = elem.rsplit('&', 1)
                 else:
@@ -312,19 +311,21 @@ class EMDBMetadata(object):
                 other_slices = self.spliting_anchors(either_one)
                 for sl in other_slices:
                     tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
+                    rtags = tags.replace("recombinant_expression", "natural_source")
+                    nat_source = root.findall(rtags)
+                    re_source = root.findall(tags)
                     for element in root.findall(tags):
                         selem = element.find(item)
-                        if selem is None:
-                            self.mappings_in.map_xml_value_to_code('', slice)
-                        else:
-                            svalue = selem.text
-                            if "recombinant_expression" in tags:
-                                svalue = "man"
-                            if "natural_source" in tags:
-                                svalue = "nat"
-                            elif svalue == "syntheic construct":
-                                svalue = "syn"
-                            self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+                        svalue = selem.text
+                        if "recombinant_expression" in tags:
+                            svalue = "man"
+                        elif svalue == "syntheic construct":
+                            svalue = "syn"
+                        self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+                    if nat_source and not re_source:
+                        for elem in nat_source:
+                            if elem:
+                                self.mappings_in.map_xml_value_to_code("nat", slice)
 
     def spliting_anchors(self, either_one):
         other_slices = []

@@ -1,7 +1,7 @@
 data_emd_0001
 
-_database_2.database_code  EMDB
-_database_2.database_id    EMD-0001
+_database_2.database_id    EMDB
+_database_2.database_code  EMD-0001
 #
 _em_admin.last_update          2018-10-17
 _em_admin.current_status       REL
@@ -19,8 +19,8 @@ _pdbx_database_status.deposit_site  PDBe
 _struct.title  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"
 #
 loop_
-_em_author_list.ordinal
 _em_author_list.author
+_em_author_list.ordinal
 1  "Glyde R"  
 2  "Ye FZ"  
 3  "Zhang XD"  
@@ -36,11 +36,11 @@ _citation.page_last                1120.e3
 _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
-_citation.pdbx_database_id_DOI     29932903
-_citation.journal_id_CSD           doi:10.1016/j.molcel.2018.05.021
-_citation.journal_id_ISSN          1097-4164
+_citation.journal_id_ASTM          29932903
+_citation.journal_id_ISSN          doi:10.1016/j.molcel.2018.05.021
+_citation.journal_id_CSD           1097-4164
 _citation.pdbx_database_id_PubMed  2168
-_citation.journal_id_ASTM          MOCEFL
+_citation.pdbx_database_id_DOI     MOCEFL
 #
 loop_
 _citation_author.ordinal
@@ -53,8 +53,8 @@ _citation_author.name
 6  "Zhang X"  
 #
 loop_
-_pdbx_database_related.db_id
 _pdbx_database_related.db_name
+_pdbx_database_related.db_id
 _pdbx_database_related.content_type
 _pdbx_database_related.details
 EMDB  EMD-4397  "other EM volume"       .  
@@ -132,11 +132,11 @@ _entity.pdbx_mutation
 _entity.details
 _entity.formula_weight
 _entity.pdbx_formula_weight_exptl_method
-1  polymer  .    "DNA-directed RNA polymerase subunit alpha"                                                                                                                   2  2.7.7.6  ?     .   36558.68  .  
-2  polymer  .    "DNA-directed RNA polymerase subunit beta"                                                                                                                    1  2.7.7.6  ?     .  150820.88  .  
-3  polymer  .    "DNA-directed RNA polymerase subunit beta'"                                                                                                                   1  2.7.7.6  ?     .  155366.78  .  
-4  polymer  .    "DNA-directed RNA polymerase subunit omega"                                                                                                                   1  2.7.7.6  ?     .   10249.55  .  
-5  polymer  .    "RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor"  1  2.7.7.6  ?     .   54723.08  .  
+1  polymer  man  "DNA-directed RNA polymerase subunit alpha"                                                                                                                   2  2.7.7.6  ?     .   36558.68  .  
+2  polymer  man  "DNA-directed RNA polymerase subunit beta"                                                                                                                    1  2.7.7.6  ?     .  150820.88  .  
+3  polymer  man  "DNA-directed RNA polymerase subunit beta'"                                                                                                                   1  2.7.7.6  ?     .  155366.78  .  
+4  polymer  man  "DNA-directed RNA polymerase subunit omega"                                                                                                                   1  2.7.7.6  ?     .   10249.55  .  
+5  polymer  man  "RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor"  1  2.7.7.6  ?     .   54723.08  .  
 6  polymer  nat  "nifH promoter template DNA"                                                                                                                                  1  .        ?     .   19404.41  .  
 7  polymer  nat  "nifH promoter non-template DNA"                                                                                                                              1  .        ?     .   19487.44  .  
 #
