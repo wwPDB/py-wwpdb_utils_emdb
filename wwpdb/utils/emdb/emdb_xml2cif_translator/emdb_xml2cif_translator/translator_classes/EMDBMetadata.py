@@ -179,29 +179,28 @@ class EMDBMetadata(object):
             if '<' in slice and find_type:
                 tags, item = xslice.split(".", 1)[1].replace(".", "/").replace("<", '').rsplit("/", 1)
                 for element in root.findall(tags):
-                    for mol_types in find_type:
-                        mol_type = (mol_types.tag).split("_", 1)[0]
-                        if mol_type == "protein" or mol_type == "other":
-                            selem = element.find(item)
-                            if selem.text == "LEVO":
-                                enantio = "polypeptide(L)"
-                            elif selem.text == "DEXTRO":
-                                enantio = "polypeptide(D)"
-                        if mol_type == "saccharide":
-                            selem = element.find(item)
-                            if selem.text == "DEXTRO":
-                                enantio = "polysaccharide(D)"
-                            elif selem.text == "LEVO":
-                                enantio = "polysaccharide(L)"
-                        if mol_type == "rna":
-                            se = element.find("classification")
-                            if se is not None:
-                                enantio = "polyribonucleotide"
-                        if mol_type == "dna":
-                            se = element.find("classification")
-                            if se is not None:
-                                enantio = "polydeoxyribonucleotide"
-                        self.mappings_in.map_xml_value_to_code(enantio, slice)
+                    mol_type = (element.tag).split("_", 1)[0]
+                    if mol_type == "protein" or mol_type == "other":
+                        selem = element.find(item)
+                        if selem.text == "LEVO":
+                            enantio = "polypeptide(L)"
+                        elif selem.text == "DEXTRO":
+                            enantio = "polypeptide(D)"
+                    elif mol_type == "saccharide":
+                        selem = element.find(item)
+                        if selem.text == "DEXTRO":
+                            enantio = "polysaccharide(D)"
+                        elif selem.text == "LEVO":
+                            enantio = "polysaccharide(L)"
+                    elif mol_type == "rna":
+                        se = element.find("classification")
+                        if se is not None:
+                            enantio = "polyribonucleotide"
+                    elif mol_type == "dna":
+                        se = element.find("classification")
+                        if se is not None:
+                            enantio = "polydeoxyribonucleotide"
+                    self.mappings_in.map_xml_value_to_code(enantio, slice)
 
             if '@' in slice:
                 tags, attrib_key = elem.split('@', 1)
@@ -210,7 +209,7 @@ class EMDBMetadata(object):
                     attrib_val = el.get(attrib_key)
                     self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
 
-            if not any(char in slice for char in ['@', '$I$', 'R$', '%', '>', 'E$', 'A$']):
+            if not any(char in slice for char in ['@', '$I$', 'R$', '%', '>', 'E$', 'A$', '<']):
                 if '&' in slice:
                     tags, item = elem.rsplit('&', 1)
                 else:
