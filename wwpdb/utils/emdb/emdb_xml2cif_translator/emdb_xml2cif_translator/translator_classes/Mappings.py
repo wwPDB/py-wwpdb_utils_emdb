@@ -351,6 +351,14 @@ class Mappings(object):
                                 if list_values[0] == "unknown":
                                     list_values[0] = "OTHER"
                         if logic_value == self.Const.U:
+                            if xml_value == "twoDArray":
+                                xml_value = "2D ARRAY"
+                            if xml_value == "threeDArray":
+                                xml_value = "3D ARRAY"
+                            if xml_value == "helicalArray":
+                                xml_value = "HELICAL ARRAY"
+                            else:
+                                xml_value = xml_value
                             list_values.append(xml_value.upper())
                         if logic_value == self.Const.N:
                             n_values = [xml_value.index(i) + 1 for i in xml_value]
