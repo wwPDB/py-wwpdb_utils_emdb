@@ -136,7 +136,7 @@ class EMDBMetadata(object):
         This method writes the substitution group's XML_VALUES for all the special anchors used in the input file
         """
         tags, item, att, parent_elem, sub_elements, enantio = '', '', '', '', '', ''
-        xml_slices, other_slices, list_id, list_elem, attrib_index = [], [], [], [], []
+        xml_slices, other_slices, list_id, macro_list_elem, attrib_index, macro_list_index = [], [], [], [], [], []
         index = 0
         substitution = re.split('S\$|\$S', xml_part)
         count = len(substitution)
@@ -209,7 +209,7 @@ class EMDBMetadata(object):
                     attrib_val = el.get(attrib_key)
                     self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
 
-            if not any(char in slice for char in ['@', '$I$', 'R$', '%', '>', 'E$', 'A$', '<']):
+            if not any(char in xml_part for char in ['@', '$I$', 'R$', '>', '<', 'E$', 'A$', '%', '+']):
                 if '&' in slice:
                     tags, item = elem.rsplit('&', 1)
                 else:
@@ -229,7 +229,7 @@ class EMDBMetadata(object):
                         for l in range(len(find_parent_elem)):
                             self.mappings_in.map_xml_value_to_code('', slice)
 
-            if any(char in slice for char in ['$I$', 'R$', '%']):
+            if any(char in slice for char in ['$I$', 'R$']):
                 if '$I$' in slice:
                     tags, item = elem.rsplit('$I$', 1)
                 elif 'R$' in slice:
@@ -246,6 +246,24 @@ class EMDBMetadata(object):
                         for ind in range(1, len(sub_elem)+1):
                             self.mappings_in.map_xml_value_to_code(str(attrib), slice)
 
+            if '%' in slice and '+' in slice:
+                tags, items = elem.rsplit('%', 1)
+                item, att = items.rsplit('+', 1)
+                parent_element = root.findall(parent_elem)
+                if parent_element:
+                    for par_attrib in parent_element:
+                        target_id = par_attrib.get(att)
+                        xpath_expression = './/complex_supramolecule[@supramolecule_id="{}"]/macromolecule_list/macromolecule'.format(target_id)
+                        matching_elements = root.findall(xpath_expression)
+                        index = len(matching_elements)
+                        slice_ind = slice + "&S&" + str(index)
+                        macro_list_index.append(slice_ind)
+
+                for element in root.findall(tags):
+                    selem = element.find(item)
+                    macro_list_elem.append(selem.text)
+                    index = len(root.findall(tags))
+
             if 'E$' in slice:
                 either_one = re.split('E\$|\$E', xslice)
                 other_slices = self.spliting_anchors(either_one)
@@ -257,17 +275,7 @@ class EMDBMetadata(object):
                         att, item = items.split('|', 1)
                     else:
                         tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
-                    # elif "%" in slice:
-                    #     tags, items = elem.rsplit('%', 1)
-                    #     item, att = items.rsplit('*', 1)
-                    #     parent_element = root.findall(parent_elem)
-                    #     for par_attrib in parent_element:
-                    #         attrib = par_attrib.get(att)
-                    #         attrib_index.append(attrib)
-                    # supratype = root.find(tags)
-                    # for target in root.findall('.//*[@supramolecule_id]'):
-                    #     print(target.tag, target.attrib)
-                    #   self.mappings_in.map_xml_value_to_code(child.tag, slice)
+
                 for element in root.findall(tags):
                     sub_elem = element.findall(item)
                     selem = element.find(item)
@@ -297,13 +305,7 @@ class EMDBMetadata(object):
                             if any(x in slice for x in matches):
                                 svalue = round((float(selem.text)*10**6),2)
                                 self.mappings_in.map_xml_value_to_code(str(svalue), slice)
-                    # elif "%" in slice:
-                    #     list_elem.append(selem.text)
-                    #     if not list_elem:
-                    #         list_elem = ''
-                    #     for x in attrib_index:
-                    #         list_id.insert((int(x)-1),list_elem)
-                    #     self.mappings_in.map_xml_value_to_code(list_element, slice)
+
 
             if 'A$' in slice:
                 either_one = re.split('A\$|\$A', xslice)
@@ -325,6 +327,15 @@ class EMDBMetadata(object):
                         for elem in nat_source:
                             if elem:
                                 self.mappings_in.map_xml_value_to_code("nat", slice)
+
+        if "%" in xml_part:
+            for macro_list in macro_list_index:
+                macro_slice, size = macro_list.split("&S&", 1)
+                sublist = macro_list_elem[index:index + int(size)]
+                macro_sublist = ', '.join(sublist)
+                index += int(size)
+                self.mappings_in.map_xml_value_to_code(macro_sublist, macro_slice)
+
 
     def spliting_anchors(self, either_one):
         other_slices = []

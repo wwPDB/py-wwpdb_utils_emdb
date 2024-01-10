@@ -136,6 +136,10 @@ class CIF(object):
         self.insert_data(category_id, deduped_data_values)
 
     def deduping_empty_values(self, data_ids, data_values):
+        """
+        This method keeps only one empty list is all the sublists are empty in the data_values
+        :return:
+        """
         deduped_data_values = []
         empty_data_values = all(all(not element for element in sub_list) for sub_list in data_values)
         if empty_data_values is True:
