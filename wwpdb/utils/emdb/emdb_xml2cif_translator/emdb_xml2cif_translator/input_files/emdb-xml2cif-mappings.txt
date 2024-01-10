@@ -175,7 +175,7 @@ N:emd.sample.macromolecule_list.U$ligand.name pdbx_entity_nonpoly.name.XML_VALUE
 ######<emd>.<structure_determination_list>
 
 emd.structure_determination_list.structure_determination@structure_determination_id em_experiment.id.XML_VALUE
-emd.structure_determination_list.structure_determination.method em_experiment.reconstruction_method.XML_VALUE
+emd.structure_determination_list.structure_determination.method em_experiment.reconstruction_method.U
 emd.structure_determination_list.structure_determination.aggregation_state em_experiment.aggregation_state.U
 
 N:emd.structure_determination_list.structure_determination.specimen_preparation_list.S$single_particle_preparation|tomography_preparation|subtomogram_averaging_preparation|crystallography_preparation|helical_preparation$S&preparation_id em_specimen.id.XML_VALUE

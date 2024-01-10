@@ -357,6 +357,12 @@ class Mappings(object):
                                 xml_value = "3D ARRAY"
                             if xml_value == "helicalArray":
                                 xml_value = "HELICAL ARRAY"
+                            if xml_value == "singleParticle":
+                                xml_value = "SINGLE PARTICLE"
+                            if xml_value == "subtomogramAveraging":
+                                xml_value = "SUBTOMOGRAM AVERAGING"
+                            if xml_value == "electronCrystallography":
+                                xml_value = "CRYSTALLOGRAPHY"
                             else:
                                 xml_value = xml_value
                             list_values.append(xml_value.upper())

@@ -275,7 +275,7 @@ _pdbx_entity_nonpoly.comp_id    ?
 _pdbx_entity_nonpoly.name       ?
 #
 _em_experiment.id                     1
-_em_experiment.reconstruction_method  singleParticle
+_em_experiment.reconstruction_method  "SINGLE PARTICLE"
 _em_experiment.aggregation_state      PARTICLE
 #
 loop_
