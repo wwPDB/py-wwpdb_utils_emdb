@@ -40,6 +40,7 @@ class Mappings(object):
         D = 'D'
         M = 'M'
         T = 'T'
+        U = 'U'
 
     def __init__(self):
         """
@@ -349,6 +350,8 @@ class Mappings(object):
                                     list_values[0] = "IN FRAME"
                                 if list_values[0] == "unknown":
                                     list_values[0] = "OTHER"
+                        if logic_value == self.Const.U:
+                            list_values.append(xml_value.upper())
                         if logic_value == self.Const.N:
                             n_values = [xml_value.index(i) + 1 for i in xml_value]
                             list_values.append(n_values)

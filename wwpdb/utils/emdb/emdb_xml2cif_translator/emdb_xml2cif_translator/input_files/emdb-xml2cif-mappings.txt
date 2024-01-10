@@ -10,11 +10,11 @@ emd@emdb_id entry.id.XML_VALUE database_2.database_id.EMDB database_2.database_c
 ##<emd>.<admin>.<current_status>
 emd.admin.current_status.date em_admin.last_update.XML_VALUE
 emd.admin.current_status.code em_admin.current_status.XML_VALUE
-emd.admin.current_status.processing_site pdbx_database_status.process_site.XML_VALUE
+emd.admin.current_status.processing_site pdbx_database_status.process_site.U
 emd.admin.current_status.details em_admin.details.XML_VALUE
 
 ##<emd>.<admin>.<sites>
-emd.admin.sites.deposition em_admin.deposition_site.XML_VALUE pdbx_database_status.deposit_site.XML_VALUE
+emd.admin.sites.deposition em_admin.deposition_site.U pdbx_database_status.deposit_site.U
 ###emd.admin.sites.last_processing pdbx_database_status.process_site.XML_VALUE
 
 ##<emd>.<admin>.<key_dates>
