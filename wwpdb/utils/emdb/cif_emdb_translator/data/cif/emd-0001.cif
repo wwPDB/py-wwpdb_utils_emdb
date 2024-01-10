@@ -275,7 +275,7 @@ _pdbx_entity_nonpoly.comp_id    ?
 _pdbx_entity_nonpoly.name       ?
 #
 _em_experiment.id                     1
-_em_experiment.reconstruction_method  singleParticle
+_em_experiment.reconstruction_method  "SINGLE PARTICLE"
 _em_experiment.aggregation_state      PARTICLE
 #
 loop_
@@ -368,40 +368,38 @@ _em_imaging.tilt_angle_max
 1  "FEI TITAN KRIOS"  OTHER  "BRIGHT FIELD"  "FIELD EMISSION GUN"  300  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  
 2  "FEI TITAN "       OTHER  FIELD           .                       .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  
 #
-_em_imaging_optics.phase_plate        ?
-_em_imaging_optics.energyfilter_name  ?
-_em_imaging_optics.details            ?
+_em_imaging_optics.phase_plate               ?
+_em_imaging_optics.sph_aberration_corrector  ?
+_em_imaging_optics.chr_aberration_corrector  ?
+_em_imaging_optics.energyfilter_name         ?
+_em_imaging_optics.energyfilter_slit_width   ?
+_em_imaging_optics.energyfilter_lower        ?
+_em_imaging_optics.energyfilter_upper        ?
+_em_imaging_optics.details                   ?
 #
-__em_imaging_optics.sph_aberration_corrector  ?
-__em_imaging_optics.chr_aberration_corrector  ?
-__em_imaging_optics.energyfilter_slit_width   ?
-__em_imaging_optics.energyfilter_lower        ?
-__em_imaging_optics.energyfilter_upper        ?
+_em_software.name     ?
+_em_software.version  ?
+_em_software.details  ?
 #
-__em_software.name     ?
-__em_software.version  ?
-__em_software.details  ?
+_em_image_recording.id                           1
+_em_image_recording.flim_or_detector_model       .
+_em_image_recording.detector_mode                COUNTING
+_em_image_recording.num_grids_imaged             .
+_em_image_recording.num_real_images              .
+_em_image_recording.num_diffraction_images       .
+_em_image_recording.average_exposure_time        .
+_em_image_recording.avg_electron_dose_per_image  45.0
+_em_image_recording.details                      .
 #
-__em_image_recording.id                           ?
-__em_image_recording.flim_or_detector_model       ?
-__em_image_recording.detector_mode                ?
-__em_image_recording.num_grids_imaged             ?
-__em_image_recording.num_real_images              ?
-__em_image_recording.num_diffraction_images       ?
-__em_image_recording.average_exposure_time        ?
-__em_image_recording.avg_electron_dose_per_image  ?
+_em_image_scans.scanner_model          ?
+_em_image_scans.dimension_width        ?
+_em_image_scans.dimension_height       ?
+_em_image_scans.sampling_interval      ?
+_em_image_scans.used_frames_per_image  ?
 #
-__em_image_scans.scanner_model          ?
-__em_image_scans.dimension_width        ?
-__em_image_scans.dimension_height       ?
-__em_image_scans.sampling_interval      ?
-__em_image_scans.used_frames_per_image  ?
-#
-__em_imaging.specimen_holder_model  ?
-#
-__em_image_processing.id                  1
-__em_image_processing.image_recording_id  1
-__em_image_processing.details             .
+_em_image_processing.id                  1
+_em_image_processing.image_recording_id  1
+_em_image_processing.details             .
 #
 _em_map.format                CCP4
 _em_map.size_kb               67109
@@ -446,10 +444,6 @@ _em_3d_fitting.details          .
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        REAL
 _em_3d_fitting.ref_protocol     "RIGID BODY FIT"
-#
-_em_software.name     Chimera
-_em_software.version  4.3
-_em_software.details  Fitting
 #
 _em_interpret_figure.file     emd_6607.png
 _em_interpret_figure.details  .
