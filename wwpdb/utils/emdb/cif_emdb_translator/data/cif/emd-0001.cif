@@ -382,7 +382,7 @@ _em_software.version  ?
 _em_software.details  ?
 #
 _em_image_recording.id                           1
-_em_image_recording.flim_or_detector_model       .
+_em_image_recording.flim_or_detector_model       "GATAN K2 SUMMIT (4k x 4k)"
 _em_image_recording.detector_mode                COUNTING
 _em_image_recording.num_grids_imaged             .
 _em_image_recording.num_real_images              .

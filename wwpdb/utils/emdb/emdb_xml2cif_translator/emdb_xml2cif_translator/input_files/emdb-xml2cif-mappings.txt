@@ -1,13 +1,13 @@
-#### Usage of special anchors 1. @ for getting the attrib value 2. N for lists 3. D for mapping as dictionary 4. ^ multiple same element
-#### 5. B for boolean value 6. S$(substitutions seperated by |)$S for substitution groups 7. $I$ for creating running number ids for that specific mmcif category-item
-#### 8. R$ referral mmcif category-item'|'to the specific mmcif category-item' 9. % making a list for cif file from all same sub-element (should be used along
-#### with * to mention the attribute name that needs to break down the list) 10. > for defining the supra and macro type with respect to the element name 11. M$ multiply the same value several times
-#### 12. < for defining the macromolecule entity_poly.type 13. E$$E either one of the elements present 14. ? to write a boolean when either one is present 15. A$$A multiple elements are present
-#### 16. U$ to have a different dictionary key while mapping
+### Usage of special anchors 1. @ for getting the attrib value 2. N for lists 3. D for mapping as dictionary 4. ^ multiple same element
+### 5. B for boolean value 6. S$(substitutions seperated by |)$S for substitution groups 7. $I$ for creating running number ids for that specific mmcif category-item
+### 8. R$ referral mmcif category-item'|'to the specific mmcif category-item' 9. % making a list for cif file from all same sub-element (should be used along
+### with * to mention the attribute name that needs to break down the list) 10. > for defining the supra and macro type with respect to the element name 11. M$ multiply the same value several times
+### 12. < for defining the macromolecule entity_poly.type 13. E$$E either one of the elements present 14. ? to write a boolean when either one is present 15. A$$A multiple elements are present
+### 16. U$ to have a different dictionary key while mapping
 
 emd@emdb_id entry.id.XML_VALUE database_2.database_id.EMDB database_2.database_code.XML_VALUE
 
-##<emd>.<admin>.<current_status>
+#<emd>.<admin>.<current_status>
 emd.admin.current_status.date em_admin.last_update.XML_VALUE
 emd.admin.current_status.code em_admin.current_status.XML_VALUE
 emd.admin.current_status.processing_site pdbx_database_status.process_site.U
@@ -253,7 +253,7 @@ N:emd.structure_determination_list.structure_determination.microscopy_list.S$sin
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.software_list.software.version em_software.version.XML_VALUE
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.software_list.software.processing_details em_software.details.XML_VALUE
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.image_recording_list.image_recording&image_recording_id em_image_recording.id.XML_VALUE
-N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.image_recording_list.image_recording.flim_or_detector_model em_image_recording.flim_or_detector_model.XML_VALUE
+N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.image_recording_list.image_recording.film_or_detector_model em_image_recording.flim_or_detector_model.XML_VALUE
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.image_recording_list.image_recording.detector_mode em_image_recording.detector_mode.XML_VALUE
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.image_recording_list.image_recording.digitization_details.scanner em_image_scans.scanner_model.XML_VALUE
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.image_recording_list.image_recording.digitization_details.dimensions.width em_image_scans.dimension_width.XML_VALUE

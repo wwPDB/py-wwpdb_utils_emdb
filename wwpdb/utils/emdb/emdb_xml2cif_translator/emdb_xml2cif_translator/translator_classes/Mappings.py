@@ -346,10 +346,10 @@ class Mappings(object):
                         if logic_value == self.Const.XML_VALUE_UPPER:
                             list_values = list(map(lambda x: x if x != logic_value else xml_value, logic_values))
                             if list_values[0]:
-                                if list_values[0] == "FULLOVERLAP":
-                                    list_values[0] = "IN FRAME"
-                                if list_values[0] == "unknown":
-                                    list_values[0] = "OTHER"
+                                if 'FULLOVERLAP' in [item for sublist in list_values for item in sublist]:
+                                    list_values = [['IN FRAME']]
+                                if 'unknown' in [item for sublist in list_values for item in sublist]:
+                                    list_values = [['OTHER']]
                         if logic_value == self.Const.U:
                             if xml_value == "twoDArray":
                                 xml_value = "2D ARRAY"
