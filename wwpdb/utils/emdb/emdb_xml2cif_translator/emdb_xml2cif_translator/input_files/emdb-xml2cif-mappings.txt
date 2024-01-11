@@ -34,7 +34,7 @@ N:emd.admin.authors_list^author em_author_list.author.E em_author_list.ordinal.N
 emd.crossreferences.citation_list.primary_citation.journal_citation@published citation.unpublished_flag.B
 N:emd.crossreferences.citation_list.primary_citation.journal_citation^author citation_author.citation_id.M$primary citation_author.name.E
 N:emd.crossreferences.citation_list.primary_citation.journal_citation.author@order citation_author.ordinal.XML_VALUE
-emd.crossreferences.citation_list.primary_citation.journal_citation.title citation.title.XML_VALUE
+emd.crossreferences.citation_list.primary_citation.journal_citation.title citation.id.primary citation.title.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.journal_abbreviation citation.journal_abbrev.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.country citation.country.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.issue citation.journal_issue.XML_VALUE

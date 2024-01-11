@@ -28,6 +28,7 @@ _em_author_list.ordinal
 "Zhang, X.D."  3  
 #
 _citation.unpublished_flag         N
+_citation.id                       primary
 _citation.title                    "Structures of Bacterial RNA Polymerase Complexes Reveal the Mechanism of DNA Loading and Transcription Initiation."
 _citation.journal_abbrev           "Mol. Cell"
 _citation.country                  US
@@ -55,15 +56,18 @@ primary  "Kotta-Loizou, I."  4
 primary  "Buck, M."          5  
 primary  "Zhang, X.D."       6  
 #
-_pdbx_database_related.db_name       M$EMDB
-_pdbx_database_related.db_id         ?
-_pdbx_database_related.content_type  ?
-_pdbx_database_related.details       ?
+loop_
+_pdbx_database_related.db_name
+_pdbx_database_related.db_id
+_pdbx_database_related.content_type
+_pdbx_database_related.details
+EMDB  EMD-4397  "other EM volume"       .  
+EMDB  EMD-0001  "associated EM volume"  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  
 #
-_em_db_reference.db_name       M$PDB
-_em_db_reference.access_code   ?
-_em_db_reference.relationship  ?
-_em_db_reference.details       ?
+_em_db_reference.db_name       PDB
+_em_db_reference.access_code   6gh5
+_em_db_reference.relationship  "IN FRAME"
+_em_db_reference.details       CHECK
 #
 loop_
 _em_entity_assembly.assembly_id

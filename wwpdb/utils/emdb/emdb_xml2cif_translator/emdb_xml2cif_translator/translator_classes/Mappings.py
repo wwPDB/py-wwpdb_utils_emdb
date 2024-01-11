@@ -354,7 +354,7 @@ class Mappings(object):
                                     doi_value = next((item['DOI'] for item in list_values if 'DOI' in item), None)
                                     new_doi = doi_value.replace('doi:', '')
                                     [entry.update({'DOI': new_doi}) for entry in list_values if 'DOI' in entry]
-                        elif logic_value == self.Const.U:
+                        if logic_value == self.Const.U:
                             if xml_value == "twoDArray":
                                 xml_value = "2D ARRAY"
                             if xml_value == "threeDArray":
@@ -370,17 +370,17 @@ class Mappings(object):
                             else:
                                 xml_value = xml_value
                             list_values.append(xml_value.upper())
-                        elif logic_value == self.Const.N:
+                        if logic_value == self.Const.N:
                             n_values = [xml_value.index(i) + 1 for i in xml_value]
                             list_values.append(n_values)
                             list_values.append(xml_value)
                             break
-                        elif logic_value == self.Const.B:
+                        if logic_value == self.Const.B:
                             if xml_value == "true":
                                 list_values.append("N")
                             elif xml_value == "false":
                                 list_values.append("Y")
-                        elif logic_value == self.Const.E:
+                        if logic_value == self.Const.E:
                             modified_names = [f"{n.split(' ', 1)[0]}, {'.'.join(n.split(' ', 1)[1])}." if ' ' in n else n for n in xml_value]
                             list_values.append(modified_names)
                         elif logic_k == self.Const.M:

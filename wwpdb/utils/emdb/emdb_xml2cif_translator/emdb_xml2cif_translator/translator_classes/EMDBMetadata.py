@@ -304,7 +304,7 @@ class EMDBMetadata(object):
                         else:
                             matches = ["experimental", "theortical"]
                             if any(x in slice for x in matches):
-                                svalue = round((float(selem.text)*10**6),2)
+                                svalue = round(float(selem.text) * 1e6, 2)
                                 self.mappings_in.map_xml_value_to_code(str(svalue), slice)
 
 
