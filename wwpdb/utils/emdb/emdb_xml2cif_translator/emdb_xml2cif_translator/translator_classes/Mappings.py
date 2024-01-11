@@ -39,7 +39,6 @@ class Mappings(object):
         B = 'B'
         D = 'D'
         M = 'M'
-        T = 'T'
         U = 'U'
 
     def __init__(self):
@@ -384,7 +383,7 @@ class Mappings(object):
                             if self.Const.XML_VALUE_UPPER in logic_value:
                                 list_item.append(xml_value)
                             else:
-                                list_item.append([logic_v, logic_v])
+                                list_item.append([logic_v]*(len(xml_value)))
                             list_values = list_item
                     cif_mapping = self.create_cif_mapping_dict(a_logic_key, logic_keys, list_values)
                     mapping.get(self.Const.CIF_MAPPINGS).update(cif_mapping)

@@ -45,14 +45,15 @@ _citation.journal_id_CSD           2168
 _citation.journal_id_ASTM          MOCEFL
 #
 loop_
+_citation_author.citation_id
 _citation_author.ordinal
 _citation_author.name
-1  "Glyde R"  
-2  "Ye F"  
-3  "Jovanovic M"  
-4  "Kotta-Loizou I"  
-5  "Buck M"  
-6  "Zhang X"  
+primary  1  "Glyde R"  
+primary  2  "Ye F"  
+primary  3  "Jovanovic M"  
+primary  4  "Kotta-Loizou I"  
+primary  5  "Buck M"  
+primary  6  "Zhang X"  
 #
 loop_
 _pdbx_database_related.db_name

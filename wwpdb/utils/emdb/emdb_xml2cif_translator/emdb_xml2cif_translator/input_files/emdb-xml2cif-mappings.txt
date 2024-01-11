@@ -32,7 +32,7 @@ N:emd.admin.authors_list^author em_author_list.ordinal.N em_author_list.author.X
 
 ###<emd>.<crossreferences>.<citation_list>.<primary_citation>.<journal_citation>
 emd.crossreferences.citation_list.primary_citation.journal_citation@published citation.unpublished_flag.B
-N:emd.crossreferences.citation_list.primary_citation.journal_citation^author citation_author.ordinal.N citation_author.name.XML_VALUE
+N:emd.crossreferences.citation_list.primary_citation.journal_citation^author citation_author.citation_id.M$primary citation_author.ordinal.N citation_author.name.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.title citation.title.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.journal_abbreviation citation.journal_abbrev.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.country citation.country.XML_VALUE
