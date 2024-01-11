@@ -64,7 +64,7 @@ EMDB  EMD-0001  "associated EM volume"  "Cryo-EM structure of bacterial RNA poly
 #
 _em_db_reference.db_name       PDB
 _em_db_reference.access_code   6gh5
-_em_db_reference.relationship  FULLOVERLAP
+_em_db_reference.relationship  "IN FRAME"
 _em_db_reference.details       CHECK
 #
 loop_

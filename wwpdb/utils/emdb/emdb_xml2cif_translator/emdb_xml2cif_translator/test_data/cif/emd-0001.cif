@@ -39,7 +39,7 @@ _citation.year                     2018
 _citation.language                 English
 _citation.details                  "citation cross-references"
 _citation.pdbx_database_id_PubMed  29932903
-_citation.pdbx_database_id_DOI     doi:10.1016/j.molcel.2018.05.021
+_citation.pdbx_database_id_DOI     10.1016/j.molcel.2018.05.021
 _citation.journal_id_ISSN          1097-4164
 _citation.journal_id_CSD           2168
 _citation.journal_id_ASTM          MOCEFL

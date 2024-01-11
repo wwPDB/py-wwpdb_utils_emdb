@@ -350,6 +350,10 @@ class Mappings(object):
                                     list_values = [['IN FRAME']]
                                 if 'unknown' in [item for sublist in list_values for item in sublist]:
                                     list_values = [['OTHER']]
+                                if 'DOI' in [item for sublist in list_values for item in sublist]:
+                                    doi_value = next((item['DOI'] for item in list_values if 'DOI' in item), None)
+                                    new_doi = doi_value.replace('doi:', '')
+                                    [entry.update({'DOI': new_doi}) for entry in list_values if 'DOI' in entry]
                         if logic_value == self.Const.U:
                             if xml_value == "twoDArray":
                                 xml_value = "2D ARRAY"
