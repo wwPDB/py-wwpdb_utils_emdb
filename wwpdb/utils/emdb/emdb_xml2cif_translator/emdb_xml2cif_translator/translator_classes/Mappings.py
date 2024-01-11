@@ -39,6 +39,7 @@ class Mappings(object):
         B = 'B'
         D = 'D'
         M = 'M'
+        E = 'E'
         U = 'U'
 
     def __init__(self):
@@ -353,7 +354,7 @@ class Mappings(object):
                                     doi_value = next((item['DOI'] for item in list_values if 'DOI' in item), None)
                                     new_doi = doi_value.replace('doi:', '')
                                     [entry.update({'DOI': new_doi}) for entry in list_values if 'DOI' in entry]
-                        if logic_value == self.Const.U:
+                        elif logic_value == self.Const.U:
                             if xml_value == "twoDArray":
                                 xml_value = "2D ARRAY"
                             if xml_value == "threeDArray":
@@ -369,22 +370,26 @@ class Mappings(object):
                             else:
                                 xml_value = xml_value
                             list_values.append(xml_value.upper())
-                        if logic_value == self.Const.N:
+                        elif logic_value == self.Const.N:
                             n_values = [xml_value.index(i) + 1 for i in xml_value]
                             list_values.append(n_values)
                             list_values.append(xml_value)
                             break
-                        if logic_value == self.Const.B:
+                        elif logic_value == self.Const.B:
                             if xml_value == "true":
                                 list_values.append("N")
                             elif xml_value == "false":
                                 list_values.append("Y")
-                        if logic_k == self.Const.M:
+                        elif logic_value == self.Const.E:
+                            modified_names = [f"{n.split(' ', 1)[0]}, {'.'.join(n.split(' ', 1)[1])}." if ' ' in n else n for n in xml_value]
+                            list_values.append(modified_names)
+                        elif logic_k == self.Const.M:
                             if self.Const.XML_VALUE_UPPER in logic_value:
                                 list_item.append(xml_value)
                             else:
                                 list_item.append([logic_v]*(len(xml_value)))
                             list_values = list_item
+
                     cif_mapping = self.create_cif_mapping_dict(a_logic_key, logic_keys, list_values)
                     mapping.get(self.Const.CIF_MAPPINGS).update(cif_mapping)
 
