@@ -105,12 +105,21 @@ class EMDBMetadata(object):
                         else:
                             elem = xml_part.split(".", 1)[1].replace('.', '/')
                             tags, item = elem.rsplit('/', 1)
+                            att = ''
                             if "U$" in tags:
-                                tags = tags.replace("US", '')
-                            for elem in root.findall(tags):
-                                sub_elem = elem.find(item)
-                                sub_elements = '' if sub_elem is None else str(sub_elem.text)
-                                self.mappings_in.map_xml_value_to_code(sub_elements, xml_part)
+                                tags = tags.replace("U$", '')
+                            elif "$I" in item:
+                                item = item.replace("$I", '')
+                            elif "R$" in item:
+                                att, item = item.rsplit('|', 1)
+                                item = item.replace("R$", '')
+                            if "$I" in elem or "R$" in elem:
+                                self.primary_and_reference_ids(xml_part, root, tags, item, att)
+                            else:
+                                for elem in root.findall(tags):
+                                    sub_elem = elem.find(item)
+                                    sub_elements = '' if sub_elem is None else str(sub_elem.text)
+                                    self.mappings_in.map_xml_value_to_code(sub_elements, xml_part)
 
         return True
 

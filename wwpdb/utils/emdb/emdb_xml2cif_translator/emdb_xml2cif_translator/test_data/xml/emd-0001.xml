@@ -1,7 +1,8 @@
-<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" emdb_id="EMD-0001" version="3.0.0.1" xsi:schemaLocation="https://github.com/emdb-empiar/emdb-schemas/blob/master/v3/v3_0_0_1/emdb.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/emdb-empiar/emdb-schemas/blob/master/v3/v3_0_2_0/emdb.xsd" emdb_id="EMD-0001" version="3.0.2.0">
     <admin>
         <current_status>
-            <date>2018-10-17</date>
+            <date>2020-11-25</date>
             <code>REL</code>
             <processing_site>PDBe</processing_site>
         </current_status>
@@ -13,8 +14,15 @@
             <deposition>2018-05-04</deposition>
             <header_release>2018-06-06</header_release>
             <map_release>2018-07-04</map_release>
-            <update>2018-10-17</update>
+            <update>2020-11-25</update>
         </key_dates>
+        <grant_support>
+            <grant_reference>
+                <funding_body>Biotechnology and Biological Sciences Research Council</funding_body>
+                <code>BB/N007816</code>
+                <country>United Kingdom</country>
+            </grant_reference>
+        </grant_support>
         <title>Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex</title>
         <authors_list>
             <author>Glyde R</author>
@@ -28,10 +36,10 @@
                 <journal_citation published="true">
                     <author order="1">Glyde R</author>
                     <author order="2">Ye F</author>
-                    <author order="3">Jovanovic MS</author>
+                    <author order="3">Jovanovic M</author>
                     <author order="4">Kotta-Loizou I</author>
                     <author order="5">Buck M</author>
-                    <author order="6">Zhang XD</author>
+                    <author order="6">Zhang X</author>
                     <title>Structures of Bacterial RNA Polymerase Complexes Reveal the Mechanism of DNA Loading and Transcription Initiation.</title>
                     <journal_abbreviation>Mol. Cell</journal_abbreviation>
                     <country>US</country>
@@ -39,8 +47,6 @@
                     <first_page>1111</first_page>
                     <last_page>1120.e3</last_page>
                     <year>2018</year>
-                    <language>English</language>
-                    <details>citation cross-references</details>
                     <external_references type="PUBMED">29932903</external_references>
                     <external_references type="DOI">doi:10.1016/j.molcel.2018.05.021</external_references>
                     <external_references type="ISSN">1097-4164</external_references>
@@ -70,7 +76,6 @@
                 <relationship>
                     <in_frame>FULLOVERLAP</in_frame>
                 </relationship>
-                <details>CHECK</details>
             </pdb_reference>
         </pdb_list>
     </crossreferences>
@@ -106,7 +111,6 @@
                 <molecular_weight>
                     <theoretical units="MDa">0.490</theoretical>
                 </molecular_weight>
-                <ribosome-details>RIBO</ribosome-details>
             </complex_supramolecule>
             <complex_supramolecule supramolecule_id="2">
                 <name>DNA-directed RNA polymerase</name>
@@ -165,9 +169,6 @@
                     <recombinant_organism ncbi="32630">synthetic construct</recombinant_organism>
                 </recombinant_expression>
             </complex_supramolecule>
-            <virus_supramolecule supramolecule_id="5">
-                <name>Virus_test</name>
-            </virus_supramolecule>
         </supramolecule_list>
         <macromolecule_list>
             <protein_or_peptide macromolecule_id="1">
@@ -281,7 +282,7 @@ QAVTAIAEGRR</string>
                 <ec_number>2.7.7.6</ec_number>
             </protein_or_peptide>
             <protein_or_peptide macromolecule_id="5">
-                <name>RNA polymerase sigma-54 factor</name>
+                <name>RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor</name>
                 <natural_source database="NCBI">
                     <organism ncbi="573">Klebsiella pneumoniae</organism>
                 </natural_source>
@@ -292,7 +293,7 @@ QAVTAIAEGRR</string>
                 <recombinant_expression database="NCBI">
                     <recombinant_organism ncbi="83333">Escherichia coli K-12</recombinant_organism>
                 </recombinant_expression>
-                <enantiomer>DEXTRO</enantiomer>
+                <enantiomer>LEVO</enantiomer>
                 <sequence>
                     <string>MGSSHHHHHHSSGLVPRGSHMKQGLQLRLSQQLAMTPQLQQAIRLLQLSTLELQQELQQALESNPLLEQTDLHDEVEAKE
 VEDRESLDTVDALEQKEMPDELPLDASWDEIYTAGTPSGNGVDYQDDELPVYQGETTQTLQDYLMWQVELTPFTDTDRAI
@@ -350,7 +351,7 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                 <single_particle_preparation preparation_id="1">
                     <concentration units="mg/mL">0.5</concentration>
                     <buffer>
-                        <ph>8.0</ph>
+                        <ph>8</ph>
                         <component>
                             <concentration units="mM">10.0</concentration>
                             <formula>Tris-HCL</formula>
@@ -368,7 +369,6 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                         </component>
                     </buffer>
                     <grid>
-                        <support_film film_type_id="1"/>
                         <model>Quantifoil R1.2/1.3</model>
                         <material>COPPER</material>
                     </grid>
@@ -377,25 +377,8 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                         <chamber_humidity units="percentage">95</chamber_humidity>
                         <chamber_temperature units="K">277</chamber_temperature>
                         <instrument>FEI VITROBOT MARK IV</instrument>
-                        <details />
+                        <details></details>
                     </vitrification>
-                </single_particle_preparation>
-                <single_particle_preparation preparation_id="2">
-                    <concentration units="mg/mL">0.5</concentration>
-                    <buffer>
-                        <ph>9.0</ph>
-                        <component>
-                            <concentration units="mM">12.0</concentration>
-                            <formula>TriHCL</formula>
-                            <name>hydrochloride</name>
-                        </component>
-                        <component>
-                            <concentration units="mM">15.0</concentration>
-                            <formula>NaCL2</formula>
-                            <name>chloride</name>
-                        </component>
-                        <details>buffer details</details>
-                    </buffer>
                 </single_particle_preparation>
             </specimen_preparation_list>
             <microscopy_list>
@@ -409,14 +392,9 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                         <image_recording image_recording_id="1">
                             <film_or_detector_model>GATAN K2 SUMMIT (4k x 4k)</film_or_detector_model>
                             <detector_mode>COUNTING</detector_mode>
-                            <average_electron_dose_per_image units="e/&#8491;^2">45.0</average_electron_dose_per_image>
+                            <average_electron_dose_per_image units="e/Å^2">45.0</average_electron_dose_per_image>
                         </image_recording>
                     </image_recording_list>
-                </single_particle_microscopy>
-                <single_particle_microscopy microscopy_id="2">
-                    <microscope>FEI TITAN </microscope>
-                    <illumination_mode>OTHER</illumination_mode>
-                    <imaging_mode>FIELD</imaging_mode>
                 </single_particle_microscopy>
             </microscopy_list>
             <singleparticle_processing image_processing_id="1">
@@ -430,7 +408,7 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
                     <applied_symmetry>
                         <point_group>C1</point_group>
                     </applied_symmetry>
-                    <resolution res_type="BY AUTHOR" units="&#8491;">3.4</resolution>
+                    <resolution units="Å" res_type="BY AUTHOR">3.4</resolution>
                     <resolution_method>FSC 0.143 CUT-OFF</resolution_method>
                     <number_images_used>79678</number_images_used>
                 </final_reconstruction>
@@ -465,9 +443,9 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
             <z>256</z>
         </spacing>
         <cell>
-            <a units="&#8491;">1.0</a>
-            <b units="&#8491;">1.0</b>
-            <c units="&#8491;">1.0</c>
+            <a units="Å">271.36</a>
+            <b units="Å">271.36</b>
+            <c units="Å">271.36</c>
             <alpha units="deg">90.0</alpha>
             <beta units="deg">90.0</beta>
             <gamma units="deg">90.0</gamma>
@@ -480,13 +458,13 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
         <statistics>
             <minimum>-0.10788548</minimum>
             <maximum>0.22688344</maximum>
-            <average>0.000012941896</average>
+            <average>0.00001294190</average>
             <std>0.0077065425</std>
         </statistics>
         <pixel_spacing>
-            <x units="&#8491;">1.06</x>
-            <y units="&#8491;">1.06</y>
-            <z units="&#8491;">1.06</z>
+            <x units="Å">1.06</x>
+            <y units="Å">1.06</y>
+            <z units="Å">1.06</z>
         </pixel_spacing>
         <contour_list>
             <contour primary="true">
@@ -499,90 +477,9 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
     <interpretation>
         <modelling_list>
             <modelling>
-                <initial_model>
-                    <access_code>4AKG</access_code>
-                    <chain>
-                        <chain_id>A</chain_id>
-                    </chain>
-                </initial_model>
                 <refinement_protocol>RIGID BODY FIT</refinement_protocol>
-                <software_list>
-                    <software>
-                        <name>Chimera</name>
-                        <version>4.3</version>
-                        <processing_details>Fitting</processing_details>
-                    </software>
-                </software_list>
                 <refinement_space>REAL</refinement_space>
             </modelling>
         </modelling_list>
-        <figure_list>
-            <figure>
-                <file>emd_6607.png</file>
-            </figure>
-        </figure_list>
-        <segmentation_list>
-            <segmentation>
-                <mask_details format="CCP4" size_kbytes="600">
-                    <file>emd_0001.map.gz</file>
-                    <symmetry>
-                        <space_group>1</space_group>
-                    </symmetry>
-                    <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
-                    <dimensions>
-                        <col>256</col>
-                        <row>256</row>
-                        <sec>256</sec>
-                    </dimensions>
-                    <origin>
-                        <col>0</col>
-                        <row>0</row>
-                        <sec>0</sec>
-                    </origin>
-                    <spacing>
-                        <x>256</x>
-                        <y>256</y>
-                        <z>256</z>
-                    </spacing>
-                    <cell>
-                        <a units="&#8491;">1.0</a>
-                        <b units="&#8491;">1.0</b>
-                        <c units="&#8491;">1.0</c>
-                        <alpha units="deg">90.0</alpha>
-                        <beta units="deg">90.0</beta>
-                        <gamma units="deg">90.0</gamma>
-                    </cell>
-                    <axis_order>
-                        <fast>X</fast>
-                        <medium>Y</medium>
-                        <slow>Z</slow>
-                    </axis_order>
-                    <statistics>
-                        <minimum>-0.10788548</minimum>
-                        <maximum>0.22688344</maximum>
-                        <average>0.000012941896</average>
-                        <std>0.0077065425</std>
-                    </statistics>
-                    <pixel_spacing>
-                        <x units="&#8491;">1.06</x>
-                        <y units="&#8491;">1.06</y>
-                        <z units="&#8491;">1.06</z>
-                    </pixel_spacing>
-                    <contour_list>
-                        <contour primary="true">
-                            <level>0.018</level>
-                            <source>EMDB</source>
-                        </contour>
-                    </contour_list>
-                    <label>MASK</label>
-                </mask_details>
-            </segmentation>
-        </segmentation_list>
     </interpretation>
-    <validation>
-        <fsc_curve>
-            <file>emd_6549_fsc.xml</file>
-            <details>fsc curve</details>
-        </fsc_curve>
-    </validation>
 </emd>

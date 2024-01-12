@@ -6098,7 +6098,6 @@ class CifEMDBTranslator(object):
                                 XSD: <xs:attribute name="film_type_id" type="xs:positiveInteger" use="required"/>
                                 CIF: _em_support_film.id 1
                                 """
-                                print("HERE")
                                 set_cif_value(film.set_film_type_id, "id", const.EM_SUPPORT_FILM, cif_list=film_in, fmt=int)
 
                             def set_el_film_material(film, film_in):
