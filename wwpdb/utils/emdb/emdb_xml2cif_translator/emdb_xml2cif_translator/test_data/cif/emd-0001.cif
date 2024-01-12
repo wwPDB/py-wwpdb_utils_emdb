@@ -330,6 +330,16 @@ _em_specimen.id             1
 _em_specimen.concentration  0.5
 _em_specimen.details        .
 #
+_em_vitrification.specimen_id           1
+_em_vitrification.id                    1
+_em_vitrification.cryogen_name          ETHANE
+_em_vitrification.humidity              95
+_em_vitrification.chamber_temperature   277
+_em_vitrification.instrument            "FEI VITROBOT MARK IV"
+_em_vitrification.details               None
+_em_vitrification.timed_resolved_state  .
+_em_vitrification.method                .
+#
 loop_
 _em_buffer_component.buffer_id
 _em_buffer_component.id
@@ -390,14 +400,6 @@ _em_support_film.sample_support_id  1
 _em_support_film.material           .
 _em_support_film.topology           .
 _em_support_film.thickness          .
-#
-_em_vitrification.cryogen_name          ETHANE
-_em_vitrification.chamber_humidity      95
-_em_vitrification.chamber_temperature   277
-_em_vitrification.instrument            "FEI VITROBOT MARK IV"
-_em_vitrification.details               None
-_em_vitrification.timed_resolved_state  .
-_em_vitrification.method                .
 #
 _em_imaging_optics.phase_plate               ?
 _em_imaging_optics.sph_aberration_corrector  ?

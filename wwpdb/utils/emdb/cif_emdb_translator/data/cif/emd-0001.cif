@@ -83,10 +83,10 @@ _em_entity_assembly.go_id
 _em_entity_assembly.parent_id
 _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
-1  1  COMPLEX  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  .  0  .  .  
-2  2  COMPLEX  "DNA-directed RNA polymerase"                                                                  .  1  .  .  
-3  3  COMPLEX  "RNA polymerase sigma-54 factor"                                                               .  1  .  .  
-4  4  COMPLEX  DNA                                                                                            .  1  .  .  
+1  1  COMPLEX  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  .  0  "1, 2, 3, 4, 5, 6, 7"  .  
+2  2  COMPLEX  "DNA-directed RNA polymerase"                                                                  .  1  "1, 2, 3, 4"           .  
+3  3  COMPLEX  "RNA polymerase sigma-54 factor"                                                               .  1  5                      .  
+4  4  COMPLEX  DNA                                                                                            .  1  "6, 7"                 .  
 #
 loop_
 _em_entity_assembly_naturalsource.id
@@ -330,6 +330,16 @@ _em_specimen.id             1
 _em_specimen.concentration  0.5
 _em_specimen.details        .
 #
+_em_vitrification.specimen_id           1
+_em_vitrification.id                    1
+_em_vitrification.cryogen_name          ETHANE
+_em_vitrification.humidity              95
+_em_vitrification.chamber_temperature   277
+_em_vitrification.instrument            "FEI VITROBOT MARK IV"
+_em_vitrification.details               None
+_em_vitrification.timed_resolved_state  .
+_em_vitrification.method                .
+#
 loop_
 _em_buffer_component.buffer_id
 _em_buffer_component.id
@@ -390,14 +400,6 @@ _em_support_film.sample_support_id  1
 _em_support_film.material           .
 _em_support_film.topology           .
 _em_support_film.thickness          .
-#
-_em_vitrification.cryogen_name          ETHANE
-_em_vitrification.chamber_humidity      95
-_em_vitrification.chamber_temperature   277
-_em_vitrification.instrument            "FEI VITROBOT MARK IV"
-_em_vitrification.details               None
-_em_vitrification.timed_resolved_state  .
-_em_vitrification.method                .
 #
 _em_imaging_optics.phase_plate               ?
 _em_imaging_optics.sph_aberration_corrector  ?
