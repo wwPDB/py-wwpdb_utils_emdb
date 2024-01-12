@@ -330,6 +330,7 @@ class EMDBMetadata(object):
                                 self.mappings_in.map_xml_value_to_code("nat", slice)
 
         if "%" in xml_part:
+            index = 0
             for macro_list in macro_list_index:
                 macro_slice, size = macro_list.split("&S&", 1)
                 sublist = macro_list_elem[index:index + int(size)]
