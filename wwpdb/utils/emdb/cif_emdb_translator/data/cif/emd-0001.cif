@@ -70,6 +70,7 @@ _em_db_reference.relationship  "IN FRAME"
 _em_db_reference.details       CHECK
 #
 loop_
+_em_entity_assembly.id
 _em_entity_assembly.assembly_id
 _em_entity_assembly.type
 _em_entity_assembly.name
@@ -77,13 +78,15 @@ _em_entity_assembly.go_id
 _em_entity_assembly.parent_id
 _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
-1  RIBOSOME  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  .  0  "1, 2, 3, 4, 5, 6, 7"  .  
-2  COMPLEX   "DNA-directed RNA polymerase"                                                                  .  1  "1, 2, 3, 4"           .  
-3  COMPLEX   "RNA polymerase sigma-54 factor"                                                               .  1  5                      .  
-4  COMPLEX   DNA                                                                                            .  1  "6, 7"                 .  
-5  VIRUS     Virus_test                                                                                     .  .  .                      .  
+1  1  RIBOSOME  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  .  0  "1, 2, 3, 4, 5, 6, 7"  .  
+2  2  COMPLEX   "DNA-directed RNA polymerase"                                                                  .  1  "1, 2, 3, 4"           .  
+3  3  COMPLEX   "RNA polymerase sigma-54 factor"                                                               .  1  5                      .  
+4  4  COMPLEX   DNA                                                                                            .  1  "6, 7"                 .  
+5  5  VIRUS     Virus_test                                                                                     .  .  .                      .  
 #
 loop_
+_em_entity_assembly_naturalsource.id
+_em_entity_assembly_naturalsource.entity_assembly_id
 _em_entity_assembly_naturalsource.ncbi_tax_id
 _em_entity_assembly_naturalsource.organism
 _em_entity_assembly_naturalsource.strain
@@ -93,9 +96,9 @@ _em_entity_assembly_naturalsource.tissue
 _em_entity_assembly_naturalsource.cell
 _em_entity_assembly_naturalsource.organelle
 _em_entity_assembly_naturalsource.cellular_location
-83333  "Escherichia coli K-12"  .  .  .  .  .  .  .  
-  573  "Klebsiella pneumoniae"  .  .  .  .  .  .  .  
-  573  "Klebsiella pneumoniae"  .  .  .  .  .  .  .  
+1  1  83333  "Escherichia coli K-12"  .  .  .  .  .  .  .  
+2  2    573  "Klebsiella pneumoniae"  .  .  .  .  .  .  .  
+3  3    573  "Klebsiella pneumoniae"  .  .  .  .  .  .  .  
 #
 _em_entity_assembly_synthetic.ncbi_tax_id        ?
 _em_entity_assembly_synthetic.organism           ?
@@ -231,6 +234,7 @@ RGIF(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)(UNK)
   
 #
 loop_
+_entity_src_nat.entity_id
 _entity_src_nat.pdbx_organism_scientific
 _entity_src_nat.pdbx_ncbi_taxonomy_id
 _entity_src_nat.strain
@@ -240,27 +244,28 @@ _entity_src_nat.tissue
 _entity_src_nat.pdbx_cell
 _entity_src_nat.pdbx_organelle
 _entity_src_nat.pdbx_cellular_location
-"Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
-"Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
-"Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
-"Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
-"Klebsiella pneumoniae"            573  .  .  .  .  .  .  .  
-"Klebsiella pneumoniae"            573  .  .  .  .  .  .  .  
-"Klebsiella pneumoniae"            573  .  .  .  .  .  .  .  
+1  "Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
+2  "Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
+3  "Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
+4  "Escherichia coli (strain K12)"  83333  .  .  .  .  .  .  .  
+5  "Klebsiella pneumoniae"            573  .  .  .  .  .  .  .  
+6  "Klebsiella pneumoniae"            573  .  .  .  .  .  .  .  
+7  "Klebsiella pneumoniae"            573  .  .  .  .  .  .  .  
 #
 loop_
+_entity_src_gen.entity_id
 _entity_src_gen.pdbx_host_org_scientific_name
 _entity_src_gen.pdbx_host_org_ncbi_taxonomy_id
 _entity_src_gen.gene_src_strain
 _entity_src_gen.gene_src_cell
 _entity_src_gen.pdbx_gene_src_plasmid
-"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
-"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
-"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
-"Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
-"Escherichia coli K-12"                       83333  .  .  .  
-.                                                 .  .  .  .  
-.                                                 .  .  .  .  
+1  "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
+2  "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
+3  "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
+4  "Escherichia coli 'BL21-Gold(DE3)pLysS AG'"  866768  .  .  .  
+5  "Escherichia coli K-12"                       83333  .  .  .  
+6  .                                                 .  .  .  .  
+7  .                                                 .  .  .  .  
 #
 _pdbx_entity_src_syn.ncbi_tax_id        ?
 _pdbx_entity_src_syn.organism           ?
@@ -281,17 +286,26 @@ _em_experiment.reconstruction_method  "SINGLE PARTICLE"
 _em_experiment.aggregation_state      PARTICLE
 #
 loop_
+_em_buffer.specimen_id
+_em_buffer.pH
+_em_buffer.id
+_em_buffer.details
+1  8.0  1  .  
+2  9.0  2  "buffer details"  
+#
+_em_sample_support.specimen_id     1
+_em_sample_support.id              1
+_em_sample_support.grid_type       "Quantifoil R1.2/1.3"
+_em_sample_support.grid_material   COPPER
+_em_sample_support.grid_mesh_size  .
+_em_sample_support.details         .
+#
+loop_
 _em_specimen.id
 _em_specimen.concentration
 _em_specimen.details
 1  0.5  .  
 2  0.5  .  
-#
-loop_
-_em_buffer.pH
-_em_buffer.details
-8.0  .  
-9.0  "buffer details"  
 #
 loop_
 _em_buffer_component.buffer_id
@@ -318,20 +332,44 @@ _em_shadowing.angle      ?
 _em_shadowing.thickness  ?
 _em_shadowing.details    ?
 #
-_em_sample_support.grid_type       "Quantifoil R1.2/1.3"
-_em_sample_support.grid_material   COPPER
-_em_sample_support.grid_mesh_size  .
-_em_sample_support.details         .
+_em_imaging.sample_support_id              1
+_em_imaging.id                             1
+_em_imaging.microscope_model               "FEI TITAN KRIOS"
+_em_imaging.illumination_mode              OTHER
+_em_imaging.mode                           "BRIGHT FIELD"
+_em_imaging.electron_source                "FIELD EMISSION GUN"
+_em_imaging.accelarating_voltage           300
+_em_imaging.c2_aperture_diameter           .
+_em_imaging.nominal_cs                     .
+_em_imaging.nominal_defocus_min            .
+_em_imaging.calibrated_defocus_min         .
+_em_imaging.nominal_defocus_max            .
+_em_imaging.calibrated_defocus_max         .
+_em_imaging.nominal_magnification          .
+_em_imaging.calibrated_magnification       .
+_em_imaging.specimen_holder_model          .
+_em_imaging.cryogen                        .
+_em_imaging.recording_temperature_minimum  .
+_em_imaging.recording_temperature_maximum  .
+_em_imaging.recording_temperature_average  .
+_em_imaging.astigmatism                    .
+_em_imaging.electron_beam_tilt_params      .
+_em_imaging.details                        .
+_em_imaging.date                           .
+_em_imaging.tilt_angle_min                 .
+_em_imaging.tilt_angle_max                 .
 #
-_em_support_film.id         1
-_em_support_film.materail   .
-_em_support_film.topology   .
-_em_support_film.thickness  .
+_em_grid_pretreatment.sample_support_id  1
+_em_grid_pretreatment.type               .
+_em_grid_pretreatment.time               .
+_em_grid_pretreatment.atmosphere         .
+_em_grid_pretreatment.pressure           .
 #
-_em_grid_pretreatment.type        ?
-_em_grid_pretreatment.time        ?
-_em_grid_pretreatment.atmosphere  ?
-_em_grid_pretreatment.pressure    ?
+_em_support_film.sample_support_id  1
+_em_support_film.id                 1
+_em_support_film.material           .
+_em_support_film.topology           .
+_em_support_film.thickness          .
 #
 _em_vitrification.cryogen_name          ETHANE
 _em_vitrification.chamber_humidity      95
@@ -340,35 +378,6 @@ _em_vitrification.instrument            "FEI VITROBOT MARK IV"
 _em_vitrification.details               None
 _em_vitrification.timed_resolved_state  .
 _em_vitrification.method                .
-#
-loop_
-_em_imaging.id
-_em_imaging.microscope_model
-_em_imaging.illumination_mode
-_em_imaging.mode
-_em_imaging.electron_source
-_em_imaging.accelarating_voltage
-_em_imaging.c2_aperture_diameter
-_em_imaging.nominal_cs
-_em_imaging.nominal_defocus_min
-_em_imaging.calibrated_defocus_min
-_em_imaging.nominal_defocus_max
-_em_imaging.calibrated_defocus_max
-_em_imaging.nominal_magnification
-_em_imaging.calibrated_magnification
-_em_imaging.specimen_holder_model
-_em_imaging.cryogen
-_em_imaging.recording_temperature_minimum
-_em_imaging.recording_temperature_maximum
-_em_imaging.recording_temperature_average
-_em_imaging.astigmatism
-_em_imaging.electron_beam_tilt_params
-_em_imaging.details
-_em_imaging.date
-_em_imaging.tilt_angle_min
-_em_imaging.tilt_angle_max
-1  "FEI TITAN KRIOS"  OTHER  "BRIGHT FIELD"  "FIELD EMISSION GUN"  300  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  
-2  "FEI TITAN "       OTHER  FIELD           .                       .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  
 #
 _em_imaging_optics.phase_plate               ?
 _em_imaging_optics.sph_aberration_corrector  ?

@@ -137,7 +137,7 @@ class EMDBMetadata(object):
         This method writes the substitution group's XML_VALUES for all the special anchors used in the input file
         """
         tags, item, att, parent_elem, sub_elements, enantio = '', '', '', '', '', ''
-        xml_slices, other_slices, list_id, macro_list_elem, attrib_index, macro_list_index = [], [], [], [], [], []
+        xml_slices, other_slices, list_id, macro_list_elem, attrib_index, macro_list_index, reference_ids = [], [], [], [], [], [], []
         index = 0
         substitution = re.split('S\$|\$S', xml_part)
         count = len(substitution)
@@ -210,7 +210,7 @@ class EMDBMetadata(object):
                     attrib_val = el.get(attrib_key)
                     self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
 
-            if not any(char in xml_part for char in ['@', '$I$', 'R$', '>', '<', 'E$', 'A$', '%', '+']):
+            if not any(char in xml_part for char in ['@', '$I', 'R$', '>', '<', 'E$', 'A$', '%', '+']):
                 if '&' in slice:
                     tags, item = elem.rsplit('&', 1)
                 else:
@@ -230,22 +230,13 @@ class EMDBMetadata(object):
                         for l in range(len(find_parent_elem)):
                             self.mappings_in.map_xml_value_to_code('', slice)
 
-            if any(char in slice for char in ['$I$', 'R$']):
-                if '$I$' in slice:
-                    tags, item = elem.rsplit('$I$', 1)
+            if any(char in slice for char in ['$I', 'R$']) and not 'E$' in slice:
+                if '$I' in slice:
+                    tags, item = elem.rsplit('$I', 1)
                 elif 'R$' in slice:
                     tags, items = elem.rsplit('R$', 1)
                     att, item = items.rsplit('|', 1)
-                for element in root.findall(tags):
-                    sub_elem = element.findall(item)
-                    if '$I$' in slice:
-                        for ind in range(1, len(sub_elem)+1):
-                            index += 1
-                            self.mappings_in.map_xml_value_to_code(str(index), slice)
-                    elif 'R$' in slice:
-                        attrib = element.get(att)
-                        for ind in range(1, len(sub_elem)+1):
-                            self.mappings_in.map_xml_value_to_code(str(attrib), slice)
+                self.primary_and_reference_ids(slice, root, tags, item, att)
 
             if '%' in slice and '+' in slice:
                 tags, items = elem.rsplit('%', 1)
@@ -266,46 +257,46 @@ class EMDBMetadata(object):
                     index = len(root.findall(tags))
 
             if 'E$' in slice:
+                e_tags, e_item = [], []
                 either_one = re.split('E\$|\$E', xslice)
                 other_slices = self.spliting_anchors(either_one)
                 for sl in other_slices:
                     if '&' in sl:
                         tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("&", 1)
-                    elif 'R$' in slice:
-                        tags, items = elem.rsplit('R$', 1)
-                        att, item = items.split('|', 1)
+                    elif '$I' in sl:
+                        tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit('$I', 1)
+                        e_item.append(item)
+                    elif 'R$' in sl:
+                        tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit('R$', 1)
+                        att, it = items.split('|', 1)
+                        e_item.append(it)
                     else:
                         tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
 
-                for element in root.findall(tags):
-                    sub_elem = element.findall(item)
-                    selem = element.find(item)
-                    if '&' in slice:
-                        sub_elements = element.get(item)
-                        self.mappings_in.map_xml_value_to_code(str(sub_elements), slice)
-                    elif '?' in slice:
-                        if item == "theoretical?":
-                            self.mappings_in.map_xml_value_to_code('NO', slice)
-                        elif item == "experimental?":
-                            self.mappings_in.map_xml_value_to_code('YES', slice)
+                if "$I" in slice or 'R$' in slice:
+                    self.primary_and_reference_ids(slice, root, tags, e_item, att)
+                else:
+                    for element in root.findall(tags):
+                        sub_elem = element.findall(item)
+                        selem = element.find(item)
+                        if '&' in slice:
+                            sub_elements = element.get(item)
+                            self.mappings_in.map_xml_value_to_code(str(sub_elements), slice)
+                        elif '?' in slice:
+                            if item == "theoretical?":
+                                self.mappings_in.map_xml_value_to_code('NO', slice)
+                            elif item == "experimental?":
+                                self.mappings_in.map_xml_value_to_code('YES', slice)
+                            else:
+                                self.mappings_in.map_xml_value_to_code('', slice)
                         else:
-                            self.mappings_in.map_xml_value_to_code('', slice)
-                    elif 'I$' in slice:
-                        for ind in range(0, (len(sub_elem))+1):
-                            self.mappings_in.map_xml_value_to_code(str(index+1), slice)
-                            index += 1
-                    elif 'R$' in slice:
-                        attrib = element.get(att)
-                        for ind in range(0, len(sub_elem)+1):
-                            self.mappings_in.map_xml_value_to_code(str(attrib), slice)
-                    else:
-                        if selem is None:
-                            self.mappings_in.map_xml_value_to_code('', slice)
-                        else:
-                            matches = ["experimental", "theortical"]
-                            if any(x in slice for x in matches):
-                                svalue = round(float(selem.text) * 1e6, 2)
-                                self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+                            if selem is None:
+                                self.mappings_in.map_xml_value_to_code('', slice)
+                            else:
+                                matches = ["experimental", "theoretical"]
+                                if any(x in slice for x in matches):
+                                    svalue = round(float(selem.text) * 1e6, 2)
+                                    self.mappings_in.map_xml_value_to_code(str(svalue), slice)
 
 
             if 'A$' in slice:
@@ -337,6 +328,25 @@ class EMDBMetadata(object):
                 index += int(size)
                 self.mappings_in.map_xml_value_to_code(macro_sublist, macro_slice)
 
+
+    def primary_and_reference_ids(self, slice, root, tags, e_item, att):
+        index = 0
+        if not isinstance(e_item, list):
+            list_item = list(e_item)
+        else:
+            list_item = e_item
+        for item in list_item:
+            for element in root.findall(tags):
+                sub_elem = element.findall(item)
+                if '$I' in slice:
+                    for ind in range(1, len(sub_elem)+1):
+                        index += 1
+                        self.mappings_in.map_xml_value_to_code(str(index), slice)
+                elif 'R$' in slice:
+                    if sub_elem:
+                        attrib = element.get(att)
+                        for ind in range(1, len(sub_elem)+1):
+                            self.mappings_in.map_xml_value_to_code(str(attrib), slice)
 
     def spliting_anchors(self, either_one):
         other_slices = []
