@@ -232,9 +232,9 @@ class EMDBMetadata(object):
 
             if any(char in slice for char in ['$I', 'R$']) and not 'E$' in slice:
                 if '$I' in slice:
-                    tags, item = elem.rsplit('$I', 1)
+                    tags, item = elem.split("$I", 1)
                 elif 'R$' in slice:
-                    tags, items = elem.rsplit('R$', 1)
+                    tags, items = elem.split("R$", 1)
                     att, item = items.rsplit('|', 1)
                 self.primary_and_reference_ids(slice, root, tags, item, att)
 
@@ -332,7 +332,7 @@ class EMDBMetadata(object):
     def primary_and_reference_ids(self, slice, root, tags, e_item, att):
         index = 0
         if not isinstance(e_item, list):
-            list_item = list(e_item)
+            list_item = [e_item]
         else:
             list_item = e_item
         for item in list_item:
