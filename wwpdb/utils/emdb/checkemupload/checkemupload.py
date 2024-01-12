@@ -347,6 +347,12 @@ def main():
     """
     # Parsing command line arguments
     parser = argparse.ArgumentParser(description="Perform checks on uploaded maps.")
+    parser.epilog = """
+    Examples:
+    python checkemupload.py 4v6x.mrc --halfmaps 4v6x_half1.mrc 4v6x_half2.mrc --model 4v6x.cif --output 4v6x-checks.json
+    python checkemupload.py 4v6x.mrc --halfmaps 4v6x_half1.mrc 4v6x_half2.mrc --output 4v6x-checks.json
+    python checkemupload.py 4v6x.mrc --model 4v6x.cif --output 4v6x-checks.json
+    """
     parser.add_argument("primmap", help="Input MRC primary map file")
     parser.add_argument("--halfmaps", nargs=2, help="Input MRC half maps", required=False)
     parser.add_argument("--model", help="Input MMCIF model file", required=False)
