@@ -2,6 +2,43 @@ data_emd_0001
 
 _entry.id  EMD-0001
 #
+_em_map.entry_id              EMD-0001
+_em_map.id                    1
+_em_map.format                CCP4
+_em_map.size_kb               67109
+_em_map.file                  emd_0001.map.gz
+_em_map.symmetry_space_group  1
+_em_map.data_type             "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)"
+_em_map.dimensions_col        256
+_em_map.dimensions_row        256
+_em_map.dimensions_sec        256
+_em_map.origin_col            0
+_em_map.origin_row            0
+_em_map.origin_sec            0
+_em_map.spacing_x             256
+_em_map.spacing_y             256
+_em_map.spacing_z             256
+_em_map.cell_a                271.36
+_em_map.cell_b                271.36
+_em_map.cell_c                271.36
+_em_map.cell_alpha            90.0
+_em_map.cell_beta             90.0
+_em_map.cell_gamma            90.0
+_em_map.axis_order_fast       X
+_em_map.axis_order_medium     Y
+_em_map.axis_order_slow       Z
+_em_map.statistics_minimum    -0.10788548
+_em_map.statistics_maximum    0.22688344
+_em_map.statistics_average    0.00001294190
+_em_map.statistics_std        0.0077065425
+_em_map.pixel_spacing_x       1.06
+_em_map.pixel_spacing_y       1.06
+_em_map.pixel_spacing_z       1.06
+_em_map.contour_level         0.018
+_em_map.contour_level_source  EMDB
+_em_map.label                 ::::EMDATABANK.org::::EMD-0001::::
+_em_map.details               .
+#
 _database_2.database_id    EMDB
 _database_2.database_code  EMD-0001
 #
@@ -78,15 +115,16 @@ loop_
 _em_entity_assembly.id
 _em_entity_assembly.assembly_id
 _em_entity_assembly.type
+_em_entity_assembly.source
 _em_entity_assembly.name
 _em_entity_assembly.go_id
 _em_entity_assembly.parent_id
 _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
-1  1  COMPLEX  "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  .  0  "1, 2, 3, 4, 5, 6, 7"  .  
-2  2  COMPLEX  "DNA-directed RNA polymerase"                                                                  .  1  "1, 2, 3, 4"           .  
-3  3  COMPLEX  "RNA polymerase sigma-54 factor"                                                               .  1  5                      .  
-4  4  COMPLEX  DNA                                                                                            .  1  "6, 7"                 .  
+1  1  COMPLEX  .            "Cryo-EM structure of bacterial RNA polymerase-sigma54 holoenzyme transcription open complex"  .  0  "1, 2, 3, 4, 5, 6, 7"  .  
+2  2  COMPLEX  RECOMBINANT  "DNA-directed RNA polymerase"                                                                  .  1  "1, 2, 3, 4"           .  
+3  3  COMPLEX  RECOMBINANT  "RNA polymerase sigma-54 factor"                                                               .  1  5                      .  
+4  4  COMPLEX  SYNTHETIC    DNA                                                                                            .  1  "6, 7"                 .  
 #
 loop_
 _em_entity_assembly_naturalsource.id
@@ -174,8 +212,6 @@ _entity.pdbx_formula_weight_exptl_method
 3  polymer  man  "DNA-directed RNA polymerase subunit beta'"                                                                                                                   1  2.7.7.6  ?     .  155366.78  .  
 4  polymer  man  "DNA-directed RNA polymerase subunit omega"                                                                                                                   1  2.7.7.6  ?     .   10249.55  .  
 5  polymer  man  "RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor"  1  2.7.7.6  ?     .   54723.08  .  
-6  polymer  nat  "nifH promoter template DNA"                                                                                                                                  1  .        ?     .   19404.41  .  
-7  polymer  nat  "nifH promoter non-template DNA"                                                                                                                              1  .        ?     .   19487.44  .  
 #
 loop_
 _entity_poly.entity_id
@@ -369,7 +405,7 @@ _em_imaging.microscope_model               "FEI TITAN KRIOS"
 _em_imaging.illumination_mode              OTHER
 _em_imaging.mode                           "BRIGHT FIELD"
 _em_imaging.electron_source                "FIELD EMISSION GUN"
-_em_imaging.accelarating_voltage           300
+_em_imaging.accelerating_voltage           300
 _em_imaging.c2_aperture_diameter           .
 _em_imaging.nominal_cs                     .
 _em_imaging.nominal_defocus_min            .
@@ -401,6 +437,17 @@ _em_support_film.material           .
 _em_support_film.topology           .
 _em_support_film.thickness          .
 #
+_em_image_recording.imaging_id                   1
+_em_image_recording.id                           1
+_em_image_recording.film_or_detector_model       "GATAN K2 SUMMIT (4k x 4k)"
+_em_image_recording.detector_mode                COUNTING
+_em_image_recording.num_grids_imaged             .
+_em_image_recording.num_real_images              .
+_em_image_recording.num_diffraction_images       .
+_em_image_recording.average_exposure_time        .
+_em_image_recording.avg_electron_dose_per_image  45.0
+_em_image_recording.details                      .
+#
 _em_imaging_optics.phase_plate               ?
 _em_imaging_optics.sph_aberration_corrector  ?
 _em_imaging_optics.chr_aberration_corrector  ?
@@ -414,16 +461,6 @@ _em_software.name     ?
 _em_software.version  ?
 _em_software.details  ?
 #
-_em_image_recording.id                           1
-_em_image_recording.flim_or_detector_model       "GATAN K2 SUMMIT (4k x 4k)"
-_em_image_recording.detector_mode                COUNTING
-_em_image_recording.num_grids_imaged             .
-_em_image_recording.num_real_images              .
-_em_image_recording.num_diffraction_images       .
-_em_image_recording.average_exposure_time        .
-_em_image_recording.avg_electron_dose_per_image  45.0
-_em_image_recording.details                      .
-#
 _em_image_scans.scanner_model          ?
 _em_image_scans.dimension_width        ?
 _em_image_scans.dimension_height       ?
@@ -434,40 +471,8 @@ _em_image_processing.id                  1
 _em_image_processing.image_recording_id  1
 _em_image_processing.details             .
 #
-_em_map.format                CCP4
-_em_map.size_kb               67109
-_em_map.file                  emd_0001.map.gz
-_em_map.symmetry_space_group  1
-_em_map.data_type             "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)"
-_em_map.dimensions_col        256
-_em_map.dimensions_row        256
-_em_map.dimensions_sec        256
-_em_map.origin_col            0
-_em_map.origin_row            0
-_em_map.origin_sec            0
-_em_map.spacing_x             256
-_em_map.spacing_y             256
-_em_map.spacing_z             256
-_em_map.cell_a                271.36
-_em_map.cell_b                271.36
-_em_map.cell_c                271.36
-_em_map.cell_alpha            90.0
-_em_map.cell_beta             90.0
-_em_map.cell_gamma            90.0
-_em_map.axis_order_fast       X
-_em_map.axis_order_medium     Y
-_em_map.axis_order_slow       Z
-_em_map.statistics_minimum    -0.10788548
-_em_map.statistics_maximum    0.22688344
-_em_map.statistics_average    0.00001294190
-_em_map.statistics_std        0.0077065425
-_em_map.pixel_spacing_x       1.06
-_em_map.pixel_spacing_y       1.06
-_em_map.pixel_spacing_z       1.06
-_em_map.contour_level         0.018
-_em_map.contour_level_source  EMDB
-_em_map.label                 ::::EMDATABANK.org::::EMD-0001::::
-_em_map.details               .
+_em_euler_angle_assignment.id    1
+_em_euler_angle_assignment.type  "MAXIMUM LIKELIHOOD"
 #
 _em_3d_fitting.entry_id         .
 _em_3d_fitting.pdb_chain_id     .

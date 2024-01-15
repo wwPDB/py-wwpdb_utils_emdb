@@ -153,7 +153,7 @@ class CifEMDBTranslator(object):
         EM_IMAGE_RECORDING = "em_image_recording"
         EM_OBSOLETE = "em_obsolete"
         EM_PARTICLE_SELECTION = "em_particle_selection"
-        EM_ENTITY_ASSEMBLY_RECOMBINANT = "em_entity_assembly_recombinan"
+        EM_ENTITY_ASSEMBLY_RECOMBINANT = "em_entity_assembly_recombinant"
         EM_FOCUSED_ION_BEAM = "em_focused_ion_beam"
         EM_ULTRAMICROTOMY = "em_ultramicrotomy"
         EM_SHADOWING = "em_shadowing"
@@ -3598,7 +3598,7 @@ class CifEMDBTranslator(object):
 
                 SUPRAMOLECULE are all map entries. Cif category _em_entity_assembly:
                 source molecule: em_entity_assembly_naturalsource - should always be present.
-                if _em_entity_assembly.source = RECOMBINANT;  then get expression system from _em_entity_assembly_recombinan
+                if _em_entity_assembly.source = RECOMBINANT;  then get expression system from _em_entity_assembly_recombinant
 
                 MACROMOLECULE
 
@@ -3621,7 +3621,7 @@ class CifEMDBTranslator(object):
                     src = get_cif_value("source", const.EM_ENTITY_ASSEMBLY, cif_cat_in)
                     if src == "RECOMBINANT":
                         if src_dicts.get("rec_exp_dict_in", None) is None:
-                            txt = u"(_em_entity_assembly_recombinan) category missing for creating recombinant expression for the map and model supramolecule entry (%s)." % ent_id_in
+                            txt = u"(_em_entity_assembly_recombinant) category missing for creating recombinant expression for the map and model supramolecule entry (%s)." % ent_id_in
                             self.current_entry_log.warn_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt))
                             self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
                         else:
@@ -3670,29 +3670,29 @@ class CifEMDBTranslator(object):
                     """
                     XSD: <xs:attribute name="database"> has
                     the value of "NCBI"
-                    CIF: _em_entity_assembly_recombinan.ncbi_tax_id
+                    CIF: _em_entity_assembly_recombinant.ncbi_tax_id
                     """
                     set_cif_value(r_exp.set_database, "ncbi_tax_id", const.EM_ENTITY_ASSEMBLY_RECOMBINANT, cif_list=rec_exp_in, cif_value="NCBI")
 
                 def set_el_recombinant_organism(r_exp, rec_exp_in):
                     """
                     XSD: <xs:element name="recombinant_organism" type="organism_type">
-                    CIF: _em_entity_assembly_recombinan.organism 'Escherichia coli'
+                    CIF: _em_entity_assembly_recombinant.organism 'Escherichia coli'
                     """
                     rec_exp_dict = dict(rec_exp_in)
-                    if "_em_entity_assembly_recombinan.ncbi_tax_id" in rec_exp_dict:
+                    if "_em_entity_assembly_recombinant.ncbi_tax_id" in rec_exp_dict:
                         tax_id = get_cif_value("ncbi_tax_id", const.EM_ENTITY_ASSEMBLY_RECOMBINANT, rec_exp_in)
-                        if tax_id is not None or tax_id.isspace():
+                        if tax_id is not None: #it is an attribute value so isspace not needed or tax_id.isspace():
                             set_cif_value(
                                 r_exp.set_recombinant_organism, "organism", const.EM_ENTITY_ASSEMBLY_RECOMBINANT, cif_list=rec_exp_in, constructor=emdb.organism_type, ncbi=tax_id
                             )
                         else:
-                            txt = u"The value for (_em_entity_assembly_recombinan.ncbi_tax_id) is not given. It is required for setting the recombinant expression organism."
+                            txt = u"The value for (_em_entity_assembly_recombinant.ncbi_tax_id) is not given. It is required for setting the recombinant expression organism."
                             self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt))
                             self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                     elif "_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id" in rec_exp_dict:
                         tax_id = get_cif_value("pdbx_host_org_ncbi_taxonomy_id", const.ENTITY_SRC_GEN, rec_exp_in)
-                        if tax_id is not None or tax_id.isspace():
+                        if tax_id is not None:# or tax_id.isspace():
                             set_cif_value(
                                 r_exp.set_recombinant_organism,
                                 "pdbx_host_org_scientific_name",
@@ -3716,21 +3716,21 @@ class CifEMDBTranslator(object):
                 def set_el_recombinant_strain(r_exp, rec_exp_in):
                     """
                     XSD: <xs:element name="recombinant_strain" type="xs:token" minOccurs="0"/>
-                    CIF: _em_entity_assembly_recombinan.strain ?
+                    CIF: _em_entity_assembly_recombinant.strain ?
                     """
                     set_cif_value(r_exp.set_recombinant_strain, "strain", const.EM_ENTITY_ASSEMBLY_RECOMBINANT, cif_list=rec_exp_in)
 
                 def set_el_recombinant_cell(r_exp, rec_exp_in):
                     """
                     XSD: <xs:element name="recombinant_cell" type="xs:token" minOccurs="0">
-                    CIF: _em_entity_assembly_recombinan.cell ?
+                    CIF: _em_entity_assembly_recombinant.cell ?
                     """
                     set_cif_value(r_exp.set_recombinant_cell, "cell", const.EM_ENTITY_ASSEMBLY_RECOMBINANT, cif_list=rec_exp_in)
 
                 def set_el_recombinant_plasmid(r_exp, rec_exp_in):
                     """
                     XSD: <xs:element name="recombinant_plasmid" type="xs:token" minOccurs="0"/>
-                    CIF: _em_entity_assembly_recombinan.plasmid 'pHis-Parallel 1'
+                    CIF: _em_entity_assembly_recombinant.plasmid 'pHis-Parallel 1'
                     """
                     set_cif_value(r_exp.set_recombinant_plasmid, "plasmid", const.EM_ENTITY_ASSEMBLY_RECOMBINANT, cif_list=rec_exp_in)
 

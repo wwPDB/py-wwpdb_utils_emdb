@@ -312,22 +312,39 @@ class EMDBMetadata(object):
                 either_one = re.split('A\$|\$A', xslice)
                 other_slices = self.spliting_anchors(either_one)
                 for sl in other_slices:
-                    tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
-                    rtags = tags.replace("recombinant_expression", "natural_source")
-                    nat_source = root.findall(rtags)
-                    re_source = root.findall(tags)
-                    for element in root.findall(tags):
-                        selem = element.find(item)
-                        svalue = selem.text
-                        if "recombinant_expression" in tags:
-                            svalue = "man"
-                        elif svalue == "syntheic construct":
-                            svalue = "syn"
-                        self.mappings_in.map_xml_value_to_code(str(svalue), slice)
-                    if nat_source and not re_source:
-                        for elem in nat_source:
-                            if elem:
-                                self.mappings_in.map_xml_value_to_code("nat", slice)
+                    tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
+                    item, att = items.rsplit('+', 1)
+                    parent_element = root.findall(parent_elem)
+                    xpath_expression, nelem, relem = '', '', ''
+                    if parent_element:
+                        for par_attrib in parent_element:
+                            target_id = par_attrib.get(att)
+                            if "supramolecule" in parent_elem:
+                                npath_expression = parent_elem+'[@supramolecule_id="{}"]/natural_source/organism'.format(target_id)
+                                nelem = root.find(npath_expression)
+                                rpath_expression = parent_elem+'[@supramolecule_id="{}"]/recombinant_expression/recombinant_organism'.format(target_id)
+                                relem = root.find(rpath_expression)
+
+                            elif "macromolecule" in parent_elem:
+                                npath_expression = parent_elem+'[@macromolecule_id="{}"]/natural_source/organism'.format(target_id)
+                                nelem = root.find(npath_expression)
+                                rpath_expression = parent_elem+'[@macromolecule_id="{}"]/recombinant_expression/recombinant_organism'.format(target_id)
+                                relem = root.find(rpath_expression)
+
+                            if nelem is None and relem is None:
+                                self.mappings_in.map_xml_value_to_code('', slice)
+                            else:
+                                if relem is not None:
+                                    svalue = relem.text
+                                    if svalue == "synthetic construct":
+                                        svalue = "syn"
+                                    else:
+                                        svalue = "man"
+                                    self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+                                elif nelem and not relem:
+                                    for elem in nelem:
+                                        if elem:
+                                            self.mappings_in.map_xml_value_to_code("nat", slice)
 
         if "%" in xml_part:
             index = 0

@@ -41,6 +41,7 @@ class Mappings(object):
         M = 'M'
         E = 'E'
         U = 'U'
+        S = 'S'
 
     def __init__(self):
         """
@@ -338,7 +339,7 @@ class Mappings(object):
                     logic_keys = a_logic_value.get(self.Const.ITEMS)
                     logic_values = a_logic_value.get(self.Const.DATA)
                     logic_k, logic_v = '', ''
-                    list_values = []
+                    list_values, source_val = [], []
                     list_item = []
                     for logic_value in logic_values:
                         if '$' in logic_value:
@@ -380,6 +381,17 @@ class Mappings(object):
                                 list_values.append("N")
                             elif xml_value == "false":
                                 list_values.append("Y")
+                        if logic_value == self.Const.S:
+                            for val in xml_value:
+                                if val == '':
+                                    source_val.append('')
+                                if val == "nat":
+                                    source_val.append("NATURAL")
+                                if val == "man":
+                                    source_val.append("RECOMBINANT")
+                                if val == "syn":
+                                    source_val.append("SYNTHETIC")
+                            list_values = [source_val]
                         if logic_value == self.Const.E:
                             modified_names = [f"{n.split(' ', 1)[0]}, {'.'.join(n.split(' ', 1)[1])}." if ' ' in n else n for n in xml_value]
                             list_values.append(modified_names)
