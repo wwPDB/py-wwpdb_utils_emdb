@@ -156,7 +156,7 @@ _em_entity_assembly_molwt.entity_assembly_id  1
 _em_entity_assembly_molwt.id                  1
 _em_entity_assembly_molwt.units               MDa
 _em_entity_assembly_molwt.experimental_flag   NO
-_em_entity_assembly_molwt.value               490000.0
+_em_entity_assembly_molwt.value               0.490
 _em_entity_assembly_molwt.method              .
 #
 loop_
@@ -207,13 +207,13 @@ _entity.pdbx_mutation
 _entity.details
 _entity.formula_weight
 _entity.pdbx_formula_weight_exptl_method
-1  polymer  man  "DNA-directed RNA polymerase subunit alpha"                                                                                                                   2  2.7.7.6  ?     .   36558.68  .  
-2  polymer  man  "DNA-directed RNA polymerase subunit beta"                                                                                                                    1  2.7.7.6  ?     .  150820.88  .  
-3  polymer  man  "DNA-directed RNA polymerase subunit beta'"                                                                                                                   1  2.7.7.6  ?     .  155366.78  .  
-4  polymer  man  "DNA-directed RNA polymerase subunit omega"                                                                                                                   1  2.7.7.6  ?     .   10249.55  .  
-5  polymer  man  "RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor"  1  2.7.7.6  ?     .   54723.08  .  
-6  polymer  nat  "nifH promoter template DNA"                                                                                                                                  1  .        ?     .   19404.41  .  
-7  polymer  nat  "nifH promoter non-template DNA"                                                                                                                              1  .        ?     .   19487.44  .  
+1  polymer  man  "DNA-directed RNA polymerase subunit alpha"                                                                                                                   2  2.7.7.6  ?     .    36558.68  .  
+2  polymer  man  "DNA-directed RNA polymerase subunit beta"                                                                                                                    1  2.7.7.6  ?     .  150820.875  .  
+3  polymer  man  "DNA-directed RNA polymerase subunit beta'"                                                                                                                   1  2.7.7.6  ?     .  155366.781  .  
+4  polymer  man  "DNA-directed RNA polymerase subunit omega"                                                                                                                   1  2.7.7.6  ?     .   10249.547  .  
+5  polymer  man  "RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor"  1  2.7.7.6  ?     .   54723.082  .  
+6  polymer  nat  "nifH promoter template DNA"                                                                                                                                  1  .        ?     .    19404.41  .  
+7  polymer  nat  "nifH promoter non-template DNA"                                                                                                                              1  .        ?     .   19487.436  .  
 #
 loop_
 _entity_poly.entity_id

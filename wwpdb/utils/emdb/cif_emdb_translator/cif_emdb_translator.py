@@ -4832,7 +4832,7 @@ class CifEMDBTranslator(object):
                                 cif_list=ent_in,
                                 constructor=emdb.theoreticalType,
                                 units=const.U_MDA,
-                                fmt=lambda x: float(x) * const.DA2MDA,
+                                fmt=lambda x:round((float(x) * const.DA2MDA), 9),
                             )
                             return True
                         else:

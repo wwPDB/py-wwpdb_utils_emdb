@@ -308,7 +308,7 @@ class EMDBMetadata(object):
                                     if "supramolecule_list" in tags:
                                         self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
                                     else:
-                                        svalue = round(float(selem.text) * 1e6, 2)
+                                        svalue = round(float(selem.text) * 1e6, 3)
                                         self.mappings_in.map_xml_value_to_code(str(svalue), slice)
 
 
