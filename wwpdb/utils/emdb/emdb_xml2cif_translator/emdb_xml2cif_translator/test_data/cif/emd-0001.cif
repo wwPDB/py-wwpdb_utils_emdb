@@ -374,7 +374,7 @@ _em_vitrification.cryogen_name          ETHANE
 _em_vitrification.humidity              95
 _em_vitrification.chamber_temperature   277
 _em_vitrification.instrument            "FEI VITROBOT MARK IV"
-_em_vitrification.details               None
+_em_vitrification.details               .
 _em_vitrification.timed_resolved_state  .
 _em_vitrification.method                .
 #

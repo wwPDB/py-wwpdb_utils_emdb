@@ -233,6 +233,8 @@ class EMDBMetadata(object):
                         else:
                             sub_elem = element.find(item)
                             sub_elements = '' if sub_elem is None else str(sub_elem.text)
+                            if sub_elements == "None":
+                                sub_elements = ''
                         self.mappings_in.map_xml_value_to_code(sub_elements, slice)
                 else:
                     if find_parent_elem:

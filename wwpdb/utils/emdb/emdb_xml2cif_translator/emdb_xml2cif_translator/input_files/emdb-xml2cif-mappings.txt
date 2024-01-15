@@ -295,7 +295,7 @@ N:emd.structure_determination_list.structure_determination.S$singleparticle_proc
 emd.map.$Ifile em_map.id.XML_VALUE
 emd.map@format em_map.format.XML_VALUE
 emd.map@size_kbytes em_map.size_kb.XML_VALUE
-##emd.map.file em_map.type.H
+emd.map.file em_map.type.H
 emd.map.file em_map.file.XML_VALUE
 emd.map.symmetry.space_group em_map.symmetry_space_group.XML_VALUE
 emd.map.data_type em_map.data_type.XML_VALUE
