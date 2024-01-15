@@ -305,8 +305,11 @@ class EMDBMetadata(object):
                             else:
                                 matches = ["experimental", "theoretical"]
                                 if any(x in slice for x in matches):
-                                    svalue = round(float(selem.text) * 1e6, 2)
-                                    self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+                                    if "supramolecule_list" in tags:
+                                        self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
+                                    else:
+                                        svalue = round(float(selem.text) * 1e6, 2)
+                                        self.mappings_in.map_xml_value_to_code(str(svalue), slice)
 
 
             if 'A$' in slice:

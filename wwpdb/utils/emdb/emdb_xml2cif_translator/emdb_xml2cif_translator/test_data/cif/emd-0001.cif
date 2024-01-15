@@ -156,7 +156,7 @@ _em_entity_assembly_molwt.entity_assembly_id  1
 _em_entity_assembly_molwt.id                  1
 _em_entity_assembly_molwt.units               MDa
 _em_entity_assembly_molwt.experimental_flag   NO
-_em_entity_assembly_molwt.value               490000.0
+_em_entity_assembly_molwt.value               0.490
 _em_entity_assembly_molwt.method              .
 #
 loop_

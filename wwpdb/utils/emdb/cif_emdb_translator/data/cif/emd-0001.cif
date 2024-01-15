@@ -374,7 +374,7 @@ _em_vitrification.cryogen_name          ETHANE
 _em_vitrification.humidity              95
 _em_vitrification.chamber_temperature   277
 _em_vitrification.instrument            "FEI VITROBOT MARK IV"
-_em_vitrification.details               None
+_em_vitrification.details               .
 _em_vitrification.timed_resolved_state  .
 _em_vitrification.method                .
 #
@@ -479,7 +479,7 @@ _em_euler_angle_assignment.image_processing_id
 _em_euler_angle_assignment.type
 _em_euler_angle_assignment.order
 1  1  "MAXIMUM LIKELIHOOD"  intial  
-2  1  "MAXIMUM LIKELIHOOD"  final
+1  1  "MAXIMUM LIKELIHOOD"  final   
 #
 _em_3d_fitting.entry_id         .
 _em_3d_fitting.pdb_chain_id     .
