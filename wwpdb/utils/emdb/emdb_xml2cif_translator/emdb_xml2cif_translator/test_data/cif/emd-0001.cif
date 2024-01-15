@@ -2,6 +2,9 @@ data_emd_0001
 
 _entry.id  EMD-0001
 #
+_database_2.database_id    EMDB
+_database_2.database_code  EMD-0001
+#
 _em_map.entry_id              EMD-0001
 _em_map.id                    1
 _em_map.format                CCP4
@@ -38,9 +41,6 @@ _em_map.contour_level         0.018
 _em_map.contour_level_source  EMDB
 _em_map.label                 ::::EMDATABANK.org::::EMD-0001::::
 _em_map.details               .
-#
-_database_2.database_id    EMDB
-_database_2.database_code  EMD-0001
 #
 _em_admin.last_update          2020-11-25
 _em_admin.current_status       REL
@@ -212,6 +212,8 @@ _entity.pdbx_formula_weight_exptl_method
 3  polymer  man  "DNA-directed RNA polymerase subunit beta'"                                                                                                                   1  2.7.7.6  ?     .  155366.78  .  
 4  polymer  man  "DNA-directed RNA polymerase subunit omega"                                                                                                                   1  2.7.7.6  ?     .   10249.55  .  
 5  polymer  man  "RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor,RNA polymerase sigma-54 factor"  1  2.7.7.6  ?     .   54723.08  .  
+6  polymer  nat  "nifH promoter template DNA"                                                                                                                                  1  .        ?     .   19404.41  .  
+7  polymer  nat  "nifH promoter non-template DNA"                                                                                                                              1  .        ?     .   19487.44  .  
 #
 loop_
 _entity_poly.entity_id
@@ -471,8 +473,13 @@ _em_image_processing.id                  1
 _em_image_processing.image_recording_id  1
 _em_image_processing.details             .
 #
-_em_euler_angle_assignment.id    1
-_em_euler_angle_assignment.type  "MAXIMUM LIKELIHOOD"
+loop_
+_em_euler_angle_assignment.id
+_em_euler_angle_assignment.image_processing_id
+_em_euler_angle_assignment.type
+_em_euler_angle_assignment.order
+1  1  "MAXIMUM LIKELIHOOD"  intial  
+1  1  "MAXIMUM LIKELIHOOD"  final   
 #
 _em_3d_fitting.entry_id         .
 _em_3d_fitting.pdb_chain_id     .

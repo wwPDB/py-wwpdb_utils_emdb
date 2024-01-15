@@ -219,7 +219,7 @@ class EMDBMetadata(object):
                     attrib_val = el.get(attrib_key)
                     self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
 
-            if not any(char in xml_part for char in ['@', '$I', 'R$', '>', '<', 'E$', 'A$', '%', '+']):
+            if not any(char in xml_part for char in ['@', '$I', 'R$', '>', '<', 'E$', 'A$', '%', '+', 'T$']):
                 if '&' in slice:
                     tags, item = elem.rsplit('&', 1)
                 else:
@@ -239,7 +239,7 @@ class EMDBMetadata(object):
                         for l in range(len(find_parent_elem)):
                             self.mappings_in.map_xml_value_to_code('', slice)
 
-            if any(char in slice for char in ['$I', 'R$']) and not 'E$' in slice:
+            if any(char in slice for char in ['$I', 'R$']) and not 'E$' in slice and not 'T$' in slice:
                 if '$I' in slice:
                     tags, item = elem.split("$I", 1)
                 elif 'R$' in slice:
@@ -286,7 +286,6 @@ class EMDBMetadata(object):
                     self.primary_and_reference_ids(slice, root, tags, e_item, att)
                 else:
                     for element in root.findall(tags):
-                        sub_elem = element.findall(item)
                         selem = element.find(item)
                         if '&' in slice:
                             sub_elements = element.get(item)
@@ -309,9 +308,9 @@ class EMDBMetadata(object):
 
 
             if 'A$' in slice:
-                either_one = re.split('A\$|\$A', xslice)
-                other_slices = self.spliting_anchors(either_one)
-                for sl in other_slices:
+                one_sl = re.split('A\$|\$A', xslice)
+                all_sl = self.spliting_anchors(one_sl)
+                for sl in all_sl:
                     tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
                     item, att = items.rsplit('+', 1)
                     parent_element = root.findall(parent_elem)
@@ -324,7 +323,6 @@ class EMDBMetadata(object):
                                 nelem = root.find(npath_expression)
                                 rpath_expression = parent_elem+'[@supramolecule_id="{}"]/recombinant_expression/recombinant_organism'.format(target_id)
                                 relem = root.find(rpath_expression)
-
                             elif "macromolecule" in parent_elem:
                                 npath_expression = parent_elem+'[@macromolecule_id="{}"]/natural_source/organism'.format(target_id)
                                 nelem = root.find(npath_expression)
@@ -341,10 +339,32 @@ class EMDBMetadata(object):
                                     else:
                                         svalue = "man"
                                     self.mappings_in.map_xml_value_to_code(str(svalue), slice)
-                                elif nelem and not relem:
-                                    for elem in nelem:
-                                        if elem:
-                                            self.mappings_in.map_xml_value_to_code("nat", slice)
+                                elif nelem is not None and relem is None:
+                                    self.mappings_in.map_xml_value_to_code("nat", slice)
+
+            if 'T$' in slice:
+                one_sl = re.split('T\$|\$T', xslice)
+                all_sl = self.spliting_anchors(one_sl)
+                for sl in all_sl:
+                    if "$I" in sl:
+                        tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit('$I', 1)
+                    elif 'R$' in sl:
+                        tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit('R$', 1)
+                        att, items = item.split('|', 1)
+                    else:
+                        tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
+                    for elem in root.findall(tags):
+                        selem = elem.find(items)
+                        if '*' in items:
+                            if "intial" in items:
+                                self.mappings_in.map_xml_value_to_code("intial", slice)
+                            elif "final" in items:
+                                self.mappings_in.map_xml_value_to_code("final", slice)
+                        elif "$I" in slice or 'R$' in slice:
+                            self.primary_and_reference_ids(slice, root, tags, items, att)
+                        else:
+                            if selem is not None:
+                               self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
 
         if "%" in xml_part:
             index = 0
@@ -356,7 +376,7 @@ class EMDBMetadata(object):
                 self.mappings_in.map_xml_value_to_code(macro_sublist, macro_slice)
 
 
-    def primary_and_reference_ids(self, slice, root, tags, e_item, att):
+    def primary_and_reference_ids(self, slice, root, tags, e_item, att=None):
         index = 0
         if not isinstance(e_item, list):
             list_item = [e_item]
