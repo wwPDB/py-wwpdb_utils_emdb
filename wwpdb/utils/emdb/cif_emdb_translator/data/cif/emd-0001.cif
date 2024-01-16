@@ -481,6 +481,11 @@ _em_3d_reconstruction.resolution_method    "FSC 0.143 CUT-OFF"
 _em_3d_reconstruction.num_particles        79678
 _em_3d_reconstruction.symmetry_type        POINT
 #
+_em_start_model.image_processing_id  1
+_em_start_model.id                   1
+_em_start_model.pdb_id               6GFW
+_em_start_model.type                 "PDB ENTRY"
+#
 loop_
 _em_euler_angle_assignment.id
 _em_euler_angle_assignment.image_processing_id
