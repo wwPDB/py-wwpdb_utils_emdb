@@ -491,8 +491,8 @@ _em_euler_angle_assignment.id
 _em_euler_angle_assignment.image_processing_id
 _em_euler_angle_assignment.type
 _em_euler_angle_assignment.order
-1  1  "MAXIMUM LIKELIHOOD"  intial  
-1  1  "MAXIMUM LIKELIHOOD"  final   
+1  1  "MAXIMUM LIKELIHOOD"  INITIAL  
+1  1  "MAXIMUM LIKELIHOOD"  FINAL    
 #
 _em_single_particle_entity.point_symmetry       C1
 _em_single_particle_entity.id                   1

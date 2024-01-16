@@ -398,9 +398,9 @@ class EMDBMetadata(object):
                         selem = elem.find(items)
                         if '*' in items:
                             if "intial" in items:
-                                self.mappings_in.map_xml_value_to_code("intial", slice)
+                                self.mappings_in.map_xml_value_to_code("INITIAL", slice)
                             elif "final" in items:
-                                self.mappings_in.map_xml_value_to_code("final", slice)
+                                self.mappings_in.map_xml_value_to_code("FINAL", slice)
                         elif "$I" in slice or 'R$' in slice:
                             self.primary_and_reference_ids(slice, root, tags, items, att)
                         else:
