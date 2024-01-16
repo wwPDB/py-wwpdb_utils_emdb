@@ -9,9 +9,10 @@ _em_map.entry_id              EMD-0001
 _em_map.id                    1
 _em_map.format                CCP4
 _em_map.size_kb               67109
+_em_map.type                  "primary map"
 _em_map.file                  emd_0001.map.gz
 _em_map.symmetry_space_group  1
-_em_map.data_type             "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)"
+_em_map.data_type             "Image stored as floating point number (4 bytes)"
 _em_map.dimensions_col        256
 _em_map.dimensions_row        256
 _em_map.dimensions_sec        256

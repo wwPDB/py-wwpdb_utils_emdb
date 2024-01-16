@@ -84,7 +84,7 @@ class EMDBMetadata(object):
                         if ':' in xml_part:
                             xml_part = xml_part.split(":")[1]
 
-                        if '@' in xml_part and 'S$' not in xml_part:
+                        if '@' in xml_part and 'S$' not in xml_part and not 'H$' in xml_part:
                             xml_elem = xml_part.rsplit('@', 1)
                             if not '.' in xml_elem[0]:
                                 for attrib_key, attrib_val in root.attrib.items():
@@ -102,6 +102,23 @@ class EMDBMetadata(object):
                             self.multiple_same_element(root, xml_part)
                         elif 'S$' in xml_part:
                             self.substitution_groups(root, xml_part)
+                        elif 'H$' in xml_part:
+                            xml_elem, item = xml_part.replace("H$", '').rsplit(".", 1)
+                            map_type = ''
+                            rtags = ['map', 'interpretation/half_map_list/half_map', 'interpretation/additional_map_list/additional_map', 'interpretation/segmentation_list/segmentation/mask_details']
+                            for re_tags in rtags:
+                                for elem in root.findall(re_tags):
+                                    sub_elem = elem.find(item)
+                                    if sub_elem is not None:
+                                        if re_tags == "map":
+                                            map_type = "primary map"
+                                        elif "half_map" in re_tags:
+                                            map_type = "half map"
+                                        elif "additional_map" in re_tags:
+                                            map_type = "additional map"
+                                        elif "mask" in re_tags:
+                                            map_type = "mask"
+                                        self.mappings_in.map_xml_value_to_code(map_type, xml_part)
                         else:
                             elem = xml_part.split(".", 1)[1].replace('.', '/')
                             tags, item = elem.rsplit('/', 1)
@@ -219,7 +236,7 @@ class EMDBMetadata(object):
                     attrib_val = el.get(attrib_key)
                     self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
 
-            if not any(char in xml_part for char in ['@', '$I', 'R$', '>', '<', 'E$', 'A$', '%', '+', 'T$']):
+            if not any(char in xml_part for char in ['@', '$I', 'R$', '>', '<', 'E$', 'A$', '%', '+', 'T$', 'H$']):
                 if '&' in slice:
                     tags, item = elem.rsplit('&', 1)
                 else:
@@ -241,7 +258,7 @@ class EMDBMetadata(object):
                         for l in range(len(find_parent_elem)):
                             self.mappings_in.map_xml_value_to_code('', slice)
 
-            if any(char in slice for char in ['$I', 'R$']) and not 'E$' in slice and not 'T$' in slice:
+            if any(char in slice for char in ['$I', 'R$']) and not any(char in slice for char in ['E$', 'A$', 'T$', 'H$']):
                 if '$I' in slice:
                     tags, item = elem.split("$I", 1)
                 elif 'R$' in slice:

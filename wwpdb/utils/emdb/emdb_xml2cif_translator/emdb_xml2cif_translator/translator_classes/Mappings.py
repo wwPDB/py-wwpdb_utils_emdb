@@ -355,6 +355,8 @@ class Mappings(object):
                                     doi_value = next((item['DOI'] for item in list_values if 'DOI' in item), None)
                                     new_doi = doi_value.replace('doi:', '')
                                     [entry.update({'DOI': new_doi}) for entry in list_values if 'DOI' in entry]
+                                if list_values[0] == "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)":
+                                    list_values = [original_string.capitalize() for original_string in list_values]
                         if logic_value == self.Const.U:
                             if xml_value == "twoDArray":
                                 xml_value = "2D ARRAY"

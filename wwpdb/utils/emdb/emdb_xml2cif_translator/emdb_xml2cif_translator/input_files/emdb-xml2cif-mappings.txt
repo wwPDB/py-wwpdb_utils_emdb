@@ -3,7 +3,7 @@
 ### 8. R$ referral mmcif category-item'|'to the specific mmcif category-item' 9. % making a list for cif file from all same sub-element (should be used along
 ### with * to mention the attribute name that needs to break down the list) 10. > for defining the supra and macro type with respect to the element name 11. M$ multiply the same value several times
 ### 12. < for defining the macromolecule entity_poly.type 13. E$$E either one of the elements present 14. ? to write a boolean when either one is present 15. A$$A multiple elements are present
-### 16. U$ to have a different dictionary key while mapping 17. E for modifiying author's name to the cif format 18. S for em_entity_assembly.source
+### 16. U$ to have a different dictionary key while mapping 17. E for modifiying author's name to the cif format 18. S for em_entity_assembly.source 18. H$ for em_map.type
 
 emd@emdb_id entry.id.XML_VALUE database_2.database_id.EMDB database_2.database_code.XML_VALUE em_map.entry_id.XML_VALUE
 
@@ -295,10 +295,10 @@ N:emd.structure_determination_list.structure_determination.S$singleparticle_proc
 emd.map.$Ifile em_map.id.XML_VALUE
 emd.map@format em_map.format.XML_VALUE
 emd.map@size_kbytes em_map.size_kb.XML_VALUE
-emd.map.file em_map.type.H
+emd.H$map.file em_map.type.XML_VALUE
 emd.map.file em_map.file.XML_VALUE
 emd.map.symmetry.space_group em_map.symmetry_space_group.XML_VALUE
-emd.map.data_type em_map.data_type.XML_VALUE
+md.map.data_type em_map.data_type.XML_VALUE
 emd.map.dimensions.col em_map.dimensions_col.XML_VALUE
 emd.map.dimensions.row em_map.dimensions_row.XML_VALUE
 emd.map.dimensions.sec em_map.dimensions_sec.XML_VALUE
