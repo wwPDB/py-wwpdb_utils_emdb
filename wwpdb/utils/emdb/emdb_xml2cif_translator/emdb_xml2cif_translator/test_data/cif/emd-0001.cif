@@ -8,7 +8,7 @@ _database_2.database_code  EMD-0001
 _em_map.entry_id              EMD-0001
 _em_map.id                    1
 _em_map.format                CCP4
-_em_map.size_kb               67109
+_em_map.size_kb               67109000.0
 _em_map.type                  "primary map"
 _em_map.file                  emd_0001.map.gz
 _em_map.symmetry_space_group  1

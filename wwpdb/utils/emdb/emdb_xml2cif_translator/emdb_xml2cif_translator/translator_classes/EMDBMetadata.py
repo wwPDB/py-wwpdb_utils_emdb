@@ -84,7 +84,7 @@ class EMDBMetadata(object):
                         if ':' in xml_part:
                             xml_part = xml_part.split(":")[1]
 
-                        if '@' in xml_part and 'S$' not in xml_part and not 'H$' in xml_part:
+                        if '@' in xml_part and all(keyword not in xml_part for keyword in ['S$', 'H$', '^']):
                             xml_elem = xml_part.rsplit('@', 1)
                             if not '.' in xml_elem[0]:
                                 for attrib_key, attrib_val in root.attrib.items():
@@ -97,7 +97,10 @@ class EMDBMetadata(object):
                                 if el:
                                     for at in el:
                                         attrib_val = at.get(attrib_key)
-                                        self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, at.text)
+                                        if attrib_key == "size_kbytes":
+                                            self.mappings_in.map_xml_value_to_code(str(float(attrib_val)*10e2), xml_part, at.text)
+                                        else:
+                                            self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, at.text)
                         elif '^' in xml_part:
                             self.multiple_same_element(root, xml_part)
                         elif 'S$' in xml_part:
