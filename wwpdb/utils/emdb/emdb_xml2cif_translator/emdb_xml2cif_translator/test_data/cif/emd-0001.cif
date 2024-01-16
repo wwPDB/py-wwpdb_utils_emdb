@@ -474,6 +474,13 @@ _em_image_processing.id                  1
 _em_image_processing.image_recording_id  1
 _em_image_processing.details             .
 #
+_em_3d_reconstruction.image_processing_id  1
+_em_3d_reconstruction.id                   1
+_em_3d_reconstruction.resolution           3.4
+_em_3d_reconstruction.resolution_method    "FSC 0.143 CUT-OFF"
+_em_3d_reconstruction.num_particles        79678
+_em_3d_reconstruction.symmetry_type        POINT
+#
 loop_
 _em_euler_angle_assignment.id
 _em_euler_angle_assignment.image_processing_id
@@ -481,6 +488,10 @@ _em_euler_angle_assignment.type
 _em_euler_angle_assignment.order
 1  1  "MAXIMUM LIKELIHOOD"  intial  
 1  1  "MAXIMUM LIKELIHOOD"  final   
+#
+_em_single_particle_entity.point_symmetry       C1
+_em_single_particle_entity.id                   1
+_em_single_particle_entity.image_processing_id  1
 #
 _em_3d_fitting.entry_id         .
 _em_3d_fitting.pdb_chain_id     .

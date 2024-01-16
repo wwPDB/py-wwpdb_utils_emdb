@@ -84,7 +84,7 @@ class EMDBMetadata(object):
                         if ':' in xml_part:
                             xml_part = xml_part.split(":")[1]
 
-                        if '@' in xml_part and all(keyword not in xml_part for keyword in ['S$', 'H$', '^']):
+                        if '@' in xml_part and any(keyword not in xml_part for keyword in ['S$', 'H$', '^']):
                             xml_elem = xml_part.rsplit('@', 1)
                             if not '.' in xml_elem[0]:
                                 for attrib_key, attrib_val in root.attrib.items():
@@ -98,7 +98,7 @@ class EMDBMetadata(object):
                                     for at in el:
                                         attrib_val = at.get(attrib_key)
                                         if attrib_key == "size_kbytes":
-                                            self.mappings_in.map_xml_value_to_code(str(float(attrib_val)*10e2), xml_part, at.text)
+                                            self.mappings_in.map_xml_value_to_code(str(int(attrib_val)*10e2), xml_part, at.text)
                                         else:
                                             self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, at.text)
                         elif '^' in xml_part:
@@ -231,6 +231,22 @@ class EMDBMetadata(object):
                         if se is not None:
                             enantio = "polydeoxyribonucleotide"
                     self.mappings_in.map_xml_value_to_code(enantio, slice)
+
+            if ';' in slice and find_type:
+                svalue = ''
+                tags = xslice.split(".", 1)[1].replace(".", "/").replace(";", '')
+                items = ['space_group', 'point_group', 'helical_parameters']
+                for element in root.findall(tags):
+                    for item in items:
+                        sub_elem = element.find(item)
+                        if sub_elem is not None:
+                            if "space_group" in sub_elem.tag:
+                                svalue = "2D CRYSTAL"
+                            elif "point_group" in sub_elem.tag:
+                                svalue = "POINT"
+                            elif "helical_paramenters" in sub_elem.tag:
+                                svalue = "HELICAL"
+                            self.mappings_in.map_xml_value_to_code(str(svalue), slice)
 
             if '@' in slice:
                 tags, attrib_key = elem.split('@', 1)
