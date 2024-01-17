@@ -1,0 +1,415 @@
+data_emd_1001
+
+_entry.id  EMD-1001
+#
+_database_2.database_id    EMDB
+_database_2.database_code  EMD-1001
+#
+_em_admin.current_status       REL
+_em_admin.details              .
+_em_admin.deposition_site      PDBE
+_em_admin.deposition_date      2002-06-18
+_em_admin.header_release_date  2002-06-20
+_em_admin.map_release_date     .
+_em_admin.obsoleted_date       .
+_em_admin.last_update          2012-12-26
+_em_admin.title                "Real space refinement of acto-myosin structures from sectioned muscle."
+#
+_pdbx_database_status.process_site  PDBE
+_pdbx_database_status.deposit_site  PDBE
+#
+_pdbx_audit_support.ordinal               ?
+_pdbx_audit_support.funding_organization  ?
+_pdbx_audit_support.grant_number          ?
+_pdbx_audit_support.country               ?
+#
+_struct.title  "Real space refinement of acto-myosin structures from sectioned muscle."
+#
+loop_
+_em_author_list.author
+_em_author_list.ordinal
+"Chen, L.F."     1  
+"Blanc, E."      2  
+"Chapman, M.S."  3  
+"Taylor, K.A."   4  
+#
+_citation.unpublished_flag         N
+_citation.id                       primary
+_citation.title                    "Real space refinement of acto-myosin structures from sectioned muscle."
+_citation.journal_full             J.STRUCT.BIOL.
+_citation.journal_abbrev           .
+_citation.country                  .
+_citation.journal_issue            .
+_citation.journal_volume           133
+_citation.page_first               221
+_citation.page_last                232
+_citation.year                     2001
+_citation.language                 .
+_citation.details                  .
+_citation.pdbx_database_id_PubMed  11472093
+_citation.pdbx_database_id_DOI     10.1006/jsbi.2000.4321
+#
+loop_
+_citation_author.citation_id
+_citation_author.name
+_citation_author.ordinal
+primary  "Chen, L.F."     1  
+primary  "Blanc, E."      2  
+primary  "Chapman, M.S."  3  
+primary  "Taylor, K.A."   4  
+#
+_pdbx_database_related.db_name       ?
+_pdbx_database_related.db_id         ?
+_pdbx_database_related.content_type  ?
+_pdbx_database_related.details       ?
+#
+loop_
+_em_db_reference.db_name
+_em_db_reference.access_code
+_em_db_reference.relationship
+_em_db_reference.details
+PDB  1m8q  "IN FRAME"  .  
+PDB  1mvw  "IN FRAME"  .  
+PDB  1o18  "IN FRAME"  .  
+PDB  1o19  "IN FRAME"  .  
+PDB  1o1a  "IN FRAME"  .  
+PDB  1o1b  "IN FRAME"  .  
+PDB  1o1c  "IN FRAME"  .  
+PDB  1o1d  "IN FRAME"  .  
+PDB  1o1e  "IN FRAME"  .  
+PDB  1o1f  "IN FRAME"  .  
+PDB  1o1g  "IN FRAME"  .  
+#
+loop_
+_em_entity_assembly.id
+_em_entity_assembly.assembly_id
+_em_entity_assembly.type
+_em_entity_assembly.source
+_em_entity_assembly.name
+_em_entity_assembly.go_id
+_em_entity_assembly.parent_id
+_em_entity_assembly.entity_id_list
+_em_entity_assembly.details
+   1     1  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thick, myosin-containing filament"                   .  .  .  "Filaments contain more than just myosin"  
+   2     2  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thin, actin-containing filament"                     .  .  .  "filaments contain more than just actin"  
+1000  1000  SAMPLE                             NATURAL  "Rigor insect flight muscle from Lethocerus maximus"  .  .  .  "The sample is a single filament layer cut from myofibrils by ultramicrotomy. The section thickness is ~25 nm. Specimen has been chemically fixed, dehydrated, embedded in Araldite and sectioned with a diamond knife."  
+#
+loop_
+_em_entity_assembly_naturalsource.id
+_em_entity_assembly_naturalsource.entity_assembly_id
+_em_entity_assembly_naturalsource.ncbi_tax_id
+_em_entity_assembly_naturalsource.organism
+_em_entity_assembly_naturalsource.strain
+_em_entity_assembly_naturalsource.details
+_em_entity_assembly_naturalsource.organ
+_em_entity_assembly_naturalsource.tissue
+_em_entity_assembly_naturalsource.cell
+_em_entity_assembly_naturalsource.organelle
+_em_entity_assembly_naturalsource.cellular_location
+.  1  43338  Lethocerus  .  .  .  "Indirect flight muscles"  "muscle fibers"  myofibrils  myofibrils  
+.  2  43338  Lethocerus  .  .  .  "Indirect flight muscles"  "Muscle fibers"  myofibrils  myofibrils  
+#
+_em_entity_assembly_synthetic.ncbi_tax_id        ?
+_em_entity_assembly_synthetic.organism           ?
+_em_entity_assembly_synthetic.strain             ?
+_em_entity_assembly_synthetic.details            ?
+_em_entity_assembly_synthetic.organ              ?
+_em_entity_assembly_synthetic.tissue             ?
+_em_entity_assembly_synthetic.cell               ?
+_em_entity_assembly_synthetic.organelle          ?
+_em_entity_assembly_synthetic.cellular_location  ?
+#
+loop_
+_em_entity_assembly_recombinant.entity_assembly_id
+_em_entity_assembly_recombinant.id
+_em_entity_assembly_recombinant.ncbi_tax_id
+_em_entity_assembly_recombinant.organism
+_em_entity_assembly_recombinant.strain
+_em_entity_assembly_recombinant.cell
+_em_entity_assembly_recombinant.plasmid
+1  .  .  .  .  .  .  
+2  1  .  .  .  .  .  
+#
+_em_virus_shell.entity_assembly_id  ?
+_em_virus_shell.id                  ?
+_em_virus_shell.name                ?
+_em_virus_shell.diameter            ?
+_em_virus_shell.triangulation       ?
+#
+_entity.id                                ?
+_entity.type                              ?
+_entity.src_method                        ?
+_entity.pdbx_description                  ?
+_entity.pdbx_number_of_molecules          ?
+_entity.pdbx_ec                           ?
+_entity.pdbx_mutation                     ?
+_entity.details                           ?
+_entity.formula_weight                    ?
+_entity.pdbx_formula_weight_exptl_method  ?
+#
+_entity_poly.entity_id                 ?
+_entity_poly.type                      ?
+_entity_poly.pdbx_seq_one_letter_code  ?
+#
+_entity_src_nat.entity_id                 ?
+_entity_src_nat.pdbx_organism_scientific  ?
+_entity_src_nat.pdbx_ncbi_taxonomy_id     ?
+_entity_src_nat.strain                    ?
+_entity_src_nat.details                   ?
+_entity_src_nat.pdbx_organ                ?
+_entity_src_nat.tissue                    ?
+_entity_src_nat.pdbx_cell                 ?
+_entity_src_nat.pdbx_organelle            ?
+_entity_src_nat.pdbx_cellular_location    ?
+#
+_entity_src_gen.entity_id                       ?
+_entity_src_gen.pdbx_host_org_scientific_name   ?
+_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id  ?
+_entity_src_gen.gene_src_strain                 ?
+_entity_src_gen.gene_src_cell                   ?
+_entity_src_gen.pdbx_gene_src_plasmid           ?
+#
+_pdbx_entity_src_syn.ncbi_tax_id        ?
+_pdbx_entity_src_syn.organism           ?
+_pdbx_entity_src_syn.strain             ?
+_pdbx_entity_src_syn.details            ?
+_pdbx_entity_src_syn.organ              ?
+_pdbx_entity_src_syn.tissue             ?
+_pdbx_entity_src_syn.cell               ?
+_pdbx_entity_src_syn.organelle          ?
+_pdbx_entity_src_syn.cellular_location  ?
+#
+_pdbx_entity_nonpoly.entity_id  ?
+_pdbx_entity_nonpoly.comp_id    ?
+_pdbx_entity_nonpoly.name       ?
+#
+_em_experiment.id                     1
+_em_experiment.reconstruction_method  TOMOGRAPHY
+_em_experiment.aggregation_state      .
+#
+_em_buffer.specimen_id  1
+_em_buffer.pH           .
+_em_buffer.id           .
+_em_buffer.details      .
+#
+_em_sample_support.specimen_id     1
+_em_sample_support.id              .
+_em_sample_support.grid_type       .
+_em_sample_support.grid_material   .
+_em_sample_support.grid_mesh_size  .
+_em_sample_support.details         .
+#
+_em_specimen.id             1
+_em_specimen.concentration  .
+_em_specimen.details        .
+#
+_em_vitrification.specimen_id           1
+_em_vitrification.id                    1
+_em_vitrification.cryogen_name          NONE
+_em_vitrification.humidity              .
+_em_vitrification.chamber_temperature   .
+_em_vitrification.instrument            .
+_em_vitrification.details               .
+_em_vitrification.timed_resolved_state  .
+_em_vitrification.method                .
+#
+_em_buffer_component.buffer_id            ?
+_em_buffer_component.id                   ?
+_em_buffer_component.concentration        ?
+_em_buffer_component.concentration_units  ?
+_em_buffer_component.formula              ?
+_em_buffer_component.name                 ?
+#
+_em_staining.type      ?
+_em_staining.material  ?
+_em_staining.details   ?
+#
+_em_embedding.material  ?
+_em_embedding.details   ?
+#
+_em_shadowing.material   ?
+_em_shadowing.angle      ?
+_em_shadowing.thickness  ?
+_em_shadowing.details    ?
+#
+_em_imaging.sample_support_id              .
+_em_imaging.id                             1
+_em_imaging.microscope_model               "FEI/PHILIPS EM400"
+_em_imaging.illumination_mode              "FLOOD BEAM"
+_em_imaging.mode                           "BRIGHT FIELD"
+_em_imaging.electron_source                "TUNGSTEN HAIRPIN"
+_em_imaging.accelerating_voltage           100
+_em_imaging.c2_aperture_diameter           .
+_em_imaging.nominal_cs                     .
+_em_imaging.nominal_defocus_min            .
+_em_imaging.calibrated_defocus_min         .
+_em_imaging.nominal_defocus_max            .
+_em_imaging.calibrated_defocus_max         .
+_em_imaging.nominal_magnification          17000.0
+_em_imaging.calibrated_magnification       .
+_em_imaging.specimen_holder_model          "PHILIPS ROTATION HOLDER"
+_em_imaging.cryogen                        .
+_em_imaging.recording_temperature_minimum  25
+_em_imaging.recording_temperature_maximum  25
+_em_imaging.temperature                    25
+_em_imaging.astigmatism                    .
+_em_imaging.electron_beam_tilt_params      .
+_em_imaging.details                        .
+_em_imaging.date                           .
+_em_imaging.tilt_angle_min                 .
+_em_imaging.tilt_angle_max                 .
+#
+_em_support_film.sample_support_id  ?
+_em_support_film.material           ?
+_em_support_film.topology           ?
+_em_support_film.thickness          ?
+#
+_em_grid_pretreatment.sample_support_id  ?
+_em_grid_pretreatment.type               ?
+_em_grid_pretreatment.time               ?
+_em_grid_pretreatment.atmosphere         ?
+_em_grid_pretreatment.pressure           ?
+#
+_em_image_recording.imaging_id                   ?
+_em_image_recording.id                           ?
+_em_image_recording.film_or_detector_model       ?
+_em_image_recording.detector_mode                ?
+_em_image_recording.num_grids_imaged             ?
+_em_image_recording.num_real_images              ?
+_em_image_recording.num_diffraction_images       ?
+_em_image_recording.average_exposure_time        ?
+_em_image_recording.avg_electron_dose_per_image  ?
+_em_image_recording.details                      .
+#
+_em_imaging_optics.phase_plate               ?
+_em_imaging_optics.sph_aberration_corrector  ?
+_em_imaging_optics.chr_aberration_corrector  ?
+_em_imaging_optics.energyfilter_name         ?
+_em_imaging_optics.energyfilter_slit_width   ?
+_em_imaging_optics.energyfilter_lower        ?
+_em_imaging_optics.energyfilter_upper        ?
+_em_imaging_optics.details                   ?
+#
+_em_software.name     ?
+_em_software.version  ?
+_em_software.details  ?
+#
+_em_image_scans.image_recording_id     ?
+_em_image_scans.id                     ?
+_em_image_scans.scanner_model          ?
+_em_image_scans.dimension_width        ?
+_em_image_scans.dimension_height       ?
+_em_image_scans.sampling_interval      ?
+_em_image_scans.used_frames_per_image  .
+#
+_em_image_processing.id                  1
+_em_image_processing.image_recording_id  .
+_em_image_processing.details             
+;Double axis tilt series collected on film. Digitized on
+          PDS       1010M densitometer. Other relevent references K. A.
+          Taylor, M. C.       Reedy, L. Cordova and M. K. Reedy. 3-D
+          structure of insect flight       muscle in rigor from tilted
+          thin sections. Nature 310, 28 5-291       (1984). Hanspeter
+          Winkler and Kenneth A. Taylor. Multivariate       statistical
+          analysis of three-dimensional cross-bridge motifs in
+          insect flight muscle. Ultramicroscopy 77, 141-152 (1999).
+          Chen, Li       Fan, Winkler, Hanspeter, Reedy, Michael K., Ree
+          dy, Mary C. and       Taylor, Kenneth A.. Molecular Modeling
+          of Averaged Rigor       Crossbridges from Tomograms of Insect
+          Flight Muscle. J. Struct.       Biol. 138(2), 92-104 (2002)
+;
+
+#
+_em_3d_reconstruction.image_processing_id  1
+_em_3d_reconstruction.id                   1
+_em_3d_reconstruction.resolution           40.0
+_em_3d_reconstruction.resolution_method    OTHER
+_em_3d_reconstruction.num_particles        30
+_em_3d_reconstruction.symmetry_type        .
+#
+_em_start_model.image_processing_id  1
+_em_start_model.id                   .
+_em_start_model.pdb_id               .
+_em_start_model.type                 .
+#
+loop_
+_em_euler_angle_assignment.id
+_em_euler_angle_assignment.image_processing_id
+_em_euler_angle_assignment.type
+_em_euler_angle_assignment.order
+.  .  .  INITIAL  
+.  .  .  FINAL    
+#
+loop_
+_em_map.id
+_em_map.format
+_em_map.size_kb
+_em_map.type
+_em_map.file
+_em_map.symmetry_space_group
+_em_map.data_type
+_em_map.origin_col
+_em_map.origin_row
+_em_map.origin_sec
+_em_map.pixel_spacing_x
+_em_map.pixel_spacing_y
+_em_map.pixel_spacing_z
+_em_map.cell_a
+_em_map.cell_b
+_em_map.cell_c
+_em_map.cell_alpha
+_em_map.cell_beta
+_em_map.cell_gamma
+_em_map.axis_order_fast
+_em_map.axis_order_medium
+_em_map.axis_order_slow
+_em_map.statistics_minimum
+_em_map.statistics_maximum
+_em_map.statistics_average
+_em_map.statistics_std
+_em_map.contour_level
+_em_map.contour_level_source
+_em_map.label
+ 1  CCP4  42189  "primary map"  emd_1001.map.gz      1  "Image stored as floating point number (4 bytes)"  600  600  30  600  600  30   9280   9280    464    90    90    90  X  Y  Z  -417.992000000000019  366.680000000000007         1.85973  47.791600000000003  81.200000000000003  .  .  
+ 1  CCP4    136  mask           emd_1001_msk_26.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4923182            1.4168506   -0.0060140644           0.6964112                   .  .  .  
+ 2  CCP4    136  mask           emd_1001_msk_1.map   1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5944648            1.1074616    -0.007541597          0.71632415                   .  .  .  
+ 3  CCP4    136  mask           emd_1001_msk_2.map   1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.7258816            1.2866669   -0.0073102424          0.71558625                   .  .  .  
+ 4  CCP4    136  mask           emd_1001_msk_3.map   1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5483093            1.2398646   -0.0034679337          0.71510464                   .  .  .  
+ 5  CCP4    136  mask           emd_1001_msk_4.map   1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z             -2.501652            1.2972634    -0.008869538           0.7108043                   .  .  .  
+ 6  CCP4    136  mask           emd_1001_msk_5.map   1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4358373            1.3425884  -0.00060270604          0.69676816                   .  .  .  
+ 7  CCP4    136  mask           emd_1001_msk_6.map   1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5323744            1.2563564   -0.0036051604          0.70039195                   .  .  .  
+ 8  CCP4    136  mask           emd_1001_msk_7.map   1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4987898            1.1380355    -0.005006318           0.7139458                   .  .  .  
+ 9  CCP4    136  mask           emd_1001_msk_8.map   1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.6747184            1.0895122    -0.003031824           0.7237702                   .  .  .  
+10  CCP4    136  mask           emd_1001_msk_9.map   1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.7482247            1.1234381   -0.0064628804           0.7249305                   .  .  .  
+11  CCP4    136  mask           emd_1001_msk_10.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5993469            1.1787673    -0.004972806          0.70850605                   .  .  .  
+12  CCP4    136  mask           emd_1001_msk_11.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4103546            1.2010442    -0.004846287           0.7027782                   .  .  .  
+13  CCP4    136  mask           emd_1001_msk_12.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5464618            1.1851541   -0.0035916774           0.7222626                   .  .  .  
+14  CCP4    136  mask           emd_1001_msk_13.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z             -2.372035            1.1947367    -0.005957831           0.7072046                   .  .  .  
+15  CCP4    136  mask           emd_1001_msk_14.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.6208508             1.309575   -0.0046354607           0.7117156                   .  .  .  
+16  CCP4    136  mask           emd_1001_msk_15.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5245786            1.1403794    -0.004893605          0.72051364                   .  .  .  
+17  CCP4    136  mask           emd_1001_msk_16.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5550923            1.3233893   -0.0075495755           0.7237952                   .  .  .  
+18  CCP4    136  mask           emd_1001_msk_17.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.3360648            1.1792009    -0.004218508          0.68966633                   .  .  .  
+19  CCP4    136  mask           emd_1001_msk_18.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.6305237            1.5136678    0.0001082411            0.693829                   .  .  .  
+20  CCP4    136  mask           emd_1001_msk_19.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.7865362            1.6329293   -0.0028804576           0.7352475                   .  .  .  
+21  CCP4    136  mask           emd_1001_msk_20.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z             -2.443733            1.3822539   -0.0019926773            0.704275                   .  .  .  
+22  CCP4    136  mask           emd_1001_msk_21.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5086238            1.2634512   -0.0036103243           0.7252106                   .  .  .  
+23  CCP4    136  mask           emd_1001_msk_22.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5961685            1.1959407    0.0010213794           0.6944105                   .  .  .  
+24  CCP4    136  mask           emd_1001_msk_23.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5973077            1.3023932   -0.0048314277           0.7077107                   .  .  .  
+25  CCP4    136  mask           emd_1001_msk_24.map  1  "Image stored as floating point number (4 bytes)"   32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.3478413            1.1841714   -0.0023025929          0.70339763                   .  .  .  
+26  CCP4     35  mask           emd_1001_msk_25.map  1  "Image stored as signed byte"                       32   30  36   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z                   0.0                  1.0     0.047251157          0.21217561                   .  .  .  
+#
+_em_3d_fitting.entry_id         .
+_em_3d_fitting.pdb_chain_id     .
+_em_3d_fitting.method           .
+_em_3d_fitting.target_criteria  "poor atom-atom contacts and cross correlation coefficient"
+_em_3d_fitting.details          "Protocol: real space rigid body. Domains were fit manually into the density using O. The entire light chain domain consisting of heavy chain residues from G710 to K843 and the two light chains were repositioned using G710 of the myosin heavy chain using O.Real space refinement done using 7 rigid bodies and 4 hinge points."
+_em_3d_fitting.overall_b_value  .
+_em_3d_fitting.ref_space        REAL
+_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
+#
+_em_interpret_figure.file     ?
+_em_interpret_figure.details  ?
+#
+_em_fsc_curve.file     ?
+_em_fsc_curve.details  ?
+##

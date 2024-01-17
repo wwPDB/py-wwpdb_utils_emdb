@@ -171,6 +171,16 @@ class Mappings(object):
                     xml_mapping = re.sub(r'sci_species_name', 'natural_source', xml_mapping)
                 elif "macromolecule_list" in xml_mapp:
                     xml_mapping = re.sub(r'(protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xml_mapp)
+                elif "map" in xml_mapp or "mask_details" in xml_mapp:
+                    if "&" in xml_mapp:
+                        rep_item = xml_mapp.rsplit(".", 1)[1].split("&", 1)[1]
+                    elif "$I" in xml_mapp:
+                        rep_item = xml_mapp.rsplit(".", 1)[1].split("$I", 1)[1]+".$I"
+                    else:
+                        rep_item = xml_mapp.rsplit(".", 1)[1]
+                    xml_mapping = "emd.all_maps."+rep_item
+                    if "H$" in xml_mapp:
+                        xml_mapping = xml_mapp
                 else:
                     xml_mapping = xml_mapp
                 # create this line's mapping now
@@ -347,16 +357,15 @@ class Mappings(object):
                         if logic_value == self.Const.XML_VALUE_UPPER:
                             list_values = list(map(lambda x: x if x != logic_value else xml_value, logic_values))
                             if list_values[0]:
-                                if 'FULLOVERLAP' in [item for sublist in list_values for item in sublist]:
-                                    list_values = [['IN FRAME']]
-                                if 'unknown' in [item for sublist in list_values for item in sublist]:
-                                    list_values = [['OTHER']]
+                                if any('FULLOVERLAP' in sublist or 'unknown' in sublist for sublist in list_values):
+                                    replacement_mapping = {'FULLOVERLAP': 'IN FRAME', 'unknown': 'OTHER'}
+                                    list_values = [[replacement_mapping.get(value, value) for value in sublist] for sublist in list_values]
                                 if 'DOI' in [item for sublist in list_values for item in sublist]:
                                     doi_value = next((item['DOI'] for item in list_values if 'DOI' in item), None)
                                     new_doi = doi_value.replace('doi:', '')
                                     [entry.update({'DOI': new_doi}) for entry in list_values if 'DOI' in entry]
-                                if list_values[0] == "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)":
-                                    list_values = [original_string.capitalize() for original_string in list_values]
+                                if any("IMAGE STORED AS" in element for sublist in list_values for element in sublist):
+                                    list_values = [[original_string.capitalize() for original_string in sublist] for sublist in list_values]
                         if logic_value == self.Const.U:
                             if xml_value == "twoDArray":
                                 xml_value = "2D ARRAY"
@@ -376,7 +385,6 @@ class Mappings(object):
                         if logic_value == self.Const.N:
                             n_values = [xml_value.index(i) + 1 for i in xml_value]
                             list_values.append(n_values)
-                            list_values.append(xml_value)
                             break
                         if logic_value == self.Const.B:
                             if xml_value == "true":
@@ -403,7 +411,6 @@ class Mappings(object):
                             else:
                                 list_item.append([logic_v]*(len(xml_value)))
                             list_values = list_item
-
                     cif_mapping = self.create_cif_mapping_dict(a_logic_key, logic_keys, list_values)
                     mapping.get(self.Const.CIF_MAPPINGS).update(cif_mapping)
 

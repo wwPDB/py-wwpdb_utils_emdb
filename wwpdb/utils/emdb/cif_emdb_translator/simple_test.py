@@ -13,7 +13,8 @@ __date__ = "2018-06-28"
 import os.path
 import unittest
 import glob
-from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTranslator
+#from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_translator import CifEMDBTranslator
+from wwpdb.utils.emdb.cif_emdb_translator.cif_emdb_legacy_translator import CifEMDBTranslator
 
 
 class TestTranslator(unittest.TestCase):

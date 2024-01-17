@@ -28,9 +28,9 @@ def main():
             """
     # print(usage)
 
-    xml_input_file_0001 = os.path.join(emdb_xml2cif_translator.test_data.xml.__path__[0], "emd-0001.xml")
+    xml_input_file_0001 = os.path.join(emdb_xml2cif_translator.test_data.xml.__path__[0], "emd-1001-v30.xml")
 
-    cif_output_file_0001 = os.path.join(emdb_xml2cif_translator.test_data.cif.__path__[0], "emd-0001.cif")
+    cif_output_file_0001 = os.path.join(emdb_xml2cif_translator.test_data.cif.__path__[0], "emd-1001.cif")
 
     translation_list = {xml_input_file_0001: cif_output_file_0001}
 

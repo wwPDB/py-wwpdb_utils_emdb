@@ -167,7 +167,6 @@ class EMDBMetadata(object):
         """
         tags, item, att, parent_elem, sub_elements, enantio = '', '', '', '', '', ''
         xml_slices, other_slices, list_id, macro_list_elem, attrib_index, macro_list_index, reference_ids = [], [], [], [], [], [], []
-        index = 0
         substitution = re.split('S\$|\$S', xml_part)
         count = len(substitution)
         sub_ele = substitution[1].split("|")
@@ -188,6 +187,14 @@ class EMDBMetadata(object):
                 slice = re.sub(r'sci_species_name', 'natural_source', slice)
             elif "macromolecule_list" in slice:
                 slice = re.sub(r'(protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xslice)
+            elif "map" in slice or "mask_details" in slice:
+                if "&" in slice:
+                    rep_item = xslice.rsplit(".", 1)[1].split("&", 1)[1]
+                elif "$I" in slice:
+                    rep_item = xslice.rsplit(".", 1)[1].split("$I", 1)[1]+".$I"
+                else:
+                    rep_item = xslice.rsplit(".", 1)[1]
+                slice = "emd.all_maps."+rep_item
             else:
                 slice = xslice
 
@@ -199,6 +206,8 @@ class EMDBMetadata(object):
                         if ribo is not None:
                             molecule_type = "ribosome"
                     if "_supramolecule" in mol_type.tag:
+                        if molecule_type == "organelle":
+                            molecule_type = "ORGANELLE OR CELLULAR COMPONENT"
                         self.mappings_in.map_xml_value_to_code(str(molecule_type).upper(), slice)
                     else:
                         if molecule_type in ["protein", "em", "other", "dna", "rna", "saccharide"]:
@@ -256,7 +265,7 @@ class EMDBMetadata(object):
                     self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
 
             if not any(char in xml_part for char in ['@', '$I', 'R$', '>', '<', 'E$', 'A$', '%', '+', 'T$', 'H$']):
-                if '&' in slice:
+                if '&' in xslice:
                     tags, item = elem.rsplit('&', 1)
                 else:
                     tags, item = elem.rsplit('/', 1)
@@ -264,13 +273,11 @@ class EMDBMetadata(object):
                 find_parent_elem = root.findall(parent_elem)
                 if find_elem:
                     for element in root.findall(tags):
-                        if '&' in slice:
+                        if '&' in xslice:
                             sub_elements = element.get(item)
                         else:
                             sub_elem = element.find(item)
-                            sub_elements = '' if sub_elem is None else str(sub_elem.text)
-                            if sub_elements == "None":
-                                sub_elements = ''
+                            sub_elements = '' if sub_elem is None or str(sub_elem.text) == "None" else str(sub_elem.text)
                         self.mappings_in.map_xml_value_to_code(sub_elements, slice)
                 else:
                     if find_parent_elem:
@@ -394,18 +401,43 @@ class EMDBMetadata(object):
                         att, items = item.split('|', 1)
                     else:
                         tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
-                    for elem in root.findall(tags):
-                        selem = elem.find(items)
-                        if '*' in items:
-                            if "intial" in items:
-                                self.mappings_in.map_xml_value_to_code("INITIAL", slice)
-                            elif "final" in items:
-                                self.mappings_in.map_xml_value_to_code("FINAL", slice)
-                        elif "$I" in slice or 'R$' in slice:
-                            self.primary_and_reference_ids(slice, root, tags, items, att)
-                        else:
-                            if selem is not None:
-                               self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
+                    chk_parent = root.findall(tags.rsplit("/", 1)[0])
+                    chk_element = root.findall(tags)
+                    if chk_parent and chk_element:
+                        for elem in root.findall(tags):
+                            selem = elem.find(items)
+                            if '*' in items:
+                                if "intial" in items:
+                                    self.mappings_in.map_xml_value_to_code("INITIAL", slice)
+                                elif "final" in items:
+                                    self.mappings_in.map_xml_value_to_code("FINAL", slice)
+                            elif "$I" in slice or 'R$' in slice:
+                                self.primary_and_reference_ids(slice, root, tags, items, att)
+                            else:
+                                if selem is not None:
+                                   self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
+                    else:
+                        if not "R$" in slice and not "*" in slice:
+                            if chk_parent and not chk_element:
+                                self.mappings_in.map_xml_value_to_code('', slice)
+
+            # elif '+' in xml_part:
+            #     xml_elem, item = xml_part.replace("+", '').rsplit(".", 1)
+            #     map_type = ''
+            #     rtags = ['map', 'interpretation/half_map_list/half_map', 'interpretation/additional_map_list/additional_map', 'interpretation/segmentation_list/segmentation/mask_details']
+            #     for re_tags in rtags:
+            #         for elem in root.findall(re_tags):
+            #             sub_elem = elem.find(item)
+            #             if sub_elem is not None:
+            #                 if re_tags == "map":
+            #                     map_type = "primary map"
+            #                 elif "half_map" in re_tags:
+            #                     map_type = "half map"
+            #                 elif "additional_map" in re_tags:
+            #                     map_type = "additional map"
+            #                 elif "mask" in re_tags:
+            #                     map_type = "mask"
+            #                 self.mappings_in.map_xml_value_to_code(map_type, xml_part)
 
         if "%" in xml_part:
             index = 0
@@ -423,18 +455,28 @@ class EMDBMetadata(object):
             list_item = [e_item]
         else:
             list_item = e_item
-        for item in list_item:
-            for element in root.findall(tags):
-                sub_elem = element.findall(item)
-                if '$I' in slice:
-                    for ind in range(1, len(sub_elem)+1):
-                        index += 1
-                        self.mappings_in.map_xml_value_to_code(str(index), slice)
-                elif 'R$' in slice:
-                    if sub_elem:
-                        attrib = element.get(att)
+        chk_parent = root.findall(tags.rsplit("/", 1)[0])
+        chk_element = root.findall(tags)
+        if chk_parent and chk_element:
+            for item in list_item:
+                for element in root.findall(tags):
+                    sub_elem = element.findall(item)
+                    if '$I' in slice:
                         for ind in range(1, len(sub_elem)+1):
-                            self.mappings_in.map_xml_value_to_code(str(attrib), slice)
+                            index += 1
+                            self.mappings_in.map_xml_value_to_code(str(index), slice)
+                    elif 'R$' in slice:
+                        if sub_elem:
+                            attrib = element.get(att)
+                            for ind in range(1, len(sub_elem)+1):
+                                self.mappings_in.map_xml_value_to_code(str(attrib), slice)
+                        else:
+                            self.mappings_in.map_xml_value_to_code("", slice)
+        else:
+            if "$I" in slice:
+                if chk_parent and not chk_element:
+                    self.mappings_in.map_xml_value_to_code('', slice)
+
 
     def spliting_anchors(self, either_one):
         other_slices = []

@@ -2997,7 +2997,8 @@ class CifEMDBTranslator(object):
                             if citation is not None:
                                 # Is this a book (non-journal) or journal citation?
                                 # These are the two citation_types
-                                jrnl_abbrev_in = get_cif_value("journal_abbrev", const.CITATION, cite_in)
+                                # jrnl_abbrev_in = get_cif_value("journal_abbrev", const.CITATION, cite_in)
+                                jrnl_abbrev_in = get_cif_value("journal_full", const.CITATION, cite_in)
                                 if jrnl_abbrev_in is not None:
                                     jrnl = emdb.journal_citation()
                                     set_journal_citation(jrnl, cite_in, cite_id_in, auth_dict, cite_ref_type_list, jrnl_abbrev_in)
