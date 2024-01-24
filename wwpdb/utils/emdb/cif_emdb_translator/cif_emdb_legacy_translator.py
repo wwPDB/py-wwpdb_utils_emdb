@@ -10758,6 +10758,7 @@ class CifEMDBTranslator(object):
                                 # determine map type
                                 map_type = get_cif_value("type", const.EM_MAP, cif_list=map_in)
                                 if map_type == "primary map":
+                                    print(map_type ,struct_det_method)
                                     if struct_det_method != "TOMOGRAPHY":
                                         cntr_level = get_cif_value("contour_level", const.EM_MAP, cif_list=map_in)
                                         if cntr_level is not None:
@@ -10786,22 +10787,22 @@ class CifEMDBTranslator(object):
                                             self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.info_title + txt)
                                         )
                                         self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
-                            if map_type == "mask":
-                                cntr_level = get_cif_value("contour_level", const.EM_MAP, cif_list=map_in)
-                                if cntr_level is not None:
-                                    if not isinstance(cntr_level, str):
-                                        set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, fmt=float)
-                                    else:
-                                        # contour level is a string; check if the string can be converted
-                                        if is_number(cntr_level.lstrip("+-")):
-                                            cl_float = float(cntr_level.lstrip("+-"))
-                                            set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, cif_value=cl_float)
+                                if map_type == "mask":
+                                    cntr_level = get_cif_value("contour_level", const.EM_MAP, cif_list=map_in)
+                                    if cntr_level is not None:
+                                        if not isinstance(cntr_level, str):
+                                            set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, fmt=float)
                                         else:
-                                            txt = u"Contour level is given as a text value of %s. This is not correct. It should be a number." % cntr_level
-                                            self.current_entry_log.error_logs.append(
-                                                self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt)
-                                            )
-                                            self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                                            # contour level is a string; check if the string can be converted
+                                            if is_number(cntr_level.lstrip("+-")):
+                                                cl_float = float(cntr_level.lstrip("+-"))
+                                                set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, cif_value=cl_float)
+                                            else:
+                                                txt = u"Contour level is given as a text value of %s. This is not correct. It should be a number." % cntr_level
+                                                self.current_entry_log.error_logs.append(
+                                                    self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt)
+                                                )
+                                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
 
                         def set_el_source(cntr, map_in):
                             """

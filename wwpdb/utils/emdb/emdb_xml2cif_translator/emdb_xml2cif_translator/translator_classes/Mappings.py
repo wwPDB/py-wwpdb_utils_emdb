@@ -34,7 +34,7 @@ class Mappings(object):
 
         # other constants
         XML_VALUE_UPPER = 'XML_VALUE'
-        IDs = 'IDs'
+        ID = 'ID'
         N = 'N'
         B = 'B'
         D = 'D'
@@ -42,6 +42,7 @@ class Mappings(object):
         E = 'E'
         U = 'U'
         S = 'S'
+        I = "I"
 
     def __init__(self):
         """
@@ -177,7 +178,9 @@ class Mappings(object):
                     elif "$I" in xml_mapp:
                         rep_item = xml_mapp.rsplit(".", 1)[1].split("$I", 1)[1]+".$I"
                     else:
-                        rep_item = xml_mapp.rsplit(".", 1)[1]
+                        rep_item = "_".join(xml_mapp.rsplit(".", 2)[1:])
+                        if xml_mapp.rsplit('.', 2)[1] in ['map', 'mask_details', 'half_map', 'additional_map']:
+                            rep_item = xml_mapp.rsplit(".", 1)[1]
                     xml_mapping = "emd.all_maps."+rep_item
                     if "H$" in xml_mapp:
                         xml_mapping = xml_mapp
@@ -405,12 +408,18 @@ class Mappings(object):
                         if logic_value == self.Const.E:
                             modified_names = [f"{n.split(' ', 1)[0]}, {'.'.join(n.split(' ', 1)[1])}." if ' ' in n else n for n in xml_value]
                             list_values.append(modified_names)
+                        if logic_value == self.Const.I:
+                            new_list = [re.search(r'\d+', item).group(0).zfill(4) for item in xml_value]
+                            new_list = ['EMD-' + item for item in new_list]
+                            list_values.remove("I")
+                            list_values.append(new_list)
                         elif logic_k == self.Const.M:
                             if self.Const.XML_VALUE_UPPER in logic_value:
                                 list_item.append(xml_value)
                             else:
                                 list_item.append([logic_v]*(len(xml_value)))
                             list_values = list_item
+
                     cif_mapping = self.create_cif_mapping_dict(a_logic_key, logic_keys, list_values)
                     mapping.get(self.Const.CIF_MAPPINGS).update(cif_mapping)
 

@@ -39,8 +39,8 @@ N:emd.admin.authors_list^author em_author_list.author.E em_author_list.ordinal.N
 
 ###<emd>.<crossreferences>.<citation_list>.<primary_citation>.<journal_citation>
 emd.crossreferences.citation_list.primary_citation.journal_citation@published citation.unpublished_flag.B
-N:emd.crossreferences.citation_list.primary_citation.journal_citation^author citation_author.citation_id.M$primary citation_author.name.E
 N:emd.crossreferences.citation_list.primary_citation.journal_citation.author@order citation_author.ordinal.XML_VALUE
+N:emd.crossreferences.citation_list.primary_citation.journal_citation^author citation_author.citation_id.M$primary citation_author.name.E
 emd.crossreferences.citation_list.primary_citation.journal_citation.title citation.id.primary citation.title.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.journal citation.journal_full.XML_VALUE
 emd.crossreferences.citation_list.primary_citation.journal_citation.journal_abbreviation citation.journal_abbrev.XML_VALUE
@@ -317,7 +317,7 @@ N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpret
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S&format em_map.format.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S&size_kbytes em_map.size_kb.XML_VALUE
 N:emd.H$map.file em_map.type.XML_VALUE
-N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.file em_map.file.XML_VALUE
+N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.file em_map.file.XML_VALUE em_map.entry_id.I
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.symmetry.space_group em_map.symmetry_space_group.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.data_type em_map.data_type.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.dimensions.col em_map.dimensions_col.XML_VALUE
@@ -344,10 +344,11 @@ N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpret
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map$S.statistics.std em_map.statistics_std.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.pixel_spacing.x em_map.pixel_spacing_x.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.pixel_spacing.y em_map.pixel_spacing_y.XML_VALUE
-N:emd.SS$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.pixel_spacing.z em_map.pixel_spacing_z.XML_VALUE
+N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.pixel_spacing.z em_map.pixel_spacing_z.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.contour_list.contour.level em_map.contour_level.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.contour_list.contour.source em_map.contour_level_source.XML_VALUE
-N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.label em_map.label.XML_VALUE
+N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.annotation_details em_map.annotation_details.XML_VALUE
+N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.details em_map.label.XML_VALUE
 
 ##<emd>.<interpretation>.<modelling_list>
 emd.interpretation.modelling_list.modelling.initial_model.access_code em_3d_fitting.entry_id.XML_VALUE

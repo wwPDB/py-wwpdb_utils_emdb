@@ -97,10 +97,7 @@ class EMDBMetadata(object):
                                 if el:
                                     for at in el:
                                         attrib_val = at.get(attrib_key)
-                                        if attrib_key == "size_kbytes":
-                                            self.mappings_in.map_xml_value_to_code(str(int(attrib_val)*10e2), xml_part, at.text)
-                                        else:
-                                            self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, at.text)
+                                        self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, at.text)
                         elif '^' in xml_part:
                             self.multiple_same_element(root, xml_part)
                         elif 'S$' in xml_part:
@@ -193,7 +190,9 @@ class EMDBMetadata(object):
                 elif "$I" in slice:
                     rep_item = xslice.rsplit(".", 1)[1].split("$I", 1)[1]+".$I"
                 else:
-                    rep_item = xslice.rsplit(".", 1)[1]
+                    rep_item = "_".join(xslice.rsplit(".", 2)[1:])
+                    if xslice.rsplit('.', 2)[1] in ['map', 'mask_details', 'half_map', 'additional_map']:
+                        rep_item = xslice.rsplit(".", 1)[1]
                 slice = "emd.all_maps."+rep_item
             else:
                 slice = xslice
@@ -274,7 +273,11 @@ class EMDBMetadata(object):
                 if find_elem:
                     for element in root.findall(tags):
                         if '&' in xslice:
-                            sub_elements = element.get(item)
+                            if item == "size_kbytes":
+                                att_val = element.get(item)
+                                sub_elements = str(float(att_val)*10e2)
+                            else:
+                                sub_elements = element.get(item)
                         else:
                             sub_elem = element.find(item)
                             sub_elements = '' if sub_elem is None or str(sub_elem.text) == "None" else str(sub_elem.text)
@@ -420,24 +423,6 @@ class EMDBMetadata(object):
                         if not "R$" in slice and not "*" in slice:
                             if chk_parent and not chk_element:
                                 self.mappings_in.map_xml_value_to_code('', slice)
-
-            # elif '+' in xml_part:
-            #     xml_elem, item = xml_part.replace("+", '').rsplit(".", 1)
-            #     map_type = ''
-            #     rtags = ['map', 'interpretation/half_map_list/half_map', 'interpretation/additional_map_list/additional_map', 'interpretation/segmentation_list/segmentation/mask_details']
-            #     for re_tags in rtags:
-            #         for elem in root.findall(re_tags):
-            #             sub_elem = elem.find(item)
-            #             if sub_elem is not None:
-            #                 if re_tags == "map":
-            #                     map_type = "primary map"
-            #                 elif "half_map" in re_tags:
-            #                     map_type = "half map"
-            #                 elif "additional_map" in re_tags:
-            #                     map_type = "additional map"
-            #                 elif "mask" in re_tags:
-            #                     map_type = "mask"
-            #                 self.mappings_in.map_xml_value_to_code(map_type, xml_part)
 
         if "%" in xml_part:
             index = 0
