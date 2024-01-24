@@ -9,6 +9,7 @@ import json
 import mrcfile
 import hashlib
 from Bio.PDB.MMCIF2Dict import MMCIF2Dict
+import traceback
 
 
 class EMMap:
@@ -324,6 +325,10 @@ class Validator:
         result = {}
 
         if self.half_maps:
+            if len(self.half_maps) != 2:
+                raise Exception("Two half maps must be provided.")
+            if not all(os.path.isfile(half_map.file) for half_map in self.half_maps):
+                raise FileNotFoundError("One or more half maps not found.")
             result.update({
                 'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1]),  # Compare half maps to each other
                 'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]  # Compare primary map to each half map
@@ -347,26 +352,19 @@ def main():
     """
     # Parsing command line arguments
     parser = argparse.ArgumentParser(description="Perform checks on uploaded maps.")
-    parser.epilog = """
-    Examples:
-    python checkemupload.py 4v6x.mrc --halfmaps 4v6x_half1.mrc 4v6x_half2.mrc --model 4v6x.cif --output 4v6x-checks.json
-    python checkemupload.py 4v6x.mrc --halfmaps 4v6x_half1.mrc 4v6x_half2.mrc --output 4v6x-checks.json
-    python checkemupload.py 4v6x.mrc --model 4v6x.cif --output 4v6x-checks.json
-    """
     parser.add_argument("primmap", help="Input MRC primary map file")
-    parser.add_argument("--halfmaps", nargs=2, help="Input MRC half maps", required=False)
+    parser.add_argument("--halfmaps", nargs=2, help="Input MRC half maps", required=False, default=[])
     parser.add_argument("--model", help="Input MMCIF model file", required=False)
     parser.add_argument("--output", help="Output JSON file", required=False)
     args = parser.parse_args()
-
+    
     # Checking if files exist and loading data
     if os.path.isfile(args.primmap):
         em_map = EMMap(args.primmap)
         half_maps = []
-        if args.halfmaps:
-            for halfmap in args.halfmaps:
-                if os.path.isfile(halfmap):
-                    half_maps.append(EMMap(halfmap))
+        for halfmap in args.halfmaps:
+            if os.path.isfile(halfmap):
+                half_maps.append(EMMap(halfmap))
         model = None
         if args.model and os.path.isfile(args.model):
             model = Model(args.model)
@@ -375,14 +373,17 @@ def main():
         validator = Validator(em_map, half_maps, model)
         result = validator.check()
 
+        # Printing results to stdout
+        print(json.dumps(result, indent=4))
+
         # Writing results to output JSON file
         parentdir = os.path.dirname(args.primmap)
         basename = os.path.basename(args.primmap)
-        # Split the basename and handle double extensions
         root, ext = os.path.splitext(basename)
-        if ext in ['.gz', '.bz2', '.xz']:
-            root, _ = os.path.splitext(root)
-        filename = args.output or f'{os.path.join(parentdir, root)}-emmapchecks.json'
+        while ext:
+            basename = root
+            root, ext = os.path.splitext(root)
+        filename = args.output or f'{os.path.join(parentdir, root)}-checks.json'
         with open(filename, 'w') as f:
             json.dump(result, f, indent=4)
         print(f"Result written to {filename}")
@@ -396,5 +397,7 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except Exception as e:
-        print(f"An error occurred: {str(e)}")
+        # Use Traceback to be able to see the error in the logs
+        print("An error occurred:")
+        traceback.print_exc()
         sys.exit(1)
