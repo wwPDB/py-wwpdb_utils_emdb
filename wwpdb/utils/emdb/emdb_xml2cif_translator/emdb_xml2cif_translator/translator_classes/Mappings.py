@@ -171,7 +171,7 @@ class Mappings(object):
                     xml_mapping = re.sub(r'sci_species_name', 'natural_source', xml_mapping)
                 elif "macromolecule_list" in xml_mapp:
                     xml_mapping = re.sub(r'(protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xml_mapp)
-                elif "map" in xml_mapp or "mask_details" in xml_mapp:
+                elif ("map" in xml_mapp or "mask_details" in xml_mapp) and not "map_release" in xml_mapp:
                     if "&" in xml_mapp:
                         rep_item = xml_mapp.rsplit(".", 1)[1].split("&", 1)[1]
                     elif "$I" in xml_mapp:
@@ -492,7 +492,6 @@ class Mappings(object):
         :return value_set: a boolean; True if the mapping exists and the xml value is set
         """
         value_set = False
-        # print(self.mappings)
         if self.mappings.get(mapping):
             xml_value_object = self.mappings.get(mapping).get(self.Const.XML_VALUE)
             if isinstance(xml_value_object, list):
