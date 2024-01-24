@@ -3,3 +3,9 @@ mmcif
 wwpdb.utils.config
 
 mock; python_version < '3'
+
+mrcfile
+numpy
+pytest
+mock
+setuptools
