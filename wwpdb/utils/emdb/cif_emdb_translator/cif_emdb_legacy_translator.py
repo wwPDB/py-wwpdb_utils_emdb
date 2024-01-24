@@ -7819,13 +7819,18 @@ class CifEMDBTranslator(object):
                         """
                         temp_max_in = get_cif_value("recording_temperature_maximum", const.EM_IMAGING, mic_in)
                         temp_min_in = get_cif_value("recording_temperature_minimum", const.EM_IMAGING, mic_in)
-                        if temp_max_in is not None or temp_min_in is not None:
+                        # if legacy:
+                        temp_avg_in = get_cif_value("temperature", const.EM_IMAGING, mic_in)
+                        if temp_max_in is not None or temp_min_in is not None or temp_avg_in is not None:
                             temp = emdb.temperatureType()
                             set_cif_value(
                                 temp.set_temperature_max, "recording_temperature_maximum", const.EM_IMAGING, cif_list=mic_in, constructor=emdb.temperature_type, fmt=float, units=const.U_KEL
                             )
                             set_cif_value(
                                 temp.set_temperature_min, "recording_temperature_minimum", const.EM_IMAGING, cif_list=mic_in, constructor=emdb.temperature_type, fmt=float, units=const.U_KEL
+                            )
+                            set_cif_value(
+                                temp.set_temperature_average, "temperature", const.EM_IMAGING, cif_list=mic_in, constructor=emdb.temperature_type, fmt=float, units=const.U_KEL
                             )
                             mic.set_temperature(temp)
 

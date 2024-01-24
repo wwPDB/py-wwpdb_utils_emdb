@@ -492,6 +492,7 @@ class Mappings(object):
         :return value_set: a boolean; True if the mapping exists and the xml value is set
         """
         value_set = False
+        # print(self.mappings)
         if self.mappings.get(mapping):
             xml_value_object = self.mappings.get(mapping).get(self.Const.XML_VALUE)
             if isinstance(xml_value_object, list):
