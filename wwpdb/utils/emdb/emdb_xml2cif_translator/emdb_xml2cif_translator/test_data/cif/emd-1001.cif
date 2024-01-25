@@ -290,10 +290,6 @@ _em_imaging_optics.energyfilter_lower        ?
 _em_imaging_optics.energyfilter_upper        ?
 _em_imaging_optics.details                   ?
 #
-_em_software.name     ?
-_em_software.version  ?
-_em_software.details  ?
-#
 _em_image_scans.image_recording_id     ?
 _em_image_scans.id                     ?
 _em_image_scans.scanner_model          ?
@@ -321,6 +317,22 @@ _em_image_processing.details
 
 #
 _em_3d_reconstruction.image_processing_id  1
+_em_3d_reconstruction.algorithm            OTHER
+_em_3d_reconstruction.details              
+;The reconstruction was done by aligning the members of
+        the       tilt series using crosscorrelation functions, such as
+        phase only       and the VanHeel Mutual Correlation Function.
+        The sampling in each       micrographof a tilted specimen was
+        match by interpolation to th e       lower angle members of the
+        tilt series. This matching of areas and       sampling was done
+        by a 4 parameter grid search. Once aligned and       scaled, the
+        data were combined in Fourier space using a
+        Whittaker-Shannon interpolation scheme. The map was calculated
+        using a reverse Fourier transformation. The software used for
+        the       reconstruction was in-house and adapted from in some
+        cases from       MRC software.
+;
+
 _em_3d_reconstruction.id                   1
 _em_3d_reconstruction.resolution           40.0
 _em_3d_reconstruction.resolution_method    OTHER
@@ -418,6 +430,12 @@ _em_3d_fitting.details          "Protocol: real space rigid body. Domains were f
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        REAL
 _em_3d_fitting.ref_protocol     "RIGID BODY FIT"
+#
+_em_software.id                   1
+_em_software.image_processing_id  1
+_em_software.name                 RSref
+_em_software.version              .
+_em_software.details              .
 #
 _em_interpret_figure.file     ?
 _em_interpret_figure.details  ?

@@ -10758,7 +10758,6 @@ class CifEMDBTranslator(object):
                                 # determine map type
                                 map_type = get_cif_value("type", const.EM_MAP, cif_list=map_in)
                                 if map_type == "primary map":
-                                    print(map_type ,struct_det_method)
                                     if struct_det_method != "TOMOGRAPHY":
                                         cntr_level = get_cif_value("contour_level", const.EM_MAP, cif_list=map_in)
                                         if cntr_level is not None:
