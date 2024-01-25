@@ -352,6 +352,10 @@ _em_euler_angle_assignment.order
 .  .  .  INITIAL  
 .  .  .  FINAL    
 #
+_em_ctf_correction.id                   1
+_em_ctf_correction.image_processing_id  1
+_em_ctf_correction.details              ?
+#
 loop_
 _em_map.id
 _em_map.format

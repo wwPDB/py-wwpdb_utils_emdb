@@ -43,6 +43,7 @@ class Mappings(object):
         U = 'U'
         S = 'S'
         I = "I"
+        O = "O"
 
     def __init__(self):
         """
@@ -413,6 +414,8 @@ class Mappings(object):
                             new_list = ['EMD-' + item for item in new_list]
                             list_values.remove("I")
                             list_values.append(new_list)
+                        if logic_value == self.Const.O:
+                            list_values.append("1")
                         elif logic_k == self.Const.M:
                             if self.Const.XML_VALUE_UPPER in logic_value:
                                 list_item.append(xml_value)

@@ -352,6 +352,10 @@ _em_euler_angle_assignment.order
 .  .  .  INITIAL  
 .  .  .  FINAL    
 #
+_em_ctf_correction.id                   1
+_em_ctf_correction.image_processing_id  1
+_em_ctf_correction.details              ?
+#
 loop_
 _em_map.id
 _em_map.format
@@ -436,7 +440,6 @@ _em_software.image_processing_id  1
 _em_software.name                 RSref
 _em_software.version              .
 _em_software.details              .
-_em_software.category             'MODEL REFINEMENT'
 #
 _em_interpret_figure.file     ?
 _em_interpret_figure.details  ?
