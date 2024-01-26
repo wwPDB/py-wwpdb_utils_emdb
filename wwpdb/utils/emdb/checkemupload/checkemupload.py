@@ -257,7 +257,7 @@ class Validator:
         }
         if not result['map_checks']['identical']:
             # Check if the maps have the same box size
-            same_box_size, same_or_smaller_box_size = map1.same_box_size(map2), False
+            same_box_size = map1.same_box_size(map2)
             result['map_checks']['same_box_size'] = same_box_size
             if not same_box_size:
                 result['em_volumes'][0].update({
