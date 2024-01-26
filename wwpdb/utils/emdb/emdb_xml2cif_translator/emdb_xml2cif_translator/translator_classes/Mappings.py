@@ -370,6 +370,8 @@ class Mappings(object):
                                     [entry.update({'DOI': new_doi}) for entry in list_values if 'DOI' in entry]
                                 if any("IMAGE STORED AS" in str(element) for sublist in list_values for element in sublist if element is not None):
                                     list_values = [[original_string.capitalize() for original_string in sublist] for sublist in list_values]
+                                if any("::::EMDATABANK.org"  in str(element) for sublist in list_values for element in sublist if element is not None):
+                                    list_values = [[original_string.replace("::::EMDATABANK.org", "") for original_string in sublist] for sublist in list_values]
                         if logic_value == self.Const.U:
                             if xml_value == "twoDArray":
                                 xml_value = "2D ARRAY"

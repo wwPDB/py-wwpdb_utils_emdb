@@ -3981,6 +3981,11 @@ class CifEMDBTranslator(object):
                                 set_cif_value(sup_mol.set_name, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
                         else:
                             set_cif_value(sup_mol.set_name, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
+                        #if legacy
+                        # supramolecule_id = get_cif_value("id", const.EM_ENTITY_ASSEMBLY, sup_in)
+                        # if supramolecule_id == "1000":
+                        #     set_cif_value(sample.set_name, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
+
 
                     def set_el_category(sup_mol, sup_in):
                         """

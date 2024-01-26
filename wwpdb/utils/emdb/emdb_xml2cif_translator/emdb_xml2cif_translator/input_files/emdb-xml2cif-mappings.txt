@@ -332,7 +332,6 @@ N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpret
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S&size_kbytes em_map.size_kb.XML_VALUE
 N:emd.H$map.file em_map.type.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.file em_map.file.XML_VALUE em_map.entry_id.I
-N:emd.S$map|interpretation.segmentation_list.segmentation$S.details em_map.details.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.symmetry.space_group em_map.symmetry_space_group.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.data_type em_map.data_type.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.dimensions.col em_map.dimensions_col.XML_VALUE
