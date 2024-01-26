@@ -273,11 +273,11 @@ class EMDBMetadata(object):
                 if find_elem:
                     for element in root.findall(tags):
                         if '&' in xslice:
+                            sub_elem = element.get(item)
                             if item == "size_kbytes":
-                                att_val = element.get(item)
-                                sub_elements = str(float(att_val)*10e2)
+                                sub_elements = str(float(sub_elem)*10e2)
                             else:
-                                sub_elements = element.get(item)
+                                sub_elements = sub_elem
                         else:
                             sub_elem = element.find(item)
                             sub_elements = '' if sub_elem is None or str(sub_elem.text) == "None" else str(sub_elem.text)

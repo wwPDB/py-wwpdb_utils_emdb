@@ -111,6 +111,7 @@ class CifEMDBTranslator(object):
 
         XML_OUT_VERSION = "3.0.8.0"
         XML_VERSION = XML_OUT_VERSION.replace('.', '_')
+        LEGACY_LIST_FILE_NAME = "legacy_list.txt"
 
         # Cif categories
         CITATION = "citation"
@@ -983,8 +984,14 @@ class CifEMDBTranslator(object):
                           'version="{1}"'.format(self.Constants.XML_VERSION, self.Constants.XML_OUT_VERSION)
         }
         emdb.GenerateDSNamespaceTypePrefixes_ = {}
+        self.legacy_list_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), self.Constants.LEGACY_LIST_FILE_NAME)
 
+    def legacy_list(self):
+        with open(self.legacy_list_file, 'r') as file:
+            legacy_ids = file.read().splitlines()
+        return(legacy_ids)
     @property
+
     def is_translation_log_empty(self):
         logs = self.translation_log.logs
         if len(logs) == 0:
@@ -7160,6 +7167,8 @@ class CifEMDBTranslator(object):
                             CIF: _em_tomography.axis1_max_angle
                             CIF: _em_tomography.axis2_max_angle
                             """
+                            # max_amgle = get_cif_value(max_angle, const.EM_TOMOGRAPHY, cif_list=ts_in)
+                            # print("MAX_ANGLE", max_amgle ,ts_in)
                             set_cif_value(axis.set_max_angle, max_angle, const.EM_TOMOGRAPHY, cif_list=ts_in, constructor=emdb.max_angleType, units=const.U_DEG)
 
                         def set_el_angle_increment(axis, angle_inc, ts_in):
@@ -11307,50 +11316,55 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="segmentation_list" minOccurs="0"> has
                         .. 1 element
                         """
-
-                        def set_segmentation_type(seg, msk):
+                        def set_segmentation_type(seg, msk_in):
                             """
                             XSD: <xs:element name="segmentation" maxOccurs="unbounded"> has
                             .. 3 elements
                             """
 
-                            def set_el_file(seg, msk):
+                            def set_el_file(seg, msk_in):
                                 """
                                 XSD: <xs:element name="file">
                                 pattern [emd_d{4,}]+.*
                                 """
-                                msk_file = msk.get_file()
-                                set_cif_value(seg.set_file, cif_value=msk_file)
+                                set_cif_value(seg.set_file, "file", const.EM_MAP, cif_list=msk_in)
 
-                            def set_el_details():
+                            def set_el_details(seg, msk_in):
                                 """
                                 XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
                                 CIF: ????
                                 """
+                                # if legacy:
+                                set_cif_value(seg.set_file, "details", const.EM_MAP, cif_list=msk_in)
 
-                            def set_el_mask_details():
+                            def set_el_mask_details(seg, msk_in):
                                 """
                                 XSD: <xs:element name="mask_details" type="map_type" minOccurs="0">
                                 Deprecated (2014-10-21)
                                 """
+                                # if legacy:
+                                msk_list_in = map_dict_in[const.MAP_MASK] if const.MAP_MASK in map_dict_in else []
+                                for msk_in in msk_list_in:
+                                    msk = make_map(msk_in, get_canonical_map_name(msk_in, "MASK"))
+                                    if msk.has__content():
+                                        seg.set_mask_details(msk)
 
                             # element 1
-                            set_el_file(seg, msk)
+                            set_el_file(seg, msk_in)
                             # element 2
-                            set_el_details()
+                            set_el_details(seg, msk_in)
                             # element 3
-                            set_el_mask_details()
+                            set_el_mask_details(seg, msk_in)
 
                         mask_list_in = map_dict_in[const.MAP_MASK] if const.MAP_MASK in map_dict_in else []
                         seg_list = emdb.segmentation_listType()
                         for msk_in in mask_list_in:
-                            msk = make_map(msk_in, get_canonical_map_name(msk_in, "MASK"))
-                            if msk.has__content():
-                                seg = emdb.segmentationType()
-                                set_segmentation_type(seg, msk)
-                                seg_list.add_segmentation(seg)
+                            seg = emdb.segmentationType()
+                            set_segmentation_type(seg, msk_in)
+                            seg_list.add_segmentation(seg)
                         if seg_list.has__content():
                             intrp.set_segmentation_list(seg_list)
+
 
                     def set_el_slices_list():
                         """

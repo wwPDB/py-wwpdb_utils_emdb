@@ -86,13 +86,14 @@ _em_entity_assembly.assembly_id
 _em_entity_assembly.type
 _em_entity_assembly.source
 _em_entity_assembly.name
+_em_entity_assembly.synonym
 _em_entity_assembly.go_id
 _em_entity_assembly.parent_id
 _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
-   1     1  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thick, myosin-containing filament"                   .  .  .  "Filaments contain more than just myosin"  
-   2     2  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thin, actin-containing filament"                     .  .  .  "filaments contain more than just actin"  
-1000  1000  SAMPLE                             NATURAL  "Rigor insect flight muscle from Lethocerus maximus"  .  .  .  "The sample is a single filament layer cut from myofibrils by ultramicrotomy. The section thickness is ~25 nm. Specimen has been chemically fixed, dehydrated, embedded in Araldite and sectioned with a diamond knife."  
+   1     1  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thick, myosin-containing filament"                   myosin  .  .  .  "Filaments contain more than just myosin"  
+   2     2  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thin, actin-containing filament"                     actin   .  .  .  "filaments contain more than just actin"  
+1000  1000  SAMPLE                             NATURAL  "Rigor insect flight muscle from Lethocerus maximus"  ?       .  .  .  "The sample is a single filament layer cut from myofibrils by ultramicrotomy. The section thickness is ~25 nm. Specimen has been chemically fixed, dehydrated, embedded in Araldite and sectioned with a diamond knife."  
 #
 loop_
 _em_entity_assembly_naturalsource.id
@@ -270,16 +271,25 @@ _em_grid_pretreatment.time               ?
 _em_grid_pretreatment.atmosphere         ?
 _em_grid_pretreatment.pressure           ?
 #
-_em_image_recording.imaging_id                   ?
-_em_image_recording.id                           ?
-_em_image_recording.film_or_detector_model       ?
-_em_image_recording.detector_mode                ?
-_em_image_recording.num_grids_imaged             ?
-_em_image_recording.num_real_images              ?
-_em_image_recording.num_diffraction_images       ?
-_em_image_recording.average_exposure_time        ?
-_em_image_recording.avg_electron_dose_per_image  ?
+_em_image_recording.imaging_id                   1
+_em_image_recording.id                           1
+_em_image_recording.film_or_detector_model       .
+_em_image_recording.detector_mode                .
+_em_image_recording.num_grids_imaged             .
+_em_image_recording.num_real_images              24
+_em_image_recording.num_diffraction_images       .
+_em_image_recording.average_exposure_time        .
+_em_image_recording.avg_electron_dose_per_image  .
 _em_image_recording.details                      .
+#
+_em_tomography.imaging_id             1
+_em_tomography.id                     1
+_em_tomography.axis1_min_angle        4.3
+_em_tomography.axis1_max_angle        59.4
+_em_tomography.axis1_angle_increment  10
+_em_tomography.axis2_min_angle        .
+_em_tomography.axis2_max_angle        .
+_em_tomography.axis2_angle_increment  .
 #
 _em_imaging_optics.phase_plate               ?
 _em_imaging_optics.sph_aberration_corrector  ?
@@ -290,12 +300,12 @@ _em_imaging_optics.energyfilter_lower        ?
 _em_imaging_optics.energyfilter_upper        ?
 _em_imaging_optics.details                   ?
 #
-_em_image_scans.image_recording_id     ?
-_em_image_scans.id                     ?
-_em_image_scans.scanner_model          ?
-_em_image_scans.dimension_width        ?
-_em_image_scans.dimension_height       ?
-_em_image_scans.sampling_interval      ?
+_em_image_scans.image_recording_id     1
+_em_image_scans.id                     1
+_em_image_scans.scanner_model          "PERKIN ELMER"
+_em_image_scans.dimension_width        .
+_em_image_scans.dimension_height       .
+_em_image_scans.sampling_interval      25
 _em_image_scans.used_frames_per_image  .
 #
 _em_image_processing.id                  1
@@ -363,6 +373,8 @@ _em_map.size_kb
 _em_map.type
 _em_map.file
 _em_map.entry_id
+_em_map.label
+_em_map.details
 _em_map.symmetry_space_group
 _em_map.data_type
 _em_map.dimensions_col
@@ -393,38 +405,36 @@ _em_map.pixel_spacing_z
 _em_map.contour_level
 _em_map.contour_level_source
 _em_map.annotation_details
-_em_map.label
- 1  CCP4  42189000.0  "primary map"  emd_1001.map.gz      EMD-1001  1  "Image stored as floating point number (4 bytes)"  600  600  30  0  0  -15  600  600  30   9280   9280    464    90    90    90  X  Y  Z  -417.992000000000019  366.680000000000007         1.85973  47.791600000000003    15.4667    15.4667    15.4667  81.200000000000003  .  
+ 1  CCP4  42189000.0  "primary map"  emd_1001.map.gz      EMD-1001  ::::EMDATABANK.org::::EMD-1001::::            .  1  "Image stored as floating point number (4 bytes)"  600  600  30  0  0  -15  600  600  30   9280   9280    464    90    90    90  X  Y  Z  -417.992000000000019  366.680000000000007         1.85973  47.791600000000003    15.4667    15.4667    15.4667  81.200000000000003  .  
 ;Acto-myosin structures
         from       sectioned muscle
 ;
-  ::::EMDATABANK.org::::EMD-1001::::            
- 1  CCP4    136000.0  mask           emd_1001_msk_26.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4923182            1.4168506   -0.0060140644           0.6964112  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:1:::   
- 2  CCP4    136000.0  mask           emd_1001_msk_1.map   EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5944648            1.1074616    -0.007541597          0.71632415  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:2:::   
- 3  CCP4    136000.0  mask           emd_1001_msk_2.map   EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.7258816            1.2866669   -0.0073102424          0.71558625  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:3:::   
- 4  CCP4    136000.0  mask           emd_1001_msk_3.map   EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5483093            1.2398646   -0.0034679337          0.71510464  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:4:::   
- 5  CCP4    136000.0  mask           emd_1001_msk_4.map   EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z             -2.501652            1.2972634    -0.008869538           0.7108043  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:5:::   
- 6  CCP4    136000.0  mask           emd_1001_msk_5.map   EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4358373            1.3425884  -0.00060270604          0.69676816  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:6:::   
- 7  CCP4    136000.0  mask           emd_1001_msk_6.map   EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5323744            1.2563564   -0.0036051604          0.70039195  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:7:::   
- 8  CCP4    136000.0  mask           emd_1001_msk_7.map   EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4987898            1.1380355    -0.005006318           0.7139458  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:8:::   
- 9  CCP4    136000.0  mask           emd_1001_msk_8.map   EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.6747184            1.0895122    -0.003031824           0.7237702  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:9:::   
-10  CCP4    136000.0  mask           emd_1001_msk_9.map   EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.7482247            1.1234381   -0.0064628804           0.7249305  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:10:::  
-11  CCP4    136000.0  mask           emd_1001_msk_10.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5993469            1.1787673    -0.004972806          0.70850605  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:11:::  
-12  CCP4    136000.0  mask           emd_1001_msk_11.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4103546            1.2010442    -0.004846287           0.7027782  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:12:::  
-13  CCP4    136000.0  mask           emd_1001_msk_12.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5464618            1.1851541   -0.0035916774           0.7222626  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:13:::  
-14  CCP4    136000.0  mask           emd_1001_msk_13.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z             -2.372035            1.1947367    -0.005957831           0.7072046  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:14:::  
-15  CCP4    136000.0  mask           emd_1001_msk_14.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.6208508             1.309575   -0.0046354607           0.7117156  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:15:::  
-16  CCP4    136000.0  mask           emd_1001_msk_15.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5245786            1.1403794    -0.004893605          0.72051364  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:16:::  
-17  CCP4    136000.0  mask           emd_1001_msk_16.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5550923            1.3233893   -0.0075495755           0.7237952  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:17:::  
-18  CCP4    136000.0  mask           emd_1001_msk_17.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.3360648            1.1792009    -0.004218508          0.68966633  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:18:::  
-19  CCP4    136000.0  mask           emd_1001_msk_18.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.6305237            1.5136678    0.0001082411            0.693829  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:19:::  
-20  CCP4    136000.0  mask           emd_1001_msk_19.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.7865362            1.6329293   -0.0028804576           0.7352475  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:20:::  
-21  CCP4    136000.0  mask           emd_1001_msk_20.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z             -2.443733            1.3822539   -0.0019926773            0.704275  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:21:::  
-22  CCP4    136000.0  mask           emd_1001_msk_21.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5086238            1.2634512   -0.0036103243           0.7252106  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:22:::  
-23  CCP4    136000.0  mask           emd_1001_msk_22.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5961685            1.1959407    0.0010213794           0.6944105  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:23:::  
-24  CCP4    136000.0  mask           emd_1001_msk_23.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5973077            1.3023932   -0.0048314277           0.7077107  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:24:::  
-25  CCP4    136000.0  mask           emd_1001_msk_24.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.3478413            1.1841714   -0.0023025929          0.70339763  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:25:::  
-26  CCP4     35000.0  mask           emd_1001_msk_25.map  EMD-1001  1  "Image stored as signed byte"                       32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z                   0.0                  1.0     0.047251157          0.21217561  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMDATABANK.org::::EMD-1001::::MASK:26:::  
+  
+ 1  CCP4    136000.0  mask           emd_1001_msk_26.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::            .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4923182            1.4168506   -0.0060140644           0.6964112  15.466666  15.466666  15.466666                   .  .  n/a  
+ 2  CCP4    136000.0  mask           emd_1001_msk_1.map   EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:1:::   .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5944648            1.1074616    -0.007541597          0.71632415  15.466666  15.466666  15.466666                   .  .  n/a  
+ 3  CCP4    136000.0  mask           emd_1001_msk_2.map   EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:2:::   .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.7258816            1.2866669   -0.0073102424          0.71558625  15.466666  15.466666  15.466666                   .  .  n/a  
+ 4  CCP4    136000.0  mask           emd_1001_msk_3.map   EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:3:::   .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5483093            1.2398646   -0.0034679337          0.71510464  15.466666  15.466666  15.466666                   .  .  n/a  
+ 5  CCP4    136000.0  mask           emd_1001_msk_4.map   EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:4:::   .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z             -2.501652            1.2972634    -0.008869538           0.7108043  15.466666  15.466666  15.466666                   .  .  n/a  
+ 6  CCP4    136000.0  mask           emd_1001_msk_5.map   EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:5:::   .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4358373            1.3425884  -0.00060270604          0.69676816  15.466666  15.466666  15.466666                   .  .  n/a  
+ 7  CCP4    136000.0  mask           emd_1001_msk_6.map   EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:6:::   .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5323744            1.2563564   -0.0036051604          0.70039195  15.466666  15.466666  15.466666                   .  .  n/a  
+ 8  CCP4    136000.0  mask           emd_1001_msk_7.map   EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:7:::   .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4987898            1.1380355    -0.005006318           0.7139458  15.466666  15.466666  15.466666                   .  .  n/a  
+ 9  CCP4    136000.0  mask           emd_1001_msk_8.map   EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:8:::   .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.6747184            1.0895122    -0.003031824           0.7237702  15.466666  15.466666  15.466666                   .  .  n/a  
+10  CCP4    136000.0  mask           emd_1001_msk_9.map   EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:9:::   .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.7482247            1.1234381   -0.0064628804           0.7249305  15.466666  15.466666  15.466666                   .  .  n/a  
+11  CCP4    136000.0  mask           emd_1001_msk_10.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:10:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5993469            1.1787673    -0.004972806          0.70850605  15.466666  15.466666  15.466666                   .  .  n/a  
+12  CCP4    136000.0  mask           emd_1001_msk_11.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:11:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.4103546            1.2010442    -0.004846287           0.7027782  15.466666  15.466666  15.466666                   .  .  n/a  
+13  CCP4    136000.0  mask           emd_1001_msk_12.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:12:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5464618            1.1851541   -0.0035916774           0.7222626  15.466666  15.466666  15.466666                   .  .  n/a  
+14  CCP4    136000.0  mask           emd_1001_msk_13.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:13:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z             -2.372035            1.1947367    -0.005957831           0.7072046  15.466666  15.466666  15.466666                   .  .  n/a  
+15  CCP4    136000.0  mask           emd_1001_msk_14.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:14:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.6208508             1.309575   -0.0046354607           0.7117156  15.466666  15.466666  15.466666                   .  .  n/a  
+16  CCP4    136000.0  mask           emd_1001_msk_15.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:15:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5245786            1.1403794    -0.004893605          0.72051364  15.466666  15.466666  15.466666                   .  .  n/a  
+17  CCP4    136000.0  mask           emd_1001_msk_16.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:16:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5550923            1.3233893   -0.0075495755           0.7237952  15.466666  15.466666  15.466666                   .  .  n/a  
+18  CCP4    136000.0  mask           emd_1001_msk_17.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:17:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.3360648            1.1792009    -0.004218508          0.68966633  15.466666  15.466666  15.466666                   .  .  n/a  
+19  CCP4    136000.0  mask           emd_1001_msk_18.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:18:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.6305237            1.5136678    0.0001082411            0.693829  15.466666  15.466666  15.466666                   .  .  n/a  
+20  CCP4    136000.0  mask           emd_1001_msk_19.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:19:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.7865362            1.6329293   -0.0028804576           0.7352475  15.466666  15.466666  15.466666                   .  .  n/a  
+21  CCP4    136000.0  mask           emd_1001_msk_20.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:20:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z             -2.443733            1.3822539   -0.0019926773            0.704275  15.466666  15.466666  15.466666                   .  .  n/a  
+22  CCP4    136000.0  mask           emd_1001_msk_21.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:21:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5086238            1.2634512   -0.0036103243           0.7252106  15.466666  15.466666  15.466666                   .  .  n/a  
+23  CCP4    136000.0  mask           emd_1001_msk_22.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:22:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5961685            1.1959407    0.0010213794           0.6944105  15.466666  15.466666  15.466666                   .  .  n/a  
+24  CCP4    136000.0  mask           emd_1001_msk_23.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:23:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.5973077            1.3023932   -0.0048314277           0.7077107  15.466666  15.466666  15.466666                   .  .  n/a  
+25  CCP4    136000.0  mask           emd_1001_msk_24.map  EMD-1001  ::::EMDATABANK.org::::EMD-1001::::MASK:24:::  .  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.3478413            1.1841714   -0.0023025929          0.70339763  15.466666  15.466666  15.466666                   .  .  n/a  
 #
 _em_3d_fitting.entry_id         .
 _em_3d_fitting.pdb_chain_id     .
