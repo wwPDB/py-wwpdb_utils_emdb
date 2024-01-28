@@ -74,9 +74,9 @@ class EMMap:
                         self.nstarts[crsindices[2]]
                     )).tolist()
         except FileNotFoundError:
-            raise FileNotFoundError(f"File not found: {self.file}")
+            raise FileNotFoundError(f"File not found: {self.file}")  # pylint: disable=raise-missing-from
         except Exception as e:
-            raise Exception(f"An error occurred while loading the file: {str(e)}")
+            raise Exception(f"An error occurred while loading the file: {str(e)}")  # pylint: disable=broad-exception-raised,raise-missing-from
 
     def md5_checksum(self):
         """
@@ -115,7 +115,6 @@ class EMMap:
         """
         return all(self.le(np.array(self.box_size), np.array(another_map.box_size)))
 
-
     def overlaps(self, another_map):
         """
         Check if the map overlaps another map.
@@ -146,7 +145,6 @@ class EMMap:
         # Check whether the origin and end coordinates are greater than or equal to the origin and end coordinates of
         # the other map, respectively
         return all(self.ge(origin1, origin2)) and all(self.le(end1, end2))
-
 
     def same_pixel_size(self, another_map):
         """
@@ -294,9 +292,9 @@ class Validator:
                 })
                 # Check if the maps fit inside each other
                 result['map_checks']['fits_inside'] = map1.fits_inside(map2)
-            
+
         return result
-    
+
     def _get_atoms_outside(self):
         num_atoms_outside = 0  # Initialize counter for atoms outside the primary map
         for atom in self.model.structure:
@@ -326,7 +324,7 @@ class Validator:
 
         if self.half_maps:
             if len(self.half_maps) != 2:
-                raise Exception("Two half maps must be provided.")
+                raise Exception("Two half maps must be provided.")  # pylint: disable=broad-exception-raised
             if not all(os.path.isfile(half_map.file) for half_map in self.half_maps):
                 raise FileNotFoundError("One or more half maps not found.")
             result.update({
@@ -357,7 +355,7 @@ def main():
     parser.add_argument("--model", help="Input MMCIF model file", required=False)
     parser.add_argument("--output", help="Output JSON file", required=False)
     args = parser.parse_args()
-    
+
     # Checking if files exist and loading data
     if os.path.isfile(args.primmap):
         em_map = EMMap(args.primmap)
@@ -396,7 +394,7 @@ def main():
 if __name__ == "__main__":
     try:
         sys.exit(main())
-    except Exception as e:
+    except Exception as _e:  # noqa: F841
         # Use Traceback to be able to see the error in the logs
         print("An error occurred:")
         traceback.print_exc()
