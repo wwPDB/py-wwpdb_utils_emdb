@@ -252,6 +252,7 @@ _em_imaging.calibrated_defocus_max         .
 _em_imaging.nominal_magnification          17000.0
 _em_imaging.calibrated_magnification       .
 _em_imaging.specimen_holder_model          "PHILIPS ROTATION HOLDER"
+_em_imaging.specimen_holder_type           "Philips rotation-tilt holder"
 _em_imaging.cryogen                        .
 _em_imaging.recording_temperature_minimum  25
 _em_imaging.recording_temperature_maximum  25

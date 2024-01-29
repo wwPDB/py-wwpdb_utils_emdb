@@ -8006,11 +8006,13 @@ class CifEMDBTranslator(object):
                         """
                         set_image_recording(mic_id, mic)
 
-                    def set_el_specimen_holder():
+                    def set_el_specimen_holder(mic, mic_in):
                         """
                         XSD: <xs:element name="specimen_holder" type="xs:string" minOccurs="0">
                         Deprecated (2014/11/12)
                         """
+                        # if legacy:
+                        set_cif_value(mic.set_specimen_holder, "specimen_holder_type", const.EM_IMAGING, cif_list=mic_in)
 
                     def set_el_tilt_angle_min():
                         """
@@ -8073,7 +8075,7 @@ class CifEMDBTranslator(object):
                     # element 23
                     set_el_image_recording_list(mic_id, mic)
                     # element 24
-                    set_el_specimen_holder()
+                    set_el_specimen_holder(mic, mic_in)
                     # element 25
                     set_el_tilt_angle_min()
                     # element 26
