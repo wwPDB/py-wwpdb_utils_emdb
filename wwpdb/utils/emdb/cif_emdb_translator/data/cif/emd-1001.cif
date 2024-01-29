@@ -280,6 +280,7 @@ _em_image_recording.film_or_detector_model       .
 _em_image_recording.detector_mode                .
 _em_image_recording.num_grids_imaged             .
 _em_image_recording.num_real_images              24
+_em_image_recording.bits_per_pixel               16.
 _em_image_recording.num_diffraction_images       .
 _em_image_recording.average_exposure_time        .
 _em_image_recording.avg_electron_dose_per_image  .

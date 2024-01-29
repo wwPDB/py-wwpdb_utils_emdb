@@ -3957,6 +3957,14 @@ class CifEMDBTranslator(object):
                         """
                         set_cif_value(sup_mol.set_supramolecule_id, "id", const.EM_ENTITY_ASSEMBLY, cif_value=sup_mol_id_in, fmt=int)
 
+                    # if legacy:
+                    # def set_attr_synonym(sup_mol, sup_in):
+                    #     """
+                    #     XSD: <xs:attribute name="synonym" type="synonym" use="required"/>
+                    #     CIF: _em_entity_assembly.synonum 'actin'
+                    #     """
+                    #     set_cif_value(sup_mol.set_synonym, "synonym", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_typ)
+
                     def set_el_name(sup_mol, sup_in):
                         """
                         XSD: <xs:element name="name" type="sci_name_type">
@@ -4066,7 +4074,7 @@ class CifEMDBTranslator(object):
 
                     def set_el_oligomeric_state():
                         """
-                        XSD: <xs:element name="oligomeric_state" type="pos_int_or_string_type" minOccurs="0">
+                        XSD: <xs:element name="oligomeric_state" type="positive int or string" minOccurs="0">
                             Deprecated. Oligomeric state in parent,
                             or if sample, the oligomeric state of sample.
                         """
@@ -4089,6 +4097,9 @@ class CifEMDBTranslator(object):
 
                     # attribute 1
                     set_attr_id(sup_mol, sup_mol_id_in)
+                    # # if legacy:
+                    # # attribute 2
+                    # set_attr_synonym(sup_mol, sup_mol_id_in)
                     # element 1
                     set_el_name(sup_mol, sup_in)
                     # element 2
@@ -4630,6 +4641,56 @@ class CifEMDBTranslator(object):
                         rec_exp_dict_in = get_rec_exp_dict(sup_mol_id_in, sup_mol_dicts, sup_in, is_supramolecule=True)
                         set_el_recombinant_expression(org_or_cell_sup_mol, sup_mol_id_in, rec_exp_dict_in)
 
+                    # if legacy:
+                    def set_sample_supramolecule_type(sample_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample):
+                        """
+                        XSD: <xs:element name="sample_supramolecule" substitutionGroup="supramolecule" type="sample_supramolecule_type"/>
+                        XSD: type="sample_supramolecule_type" has
+                        .. 1 additional element to the base ones
+                        """
+
+                        def set_el_natural_source(sample_sup_mol, sup_mol_id_in, sup_mol_dicts):
+                            """
+                            XSD: <xs:element name="natural_source">
+                            """
+                            nat_src_dict_in = sup_mol_dicts["nat_src_dict_in"]
+                            if sup_mol_id_in in nat_src_dict_in:
+                                sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
+                                tiss_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": False, "add_organelle": False, "add_cellular_location": False}
+                                sample_natural_source_type_list = []
+                                attr_ncbis = []
+                                el_organisms = []
+                                el_strains = []
+                                el_organs = []
+                                el_tissues = []
+                                for src_in in sup_mol_dict_in:
+                                    attr_ncbi = get_cif_value("ncbi_tax_id", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, cif_list=src_in)
+                                    attr_ncbis.extend([attr_ncbi])
+                                    el_organism = get_cif_value("organism", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, cif_list=src_in)
+                                    el_organisms.extend([el_organism])
+                                    el_strain = get_cif_value("strain", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, cif_list=src_in)
+                                    el_strains.extend([el_strain])
+                                    el_organ = get_cif_value("organ", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, cif_list=src_in)
+                                    el_organs.extend([el_organ])
+                                    el_tissue = get_cif_value("tissue", const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, cif_list=src_in)
+                                    el_tissues.extend([el_tissue])
+                                sample_natural_source_type_list.extend(attr_ncbis)
+                                sample_natural_source_type_list.extend(el_organisms)
+                                sample_natural_source_type_list.extend(el_strains)
+                                sample_natural_source_type_list.extend(el_organs)
+                                sample_natural_source_type_list.extend(el_tissues)
+                                print(sample_natural_source_type_list)
+                                if any(x is not None for x in sample_natural_source_type_list):
+                                    cns = emdb.sample_source_type()
+                                    set_sup_mol_nat_src(cns, sample_sup_mol, const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, sup_mol_dict_in, tiss_dict)
+
+                        # set up the supramolecule specific tagname explicitly
+                        # as DSgenerate doesn't provide it
+                        sample_sup_mol.original_tagname_ = "sample_supramolecule"
+                        set_base_sup_mol(sample_sup_mol, sup_in, sup_mol_id_in, sample)
+                        # element 1
+                        set_el_natural_source(sample_sup_mol, sup_mol_id_in, sup_mol_dicts)
+
                     def set_tissue_supramolecule_type(tissue_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample):
                         """
                         XSD: <xs:element name="tissue_supramolecule" substitutionGroup="supramolecule" type="tissue_supramolecule_type"/>
@@ -4756,6 +4817,12 @@ class CifEMDBTranslator(object):
                                         set_orgorcell_supmol_type(org_or_cell_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
                                         if org_or_cell_sup_mol.has__content():
                                             sup_list.add_supramolecule(org_or_cell_sup_mol)
+                                    # if legacy:
+                                    elif sup_type == "SAMPLE":
+                                        sample_sup_mol = emdb.sample_supramolecule_type()
+                                        set_sample_supramolecule_type(sample_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
+                                        if sample_sup_mol.has__content():
+                                            sup_list.add_supramolecule(sample_sup_mol)
                                     elif sup_type == "TISSUE":
                                         tissue_sup_mol = emdb.tissue_supramolecule_type()
                                         set_tissue_supramolecule_type(tissue_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample)
@@ -7594,6 +7661,8 @@ class CifEMDBTranslator(object):
                             XSD: <xs:element name="bits_per_pixel" type="xs:float" minOccurs="0">
                             CIF:??
                             """
+                            # if legacy:
+                            set_cif_value(im_rec.set_bits_per_pixel, "bits_per_pixel", const.EM_IMAGE_RECORDING, cif_list=im_rec_in, fmt=float)
 
                         # attribute 1
                         set_attr_id(im_rec, im_rec_in)
