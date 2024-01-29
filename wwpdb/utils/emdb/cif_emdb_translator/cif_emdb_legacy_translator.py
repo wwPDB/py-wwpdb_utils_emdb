@@ -4060,6 +4060,8 @@ class CifEMDBTranslator(object):
                             Deprecated. Oligomeric state in parent,
                             or if sample, the oligomeric state of sample.
                         """
+                        # if legacy:
+                        set_cif_value(sup_mol.set_oligomeric_state, "oligomeric_state", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
 
                     def set_el_external_references():
                         """
@@ -4072,6 +4074,8 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="recombinant_exp_flag" type="xs:boolean" maxOccurs="1" minOccurs="0" >
                         Deprecated 2014/12/3
                         """
+                        # if legacy:
+                        set_cif_value(sup_mol.set_recombinant_exp_flag, "recombinant_exp_flag", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
 
                     # attribute 1
                     set_attr_id(sup_mol, sup_mol_id_in)
