@@ -106,11 +106,12 @@ _em_entity_assembly_naturalsource.strain
 _em_entity_assembly_naturalsource.details
 _em_entity_assembly_naturalsource.organ
 _em_entity_assembly_naturalsource.tissue
+_em_entity_assembly_naturalsource.synonym_organism
 _em_entity_assembly_naturalsource.cell
 _em_entity_assembly_naturalsource.organelle
 _em_entity_assembly_naturalsource.cellular_location
-.  1  43338  Lethocerus  .  .  .  "Indirect flight muscles"  "muscle fibers"  myofibrils  myofibrils  
-.  2  43338  Lethocerus  .  .  .  "Indirect flight muscles"  "Muscle fibers"  myofibrils  myofibrils  
+.  1  43338  Lethocerus  .  .  .  "Indirect flight muscles"  "water bug, Lethocerus maximus"  "muscle fibers"  myofibrils  myofibrils  
+.  2  43338  Lethocerus  .  .  .  "Indirect flight muscles"  "water bug, Lethocerus maximus"  "Muscle fibers"  myofibrils  myofibrils  
 #
 _em_entity_assembly_synthetic.ncbi_tax_id        ?
 _em_entity_assembly_synthetic.organism           ?

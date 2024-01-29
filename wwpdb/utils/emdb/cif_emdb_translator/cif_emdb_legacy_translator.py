@@ -3842,6 +3842,13 @@ class CifEMDBTranslator(object):
                     .. an extension of base="base_source_type" and
                     .. a sequence of 5 possible elements
                     """
+                    # if legacy:
+                    def set_el_synonym_organism(nat_src, cif_category, sup_mol_nat_src_in):
+                        """
+                        XSD: <xs:element name="synonym_organism" type="xs:token" minOccurs="0"/>
+                        CIF: _em_entity_assembly_naturalsource.synonym_organism.
+                        """
+                        set_cif_value(nat_src.set_synonym_organism, "synonym_organism", cif_category, cif_list=sup_mol_nat_src_in)
 
                     def set_el_organ(nat_src, cif_category, sup_mol_nat_src_in):
                         """
@@ -3881,6 +3888,9 @@ class CifEMDBTranslator(object):
                     for sup_mol_nat_src_in in src_dict_in:
                         set_sup_mol_base_source(nat_src, cif_category, sup_mol_nat_src_in)
 
+                        # if legacy (2 lines):
+                        if flags_dict["add_synonym_organism"]:
+                            set_el_synonym_organism(nat_src, cif_category, sup_mol_nat_src_in)
                         if flags_dict["add_organ"]:
                             set_el_organ(nat_src, cif_category, sup_mol_nat_src_in)
                         if flags_dict["add_tissue"]:
@@ -4129,7 +4139,7 @@ class CifEMDBTranslator(object):
                             nat_src_dict_in = sup_mol_dicts["nat_src_dict_in"]
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
-                                cmpx_dict = {"add_nat_src": True, "add_organ": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
+                                cmpx_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
                                 complex_natural_source_type_list = []
                                 attr_ncbis = []
                                 el_organisms = []
@@ -4556,7 +4566,7 @@ class CifEMDBTranslator(object):
                             """
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
-                                org_dict = {"add_nat_src": True, "add_organ": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
+                                org_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
                                 organelle_natural_source_type_list = []
                                 attr_ncbis = []
                                 el_organisms = []
@@ -4634,7 +4644,7 @@ class CifEMDBTranslator(object):
                             nat_src_dict_in = sup_mol_dicts["nat_src_dict_in"]
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
-                                tiss_dict = {"add_nat_src": True, "add_organ": True, "add_tissue": True, "add_cell": False, "add_organelle": False, "add_cellular_location": False}
+                                tiss_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": False, "add_organelle": False, "add_cellular_location": False}
                                 tissue_natural_source_type_list = []
                                 attr_ncbis = []
                                 el_organisms = []
@@ -4682,7 +4692,7 @@ class CifEMDBTranslator(object):
                             nat_src_dict_in = sup_mol_dicts["nat_src_dict_in"]
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
-                                cell_dict = {"add_nat_src": True, "add_organ": True, "add_tissue": True, "add_cell": True, "add_organelle": False, "add_cellular_location": False}
+                                cell_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": True, "add_organelle": False, "add_cellular_location": False}
                                 cell_natural_source_type_list = []
                                 attr_ncbis = []
                                 el_organisms = []
@@ -5009,7 +5019,7 @@ class CifEMDBTranslator(object):
                     XSD: <xs:element name="natural_source" type="molecule_source_type" minOccurs="0"/>
                     """
                     if ent_src_dict is not None and cif_category is not None:
-                        mol_src_dict = {"add_organ": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
+                        mol_src_dict = {"add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
                         nat_src = make_mol_src(cif_category, ent_src_dict, mol_src_dict)
                         if nat_src.has__content():
                             mol.set_natural_source(nat_src)
@@ -5278,6 +5288,13 @@ class CifEMDBTranslator(object):
                     .. an extension of base="base_source_type" and
                     .. a sequence of 5 possible elements
                     """
+                    # if legacy:
+                    def set_el_synonym_organism(syn_src, cif_category, sup_mol_nat_src_in):
+                        """
+                        XSD: <xs:element name="synonym_organism" type="xs:token" minOccurs="0"/>
+                        CIF: _em_entity_assembly_naturalsource.synonym_organism .
+                        """
+                        set_cif_value(syn_src.set_synonym_organism, "synonym_organism", cif_category, cif_list=src_dict_in)
 
                     def set_el_organ(syn_src, cif_category, src_dict_in):
                         """
@@ -5317,6 +5334,10 @@ class CifEMDBTranslator(object):
                     for mol_syn_src_in in src_dict_in:
                         set_base_source_type(mol, cif_category, mol_syn_src_in)
 
+                        # if legacy (2 lines):
+                        print(flags_dict)
+                        if flags_dict["add_synonym_organism"]:
+                            set_el_synonym_organism(syn_src, cif_category, mol_syn_src_in)
                         if flags_dict["add_organ"]:
                             set_el_organ(syn_src, cif_category, mol_syn_src_in)
                         if flags_dict["add_tissue"]:
