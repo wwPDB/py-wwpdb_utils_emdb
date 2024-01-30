@@ -44,6 +44,7 @@ class Mappings(object):
         S = 'S'
         I = "I"
         O = "O"
+        P = "P"
 
     def __init__(self):
         """

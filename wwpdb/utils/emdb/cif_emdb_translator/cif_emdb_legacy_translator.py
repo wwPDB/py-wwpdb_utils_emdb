@@ -4029,7 +4029,9 @@ class CifEMDBTranslator(object):
 
                         # The name given to the supramolecule that has parent id = 0
                         parent_id = get_cif_value("parent_id", const.EM_ENTITY_ASSEMBLY, sup_in)
-                        if parent_id == "0":
+                        # if legacy:
+                        supramolecule_id = get_cif_value("id", const.EM_ENTITY_ASSEMBLY, sup_in)
+                        if parent_id == "0" or supramolecule_id == "0":
                             set_cif_value(sample.set_name, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
 
                     def set_el_macromolecule_list(sup_mol, sup_in):
@@ -4683,12 +4685,22 @@ class CifEMDBTranslator(object):
                                     cns = emdb.sample_source_type()
                                     set_sup_mol_nat_src(cns, sample_sup_mol, const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, sup_mol_dict_in, tiss_dict)
 
+                        def set_el_number_unique_components(sample_sup_mol):
+                            """
+                            XSD: <xs:element name="number_unique_components" type="pos_int_or_string_type" minOccurs="0">
+                            CIF: em_entity_assembly.number_unique_components
+                            """
+                            # if legacy:
+                            set_cif_value(sample_sup_mol.set_number_unique_components, "number_unique_components", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+
                         # set up the supramolecule specific tagname explicitly
                         # as DSgenerate doesn't provide it
                         sample_sup_mol.original_tagname_ = "sample_supramolecule"
                         set_base_sup_mol(sample_sup_mol, sup_in, sup_mol_id_in, sample)
                         # element 1
                         set_el_natural_source(sample_sup_mol, sup_mol_id_in, sup_mol_dicts)
+                        # if legacy:
+                        set_el_number_unique_components(sample_sup_mol)
 
                     def set_tissue_supramolecule_type(tissue_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample):
                         """

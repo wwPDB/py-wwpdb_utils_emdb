@@ -83,19 +83,19 @@ PDB  1o1g  "IN FRAME"  .
 loop_
 _em_entity_assembly.id
 _em_entity_assembly.assembly_id
-_em_entity_assembly.parent_id
 _em_entity_assembly.type
 _em_entity_assembly.source
 _em_entity_assembly.name
 _em_entity_assembly.synonym
 _em_entity_assembly.go_id
+_em_entity_assembly.number_unique_components
 _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
 _em_entity_assembly.oligomeric_state
 _em_entity_assembly.recombinant_exp_flag
-1  1  1  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thick, myosin-containing filament"                   myosin  .  .  "Filaments contain more than just myosin"                                                                                                                                                                                 .                                                                        false  
-2  2  2  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thin, actin-containing filament"                     actin   .  .  "filaments contain more than just actin"                                                                                                                                                                                  "polar, 2-stranded helical filament, helical symmetry is 28/13"          false  
-0  0  0  SAMPLE                             NATURAL  "Rigor insect flight muscle from Lethocerus maximus"  ?       .  .  "The sample is a single filament layer cut from myofibrils by ultramicrotomy. The section thickness is ~25 nm. Specimen has been chemically fixed, dehydrated, embedded in Araldite and sectioned with a diamond knife."  "Thick myosin containing filament and thin actin-containing filaments."  .      
+1  1  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thick, myosin-containing filament"                   myosin  .  .  .  "Filaments contain more than just myosin"                                                                                                                                                                                 .                                                                        false  
+2  2  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thin, actin-containing filament"                     actin   .  .  .  "filaments contain more than just actin"                                                                                                                                                                                  "polar, 2-stranded helical filament, helical symmetry is 28/13"          false  
+0  0  SAMPLE                             NATURAL  "Rigor insect flight muscle from Lethocerus maximus"  ?       .  2  .  "The sample is a single filament layer cut from myofibrils by ultramicrotomy. The section thickness is ~25 nm. Specimen has been chemically fixed, dehydrated, embedded in Araldite and sectioned with a diamond knife."  "Thick myosin containing filament and thin actin-containing filaments."  .      
 #
 loop_
 _em_entity_assembly_naturalsource.id
