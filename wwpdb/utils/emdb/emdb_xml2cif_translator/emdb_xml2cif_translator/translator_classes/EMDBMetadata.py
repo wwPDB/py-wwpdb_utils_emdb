@@ -277,7 +277,10 @@ class EMDBMetadata(object):
                             if item == "size_kbytes":
                                 sub_elements = str(float(sub_elem)*10e2)
                             else:
-                                sub_elements = sub_elem
+                                if sub_elem == "1000":
+                                    sub_elements = "0"
+                                else:
+                                    sub_elements = sub_elem
                         else:
                             sub_elem = element.find(item)
                             # sub_elements = '' if sub_elem is None or str(sub_elem.text) == "None" else str(sub_elem.text)
@@ -308,7 +311,6 @@ class EMDBMetadata(object):
                         index = len(matching_elements)
                         slice_ind = slice + "&S&" + str(index)
                         macro_list_index.append(slice_ind)
-
                 for element in root.findall(tags):
                     selem = element.find(item)
                     macro_list_elem.append(selem.text)

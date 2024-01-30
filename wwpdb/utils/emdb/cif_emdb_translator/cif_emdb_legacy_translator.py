@@ -4679,7 +4679,6 @@ class CifEMDBTranslator(object):
                                 sample_natural_source_type_list.extend(el_strains)
                                 sample_natural_source_type_list.extend(el_organs)
                                 sample_natural_source_type_list.extend(el_tissues)
-                                print(sample_natural_source_type_list)
                                 if any(x is not None for x in sample_natural_source_type_list):
                                     cns = emdb.sample_source_type()
                                     set_sup_mol_nat_src(cns, sample_sup_mol, const.EM_ENTITY_ASSEMBLY_NATURALSOURCE, sup_mol_dict_in, tiss_dict)
@@ -5401,8 +5400,7 @@ class CifEMDBTranslator(object):
                     for mol_syn_src_in in src_dict_in:
                         set_base_source_type(mol, cif_category, mol_syn_src_in)
 
-                        # if legacy (2 lines):
-                        print(flags_dict)
+                        # if legacy (below 2 lines):
                         if flags_dict["add_synonym_organism"]:
                             set_el_synonym_organism(syn_src, cif_category, mol_syn_src_in)
                         if flags_dict["add_organ"]:
@@ -7264,8 +7262,6 @@ class CifEMDBTranslator(object):
                             CIF: _em_tomography.axis1_max_angle
                             CIF: _em_tomography.axis2_max_angle
                             """
-                            # max_amgle = get_cif_value(max_angle, const.EM_TOMOGRAPHY, cif_list=ts_in)
-                            # print("MAX_ANGLE", max_amgle ,ts_in)
                             set_cif_value(axis.set_max_angle, max_angle, const.EM_TOMOGRAPHY, cif_list=ts_in, constructor=emdb.max_angleType, units=const.U_DEG)
 
                         def set_el_angle_increment(axis, angle_inc, ts_in):
@@ -8105,7 +8101,7 @@ class CifEMDBTranslator(object):
                             """
                             axis1 = get_tilt_axis(ts_in, axis1=True)
                             if axis1.has__content():
-                                set_cif_value(tilt_ser.set_axis1, axis1)
+                                tilt_ser.set_axis1(axis1)
 
                         def set_el_axis2(tilt_ser, ts_in):
                             """
@@ -8116,7 +8112,7 @@ class CifEMDBTranslator(object):
                             """
                             axis2 = get_tilt_axis(ts_in, axis1=False)
                             if axis2.has__content():
-                                set_cif_value(tilt_ser.set_axis2, axis2)
+                                tilt_ser.set_axis1(axis2)
 
                         def set_el_axis_rotation(tilt_ser, ts_in):
                             """
@@ -8146,6 +8142,7 @@ class CifEMDBTranslator(object):
                         for ts_in in tilt_list_in:
                             tilt_ser = emdb.tilt_series_type()
                             set_tilt_series_type(tilt_ser, ts_in)
+
                             if tilt_ser.has__content():
                                 mic.add_tilt_series(tilt_ser)
 
@@ -10455,6 +10452,12 @@ class CifEMDBTranslator(object):
                             txt = u"Map file name is not given for (_em_map.file). Map name is set to (%s)." % map_name
                             self.current_entry_log.warn_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt))
                             self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
+                    elif map_type == "mask":
+                        map_name = get_cif_value("file", const.EM_MAP, map_in)
+                        if map_name is None or map_name == "" or map_name.isspace():
+                            txt = u"Map file name is not given for (_em_map.file). Map name is set to (%s)." % map_name
+                            self.current_entry_log.warn_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt))
+                            self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
                     else:
                         if map_name == "" or map_name.isspace():
                             txt = u"The value for (_em_map.file) is not given in (%s)." % map_in
@@ -11444,11 +11447,9 @@ class CifEMDBTranslator(object):
                                 Deprecated (2014-10-21)
                                 """
                                 # if legacy:
-                                msk_list_in = map_dict_in[const.MAP_MASK] if const.MAP_MASK in map_dict_in else []
-                                for msk_in in msk_list_in:
-                                    msk = make_map(msk_in, get_canonical_map_name(msk_in, "MASK"))
-                                    if msk.has__content():
-                                        seg.set_mask_details(msk)
+                                msk = make_map(msk_in, get_canonical_map_name(msk_in, "MASK"))
+                                if msk.has__content():
+                                    seg.set_mask_details(msk)
 
                             # element 1
                             set_el_file(seg, msk_in)
