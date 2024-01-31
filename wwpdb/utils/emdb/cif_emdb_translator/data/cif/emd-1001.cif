@@ -6,6 +6,7 @@ _database_2.database_id    EMDB
 _database_2.database_code  EMD-1001
 #
 _em_admin.current_status       REL
+_em_admin.legacy               Y
 _em_admin.details              .
 _em_admin.deposition_site      PDBE
 _em_admin.deposition_date      2002-06-18
@@ -88,11 +89,11 @@ _em_entity_assembly.source
 _em_entity_assembly.name
 _em_entity_assembly.synonym
 _em_entity_assembly.go_id
-_em_entity_assembly.number_unique_components
+_em_entity_assembly.number_unique_components_legacy
 _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
-_em_entity_assembly.oligomeric_state
-_em_entity_assembly.recombinant_exp_flag
+_em_entity_assembly.oligomeric_state_legacy
+_em_entity_assembly.recombinant_exp_flag_legacy
 1  1  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thick, myosin-containing filament"                   myosin  .  .  .  "Filaments contain more than just myosin"                                                                                                                                                                                 .                                                                        false  
 2  2  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thin, actin-containing filament"                     actin   .  .  .  "filaments contain more than just actin"                                                                                                                                                                                  "polar, 2-stranded helical filament, helical symmetry is 28/13"          false  
 0  0  SAMPLE                             NATURAL  "Rigor insect flight muscle from Lethocerus maximus"  ?       .  2  .  "The sample is a single filament layer cut from myofibrils by ultramicrotomy. The section thickness is ~25 nm. Specimen has been chemically fixed, dehydrated, embedded in Araldite and sectioned with a diamond knife."  "Thick myosin containing filament and thin actin-containing filaments."  .      
@@ -106,7 +107,7 @@ _em_entity_assembly_naturalsource.strain
 _em_entity_assembly_naturalsource.details
 _em_entity_assembly_naturalsource.organ
 _em_entity_assembly_naturalsource.tissue
-_em_entity_assembly_naturalsource.synonym_organism
+_em_entity_assembly_naturalsource.synonym_organism_legacy
 _em_entity_assembly_naturalsource.cell
 _em_entity_assembly_naturalsource.organelle
 _em_entity_assembly_naturalsource.cellular_location
@@ -281,7 +282,7 @@ _em_image_recording.film_or_detector_model       .
 _em_image_recording.detector_mode                .
 _em_image_recording.num_grids_imaged             .
 _em_image_recording.num_real_images              24
-_em_image_recording.bits_per_pixel               16.
+_em_image_recording.bits_per_pixel_legacy        16.
 _em_image_recording.num_diffraction_images       .
 _em_image_recording.average_exposure_time        .
 _em_image_recording.avg_electron_dose_per_image  .

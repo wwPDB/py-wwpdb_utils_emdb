@@ -3846,9 +3846,9 @@ class CifEMDBTranslator(object):
                     def set_el_synonym_organism(nat_src, cif_category, sup_mol_nat_src_in):
                         """
                         XSD: <xs:element name="synonym_organism" type="xs:token" minOccurs="0"/>
-                        CIF: _em_entity_assembly_naturalsource.synonym_organism.
+                        CIF: _em_entity_assembly_naturalsource.synonym_organism_legacy.
                         """
-                        set_cif_value(nat_src.set_synonym_organism, "synonym_organism", cif_category, cif_list=sup_mol_nat_src_in)
+                        set_cif_value(nat_src.set_synonym_organism, "synonym_organism_legacy", cif_category, cif_list=sup_mol_nat_src_in)
 
                     def set_el_organ(nat_src, cif_category, sup_mol_nat_src_in):
                         """
@@ -3889,7 +3889,7 @@ class CifEMDBTranslator(object):
                         set_sup_mol_base_source(nat_src, cif_category, sup_mol_nat_src_in)
 
                         # if legacy (2 lines):
-                        if flags_dict["add_synonym_organism"]:
+                        if flags_dict["add_synonym_organism_legacy"]:
                             set_el_synonym_organism(nat_src, cif_category, sup_mol_nat_src_in)
                         if flags_dict["add_organ"]:
                             set_el_organ(nat_src, cif_category, sup_mol_nat_src_in)
@@ -3957,13 +3957,16 @@ class CifEMDBTranslator(object):
                         """
                         set_cif_value(sup_mol.set_supramolecule_id, "id", const.EM_ENTITY_ASSEMBLY, cif_value=sup_mol_id_in, fmt=int)
 
-                    # if legacy:
-                    # def set_attr_synonym(sup_mol, sup_in):
-                    #     """
-                    #     XSD: <xs:attribute name="synonym" type="synonym" use="required"/>
-                    #     CIF: _em_entity_assembly.synonum 'actin'
-                    #     """
-                    #     set_cif_value(sup_mol.set_synonym, "synonym", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_typ)
+                    def set_attr_synonym(sup_mol, sup_in):
+                        """
+                        XSD: <xs:attribute name="synonym" type="synonym" use="required"/>
+                        CIF: _em_entity_assembly.synonum 'actin'
+                        """
+                        synonym = get_cif_value("synonym", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+                        # print("SYN", sup_in)
+                        # # if legacy:
+                        # if synonym:
+                        #     set_cif_value(sup_mol.set_synonym, "synonym", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
 
                     def set_el_name(sup_mol, sup_in):
                         """
@@ -3999,11 +4002,6 @@ class CifEMDBTranslator(object):
                                 set_cif_value(sup_mol.set_name, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
                         else:
                             set_cif_value(sup_mol.set_name, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
-                        #if legacy
-                        # supramolecule_id = get_cif_value("id", const.EM_ENTITY_ASSEMBLY, sup_in)
-                        # if supramolecule_id == "1000":
-                        #     set_cif_value(sample.set_name, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
-
 
                     def set_el_category(sup_mol, sup_in):
                         """
@@ -4081,7 +4079,7 @@ class CifEMDBTranslator(object):
                             or if sample, the oligomeric state of sample.
                         """
                         # if legacy:
-                        set_cif_value(sup_mol.set_oligomeric_state, "oligomeric_state", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+                        set_cif_value(sup_mol.set_oligomeric_state, "oligomeric_state_legacy", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
 
                     def set_el_external_references():
                         """
@@ -4095,13 +4093,13 @@ class CifEMDBTranslator(object):
                         Deprecated 2014/12/3
                         """
                         # if legacy:
-                        set_cif_value(sup_mol.set_recombinant_exp_flag, "recombinant_exp_flag", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+                        set_cif_value(sup_mol.set_recombinant_exp_flag, "recombinant_exp_flag_legacy", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
 
                     # attribute 1
                     set_attr_id(sup_mol, sup_mol_id_in)
                     # # if legacy:
-                    # # attribute 2
-                    # set_attr_synonym(sup_mol, sup_mol_id_in)
+                    # attribute 2
+                    set_attr_synonym(sup_mol, sup_in)
                     # element 1
                     set_el_name(sup_mol, sup_in)
                     # element 2
@@ -4152,7 +4150,7 @@ class CifEMDBTranslator(object):
                             nat_src_dict_in = sup_mol_dicts["nat_src_dict_in"]
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
-                                cmpx_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
+                                cmpx_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism_legacy": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
                                 complex_natural_source_type_list = []
                                 attr_ncbis = []
                                 el_organisms = []
@@ -4579,7 +4577,7 @@ class CifEMDBTranslator(object):
                             """
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
-                                org_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
+                                org_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism_legacy": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
                                 organelle_natural_source_type_list = []
                                 attr_ncbis = []
                                 el_organisms = []
@@ -4658,7 +4656,7 @@ class CifEMDBTranslator(object):
                             nat_src_dict_in = sup_mol_dicts["nat_src_dict_in"]
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
-                                tiss_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": False, "add_organelle": False, "add_cellular_location": False}
+                                tiss_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism_legacy": True, "add_tissue": True, "add_cell": False, "add_organelle": False, "add_cellular_location": False}
                                 sample_natural_source_type_list = []
                                 attr_ncbis = []
                                 el_organisms = []
@@ -4691,7 +4689,7 @@ class CifEMDBTranslator(object):
                             CIF: em_entity_assembly.number_unique_components
                             """
                             # if legacy:
-                            set_cif_value(sample_sup_mol.set_number_unique_components, "number_unique_components", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+                            set_cif_value(sample_sup_mol.set_number_unique_components, "number_unique_components_legacy", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
 
                         # set up the supramolecule specific tagname explicitly
                         # as DSgenerate doesn't provide it
@@ -4716,7 +4714,7 @@ class CifEMDBTranslator(object):
                             nat_src_dict_in = sup_mol_dicts["nat_src_dict_in"]
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
-                                tiss_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": False, "add_organelle": False, "add_cellular_location": False}
+                                tiss_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism_legacy": True, "add_tissue": True, "add_cell": False, "add_organelle": False, "add_cellular_location": False}
                                 tissue_natural_source_type_list = []
                                 attr_ncbis = []
                                 el_organisms = []
@@ -4764,7 +4762,7 @@ class CifEMDBTranslator(object):
                             nat_src_dict_in = sup_mol_dicts["nat_src_dict_in"]
                             if sup_mol_id_in in nat_src_dict_in:
                                 sup_mol_dict_in = nat_src_dict_in[sup_mol_id_in]
-                                cell_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": True, "add_organelle": False, "add_cellular_location": False}
+                                cell_dict = {"add_nat_src": True, "add_organ": True, "add_synonym_organism_legacy": True, "add_tissue": True, "add_cell": True, "add_organelle": False, "add_cellular_location": False}
                                 cell_natural_source_type_list = []
                                 attr_ncbis = []
                                 el_organisms = []
@@ -5097,7 +5095,7 @@ class CifEMDBTranslator(object):
                     XSD: <xs:element name="natural_source" type="molecule_source_type" minOccurs="0"/>
                     """
                     if ent_src_dict is not None and cif_category is not None:
-                        mol_src_dict = {"add_organ": True, "add_synonym_organism": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
+                        mol_src_dict = {"add_organ": True, "add_synonym_organism_legacy": True, "add_tissue": True, "add_cell": True, "add_organelle": True, "add_cellular_location": True}
                         nat_src = make_mol_src(cif_category, ent_src_dict, mol_src_dict)
                         if nat_src.has__content():
                             mol.set_natural_source(nat_src)
@@ -5370,9 +5368,9 @@ class CifEMDBTranslator(object):
                     def set_el_synonym_organism(syn_src, cif_category, sup_mol_nat_src_in):
                         """
                         XSD: <xs:element name="synonym_organism" type="xs:token" minOccurs="0"/>
-                        CIF: _em_entity_assembly_naturalsource.synonym_organism .
+                        CIF: _em_entity_assembly_naturalsource.synonym_organism_legacy .
                         """
-                        set_cif_value(syn_src.set_synonym_organism, "synonym_organism", cif_category, cif_list=src_dict_in)
+                        set_cif_value(syn_src.set_synonym_organism, "synonym_organism_legacy", cif_category, cif_list=src_dict_in)
 
                     def set_el_organ(syn_src, cif_category, src_dict_in):
                         """
@@ -5413,7 +5411,7 @@ class CifEMDBTranslator(object):
                         set_base_source_type(mol, cif_category, mol_syn_src_in)
 
                         # if legacy (below 2 lines):
-                        if flags_dict["add_synonym_organism"]:
+                        if flags_dict["add_synonym_organism_legacy"]:
                             set_el_synonym_organism(syn_src, cif_category, mol_syn_src_in)
                         if flags_dict["add_organ"]:
                             set_el_organ(syn_src, cif_category, mol_syn_src_in)
@@ -7670,7 +7668,7 @@ class CifEMDBTranslator(object):
                             CIF:??
                             """
                             # if legacy:
-                            set_cif_value(im_rec.set_bits_per_pixel, "bits_per_pixel", const.EM_IMAGE_RECORDING, cif_list=im_rec_in, fmt=float)
+                            set_cif_value(im_rec.set_bits_per_pixel, "bits_per_pixel_legacy", const.EM_IMAGE_RECORDING, cif_list=im_rec_in, fmt=float)
 
                         # attribute 1
                         set_attr_id(im_rec, im_rec_in)
