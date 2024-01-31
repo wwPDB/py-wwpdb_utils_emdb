@@ -3957,20 +3957,18 @@ class CifEMDBTranslator(object):
                         """
                         set_cif_value(sup_mol.set_supramolecule_id, "id", const.EM_ENTITY_ASSEMBLY, cif_value=sup_mol_id_in, fmt=int)
 
-                    def set_attr_synonym(sup_in):
+                    def set_attr_synonym(sup_in, sci_name_type):
                         """
                         XSD: <xs:attribute name="synonym" type="synonym" use="required"/>
                         CIF: _em_entity_assembly.synonym 'actin'
                         """
-                        sci_name_type = emdb.sci_name_type()
                         synonym = get_cif_value("synonym", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
                         # if legacy:
                         if synonym:
                             set_cif_value(sci_name_type.set_synonym, "synonym", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
-                            print(sci_name_type.get_synonym())
 
 
-                    def set_el_name(sup_mol, sup_in):
+                    def set_el_name(sup_mol, sup_in, sci_name_type):
                         """
                         XSD: <xs:element name="name" type="sci_name_type">
                         CIF: _em_entity_assembly.name 'Israeli acute paralysis virus'
@@ -4001,9 +3999,11 @@ class CifEMDBTranslator(object):
                                     )
                                     self.log_formatted(self.warn_log_string, const.CHANGE_MADE + txt)
                             else:
-                                set_cif_value(sup_mol.set_name, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
+                                set_cif_value(sci_name_type.set_valueOf_, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+                                set_cif_value(sup_mol.set_name, cif_value=sci_name_type)
                         else:
-                            set_cif_value(sup_mol.set_name, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
+                            set_cif_value(sci_name_type.set_valueOf_, "name", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+                            set_cif_value(sup_mol.set_name, cif_value=sci_name_type)
 
                     def set_el_category(sup_mol, sup_in):
                         """
@@ -4100,10 +4100,11 @@ class CifEMDBTranslator(object):
                     # attribute 1
                     set_attr_id(sup_mol, sup_mol_id_in)
                     # # if legacy:
+                    sci_name_type = emdb.sci_name_type()
                     # attribute 2
-                    set_attr_synonym(sup_in)
+                    set_attr_synonym(sup_in, sci_name_type)
                     # element 1
-                    set_el_name(sup_mol, sup_in)
+                    set_el_name(sup_mol, sup_in, sci_name_type)
                     # element 2
                     set_el_category(sup_mol, sup_in)
                     # element 3
