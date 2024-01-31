@@ -44,6 +44,7 @@ class Mappings(object):
         S = 'S'
         I = "I"
         O = "O"
+        SOFT_CAT = "SOFT_CAT"
 
     def __init__(self):
         """
@@ -418,6 +419,8 @@ class Mappings(object):
                             list_values.append(new_list)
                         if logic_value == self.Const.O:
                             list_values.append("1")
+                        if logic_value == self.Const.SOFT_CAT:
+                            list_values.append("MODEL FITTING")
                         elif logic_k == self.Const.M:
                             if self.Const.XML_VALUE_UPPER in logic_value:
                                 list_item.append(xml_value)

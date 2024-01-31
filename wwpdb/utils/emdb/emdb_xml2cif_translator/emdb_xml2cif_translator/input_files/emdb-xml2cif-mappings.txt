@@ -377,11 +377,11 @@ emd.interpretation.modelling_list.modelling.software_list.$Isoftware em_software
 emd.interpretation.modelling_list.modelling.software_list.software.name em_software.name.XML_VALUE
 emd.interpretation.modelling_list.modelling.software_list.software.version em_software.version.XML_VALUE
 emd.interpretation.modelling_list.modelling.software_list.software.processing_details em_software.details.XML_VALUE
-#emd.interpretation.modelling_list.modelling.software_list.software em_software.category.MODEL-FITTING
+#emd.interpretation.modelling_list.modelling.software_list.software. em_software.category.MODEL
 emd.interpretation.modelling_list.modelling.details em_3d_fitting.details.XML_VALUE
 emd.interpretation.modelling_list.modelling.overall_b_value em_3d_fitting.overall_b_value.XML_VALUE
 emd.interpretation.modelling_list.modelling.refinement_space em_3d_fitting.ref_space.XML_VALUE
-emd.interpretation.modelling_list.modelling.refinement_protocol em_3d_fitting.ref_protocol.XML_VALUE
+emd.interpretation.modelling_list.modelling.refinement_protocol em_software.category.SOFT_CAT em_3d_fitting.ref_protocol.XML_VALUE
 
 ###<emd>.<interpretation>.<figure_list>
 emd.interpretation.figure_list.figure.file em_interpret_figure.file.XML_VALUE

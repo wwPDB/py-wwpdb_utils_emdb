@@ -3957,16 +3957,18 @@ class CifEMDBTranslator(object):
                         """
                         set_cif_value(sup_mol.set_supramolecule_id, "id", const.EM_ENTITY_ASSEMBLY, cif_value=sup_mol_id_in, fmt=int)
 
-                    def set_attr_synonym(sup_mol, sup_in):
+                    def set_attr_synonym(sup_in):
                         """
                         XSD: <xs:attribute name="synonym" type="synonym" use="required"/>
-                        CIF: _em_entity_assembly.synonum 'actin'
+                        CIF: _em_entity_assembly.synonym 'actin'
                         """
+                        sci_name_type = emdb.sci_name_type()
                         synonym = get_cif_value("synonym", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
-                        # print("SYN", sup_in)
-                        # # if legacy:
-                        # if synonym:
-                        #     set_cif_value(sup_mol.set_synonym, "synonym", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in, constructor=emdb.sci_name_type)
+                        # if legacy:
+                        if synonym:
+                            set_cif_value(sci_name_type.set_synonym, "synonym", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+                            print(sci_name_type.get_synonym())
+
 
                     def set_el_name(sup_mol, sup_in):
                         """
@@ -4072,7 +4074,7 @@ class CifEMDBTranslator(object):
                              (unless the entry has a full overlap PDB model)
                         """
 
-                    def set_el_oligomeric_state():
+                    def set_el_oligomeric_state(sup_in):
                         """
                         XSD: <xs:element name="oligomeric_state" type="positive int or string" minOccurs="0">
                             Deprecated. Oligomeric state in parent,
@@ -4087,7 +4089,7 @@ class CifEMDBTranslator(object):
                         CIF: DOESN'T EXIST - TALK TO ARDAN?
                         """
 
-                    def set_el_recombinant_exp_flag():
+                    def set_el_recombinant_exp_flag(sup_in):
                         """
                         XSD: <xs:element name="recombinant_exp_flag" type="xs:boolean" maxOccurs="1" minOccurs="0" >
                         Deprecated 2014/12/3
@@ -4099,7 +4101,7 @@ class CifEMDBTranslator(object):
                     set_attr_id(sup_mol, sup_mol_id_in)
                     # # if legacy:
                     # attribute 2
-                    set_attr_synonym(sup_mol, sup_in)
+                    set_attr_synonym(sup_in)
                     # element 1
                     set_el_name(sup_mol, sup_in)
                     # element 2
@@ -4113,11 +4115,11 @@ class CifEMDBTranslator(object):
                     # element 6
                     set_el_number_of_copies()
                     # element 7
-                    set_el_oligomeric_state()
+                    set_el_oligomeric_state(sup_in)
                     # element 8
                     set_el_external_references()
                     # element 9
-                    set_el_recombinant_exp_flag()
+                    set_el_recombinant_exp_flag(sup_in)
 
                 def set_supramolecule_list(sup_list, sup_mol_dicts):
                     """
