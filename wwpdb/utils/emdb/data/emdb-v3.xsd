@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.9.1"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.9.2"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -2683,12 +2683,14 @@
             <xs:enumeration value="FEI FALCON II (4k x 4k)"/>
             <xs:enumeration value="FEI FALCON III (4k x 4k)"/>
             <xs:enumeration value="FEI FALCON IV (4k x 4k)"/>
+            <xs:enumeration value="GATAN ALPINE (2.3k x 3.2k)"/>
             <xs:enumeration value="GATAN K2 (4k x 4k)"/>
             <xs:enumeration value="GATAN K2 BASE (4k x 4k)"/>
             <xs:enumeration value="GATAN K2 IS (4k x 4k)"/>
             <xs:enumeration value="GATAN K2 QUANTUM (4k x 4k)"/>
             <xs:enumeration value="GATAN K2 SUMMIT (4k x 4k)"/>
             <xs:enumeration value="GATAN K3 (6k x 4k)"/>
+            <xs:enumeration value="GATAN K3 BIOCONTINUUM (6k x 4k)"/>
             <xs:enumeration value="GATAN K3 BIOQUANTUM (6k x 4k)"/>
             <xs:enumeration value="GATAN MULTISCAN"/>
             <xs:enumeration value="GATAN ORIUS SC1000 (4k x 2.7k)"/>
