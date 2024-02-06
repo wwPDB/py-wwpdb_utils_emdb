@@ -193,8 +193,8 @@ _em_experiment.reconstruction_method  TOMOGRAPHY
 _em_experiment.aggregation_state      .
 #
 _em_buffer.specimen_id  1
-_em_buffer.pH           .
 _em_buffer.id           .
+_em_buffer.pH           .
 _em_buffer.details      .
 #
 _em_sample_support.specimen_id     1
@@ -370,7 +370,7 @@ _em_euler_angle_assignment.order
 #
 _em_ctf_correction.id                   1
 _em_ctf_correction.image_processing_id  1
-_em_ctf_correction.details              none
+_em_ctf_correction.details              ?
 #
 loop_
 _em_map.id

@@ -5,52 +5,15 @@ _entry.id  EMD-1003
 _database_2.database_id    EMDB
 _database_2.database_code  EMD-1003
 #
-_em_map.entry_id              EMD-1003
-_em_map.id                    1
-_em_map.format                CCP4
-_em_map.size_kb               7631000.0
-_em_map.type                  "primary map"
-_em_map.file                  emd_1003.map.gz
-_em_map.symmetry_space_group  1
-_em_map.data_type             "Image stored as floating point number (4 bytes)"
-_em_map.dimensions_col        125
-_em_map.dimensions_row        125
-_em_map.dimensions_sec        125
-_em_map.origin_col            -62
-_em_map.origin_row            -62
-_em_map.origin_sec            -62
-_em_map.spacing_x             125
-_em_map.spacing_y             125
-_em_map.spacing_z             125
-_em_map.cell_a                366.25
-_em_map.cell_b                366.25
-_em_map.cell_c                366.25
-_em_map.cell_alpha            90
-_em_map.cell_beta             90
-_em_map.cell_gamma            90
-_em_map.axis_order_fast       X
-_em_map.axis_order_medium     Y
-_em_map.axis_order_slow       Z
-_em_map.statistics_minimum    -141.974999999999994
-_em_map.statistics_maximum    339.987000000000023
-_em_map.statistics_average    1.85585
-_em_map.statistics_std        38.046700000000001
-_em_map.pixel_spacing_x       2.93
-_em_map.pixel_spacing_y       2.93
-_em_map.pixel_spacing_z       2.93
-_em_map.contour_level         82.799999999999997
-_em_map.contour_level_source  .
-_em_map.label                 .
-_em_map.details               .
-#
-_em_admin.last_update          .
 _em_admin.current_status       REL
+_em_admin.legacy               Y
 _em_admin.details              .
 _em_admin.deposition_site      PDBE
 _em_admin.deposition_date      2002-06-26
 _em_admin.header_release_date  2002-08-22
 _em_admin.map_release_date     2002-08-22
 _em_admin.obsoleted_date       .
+_em_admin.last_update          2012-10-17
 _em_admin.title                "Solution structure of the E. coli 70S ribosome at 11.5 A resolution."
 #
 _pdbx_database_status.process_site  PDBE
@@ -69,6 +32,7 @@ _em_author_list.ordinal  1
 _citation.unpublished_flag         N
 _citation.id                       primary
 _citation.title                    "Solution structure of the E. coli 70S ribosome at 11.5 A resolution."
+_citation.journal_full             CELL(CAMBRIDGE,MASS.)
 _citation.journal_abbrev           .
 _citation.country                  .
 _citation.journal_issue            .
@@ -82,16 +46,16 @@ _citation.pdbx_database_id_PubMed  10721991
 _citation.pdbx_database_id_DOI     10.1016/S0092-8674(00)80690-X
 #
 loop_
+_citation_author.ordinal
 _citation_author.citation_id
 _citation_author.name
-_citation_author.ordinal
-primary  "Gabashvili, I.S."  1  
-primary  "Agrawal, R.K."     2  
-primary  "Spahn, C.M."       3  
-primary  "Grassucci, R.A."   4  
-primary  "Svergun, D.I."     5  
-primary  "Frank, J."         6  
-primary  "Penczek, P."       7  
+1  primary  "Gabashvili, I.S."  
+2  primary  "Agrawal, R.K."  
+3  primary  "Spahn, C.M."  
+4  primary  "Grassucci, R.A."  
+5  primary  "Svergun, D.I."  
+6  primary  "Frank, J."  
+7  primary  "Penczek, P."  
 #
 _pdbx_database_related.db_name       ?
 _pdbx_database_related.db_id         ?
@@ -109,28 +73,32 @@ _em_entity_assembly.assembly_id
 _em_entity_assembly.type
 _em_entity_assembly.source
 _em_entity_assembly.name
+_em_entity_assembly.synonym
 _em_entity_assembly.go_id
-_em_entity_assembly.parent_id
+_em_entity_assembly.number_unique_components_legacy
 _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
-   1     1  RIBOSOME  NATURAL  "70S ribosome Escherichia coli"          .  .  .  .  
-1000  1000  SAMPLE    NATURAL  "FMet-tRNAMet 70S Ribosome from E.coli"  .  .  .  
+_em_entity_assembly.oligomeric_state_legacy
+_em_entity_assembly.recombinant_exp_flag_legacy
+1  1  RIBOSOME  NATURAL  "70S ribosome Escherichia coli"          ?     .  .  .  .  .  false  
+0  0  SAMPLE    NATURAL  "FMet-tRNAMet 70S Ribosome from E.coli"  ?     .  3  .  
 ;preparation and buffer conditions are as described in
       Malhotra et al., J. Mol. Biol. (1998) 280, 103-116
 ;
-  
+  .  .      
 #
-_em_entity_assembly_naturalsource.id                  1
-_em_entity_assembly_naturalsource.entity_assembly_id  1
-_em_entity_assembly_naturalsource.ncbi_tax_id         562
-_em_entity_assembly_naturalsource.organism            "Escherichia coli"
-_em_entity_assembly_naturalsource.strain              .
-_em_entity_assembly_naturalsource.details             .
-_em_entity_assembly_naturalsource.organ               .
-_em_entity_assembly_naturalsource.tissue              .
-_em_entity_assembly_naturalsource.cell                .
-_em_entity_assembly_naturalsource.organelle           .
-_em_entity_assembly_naturalsource.cellular_location   .
+_em_entity_assembly_naturalsource.id                       .
+_em_entity_assembly_naturalsource.entity_assembly_id       1
+_em_entity_assembly_naturalsource.ncbi_tax_id              562
+_em_entity_assembly_naturalsource.organism                 "Escherichia coli"
+_em_entity_assembly_naturalsource.strain                   .
+_em_entity_assembly_naturalsource.details                  .
+_em_entity_assembly_naturalsource.organ                    .
+_em_entity_assembly_naturalsource.tissue                   .
+_em_entity_assembly_naturalsource.synonym_organism_legacy  .
+_em_entity_assembly_naturalsource.cell                     .
+_em_entity_assembly_naturalsource.organelle                .
+_em_entity_assembly_naturalsource.cellular_location        .
 #
 _em_entity_assembly_synthetic.ncbi_tax_id        ?
 _em_entity_assembly_synthetic.organism           ?
@@ -142,8 +110,8 @@ _em_entity_assembly_synthetic.cell               ?
 _em_entity_assembly_synthetic.organelle          ?
 _em_entity_assembly_synthetic.cellular_location  ?
 #
-_em_entity_assembly_molwt.entity_assembly_id  1000
-_em_entity_assembly_molwt.id                  1
+_em_entity_assembly_molwt.entity_assembly_id  .
+_em_entity_assembly_molwt.id                  .
 _em_entity_assembly_molwt.units               MDa
 _em_entity_assembly_molwt.experimental_flag   NO
 _em_entity_assembly_molwt.value               2.5
@@ -157,30 +125,11 @@ _em_entity_assembly_recombinant.strain              .
 _em_entity_assembly_recombinant.cell                .
 _em_entity_assembly_recombinant.plasmid             .
 #
-_em_virus_entity.entity_assembly_id  ?
-_em_virus_entity.id                  ?
-_em_virus_entity.empty               ?
-_em_virus_entity.enveloped           ?
-_em_virus_entity.virus_isolate       ?
-_em_virus_entity.virus_type          ?
-#
 _em_virus_shell.entity_assembly_id  ?
 _em_virus_shell.id                  ?
 _em_virus_shell.name                ?
 _em_virus_shell.diameter            ?
 _em_virus_shell.triangulation       ?
-#
-_em_virus_natural_host.entity_assembly_id  ?
-_em_virus_natural_host.id                  ?
-_em_virus_natural_host.ncbi_tax_id         ?
-_em_virus_natural_host.organism            ?
-_em_virus_natural_host.strain              ?
-#
-_em_virus_synthetic.entity_assembly_id  ?
-_em_virus_synthetic.id                  ?
-_em_virus_synthetic.ncbi_tax_id         ?
-_em_virus_synthetic.organism            ?
-_em_virus_synthetic.strain              ?
 #
 loop_
 _entity_poly.entity_id
@@ -231,3 +180,223 @@ _em_experiment.id                     1
 _em_experiment.reconstruction_method  "SINGLE PARTICLE"
 _em_experiment.aggregation_state      PARTICLE
 #
+_em_buffer.specimen_id  1
+_em_buffer.id           1
+_em_buffer.pH           7.6
+_em_buffer.details      
+;20 mM Hepes, 6 mM Mg(CH3COO)2 150 mM NH4Cl, 4 mM
+          beta-Mercaptoethanol, 0.5 mM Spermine, 2 mM Spermidine.
+;
+
+#
+_em_sample_support.specimen_id     1
+_em_sample_support.id              .
+_em_sample_support.grid_type       .
+_em_sample_support.grid_material   .
+_em_sample_support.grid_mesh_size  .
+_em_sample_support.details         .
+#
+_em_specimen.id             1
+_em_specimen.concentration  0.09
+_em_specimen.details        .
+#
+_em_vitrification.specimen_id           1
+_em_vitrification.id                    1
+_em_vitrification.cryogen_name          ETHANE
+_em_vitrification.humidity              .
+_em_vitrification.chamber_temperature   .
+_em_vitrification.instrument            "HOMEMADE PLUNGER"
+_em_vitrification.details               "Vitrification instrument: 2 side blotting plunger"
+_em_vitrification.timed_resolved_state  .
+_em_vitrification.method                "Blot and plunge"
+#
+_em_buffer_component.buffer_id            ?
+_em_buffer_component.id                   ?
+_em_buffer_component.concentration        ?
+_em_buffer_component.concentration_units  ?
+_em_buffer_component.formula              ?
+_em_buffer_component.name                 ?
+#
+_em_staining.type      ?
+_em_staining.material  ?
+_em_staining.details   ?
+#
+_em_embedding.material  ?
+_em_embedding.details   ?
+#
+_em_shadowing.material   ?
+_em_shadowing.angle      ?
+_em_shadowing.thickness  ?
+_em_shadowing.details    ?
+#
+_em_imaging.sample_support_id              .
+_em_imaging.id                             1
+_em_imaging.microscope_model               "FEI/PHILIPS CM200FEG/ST"
+_em_imaging.illumination_mode              "FLOOD BEAM"
+_em_imaging.mode                           "BRIGHT FIELD"
+_em_imaging.electron_source                "FIELD EMISSION GUN"
+_em_imaging.accelerating_voltage           200
+_em_imaging.c2_aperture_diameter           .
+_em_imaging.nominal_cs                     2.0
+_em_imaging.nominal_defocus_min            2.17
+_em_imaging.calibrated_defocus_min         .
+_em_imaging.nominal_defocus_max            4.34
+_em_imaging.calibrated_defocus_max         .
+_em_imaging.nominal_magnification          50000.0
+_em_imaging.calibrated_magnification       51200.0
+_em_imaging.specimen_holder_model          "GATAN LIQUID NITROGEN"
+_em_imaging.specimen_holder_type           "Cryo Transfer"
+_em_imaging.cryogen                        .
+_em_imaging.recording_temperature_minimum  .
+_em_imaging.recording_temperature_maximum  .
+_em_imaging.temperature                    93
+_em_imaging.astigmatism                    .
+_em_imaging.electron_beam_tilt_params      .
+_em_imaging.details                        "25 % of data from Philips EM420 with LaB6 at 100kV"
+_em_imaging.date                           1997-10-04
+_em_imaging.tilt_angle_min                 0
+_em_imaging.tilt_angle_max                 0
+#
+_em_support_film.sample_support_id  ?
+_em_support_film.material           ?
+_em_support_film.topology           ?
+_em_support_film.thickness          ?
+#
+_em_grid_pretreatment.sample_support_id  ?
+_em_grid_pretreatment.type               ?
+_em_grid_pretreatment.time               ?
+_em_grid_pretreatment.atmosphere         ?
+_em_grid_pretreatment.pressure           ?
+#
+_em_image_recording.imaging_id                   1
+_em_image_recording.id                           1
+_em_image_recording.film_or_detector_model       "KODAK SO-163 FILM"
+_em_image_recording.detector_mode                .
+_em_image_recording.num_grids_imaged             .
+_em_image_recording.num_real_images              239
+_em_image_recording.bits_per_pixel_legacy        12.
+_em_image_recording.num_diffraction_images       .
+_em_image_recording.average_exposure_time        .
+_em_image_recording.avg_electron_dose_per_image  10
+_em_image_recording.details                      .
+#
+_em_tomography.imaging_id             1
+_em_tomography.id                     .
+_em_tomography.axis1_min_angle        .
+_em_tomography.axis1_max_angle        .
+_em_tomography.axis1_angle_increment  .
+_em_tomography.axis2_min_angle        .
+_em_tomography.axis2_max_angle        .
+_em_tomography.axis2_angle_increment  .
+#
+_em_imaging_optics.phase_plate               ?
+_em_imaging_optics.sph_aberration_corrector  ?
+_em_imaging_optics.chr_aberration_corrector  ?
+_em_imaging_optics.energyfilter_name         ?
+_em_imaging_optics.energyfilter_slit_width   ?
+_em_imaging_optics.energyfilter_lower        ?
+_em_imaging_optics.energyfilter_upper        ?
+_em_imaging_optics.details                   ?
+#
+_em_image_scans.image_recording_id     1
+_em_image_scans.id                     1
+_em_image_scans.scanner_model          "PERKIN ELMER"
+_em_image_scans.dimension_width        .
+_em_image_scans.dimension_height       .
+_em_image_scans.sampling_interval      15
+_em_image_scans.used_frames_per_image  .
+#
+_em_image_processing.id                  1
+_em_image_processing.image_recording_id  .
+_em_image_processing.details             .
+#
+_em_3d_reconstruction.image_processing_id  1
+_em_3d_reconstruction.algorithm            OTHER
+_em_3d_reconstruction.details              .
+_em_3d_reconstruction.id                   1
+_em_3d_reconstruction.resolution           11.5
+_em_3d_reconstruction.resolution_method    "FSC 0.5 CUT-OFF"
+_em_3d_reconstruction.num_particles        73523
+_em_3d_reconstruction.symmetry_type        POINT
+#
+_em_start_model.image_processing_id  1
+_em_start_model.id                   .
+_em_start_model.pdb_id               .
+_em_start_model.type                 .
+#
+loop_
+_em_euler_angle_assignment.id
+_em_euler_angle_assignment.image_processing_id
+_em_euler_angle_assignment.type
+_em_euler_angle_assignment.order
+.  .  .  INITIAL  
+.  .  .  FINAL    
+#
+_em_single_particle_entity.point_symmetry       C1
+_em_single_particle_entity.id                   1
+_em_single_particle_entity.image_processing_id  1
+#
+_em_ctf_correction.id                   1
+_em_ctf_correction.image_processing_id  1
+_em_ctf_correction.details              ?
+#
+_em_map.id                    1
+_em_map.format                CCP4
+_em_map.size_kb               7631000.0
+_em_map.type                  "primary map"
+_em_map.file                  emd_1003.map.gz
+_em_map.entry_id              EMD-1003
+_em_map.symmetry_space_group  1
+_em_map.data_type             "Image stored as floating point number (4 bytes)"
+_em_map.dimensions_col        125
+_em_map.dimensions_row        125
+_em_map.dimensions_sec        125
+_em_map.origin_col            -62
+_em_map.origin_row            -62
+_em_map.origin_sec            -62
+_em_map.spacing_x             125
+_em_map.spacing_y             125
+_em_map.spacing_z             125
+_em_map.cell_a                366.25
+_em_map.cell_b                366.25
+_em_map.cell_c                366.25
+_em_map.cell_alpha            90
+_em_map.cell_beta             90
+_em_map.cell_gamma            90
+_em_map.axis_order_fast       X
+_em_map.axis_order_medium     Y
+_em_map.axis_order_slow       Z
+_em_map.statistics_minimum    -141.974999999999994
+_em_map.statistics_maximum    339.987000000000023
+_em_map.statistics_average    1.85585
+_em_map.statistics_std        38.046700000000001
+_em_map.pixel_spacing_x       2.93
+_em_map.pixel_spacing_y       2.93
+_em_map.pixel_spacing_z       2.93
+_em_map.contour_level         82.799999999999997
+_em_map.contour_level_source  .
+_em_map.annotation_details    "E. coli 70S Ribosome"
+_em_map.label                 ::::EMD-1003::::
+#
+_em_3d_fitting.entry_id         .
+_em_3d_fitting.pdb_chain_id     .
+_em_3d_fitting.method           .
+_em_3d_fitting.target_criteria  .
+_em_3d_fitting.details          "manual fitting using O Mol_Id: 1; Molecule: S4 Ribosomal Protein; Chain: A; Other_Details: Modeled By Analogous Protein Of B. Stearothermophilus Taken From Pdb Entry 1C06 Mol_Id: 2; Molecule: S5 Ribosomal Protein; Chain: B; Other_Details: Modeled By Analogous Protein Of B. Stearothermophilus Taken From Pdb Entry 1Pkp Mol_Id: 3; Molecule: S6 Ribosomal Protein; Chain: C; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1Ris Mol_Id: 4; Molecule: S7 Ribosomal Protein; Chain: D; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1Rss Mol_Id: 5; Molecule: S8 Ribosomal Protein; Chain: E; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1An7 Mol_Id: 6; Molecule: S15 Ribosomal Protein; Chain: F; Other_Details: Modeled By Analogous Protein Of B. Stearothermophilus Taken From Pdb Entry 1A32 Mol_Id: 7; Molecule: S17 Ribosomal Protein; Chain: G; Other_Details: Modeled By Analogous Protein Of B. Stearothermophilus Taken From Pdb Entries 1Rip and 1Qd7 Mol_Id: 8; Molecule: S20 Ribosomal Protein; Chain: H; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1Qd7 Mol_Id: 9; Molecule: Ribosomal Protein L1; Chain: N; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1Ad2 Mol_Id: 10; Molecule: Ribosomal Protein L6; Chain: J; Mutation: Yes; Other_Details: Modeled By Analogous Protein Of T. Stearothermophilus Taken From Pdb Entry 1Rl6 Mol_Id: 11; Molecule: Ribosomal Protein L11; Chain: K; Other_Details: Modeled By Analogous Protein Of T. Maritima Taken From Pdb Entry 1Mms Mol_Id: 12; Molecule: Fragment Of 16S Rrna Helix 23; Chain: I; Fragment: Residues 673-713; Other_Details: Modeled As Analogous Fragment Of T. Thermophilus Taken From Pdb Entry 1Qd7 Mol_Id: 13; Molecule: Fragment Of 23S Rrna; Chain: L; Fragment: Residues 1051-1108; Other_Details: T. Maritima RNA Sequence and Model Taken From Pdb Entry 1Mms Mol_Id: 14; Molecule: Helix 95 Of 23S Rrna; Chain: M; Other_Details: E. Coli RNA Sequence and Model Taken From Pdb Entry 480D Mol_Id: 15; Molecule: Formyl-Methionyl-tRNA; Chain: O; Synonym: Fmet-tRNA; Other_Details: E. Coli Fmet-tRNA Sequence and Model Taken From Pdb Entry 2Fmt"
+_em_3d_fitting.overall_b_value  .
+_em_3d_fitting.ref_space        .
+_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
+#
+_em_software.id                   1
+_em_software.image_processing_id  1
+_em_software.name                 O
+_em_software.version              .
+_em_software.details              .
+_em_software.category             "MODEL FITTING"
+#
+_em_interpret_figure.file     ?
+_em_interpret_figure.details  ?
+#
+_em_fsc_curve.file     ?
+_em_fsc_curve.details  ?
+##
