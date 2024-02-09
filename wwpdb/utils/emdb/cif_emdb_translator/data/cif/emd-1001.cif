@@ -7,13 +7,25 @@ _database_2.database_code  EMD-1001
 #
 _pdbx_depui_entry_details.requested_accession_types  EMDB
 _pdbx_depui_entry_details.validated_contact_email    taylor@bio.fsu.edu
+_pdbx_depui_entry_details.experimental_methods       "ELECTRON MICROSCOPY"
 _pdbx_depui_entry_details.dep_dataset_id             ?
 _pdbx_depui_entry_details.country                    ?
 #
-_pdbx_contact_author.id          1
-_pdbx_contact_author.email       taylor@bio.fsu.edu
-_pdbx_contact_author.name_first  Kenneth
-_pdbx_contact_author.name_last   Taylor
+_pdbx_contact_author.id              1
+_pdbx_contact_author.email           taylor@bio.fsu.edu
+_pdbx_contact_author.name_first      Kenneth
+_pdbx_contact_author.name_mi         Allen
+_pdbx_contact_author.name_last       Taylor
+_pdbx_contact_author.legacy_address  
+;Institute of Molecular Biophysics Florida State
+        University       Tallahassee, FL 32306-4380
+;
+
+_pdbx_contact_author.phone           "(850) 644-3357"
+_pdbx_contact_author.fax             "(850) 644-7244"
+#
+_exptl.entry_id  ?
+_exptl.method    "ELECTRON MICROSCOPY"
 #
 _em_admin.current_status       REL
 _em_admin.details              .
@@ -45,8 +57,6 @@ _pdbx_database_status.status_code   REL
 _struct_keywords.entry_id  ?
 #
 _atom_sites.entry_id  ?
-#
-_exptl.entry_id  ?
 #
 _pdbx_depui_status_flags.dep_dataset_id                        ?
 _pdbx_depui_status_flags.has_accepted_terms_and_conditions     Y

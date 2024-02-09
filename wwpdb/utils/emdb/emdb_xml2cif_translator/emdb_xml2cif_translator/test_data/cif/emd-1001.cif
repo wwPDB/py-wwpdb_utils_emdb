@@ -11,10 +11,18 @@ _pdbx_depui_entry_details.experimental_methods       "ELECTRON MICROSCOPY"
 _pdbx_depui_entry_details.dep_dataset_id             ?
 _pdbx_depui_entry_details.country                    ?
 #
-_pdbx_contact_author.id          1
-_pdbx_contact_author.email       taylor@bio.fsu.edu
-_pdbx_contact_author.name_first  Kenneth
-_pdbx_contact_author.name_last   Taylor
+_pdbx_contact_author.id              1
+_pdbx_contact_author.email           taylor@bio.fsu.edu
+_pdbx_contact_author.name_first      Kenneth
+_pdbx_contact_author.name_mi         Allen
+_pdbx_contact_author.name_last       Taylor
+_pdbx_contact_author.legacy_address  
+;Institute of Molecular Biophysics Florida State
+        University       Tallahassee, FL 32306-4380
+;
+
+_pdbx_contact_author.phone           "(850) 644-3357"
+_pdbx_contact_author.fax             "(850) 644-7244"
 #
 _exptl.entry_id  ?
 _exptl.method    "ELECTRON MICROSCOPY"
