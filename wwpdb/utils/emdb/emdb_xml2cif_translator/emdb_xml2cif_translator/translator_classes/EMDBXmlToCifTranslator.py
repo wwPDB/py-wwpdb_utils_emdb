@@ -22,6 +22,8 @@ class EMDBXmlToCifTranslator(object):
         # flags for indicating a translation in process
         self.__emdb_header_file_read = False
         self.__emdb_header_file_translated = False
+        self.__autodep_file_read = False
+        self.__autodep_file_translated = False
         self.__mmcif_file_written = False
         self.__mmcif_file_validates = False
         self.__logger_set = False
@@ -57,6 +59,25 @@ class EMDBXmlToCifTranslator(object):
 
         return self.__emdb_header_file_read
 
+    def read_autodep_file(self, autodep_input_file):
+        """
+        This method reads the autodep input file and saves its values into the EMDBMetaData object as a dictionary
+        If autodep_input_file is either not given or doesn't exist, an exception is raised.
+        The autodep input file data is stored into the EMDBMetadata object (self.data)
+
+        :param autodep_input_file: An XML file; autodep input file
+        :return __autodep_file_read: True if the XML is successfully parsed
+        """
+        if not autodep_input_file:
+            raise Exception("Translator cannot read the autodep.xml file as the file name is not given")
+        else:
+            if not os.path.exists(autodep_input_file):
+                raise file_nf_error(errno.ENOENT, os.strerror(errno.ENOENT), autodep_input_file)
+            else:
+                self.__autodep_file_read = self.data.parse_autodep(autodep_input_file)
+
+        return self.__autodep_file_read
+
     def write_mmcif_file(self):
         """
         This method checks if the translation is performed and calls onto the cif object to write the output file
@@ -71,7 +92,7 @@ class EMDBXmlToCifTranslator(object):
 
         return self.__mmcif_file_written
 
-    def translate_xml_to_cif(self, input_xml_file, output_cif_file=None):
+    def translate_xml_to_cif(self, input_xml_file, autodep_input_file, output_cif_file=None):
         """
         The method reads 'input_xml_file' and writes the result of a xml-to-cif translation of data from
         'input_xml_file' into 'output_mmcif_file'
@@ -89,14 +110,16 @@ class EMDBXmlToCifTranslator(object):
             if self.data:
                 # read input file now and save the result in self.data.emd
                 if self.read_emdb_header_file(input_xml_file):
-                    # set the logging framework
-                    if not self.logging:
-                        # set the logging lists
-                        if self.data.emdb_id_from_filename:
-                            self.translation_log = LoggingUtil.EntryLogs(self.data.emdb_id_from_filename)
-                            if self.logging and self.translation_log:
-                                self.__logger_set = True
-                    if not self.__emdb_header_file_translated:
+                    #read autodep input file and save the results in self.data.autodep
+                    if self.read_autodep_file(autodep_input_file):
+                        # set the logging framework
+                        if not self.logging:
+                            # set the logging lists
+                            if self.data.emdb_id_from_filename:
+                                self.translation_log = LoggingUtil.EntryLogs(self.data.emdb_id_from_filename)
+                                if self.logging and self.translation_log:
+                                    self.__logger_set = True
+                    if not self.__emdb_header_file_translated and not self.__autodep_file_translated:
                         # Already set for a translation: input XML file is read, EMDB metadata object created and
                         # the logger established
                         # Still needed: output filename and cif object
@@ -108,6 +131,7 @@ class EMDBXmlToCifTranslator(object):
                         self.data.cif = CIF(output_cif_file)
                         # All set - translate now
                         self.__emdb_header_file_translated = self.data.process()
+                        self.__autodep_file_translated = True
                     if self.__emdb_header_file_translated:
                         if self.write_mmcif_file():
                             translated_successfully = True

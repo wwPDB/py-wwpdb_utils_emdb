@@ -43,7 +43,14 @@ class Mappings(object):
         U = 'U'
         S = 'S'
         I = "I"
-        O = "O"
+        EM = "EM"
+        ONE = "ONE"
+        DOT = "DOT"
+        Y = "Y"
+        YES = "YES"
+        NO = "NO"
+        REL = "REL"
+        QUERY = "QUERY"
         SOFT_CAT = "SOFT_CAT"
 
     def __init__(self):
@@ -417,8 +424,22 @@ class Mappings(object):
                             new_list = ['EMD-' + item for item in new_list]
                             list_values.remove("I")
                             list_values.append(new_list)
-                        if logic_value == self.Const.O:
+                        if logic_value == self.Const.EM:
+                            list_values.append("EMDB")
+                        if logic_value == self.Const.Y:
+                            list_values.append("Y")
+                        if logic_value == self.Const.YES:
+                            list_values.append("YES")
+                        if logic_value == self.Const.NO:
+                            list_values.append("NO")
+                        if logic_value == self.Const.ONE:
                             list_values.append("1")
+                        if logic_value == self.Const.REL:
+                            list_values.append("REL")
+                        if logic_value == self.Const.DOT:
+                            list_values.append(".")
+                        if logic_value == self.Const.QUERY:
+                            list_values.append("?")
                         if logic_value == self.Const.SOFT_CAT:
                             list_values.append("MODEL FITTING")
                         elif logic_k == self.Const.M:

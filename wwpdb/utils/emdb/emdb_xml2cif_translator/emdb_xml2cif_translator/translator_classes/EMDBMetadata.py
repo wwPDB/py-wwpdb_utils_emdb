@@ -21,6 +21,7 @@ class EMDBMetadata(object):
         self.emdb_id_from_filename = None
         self.filename_in = None
         self.xml_tree_created = False
+        self.autodep_tree_created = False
         self.mappings_in = Mappings()
         self.cif = None
         self.emd = None
@@ -43,6 +44,23 @@ class EMDBMetadata(object):
 
         return self.xml_tree_created
 
+    def parse_autodep(self, autodep_input_file):
+        """
+        Function for parsing the autodep.xml file into a dictionary
+        :param autodep_input_file: an XML file; an EMDB entry v1.9 header file or the corresponding autodep.xml file
+        :return: autodep_tree_created: a boolean; True when the input XML file is parsed and
+                                  stored into a dictionary (self.autodep)
+        """
+        self.autodep_file = autodep_input_file
+        if not self.autodep_tree_created:
+            autotree = ET.parse(self.autodep_file)
+            self.autodep = autotree.getroot()
+            if self.autodep is not None:
+                self.autodep_tree_created = True
+
+        return self.autodep_tree_created
+
+
     def process(self):
         """
         This script processes XML values using the mapping logic and stores them ready for writing into cif
@@ -50,20 +68,22 @@ class EMDBMetadata(object):
         """
         processed = False
         if self.xml_tree_created:
-            ###use XML values to store them in the mappings logic
-            mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__),
-                                         self.MAPPINGS_LOGIC_FILENAME)
-            if self.find_xml_values_to_mappings(mappings_file):
-                #by having the xml values, use the mappings logic to create the cif ready dictionary
-                if self.mappings_in.set_cif_mappings_values():
-                    # cif data is now ready;
-                    # before starting with cif mappings prepare cif container using EMDB ID value from XML file
-                    if self.cif.prepare_container(self.mappings_in.get_mapping_logic_value(
-                            self.mappings_in.Const.MAP_EMD_EMDB_ID,
-                            self.mappings_in.Const.XML_VALUE).replace('-', '_').lower()):
-                        # insert data into the cif object container
-                        self.add_data_into_cif_container()
-                        processed = True
+            # ###use XML values to store them in the mappings logic
+            if self.autodep_tree_created:
+                ###use emdb header XML file and the corresponding autodep XML values to store them in the mappings logic
+                mappings_file = os.path.join(os.path.dirname(emdb_xml2cif_translator.input_files.__file__),
+                                             self.MAPPINGS_LOGIC_FILENAME)
+                if self.find_xml_values_to_mappings(mappings_file):
+                    #by having the xml values, use the mappings logic to create the cif ready dictionary
+                    if self.mappings_in.set_cif_mappings_values():
+                        # cif data is now ready;
+                        # before starting with cif mappings prepare cif container using EMDB ID value from XML file
+                        if self.cif.prepare_container(self.mappings_in.get_mapping_logic_value(
+                                self.mappings_in.Const.MAP_EMD_EMDB_ID,
+                                self.mappings_in.Const.XML_VALUE).replace('-', '_').lower()):
+                            # insert data into the cif object container
+                            self.add_data_into_cif_container()
+                            processed = True
 
         return processed
 
@@ -74,6 +94,8 @@ class EMDBMetadata(object):
        If the mapping requires XML_VALUE, the XML value from emd is written
        """
         root = self.emd
+        autodep_root = self.autodep
+
         if os.path.isfile(mappings_file):
             f = open(mappings_file, 'r').read().split("\n")
             for line in f:
@@ -90,12 +112,20 @@ class EMDBMetadata(object):
                                 for attrib_key, attrib_val in root.attrib.items():
                                     attrib_tag = '@'.join((xml_elem[0], attrib_key))
                                     self.mappings_in.map_xml_value_to_code(attrib_val, attrib_tag, root.text)
+                                for attrib_key, attrib_val in autodep_root.attrib.items():
+                                    attrib_tag = '@'.join((xml_elem[0], attrib_key))
+                                    self.mappings_in.map_xml_value_to_code(attrib_val, attrib_tag, autodep_root.text)
                             else:
                                 el = xml_elem[0].split(".", 1)[1].replace('.', '/')
                                 attrib_key = xml_elem[1]
-                                el = root.findall(el)
-                                if el:
-                                    for at in el:
+                                el_root = root.findall(el)
+                                el_autodep = autodep_root.findall(el)
+                                if el_root:
+                                    for at in el_root:
+                                        attrib_val = at.get(attrib_key)
+                                        self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, at.text)
+                                if el_autodep:
+                                    for at in el_autodep:
                                         attrib_val = at.get(attrib_key)
                                         self.mappings_in.map_xml_value_to_code(attrib_val, xml_part, at.text)
                         elif '^' in xml_part:
@@ -134,6 +164,10 @@ class EMDBMetadata(object):
                                 self.primary_and_reference_ids(xml_part, root, tags, item, att)
                             else:
                                 for elem in root.findall(tags):
+                                    sub_elem = elem.find(item)
+                                    sub_elements = '' if sub_elem is None else str(sub_elem.text)
+                                    self.mappings_in.map_xml_value_to_code(sub_elements, xml_part)
+                                for elem in autodep_root.findall(tags):
                                     sub_elem = elem.find(item)
                                     sub_elements = '' if sub_elem is None else str(sub_elem.text)
                                     self.mappings_in.map_xml_value_to_code(sub_elements, xml_part)

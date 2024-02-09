@@ -4,22 +4,29 @@
 ### with * to mention the attribute name that needs to break down the list) 10. > for defining the supra and macro type with respect to the element name 11. M$ multiply the same value several times
 ### 12. < for defining the macromolecule entity_poly.type 13. E$$E either one of the elements present 14. ? to write a boolean when either one is present 15. A$$A multiple elements are present
 ### 16. U$ to have a different dictionary key while mapping 17. E for modifiying author's name to the cif format 18. S for em_entity_assembly.source 18. H$ for em_map.type
-### 19. O is used for primary and referral IDs if it is just expected only one sub-element to be present
+### 19. ONE is used for primary and referral IDs if it is just expected only one sub-element and also when need to hard code "1" 20. REL, EMDB are all hard coded 21.YES is for hard coding "Y"
+### 23. NO is for hard coding "N"
 
-emd@emdb_id entry.id.XML_VALUE database_2.database_id.EMDB database_2.database_code.XML_VALUE
+emd@emdb_id entry.id.XML_VALUE database_2.database_id.EMDB database_2.database_code.XML_VALUE pdbx_depui_entry_details.requested_accession_types.EM
+
+#### Mandatory mmcif items from autodep.xml file
+autoDepEntry.initialisation.contactSub@id pdbx_contact_author.id.XML_VALUE
+autoDepEntry.initialisation.contactSub.email pdbx_contact_author.email.XML_VALUE pdbx_depui_entry_details.validated_contact_email.XML_VALUE
+autoDepEntry.initialisation.contactSub.firstName pdbx_contact_author.name_first.XML_VALUE
+autoDepEntry.initialisation.contactSub.familyName pdbx_contact_author.name_last.XML_VALUE
 
 ####<emd>.<admin>.<current_status>
 #####emd.admin.current_status.date em_admin.last_update.XML_VALUE
-emd.admin.current_status.code em_admin.current_status.XML_VALUE em_admin.legacy.Y
+emd.admin.current_status.code em_admin.current_status.XML_VALUE pdbx_database_proc.cycle_id.ONE database_PDB_rev.num.DOT em_depui.same_authors_as_pdb.DOT em_depui.same_title_as_pdb.DOT
 emd.admin.current_status.processing_site pdbx_database_status.process_site.U
 emd.admin.current_status.details em_admin.details.XML_VALUE
 
 ##<emd>.<admin>.<sites>
-emd.admin.sites.deposition em_admin.deposition_site.U pdbx_database_status.deposit_site.U
+emd.admin.sites.deposition em_admin.deposition_site.U pdbx_database_status.deposit_site.U struct_keywords.entry_id.QUERY pdbx_database_status.entry_id.QUERY pdbx_database_proc.entry_d.QUERY atom_sites.entry_id.QUERY exptl.entry_id.QUERY em_depui.entry_id.QUERY pdbx_depui_entry_details.dep_dataset_id.QUERY pdbx_depui_status_flags.dep_dataset_id.QUERY pdbx_depui_entry_details.country.QUERY
 ###emd.admin.sites.last_processing pdbx_database_status.process_site.XML_VALUE
 
 ##<emd>.<admin>.<key_dates>
-emd.admin.key_dates.deposition em_admin.deposition_date.XML_VALUE
+emd.admin.key_dates.deposition em_admin.deposition_date.XML_VALUE pdbx_depui_status_flags.has_accepted_terms_and_conditions.Y pdbx_depui_status_flags.is_ligand_processing_complete.Y pdbx_depui_status_flags.sample_xyz_sequence_alignments_valid.Y
 emd.admin.key_dates.header_release em_admin.header_release_date.XML_VALUE
 emd.admin.key_dates.map_release em_admin.map_release_date.XML_VALUE
 emd.admin.key_dates.obsolete em_admin.obsoleted_date.XML_VALUE
@@ -32,7 +39,7 @@ emd.admin.grant_support.grant_reference.code pdbx_audit_support.grant_number.XML
 emd.admin.grant_support.grant_reference.country pdbx_audit_support.country.XML_VALUE
 
 ###<emd>.<admin>.<title>: IF em_depui.same_title_as_pdb: YES: struct.title.XML_VALUE; NO: em_admin.title.XML_VALUE????!!!
-emd.admin.title em_admin.title.XML_VALUE struct.title.XML_VALUE
+emd.admin.title em_admin.title.XML_VALUE struct.title.XML_VALUE pdbx_database_status.status_code.REL em_depui.depositor_hold_instructions.REL em_admin.legacy.YES
 
 ###<emd>.<admin>.<authors_list>.<[author]>
 N:emd.admin.authors_list^author em_author_list.author.E em_author_list.ordinal.N
@@ -140,7 +147,7 @@ N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host&database 
 N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host.organism em_virus_synthetic.organism.XML_VALUE
 N:emd.sample.supramolecule_list.S$virus_supramolecule$S.synthetic_host.strain em_virus_synthetic.strain.XML_VALUE
 
-N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S&macromolecule_id entity.id.XML_VALUE entity_poly.entity_id.XML_VALUE entity_src_nat.entity_id.XML_VALUE entity_src_gen.entity_id.XML_VALUE
+N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S&macromolecule_id entity.id.XML_VALUE entity_poly.entity_id.XML_VALUE entity_src_nat.entity_id.XML_VALUE entity_src_gen.entity_id.XML_VALUE em_depui.macromolecule_description.YES
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S> entity.type.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.A$recombinant_expression.recombinant_organism$A+macromolecule_id entity.src_method.XML_VALUE
 N:emd.sample.macromolecule_list.S$protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide$S.name entity.pdbx_description.XML_VALUE
@@ -272,7 +279,13 @@ N:emd.structure_determination_list.structure_determination.microscopy_list.S$sin
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.specialist_optics.energyfilter.lower_energy_threshold em_imaging_optics.energyfilter_lower.XML_VALUE
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.specialist_optics.energyfilter.upper_energy_threshold em_imaging_optics.energyfilter_upper.XML_VALUE
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.specialist_optics.details em_imaging_optics.details.XML_VALUE
-##N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.software_list.software.name em_software.name.XML_VALUE
+
+#N:emd.S$structure_determination_list.structure_determination.microscopy_list.single_particle_microscopy|structure_determination_list.structure_determination.microscopy_list.tomography_microscopy|structure_determination_list.structure_determination.microscopy_list.subtomogram_averaging_microscopy|structure_determination_list.structure_determination.microscopy_list.crystallography_microscopy|structure_determination_list.structure_determination.microscopy_list.helical_microscopy|structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction|structure_determination_list.structure_determination.tomography_processing.final_reconstruction|structure_determination_list.structure_determination.subtomogram_averaging_processing.final_reconstruction|structure_determination_list.structure_determination.crystallography_processing.final_reconstruction|structure_determination_list.structure_determination.helical_processing.final_reconstruction|interpretation.modelling_list.modelling$S.software_list$Isoftware em_software.id.XML_VALUE em_software.image_processing_id.XML_VALUE
+#N:emd.S$structure_determination_list.structure_determination.microscopy_list.single_particle_microscopy|structure_determination_list.structure_determination.microscopy_list.tomography_microscopy|structure_determination_list.structure_determination.microscopy_list.subtomogram_averaging_microscopy|structure_determination_list.structure_determination.microscopy_list.crystallography_microscopy|structure_determination_list.structure_determination.microscopy_list.helical_microscopy|structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction|structure_determination_list.structure_determination.tomography_processing.final_reconstruction|structure_determination_list.structure_determination.subtomogram_averaging_processing.final_reconstruction|structure_determination_list.structure_determination.crystallography_processing.final_reconstruction|structure_determination_list.structure_determination.helical_processing.final_reconstruction|interpretation.modelling_list.modelling$S.software_list.software.name em_software.name.XML_VALUE
+#N:emd.S$structure_determination_list.structure_determination.microscopy_list.single_particle_microscopy|structure_determination_list.structure_determination.microscopy_list.tomography_microscopy|structure_determination_list.structure_determination.microscopy_list.subtomogram_averaging_microscopy|structure_determination_list.structure_determination.microscopy_list.crystallography_microscopy|structure_determination_list.structure_determination.microscopy_list.helical_microscopy|structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction|structure_determination_list.structure_determination.tomography_processing.final_reconstruction|structure_determination_list.structure_determination.subtomogram_averaging_processing.final_reconstruction|structure_determination_list.structure_determination.crystallography_processing.final_reconstruction|structure_determination_list.structure_determination.helical_processing.final_reconstruction|interpretation.modelling_list.modelling$S.software_list.software.version em_software.version.XML_VALUE
+#N:emd.S$structure_determination_list.structure_determination.microscopy_list.single_particle_microscopy|structure_determination_list.structure_determination.microscopy_list.tomography_microscopy|structure_determination_list.structure_determination.microscopy_list.subtomogram_averaging_microscopy|structure_determination_list.structure_determination.microscopy_list.crystallography_microscopy|structure_determination_list.structure_determination.microscopy_list.helical_microscopy|structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction|structure_determination_list.structure_determination.tomography_processing.final_reconstruction|structure_determination_list.structure_determination.subtomogram_averaging_processing.final_reconstruction|structure_determination_list.structure_determination.crystallography_processing.final_reconstruction|structure_determination_list.structure_determination.helical_processing.final_reconstruction|interpretation.modelling_list.modelling$S.software_list.software.details em_software.details.XML_VALUE
+#N:emd.S$structure_determination_list.structure_determination.microscopy_list.single_particle_microscopy|structure_determination_list.structure_determination.microscopy_list.tomography_microscopy|structure_determination_list.structure_determination.microscopy_list.subtomogram_averaging_microscopy|structure_determination_list.structure_determination.microscopy_list.crystallography_microscopy|structure_determination_list.structure_determination.microscopy_list.helical_microscopy|interpretation.modelling_list.modelling.refinement_protocol$S em_software.category.SOFT_CAT em_3d_fitting.ref_protocol.XML_VALUE
+
 ##N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.software_list.software.version em_software.version.XML_VALUE
 ##N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.software_list.software.processing_details em_software.details.XML_VALUE
 N:emd.structure_determination_list.structure_determination.microscopy_list.S$single_particle_microscopy|tomography_microscopy|subtomogram_averaging_microscopy|crystallography_microscopy|helical_microscopy$S.image_recording_list$Iimage_recording em_image_recording.id.XML_VALUE em_image_scans.image_recording_id.XML_VALUE
@@ -376,11 +389,11 @@ emd.interpretation.modelling_list.modelling.software_list.$Isoftware em_software
 emd.interpretation.modelling_list.modelling.software_list.software.name em_software.name.XML_VALUE
 emd.interpretation.modelling_list.modelling.software_list.software.version em_software.version.XML_VALUE
 emd.interpretation.modelling_list.modelling.software_list.software.processing_details em_software.details.XML_VALUE
-#emd.interpretation.modelling_list.modelling.software_list.software. em_software.category.MODEL
+emd.interpretation.modelling_list.modelling.software_list.software. em_software.category.MODEL
+emd.interpretation.modelling_list.modelling.refinement_protocol em_software.category.SOFT_CAT em_3d_fitting.ref_protocol.XML_VALUE
 emd.interpretation.modelling_list.modelling.details em_3d_fitting.details.XML_VALUE
 emd.interpretation.modelling_list.modelling.overall_b_value em_3d_fitting.overall_b_value.XML_VALUE
 emd.interpretation.modelling_list.modelling.refinement_space em_3d_fitting.ref_space.XML_VALUE
-emd.interpretation.modelling_list.modelling.refinement_protocol em_software.category.SOFT_CAT em_3d_fitting.ref_protocol.XML_VALUE
 
 ###<emd>.<interpretation>.<figure_list>
 emd.interpretation.figure_list.figure.file em_interpret_figure.file.XML_VALUE

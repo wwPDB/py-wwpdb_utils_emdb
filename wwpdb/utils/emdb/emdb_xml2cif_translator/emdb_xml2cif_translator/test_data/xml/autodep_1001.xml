@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autoDepEntry
+  xmlns:pnm="http://cgi_param_name/mapping/btwn/AutoDep/and/EmDep"
+  xmlns:ref="http://www.ebi.ac.uk/pdbe/internal_ref" xmlns:xalan="http://xml.apache.org/xalan">
+  <initialisation id="1">
+    <contactSub id="1">
+      <email>taylor@bio.fsu.edu</email>
+      <firstName>Kenneth</firstName>
+      <middleName>Allen</middleName>
+      <familyName>Taylor</familyName>
+      <address>Institute of Molecular Biophysics Florida State
+        University       Tallahassee, FL 32306-4380</address>
+      <phone>(850) 644-3357</phone>
+      <fax>(850) 644-7244</fax>
+    </contactSub>
+    <expInitialiseSub id="1">
+      <expType>cryoEmExp</expType>
+    </expInitialiseSub>
+  </initialisation>
+  <inventoryList>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="vol">Volume (map) file</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="43201.536">EMD-1026.map</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_1.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_2.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_3.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_4.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_5.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_6.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_7.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_8.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_9.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_10.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_11.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_12.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_13.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_14.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_15.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_16.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_17.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_18.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_19.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_20.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_21.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_22.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_23.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_24.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="139.264">EMD-1001_25.msk</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="msk">Mask file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="35.84">EMD-1001_26.msk</fileExtracted>
+    </inventoryItem>
+  </inventoryList>
+  <submissionOfData id="1">
+    <submissionOfDataSub id="1">
+      <submitDeposition>true</submitDeposition>
+    </submissionOfDataSub>
+  </submissionOfData>
+  <depAuthors id="1">
+    <authorListsSub id="1">
+      <author>L. F. Chen, E. Blanc, M. S. Chapman, K. A. Taylor</author>
+    </authorListsSub>
+    <titleSub id="1">
+      <title>Real space refinement of acto-myosin structures from
+        sectioned muscle.</title>
+    </titleSub>
+    <keywordsSub id="1">
+      <keywords/>
+    </keywordsSub>
+  </depAuthors>
+  <experimentDetails id="1">
+    <experimentDetailSub id="1">
+      <cEMSampleBuffer/>
+      <cEMSampleConc/>
+      <cEMSamplePH/>
+      <staining/>
+      <cEMSampleSupportDetails/>
+      <expDetailIndivStructSub id="1">
+        <indivStructTiltAngleIncrement>10</indivStructTiltAngleIncrement>
+        <indivStructNumSections>30</indivStructNumSections>
+        <indivStructDetails>Double axis tilt series collected on
+          film. Digitized on           PDS       1010M
+          densitometer. Other relevent references K. A.
+          Taylor, M. C.       Reedy, L. Cordova and M. K. Reedy.
+          3-D           structure of insect flight       muscle
+          in rigor from tilted           thin sections. Nature
+          310, 28 5-291       (1984). Hanspeter           Winkler
+          and Kenneth A. Taylor. Multivariate       statistical
+          analysis of three-dimensional cross-bridge motifs in
+          insect flight muscle. Ultramicroscopy 77, 141-152
+          (1999).           Chen, Li       Fan, Winkler,
+          Hanspeter, Reedy, Michael K., Ree           dy, Mary C.
+          and       Taylor, Kenneth A.. Molecular Modeling
+          of Averaged Rigor       Crossbridges from Tomograms of
+          Insect           Flight Muscle. J. Struct.       Biol.
+          138(2), 92-104 (2002)</indivStructDetails>
+      </expDetailIndivStructSub>
+    </experimentDetailSub>
+  </experimentDetails>
+  <vitrification id="1">
+    <vitrificationSub id="1">
+      <cryogenName>NONE</cryogenName>
+      <humidity/>
+      <temperature/>
+      <instrument/>
+      <method/>
+      <timeResolvedState/>
+      <details/>
+    </vitrificationSub>
+  </vitrification>
+  <imaging id="1">
+    <imagingSub id="1">
+      <microscope>FEI/PHILIPS EM400</microscope>
+      <specimenHolder>Philips rotation-tilt holder</specimenHolder>
+      <specimenHolderModel>PHILIPS ROTATION HOLDER</specimenHolderModel>
+      <imagingDat/>
+      <acceleratingVoltage>100</acceleratingVoltage>
+      <illuminationMode>FLOOD BEAM</illuminationMode>
+      <imagingMode>BRIGHT FIELD</imagingMode>
+      <nominalCs/>
+      <electronBeamTiltParams/>
+      <astigmatism/>
+      <nominalDefocusMin/>
+      <nominalDefocusMax/>
+      <tiltAngleMin>4.3</tiltAngleMin>
+      <tiltAngleMax>59.4</tiltAngleMax>
+      <nominalMagnification>17000</nominalMagnification>
+      <calibratedMagnification/>
+      <electronSource>TUNGSTEN HAIRPIN</electronSource>
+      <electronDose/>
+      <energyFilter/>
+      <energyWindow/>
+      <temperature>25</temperature>
+      <detectorDistance/>
+      <temperatureMin>25</temperatureMin>
+      <temperatureMax>25</temperatureMax>
+      <detector/>
+      <details/>
+    </imagingSub>
+  </imaging>
+  <imageProcessing id="1">
+    <imageProcessingSub id="1">
+      <numDigitalImages>24</numDigitalImages>
+      <samplingSize>25</samplingSize>
+      <odRange/>
+      <quantBitNumber>16</quantBitNumber>
+      <scanner>PERKIN ELMER</scanner>
+      <details/>
+    </imageProcessingSub>
+  </imageProcessing>
+  <reconstruction id="1">
+    <reconstructionSub id="1">
+      <algorithm>24 images of sections 25 nm thick</algorithm>
+      <software/>
+      <ctfCorrection>none</ctfCorrection>
+      <resolutionByAuthor>40</resolutionByAuthor>
+      <resolutionMethod>Low pass filter limit</resolutionMethod>
+      <eulerAnglesDetails/>
+      <details>The reconstruction was done by aligning the
+        members of         the       tilt series using
+        crosscorrelation functions, such as         phase only
+        and the VanHeel Mutual Correlation Function.         The
+        sampling in each       micrographof a tilted specimen was
+        match by interpolation to th e       lower angle members
+        of the         tilt series. This matching of areas and
+        sampling was done         by a 4 parameter grid search.
+        Once aligned and       scaled, the         data were
+        combined in Fourier space using a
+        Whittaker-Shannon interpolation scheme. The map was
+        calculated         using a reverse Fourier
+        transformation. The software used for         the
+        reconstruction was in-house and adapted from in some
+        cases from       MRC software.</details>
+    </reconstructionSub>
+  </reconstruction>
+  <fitting id="1">
+    <fittingPresent id="1">
+      <fitOnPDB>true</fitOnPDB>
+    </fittingPresent>
+    <fittingPresentSub id="1">
+      <refProtocol>real space rigid body</refProtocol>
+      <targetCriteria>poor atom-atom contacts and cross
+        correlation coefficient</targetCriteria>
+      <software>RSref</software>
+      <overallBValue/>
+      <refSpace>REAL</refSpace>
+      <details>    Domains were fit manually into the density
+        using O.         The entire light chain domain consisting
+        of heavy chain residues         from G710 to K843 and the
+        two light chains were repositioned         using G710 of
+        the myosin heavy chain using O.Real space
+        refinement done using 7 rigid bodies and 4 hinge points.</details>
+    </fittingPresentSub>
+  </fitting>
+  <mapHeader id="1">
+    <mapFileName>EMD-1026.map</mapFileName>
+    <mapLabels>::::EMDATABANK.org::::EMD-1001::::</mapLabels>
+    <pixelX>15.4667</pixelX>
+    <pixelY>15.4667</pixelY>
+    <pixelZ>15.4667</pixelZ>
+    <contourLevel>81.2</contourLevel>
+    <contourLevelSource/>
+    <fstMedSlowAx>X, Y, Z</fstMedSlowAx>
+    <numColRowSec>600, 600, 30</numColRowSec>
+    <mapMode>float (32-bit)</mapMode>
+    <ssPoints>0, 599, 0, 599, -15, 14</ssPoints>
+    <gridSamplXYZ>600, 600, 30</gridSamplXYZ>
+    <cellDim>9280, 9280, 464, 90, 90, 90</cellDim>
+    <densityMin>-417.992</densityMin>
+    <densityMax>366.68</densityMax>
+    <densityMean>1.85973</densityMean>
+    <densityRMS>47.7916</densityRMS>
+    <spaceGroupNumber>1</spaceGroupNumber>
+    <annotationDetails>Acto-myosin structures         from
+      sectioned muscle</annotationDetails>
+  </mapHeader>
+  <updateOfData id="1">
+    <updateOfDataSub id="1">
+      <authCommentUpdate>n/a</authCommentUpdate>
+      <updateNotification>false</updateNotification>
+      <updateDeposition>true</updateDeposition>
+    </updateOfDataSub>
+    <newFittingPresent id="1">
+      <fitOnPDBnew>true</fitOnPDBnew>
+    </newFittingPresent>
+    <accociatedPDB id="1">
+      <accociatedPDBsub id="1">
+        <newTargetMap>1001</newTargetMap>
+        <newfittedPDB>1m8q,1mvw,1o18,1o19,1o1a,1o1b,1o1c,1o1d,1o1e,1o1f,1o1g</newfittedPDB>
+      </accociatedPDBsub>
+    </accociatedPDB>
+    <hasMasterEMDBReference id="1">
+      <partOfMaster>false</partOfMaster>
+    </hasMasterEMDBReference>
+  </updateOfData>
+  <depReference id="1">
+    <primaryReferencesSub id="1">
+      <volume>133</volume>
+      <referenceTitle>J.STRUCT.BIOL.</referenceTitle>
+      <citationType>journal</citationType>
+      <otherInfo/>
+      <startingPage>221</startingPage>
+      <articleTitle>Real space refinement of acto-myosin
+        structures from sectioned muscle.</articleTitle>
+      <endingPage>232</endingPage>
+      <primaryDOI>doi:10.1006/jsbi.2000.4321</primaryDOI>
+      <published>true</published>
+      <primaryPubmedID>11472093</primaryPubmedID>
+      <year>2001</year>
+      <authors>Chen LF, Blanc E, Chapman MS, Taylor KA</authors>
+    </primaryReferencesSub>
+    <secondaryReferenceExists id="1">
+      <secondaryReferencePresent>false</secondaryReferencePresent>
+    </secondaryReferenceExists>
+  </depReference>
+  <sampleDetail id="1">
+    <sampleDetailSub id="1">
+      <numComponents>2</numComponents>
+      <aggregationState>individualStructure</aggregationState>
+      <sampleName>Rigor insect flight muscle from Lethocerus maximus</sampleName>
+      <compDegree>Thick myosin containing filament and thin
+        actin-containing filaments.</compDegree>
+      <molWtTheo>n/a</molWtTheo>
+      <details>The sample is a single filament layer cut from
+        myofibrils by ultramicrotomy. The section thickness is
+        ~25 nm. Specimen has been chemically fixed, dehydrated,
+        embedded in Araldite and sectioned with a diamond knife.</details>
+      <molWtMethod>n/a</molWtMethod>
+      <molWtExp>n/a</molWtExp>
+    </sampleDetailSub>
+  </sampleDetail>
+  <depInstructions id="1">
+    <processingInstructionsSub id="1">
+      <processingInst>This deposition will consist of a large 3-D
+        map obtained by electron tomography. Associated with the
+        tomogram are 25 &quot;class averages&quot; obtained from
+        it using correspondence analysis. The &quot;class
+        averages&quot; will be submitted as Mask Files.</processingInst>
+    </processingInstructionsSub>
+    <releaseDateSub id="1">
+      <mapReleaseDate>REL</mapReleaseDate>
+    </releaseDateSub>
+    <replacePubRelEntrySub id="1">
+      <replaceEntry>false</replaceEntry>
+    </replacePubRelEntrySub>
+    <refSWareSub id="1">
+      <refinement>No_Refinement</refinement>
+    </refSWareSub>
+  </depInstructions>
+  <sampleComponents id="1">
+    <sampleComponentsSub id="1">
+      <cellularComponentSub id="1">
+        <celCompMutantFlag>false</celCompMutantFlag>
+        <celCompRefInterpro>n/a</celCompRefInterpro>
+        <celCompCellLocation>myofibrils</celCompCellLocation>
+        <celCompRefGo>n/a</celCompRefGo>
+        <celCompOligomericDetails>n/a</celCompOligomericDetails>
+        <celCompSciSpeciesName refValFromDB="1">Lethocerus</celCompSciSpeciesName>
+        <ncbiIdOrg refValFromDB="1">43338</ncbiIdOrg>
+        <celCompOrganelle>myofibrils</celCompOrganelle>
+        <celCompCellLine>muscle fibers</celCompCellLine>
+        <celCompNumCopies>n/a</celCompNumCopies>
+        <celCompSynSpeciesName>water bug, Lethocerus maximus</celCompSynSpeciesName>
+        <celCompStrain>n/a</celCompStrain>
+        <celCompTissue>Indirect flight muscles</celCompTissue>
+      </cellularComponentSub>
+      <molWtTheo>n/a</molWtTheo>
+      <componentType>cellular-component</componentType>
+      <molWtExp>n/a</molWtExp>
+      <synName>myosin</synName>
+      <sciName>thick, myosin-containing filament</sciName>
+      <componentDetails>Filaments contain more than just myosin</componentDetails>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <sampleComponents id="2">
+    <sampleComponentsSub id="1">
+      <cellularComponentSub id="1">
+        <celCompRefInterpro>n/a</celCompRefInterpro>
+        <celCompOligomericDetails>polar, 2-stranded helical
+          filament, helical symmetry is 28/13</celCompOligomericDetails>
+        <celCompOrganelle>myofibrils</celCompOrganelle>
+        <celCompSciSpeciesName refValFromDB="1">Lethocerus</celCompSciSpeciesName>
+        <ncbiIdOrg refValFromDB="1">43338</ncbiIdOrg>
+        <celCompNumCopies>n/a</celCompNumCopies>
+        <celCompSynSpeciesName>water bug, Lethocerus maximus</celCompSynSpeciesName>
+        <celCompMutantFlag>false</celCompMutantFlag>
+        <celCompCellLocation>myofibrils</celCompCellLocation>
+        <celCompStrain>n/a</celCompStrain>
+        <celCompCellLine>Muscle fibers</celCompCellLine>
+        <celCompTissue>Indirect flight muscles</celCompTissue>
+        <celCompRefGo>n/a</celCompRefGo>
+      </cellularComponentSub>
+      <molWtTheo>n/a</molWtTheo>
+      <componentDetails>filaments contain more than just actin</componentDetails>
+      <molWtExp>n/a</molWtExp>
+      <synName>actin</synName>
+      <sciName>thin, actin-containing filament</sciName>
+      <componentType>cellular-component</componentType>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <releaseHeader id="1">
+    <releaseOfHeaderDataSub id="1">
+      <authCommentRel>Author: Eduardo Sanz-Garcia This is an
+        automatic recovery from old EmDep entries.
+        =====================================================
+        Annotator: before you release the data, please, review
+        the accuracy of the information in the automatic recovery.</authCommentRel>
+      <releaseDepositionHeader>true</releaseDepositionHeader>
+      <releaseNotification>false</releaseNotification>
+    </releaseOfHeaderDataSub>
+  </releaseHeader>
+</autoDepEntry>
