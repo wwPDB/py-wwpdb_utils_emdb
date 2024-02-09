@@ -169,7 +169,11 @@ class EMDBMetadata(object):
                                     self.mappings_in.map_xml_value_to_code(sub_elements, xml_part)
                                 for elem in autodep_root.findall(tags):
                                     sub_elem = elem.find(item)
-                                    sub_elements = '' if sub_elem is None else str(sub_elem.text)
+                                    if sub_elem.text == "cryoEmExp":
+                                        sub_elem = "ELECTRON MICROSCOPY"
+                                    else:
+                                        sub_elem = str(sub_elem.text)
+                                    sub_elements = '' if sub_elem is None else sub_elem
                                     self.mappings_in.map_xml_value_to_code(sub_elements, xml_part)
 
         return True
