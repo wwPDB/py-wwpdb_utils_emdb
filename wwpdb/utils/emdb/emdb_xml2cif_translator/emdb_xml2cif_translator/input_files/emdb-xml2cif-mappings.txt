@@ -18,7 +18,7 @@ autoDepEntry.initialisation.contactSub.familyName pdbx_contact_author.name_last.
 autoDepEntry.initialisation.contactSub.address pdbx_contact_author.legacy_address.XML_VALUE
 autoDepEntry.initialisation.contactSub.phone pdbx_contact_author.phone.XML_VALUE
 autoDepEntry.initialisation.contactSub.fax pdbx_contact_author.fax.XML_VALUE
-autoDepEntry.initialisation.expInitialiseSub@id exptl.entry_id.QUERY
+autoDepEntry.initialisation.expInitialiseSub@id exptl.entry_id.QUERY pdbx_contact_author.country.QUERY
 autoDepEntry.initialisation.expInitialiseSub.expType pdbx_depui_entry_details.experimental_methods.XML_VALUE exptl.method.XML_VALUE
 
 ####<emd>.<admin>.<current_status>

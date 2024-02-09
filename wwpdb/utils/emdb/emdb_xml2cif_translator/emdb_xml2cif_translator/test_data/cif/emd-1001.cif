@@ -23,6 +23,7 @@ _pdbx_contact_author.legacy_address
 
 _pdbx_contact_author.phone           "(850) 644-3357"
 _pdbx_contact_author.fax             "(850) 644-7244"
+_pdbx_contact_author.country         ?
 #
 _exptl.entry_id  ?
 _exptl.method    "ELECTRON MICROSCOPY"
