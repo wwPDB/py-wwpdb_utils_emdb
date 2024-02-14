@@ -44,7 +44,6 @@ setup(
     install_requires=[
         "lxml",
         "mmcif",
-        "argparse",
         "mrcfile",
         "biopython",
         "numpy",
