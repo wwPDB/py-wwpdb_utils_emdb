@@ -5,7 +5,7 @@
 ### 12. < for defining the macromolecule entity_poly.type 13. E$$E either one of the elements present 14. ? to write a boolean when either one is present 15. A$$A multiple elements are present
 ### 16. U$ to have a different dictionary key while mapping 17. E for modifiying author's name to the cif format 18. S for em_entity_assembly.source 18. H$ for em_map.type
 ### 19. ONE is used for primary and referral IDs if it is just expected only one sub-element and also when need to hard code "1" 20. REL, EMDB are all hard coded 21.YES is for hard coding "Y"
-### 23. NO is for hard coding "N"
+### 23. NO is for hard coding "N" 24. EID for hard coding the EMDB entry ID
 
 emd@emdb_id entry.id.XML_VALUE database_2.database_id.EMDB database_2.database_code.XML_VALUE pdbx_depui_entry_details.requested_accession_types.EM
 
@@ -18,8 +18,8 @@ autoDepEntry.initialisation.contactSub.familyName pdbx_contact_author.name_last.
 autoDepEntry.initialisation.contactSub.address pdbx_contact_author.legacy_address.XML_VALUE
 autoDepEntry.initialisation.contactSub.phone pdbx_contact_author.phone.XML_VALUE
 autoDepEntry.initialisation.contactSub.fax pdbx_contact_author.fax.XML_VALUE
-autoDepEntry.initialisation.expInitialiseSub@id exptl.entry_id.QUERY pdbx_contact_author.country.QUERY
-autoDepEntry.initialisation.expInitialiseSub.expType pdbx_depui_entry_details.experimental_methods.XML_VALUE exptl.method.XML_VALUE
+autoDepEntry.initialisation.expInitialiseSub@id exptl.entry_id.QUERY pdbx_contact_author.country.QUERY pdbx_contact_author.organization_type.QUERY pdbx_contact_author.role.QUERY pdbx_contact_author.identifier_ORCID.QUERY pdbx_depui_entry_details.related_database_name.QUERY pdbx_depui_entry_details.related_database_code.QUERY pdbx_depui_entry_details.replace_pdb_id.QUERY pdbx_depui_entry_details.wwpdb_site_id.QUERY
+autoDepEntry.initialisation.expInitialiseSub.expType exptl.method.XML_VALUE
 
 ####<emd>.<admin>.<current_status>
 #####emd.admin.current_status.date em_admin.last_update.XML_VALUE
@@ -32,7 +32,7 @@ emd.admin.sites.deposition em_admin.deposition_site.U pdbx_database_status.depos
 ###emd.admin.sites.last_processing pdbx_database_status.process_site.XML_VALUE
 
 ##<emd>.<admin>.<key_dates>
-emd.admin.key_dates.deposition em_admin.deposition_date.XML_VALUE pdbx_depui_status_flags.has_accepted_terms_and_conditions.Y pdbx_depui_status_flags.is_ligand_processing_complete.Y pdbx_depui_status_flags.sample_xyz_sequence_alignments_valid.Y
+emd.admin.key_dates.deposition em_admin.deposition_date.XML_VALUE pdbx_depui_status_flags.has_accepted_terms_and_conditions.Y pdbx_depui_status_flags.is_ligand_processing_complete.Y pdbx_depui_status_flags.sample_xyz_sequence_alignments_valid.Y pdbx_depui_entry_details.structural_genomics_flag.NO
 emd.admin.key_dates.header_release em_admin.header_release_date.XML_VALUE
 emd.admin.key_dates.map_release em_admin.map_release_date.XML_VALUE
 emd.admin.key_dates.obsolete em_admin.obsoleted_date.XML_VALUE
@@ -203,7 +203,7 @@ N:emd.sample.macromolecule_list.U$ligand.name pdbx_entity_nonpoly.name.XML_VALUE
 #########<emd>.<structure_determination_list>
 
 emd.structure_determination_list.structure_determination@structure_determination_id em_experiment.id.XML_VALUE
-emd.structure_determination_list.structure_determination.method em_experiment.reconstruction_method.U
+emd.structure_determination_list.structure_determination.method em_experiment.reconstruction_method.U pdbx_depui_entry_details.experimental_methods.EXM
 emd.structure_determination_list.structure_determination.aggregation_state em_experiment.aggregation_state.U
 
 N:emd.structure_determination_list.structure_determination.specimen_preparation_list.S$single_particle_preparation|tomography_preparation|subtomogram_averaging_preparation|crystallography_preparation|helical_preparation$S&preparation_id em_buffer.specimen_id.XML_VALUE em_sample_support.specimen_id.XML_VALUE em_specimen.id.XML_VALUE em_vitrification.specimen_id.XML_VALUE
@@ -353,7 +353,7 @@ N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpret
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S&format em_map.format.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S&size_kbytes em_map.size_kb.XML_VALUE
 N:emd.H$map.file em_map.type.XML_VALUE
-N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.file em_map.file.XML_VALUE em_map.entry_id.I
+N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.file em_map.file.XML_VALUE em_map.entry_id.EID
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.symmetry.space_group em_map.symmetry_space_group.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.data_type em_map.data_type.XML_VALUE
 N:emd.S$map|interpretation.segmentation_list.segmentation.mask_details|interpretation.half_map_list.half_map|interpretation.additional_map_list.additional_map$S.dimensions.col em_map.dimensions_col.XML_VALUE

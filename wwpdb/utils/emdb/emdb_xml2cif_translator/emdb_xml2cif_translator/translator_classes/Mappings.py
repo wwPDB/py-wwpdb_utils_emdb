@@ -42,8 +42,9 @@ class Mappings(object):
         E = 'E'
         U = 'U'
         S = 'S'
-        I = "I"
+        EID = "EID"
         EM = "EM"
+        EXM = "EXM"
         ONE = "ONE"
         DOT = "DOT"
         Y = "Y"
@@ -396,6 +397,20 @@ class Mappings(object):
                             else:
                                 xml_value = xml_value
                             list_values.append(xml_value.upper())
+                        if logic_value == self.Const.EXM:
+                            if xml_value == "tomography":
+                                xml_value = "EM-tomography,EM"
+                            if xml_value == "twoDArray" or xml_value == "singleParticle":
+                                xml_value = "EM-single_part,EM"
+                            if xml_value == "helicalArray":
+                                xml_value = "EM-helical,EM"
+                            if xml_value == "subtomogramAveraging":
+                                xml_value = "EM-subtomogram,EM"
+                            if xml_value == "electronCrystallography" or xml_value == "threeDArray":
+                                xml_value = "EC"
+                            else:
+                                xml_value = xml_value
+                            list_values.append(xml_value.upper())
                         if logic_value == self.Const.N:
                             n_values = [xml_value.index(i) + 1 for i in xml_value]
                             list_values.append(n_values)
@@ -419,10 +434,10 @@ class Mappings(object):
                         if logic_value == self.Const.E:
                             modified_names = [f"{n.split(' ', 1)[0]}, {'.'.join(n.split(' ', 1)[1])}." if ' ' in n else n for n in xml_value]
                             list_values.append(modified_names)
-                        if logic_value == self.Const.I:
+                        if logic_value == self.Const.EID:
                             new_list = [re.search(r'\d+', item).group(0).zfill(4) for item in xml_value]
                             new_list = ['EMD-' + item for item in new_list]
-                            list_values.remove("I")
+                            list_values.remove("EID")
                             list_values.append(new_list)
                         if logic_value == self.Const.EM:
                             list_values.append("EMDB")
@@ -431,7 +446,7 @@ class Mappings(object):
                         if logic_value == self.Const.YES:
                             list_values.append("YES")
                         if logic_value == self.Const.NO:
-                            list_values.append("NO")
+                            list_values.append("N")
                         if logic_value == self.Const.ONE:
                             list_values.append("1")
                         if logic_value == self.Const.REL:
