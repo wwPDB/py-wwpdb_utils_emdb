@@ -33,8 +33,14 @@ _pdbx_contact_author.organization_type  ?
 _pdbx_contact_author.role               ?
 _pdbx_contact_author.identifier_ORCID   ?
 #
+_pdbx_depui_status_flags.corresponding_author_status           Y
+_pdbx_depui_status_flags.dep_dataset_id                        ?
+_pdbx_depui_status_flags.has_accepted_terms_and_conditions     Y
+_pdbx_depui_status_flags.is_ligand_processing_complete         Y
+_pdbx_depui_status_flags.sample_xyz_sequence_alignments_valid  Y
+#
 _exptl.entry_id  ?
-_exptl.method    cryoEmExp
+_exptl.method    "ELECTRON MICROSCOPY"
 #
 _em_admin.current_status       REL
 _em_admin.details              .
@@ -66,11 +72,6 @@ _pdbx_database_status.status_code   REL
 _struct_keywords.entry_id  ?
 #
 _atom_sites.entry_id  ?
-#
-_pdbx_depui_status_flags.dep_dataset_id                        ?
-_pdbx_depui_status_flags.has_accepted_terms_and_conditions     Y
-_pdbx_depui_status_flags.is_ligand_processing_complete         Y
-_pdbx_depui_status_flags.sample_xyz_sequence_alignments_valid  Y
 #
 _pdbx_audit_support.ordinal               ?
 _pdbx_audit_support.funding_organization  ?

@@ -11,7 +11,7 @@ emd@emdb_id entry.id.XML_VALUE database_2.database_id.EMDB database_2.database_c
 
 #### Mandatory mmcif items from autodep.xml file
 autoDepEntry.initialisation.contactSub@id pdbx_contact_author.id.XML_VALUE
-autoDepEntry.initialisation.contactSub.email pdbx_contact_author.email.XML_VALUE pdbx_depui_entry_details.validated_contact_email.XML_VALUE
+autoDepEntry.initialisation.contactSub.email pdbx_contact_author.email.XML_VALUE pdbx_depui_entry_details.validated_contact_email.XML_VALUE pdbx_depui_status_flags.corresponding_author_status.Y
 autoDepEntry.initialisation.contactSub.firstName pdbx_contact_author.name_first.XML_VALUE
 autoDepEntry.initialisation.contactSub.middleName pdbx_contact_author.name_mi.XML_VALUE
 autoDepEntry.initialisation.contactSub.familyName pdbx_contact_author.name_last.XML_VALUE
