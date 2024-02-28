@@ -132,9 +132,27 @@ class CIF(object):
                             for d in data_value:
                                 data_values.append(d)
 
-        deduped_data_values = self.deduping_empty_values(data_ids, data_values)
+        # Remove the category if there exist all empty values or only the primary ids
+        if not data_values or all(value == '' for value in data_values) or all(not sublist or all(subvalue == '' for subvalue in sublist) for sublist in data_values):
+            data_ids, data_values = [], []    # Empty data_ids and data_values lists
+        else:
+            if not category_id == "entry":
+                non_empty_indices = [index for index, value in enumerate(data_values) if any(subvalue != '' for subvalue in value)]
+                # Get corresponding elements from data_ids based on non-empty indices
+                corresponding_data_ids = [data_ids[index] for index in non_empty_indices if index < len(data_ids)]
+                # Check if all elements in corresponding_data_ids contain "id"
+                if all("id" in str(id_value) for id_value in corresponding_data_ids):
+                    data_ids, data_values = [], []
+                elif category_id == "em_euler_angle_assignment":
+                    if any(sublist == ['INITIAL', 'FINAL'] for sublist in data_values) and all(all(value == '' for value in sublist) for sublist in data_values if sublist != ['INITIAL', 'FINAL']):
+                        data_ids, data_values = [], []
+                else:
+                    # Keep the original lists as they are
+                    pass
+
+        # deduped_data_values = self.deduping_empty_values(data_ids, data_values)
         self.add_category(category_id, data_ids)
-        self.insert_data(category_id, deduped_data_values)
+        self.insert_data(category_id, data_values)
         # print("LEN", len(data_ids), len(deduped_data_values))
 
     def deduping_empty_values(self, data_ids, data_values):
