@@ -4190,8 +4190,9 @@ class CifEMDBTranslator(object):
                             XSD:<xs:element name="ribosome-details" type="xs:string" minOccurs="0">
                             Deprecated (2014/11/17)
                             """
-                            # if sup_type == 'RIBOSOME':
-                            #    complex_sup_mol.set_ribosome_details('RIBOSOME')
+                            # if legacy:
+                            if sup_type == 'RIBOSOME':
+                               complex_sup_mol.set_ribosome_details('RIBOSOME')
 
                         # set up the supramolecule specific tagname explicitly
                         # as DSgenerate doesn't provide it

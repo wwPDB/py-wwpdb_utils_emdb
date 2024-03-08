@@ -71,6 +71,10 @@ _pdbx_database_status.dep_release_code_coordinates  ?
 _pdbx_database_status.dep_release_code_sequence     ?
 _pdbx_database_status.status_code                   REL
 #
+_struct_keywords.entry_id  ?
+#
+_atom_sites.entry_id  ?
+#
 _struct.title  "Real space refinement of acto-myosin structures from sectioned muscle."
 #
 loop_
@@ -156,9 +160,21 @@ _em_entity_assembly_naturalsource.cellular_location
 .  1  43338  Lethocerus  .  .  .  "Indirect flight muscles"  "water bug, Lethocerus maximus"  "muscle fibers"  myofibrils  myofibrils  
 .  2  43338  Lethocerus  .  .  .  "Indirect flight muscles"  "water bug, Lethocerus maximus"  "Muscle fibers"  myofibrils  myofibrils  
 #
+loop_
+_em_entity_assembly_recombinant.entity_assembly_id
+_em_entity_assembly_recombinant.id
+1  .  
+2  1  
+#
 _em_experiment.id                     1
 _em_experiment.reconstruction_method  TOMOGRAPHY
 _em_experiment.aggregation_state      .
+#
+_em_buffer.specimen_id  1
+#
+_em_sample_support.specimen_id  1
+#
+_em_specimen.id  1
 #
 _em_vitrification.specimen_id           1
 _em_vitrification.id                    1
@@ -268,6 +284,12 @@ _em_3d_reconstruction.resolution_method    OTHER
 _em_3d_reconstruction.num_particles        30
 _em_3d_reconstruction.symmetry_type        .
 #
+_em_start_model.image_processing_id  1
+#
+_em_ctf_correction.id                   .
+_em_ctf_correction.image_processing_id  .
+_em_ctf_correction.details              none
+#
 loop_
 _em_map.id
 _em_map.format
@@ -342,15 +364,13 @@ _em_3d_fitting.entry_id         .
 _em_3d_fitting.pdb_chain_id     .
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  "poor atom-atom contacts and cross correlation coefficient"
-_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
 _em_3d_fitting.details          "Protocol: real space rigid body. Domains were fit manually into the density using O. The entire light chain domain consisting of heavy chain residues from G710 to K843 and the two light chains were repositioned using G710 of the myosin heavy chain using O.Real space refinement done using 7 rigid bodies and 4 hinge points."
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        REAL
 #
+_em_software.name                 RSref
 _em_software.id                   1
 _em_software.image_processing_id  1
-_em_software.name                 RSref
 _em_software.version              .
 _em_software.details              .
-_em_software.category             "MODEL FITTING"
 ##

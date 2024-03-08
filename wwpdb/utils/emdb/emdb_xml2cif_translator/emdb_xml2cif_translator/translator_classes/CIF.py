@@ -136,18 +136,21 @@ class CIF(object):
         if not data_values or all(value == '' for value in data_values) or all(not sublist or all(subvalue == '' for subvalue in sublist) for sublist in data_values):
             data_ids, data_values = [], []    # Empty data_ids and data_values lists
         else:
-            if not category_id == "entry":
+            if category_id != "entry":
                 non_empty_indices = [index for index, value in enumerate(data_values) if any(subvalue != '' for subvalue in value)]
                 # Get corresponding elements from data_ids based on non-empty indices
                 corresponding_data_ids = [data_ids[index] for index in non_empty_indices if index < len(data_ids)]
                 # Check if all elements in corresponding_data_ids contain "id"
                 if all("id" in str(id_value) for id_value in corresponding_data_ids):
-                    data_ids, data_values = [], []
+                    # Find the indices of data_ids where all "ids" are strings
+                    id_indices = [index for index, id_value in enumerate(data_ids) if isinstance(id_value, str) and "id" in id_value]
+                    # Write corresponding indices in data_values
+                    corresponding_data_values = [data_values[index] for index in id_indices]
+                    data_ids, data_values = corresponding_data_ids, corresponding_data_values
                 elif category_id == "em_euler_angle_assignment":
                     if any(sublist == ['INITIAL', 'FINAL'] for sublist in data_values) and all(all(value == '' for value in sublist) for sublist in data_values if sublist != ['INITIAL', 'FINAL']):
                         data_ids, data_values = [], []
                 else:
-                    # Keep the original lists as they are
                     pass
 
         # deduped_data_values = self.deduping_empty_values(data_ids, data_values)

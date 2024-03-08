@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autoDepEntry
+  xmlns:pnm="http://cgi_param_name/mapping/btwn/AutoDep/and/EmDep"
+  xmlns:ref="http://www.ebi.ac.uk/pdbe/internal_ref" xmlns:xalan="http://xml.apache.org/xalan">
+  <initialisation id="1">
+    <contactSub id="1">
+      <email>holger.stark@mpibpc.mpg.de</email>
+      <firstName>Holger</firstName>
+      <middleName>n/a</middleName>
+      <familyName>Stark</familyName>
+      <address>Max-Planck-Institute for biophysical chemistry, Am
+        Fassberg       11, 37077 Goettingen, Germany</address>
+      <phone>+49 (0)551 201 1305</phone>
+      <fax>+49 (0)551 201 1197</fax>
+    </contactSub>
+    <expInitialiseSub id="1">
+      <expType>cryoEmExp</expType>
+    </expInitialiseSub>
+  </initialisation>
+  <depInstructions id="1">
+    <releaseDateSub id="1">
+      <mapReleaseDate>REL</mapReleaseDate>
+    </releaseDateSub>
+    <replacePubRelEntrySub id="1">
+      <replaceEntry>false</replaceEntry>
+    </replacePubRelEntrySub>
+    <refSWareSub id="1">
+      <refinement>No_Refinement</refinement>
+    </refSWareSub>
+    <processingInstructionsSub id="1">
+      <processingInst>n/a</processingInst>
+    </processingInstructionsSub>
+  </depInstructions>
+  <inventoryList>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="vol">Volume (map) file</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="16385.024">EMD-1143.map</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="tif">Image file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="">emd_1004.tif</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="tif">Image file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="">emd_1004_1.tif</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="tif">Image file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="">emd_1004_2.tif</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="tif">Image file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="">emd_1004_3.tif</fileExtracted>
+    </inventoryItem>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="tif">Image file(s)</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="">emd_1004_4.tif</fileExtracted>
+    </inventoryItem>
+  </inventoryList>
+  <submissionOfData id="1">
+    <submissionOfDataSub id="1">
+      <submitDeposition>true</submitDeposition>
+    </submissionOfDataSub>
+  </submissionOfData>
+  <depAuthors id="1">
+    <authorListsSub id="1">
+      <author>H. Stark, M.V. Rodnina, H.J. Wieden, F. Zemlin, W.
+        Wintermeyer, M. van Heel</author>
+    </authorListsSub>
+    <titleSub id="1">
+      <title>Ribosome interactions of aminoacyl-tRNA and
+        elongation factor Tu in the codon-recognition complex.</title>
+    </titleSub>
+    <keywordsSub id="1">
+      <keywords/>
+    </keywordsSub>
+  </depAuthors>
+  <sampleDetail id="1">
+    <sampleDetailSub id="1">
+      <aggregationState>singleParticle</aggregationState>
+      <sampleName>Kirromycin stalled 70S Ribosome from E.coli</sampleName>
+      <compDegree>monomer</compDegree>
+      <numComponents>3</numComponents>
+      <molWtExp>2.5</molWtExp>
+      <molWtTheo>2.5</molWtTheo>
+      <molWtMethod/>
+      <details/>
+    </sampleDetailSub>
+  </sampleDetail>
+  <experimentDetails id="1">
+    <experimentDetailSub id="1">
+      <cEMSampleBuffer>50mM Tris-HCl, 70mM NH4Cl, 30mM KCl, 7mM
+        MgCl2, 1mM DTT</cEMSampleBuffer>
+      <cEMSampleConc>0.07</cEMSampleConc>
+      <cEMSamplePH>7.5</cEMSamplePH>
+      <staining/>
+      <cEMSampleSupportDetails/>
+      <expDetailSingParticleSub id="1">
+        <singPartNumClassAverages/>
+        <singPartNumProjections>24000</singPartNumProjections>
+        <singPartDetails/>
+      </expDetailSingParticleSub>
+    </experimentDetailSub>
+  </experimentDetails>
+  <vitrification id="1">
+    <vitrificationSub id="1">
+      <cryogenName>ETHANE</cryogenName>
+      <humidity>40</humidity>
+      <temperature/>
+      <instrument/>
+      <method/>
+      <timeResolvedState/>
+      <details/>
+    </vitrificationSub>
+  </vitrification>
+  <imaging id="1">
+    <imagingSub id="1">
+      <microscope>FEI/PHILIPS CM200FEG/SOPHIE</microscope>
+      <specimenHolder>side entry</specimenHolder>
+      <specimenHolderModel>HOME BUILD</specimenHolderModel>
+      <imagingDat/>
+      <acceleratingVoltage>120</acceleratingVoltage>
+      <illuminationMode>FLOOD BEAM</illuminationMode>
+      <imagingMode>BRIGHT FIELD</imagingMode>
+      <nominalCs>1.35</nominalCs>
+      <electronBeamTiltParams/>
+      <astigmatism/>
+      <nominalDefocusMin>800</nominalDefocusMin>
+      <nominalDefocusMax>2500</nominalDefocusMax>
+      <tiltAngleMin/>
+      <tiltAngleMax/>
+      <nominalMagnification/>
+      <calibratedMagnification>58500</calibratedMagnification>
+      <electronSource>FIELD EMISSION GUN</electronSource>
+      <electronDose>15</electronDose>
+      <energyFilter/>
+      <energyWindow/>
+      <temperature>4.2</temperature>
+      <detectorDistance/>
+      <temperatureMin>4.2</temperatureMin>
+      <temperatureMax>4.2</temperatureMax>
+      <detector>Kodak SO163</detector>
+      <details/>
+    </imagingSub>
+  </imaging>
+  <imageProcessing id="1">
+    <imageProcessingSub id="1">
+      <numDigitalImages/>
+      <samplingSize>13.2</samplingSize>
+      <odRange>1.3</odRange>
+      <quantBitNumber>8</quantBitNumber>
+      <scanner>PATCHWORK DENSITOMETER</scanner>
+      <details/>
+    </imageProcessingSub>
+  </imageProcessing>
+  <reconstruction id="1">
+    <reconstructionSub id="1">
+      <algorithm>exact filter backprojection</algorithm>
+      <software>Imagic</software>
+      <ctfCorrection>phase flip</ctfCorrection>
+      <resolutionByAuthor>13</resolutionByAuthor>
+      <resolutionMethod>FSC at 3 sigma</resolutionMethod>
+      <eulerAnglesDetails/>
+      <details/>
+    </reconstructionSub>
+  </reconstruction>
+  <fitting id="1">
+    <fittingPresent id="1">
+      <fitOnPDB>true</fitOnPDB>
+    </fittingPresent>
+    <fittingPresentSub id="1">
+      <pdbEntryId>1MJ1</pdbEntryId>
+      <refProtocol>rigid body</refProtocol>
+      <targetCriteria/>
+      <software>Situs and Amira</software>
+      <overallBValue/>
+      <refSpace/>
+      <details>The domains of EF-Tu were fitted seperately by
+        visual         docking using O and Swiss PDB viewer</details>
+    </fittingPresentSub>
+  </fitting>
+  <mapHeader id="1">
+    <mapFileName>EMD-1143.map</mapFileName>
+    <mapLabels>::::EMDATABANK.org::::EMD-1004::::</mapLabels>
+    <pixelX>2.25</pixelX>
+    <pixelY>2.25</pixelY>
+    <pixelZ>2.25</pixelZ>
+    <contourLevel>0.0411</contourLevel>
+    <contourLevelSource/>
+    <fstMedSlowAx>X, Y, Z</fstMedSlowAx>
+    <numColRowSec>160, 160, 160</numColRowSec>
+    <mapMode>float (32-bit)</mapMode>
+    <ssPoints>0, 159, 0, 159, 0, 159</ssPoints>
+    <gridSamplXYZ>160, 160, 160</gridSamplXYZ>
+    <cellDim>360, 360, 360, 90, 90, 90</cellDim>
+    <densityMin>-0.480909</densityMin>
+    <densityMax>0.774331</densityMax>
+    <densityMean>0.00151584</densityMean>
+    <densityRMS>0.0461972</densityRMS>
+    <spaceGroupNumber>1</spaceGroupNumber>
+    <annotationDetails>70S ribosome stalled by the
+      antibiotic kirromycin</annotationDetails>
+  </mapHeader>
+  <updateOfData id="1">
+    <updateOfDataSub id="1">
+      <authCommentUpdate>n/a</authCommentUpdate>
+      <updateNotification>false</updateNotification>
+      <updateDeposition>true</updateDeposition>
+    </updateOfDataSub>
+    <newFittingPresent id="1">
+      <fitOnPDBnew>true</fitOnPDBnew>
+    </newFittingPresent>
+    <accociatedPDB id="1">
+      <accociatedPDBsub id="1">
+        <newTargetMap>1004</newTargetMap>
+        <newfittedPDB>1mj1</newfittedPDB>
+      </accociatedPDBsub>
+    </accociatedPDB>
+    <hasMasterEMDBReference id="1">
+      <partOfMaster>false</partOfMaster>
+    </hasMasterEMDBReference>
+  </updateOfData>
+  <depReference id="1">
+    <primaryReferencesSub id="1">
+      <volume>9</volume>
+      <referenceTitle>NAT.STRUCT.BIOL.</referenceTitle>
+      <citationType>journal</citationType>
+      <otherInfo/>
+      <startingPage>849</startingPage>
+      <articleTitle>Ribosome interactions of aminoacyl-tRNA and
+        elongation factor Tu in the codon-recognition complex.</articleTitle>
+      <endingPage>854</endingPage>
+      <primaryDOI>doi:10.1038/nsb859</primaryDOI>
+      <published>true</published>
+      <primaryPubmedID>12379845</primaryPubmedID>
+      <year>2002</year>
+      <authors>Stark H, Rodnina MV, Wieden HJ, Zemlin F,
+        Wintermeyer W, van Heel M</authors>
+    </primaryReferencesSub>
+    <secondaryReferenceExists id="1">
+      <secondaryReferencePresent>false</secondaryReferencePresent>
+    </secondaryReferenceExists>
+  </depReference>
+  <sampleComponents id="1">
+    <sampleComponentsSub id="1">
+      <ribosomeProkaryoteSub id="1">
+        <riboProkCompCellLocation>n/a</riboProkCompCellLocation>
+        <riboProkCompCellLine>n/a</riboProkCompCellLine>
+        <riboProkCompRefGo>n/a</riboProkCompRefGo>
+        <riboProkCompStrain>n/a</riboProkCompStrain>
+        <riboProkCompTissue>n/a</riboProkCompTissue>
+        <riboProkCompOrganelle>n/a</riboProkCompOrganelle>
+        <riboProkCompRefInterpro>n/a</riboProkCompRefInterpro>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <riboProkCompMutantFlag>false</riboProkCompMutantFlag>
+        <riboProkCompSciSpeciesName refValFromDB="1">Escherichia coli</riboProkCompSciSpeciesName>
+        <ribosomeProkaryote>PL50s</ribosomeProkaryote>
+        <riboProkCompSynSpeciesName>n/a</riboProkCompSynSpeciesName>
+      </ribosomeProkaryoteSub>
+      <molWtTheo>2.5</molWtTheo>
+      <componentType>ribosome-prokaryote</componentType>
+      <molWtExp>n/a</molWtExp>
+      <synName>n/a</synName>
+      <sciName>70S Ribosome</sciName>
+      <componentDetails>n/a</componentDetails>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <sampleComponents id="2">
+    <sampleComponentsSub id="1">
+      <ligandSub id="1">
+        <ligandOligomericDetails>n/a</ligandOligomericDetails>
+        <ligandMutantFlag>false</ligandMutantFlag>
+        <ligandCellLine>n/a</ligandCellLine>
+        <ligandSciSpeciesName refValFromDB="1">Escherichia coli</ligandSciSpeciesName>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <ligandRefInterpro>n/a</ligandRefInterpro>
+        <ligandSynSpeciesName>n/a</ligandSynSpeciesName>
+        <ligandCellLocation>n/a</ligandCellLocation>
+        <ligandStrain>n/a</ligandStrain>
+        <ligandRefGo>n/a</ligandRefGo>
+        <ligandOrganelle>n/a</ligandOrganelle>
+        <ligandTissue>n/a</ligandTissue>
+        <ligandNumCopies>n/a</ligandNumCopies>
+      </ligandSub>
+      <molWtTheo>0.064</molWtTheo>
+      <componentDetails>n/a</componentDetails>
+      <molWtExp>n/a</molWtExp>
+      <synName>Ternary Complex</synName>
+      <sciName>EF-Tu, tRNA, GTP</sciName>
+      <componentType>ligand</componentType>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <sampleComponents id="3">
+    <sampleComponentsSub id="1">
+      <molWtTheo>0.024</molWtTheo>
+      <nucleicAcidSub id="1">
+        <nucAcidSequence>n/a</nucAcidSequence>
+        <nucAcidSciSpeciesName refValFromDB="1">Escherichia coli</nucAcidSciSpeciesName>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <nucAcidSynSpeciesName>n/a</nucAcidSynSpeciesName>
+        <nucAcidClass>T-RNA</nucAcidClass>
+        <nucAcidStructure>DOUBLE HELIX</nucAcidStructure>
+        <nucAcidSynthFlag>false</nucAcidSynthFlag>
+      </nucleicAcidSub>
+      <componentType>nucleic-acid</componentType>
+      <componentDetails>n/a</componentDetails>
+      <synName>n/a</synName>
+      <sciName>formyl-methionyl tRNA</sciName>
+      <molWtExp>n/a</molWtExp>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <releaseHeader id="1">
+    <releaseOfHeaderDataSub id="1">
+      <authCommentRel>Author: Eduardo Sanz-Garcia This is an
+        automatic recovery from old EmDep entries.
+        =====================================================
+        Annotator: before you release the data, please, review
+        the accuracy of the information in the automatic recovery.</authCommentRel>
+      <releaseDepositionHeader>true</releaseDepositionHeader>
+      <releaseNotification>false</releaseNotification>
+    </releaseOfHeaderDataSub>
+  </releaseHeader>
+</autoDepEntry>

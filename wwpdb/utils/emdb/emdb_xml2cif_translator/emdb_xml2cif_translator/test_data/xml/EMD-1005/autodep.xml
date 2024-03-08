@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autoDepEntry
+  xmlns:pnm="http://cgi_param_name/mapping/btwn/AutoDep/and/EmDep"
+  xmlns:ref="http://www.ebi.ac.uk/pdbe/internal_ref" xmlns:xalan="http://xml.apache.org/xalan">
+  <initialisation id="1">
+    <contactSub id="1">
+      <email/>
+      <firstName/>
+      <middleName/>
+      <familyName/>
+      <address/>
+      <phone/>
+      <fax/>
+    </contactSub>
+    <expInitialiseSub id="1">
+      <expType>cryoEmExp</expType>
+    </expInitialiseSub>
+  </initialisation>
+  <depInstructions id="1">
+    <releaseDateSub id="1">
+      <mapReleaseDate>REL</mapReleaseDate>
+    </releaseDateSub>
+    <replacePubRelEntrySub id="1">
+      <replaceEntry/>
+    </replacePubRelEntrySub>
+    <refSWareSub id="1">
+      <refinement>No_Refinement</refinement>
+    </refSWareSub>
+    <processingInstructionsSub id="1">
+      <processingInst/>
+    </processingInstructionsSub>
+    <processingSite>PDBe</processingSite>
+  </depInstructions>
+  <inventoryList>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="vol">Volume (map) file</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="6913.024">EMD-1146.map</fileExtracted>
+    </inventoryItem>
+  </inventoryList>
+  <submissionOfData id="1">
+    <submissionOfDataSub id="1">
+      <submitDeposition>true</submitDeposition>
+    </submissionOfDataSub>
+  </submissionOfData>
+  <depAuthors id="1">
+    <authorListsSub id="1">
+      <author>Klaholz BP, Pape T, Zavialov AV, Myasnikov AG,
+        Orlova EV, Vestergaard B, Ehrenberg M, van Heel M</author>
+    </authorListsSub>
+    <titleSub id="1">
+      <title>Structure of the Escherichia coli ribosomal
+        termination complex with release factor 2.</title>
+    </titleSub>
+    <keywordsSub id="1">
+      <keywords/>
+    </keywordsSub>
+  </depAuthors>
+  <sampleDetail id="1">
+    <sampleDetailSub id="1">
+      <sampleName>release factor RF2 bound to E. coli ribosomes</sampleName>
+      <compDegree>monomer</compDegree>
+      <numComponents>2</numComponents>
+      <molWtExp>2.3</molWtExp>
+      <molWtTheo/>
+      <molWtMethod>sedimentation</molWtMethod>
+      <details/>
+    </sampleDetailSub>
+  </sampleDetail>
+  <experimentDetails id="1">
+    <experimentDetailSub id="1">
+      <cEMSampleBuffer>polymix buffer</cEMSampleBuffer>
+      <cEMSampleConc>0.15</cEMSampleConc>
+      <cEMSamplePH>7.5</cEMSamplePH>
+      <staining>no staining, cryo-EM with holey carbon grids</staining>
+      <cEMSampleSupportDetails/>
+      <expDetailSingParticleSub id="1">
+        <singPartNumClassAverages>103</singPartNumClassAverages>
+        <singPartNumProjections>15800</singPartNumProjections>
+        <singPartDetails/>
+        <appliedSymmetry>C1</appliedSymmetry>
+      </expDetailSingParticleSub>
+      <method>singleParticle</method>
+      <specimenState>particle</specimenState>
+    </experimentDetailSub>
+  </experimentDetails>
+  <vitrification id="1">
+    <vitrificationSub id="1">
+      <cryogenName>ETHANE</cryogenName>
+      <humidity>45</humidity>
+      <temperature>20</temperature>
+      <instrument>HOMEMADE PLUNGER</instrument>
+      <method>blot for 2 seconds before plunging</method>
+      <timeResolvedState/>
+      <details>Vitrification instrument: home-made cryo-plunger</details>
+    </vitrificationSub>
+  </vitrification>
+  <reconstruction id="1">
+    <reconstructionSub id="1">
+      <algorithm>angular reconstitution, exact filtered back-projection</algorithm>
+      <software>IMAGIC</software>
+      <ctfCorrection>each particle</ctfCorrection>
+      <resolutionByAuthor>14</resolutionByAuthor>
+      <resolutionMethod>FSC: value between 3 sigma and 0.5 cut-off</resolutionMethod>
+      <eulerAnglesDetails>beta gamma</eulerAnglesDetails>
+      <details>exact filtered back-projection</details>
+    </reconstructionSub>
+  </reconstruction>
+  <mapHeader id="1">
+    <mapFileName>EMD-1146.map</mapFileName>
+    <mapLabels>::::EMDATABANK.org::::EMD-1005::::</mapLabels>
+    <pixelX>2.419</pixelX>
+    <pixelY>2.419</pixelY>
+    <pixelZ>2.419</pixelZ>
+    <contourLevel>0.0401</contourLevel>
+    <contourLevelSource/>
+    <fstMedSlowAx>X, Y, Z</fstMedSlowAx>
+    <numColRowSec>120, 120, 120</numColRowSec>
+    <mapMode>Image stored as Reals</mapMode>
+    <ssPoints>-60, 59, -60, 59, -60, 59</ssPoints>
+    <gridSamplXYZ>120, 120, 120</gridSamplXYZ>
+    <cellDim>290.28, 290.28, 290.28, 90, 90, 90</cellDim>
+    <densityMin>-0.159669</densityMin>
+    <densityMax>0.213811</densityMax>
+    <densityMean>-0.000130684</densityMean>
+    <densityRMS>0.0224271</densityRMS>
+    <spaceGroupNumber>1</spaceGroupNumber>
+    <annotationDetails>E. coli ribosomal termination
+      complex       with release factor RF2.</annotationDetails>
+  </mapHeader>
+  <updateOfData id="1">
+    <updateOfDataSub id="1">
+      <authCommentUpdate>n/a</authCommentUpdate>
+      <updateNotification>false</updateNotification>
+      <updateDeposition>true</updateDeposition>
+    </updateOfDataSub>
+    <newFittingPresent id="1">
+      <fitOnPDBnew>true</fitOnPDBnew>
+    </newFittingPresent>
+    <accociatedPDB id="1">
+      <accociatedPDBsub id="1">
+        <newTargetMap>1005</newTargetMap>
+        <newfittedPDB>1ml5</newfittedPDB>
+      </accociatedPDBsub>
+    </accociatedPDB>
+    <hasMasterEMDBReference id="1">
+      <partOfMaster>false</partOfMaster>
+    </hasMasterEMDBReference>
+  </updateOfData>
+  <depReference id="1">
+    <primaryReferencesSub id="1">
+      <volume>421</volume>
+      <referenceTitle>NATURE</referenceTitle>
+      <citationType>journal</citationType>
+      <otherInfo/>
+      <startingPage>90</startingPage>
+      <articleTitle>Structure of the Escherichia coli ribosomal
+        termination complex with release factor 2.</articleTitle>
+      <endingPage>94</endingPage>
+      <primaryDOI>doi:10.1038/nature01225</primaryDOI>
+      <published>true</published>
+      <primaryPubmedID>12511961</primaryPubmedID>
+      <year>2003</year>
+      <authors>Klaholz BP, Pape T, Zavialov AV, Myasnikov AG,
+        Orlova EV, Vestergaard B, Ehrenberg M, van Heel M</authors>
+    </primaryReferencesSub>
+    <secondaryReferenceExists id="1">
+      <secondaryReferencePresent>false</secondaryReferencePresent>
+    </secondaryReferenceExists>
+  </depReference>
+  <sampleComponents id="1">
+    <sampleComponentsSub id="1">
+      <ribosomeProkaryoteSub id="1">
+        <riboProkCompCellLocation>n/a</riboProkCompCellLocation>
+        <riboProkCompCellLine>n/a</riboProkCompCellLine>
+        <riboProkCompRefGo>n/a</riboProkCompRefGo>
+        <riboProkCompStrain>n/a</riboProkCompStrain>
+        <riboProkCompTissue>n/a</riboProkCompTissue>
+        <riboProkCompOrganelle>n/a</riboProkCompOrganelle>
+        <riboProkCompRefInterpro>n/a</riboProkCompRefInterpro>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <riboProkCompMutantFlag>false</riboProkCompMutantFlag>
+        <riboProkCompSciSpeciesName refValFromDB="1">Escherichia coli</riboProkCompSciSpeciesName>
+        <ribosomeProkaryote>PL50s</ribosomeProkaryote>
+        <riboProkCompSynSpeciesName>n/a</riboProkCompSynSpeciesName>
+      </ribosomeProkaryoteSub>
+      <molWtTheo>2.3</molWtTheo>
+      <componentType>ribosome-prokaryote</componentType>
+      <molWtExp>2.3</molWtExp>
+      <synName>ribosome</synName>
+      <sciName>ribosome</sciName>
+      <componentDetails>Proteins L7/L12 of the LSU 50S subunit
+        are not seen  in the map</componentDetails>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <sampleComponents id="2">
+    <sampleComponentsSub id="1">
+      <ligandSub id="1">
+        <ligandOligomericDetails>monomer</ligandOligomericDetails>
+        <ligandMutantFlag>true</ligandMutantFlag>
+        <ligandVector>pET11a</ligandVector>
+        <ligandCellLine>n/a</ligandCellLine>
+        <ligandSciSpeciesName refValFromDB="1">Escherichia coli BL21(DE3)</ligandSciSpeciesName>
+        <ncbiIdOrg refValFromDB="1">469008</ncbiIdOrg>
+        <ligandRefInterpro>IPR004374</ligandRefInterpro>
+        <ncbiIdExpr refValFromDB="1">562</ncbiIdExpr>
+        <ligandSynSpeciesName>n/a</ligandSynSpeciesName>
+        <ligandCellLocation>n/a</ligandCellLocation>
+        <ligandStrain>BL21 (DE3)</ligandStrain>
+        <ligandRefGo>n/a</ligandRefGo>
+        <ligandOrganelle>n/a</ligandOrganelle>
+        <ligandTissue>n/a</ligandTissue>
+        <ligandExpSystem refValFromDB="1">Escherichia coli</ligandExpSystem>
+        <ligandNumCopies>1</ligandNumCopies>
+      </ligandSub>
+      <molWtTheo>0.04</molWtTheo>
+      <componentDetails>n/a</componentDetails>
+      <molWtExp>0.040</molWtExp>
+      <synName>RF2</synName>
+      <sciName>release factor 2</sciName>
+      <componentType>ligand</componentType>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <imaging id="1">
+    <imagingSub id="1">
+      <astigmatism>n/a</astigmatism>
+      <electronSource>FIELD EMISSION GUN</electronSource>
+      <electronDose>10</electronDose>
+      <energyFilter>n/a</energyFilter>
+      <imagingMode>BRIGHT FIELD</imagingMode>
+      <detectorDistance>n/a</detectorDistance>
+      <nominalDefocusMin>500</nominalDefocusMin>
+      <temperatureMin>100</temperatureMin>
+      <nominalDefocusMax>2900</nominalDefocusMax>
+      <illuminationMode>FLOOD BEAM</illuminationMode>
+      <temperatureMax>102</temperatureMax>
+      <specimenHolder>Side entry liquid nitrogen-cooled cryo
+        specimen holder.</specimenHolder>
+      <details>n/a</details>
+      <detector>KODAK SO-163 FILM</detector>
+      <nominalCs>2.1</nominalCs>
+      <tiltAngleMin>n/a</tiltAngleMin>
+      <calibratedMagnification>48000</calibratedMagnification>
+      <tiltAngleMax>n/a</tiltAngleMax>
+      <temperature>100</temperature>
+      <microscope>FEI/PHILIPS CM200FEG/ST</microscope>
+      <imagingDat>06-SEP-2001</imagingDat>
+      <electronBeamTiltParams>n/a</electronBeamTiltParams>
+      <specimenHolderModel>GATAN LIQUID NITROGEN</specimenHolderModel>
+      <acceleratingVoltage>200</acceleratingVoltage>
+      <nominalMagnification>50000</nominalMagnification>
+      <energyWindow>n/a</energyWindow>
+    </imagingSub>
+  </imaging>
+  <imageProcessing id="1">
+    <imageProcessingSub id="1">
+      <odRange>n/a</odRange>
+      <scanner>PATCHWORK DENSITOMETER</scanner>
+      <numDigitalImages>78</numDigitalImages>
+      <URLRawData>n/a</URLRawData>
+      <samplingSize>3</samplingSize>
+      <quantBitNumber>12</quantBitNumber>
+      <details>n/a</details>
+    </imageProcessingSub>
+  </imageProcessing>
+  <fitting id="1">
+    <fittingPresentSub id="1">
+      <details>Protocol: rigid body. rigid body of three
+        individual domains keeping the connectivity; linkers
+        betweenn domains defined based on temperature factors of
+        crystal structure, conserved Gly and Pro residues,
+        proteolytic sites, and global domain architecture</details>
+      <refProtocol>rigid body</refProtocol>
+      <pdbChainId>n/a</pdbChainId>
+      <refSpace>REAL</refSpace>
+      <pdbEntryId>1GIX</pdbEntryId>
+      <targetCriteria>best visual fit using the program O</targetCriteria>
+      <software>eye</software>
+      <overallBValue>n/a</overallBValue>
+    </fittingPresentSub>
+    <fittingPresent id="1">
+      <fitOnPDB>true</fitOnPDB>
+    </fittingPresent>
+  </fitting>
+  <fitting id="2">
+    <fittingPresent id="1">
+      <fitOnPDB>true</fitOnPDB>
+    </fittingPresent>
+    <fittingPresentSub id="1">
+      <overallBValue>n/a</overallBValue>
+      <pdbChainId>n/a</pdbChainId>
+      <refSpace>REAL</refSpace>
+      <pdbEntryId>1GIY</pdbEntryId>
+      <targetCriteria>best visual fit using the program O</targetCriteria>
+      <refProtocol>rigid body</refProtocol>
+      <details>Protocol: rigid body. rigid body of three
+        individual domains keeping the connectivity; linkers
+        betweenn domains defined based on temperature factors of
+        crystal structure, conserved Gly and Pro residues,
+        proteolytic sites, and global domain architecture</details>
+      <software>eye</software>
+    </fittingPresentSub>
+  </fitting>
+  <releaseHeader id="1">
+    <releaseOfHeaderDataSub id="1">
+      <authCommentRel>Author: Eduardo Sanz-Garcia This is an
+        automatic recovery from old EmDep entries.
+        =====================================================
+        Annotator: before you release the data, please, review
+        the accuracy of the information in the automatic recovery.</authCommentRel>
+      <releaseDepositionHeader>true</releaseDepositionHeader>
+      <releaseNotification>false</releaseNotification>
+    </releaseOfHeaderDataSub>
+  </releaseHeader>
+</autoDepEntry>

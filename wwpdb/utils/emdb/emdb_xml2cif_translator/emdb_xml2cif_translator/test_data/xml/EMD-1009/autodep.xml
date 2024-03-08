@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autoDepEntry
+  xmlns:pnm="http://cgi_param_name/mapping/btwn/AutoDep/and/EmDep"
+  xmlns:ref="http://www.ebi.ac.uk/pdbe/internal_ref" xmlns:xalan="http://xml.apache.org/xalan">
+  <initialisation id="1">
+    <contactSub id="1">
+      <email>urmila@wadsworth.org</email>
+      <firstName>Urmila</firstName>
+      <middleName>B.S.</middleName>
+      <familyName>Rawat</familyName>
+      <address>Howard Hughes Medical Institute,HRI at the
+        Wadsworth       Center, POBOX 509,Empire State Plaza
+        Albany, NY 12201</address>
+      <phone>518-473-2197</phone>
+      <fax>518-486-2191</fax>
+    </contactSub>
+    <expInitialiseSub id="1">
+      <expType>cryoEmExp</expType>
+    </expInitialiseSub>
+  </initialisation>
+  <depInstructions id="1">
+    <releaseDateSub id="1">
+      <mapReleaseDate>REL</mapReleaseDate>
+    </releaseDateSub>
+    <replacePubRelEntrySub id="1">
+      <replaceEntry>false</replaceEntry>
+    </replacePubRelEntrySub>
+    <refSWareSub id="1">
+      <refinement>No_Refinement</refinement>
+    </refSWareSub>
+    <processingInstructionsSub id="1">
+      <processingInst>n/a</processingInst>
+    </processingInstructionsSub>
+    <processingSite>PDBe</processingSite>
+  </depInstructions>
+  <inventoryList>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="vol">Volume (map) file</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="8789.04">EMD-1193.map</fileExtracted>
+    </inventoryItem>
+  </inventoryList>
+  <submissionOfData id="1">
+    <submissionOfDataSub id="1">
+      <submitDeposition>true</submitDeposition>
+    </submissionOfDataSub>
+  </submissionOfData>
+  <depAuthors id="1">
+    <authorListsSub id="1">
+      <author>Rawat UB, Zavialov AV, Sengupta J, Valle M,
+        Grassucci RA, Linde J, Vestergaard B, Ehrenberg M, Frank J</author>
+    </authorListsSub>
+    <titleSub id="1">
+      <title>A cryo-electron microscopic study of ribosome-bound
+        termination factor RF2.</title>
+    </titleSub>
+    <keywordsSub id="1">
+      <keywords/>
+    </keywordsSub>
+  </depAuthors>
+  <vitrification id="1">
+    <vitrificationSub id="1">
+      <cryogenName>ETHANE</cryogenName>
+      <humidity/>
+      <temperature/>
+      <instrument/>
+      <method/>
+      <timeResolvedState/>
+      <details/>
+    </vitrificationSub>
+  </vitrification>
+  <fitting id="1">
+    <fittingPresent id="1">
+      <fitOnPDB>true</fitOnPDB>
+    </fittingPresent>
+    <fittingPresentSub id="1">
+      <pdbEntryId>1M16,1MVR</pdbEntryId>
+      <refProtocol>n/a</refProtocol>
+      <targetCriteria/>
+      <software/>
+      <overallBValue/>
+      <refSpace/>
+      <details>n/a</details>
+    </fittingPresentSub>
+  </fitting>
+  <updateOfData id="1">
+    <updateOfDataSub id="1">
+      <authCommentUpdate>n/a</authCommentUpdate>
+      <updateNotification>false</updateNotification>
+      <updateDeposition>true</updateDeposition>
+    </updateOfDataSub>
+    <newFittingPresent id="1">
+      <fitOnPDBnew>true</fitOnPDBnew>
+    </newFittingPresent>
+    <accociatedPDB id="1">
+      <accociatedPDBsub id="1">
+        <newTargetMap>1009</newTargetMap>
+        <newfittedPDB>1mi6,1mvr</newfittedPDB>
+      </accociatedPDBsub>
+    </accociatedPDB>
+    <hasMasterEMDBReference id="1">
+      <partOfMaster>false</partOfMaster>
+    </hasMasterEMDBReference>
+  </updateOfData>
+  <depReference id="1">
+    <primaryReferencesSub id="1">
+      <volume>421</volume>
+      <referenceTitle>NATURE</referenceTitle>
+      <citationType>journal</citationType>
+      <otherInfo/>
+      <startingPage>87</startingPage>
+      <articleTitle>A cryo-electron microscopic study of
+        ribosome-bound termination factor RF2.</articleTitle>
+      <endingPage>90</endingPage>
+      <primaryDOI>doi:10.1038/nature01224</primaryDOI>
+      <published>true</published>
+      <primaryPubmedID>12511960</primaryPubmedID>
+      <year>2003</year>
+      <authors>Rawat UB, Zavialov AV, Sengupta J, Valle M,
+        Grassucci RA, Linde J, Vestergaard B, Ehrenberg M, Frank J</authors>
+    </primaryReferencesSub>
+    <secondaryReferenceExists id="1">
+      <secondaryReferencePresent>false</secondaryReferencePresent>
+    </secondaryReferenceExists>
+  </depReference>
+  <sampleComponents id="1">
+    <sampleComponentsSub id="1">
+      <proteinSub id="1">
+        <proteinVector>n/a</proteinVector>
+        <proteinExpSystem>n/a</proteinExpSystem>
+        <proteinRefInterpro>n/a</proteinRefInterpro>
+        <proteinSciSpeciesName refValFromDB="1">Escherichia coli</proteinSciSpeciesName>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <proteinCellLine>n/a</proteinCellLine>
+        <proteinMutantFlag>true</proteinMutantFlag>
+        <proteinOligomericDetails>n/a</proteinOligomericDetails>
+        <proteinTissue>n/a</proteinTissue>
+        <proteinOrganelle>n/a</proteinOrganelle>
+        <proteinSynSpeciesName>n/a</proteinSynSpeciesName>
+        <proteinRefGo>n/a</proteinRefGo>
+        <proteinCellLocation>n/a</proteinCellLocation>
+        <proteinNumCopies>n/a</proteinNumCopies>
+        <proteinStrain>n/a</proteinStrain>
+        <ncbiIdExpr>n/a</ncbiIdExpr>
+      </proteinSub>
+      <molWtExp>n/a</molWtExp>
+      <componentDetails>n/a</componentDetails>
+      <synName>n/a</synName>
+      <componentType>protein</componentType>
+      <sciName>RF2 (GAQ) mutant</sciName>
+      <molWtTheo>n/a</molWtTheo>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <experimentDetails id="1">
+    <experimentDetailSub id="1">
+      <staining>n/a</staining>
+      <specimenState>particle</specimenState>
+      <cEMSampleConc>n/a</cEMSampleConc>
+      <expDetailSingParticleSub id="1">
+        <singPartNumClassAverages>n/a</singPartNumClassAverages>
+        <appliedSymmetry>n/a</appliedSymmetry>
+        <singPartNumProjections>1</singPartNumProjections>
+        <singPartDetails>entry EMD-1008</singPartDetails>
+      </expDetailSingParticleSub>
+      <method>singleParticle</method>
+      <cEMSampleBuffer>n/a</cEMSampleBuffer>
+      <cEMSamplePH>n/a</cEMSamplePH>
+      <cEMSampleSupportDetails>n/a</cEMSampleSupportDetails>
+    </experimentDetailSub>
+  </experimentDetails>
+  <imageProcessing id="1">
+    <imageProcessingSub id="1">
+      <odRange>n/a</odRange>
+      <scanner>ZEISS SCAI</scanner>
+      <numDigitalImages>n/a</numDigitalImages>
+      <URLRawData>n/a</URLRawData>
+      <samplingSize>n/a</samplingSize>
+      <quantBitNumber>n/a</quantBitNumber>
+      <details>entry EMD-1008</details>
+    </imageProcessingSub>
+  </imageProcessing>
+  <imaging id="1">
+    <imagingSub id="1">
+      <astigmatism>n/a</astigmatism>
+      <electronSource>FIELD EMISSION GUN</electronSource>
+      <electronDose>20</electronDose>
+      <energyFilter>n/a</energyFilter>
+      <imagingMode>BRIGHT FIELD</imagingMode>
+      <detectorDistance>n/a</detectorDistance>
+      <nominalDefocusMin>2250</nominalDefocusMin>
+      <temperatureMin>n/a</temperatureMin>
+      <nominalDefocusMax>4050</nominalDefocusMax>
+      <illuminationMode>FLOOD BEAM</illuminationMode>
+      <temperatureMax>n/a</temperatureMax>
+      <specimenHolder>Oxford, cryo-transfer 3500</specimenHolder>
+      <details>information is the same as in submission EMD-1008</details>
+      <detector>KODAK SO-163 FILM</detector>
+      <nominalCs>2.0</nominalCs>
+      <tiltAngleMin>0</tiltAngleMin>
+      <calibratedMagnification>49696</calibratedMagnification>
+      <tiltAngleMax>0</tiltAngleMax>
+      <temperature>93</temperature>
+      <microscope>FEI TECNAI F20</microscope>
+      <imagingDat>02-AUG-2001</imagingDat>
+      <electronBeamTiltParams>n/a</electronBeamTiltParams>
+      <specimenHolderModel>GATAN LIQUID NITROGEN</specimenHolderModel>
+      <acceleratingVoltage>200</acceleratingVoltage>
+      <nominalMagnification>50000</nominalMagnification>
+      <energyWindow>n/a</energyWindow>
+    </imagingSub>
+  </imaging>
+  <sampleDetail id="1">
+    <sampleDetailSub id="1">
+      <numComponents>1</numComponents>
+      <sampleName>RF2 (GAQ) mutant from E.coli</sampleName>
+      <compDegree>n/a</compDegree>
+      <molWtTheo>n/a</molWtTheo>
+      <details>SPIDER was used for the computational isolation of
+        the RF2(GAQ) mutant cryo-density from the 3D-EM map of
+        RF2 mutant bound to the E.coli 70s ribosome (EMD-1008).</details>
+      <molWtMethod>n/a</molWtMethod>
+      <molWtExp>n/a</molWtExp>
+    </sampleDetailSub>
+  </sampleDetail>
+  <reconstruction id="1">
+    <reconstructionSub id="1">
+      <algorithm>n/a</algorithm>
+      <eulerAnglesDetails>n/a</eulerAnglesDetails>
+      <software>n/a</software>
+      <ctfCorrection>n/a</ctfCorrection>
+      <details>information is the same as in submission 1186.
+        SPIDER was used for the computational isolation of the
+        RF2 (GAQ) mutant cryo-density from the 3D-EM map of RF2
+        mutant bound to the E.coli 70s ribosome (EMD-1008).</details>
+      <resolutionByAuthor>10.9</resolutionByAuthor>
+      <resolutionMethod>n/a</resolutionMethod>
+    </reconstructionSub>
+  </reconstruction>
+  <mapHeader id="1">
+    <densityMax>157.30926514</densityMax>
+    <mapMode>Image stored as Reals</mapMode>
+    <cellDim>366.6, 366.6, 366.6, 90.0, 90.0, 90.0</cellDim>
+    <annotationDetails>The RF2(GAQ) mutant cryo-density from the
+      3D-EM map of RF2 mutant bound to the E.coli 70s ribosome</annotationDetails>
+    <densityMean>0.05414690</densityMean>
+    <numColRowSec>130, 130, 130</numColRowSec>
+    <mapProblemExists id="1">
+      <mapProblemPresent>false</mapProblemPresent>
+    </mapProblemExists>
+    <pixelZ>2.82</pixelZ>
+    <pixelY>2.82</pixelY>
+    <pixelX>2.82</pixelX>
+    <modifyParameters id="1">
+      <modifyParameters>all</modifyParameters>
+    </modifyParameters>
+    <fstMedSlowAx>X, Y, Z</fstMedSlowAx>
+    <mapFileName>EMD-1009.map</mapFileName>
+    <ssPoints>-65, 64, -65, 64, -65, 64</ssPoints>
+    <mapLabels>::::EMDATABANK.org::::EMD-1009::::</mapLabels>
+    <densityRMS>2.25571036</densityRMS>
+    <contourLevel>4.57</contourLevel>
+    <gridSamplXYZ>130, 130, 130</gridSamplXYZ>
+    <spaceGroupNumber>1</spaceGroupNumber>
+    <densityMin>-70.71328735</densityMin>
+    <contourLevelSource>author</contourLevelSource>
+  </mapHeader>
+  <releaseHeader id="1">
+    <releaseOfHeaderDataSub id="1">
+      <authCommentRel>Author: Eduardo Sanz-Garcia This is an
+        automatic recovery from old EmDep entries.
+        =====================================================
+        Annotator: before you release the data, please, review
+        the accuracy of the information in the automatic recovery.</authCommentRel>
+      <releaseDepositionHeader>true</releaseDepositionHeader>
+      <releaseNotification>false</releaseNotification>
+    </releaseOfHeaderDataSub>
+  </releaseHeader>
+</autoDepEntry>

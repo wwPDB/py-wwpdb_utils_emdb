@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autoDepEntry
+  xmlns:pnm="http://cgi_param_name/mapping/btwn/AutoDep/and/EmDep"
+  xmlns:ref="http://www.ebi.ac.uk/pdbe/internal_ref" xmlns:xalan="http://xml.apache.org/xalan">
+  <initialisation id="1">
+    <contactSub id="1">
+      <email>joachim@wadsworth.org</email>
+      <firstName>Joachim</firstName>
+      <middleName>n/a</middleName>
+      <familyName>Frank</familyName>
+      <address>Laboratory for Computational Biology and Molecular
+        Imaging       Howard Hughes Medical Institute, Health
+        Research, Inc. at the       Wadsworth Center P.O.Box 509,
+        Empire State Plaza Albany, NY 12201-0509</address>
+      <phone>518-474-7002</phone>
+      <fax>518-486-2191</fax>
+    </contactSub>
+    <expInitialiseSub id="1">
+      <expType>cryoEmExp</expType>
+    </expInitialiseSub>
+  </initialisation>
+  <depInstructions id="1">
+    <releaseDateSub id="1">
+      <mapReleaseDate>REL</mapReleaseDate>
+    </releaseDateSub>
+    <replacePubRelEntrySub id="1">
+      <replaceEntry>false</replaceEntry>
+    </replacePubRelEntrySub>
+    <refSWareSub id="1">
+      <refinement>No_Refinement</refinement>
+    </refSWareSub>
+    <processingInstructionsSub id="1">
+      <processingInst>n/a</processingInst>
+    </processingInstructionsSub>
+  </depInstructions>
+  <inventoryList>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="vol">Volume (map) file</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="7814">EMD-1053.map</fileExtracted>
+    </inventoryItem>
+  </inventoryList>
+  <submissionOfData id="1">
+    <submissionOfDataSub id="1">
+      <submitDeposition>true</submitDeposition>
+    </submissionOfDataSub>
+  </submissionOfData>
+  <depAuthors id="1">
+    <authorListsSub id="1">
+      <author>Irene S. Gabashvili</author>
+    </authorListsSub>
+    <titleSub id="1">
+      <title>Solution structure of the E. coli 70S ribosome at
+        11.5 A resolution.</title>
+    </titleSub>
+    <keywordsSub id="1">
+      <keywords/>
+    </keywordsSub>
+  </depAuthors>
+  <sampleDetail id="1">
+    <sampleDetailSub id="1">
+      <aggregationState>singleParticle</aggregationState>
+      <sampleName>FMet-tRNAMet 70S Ribosome from E.coli</sampleName>
+      <compDegree/>
+      <numComponents>3</numComponents>
+      <molWtExp/>
+      <molWtTheo>2.5</molWtTheo>
+      <molWtMethod/>
+      <details>preparation and buffer conditions are as described
+        in       Malhotra et al., J. Mol. Biol. (1998) 280, 103-116</details>
+    </sampleDetailSub>
+  </sampleDetail>
+  <experimentDetails id="1">
+    <experimentDetailSub id="1">
+      <cEMSampleBuffer>20 mM Hepes, 6 mM Mg(CH3COO)2 150 mM
+        NH4Cl, 4 mM           beta-Mercaptoethanol, 0.5 mM
+        Spermine, 2 mM Spermidine.</cEMSampleBuffer>
+      <cEMSampleConc>0.09</cEMSampleConc>
+      <cEMSamplePH>7.6</cEMSamplePH>
+      <staining/>
+      <cEMSampleSupportDetails/>
+      <expDetailSingParticleSub id="1">
+        <singPartNumClassAverages/>
+        <singPartNumProjections>73523</singPartNumProjections>
+        <singPartDetails/>
+      </expDetailSingParticleSub>
+    </experimentDetailSub>
+  </experimentDetails>
+  <vitrification id="1">
+    <vitrificationSub id="1">
+      <cryogenName>ETHANE</cryogenName>
+      <humidity/>
+      <temperature/>
+      <instrument>HOMEMADE PLUNGER</instrument>
+      <method>Blot and plunge</method>
+      <timeResolvedState/>
+      <details>Vitrification instrument: 2 side blotting plunger</details>
+    </vitrificationSub>
+  </vitrification>
+  <imaging id="1">
+    <imagingSub id="1">
+      <microscope>FEI/PHILIPS CM200FEG/ST</microscope>
+      <specimenHolder>Cryo Transfer</specimenHolder>
+      <specimenHolderModel>GATAN LIQUID NITROGEN</specimenHolderModel>
+      <imagingDat>1997-</imagingDat>
+      <acceleratingVoltage>200</acceleratingVoltage>
+      <illuminationMode>FLOOD BEAM</illuminationMode>
+      <imagingMode>BRIGHT FIELD</imagingMode>
+      <nominalCs>2.0</nominalCs>
+      <electronBeamTiltParams/>
+      <astigmatism/>
+      <nominalDefocusMin>2170</nominalDefocusMin>
+      <nominalDefocusMax>4340</nominalDefocusMax>
+      <tiltAngleMin>0</tiltAngleMin>
+      <tiltAngleMax>0</tiltAngleMax>
+      <nominalMagnification>50000</nominalMagnification>
+      <calibratedMagnification>51200</calibratedMagnification>
+      <electronSource>FIELD EMISSION GUN</electronSource>
+      <electronDose>10</electronDose>
+      <energyFilter/>
+      <energyWindow/>
+      <temperature>93</temperature>
+      <detectorDistance/>
+      <temperatureMin/>
+      <temperatureMax/>
+      <detector>Kodak SO163</detector>
+      <details>25 % of data from Philips EM420 with LaB6 at 100kV</details>
+    </imagingSub>
+  </imaging>
+  <imageProcessing id="1">
+    <imageProcessingSub id="1">
+      <numDigitalImages>239</numDigitalImages>
+      <samplingSize>15</samplingSize>
+      <odRange/>
+      <quantBitNumber>12</quantBitNumber>
+      <scanner>PERKIN ELMER</scanner>
+      <details/>
+    </imageProcessingSub>
+  </imageProcessing>
+  <reconstruction id="1">
+    <reconstructionSub id="1">
+      <algorithm>Projection Matching</algorithm>
+      <software>SPIDER/WEB</software>
+      <ctfCorrection>Wiener filtration of defocus group volumes</ctfCorrection>
+      <resolutionByAuthor>11.5</resolutionByAuthor>
+      <resolutionMethod>FSC at 0.5 cut-off</resolutionMethod>
+      <eulerAnglesDetails/>
+      <details/>
+    </reconstructionSub>
+  </reconstruction>
+  <fitting id="1">
+    <fittingPresent id="1">
+      <fitOnPDB>true</fitOnPDB>
+    </fittingPresent>
+    <fittingPresentSub id="1">
+      <pdbEntryId>1EG0</pdbEntryId>
+      <refProtocol/>
+      <targetCriteria/>
+      <software>O</software>
+      <overallBValue/>
+      <refSpace/>
+      <details>manual fitting using O Mol_Id: 1; Molecule: S4
+        Ribosomal         Protein; Chain: A; Other_Details:
+        Modeled By Analogous Protein         Of       B.
+        Stearothermophilus Taken From Pdb Entry 1C06 Mol_Id:
+        2;       Molecule: S5 Ribosomal Protein; Chain: B;
+        Other_Details: Modeled       By Analogous Protein Of B.
+        Stearothermophilus Taken From Pdb Entry       1Pkp
+        Mol_Id: 3;         Molecule: S6 Ribosomal Protein; Chain:
+        C;       Other_Details:         Modeled By Analogous
+        Protein Of T. Thermophilus       Taken From         Pdb
+        Entry 1Ris Mol_Id: 4; Molecule: S7 Ribosomal
+        Protein;         Chain: D; Other_Details: Modeled By
+        Analogous Protein Of         T. Thermophilus Taken From
+        Pdb Entry 1Rss Mol_Id: 5; Molecule:         S8
+        Ribosomal Protein; Chain: E; Other_Details: Modeled By
+        Analogous       Protein Of T. Thermophilus Taken From Pdb
+        Entry         1An7 Mol_Id: 6;       Molecule: S15
+        Ribosomal Protein; Chain: F;         Other_Details:
+        Modeled       By Analogous Protein Of B.
+        Stearothermophilus Taken From Pdb Entry       1A32
+        Mol_Id: 7;         Molecule: S17 Ribosomal Protein;
+        Chain: G;       Other_Details:         Modeled By
+        Analogous Protein Of B.       Stearothermophilus
+        Taken From Pdb Entries 1Rip and 1Qd7 Mol_Id: 8;
+        Molecule:         S20 Ribosomal Protein; Chain: H;
+        Other_Details: Modeled       By         Analogous Protein
+        Of T. Thermophilus Taken From Pdb Entry 1Qd7
+        Mol_Id: 9; Molecule: Ribosomal Protein L1; Chain: N;
+        Other_Details: Modeled By Analogous Protein Of T.
+        Thermophilus         Taken From Pdb Entry 1Ad2 Mol_Id:
+        10; Molecule: Ribosomal         Protein       L6; Chain:
+        J; Mutation: Yes; Other_Details:         Modeled By
+        Analogous       Protein Of T. Stearothermophilus
+        Taken From Pdb Entry 1Rl6 Mol_Id:       11; Molecule:
+        Ribosomal         Protein L11; Chain: K; Other_Details:
+        Modeled By Analogous         Protein Of T. Maritima Taken
+        From Pdb Entry       1Mms Mol_Id:         12; Molecule:
+        Fragment Of 16S Rrna Helix 23; Chain:       I;
+        Fragment: Residues 673-713; Other_Details: Modeled As
+        Analogous         Fragment Of T. Thermophilus Taken From
+        Pdb Entry 1Qd7 Mol_Id:         13;       Molecule:
+        Fragment Of 23S Rrna; Chain: L; Fragment:
+        Residues       1051-1108; Other_Details: T. Maritima RNA
+        Sequence and Model Taken       From Pdb Entry 1Mms
+        Mol_Id: 14;         Molecule: Helix 95 Of 23S Rrna;
+        Chain: M; Other_Details:         E. Coli RNA Sequence and
+        Model Taken From       Pdb Entry 480D         Mol_Id: 15;
+        Molecule: Formyl-Methionyl-tRNA; Chain:       O;
+        Synonym: Fmet-tRNA; Other_Details: E. Coli Fmet-tRNA
+        Sequence         and Model Taken From Pdb Entry 2Fmt</details>
+    </fittingPresentSub>
+  </fitting>
+  <mapHeader id="1">
+    <mapFileName>EMD-1053.map</mapFileName>
+    <mapLabels>::::EMDATABANK.org::::EMD-1003::::</mapLabels>
+    <pixelX>2.93</pixelX>
+    <pixelY>2.93</pixelY>
+    <pixelZ>2.93</pixelZ>
+    <contourLevel>82.8</contourLevel>
+    <contourLevelSource/>
+    <fstMedSlowAx>X, Y, Z</fstMedSlowAx>
+    <numColRowSec>125, 125, 125</numColRowSec>
+    <mapMode>float (32-bit)</mapMode>
+    <ssPoints>-62, 62, -62, 62, -62, 62</ssPoints>
+    <gridSamplXYZ>125, 125, 125</gridSamplXYZ>
+    <cellDim>366.25, 366.25, 366.25, 90, 90, 90</cellDim>
+    <densityMin>-141.975</densityMin>
+    <densityMax>339.987</densityMax>
+    <densityMean>1.85585</densityMean>
+    <densityRMS>38.0467</densityRMS>
+    <spaceGroupNumber>1</spaceGroupNumber>
+    <annotationDetails>E. coli 70S Ribosome</annotationDetails>
+  </mapHeader>
+  <updateOfData id="1">
+    <updateOfDataSub id="1">
+      <authCommentUpdate>n/a</authCommentUpdate>
+      <updateNotification>false</updateNotification>
+      <updateDeposition>true</updateDeposition>
+    </updateOfDataSub>
+    <newFittingPresent id="1">
+      <fitOnPDBnew>true</fitOnPDBnew>
+    </newFittingPresent>
+    <accociatedPDB id="1">
+      <accociatedPDBsub id="1">
+        <newTargetMap>1003</newTargetMap>
+        <newfittedPDB>1eg0</newfittedPDB>
+      </accociatedPDBsub>
+    </accociatedPDB>
+    <hasMasterEMDBReference id="1">
+      <partOfMaster>false</partOfMaster>
+    </hasMasterEMDBReference>
+  </updateOfData>
+  <sampleComponents id="1">
+    <sampleComponentsSub id="1">
+      <ribosomeProkaryoteSub id="1">
+        <riboProkCompCellLocation>n/a</riboProkCompCellLocation>
+        <riboProkCompCellLine>n/a</riboProkCompCellLine>
+        <riboProkCompRefGo>n/a</riboProkCompRefGo>
+        <riboProkCompStrain>n/a</riboProkCompStrain>
+        <riboProkCompTissue>n/a</riboProkCompTissue>
+        <riboProkCompOrganelle>n/a</riboProkCompOrganelle>
+        <riboProkCompRefInterpro>n/a</riboProkCompRefInterpro>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <riboProkCompMutantFlag>false</riboProkCompMutantFlag>
+        <riboProkCompSciSpeciesName refValFromDB="1">Escherichia coli</riboProkCompSciSpeciesName>
+        <ribosomeProkaryote>PL50s</ribosomeProkaryote>
+        <riboProkCompSynSpeciesName>n/a</riboProkCompSynSpeciesName>
+      </ribosomeProkaryoteSub>
+      <molWtTheo>n/a</molWtTheo>
+      <componentType>ribosome-prokaryote</componentType>
+      <molWtExp>n/a</molWtExp>
+      <synName>n/a</synName>
+      <sciName>70S ribosome Escherichia coli</sciName>
+      <componentDetails>n/a</componentDetails>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <sampleComponents id="2">
+    <sampleComponentsSub id="1">
+      <nucleicAcidSub id="1">
+        <nucAcidClass>RNA</nucAcidClass>
+        <nucAcidStructure>DOUBLE HELIX</nucAcidStructure>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <nucAcidSciSpeciesName refValFromDB="1">Escherichia coli</nucAcidSciSpeciesName>
+        <nucAcidSynthFlag>false</nucAcidSynthFlag>
+        <nucAcidSynSpeciesName>n/a</nucAcidSynSpeciesName>
+        <nucAcidSequence>n/a</nucAcidSequence>
+      </nucleicAcidSub>
+      <molWtTheo>n/a</molWtTheo>
+      <componentDetails>n/a</componentDetails>
+      <molWtExp>n/a</molWtExp>
+      <synName>n/a</synName>
+      <sciName>fMet-tRNA</sciName>
+      <componentType>nucleic-acid</componentType>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <sampleComponents id="3">
+    <sampleComponentsSub id="1">
+      <molWtTheo>n/a</molWtTheo>
+      <nucleicAcidSub id="1">
+        <nucAcidSequence>n/a</nucAcidSequence>
+        <nucAcidSciSpeciesName refValFromDB="1">Escherichia coli</nucAcidSciSpeciesName>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <nucAcidSynSpeciesName>n/a</nucAcidSynSpeciesName>
+        <nucAcidClass>RNA</nucAcidClass>
+        <nucAcidStructure>SINGLE STRANDED</nucAcidStructure>
+        <nucAcidSynthFlag>false</nucAcidSynthFlag>
+      </nucleicAcidSub>
+      <componentType>nucleic-acid</componentType>
+      <componentDetails>46 nucleotides</componentDetails>
+      <synName>n/a</synName>
+      <sciName>MF-mRNA</sciName>
+      <molWtExp>n/a</molWtExp>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <depReference id="1">
+    <primaryReferencesSub id="1">
+      <volume>100</volume>
+      <referenceTitle>CELL(CAMBRIDGE,MASS.)</referenceTitle>
+      <citationType>journal</citationType>
+      <otherInfo>n/a</otherInfo>
+      <startingPage>537</startingPage>
+      <articleTitle>Solution structure of the E. coli 70S
+        ribosome at 11.5 A resolution.</articleTitle>
+      <endingPage>549</endingPage>
+      <primaryDOI>doi:10.1016/S0092-8674(00)80690-X</primaryDOI>
+      <published>true</published>
+      <primaryPubmedID>10721991</primaryPubmedID>
+      <year>2000</year>
+      <authors>Gabashvili IS, Agrawal RK, Spahn CM, Grassucci RA,
+        Svergun DI, Frank J, Penczek P</authors>
+    </primaryReferencesSub>
+    <secondaryReferenceExists id="1">
+      <secondaryReferencePresent>false</secondaryReferencePresent>
+    </secondaryReferenceExists>
+  </depReference>
+  <releaseHeader id="1">
+    <releaseOfHeaderDataSub id="1">
+      <authCommentRel>Author: Eduardo Sanz-Garcia This is an
+        automatic recovery from old EmDep entries.
+        =====================================================
+        Annotator: before you release the data, please, review
+        the accuracy of the information in the automatic recovery.</authCommentRel>
+      <releaseDepositionHeader>true</releaseDepositionHeader>
+      <releaseNotification>false</releaseNotification>
+    </releaseOfHeaderDataSub>
+  </releaseHeader>
+</autoDepEntry>

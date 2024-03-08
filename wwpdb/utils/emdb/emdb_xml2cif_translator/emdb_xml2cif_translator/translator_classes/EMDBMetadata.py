@@ -222,6 +222,9 @@ class EMDBMetadata(object):
                 slice = re.sub(r'sci_species_name', 'natural_source', slice)
             elif "macromolecule_list" in slice:
                 slice = re.sub(r'(protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xslice)
+            elif "software_list" in slice:
+                rep_item = "_".join(xslice.rsplit(".", 2)[1:])
+                slice = "emd.software_list."+rep_item
             elif "map" in slice or "mask_details" in slice:
                 if "&" in slice:
                     rep_item = xslice.rsplit(".", 1)[1].split("&", 1)[1]
@@ -258,16 +261,18 @@ class EMDBMetadata(object):
                     mol_type = (element.tag).split("_", 1)[0]
                     if mol_type == "protein" or mol_type == "other":
                         selem = element.find(item)
-                        if selem.text == "LEVO":
-                            enantio = "polypeptide(L)"
-                        elif selem.text == "DEXTRO":
-                            enantio = "polypeptide(D)"
+                        if selem:
+                            if selem.text == "LEVO":
+                                enantio = "polypeptide(L)"
+                            elif selem.text == "DEXTRO":
+                                enantio = "polypeptide(D)"
                     elif mol_type == "saccharide":
                         selem = element.find(item)
-                        if selem.text == "DEXTRO":
-                            enantio = "polysaccharide(D)"
-                        elif selem.text == "LEVO":
-                            enantio = "polysaccharide(L)"
+                        if selem:
+                            if selem.text == "DEXTRO":
+                                enantio = "polysaccharide(D)"
+                            elif selem.text == "LEVO":
+                                enantio = "polysaccharide(L)"
                     elif mol_type == "rna":
                         se = element.find("classification")
                         if se is not None:
@@ -488,20 +493,28 @@ class EMDBMetadata(object):
                 for element in root.findall(tags):
                     sub_elem = element.findall(item)
                     if '$I' in slice:
-                        for ind in range(1, len(sub_elem)+1):
-                            index += 1
-                            self.mappings_in.map_xml_value_to_code(str(index), slice)
+                        if sub_elem:
+                            for ind in range(1, len(sub_elem)+1):
+                                index += 1
+                                self.mappings_in.map_xml_value_to_code(str(index), slice)
                     elif 'R$' in slice:
                         if sub_elem:
                             attrib = element.get(att)
                             for ind in range(1, len(sub_elem)+1):
-                                self.mappings_in.map_xml_value_to_code(str(attrib), slice)
+                                if str(attrib) == "1000":
+                                    mod_attrib = "0"
+                                else:
+                                    mod_attrib = str(attrib)
+                                if mod_attrib:
+                                    self.mappings_in.map_xml_value_to_code(mod_attrib, slice)
                         else:
-                            self.mappings_in.map_xml_value_to_code("", slice)
+                            if not "molecular_weight" in slice:
+                                self.mappings_in.map_xml_value_to_code("", slice)
         else:
             if "$I" in slice:
-                if chk_parent and not chk_element:
-                    self.mappings_in.map_xml_value_to_code('', slice)
+                if not "molecular_weight" in slice:
+                    if chk_parent and not chk_element:
+                        self.mappings_in.map_xml_value_to_code('', slice)
 
 
     def spliting_anchors(self, either_one):

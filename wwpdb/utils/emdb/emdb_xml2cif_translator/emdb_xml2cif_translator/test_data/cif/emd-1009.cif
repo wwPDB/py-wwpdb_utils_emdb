@@ -1,0 +1,297 @@
+data_emd_1009
+
+_entry.id  EMD-1009
+#
+_database_2.database_id    EMDB
+_database_2.database_code  EMD-1009
+#
+_pdbx_depui_entry_details.requested_accession_types  EMDB
+_pdbx_depui_entry_details.validated_contact_email    urmila@wadsworth.org
+_pdbx_depui_entry_details.related_database_name      ?
+_pdbx_depui_entry_details.related_database_code      ?
+_pdbx_depui_entry_details.replace_pdb_id             ?
+_pdbx_depui_entry_details.wwpdb_site_id              ?
+_pdbx_depui_entry_details.dep_dataset_id             ?
+_pdbx_depui_entry_details.country                    ?
+_pdbx_depui_entry_details.experimental_methods       "SINGLE PARTICLE"
+#
+_pdbx_contact_author.id                 1
+_pdbx_contact_author.email              urmila@wadsworth.org
+_pdbx_contact_author.name_first         Urmila
+_pdbx_contact_author.name_mi            B.S.
+_pdbx_contact_author.name_last          Rawat
+_pdbx_contact_author.legacy_address     
+;Howard Hughes Medical Institute,HRI at the
+        Wadsworth       Center, POBOX 509,Empire State Plaza
+        Albany, NY 12201
+;
+
+_pdbx_contact_author.phone              518-473-2197
+_pdbx_contact_author.fax                518-486-2191
+_pdbx_contact_author.country            ?
+_pdbx_contact_author.organization_type  ?
+_pdbx_contact_author.role               ?
+_pdbx_contact_author.identifier_ORCID   ?
+#
+_pdbx_depui_status_flags.corresponding_author_status           Y
+_pdbx_depui_status_flags.dep_dataset_id                        ?
+_pdbx_depui_status_flags.has_accepted_terms_and_conditions     Y
+_pdbx_depui_status_flags.is_ligand_processing_complete         Y
+_pdbx_depui_status_flags.sample_xyz_sequence_alignments_valid  Y
+#
+_exptl.entry_id  ?
+_exptl.method    "ELECTRON MICROSCOPY"
+#
+_em_admin.current_status       REL
+_em_admin.details              .
+_em_admin.deposition_site      PDBE
+_em_admin.deposition_date      2002-09-26
+_em_admin.header_release_date  2002-09-26
+_em_admin.map_release_date     2003-09-26
+_em_admin.obsoleted_date       .
+_em_admin.last_update          2013-12-04
+_em_admin.title                "A cryo-electron microscopic study of ribosome-bound termination factor RF2."
+_em_admin.legacy               YES
+#
+_pdbx_database_proc.cycle_id  1
+_pdbx_database_proc.entry_d   ?
+#
+_database_PDB_rev.num  .
+#
+_em_depui.same_authors_as_pdb          .
+_em_depui.same_title_as_pdb            .
+_em_depui.entry_id                     ?
+_em_depui.depositor_hold_instructions  REL
+_em_depui.macromolecule_description    YES
+#
+_pdbx_database_status.process_site                  PDBE
+_pdbx_database_status.deposit_site                  PDBE
+_pdbx_database_status.entry_id                      ?
+_pdbx_database_status.methods_development_category  ?
+_pdbx_database_status.dep_release_code_coordinates  ?
+_pdbx_database_status.dep_release_code_sequence     ?
+_pdbx_database_status.status_code                   REL
+#
+_struct_keywords.entry_id  ?
+#
+_atom_sites.entry_id  ?
+#
+_struct.title  "A cryo-electron microscopic study of ribosome-bound termination factor RF2."
+#
+loop_
+_em_author_list.author
+_em_author_list.ordinal
+"Rawat, U.B."      1  
+"Zavialov, A.V."   2  
+"Sengupta, J."     3  
+"Valle, M."        4  
+"Grassucci, R.A."  5  
+"Linde, J."        6  
+"Vestergaard, B."  7  
+"Ehrenberg, M."    8  
+"Frank, J."        9  
+#
+_citation.unpublished_flag         N
+_citation.id                       primary
+_citation.title                    "A cryo-electron microscopic study of ribosome-bound termination factor RF2."
+_citation.journal_full             NATURE
+_citation.journal_abbrev           .
+_citation.country                  .
+_citation.journal_issue            .
+_citation.journal_volume           421
+_citation.page_first               87
+_citation.page_last                90
+_citation.year                     2003
+_citation.language                 .
+_citation.details                  .
+_citation.pdbx_database_id_PubMed  12511960
+_citation.pdbx_database_id_DOI     10.1038/nature01224
+#
+loop_
+_citation_author.ordinal
+_citation_author.citation_id
+_citation_author.name
+1  primary  "Rawat, U.B."  
+2  primary  "Zavialov, A.V."  
+3  primary  "Sengupta, J."  
+4  primary  "Valle, M."  
+5  primary  "Grassucci, R.A."  
+6  primary  "Linde, J."  
+7  primary  "Vestergaard, B."  
+8  primary  "Ehrenberg, M."  
+9  primary  "Frank, J."  
+#
+loop_
+_em_db_reference.db_name
+_em_db_reference.access_code
+_em_db_reference.relationship
+_em_db_reference.details
+PDB  1mi6  "IN FRAME"  .  
+PDB  1mvr  "IN FRAME"  .  
+#
+_em_entity_assembly.id                               0
+_em_entity_assembly.assembly_id                      0
+_em_entity_assembly.type                             SAMPLE
+_em_entity_assembly.source                           .
+_em_entity_assembly.name                             "RF2 (GAQ) mutant from E.coli"
+_em_entity_assembly.synonym                          ?
+_em_entity_assembly.go_id                            .
+_em_entity_assembly.number_unique_components_legacy  1
+_em_entity_assembly.entity_id_list                   .
+_em_entity_assembly.details                          "SPIDER was used for the computational isolation of the RF2(GAQ) mutant cryo-density from the 3D-EM map of RF2 mutant bound to the E.coli 70s ribosome (EMD-1008)."
+_em_entity_assembly.oligomeric_state_legacy          .
+_em_entity_assembly.recombinant_exp_flag_legacy      .
+#
+_entity.id                        1
+_entity.type                      polymer
+_entity.src_method                nat
+_entity.pdbx_description          "RF2 (GAQ) mutant"
+_entity.pdbx_number_of_molecules  .
+_entity.pdbx_ec                   .
+_entity.pdbx_mutation             ?
+_entity.details                   .
+#
+_entity_poly.entity_id  1
+#
+_entity_src_nat.entity_id                 1
+_entity_src_nat.pdbx_organism_scientific  "Escherichia coli"
+_entity_src_nat.pdbx_ncbi_taxonomy_id     562
+_entity_src_nat.strain                    .
+_entity_src_nat.details                   .
+_entity_src_nat.pdbx_organ                .
+_entity_src_nat.tissue                    .
+_entity_src_nat.pdbx_cell                 .
+_entity_src_nat.pdbx_organelle            .
+_entity_src_nat.pdbx_cellular_location    .
+#
+_entity_src_gen.entity_id  1
+#
+_em_experiment.id                     1
+_em_experiment.reconstruction_method  "SINGLE PARTICLE"
+_em_experiment.aggregation_state      PARTICLE
+#
+_em_buffer.specimen_id  1
+#
+_em_sample_support.specimen_id  1
+#
+_em_specimen.id  1
+#
+_em_vitrification.specimen_id           1
+_em_vitrification.id                    1
+_em_vitrification.cryogen_name          ETHANE
+_em_vitrification.humidity              .
+_em_vitrification.chamber_temperature   .
+_em_vitrification.instrument            .
+_em_vitrification.details               .
+_em_vitrification.timed_resolved_state  .
+_em_vitrification.method                .
+#
+_em_imaging.sample_support_id              .
+_em_imaging.id                             1
+_em_imaging.microscope_model               "FEI TECNAI F20"
+_em_imaging.illumination_mode              "FLOOD BEAM"
+_em_imaging.mode                           "BRIGHT FIELD"
+_em_imaging.electron_source                "FIELD EMISSION GUN"
+_em_imaging.accelerating_voltage           200
+_em_imaging.c2_aperture_diameter           .
+_em_imaging.nominal_cs                     2.0
+_em_imaging.nominal_defocus_min            2.25
+_em_imaging.calibrated_defocus_min         .
+_em_imaging.nominal_defocus_max            4.05
+_em_imaging.calibrated_defocus_max         .
+_em_imaging.nominal_magnification          50000.0
+_em_imaging.calibrated_magnification       49696.0
+_em_imaging.specimen_holder_model          "GATAN LIQUID NITROGEN"
+_em_imaging.specimen_holder_type           "Oxford, cryo-transfer 3500"
+_em_imaging.cryogen                        .
+_em_imaging.recording_temperature_minimum  .
+_em_imaging.recording_temperature_maximum  .
+_em_imaging.temperature                    93
+_em_imaging.astigmatism                    .
+_em_imaging.electron_beam_tilt_params      .
+_em_imaging.details                        "information is the same as in submission EMD-1008"
+_em_imaging.date                           2001-08-02
+_em_imaging.tilt_angle_min                 0
+_em_imaging.tilt_angle_max                 0
+#
+_em_image_recording.imaging_id                   1
+_em_image_recording.id                           1
+_em_image_recording.film_or_detector_model       "KODAK SO-163 FILM"
+_em_image_recording.detector_mode                .
+_em_image_recording.num_grids_imaged             .
+_em_image_recording.num_real_images              .
+_em_image_recording.bits_per_pixel_legacy        .
+_em_image_recording.num_diffraction_images       .
+_em_image_recording.average_exposure_time        .
+_em_image_recording.avg_electron_dose_per_image  20
+_em_image_recording.details                      "entry EMD-1008"
+#
+_em_tomography.imaging_id  1
+#
+_em_image_scans.image_recording_id     1
+_em_image_scans.id                     1
+_em_image_scans.scanner_model          "ZEISS SCAI"
+_em_image_scans.dimension_width        .
+_em_image_scans.dimension_height       .
+_em_image_scans.sampling_interval      .
+_em_image_scans.used_frames_per_image  .
+#
+_em_image_processing.id                  1
+_em_image_processing.image_recording_id  .
+_em_image_processing.details             "entry EMD-1008"
+#
+_em_3d_reconstruction.image_processing_id  1
+_em_3d_reconstruction.algorithm            .
+_em_3d_reconstruction.details              "information is the same as in submission 1186. SPIDER was used for the computational isolation of the RF2 (GAQ) mutant cryo-density from the 3D-EM map of RF2 mutant bound to the E.coli 70s ribosome (EMD-1008)."
+_em_3d_reconstruction.id                   1
+_em_3d_reconstruction.resolution           10.9
+_em_3d_reconstruction.resolution_method    .
+_em_3d_reconstruction.num_particles        1
+_em_3d_reconstruction.symmetry_type        POINT
+#
+_em_start_model.image_processing_id  1
+#
+_em_single_particle_entity.point_symmetry       C1
+_em_single_particle_entity.id                   1
+_em_single_particle_entity.image_processing_id  1
+#
+_em_map.id                    1
+_em_map.format                CCP4
+_em_map.size_kb               8584000.0
+_em_map.type                  "primary map"
+_em_map.file                  emd_1009.map.gz
+_em_map.entry_id              EMD-1009
+_em_map.symmetry_space_group  1
+_em_map.data_type             "Image stored as floating point number (4 bytes)"
+_em_map.dimensions_col        130
+_em_map.dimensions_row        130
+_em_map.dimensions_sec        130
+_em_map.origin_col            -65
+_em_map.origin_row            -65
+_em_map.origin_sec            -65
+_em_map.spacing_x             130
+_em_map.spacing_y             130
+_em_map.spacing_z             130
+_em_map.cell_a                366.6
+_em_map.cell_b                366.6
+_em_map.cell_c                366.6
+_em_map.cell_alpha            90.0
+_em_map.cell_beta             90.0
+_em_map.cell_gamma            90.0
+_em_map.axis_order_fast       X
+_em_map.axis_order_medium     Y
+_em_map.axis_order_slow       Z
+_em_map.statistics_minimum    -70.713287350000002
+_em_map.statistics_maximum    157.309265140000008
+_em_map.statistics_average    0.0541469
+_em_map.statistics_std        2.25571036
+_em_map.pixel_spacing_x       2.82
+_em_map.pixel_spacing_y       2.82
+_em_map.pixel_spacing_z       2.82
+_em_map.contour_level         4.57
+_em_map.contour_level_source  AUTHOR
+_em_map.annotation_details    "The RF2(GAQ) mutant cryo-density from the 3D-EM map of RF2 mutant bound to the E.coli 70s ribosome"
+_em_map.label                 ::::EMD-1009::::
+#
+_em_3d_fitting.entry_id  1MVR
+##

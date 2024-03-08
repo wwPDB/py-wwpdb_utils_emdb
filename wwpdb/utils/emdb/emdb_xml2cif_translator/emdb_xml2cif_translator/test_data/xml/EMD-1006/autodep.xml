@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autoDepEntry
+  xmlns:pnm="http://cgi_param_name/mapping/btwn/AutoDep/and/EmDep"
+  xmlns:ref="http://www.ebi.ac.uk/pdbe/internal_ref" xmlns:xalan="http://xml.apache.org/xalan">
+  <initialisation id="1">
+    <contactSub id="1">
+      <email>hxgao@wadsworth.org</email>
+      <firstName>Haixiao</firstName>
+      <middleName>n/a</middleName>
+      <familyName>Gao</familyName>
+      <address>Howard Hughes Medical Institute at   the
+        Wadsworth       Center       P.O.Box 509, Empire State
+        Plaza       Albany, NY 12201-0509</address>
+      <phone>1-518-402-5726</phone>
+      <fax>1-518-486-2191</fax>
+    </contactSub>
+    <expInitialiseSub id="1">
+      <expType>cryoEmExp</expType>
+    </expInitialiseSub>
+  </initialisation>
+  <depInstructions id="1">
+    <releaseDateSub id="1">
+      <mapReleaseDate>REL</mapReleaseDate>
+    </releaseDateSub>
+    <replacePubRelEntrySub id="1">
+      <replaceEntry>false</replaceEntry>
+    </replacePubRelEntrySub>
+    <refSWareSub id="1">
+      <refinement>No_Refinement</refinement>
+    </refSWareSub>
+    <processingInstructionsSub id="1">
+      <processingInst>n/a</processingInst>
+    </processingInstructionsSub>
+  </depInstructions>
+  <inventoryList>
+    <inventoryItem dataFileType="em2em" section="fileUpload">
+      <fileType fType="vol">Volume (map) file</fileType>
+      <origFileName/>
+      <fileExtracted size=""/>
+      <fileExtracted size="8789.04">EMD-4438.map</fileExtracted>
+    </inventoryItem>
+  </inventoryList>
+  <submissionOfData id="1">
+    <submissionOfDataSub id="1">
+      <submitDeposition>true</submitDeposition>
+    </submissionOfDataSub>
+  </submissionOfData>
+  <depAuthors id="1">
+    <authorListsSub id="1">
+      <author>U. Rawat, H.Gao, A. Zavialov, R. Gursky, M.
+        Ehrenberg, J. Frank</author>
+    </authorListsSub>
+    <titleSub id="1">
+      <title>A cryo-electron microscopic study of ribosome-bound
+        termination factor RF2.</title>
+    </titleSub>
+    <keywordsSub id="1">
+      <keywords/>
+    </keywordsSub>
+  </depAuthors>
+  <sampleDetail id="1">
+    <sampleDetailSub id="1">
+      <aggregationState>singleParticle</aggregationState>
+      <sampleName>E.coli 70s ribosome</sampleName>
+      <compDegree/>
+      <numComponents>4</numComponents>
+      <molWtExp/>
+      <molWtTheo>2.5</molWtTheo>
+      <molWtMethod/>
+      <details/>
+    </sampleDetailSub>
+  </sampleDetail>
+  <experimentDetails id="1">
+    <experimentDetailSub id="1">
+      <cEMSampleBuffer>Polymix buffer, containing at final
+        concentration 5 mM           potassium phosphate, 5 mM
+        magnesium acetate, 5mM ammonium           chloride, 95 mM
+        potassium chloride, 0.5 mM calcium chloride,
+        8mM       putrescine, 1mM dithioerythritol</cEMSampleBuffer>
+      <cEMSampleConc>0.09</cEMSampleConc>
+      <cEMSamplePH>7.5</cEMSamplePH>
+      <staining/>
+      <cEMSampleSupportDetails/>
+      <expDetailSingParticleSub id="1">
+        <singPartNumClassAverages/>
+        <singPartNumProjections>14965</singPartNumProjections>
+        <singPartDetails/>
+      </expDetailSingParticleSub>
+    </experimentDetailSub>
+  </experimentDetails>
+  <vitrification id="1">
+    <vitrificationSub id="1">
+      <cryogenName>ETHANE</cryogenName>
+      <humidity>58</humidity>
+      <temperature>36</temperature>
+      <instrument>HOMEMADE PLUNGER</instrument>
+      <method>Blot and Plunge</method>
+      <timeResolvedState/>
+      <details>Vitrification instrument: Two side blotting
+        plunger. Rapid-freezing in liquid ethane</details>
+    </vitrificationSub>
+  </vitrification>
+  <imaging id="1">
+    <imagingSub id="1">
+      <microscope>FEI TECNAI F20</microscope>
+      <specimenHolder>Oxford,cryo-transfer 3500</specimenHolder>
+      <specimenHolderModel>GATAN LIQUID NITROGEN</specimenHolderModel>
+      <imagingDat>2001-08-09</imagingDat>
+      <acceleratingVoltage>200</acceleratingVoltage>
+      <illuminationMode>FLOOD BEAM</illuminationMode>
+      <imagingMode>BRIGHT FIELD</imagingMode>
+      <nominalCs>2.0</nominalCs>
+      <electronBeamTiltParams/>
+      <astigmatism/>
+      <nominalDefocusMin>1390</nominalDefocusMin>
+      <nominalDefocusMax>5975</nominalDefocusMax>
+      <tiltAngleMin>0</tiltAngleMin>
+      <tiltAngleMax>0</tiltAngleMax>
+      <nominalMagnification>50000</nominalMagnification>
+      <calibratedMagnification>49696</calibratedMagnification>
+      <electronSource>FIELD EMISSION GUN</electronSource>
+      <electronDose>20</electronDose>
+      <energyFilter/>
+      <energyWindow/>
+      <temperature>93</temperature>
+      <detectorDistance/>
+      <temperatureMin/>
+      <temperatureMax/>
+      <detector>Kodac SO163 film</detector>
+      <details/>
+    </imagingSub>
+  </imaging>
+  <imageProcessing id="1">
+    <imageProcessingSub id="1">
+      <numDigitalImages>34</numDigitalImages>
+      <samplingSize>14</samplingSize>
+      <odRange/>
+      <quantBitNumber>12</quantBitNumber>
+      <scanner>ZEISS SCAI</scanner>
+      <details/>
+    </imageProcessingSub>
+  </imageProcessing>
+  <reconstruction id="1">
+    <reconstructionSub id="1">
+      <algorithm>projection matching</algorithm>
+      <software>SPIDER/WEB</software>
+      <ctfCorrection>Wiener filtration of defocus groups</ctfCorrection>
+      <resolutionByAuthor>11.3</resolutionByAuthor>
+      <resolutionMethod>FSC at 0.5 cutoff</resolutionMethod>
+      <eulerAnglesDetails/>
+      <details>Frank, J. (2000) Three-Dimensional Cryoelectron
+        Microscopy       of Ribosomes, Methods of Enzymology
+        (Ch.18)         317, 276-291.</details>
+    </reconstructionSub>
+  </reconstruction>
+  <fitting id="1">
+    <fittingPresent id="1">
+      <fitOnPDB>true</fitOnPDB>
+    </fittingPresent>
+    <fittingPresentSub id="1">
+      <pdbEntryId>1M16,1MVR</pdbEntryId>
+      <refProtocol/>
+      <targetCriteria/>
+      <software/>
+      <overallBValue/>
+      <refSpace/>
+      <details>manual fitting using O</details>
+    </fittingPresentSub>
+  </fitting>
+  <mapHeader id="1">
+    <mapFileName>EMD-4438.map</mapFileName>
+    <mapLabels>::::EMDATABANK.org::::EMD-1006::::</mapLabels>
+    <pixelX>2.82</pixelX>
+    <pixelY>2.82</pixelY>
+    <pixelZ>2.82</pixelZ>
+    <contourLevel>48.1</contourLevel>
+    <contourLevelSource/>
+    <fstMedSlowAx>X, Y, Z</fstMedSlowAx>
+    <numColRowSec>130, 130, 130</numColRowSec>
+    <mapMode>float (32-bit)</mapMode>
+    <ssPoints>-65, 64, -65, 64, -65, 64</ssPoints>
+    <gridSamplXYZ>130, 130, 130</gridSamplXYZ>
+    <cellDim>366.6, 366.6, 366.6, 90, 90, 90</cellDim>
+    <densityMin>-144.453</densityMin>
+    <densityMax>251.237</densityMax>
+    <densityMean>2.32248</densityMean>
+    <densityRMS>24.4807</densityRMS>
+    <spaceGroupNumber>1</spaceGroupNumber>
+    <annotationDetails>Ribosome-bound termination factor RF2 </annotationDetails>
+  </mapHeader>
+  <updateOfData id="1">
+    <updateOfDataSub id="1">
+      <authCommentUpdate>n/a</authCommentUpdate>
+      <updateNotification>false</updateNotification>
+      <updateDeposition>true</updateDeposition>
+    </updateOfDataSub>
+    <newFittingPresent id="1">
+      <fitOnPDBnew>true</fitOnPDBnew>
+    </newFittingPresent>
+    <accociatedPDB id="1">
+      <accociatedPDBsub id="1">
+        <newTargetMap>1006</newTargetMap>
+        <newfittedPDB>1mi6,1mvr</newfittedPDB>
+      </accociatedPDBsub>
+    </accociatedPDB>
+    <hasMasterEMDBReference id="1">
+      <partOfMaster>false</partOfMaster>
+    </hasMasterEMDBReference>
+  </updateOfData>
+  <depReference id="1">
+    <primaryReferencesSub id="1">
+      <volume>421</volume>
+      <referenceTitle>NATURE</referenceTitle>
+      <citationType>journal</citationType>
+      <otherInfo/>
+      <startingPage>87</startingPage>
+      <articleTitle>A cryo-electron microscopic study of
+        ribosome-bound termination factor RF2.</articleTitle>
+      <endingPage>90</endingPage>
+      <primaryDOI>doi:10.1038/nature01224</primaryDOI>
+      <published>true</published>
+      <primaryPubmedID>12511960</primaryPubmedID>
+      <year>2003</year>
+      <authors>Rawat UB, Zavialov AV, Sengupta J, Valle M,
+        Grassucci RA, Linde J, Vestergaard B, Ehrenberg M, Frank J</authors>
+    </primaryReferencesSub>
+    <secondaryReferenceExists id="1">
+      <secondaryReferencePresent>false</secondaryReferencePresent>
+    </secondaryReferenceExists>
+  </depReference>
+  <sampleComponents id="1">
+    <sampleComponentsSub id="1">
+      <ribosomeProkaryoteSub id="1">
+        <riboProkCompMutantFlag>false</riboProkCompMutantFlag>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <riboProkCompRefGo>n/a</riboProkCompRefGo>
+        <riboProkCompSynSpeciesName>n/a</riboProkCompSynSpeciesName>
+        <riboProkCompRefInterpro>n/a</riboProkCompRefInterpro>
+        <ribosomeProkaryote>PL50s</ribosomeProkaryote>
+        <riboProkCompOrganelle>n/a</riboProkCompOrganelle>
+        <riboProkCompCellLine>n/a</riboProkCompCellLine>
+        <riboProkCompTissue>n/a</riboProkCompTissue>
+        <riboProkCompSciSpeciesName refValFromDB="1">Escherichia coli</riboProkCompSciSpeciesName>
+        <riboProkCompCellLocation>n/a</riboProkCompCellLocation>
+        <riboProkCompStrain>n/a</riboProkCompStrain>
+      </ribosomeProkaryoteSub>
+      <molWtTheo>2.5</molWtTheo>
+      <componentDetails>n/a</componentDetails>
+      <componentType>ribosome-prokaryote</componentType>
+      <synName>n/a</synName>
+      <molWtExp>n/a</molWtExp>
+      <sciName>E.coli 70s ribosome</sciName>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <sampleComponents id="2">
+    <sampleComponentsSub id="1">
+      <ligandSub id="1">
+        <ligandNumCopies>n/a</ligandNumCopies>
+        <ligandRefGo>n/a</ligandRefGo>
+        <ligandOligomericDetails>n/a</ligandOligomericDetails>
+        <ligandSciSpeciesName refValFromDB="1">Escherichia coli</ligandSciSpeciesName>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <ligandMutantFlag>false</ligandMutantFlag>
+        <ligandTissue>n/a</ligandTissue>
+        <ligandCellLocation>n/a</ligandCellLocation>
+        <ligandSynSpeciesName>n/a</ligandSynSpeciesName>
+        <ligandStrain>n/a</ligandStrain>
+        <ligandOrganelle>n/a</ligandOrganelle>
+        <ligandRefInterpro>n/a</ligandRefInterpro>
+        <ligandCellLine>n/a</ligandCellLine>
+      </ligandSub>
+      <componentType>ligand</componentType>
+      <sciName>peptidyl P-tRNA</sciName>
+      <synName>n/a</synName>
+      <molWtTheo>n/a</molWtTheo>
+      <molWtExp>n/a</molWtExp>
+      <componentDetails>n/a</componentDetails>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <sampleComponents id="3">
+    <sampleComponentsSub id="1">
+      <ligandSub id="1">
+        <ligandSynSpeciesName>n/a</ligandSynSpeciesName>
+        <ligandStrain>n/a</ligandStrain>
+        <ligandRefGo>n/a</ligandRefGo>
+        <ligandRefInterpro>n/a</ligandRefInterpro>
+        <ligandCellLine>n/a</ligandCellLine>
+        <ligandOrganelle>n/a</ligandOrganelle>
+        <ligandOligomericDetails>n/a</ligandOligomericDetails>
+        <ligandSciSpeciesName refValFromDB="1">Escherichia coli</ligandSciSpeciesName>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <ligandTissue>n/a</ligandTissue>
+        <ligandCellLocation>n/a</ligandCellLocation>
+        <ligandMutantFlag>false</ligandMutantFlag>
+        <ligandNumCopies>1</ligandNumCopies>
+      </ligandSub>
+      <sciName>E-tRNA</sciName>
+      <molWtTheo>n/a</molWtTheo>
+      <componentDetails>n/a</componentDetails>
+      <molWtExp>n/a</molWtExp>
+      <synName>n/a</synName>
+      <componentType>ligand</componentType>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <sampleComponents id="4">
+    <sampleComponentsSub id="1">
+      <ligandSub id="1">
+        <ligandOligomericDetails>n/a</ligandOligomericDetails>
+        <ncbiIdOrg refValFromDB="1">562</ncbiIdOrg>
+        <ligandRefGo>n/a</ligandRefGo>
+        <ligandSciSpeciesName refValFromDB="1">Escherichia coli</ligandSciSpeciesName>
+        <ligandTissue>n/a</ligandTissue>
+        <ligandOrganelle>n/a</ligandOrganelle>
+        <ligandCellLocation>n/a</ligandCellLocation>
+        <ligandStrain>n/a</ligandStrain>
+        <ligandSynSpeciesName>n/a</ligandSynSpeciesName>
+        <ligandRefInterpro>n/a</ligandRefInterpro>
+        <ligandMutantFlag>true</ligandMutantFlag>
+        <ncbiIdExpr>n/a</ncbiIdExpr>
+        <ligandCellLine>n/a</ligandCellLine>
+        <ligandNumCopies>1</ligandNumCopies>
+        <ligandExpSystem>n/a</ligandExpSystem>
+        <ligandVector>n/a</ligandVector>
+      </ligandSub>
+      <componentDetails>Zavialov et al., A posttermination
+        ribosomal complex is  the guanine nucleotide exchange
+        factor for peptide release  factor RF3. Cell. 107,1-20 (2001).</componentDetails>
+      <sciName>MFTI-mRNA</sciName>
+      <componentType>ligand</componentType>
+      <molWtExp>n/a</molWtExp>
+      <synName>n/a</synName>
+      <molWtTheo>n/a</molWtTheo>
+    </sampleComponentsSub>
+  </sampleComponents>
+  <releaseHeader id="1">
+    <releaseOfHeaderDataSub id="1">
+      <authCommentRel>Author: Eduardo Sanz-Garcia This is an
+        automatic recovery from old EmDep entries.
+        =====================================================
+        Annotator: before you release the data, please, review
+        the accuracy of the information in the automatic recovery.</authCommentRel>
+      <releaseDepositionHeader>true</releaseDepositionHeader>
+      <releaseNotification>false</releaseNotification>
+    </releaseOfHeaderDataSub>
+  </releaseHeader>
+</autoDepEntry>

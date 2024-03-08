@@ -53,6 +53,7 @@ class Mappings(object):
         REL = "REL"
         QUERY = "QUERY"
         SOFT_CAT = "SOFT_CAT"
+        SOFT_ID = "SOFT_ID"
 
     def __init__(self):
         """
@@ -182,6 +183,9 @@ class Mappings(object):
                     xml_mapping = re.sub(r'sci_species_name', 'natural_source', xml_mapping)
                 elif "macromolecule_list" in xml_mapp:
                     xml_mapping = re.sub(r'(protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xml_mapp)
+                elif "software_list" in xml_mapp:
+                    rep_item = "_".join(xml_mapp.rsplit(".", 2)[1:])
+                    xml_mapping = "emd.software_list."+rep_item
                 elif ("map" in xml_mapp or "mask_details" in xml_mapp) and not "map_release" in xml_mapp:
                     if "&" in xml_mapp:
                         rep_item = xml_mapp.rsplit(".", 1)[1].split("&", 1)[1]
@@ -455,6 +459,9 @@ class Mappings(object):
                             list_values.append(".")
                         if logic_value == self.Const.QUERY:
                             list_values.append("?")
+                        if logic_value == self.Const.SOFT_ID:
+                            list_values = [xml_value, [str(index + 1) for index in range(len(xml_value))]]
+                            list_values.append([str(index + 1) for index in range(len(xml_value))])
                         if logic_value == self.Const.SOFT_CAT:
                             list_values.append("MODEL FITTING")
                         elif logic_k == self.Const.M:

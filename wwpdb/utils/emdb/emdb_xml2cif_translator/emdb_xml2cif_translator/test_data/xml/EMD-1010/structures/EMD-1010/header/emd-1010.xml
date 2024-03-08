@@ -1,0 +1,226 @@
+<emd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" emdb_id="EMD-1010" version="3.0.1.1" xsi:schemaLocation="https://github.com/emdb-empiar/emdb-schemas/blob/master/v3/v3_0_1_1/emdb_relaxed.xsd">
+   <admin>
+      <current_status>
+         <code>REL</code>
+         <processing_site>PDBe</processing_site>
+      </current_status>
+      <sites>
+         <deposition>PDBe</deposition>
+         <last_processing>PDBe</last_processing>
+      </sites>
+      <key_dates>
+         <deposition>2002-09-26</deposition>
+         <header_release>2002-09-26</header_release>
+         <map_release>2003-09-26</map_release>
+         <update>2013-12-25</update>
+      </key_dates>
+      <title>A cryo-electron microscopic study of ribosome-bound termination factor RF2.</title>
+      <authors_list>
+         <author>Rawat UB</author>
+         <author>Zavialov AV</author>
+         <author>Sengupta J</author>
+         <author>Valle M</author>
+         <author>Grassucci RA</author>
+         <author>Linde J</author>
+         <author>Vestergaard B</author>
+         <author>Ehrenberg M</author>
+         <author>Frank J</author>
+      </authors_list>
+      <keywords>
+         </keywords>
+      <replace_existing_entry>true</replace_existing_entry>
+   </admin>
+   <crossreferences>
+      <citation_list>
+         <primary_citation>
+            <journal_citation published="true">
+               <author order="1">Rawat UB</author>
+               <author order="2">Zavialov AV</author>
+               <author order="3">Sengupta J</author>
+               <author order="4">Valle M</author>
+               <author order="5">Grassucci RA</author>
+               <author order="6">Linde J</author>
+               <author order="7">Vestergaard B</author>
+               <author order="8">Ehrenberg M</author>
+               <author order="9">Frank J</author>
+               <title>A cryo-electron microscopic study of ribosome-bound termination factor RF2.</title>
+               <journal>NATURE</journal>
+               <volume>421</volume>
+               <first_page>87</first_page>
+               <last_page>90</last_page>
+               <year>2003</year>
+               <external_references type="PUBMED">12511960</external_references>
+               <external_references type="DOI">doi:10.1038/nature01224</external_references>
+            </journal_citation>
+         </primary_citation>
+      </citation_list>
+      <pdb_list>
+         <pdb_reference>
+            <pdb_id>1mi6</pdb_id>
+            <relationship>
+               <in_frame>FULLOVERLAP</in_frame>
+            </relationship>
+         </pdb_reference>
+         <pdb_reference>
+            <pdb_id>1mvr</pdb_id>
+            <relationship>
+               <in_frame>FULLOVERLAP</in_frame>
+            </relationship>
+         </pdb_reference>
+      </pdb_list>
+   </crossreferences>
+   <sample>
+      <name>RF2(GGQ) wild type from E.coli</name>
+      <supramolecule_list>
+         <sample_supramolecule supramolecule_id="1000">
+            <name>RF2(GGQ) wild type from E.coli</name>
+            <details>SPIDER was used for the computational isolation of the RF2(GGQ) wild type cryo-density from the 3D-EM map of RF2 (wt) bound to the E.coli 70s ribosome (EMD-1007).</details>
+            <number_unique_components>1</number_unique_components>
+         </sample_supramolecule>
+      </supramolecule_list>
+      <macromolecule_list>
+         <protein_or_peptide macromolecule_id="1">
+            <name>RF2 (GGQ) wild type</name>
+            <natural_source database="NCBI">
+               <organism ncbi="562">Escherichia coli</organism>
+            </natural_source>
+            <recombinant_exp_flag>true</recombinant_exp_flag>
+            <recombinant_expression database="NCBI">
+               </recombinant_expression>
+            <sequence>
+               </sequence>
+         </protein_or_peptide>
+      </macromolecule_list>
+   </sample>
+   <structure_determination_list>
+      <structure_determination structure_determination_id="1">
+         <method>singleParticle</method>
+         <aggregation_state>particle</aggregation_state>
+         <specimen_preparation_list>
+            <single_particle_preparation preparation_id="1">
+               <vitrification>
+                  <cryogen_name>ETHANE</cryogen_name>
+                  <chamber_humidity units="percentage">58</chamber_humidity>
+                  <chamber_temperature units="K">36</chamber_temperature>
+                  <instrument>HOMEMADE PLUNGER</instrument>
+                  <details>information is the same as in EMD-1007</details>
+                  <method>Blot and Plunge</method>
+               </vitrification>
+            </single_particle_preparation>
+         </specimen_preparation_list>
+         <microscopy_list>
+            <single_particle_microscopy microscopy_id="1">
+               <microscope>FEI TECNAI F20</microscope>
+               <illumination_mode>FLOOD BEAM</illumination_mode>
+               <imaging_mode>BRIGHT FIELD</imaging_mode>
+               <electron_source>FIELD EMISSION GUN</electron_source>
+               <acceleration_voltage units="kV">200</acceleration_voltage>
+               <nominal_cs units="mm">2.0</nominal_cs>
+               <nominal_defocus_min units="&#181;m">2.02</nominal_defocus_min>
+               <nominal_defocus_max units="&#181;m">4.5</nominal_defocus_max>
+               <nominal_magnification>50000.0</nominal_magnification>
+               <calibrated_magnification>49696.0</calibrated_magnification>
+               <specimen_holder_model>GATAN LIQUID NITROGEN</specimen_holder_model>
+               <temperature>
+                  <temperature_average units="K">93</temperature_average>
+               </temperature>
+               <details>information is the same as in EMD-1007</details>
+               <date>2001-10-08</date>
+               <image_recording_list>
+                  <image_recording>
+                     <film_or_detector_model category="FILM">KODAK SO-163 FILM</film_or_detector_model>
+                     <digitization_details>
+                        <scanner>ZEISS SCAI</scanner>
+                        <sampling_interval units="&#181;m">14</sampling_interval>
+                     </digitization_details>
+                     <number_real_images>41</number_real_images>
+                     <average_electron_dose_per_image units="e/&#8491;^2">20</average_electron_dose_per_image>
+                     <bits_per_pixel>12.</bits_per_pixel>
+                  </image_recording>
+               </image_recording_list>
+               <specimen_holder>Oxford, Cryo-transfer 3500</specimen_holder>
+               <tilt_angle_min>0</tilt_angle_min>
+               <tilt_angle_max>0</tilt_angle_max>
+            </single_particle_microscopy>
+         </microscopy_list>
+         <singleparticle_processing image_processing_id="1">
+            <details>entry EMD-1007</details>
+            <final_reconstruction>
+               <applied_symmetry>
+                  <point_group>C1</point_group>
+               </applied_symmetry>
+               <resolution res_type="BY AUTHOR" units="&#8491;">12.9</resolution>
+               <resolution_method>FSC 0.5 CUT-OFF</resolution_method>
+               <details>information information is the same as in entry EMD-1007. SPIDER was used for the computational isolation of the RF2 (GGQ) wild type cryo-density from the 3D-EM map of RF2 (wt) bound to the E.coli 70s ribosome (entry EMD-1007).</details>
+               <number_images_used>1</number_images_used>
+            </final_reconstruction>
+         </singleparticle_processing>
+      </structure_determination>
+   </structure_determination_list>
+   <map format="CCP4" size_kbytes="8584">
+      <file>emd_1010.map.gz</file>
+      <symmetry>
+         <space_group>1</space_group>
+      </symmetry>
+      <data_type>IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)</data_type>
+      <dimensions>
+         <col>130</col>
+         <row>130</row>
+         <sec>130</sec>
+      </dimensions>
+      <origin>
+         <col>-65</col>
+         <row>-65</row>
+         <sec>-65</sec>
+      </origin>
+      <spacing>
+         <x>130</x>
+         <y>130</y>
+         <z>130</z>
+      </spacing>
+      <cell>
+         <a units="&#8491;">366.6</a>
+         <b units="&#8491;">366.6</b>
+         <c units="&#8491;">366.6</c>
+         <alpha units="deg">90.0</alpha>
+         <beta units="deg">90.0</beta>
+         <gamma units="deg">90.0</gamma>
+      </cell>
+      <axis_order>
+         <fast>X</fast>
+         <medium>Y</medium>
+         <slow>Z</slow>
+      </axis_order>
+      <statistics>
+         <minimum>-46.363674160000002</minimum>
+         <maximum>150.465988159999995</maximum>
+         <average>0.05496241</average>
+         <std>2.00624156</std>
+      </statistics>
+      <pixel_spacing>
+         <x units="&#8491;">2.82</x>
+         <y units="&#8491;">2.82</y>
+         <z units="&#8491;">2.82</z>
+      </pixel_spacing>
+      <contour_list>
+         <contour primary="true">
+            <level>4.07</level>
+            <source>AUTHOR</source>
+         </contour>
+      </contour_list>
+      <annotation_details>RF2</annotation_details>
+      <details>::::EMDATABANK.org::::EMD-1010::::</details>
+   </map>
+   <interpretation>
+      <modelling_list>
+         <modelling>
+            <initial_model>
+               <access_code>1M16</access_code>
+            </initial_model>
+            <initial_model>
+               <access_code>1MVR</access_code>
+            </initial_model>
+         </modelling>
+      </modelling_list>
+   </interpretation>
+</emd>
