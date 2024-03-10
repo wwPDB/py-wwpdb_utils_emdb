@@ -286,6 +286,10 @@ _em_3d_reconstruction.symmetry_type        .
 #
 _em_start_model.image_processing_id  1
 #
+_em_ctf_correction.id                   .
+_em_ctf_correction.image_processing_id  .
+_em_ctf_correction.details              none
+#
 loop_
 _em_map.id
 _em_map.format
@@ -365,9 +369,9 @@ _em_3d_fitting.details          "Protocol: real space rigid body. Domains were f
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        REAL
 #
+_em_software.name                 RSref
 _em_software.id                   1
 _em_software.image_processing_id  1
-_em_software.name                 RSref
 _em_software.version              .
 _em_software.details              .
 _em_software.category             "MODEL FITTING"

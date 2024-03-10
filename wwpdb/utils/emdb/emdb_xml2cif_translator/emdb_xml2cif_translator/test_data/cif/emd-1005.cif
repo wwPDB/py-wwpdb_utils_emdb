@@ -342,6 +342,7 @@ _em_3d_fitting.entry_id         1GIY
 _em_3d_fitting.pdb_chain_id     .
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  "best visual fit using the program O"
+_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
 _em_3d_fitting.details          "Protocol: rigid body. rigid body of three individual domains keeping the connectivity; linkers betweenn domains defined based on temperature factors of crystal structure, conserved Gly and Pro residues, proteolytic sites, and global domain architecture"
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        REAL
@@ -352,7 +353,7 @@ _em_software.id
 _em_software.image_processing_id
 _em_software.version
 _em_software.details
-IMAGIC  1  1  .  .  
-eye     2  2  .  .  
-eye     3  3  .  .  
+_em_software.category
+IMAGIC  1  1  .  .  RECONSTRUCTION  
+eye     2  2  .  .  "MODEL FITTING"  
 ##

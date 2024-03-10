@@ -200,7 +200,7 @@ class EMDBMetadata(object):
         """
         This method writes the substitution group's XML_VALUES for all the special anchors used in the input file
         """
-        tags, item, att, parent_elem, sub_elements, enantio = '', '', '', '', '', ''
+        tags, item, att, parent_elem, sub_elements = '', '', '', '', '',
         xml_slices, other_slices, list_id, macro_list_elem, attrib_index, macro_list_index, reference_ids = [], [], [], [], [], [], []
         substitution = re.split('S\$|\$S', xml_part)
         count = len(substitution)
@@ -223,7 +223,7 @@ class EMDBMetadata(object):
             elif "macromolecule_list" in slice:
                 slice = re.sub(r'(protein_or_peptide|em_label|ligand|other_macromolecule|dna|rna|saccharide)', 'all_macromolecules', xslice)
             elif "software_list" in slice:
-                rep_item = "_".join(xslice.rsplit(".", 2)[1:])
+                rep_item = ".".join(xslice.rsplit(".", 2)[1:])
                 slice = "emd.software_list."+rep_item
             elif "map" in slice or "mask_details" in slice:
                 if "&" in slice:
@@ -239,65 +239,16 @@ class EMDBMetadata(object):
                 slice = xslice
 
             if '>' in slice and find_type:
-                for mol_type in find_type:
-                    molecule_type = (mol_type.tag).split("_", 1)[0]
-                    if molecule_type == "complex":
-                        ribo = mol_type.find("ribosome-details")
-                        if ribo is not None:
-                            molecule_type = "ribosome"
-                    if "_supramolecule" in mol_type.tag:
-                        if molecule_type == "organelle":
-                            molecule_type = "ORGANELLE OR CELLULAR COMPONENT"
-                        self.mappings_in.map_xml_value_to_code(str(molecule_type).upper(), slice)
-                    else:
-                        if molecule_type in ["protein", "em", "other", "dna", "rna", "saccharide"]:
-                            self.mappings_in.map_xml_value_to_code("polymer", slice)
-                        if molecule_type == "ligand":
-                            self.mappings_in.map_xml_value_to_code("non-polymer", slice)
+                self.supra_macro_type(find_type, slice)
 
             if '<' in slice and find_type:
                 tags, item = xslice.split(".", 1)[1].replace(".", "/").replace("<", '').rsplit("/", 1)
-                for element in root.findall(tags):
-                    mol_type = (element.tag).split("_", 1)[0]
-                    if mol_type == "protein" or mol_type == "other":
-                        selem = element.find(item)
-                        if selem:
-                            if selem.text == "LEVO":
-                                enantio = "polypeptide(L)"
-                            elif selem.text == "DEXTRO":
-                                enantio = "polypeptide(D)"
-                    elif mol_type == "saccharide":
-                        selem = element.find(item)
-                        if selem:
-                            if selem.text == "DEXTRO":
-                                enantio = "polysaccharide(D)"
-                            elif selem.text == "LEVO":
-                                enantio = "polysaccharide(L)"
-                    elif mol_type == "rna":
-                        se = element.find("classification")
-                        if se is not None:
-                            enantio = "polyribonucleotide"
-                    elif mol_type == "dna":
-                        se = element.find("classification")
-                        if se is not None:
-                            enantio = "polydeoxyribonucleotide"
-                    self.mappings_in.map_xml_value_to_code(enantio, slice)
+                self.entity_poly_type(root, tags, item, slice)
 
             if ';' in slice and find_type:
-                svalue = ''
                 tags = xslice.split(".", 1)[1].replace(".", "/").replace(";", '')
                 items = ['space_group', 'point_group', 'helical_parameters']
-                for element in root.findall(tags):
-                    for item in items:
-                        sub_elem = element.find(item)
-                        if sub_elem is not None:
-                            if "space_group" in sub_elem.tag:
-                                svalue = "2D CRYSTAL"
-                            elif "point_group" in sub_elem.tag:
-                                svalue = "POINT"
-                            elif "helical_paramenters" in sub_elem.tag:
-                                svalue = "HELICAL"
-                            self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+                self.space_groups(root, tags, items, slice)
 
             if '@' in slice:
                 tags, attrib_key = elem.split('@', 1)
@@ -306,35 +257,14 @@ class EMDBMetadata(object):
                     attrib_val = el.get(attrib_key)
                     self.mappings_in.map_xml_value_to_code(attrib_val, slice, el.text)
 
-            if not any(char in xml_part for char in ['@', '$I', 'R$', '>', '<', 'E$', 'A$', '%', '+', 'T$', 'H$']):
+            if not any(char in xml_part for char in ['@', '$I', 'R$', '>', '<', 'E$', 'A$', '%', '+', 'T$', 'H$', 'C$']):
                 if '&' in xslice:
                     tags, item = elem.rsplit('&', 1)
                 else:
                     tags, item = elem.rsplit('/', 1)
-                find_elem = root.findall(tags)
-                find_parent_elem = root.findall(parent_elem)
-                if find_elem:
-                    for element in root.findall(tags):
-                        if '&' in xslice:
-                            sub_elem = element.get(item)
-                            if item == "size_kbytes":
-                                sub_elements = str(float(sub_elem)*10e2)
-                            else:
-                                if sub_elem == "1000":
-                                    sub_elements = "0"
-                                else:
-                                    sub_elements = sub_elem
-                        else:
-                            sub_elem = element.find(item)
-                            sub_elements = '' if sub_elem is None or str(sub_elem.text) == "None" else str(sub_elem.text)
-                            # sub_elements = '' if sub_elem is None else str(sub_elem.text)
-                        self.mappings_in.map_xml_value_to_code(sub_elements, slice)
-                else:
-                    if find_parent_elem:
-                        for l in range(len(find_parent_elem)):
-                            self.mappings_in.map_xml_value_to_code('', slice)
+                self.general_elements(root, tags, item, slice, xslice, parent_elem)
 
-            if any(char in slice for char in ['$I', 'R$']) and not any(char in slice for char in ['E$', 'A$', 'T$', 'H$']):
+            if any(char in slice for char in ['$I', 'R$']) and not any(char in slice for char in ['E$', 'A$', 'T$', 'H$', 'C$']):
                 if '$I' in slice:
                     tags, item = elem.split("$I", 1)
                 elif 'R$' in slice:
@@ -360,49 +290,7 @@ class EMDBMetadata(object):
                     index = len(root.findall(tags))
 
             if 'E$' in slice:
-                e_tags, e_item = [], []
-                either_one = re.split('E\$|\$E', xslice)
-                other_slices = self.spliting_anchors(either_one)
-                for sl in other_slices:
-                    if '&' in sl:
-                        tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("&", 1)
-                    elif '$I' in sl:
-                        tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit('$I', 1)
-                        e_item.append(item)
-                    elif 'R$' in sl:
-                        tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit('R$', 1)
-                        att, it = items.split('|', 1)
-                        e_item.append(it)
-                    else:
-                        tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
-
-                if "$I" in slice or 'R$' in slice:
-                    self.primary_and_reference_ids(slice, root, tags, e_item, att)
-                else:
-                    for element in root.findall(tags):
-                        selem = element.find(item)
-                        if '&' in slice:
-                            sub_elements = element.get(item)
-                            self.mappings_in.map_xml_value_to_code(str(sub_elements), slice)
-                        elif '?' in slice:
-                            if item == "theoretical?":
-                                self.mappings_in.map_xml_value_to_code('NO', slice)
-                            elif item == "experimental?":
-                                self.mappings_in.map_xml_value_to_code('YES', slice)
-                            else:
-                                self.mappings_in.map_xml_value_to_code('', slice)
-                        else:
-                            if selem is None:
-                                self.mappings_in.map_xml_value_to_code('', slice)
-                            else:
-                                matches = ["experimental", "theoretical"]
-                                if any(x in slice for x in matches):
-                                    if "supramolecule_list" in tags:
-                                        self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
-                                    else:
-                                        svalue = round(float(selem.text) * 1e6, 3)
-                                        self.mappings_in.map_xml_value_to_code(str(svalue), slice)
-
+                self.either_one_element(root, slice, xslice)
 
             if 'A$' in slice:
                 one_sl = re.split('A\$|\$A', xslice)
@@ -410,65 +298,13 @@ class EMDBMetadata(object):
                 for sl in all_sl:
                     tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
                     item, att = items.rsplit('+', 1)
-                    parent_element = root.findall(parent_elem)
-                    xpath_expression, nelem, relem = '', '', ''
-                    if parent_element:
-                        for par_attrib in parent_element:
-                            target_id = par_attrib.get(att)
-                            if "supramolecule" in parent_elem:
-                                npath_expression = parent_elem+'[@supramolecule_id="{}"]/natural_source/organism'.format(target_id)
-                                nelem = root.find(npath_expression)
-                                rpath_expression = parent_elem+'[@supramolecule_id="{}"]/recombinant_expression/recombinant_organism'.format(target_id)
-                                relem = root.find(rpath_expression)
-                            elif "macromolecule" in parent_elem:
-                                npath_expression = parent_elem+'[@macromolecule_id="{}"]/natural_source/organism'.format(target_id)
-                                nelem = root.find(npath_expression)
-                                rpath_expression = parent_elem+'[@macromolecule_id="{}"]/recombinant_expression/recombinant_organism'.format(target_id)
-                                relem = root.find(rpath_expression)
-
-                            if nelem is None and relem is None:
-                                self.mappings_in.map_xml_value_to_code('', slice)
-                            else:
-                                if relem is not None:
-                                    svalue = relem.text
-                                    if svalue == "synthetic construct":
-                                        svalue = "syn"
-                                    else:
-                                        svalue = "man"
-                                    self.mappings_in.map_xml_value_to_code(str(svalue), slice)
-                                elif nelem is not None and relem is None:
-                                    self.mappings_in.map_xml_value_to_code("nat", slice)
+                    self.multiple_elements(root, tags, item, att, slice, parent_elem)
 
             if 'T$' in slice:
-                one_sl = re.split('T\$|\$T', xslice)
-                all_sl = self.spliting_anchors(one_sl)
-                for sl in all_sl:
-                    if "$I" in sl:
-                        tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit('$I', 1)
-                    elif 'R$' in sl:
-                        tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit('R$', 1)
-                        att, items = item.split('|', 1)
-                    else:
-                        tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
-                    chk_parent = root.findall(tags.rsplit("/", 1)[0])
-                    chk_element = root.findall(tags)
-                    if chk_parent and chk_element:
-                        for elem in root.findall(tags):
-                            selem = elem.find(items)
-                            if '*' in items:
-                                if "intial" in items:
-                                    self.mappings_in.map_xml_value_to_code("INITIAL", slice)
-                                elif "final" in items:
-                                    self.mappings_in.map_xml_value_to_code("FINAL", slice)
-                            elif "$I" in slice or 'R$' in slice:
-                                self.primary_and_reference_ids(slice, root, tags, items, att)
-                            else:
-                                if selem is not None:
-                                   self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
-                    else:
-                        if not "R$" in slice and not "*" in slice:
-                            if chk_parent and not chk_element:
-                                self.mappings_in.map_xml_value_to_code('', slice)
+                self.initial_final_angle_assignment(root, att, slice, xslice)
+
+            if "C$" in slice:
+                self.software_catgory(root, slice, xslice)
 
         if "%" in xml_part:
             index = 0
@@ -479,6 +315,216 @@ class EMDBMetadata(object):
                 index += int(size)
                 self.mappings_in.map_xml_value_to_code(macro_sublist, macro_slice)
 
+    def supra_macro_type(self, find_type, slice):
+        for mol_type in find_type:
+            molecule_type = (mol_type.tag).split("_", 1)[0]
+            if molecule_type == "complex":
+                ribo = mol_type.find("ribosome-details")
+                if ribo is not None:
+                    molecule_type = "ribosome"
+            if "_supramolecule" in mol_type.tag:
+                if molecule_type == "organelle":
+                    molecule_type = "ORGANELLE OR CELLULAR COMPONENT"
+                self.mappings_in.map_xml_value_to_code(str(molecule_type).upper(), slice)
+            else:
+                if molecule_type in ["protein", "em", "other", "dna", "rna", "saccharide"]:
+                    self.mappings_in.map_xml_value_to_code("polymer", slice)
+                if molecule_type == "ligand":
+                    self.mappings_in.map_xml_value_to_code("non-polymer", slice)
+
+    def entity_poly_type(self, root, tags, item, slice):
+        enantio = ''
+        for element in root.findall(tags):
+            mol_type = (element.tag).split("_", 1)[0]
+            if mol_type == "protein" or mol_type == "other":
+                selem = element.find(item)
+                if selem:
+                    if selem.text == "LEVO":
+                        enantio = "polypeptide(L)"
+                    elif selem.text == "DEXTRO":
+                        enantio = "polypeptide(D)"
+            elif mol_type == "saccharide":
+                selem = element.find(item)
+                if selem:
+                    if selem.text == "DEXTRO":
+                        enantio = "polysaccharide(D)"
+                    elif selem.text == "LEVO":
+                        enantio = "polysaccharide(L)"
+            elif mol_type == "rna":
+                se = element.find("classification")
+                if se is not None:
+                    enantio = "polyribonucleotide"
+            elif mol_type == "dna":
+                se = element.find("classification")
+                if se is not None:
+                    enantio = "polydeoxyribonucleotide"
+            self.mappings_in.map_xml_value_to_code(enantio, slice)
+
+    def space_groups(self, root, tags, items, slice):
+        svalue = ''
+        for element in root.findall(tags):
+            for item in items:
+                sub_elem = element.find(item)
+                if sub_elem is not None:
+                    if "space_group" in sub_elem.tag:
+                        svalue = "2D CRYSTAL"
+                    elif "point_group" in sub_elem.tag:
+                        svalue = "POINT"
+                    elif "helical_paramenters" in sub_elem.tag:
+                        svalue = "HELICAL"
+                    self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+
+    def general_elements(self, root, tags, item, slice, xslice, parent_elem):
+        find_elem = root.findall(tags)
+        find_parent_elem = root.findall(parent_elem)
+        if find_elem:
+            for element in root.findall(tags):
+                if '&' in xslice:
+                    sub_elem = element.get(item)
+                    if item == "size_kbytes":
+                        sub_elements = str(float(sub_elem)*10e2)
+                    else:
+                        if sub_elem == "1000":
+                            sub_elements = "0"
+                        else:
+                            sub_elements = sub_elem
+                else:
+                    sub_elem = element.find(item)
+                    sub_elements = '' if sub_elem is None or str(sub_elem.text) == "None" else str(sub_elem.text)
+                self.mappings_in.map_xml_value_to_code(sub_elements, slice)
+        else:
+            if find_parent_elem:
+                for l in range(len(find_parent_elem)):
+                    self.mappings_in.map_xml_value_to_code('', slice)
+
+    def either_one_element(self, root, slice, xslice):
+        tags, item, att = '', '', ''
+        e_tags, e_item = [], []
+        either_one = re.split('E\$|\$E', xslice)
+        other_slices = self.spliting_anchors(either_one)
+        for sl in other_slices:
+            if '&' in sl:
+                tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("&", 1)
+            elif '$I' in sl:
+                tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit('$I', 1)
+                e_item.append(item)
+            elif 'R$' in sl:
+                tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit('R$', 1)
+                att, it = items.split('|', 1)
+                e_item.append(it)
+            else:
+                tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
+
+        if "$I" in slice or 'R$' in slice:
+            self.primary_and_reference_ids(slice, root, tags, e_item, att)
+        else:
+            for element in root.findall(tags):
+                selem = element.find(item)
+                if '&' in slice:
+                    sub_elements = element.get(item)
+                    self.mappings_in.map_xml_value_to_code(str(sub_elements), slice)
+                elif '?' in slice:
+                    if item == "theoretical?":
+                        self.mappings_in.map_xml_value_to_code('NO', slice)
+                    elif item == "experimental?":
+                        self.mappings_in.map_xml_value_to_code('YES', slice)
+                    else:
+                        self.mappings_in.map_xml_value_to_code('', slice)
+                else:
+                    if selem is None:
+                        self.mappings_in.map_xml_value_to_code('', slice)
+                    else:
+                        matches = ["experimental", "theoretical"]
+                        if any(x in slice for x in matches):
+                            if "supramolecule_list" in tags:
+                                self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
+                            else:
+                                svalue = round(float(selem.text) * 1e6, 3)
+                                self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+
+    def multiple_elements(self, root, tags, item, att, slice, parent_elem):
+        parent_element = root.findall(parent_elem)
+        xpath_expression, nelem, relem = '', '', ''
+        if parent_element:
+            for par_attrib in parent_element:
+                target_id = par_attrib.get(att)
+                if "supramolecule" in parent_elem:
+                    npath_expression = parent_elem+'[@supramolecule_id="{}"]/natural_source/organism'.format(target_id)
+                    nelem = root.find(npath_expression)
+                    rpath_expression = parent_elem+'[@supramolecule_id="{}"]/recombinant_expression/recombinant_organism'.format(target_id)
+                    relem = root.find(rpath_expression)
+                elif "macromolecule" in parent_elem:
+                    npath_expression = parent_elem+'[@macromolecule_id="{}"]/natural_source/organism'.format(target_id)
+                    nelem = root.find(npath_expression)
+                    rpath_expression = parent_elem+'[@macromolecule_id="{}"]/recombinant_expression/recombinant_organism'.format(target_id)
+                    relem = root.find(rpath_expression)
+
+                if nelem is None and relem is None:
+                    self.mappings_in.map_xml_value_to_code('', slice)
+                else:
+                    if relem is not None:
+                        svalue = relem.text
+                        if svalue == "synthetic construct":
+                            svalue = "syn"
+                        else:
+                            svalue = "man"
+                        self.mappings_in.map_xml_value_to_code(str(svalue), slice)
+                    elif nelem is not None and relem is None:
+                        self.mappings_in.map_xml_value_to_code("nat", slice)
+
+    def initial_final_angle_assignment(self, root, att, slice, xslice):
+        one_sl = re.split('T\$|\$T', xslice)
+        all_sl = self.spliting_anchors(one_sl)
+        for sl in all_sl:
+            if "$I" in sl:
+                tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit('$I', 1)
+            elif 'R$' in sl:
+                tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit('R$', 1)
+                att, items = item.split('|', 1)
+            else:
+                tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
+            chk_parent = root.findall(tags.rsplit("/", 1)[0])
+            chk_element = root.findall(tags)
+            if chk_parent and chk_element:
+                for elem in root.findall(tags):
+                    selem = elem.find(items)
+                    if '*' in items:
+                        if "intial" in items:
+                            self.mappings_in.map_xml_value_to_code("INITIAL", slice)
+                        elif "final" in items:
+                            self.mappings_in.map_xml_value_to_code("FINAL", slice)
+                    elif "$I" in slice or 'R$' in slice:
+                        self.primary_and_reference_ids(slice, root, tags, items, att)
+                    else:
+                        if selem is not None:
+                            self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
+            else:
+                if not "R$" in slice and not "*" in slice:
+                    if chk_parent and not chk_element:
+                        self.mappings_in.map_xml_value_to_code('', slice)
+
+    def software_catgory(self, root, slice, xslice):
+        soft_cat = ''
+        split_result = xslice.split(".", 1)[1].replace(".", "/").rsplit("/C$", 1)
+        tags, items = split_result if len(split_result) == 2 else (split_result[0], "")
+        find_elem = root.findall(tags)
+        if find_elem:
+            for elem in root.findall(tags):
+                selem = elem.find(items)
+                if selem is not None:
+                    if "modelling" in xslice:
+                        soft_cat = "MODEL FITTING"
+                    elif "final_reconstruction" in xslice:
+                        soft_cat = "RECONSTRUCTION"
+                    elif "classification" in xslice:
+                        soft_cat = "CLASSIFICATION"
+                    elif "particle_selection" in xslice:
+                        soft_cat = "PARTICLE SELECTION"
+                    elif "ctf_correction" in xslice:
+                        soft_cat = "CTF CORRECTION"
+                else:
+                    soft_cat = ""
+            self.mappings_in.map_xml_value_to_code(soft_cat, slice)
 
     def primary_and_reference_ids(self, slice, root, tags, e_item, att=None):
         index = 0

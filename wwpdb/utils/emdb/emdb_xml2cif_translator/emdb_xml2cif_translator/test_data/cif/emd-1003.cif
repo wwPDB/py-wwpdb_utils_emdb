@@ -338,6 +338,7 @@ _em_3d_fitting.entry_id         .
 _em_3d_fitting.pdb_chain_id     .
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  .
+_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
 _em_3d_fitting.details          "manual fitting using O Mol_Id: 1; Molecule: S4 Ribosomal Protein; Chain: A; Other_Details: Modeled By Analogous Protein Of B. Stearothermophilus Taken From Pdb Entry 1C06 Mol_Id: 2; Molecule: S5 Ribosomal Protein; Chain: B; Other_Details: Modeled By Analogous Protein Of B. Stearothermophilus Taken From Pdb Entry 1Pkp Mol_Id: 3; Molecule: S6 Ribosomal Protein; Chain: C; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1Ris Mol_Id: 4; Molecule: S7 Ribosomal Protein; Chain: D; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1Rss Mol_Id: 5; Molecule: S8 Ribosomal Protein; Chain: E; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1An7 Mol_Id: 6; Molecule: S15 Ribosomal Protein; Chain: F; Other_Details: Modeled By Analogous Protein Of B. Stearothermophilus Taken From Pdb Entry 1A32 Mol_Id: 7; Molecule: S17 Ribosomal Protein; Chain: G; Other_Details: Modeled By Analogous Protein Of B. Stearothermophilus Taken From Pdb Entries 1Rip and 1Qd7 Mol_Id: 8; Molecule: S20 Ribosomal Protein; Chain: H; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1Qd7 Mol_Id: 9; Molecule: Ribosomal Protein L1; Chain: N; Other_Details: Modeled By Analogous Protein Of T. Thermophilus Taken From Pdb Entry 1Ad2 Mol_Id: 10; Molecule: Ribosomal Protein L6; Chain: J; Mutation: Yes; Other_Details: Modeled By Analogous Protein Of T. Stearothermophilus Taken From Pdb Entry 1Rl6 Mol_Id: 11; Molecule: Ribosomal Protein L11; Chain: K; Other_Details: Modeled By Analogous Protein Of T. Maritima Taken From Pdb Entry 1Mms Mol_Id: 12; Molecule: Fragment Of 16S Rrna Helix 23; Chain: I; Fragment: Residues 673-713; Other_Details: Modeled As Analogous Fragment Of T. Thermophilus Taken From Pdb Entry 1Qd7 Mol_Id: 13; Molecule: Fragment Of 23S Rrna; Chain: L; Fragment: Residues 1051-1108; Other_Details: T. Maritima RNA Sequence and Model Taken From Pdb Entry 1Mms Mol_Id: 14; Molecule: Helix 95 Of 23S Rrna; Chain: M; Other_Details: E. Coli RNA Sequence and Model Taken From Pdb Entry 480D Mol_Id: 15; Molecule: Formyl-Methionyl-tRNA; Chain: O; Synonym: Fmet-tRNA; Other_Details: E. Coli Fmet-tRNA Sequence and Model Taken From Pdb Entry 2Fmt"
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        .
@@ -348,6 +349,7 @@ _em_software.id
 _em_software.image_processing_id
 _em_software.version
 _em_software.details
-SPIDER/WEB  1  1  .  .  
-O           2  2  .  .  
+_em_software.category
+SPIDER/WEB  1  1  .  .  RECONSTRUCTION  
+O           2  2  .  .  "MODEL FITTING"  
 ##

@@ -155,8 +155,8 @@ _em_entity_assembly_molwt.units
 _em_entity_assembly_molwt.experimental_flag
 _em_entity_assembly_molwt.value
 _em_entity_assembly_molwt.method
-.  1  MDa  NO  2.5  .  
 1  1  MDa  NO  2.5  .  
+0  1  MDa  NO  2.5  .  
 #
 _em_entity_assembly_recombinant.entity_assembly_id  1
 _em_entity_assembly_recombinant.id                  1
@@ -170,10 +170,8 @@ _entity.pdbx_number_of_molecules
 _entity.pdbx_ec
 _entity.pdbx_mutation
 _entity.details
-_entity.formula_weight
-_entity.pdbx_formula_weight_exptl_method
-1  non-polymer  nat  "EF-Tu, tRNA, GTP"       .  .  ?     .  64000.0  .  
-2  polymer      nat  "formyl-methionyl tRNA"  .  .  ?     .  24000.0  .  
+1  non-polymer  nat  "EF-Tu, tRNA, GTP"       .  .  ?     .  
+2  polymer      nat  "formyl-methionyl tRNA"  .  .  ?     .  
 #
 _entity_poly.entity_id                 1
 _entity_poly.type                      polyribonucleotide
@@ -290,6 +288,10 @@ _em_single_particle_entity.point_symmetry       C1
 _em_single_particle_entity.id                   1
 _em_single_particle_entity.image_processing_id  1
 #
+_em_ctf_correction.id                   1
+_em_ctf_correction.image_processing_id  1
+_em_ctf_correction.details              "phase flip"
+#
 _em_map.id                    1
 _em_map.format                CCP4
 _em_map.size_kb               16001000.0
@@ -341,12 +343,15 @@ _em_3d_fitting.details          "Protocol: rigid body. The domains of EF-Tu were
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        .
 #
-_em_software.id                   1
-_em_software.image_processing_id  1
-_em_software.name                 "Situs and Amira"
-_em_software.version              .
-_em_software.details              .
-_em_software.category             "MODEL FITTING"
+loop_
+_em_software.name
+_em_software.id
+_em_software.image_processing_id
+_em_software.version
+_em_software.details
+_em_software.category
+Imagic             1  1  .  .  RECONSTRUCTION  
+"Situs and Amira"  2  2  .  .  "MODEL FITTING"  
 #
 _em_interpret_figure.file     emd_1004_4.tif
 _em_interpret_figure.details  .

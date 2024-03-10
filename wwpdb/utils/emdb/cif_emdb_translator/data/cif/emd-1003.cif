@@ -343,10 +343,13 @@ _em_3d_fitting.details          "manual fitting using O Mol_Id: 1; Molecule: S4 
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        .
 #
-_em_software.id                   1
-_em_software.image_processing_id  1
-_em_software.name                 O
-_em_software.version              .
-_em_software.details              .
-_em_software.category             "MODEL FITTING"
+loop_
+_em_software.name
+_em_software.id
+_em_software.image_processing_id
+_em_software.version
+_em_software.details
+_em_software.category
+SPIDER/WEB  1  1  .  .  RECONSTRUCTION  
+O           2  2  .  .  "MODEL FITTING"  
 ##

@@ -5,7 +5,7 @@
 ### 12. < for defining the macromolecule entity_poly.type 13. E$$E either one of the elements present 14. ? to write a boolean when either one is present 15. A$$A multiple elements are present
 ### 16. U$ to have a different dictionary key while mapping 17. E for modifiying author's name to the cif format 18. S for em_entity_assembly.source 18. H$ for em_map.type
 ### 19. ONE is used for primary and referral IDs if it is just expected only one sub-element and also when need to hard code "1" 20. REL, EMDB are all hard coded 21.YES is for hard coding "Y"
-### 23. NO is for hard coding "N" 24. EID for hard coding the EMDB entry ID
+### 23. NO is for hard coding "N" 24. EID for hard coding the EMDB entry ID 25. C$ for combining many software elements into one em_software.category
 
 emd@emdb_id entry.id.XML_VALUE database_2.database_id.EMDB database_2.database_code.XML_VALUE pdbx_depui_entry_details.requested_accession_types.EM
 
@@ -394,9 +394,8 @@ emd.interpretation.modelling_list.modelling.target_criteria em_3d_fitting.target
 N:emd.S$structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction.software_list|interpretation.modelling_list.modelling.software_list$S.software.name em_software.name.XML_VALUE em_software.id.SOFT_ID em_software.image_processing_id.SOFT_ID
 N:emd.S$structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction.software_list|interpretation.modelling_list.modelling.software_list$S.software.version em_software.version.XML_VALUE
 N:emd.S$structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction.software_list|interpretation.modelling_list.modelling.software_list$S.software.processing_details em_software.details.XML_VALUE
-##N:emd.S$structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction.software_list|interpretation.modelling_list.modelling.software_list$S.software em_software.category.MODEL
-#N:emd.S$structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction|interpretation.modelling_list.modelling$S.refinement_protocol em_3d_fitting.ref_protocol.XML_VALUE
-##em_software.category.SOFT_CAT
+emd.interpretation.modelling_list.modelling.refinement_protocol em_3d_fitting.ref_protocol.XML_VALUE
+N:emd.S$structure_determination_list.structure_determination.singleparticle_processing.final_reconstruction|structure_determination_list.structure_determination.singleparticle_processing.final_three_d_classification|structure_determination_list.structure_determination.singleparticle_processing.final_two_d_classification|structure_determination_list.structure_determination.singleparticle_processing.particle_selection|structure_determination_list.structure_determination.singleparticle_processin.ctf_correction|interpretation.modelling_list.modelling$S.software_list.C$software em_software.category.XML_VALUE
 emd.interpretation.modelling_list.modelling.details em_3d_fitting.details.XML_VALUE
 emd.interpretation.modelling_list.modelling.overall_b_value em_3d_fitting.overall_b_value.XML_VALUE
 emd.interpretation.modelling_list.modelling.refinement_space em_3d_fitting.ref_space.XML_VALUE

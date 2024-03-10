@@ -338,6 +338,7 @@ _em_3d_fitting.entry_id         .
 _em_3d_fitting.pdb_chain_id     .
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  .
+_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
 _em_3d_fitting.details          "Protocol: rigid body. The domains of EF-Tu were fitted seperately by visual docking using O and Swiss PDB viewer"
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        .
@@ -348,8 +349,9 @@ _em_software.id
 _em_software.image_processing_id
 _em_software.version
 _em_software.details
-Imagic             1  1  .  .  
-"Situs and Amira"  2  2  .  .  
+_em_software.category
+Imagic             1  1  .  .  RECONSTRUCTION  
+"Situs and Amira"  2  2  .  .  "MODEL FITTING"  
 #
 _em_interpret_figure.file     emd_1004_4.tif
 _em_interpret_figure.details  .

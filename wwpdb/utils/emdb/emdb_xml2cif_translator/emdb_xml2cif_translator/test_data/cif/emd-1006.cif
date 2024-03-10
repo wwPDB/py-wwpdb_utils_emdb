@@ -362,6 +362,7 @@ _em_3d_fitting.entry_id         1MVR
 _em_3d_fitting.pdb_chain_id     .
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  .
+_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
 _em_3d_fitting.details          "manual fitting using O"
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        .
@@ -371,4 +372,5 @@ _em_software.id                   1
 _em_software.image_processing_id  1
 _em_software.version              .
 _em_software.details              .
+_em_software.category             RECONSTRUCTION
 ##

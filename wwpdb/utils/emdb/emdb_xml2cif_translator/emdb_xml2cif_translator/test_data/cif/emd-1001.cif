@@ -364,6 +364,7 @@ _em_3d_fitting.entry_id         .
 _em_3d_fitting.pdb_chain_id     .
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  "poor atom-atom contacts and cross correlation coefficient"
+_em_3d_fitting.ref_protocol     "RIGID BODY FIT"
 _em_3d_fitting.details          "Protocol: real space rigid body. Domains were fit manually into the density using O. The entire light chain domain consisting of heavy chain residues from G710 to K843 and the two light chains were repositioned using G710 of the myosin heavy chain using O.Real space refinement done using 7 rigid bodies and 4 hinge points."
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        REAL
@@ -373,4 +374,5 @@ _em_software.id                   1
 _em_software.image_processing_id  1
 _em_software.version              .
 _em_software.details              .
+_em_software.category             "MODEL FITTING"
 ##
