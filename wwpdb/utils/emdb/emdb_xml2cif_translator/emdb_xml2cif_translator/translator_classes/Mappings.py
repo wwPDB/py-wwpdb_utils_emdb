@@ -53,6 +53,7 @@ class Mappings(object):
         REL = "REL"
         QUERY = "QUERY"
         SOFT_ID = "SOFT_ID"
+        ID = "ID"
 
     def __init__(self):
         """
@@ -447,6 +448,10 @@ class Mappings(object):
                             list_values.append("EMDB")
                         if logic_value == self.Const.Y:
                             list_values.append("Y")
+                        # if logic_value == self.Const.ID:
+                        #     list_values = [xml_value, [str(index + 1) for index in range(len(xml_value))]]
+                        #     list_values.append([str(index + 1) for index in range(len(xml_value))])
+
                         if logic_value == self.Const.YES:
                             list_values.append("YES")
                         if logic_value == self.Const.NO:
@@ -461,6 +466,8 @@ class Mappings(object):
                             list_values.append("?")
                         if logic_value == self.Const.SOFT_ID:
                             list_values = [xml_value, [str(index + 1) for index in range(len(xml_value))]]
+                            list_values.append([str(index + 1) for index in range(len(xml_value))])
+                        if logic_value == self.Const.ID:
                             list_values.append([str(index + 1) for index in range(len(xml_value))])
                         elif logic_k == self.Const.M:
                             if self.Const.XML_VALUE_UPPER in logic_value:

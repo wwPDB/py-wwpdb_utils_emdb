@@ -142,6 +142,7 @@ class CifEMDBTranslator(object):
         EM_HIGH_PRESSURE_FREEZING = "em_high_pressure_freezing"
         EM_IMAGE_SCANS = "em_image_scans"
         EM_MAP = "em_map"
+        EM_INTERPRET_FIGURE = "EM_INTERPRET_FIGURE"
         EM_IMAGING = "em_imaging"
         EM_DIFFRACTION = "em_diffraction"
         EM_TOMOGRAPHY = "em_tomography"
@@ -202,6 +203,7 @@ class CifEMDBTranslator(object):
         K_IMAGING_ID = "imaging_id"
         K_3D_FITTING_ID = "3d_fitting_id"
         K_SPECIMEN_ID = "specimen_id"
+        K_EM_INTERPRET_ID = "em_interpret_id"
         K_ENTITY_ASSEMBLY_ID = "entity_assembly_id"
         K_EM_TOMOGRAPHY_SPECIMEN_ID = "em_tomography_specimen_id"
         K_ENTITY_ID = "entity_id"
@@ -1318,6 +1320,7 @@ class CifEMDBTranslator(object):
                 const.EM_HIGH_PRESSURE_FREEZING,
                 const.EM_IMAGE_SCANS,
                 const.EM_MAP,
+                const.EM_INTERPRET_FIGURE,
                 const.EM_IMAGING,
                 const.EM_DIFFRACTION,
                 const.EM_TOMOGRAPHY,
@@ -4185,14 +4188,14 @@ class CifEMDBTranslator(object):
                             if sup_mol_id_in in s_mol_wt_dict_in:
                                 set_sup_mol_weight(complex_sup_mol, s_mol_wt_dict_in[sup_mol_id_in])
 
-                        def set_el_ribosome_details():
+                        def set_el_ribosome_details(complex_sup_mol, sup_in):
                             """
                             XSD:<xs:element name="ribosome-details" type="xs:string" minOccurs="0">
                             Deprecated (2014/11/17)
                             """
                             # if legacy:
                             if sup_type == 'RIBOSOME':
-                               complex_sup_mol.set_ribosome_details('RIBOSOME')
+                                set_cif_value(complex_sup_mol.set_ribosome_details, "ribosome_details", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
 
                         # set up the supramolecule specific tagname explicitly
                         # as DSgenerate doesn't provide it
@@ -4209,7 +4212,7 @@ class CifEMDBTranslator(object):
                         # element 3
                         set_el_molecular_weight(complex_sup_mol, sup_mol_id_in, sup_mol_dicts["s_mol_wt_dict_in"])
                         # element 4
-                        set_el_ribosome_details()
+                        set_el_ribosome_details(complex_sup_mol, sup_in)
 
                     def set_virus_supramolecule_type(virus_sup_mol, sup_in, sup_mol_id_in, sup_mol_dicts, sample):
                         """
@@ -11423,11 +11426,46 @@ class CifEMDBTranslator(object):
                         if modelling_list.has__content():
                             intrp.set_modelling_list(modelling_list)
 
-                    def set_el_figure_list():
+                    def set_el_figure_list(intrp):
                         """
                         XSD: <xs:element name="figure_list" minOccurs="0">
                         CIF: ??
                         """
+                        #if LEGACY:
+                        def set_figure_type(fig, fig_in):
+                            """
+                            XSD: <xs:element name="figure" maxOccurs="unbounded"> has
+                            .. 2 elements
+                            """
+                            def set_el_file(fig, fig_in):
+                                """
+                                XSD: <xs:element name="file">
+                                pattern [emd_d{4,}]+.*
+                                """
+                                set_cif_value(fig.set_file, "file", const.EM_INTERPRET_FIGURE, cif_list=fig_in)
+
+                            def set_el_details(fig, fig_in):
+                                """
+                                XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
+                                CIF: ????
+                                """
+                                # if legacy:
+                                set_cif_value(fig.set_details, "details", const.EM_INTERPRET_FIGURE, cif_list=fig_in)
+
+                            # element 1
+                            set_el_file(fig, fig_in)
+                            # element 2
+                            set_el_details(fig, fig_in)
+
+                        fig_list_in = make_dict(const.EM_INTERPRET_FIGURE, const.K_EM_INTERPRET_ID)
+                        fig_list = emdb.figure_listType()
+                        for fig_in in fig_list_in:
+                            fig = emdb.figure_type()
+                            set_figure_type(fig, fig_in)
+                            if fig.has__content():
+                                fig_list.add_figure(fig)
+                        if fig_list.has__content():
+                            intrp.set_figure_list(fig_list)
 
                     def set_el_segmentation_list(intrp):
                         """
@@ -11517,7 +11555,7 @@ class CifEMDBTranslator(object):
                     # element 1
                     set_el_modelling_list(intrp)
                     # element 2
-                    set_el_figure_list()
+                    set_el_figure_list(intrp)
                     # element 3
                     set_el_segmentation_list(intrp)
                     # element 4

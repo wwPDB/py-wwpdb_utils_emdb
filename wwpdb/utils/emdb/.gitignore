@@ -112,6 +112,7 @@ test-output
 /wwpdb/utils/emdb/cif_emdb_translator/emdb.xsd
 /wwpdb/utils/emdb/cif_emdb_translator/data/test/xml_v3_out/*
 /wwpdb/utils/emdb/cif_emdb_translator/data/test_cif_xml/
+/wwpdb/utils/emdb/emdb_xml2cif_translator/emdb_xml2cif_translator/test_data/*
 /.idea/*
 
 # emacs

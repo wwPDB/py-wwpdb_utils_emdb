@@ -132,8 +132,9 @@ _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
 _em_entity_assembly.oligomeric_state_legacy
 _em_entity_assembly.recombinant_exp_flag_legacy
-1  1  RIBOSOME  NATURAL  "70S Ribosome"                                 ?     .  .  .  .  .        false  
-0  0  SAMPLE    NATURAL  "Kirromycin stalled 70S Ribosome from E.coli"  ?     .  3  .  .  monomer  .      
+_em_entity_assembly.ribosome_details
+1  1  RIBOSOME  NATURAL  "70S Ribosome"                                 ?     .  .  .  .  .        false  "ribosome-prokaryote: LSU 50S"  
+0  0  SAMPLE    NATURAL  "Kirromycin stalled 70S Ribosome from E.coli"  ?     .  3  .  .  monomer  .      .  
 #
 _em_entity_assembly_naturalsource.id                       .
 _em_entity_assembly_naturalsource.entity_assembly_id       1
@@ -344,15 +345,22 @@ _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        .
 #
 loop_
+_em_software.category
 _em_software.name
 _em_software.id
 _em_software.image_processing_id
 _em_software.version
 _em_software.details
-_em_software.category
-Imagic             1  1  .  .  RECONSTRUCTION  
-"Situs and Amira"  2  2  .  .  "MODEL FITTING"  
+RECONSTRUCTION    Imagic             1  1  .  .  
+"MODEL FITTING"   "Situs and Amira"  2  2  .  .  
 #
-_em_interpret_figure.file     emd_1004_4.tif
-_em_interpret_figure.details  .
+loop_
+_em_interpret_figure.id
+_em_interpret_figure.file
+_em_interpret_figure.details
+1  emd_1004.tif    .  
+2  emd_1004_1.tif  .  
+3  emd_1004_2.tif  .  
+4  emd_1004_3.tif  .  
+5  emd_1004_4.tif  .  
 ##

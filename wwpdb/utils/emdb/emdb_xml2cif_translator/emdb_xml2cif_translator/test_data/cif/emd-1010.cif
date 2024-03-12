@@ -141,6 +141,7 @@ _em_entity_assembly.entity_id_list                   .
 _em_entity_assembly.details                          "SPIDER was used for the computational isolation of the RF2(GGQ) wild type cryo-density from the 3D-EM map of RF2 (wt) bound to the E.coli 70s ribosome (EMD-1007)."
 _em_entity_assembly.oligomeric_state_legacy          .
 _em_entity_assembly.recombinant_exp_flag_legacy      .
+_em_entity_assembly.ribosome_details                 .
 #
 _entity.id                        1
 _entity.type                      polymer

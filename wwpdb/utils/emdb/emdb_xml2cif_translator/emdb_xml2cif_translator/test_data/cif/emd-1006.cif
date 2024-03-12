@@ -139,8 +139,9 @@ _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
 _em_entity_assembly.oligomeric_state_legacy
 _em_entity_assembly.recombinant_exp_flag_legacy
-1  1  RIBOSOME  NATURAL  "E.coli 70s ribosome"  ?     .  .  .  .  .  false  
-0  0  SAMPLE    NATURAL  "E.coli 70s ribosome"  ?     .  4  .  .  .  .      
+_em_entity_assembly.ribosome_details
+1  1  RIBOSOME  NATURAL  "E.coli 70s ribosome"  ?     .  .  .  .  .  false  "ribosome-prokaryote: LSU 50S"  
+0  0  SAMPLE    NATURAL  "E.coli 70s ribosome"  ?     .  4  .  .  .  .      .  
 #
 _em_entity_assembly_naturalsource.id                       .
 _em_entity_assembly_naturalsource.entity_assembly_id       1
@@ -367,10 +368,10 @@ _em_3d_fitting.details          "manual fitting using O"
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        .
 #
+_em_software.category             RECONSTRUCTION
 _em_software.name                 SPIDER/WEB
 _em_software.id                   1
 _em_software.image_processing_id  1
 _em_software.version              .
 _em_software.details              .
-_em_software.category             RECONSTRUCTION
 ##
