@@ -473,14 +473,19 @@ class EMDBMetadata(object):
                         self.mappings_in.map_xml_value_to_code("nat", slice)
 
     def initial_final_angle_assignment(self, root, att, slice, xslice):
+        index = 0
         one_sl = re.split('T\$|\$T', xslice)
         all_sl = self.spliting_anchors(one_sl)
         for sl in all_sl:
-            if "$I" in sl:
+            if "*" in sl:
+                tags, items = sl.split(".", 1)[1].replace(".", "/").replace("*", "").rsplit("/",1)
+            elif "$I" in sl:
                 tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit('$I', 1)
             elif 'R$' in sl:
                 tags, item = sl.split(".", 1)[1].replace(".", "/").rsplit('R$', 1)
                 att, items = item.split('|', 1)
+            elif '$PID' in sl:
+                tags, items = sl.split(".", 1)[1].replace(".", "/").replace("$PID", "").rsplit('/', 1)
             else:
                 tags, items = sl.split(".", 1)[1].replace(".", "/").rsplit("/", 1)
             chk_parent = root.findall(tags.rsplit("/", 1)[0])
@@ -488,20 +493,35 @@ class EMDBMetadata(object):
             if chk_parent and chk_element:
                 for elem in root.findall(tags):
                     selem = elem.find(items)
-                    if '*' in items:
-                        if "intial" in items:
-                            self.mappings_in.map_xml_value_to_code("INITIAL", slice)
-                        elif "final" in items:
-                            self.mappings_in.map_xml_value_to_code("FINAL", slice)
+                    if '*' in slice:
+                        if selem is not None:
+                            if "intial" in items:
+                                self.mappings_in.map_xml_value_to_code("INITIAL", slice)
+                            elif "final" in items:
+                                self.mappings_in.map_xml_value_to_code("FINAL", slice)
+                    elif "$PID" in slice:
+                        if selem is not None:
+                            for ind in range(1, len(selem)+1):
+                                index += 1
+                                self.mappings_in.map_xml_value_to_code(str(index), slice)
                     elif "$I" in slice or 'R$' in slice:
                         self.primary_and_reference_ids(slice, root, tags, items, att)
+                    elif items == "TYPE23":
+                        type23 = tags.rsplit("/",1)[1]
+                        if type23 == "final_two_d_classification":
+                            self.mappings_in.map_xml_value_to_code("2D", slice)
+                        if type23 == " final_three_d_classification":
+                            self.mappings_in.map_xml_value_to_code("3D", slice)
                     else:
                         if selem is not None:
                             self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
+                        else:
+                            self.mappings_in.map_xml_value_to_code('', slice)
             else:
-                if not "R$" in slice and not "*" in slice:
-                    if chk_parent and not chk_element:
-                        self.mappings_in.map_xml_value_to_code('', slice)
+                if not any(substring in slice for substring in ["R$", "I$", "*", "$PID"]):
+                    if chk_parent:
+                        if chk_element is None:
+                            self.mappings_in.map_xml_value_to_code('', slice)
 
     def software_catgory(self, root, slice, xslice):
         soft_cat = ''

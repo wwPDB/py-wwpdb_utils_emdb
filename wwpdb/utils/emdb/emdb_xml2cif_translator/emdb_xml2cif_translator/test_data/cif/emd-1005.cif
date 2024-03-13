@@ -284,10 +284,16 @@ _em_3d_reconstruction.symmetry_type        POINT
 #
 _em_start_model.image_processing_id  1
 #
-_em_euler_angle_assignment.id                   .
-_em_euler_angle_assignment.image_processing_id  .
-_em_euler_angle_assignment.type                 .
-_em_euler_angle_assignment.order                INITIAL
+_em_euler_angle_assignment.id       1
+_em_euler_angle_assignment.type     .
+_em_euler_angle_assignment.order    FINAL
+_em_euler_angle_assignment.details  "beta gamma"
+#
+_em_final_classification.id                        1
+_em_final_classification.details                   .
+_em_final_classification.avg_num_images_per_class  .
+_em_final_classification.num_classes               103
+_em_final_classification.type                      2D
 #
 _em_single_particle_entity.point_symmetry       C1
 _em_single_particle_entity.id                   1

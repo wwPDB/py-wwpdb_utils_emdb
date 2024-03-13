@@ -156,7 +156,7 @@ class CIF(object):
         # deduped_data_values = self.deduping_empty_values(data_ids, data_values)
         self.add_category(category_id, data_ids)
         self.insert_data(category_id, data_values)
-        # print("LEN", len(data_ids), len(deduped_data_values))
+        # print("LEN", len(data_ids), len(data_values))
 
     def deduping_empty_values(self, data_ids, data_values):
         """

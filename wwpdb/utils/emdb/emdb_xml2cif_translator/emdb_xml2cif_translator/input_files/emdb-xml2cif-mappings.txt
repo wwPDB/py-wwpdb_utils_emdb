@@ -5,7 +5,8 @@
 ### 12. < for defining the macromolecule entity_poly.type 13. E$$E either one of the elements present 14. ? to write a boolean when either one is present 15. A$$A multiple elements are present
 ### 16. U$ to have a different dictionary key while mapping 17. E for modifiying author's name to the cif format 18. S for em_entity_assembly.source 18. H$ for em_map.type
 ### 19. ONE is used for primary and referral IDs if it is just expected only one sub-element and also when need to hard code "1" 20. REL, EMDB are all hard coded 21.YES is for hard coding "Y"
-### 23. NO is for hard coding "N" 24. EID for hard coding the EMDB entry ID 25. C$ for combining many software elements into one em_software.category
+### 23. NO is for hard coding "N" 24. EID for hard coding the EMDB entry ID 25. C$ for combining many software elements into one em_software.category 26. $PID for primary ID if there is not even one mandatory
+### sub_elements present for that parent element
 
 emd@emdb_id entry.id.XML_VALUE database_2.database_id.EMDB database_2.database_code.XML_VALUE pdbx_depui_entry_details.requested_accession_types.EM
 
@@ -327,11 +328,16 @@ N:emd.structure_determination_list.structure_determination.S$singleparticle_proc
 N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.image_recording_id em_image_processing.image_recording_id.XML_VALUE
 N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.details em_image_processing.details.XML_VALUE
 
-N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$initial_angle_assignment|final_angle_assignment$T$Itype em_euler_angle_assignment.id.XML_VALUE
-N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$SR$image_processing_id|T$initial_angle_assignment|final_angle_assignment$T em_euler_angle_assignment.image_processing_id.XML_VALUE
+N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$initial_angle_assignment|final_angle_assignment$T$PID em_euler_angle_assignment.id.XML_VALUE
 N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$initial_angle_assignment|final_angle_assignment$T.type em_euler_angle_assignment.type.XML_VALUE
 N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$intial_angle_assignment|final_angle_assignment$T* em_euler_angle_assignment.order.XML_VALUE
-####N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$initial_angle_assignment|final_angle_assignment$T.details em_euler_angle_assignment.details.XML_VALUE
+N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$initial_angle_assignment|final_angle_assignment$T.details em_euler_angle_assignment.details.XML_VALUE
+
+N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$final_two_d_classification|final_three_d_classification$T$PID em_final_classification.id.XML_VALUE
+N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$final_two_d_classification|final_three_d_classification$T.details em_final_classification.details.XML_VALUE
+N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$final_two_d_classification|final_three_d_classification$T.average_number_members_per_class em_final_classification.avg_num_images_per_class.XML_VALUE
+N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$final_two_d_classification|final_three_d_classification$T.number_classes em_final_classification.num_classes.XML_VALUE
+N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.T$final_two_d_classification|final_three_d_classification$T.TYPE23 em_final_classification.type.XML_VALUE
 
 N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.final_reconstruction.applied_symmetry.point_group em_single_particle_entity.point_symmetry.XML_VALUE
 N:emd.structure_determination_list.structure_determination.S$singleparticle_processing|tomography_processing|subtomogram_averaging_processing|crystallography_processing|helical_processing$S.final_reconstruction.algorithm em_3d_reconstruction.algorithm.XML_VALUE
