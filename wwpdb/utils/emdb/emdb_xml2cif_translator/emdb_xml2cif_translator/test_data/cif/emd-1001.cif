@@ -143,7 +143,7 @@ _em_entity_assembly.recombinant_exp_flag_legacy
 _em_entity_assembly.ribosome_details
 1  1  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thick, myosin-containing filament"                   myosin  .  .  .  "Filaments contain more than just myosin"                                                                                                                                                                                 .                                                                        false  .  
 2  2  "ORGANELLE OR CELLULAR COMPONENT"  NATURAL  "thin, actin-containing filament"                     actin   .  .  .  "filaments contain more than just actin"                                                                                                                                                                                  "polar, 2-stranded helical filament, helical symmetry is 28/13"          false  .  
-0  0  SAMPLE                             NATURAL  "Rigor insect flight muscle from Lethocerus maximus"  ?       .  2  .  "The sample is a single filament layer cut from myofibrils by ultramicrotomy. The section thickness is ~25 nm. Specimen has been chemically fixed, dehydrated, embedded in Araldite and sectioned with a diamond knife."  "Thick myosin containing filament and thin actin-containing filaments."  .      .  
+0  0  SAMPLE                             NATURAL  "Rigor insect flight muscle from Lethocerus maximus"  None    .  2  .  "The sample is a single filament layer cut from myofibrils by ultramicrotomy. The section thickness is ~25 nm. Specimen has been chemically fixed, dehydrated, embedded in Araldite and sectioned with a diamond knife."  "Thick myosin containing filament and thin actin-containing filaments."  .      .  
 #
 loop_
 _em_entity_assembly_naturalsource.id
@@ -286,6 +286,10 @@ _em_3d_reconstruction.num_particles        30
 _em_3d_reconstruction.symmetry_type        .
 #
 _em_start_model.image_processing_id  1
+#
+_em_final_classification.image_processing_id  1
+#
+_em_euler_angle_assignment.image_processing_id  1
 #
 _em_ctf_correction.id                   .
 _em_ctf_correction.image_processing_id  .

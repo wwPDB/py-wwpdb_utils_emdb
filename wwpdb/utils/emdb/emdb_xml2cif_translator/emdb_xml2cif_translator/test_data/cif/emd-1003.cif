@@ -129,8 +129,8 @@ _em_entity_assembly.details
 _em_entity_assembly.oligomeric_state_legacy
 _em_entity_assembly.recombinant_exp_flag_legacy
 _em_entity_assembly.ribosome_details
-1  1  RIBOSOME  NATURAL  "70S ribosome Escherichia coli"          ?     .  .  .  .  .  false  "ribosome-prokaryote: LSU 50S"  
-0  0  SAMPLE    NATURAL  "FMet-tRNAMet 70S Ribosome from E.coli"  ?     .  3  .  
+1  1  RIBOSOME  NATURAL  "70S ribosome Escherichia coli"          None  .  .  .  .  .  false  "ribosome-prokaryote: LSU 50S"  
+0  0  SAMPLE    NATURAL  "FMet-tRNAMet 70S Ribosome from E.coli"  None  .  3  .  
 ;preparation and buffer conditions are as described in
       Malhotra et al., J. Mol. Biol. (1998) 280, 103-116
 ;
@@ -168,8 +168,8 @@ _entity.pdbx_number_of_molecules
 _entity.pdbx_ec
 _entity.pdbx_mutation
 _entity.details
-1  polymer  nat  fMet-tRNA  .  .  ?     .  
-2  polymer  nat  MF-mRNA    .  .  ?     "46 nucleotides"  
+1  polymer  nat  fMet-tRNA  .  .  None  .  
+2  polymer  nat  MF-mRNA    .  .  None  "46 nucleotides"  
 #
 loop_
 _entity_poly.entity_id
@@ -288,6 +288,10 @@ _em_3d_reconstruction.num_particles        73523
 _em_3d_reconstruction.symmetry_type        POINT
 #
 _em_start_model.image_processing_id  1
+#
+_em_final_classification.image_processing_id  1
+#
+_em_euler_angle_assignment.image_processing_id  1
 #
 _em_single_particle_entity.point_symmetry       C1
 _em_single_particle_entity.id                   1

@@ -391,7 +391,7 @@ class EMDBMetadata(object):
                 else:
                     sub_elem = element.find(item)
                     sub_elements = '' if sub_elem is None or str(sub_elem.text) == "None" else str(sub_elem.text)
-                self.mappings_in.map_xml_value_to_code(sub_elements, slice)
+                self.mappings_in.map_xml_value_to_code(str(sub_elements), slice)
         else:
             if find_parent_elem:
                 for l in range(len(find_parent_elem)):
@@ -516,12 +516,12 @@ class EMDBMetadata(object):
                         if selem is not None:
                             self.mappings_in.map_xml_value_to_code(str(selem.text), slice)
                         else:
-                            self.mappings_in.map_xml_value_to_code('', slice)
+                            self.mappings_in.map_xml_value_to_code(".", slice)
             else:
                 if not any(substring in slice for substring in ["R$", "I$", "*", "$PID"]):
                     if chk_parent:
                         if chk_element is None:
-                            self.mappings_in.map_xml_value_to_code('', slice)
+                            self.mappings_in.map_xml_value_to_code(".", slice)
 
     def software_catgory(self, root, slice, xslice):
         soft_cat = ''

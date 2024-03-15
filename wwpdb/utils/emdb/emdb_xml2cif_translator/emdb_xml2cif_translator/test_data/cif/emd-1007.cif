@@ -143,8 +143,8 @@ _em_entity_assembly.details
 _em_entity_assembly.oligomeric_state_legacy
 _em_entity_assembly.recombinant_exp_flag_legacy
 _em_entity_assembly.ribosome_details
-1  1  RIBOSOME  NATURAL  "E.coli 70S ribosome"                         ?     .  .  .  .  .  false  "ribosome-prokaryote: LSU 50S"  
-0  0  SAMPLE    NATURAL  "E.coli 70s ribosome-RF2(wild type) complex"  ?     .  5  .  .  .  .      .  
+1  1  RIBOSOME  NATURAL  "E.coli 70S ribosome"                         None  .  .  .  .  .  false  "ribosome-prokaryote: LSU 50S"  
+0  0  SAMPLE    NATURAL  "E.coli 70s ribosome-RF2(wild type) complex"  None  .  5  .  .  .  .      .  
 #
 _em_entity_assembly_naturalsource.id                       .
 _em_entity_assembly_naturalsource.entity_assembly_id       1
@@ -181,15 +181,15 @@ _entity.pdbx_number_of_molecules
 _entity.pdbx_ec
 _entity.pdbx_mutation
 _entity.details
-1  non-polymer  nat  P-tRNA                 .  .  ?     .  
-2  non-polymer  nat  E-tRNA                 1  .  ?     .  
-3  non-polymer  nat  MFTI-mRNA              1  .  ?     
+1  non-polymer  nat  P-tRNA                 .  .  None  .  
+2  non-polymer  nat  E-tRNA                 1  .  None  .  
+3  non-polymer  nat  MFTI-mRNA              1  .  None  
 ;Zavialov et al., A posttermination ribosomal complex is
  the guanine nucleotide exchange factor for peptide release
  factor RF3. Cell. 107,1-20 (2001).
 ;
   
-4  non-polymer  man  "RF2 (GGQ) wild type"  1  .  ?     .  
+4  non-polymer  man  "RF2 (GGQ) wild type"  1  .  None  .  
 #
 loop_
 _entity_poly.entity_id
@@ -216,7 +216,7 @@ _entity_src_nat.pdbx_cellular_location
 #
 _entity_src_gen.entity_id                       1
 _entity_src_gen.pdbx_host_org_scientific_name   .
-_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id  ?
+_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id  None
 _entity_src_gen.gene_src_strain                 .
 _entity_src_gen.gene_src_cell                   .
 _entity_src_gen.pdbx_gene_src_plasmid           .
@@ -319,6 +319,10 @@ _em_3d_reconstruction.num_particles        18199
 _em_3d_reconstruction.symmetry_type        POINT
 #
 _em_start_model.image_processing_id  1
+#
+_em_final_classification.image_processing_id  1
+#
+_em_euler_angle_assignment.image_processing_id  1
 #
 _em_single_particle_entity.point_symmetry       C1
 _em_single_particle_entity.id                   1

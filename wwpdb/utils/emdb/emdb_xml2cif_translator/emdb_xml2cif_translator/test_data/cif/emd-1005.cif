@@ -138,7 +138,7 @@ _em_entity_assembly.ribosome_details
  in the map
 ;
   .        false  "ribosome-prokaryote: LSU 50S"  
-0  0  SAMPLE    NATURAL  "release factor RF2 bound to E. coli ribosomes"  ?         .  2  .  .  monomer  .      .  
+0  0  SAMPLE    NATURAL  "release factor RF2 bound to E. coli ribosomes"  None      .  2  .  .  monomer  .      .  
 #
 _em_entity_assembly_naturalsource.id                       .
 _em_entity_assembly_naturalsource.entity_assembly_id       1
@@ -169,7 +169,7 @@ _entity.src_method                man
 _entity.pdbx_description          "release factor 2"
 _entity.pdbx_number_of_molecules  1
 _entity.pdbx_ec                   .
-_entity.pdbx_mutation             ?
+_entity.pdbx_mutation             None
 _entity.details                   .
 #
 _entity_poly.entity_id  1
@@ -284,16 +284,18 @@ _em_3d_reconstruction.symmetry_type        POINT
 #
 _em_start_model.image_processing_id  1
 #
-_em_euler_angle_assignment.id       1
-_em_euler_angle_assignment.type     .
-_em_euler_angle_assignment.order    FINAL
-_em_euler_angle_assignment.details  "beta gamma"
-#
+_em_final_classification.image_processing_id       1
 _em_final_classification.id                        1
 _em_final_classification.details                   .
 _em_final_classification.avg_num_images_per_class  .
 _em_final_classification.num_classes               103
 _em_final_classification.type                      2D
+#
+_em_euler_angle_assignment.image_processing_id  1
+_em_euler_angle_assignment.id                   1
+_em_euler_angle_assignment.type                 .
+_em_euler_angle_assignment.order                FINAL
+_em_euler_angle_assignment.details              "beta gamma"
 #
 _em_single_particle_entity.point_symmetry       C1
 _em_single_particle_entity.id                   1

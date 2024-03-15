@@ -106,7 +106,6 @@ class CIF(object):
         :param data_list: a list of strings; each element represents a value for the corresponding element in data_items
         :return:
         """
-
         data_ids, data_values = [], []
         if len(data_items) == len(set(data_items)):
             data_ids = data_items
@@ -123,10 +122,12 @@ class CIF(object):
                     data_v = data_list[j: j+nsub]
                     if data_i[0] != data_i[1]:
                         data_values.append(data_list[j])
-                    if all(x==data_nsub[0] for x in data_nsub):
+                    if all(x == data_nsub[0] for x in data_nsub):
                         data_v = ['' if i is None else i for i in data_v]
                         if all(ele == '' for ele in data_v):
                             data_values.append('')
+                        elif all(not ele for ele in data_v):
+                            data_values.append([''])
                         else:
                             data_value = [i for i in data_v if i]
                             for d in data_value:
@@ -137,7 +138,8 @@ class CIF(object):
             data_ids, data_values = [], []    # Empty data_ids and data_values lists
         else:
             if category_id != "entry":
-                non_empty_indices = [index for index, value in enumerate(data_values) if any(subvalue != '' for subvalue in value)]
+                non_empty_indices = [index for index, value in enumerate(data_values) if any(subvalue != '' and subvalue != '[]' for subvalue in value)]
+                # non_empty_indices = [index for index, value in enumerate(data_values) if any(subvalue != '' for subvalue in value)]
                 # Get corresponding elements from data_ids based on non-empty indices
                 corresponding_data_ids = [data_ids[index] for index in non_empty_indices if index < len(data_ids)]
                 # Check if all elements in corresponding_data_ids contain "id"
@@ -147,9 +149,22 @@ class CIF(object):
                     # Write corresponding indices in data_values
                     corresponding_data_values = [data_values[index] for index in id_indices]
                     data_ids, data_values = corresponding_data_ids, corresponding_data_values
-                elif category_id == "em_euler_angle_assignment":
-                    if any(sublist == ['INITIAL', 'FINAL'] for sublist in data_values) and all(all(value == '' for value in sublist) for sublist in data_values if sublist != ['INITIAL', 'FINAL']):
-                        data_ids, data_values = [], []
+                # if any("id" in str(id_value) for id_value in corresponding_data_ids):
+                #     # Find indices of data_ids containing "id"
+                #     id_indices = [index for index, id_value in enumerate(data_ids) if isinstance(id_value, str) and "id" in id_value]
+                #     # Find indices of data_ids without "id"
+                #     non_id_indices = [index for index, id_value in enumerate(data_ids) if isinstance(id_value, str) and "id" not in id_value]
+                #     # Collect corresponding data_values for data_ids without "id"
+                #     non_id_values = [data_values[index] for index in non_id_indices]
+                #     # Check if all corresponding data_values for data_ids without "id" are empty
+                #     all_empty = all(all(value == '' for value in values) for values in non_id_values)
+                #     # If all corresponding data_values are empty, remove data_ids and data_values
+                #     if all_empty:
+                #         data_ids = [data_ids[index] for index in id_indices]
+                #         data_values = [data_values[index] for index in id_indices]
+                #     else:
+                #         pass
+                #
                 else:
                     pass
 

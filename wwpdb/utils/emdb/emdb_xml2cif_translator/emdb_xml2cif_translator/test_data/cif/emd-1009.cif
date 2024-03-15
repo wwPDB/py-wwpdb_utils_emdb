@@ -134,7 +134,7 @@ _em_entity_assembly.assembly_id                      0
 _em_entity_assembly.type                             SAMPLE
 _em_entity_assembly.source                           .
 _em_entity_assembly.name                             "RF2 (GAQ) mutant from E.coli"
-_em_entity_assembly.synonym                          ?
+_em_entity_assembly.synonym                          None
 _em_entity_assembly.go_id                            .
 _em_entity_assembly.number_unique_components_legacy  1
 _em_entity_assembly.entity_id_list                   .
@@ -149,7 +149,7 @@ _entity.src_method                nat
 _entity.pdbx_description          "RF2 (GAQ) mutant"
 _entity.pdbx_number_of_molecules  .
 _entity.pdbx_ec                   .
-_entity.pdbx_mutation             ?
+_entity.pdbx_mutation             None
 _entity.details                   .
 #
 _entity_poly.entity_id  1
@@ -251,6 +251,10 @@ _em_3d_reconstruction.num_particles        1
 _em_3d_reconstruction.symmetry_type        POINT
 #
 _em_start_model.image_processing_id  1
+#
+_em_final_classification.image_processing_id  1
+#
+_em_euler_angle_assignment.image_processing_id  1
 #
 _em_single_particle_entity.point_symmetry       C1
 _em_single_particle_entity.id                   1
