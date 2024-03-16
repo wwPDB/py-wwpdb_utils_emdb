@@ -372,5 +372,5 @@ _em_software.image_processing_id
 _em_software.version
 _em_software.details
 RECONSTRUCTION    IMAGIC  1  1  .  .  
-"MODEL FITTING"   eye     2  2  .  .  
+"MODEL FITTING"   .       2  2  .  .  
 ##

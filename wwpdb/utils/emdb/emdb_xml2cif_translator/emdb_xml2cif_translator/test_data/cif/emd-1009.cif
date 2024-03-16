@@ -305,4 +305,10 @@ _em_3d_fitting_list.3d_fitting_id   1
 _em_3d_fitting_list.id              1
 _em_3d_fitting_list.pdb_entry_id    1M16
 _em_3d_fitting_list.accession_code  1M16
+#
+loop_
+_em_software.id
+_em_software.image_processing_id
+1  1  
+2  2  
 ##
