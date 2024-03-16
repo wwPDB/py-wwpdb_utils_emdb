@@ -298,5 +298,11 @@ _em_map.contour_level_source  AUTHOR
 _em_map.annotation_details    RF2
 _em_map.label                 ::::EMD-1010::::
 #
-_em_3d_fitting.entry_id  1MVR
+_em_3d_fitting.id        1
+_em_3d_fitting.entry_id  ?
+#
+_em_3d_fitting_list.3d_fitting_id   1
+_em_3d_fitting_list.id              1
+_em_3d_fitting_list.pdb_entry_id    1M16
+_em_3d_fitting_list.accession_code  1M16
 ##

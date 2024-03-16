@@ -365,8 +365,8 @@ _em_map.label
 25  CCP4    136000.0  mask           emd_1001_msk_24.map  EMD-1001  1  "Image stored as floating point number (4 bytes)"   32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z            -2.3478413            1.1841714   -0.0023025929          0.70339763  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMD-1001::::MASK:25:::  
 26  CCP4     35000.0  mask           emd_1001_msk_25.map  EMD-1001  1  "Image stored as signed byte"                       32   30  36  0  0    0   32   30  36  464.0  550.0  622.0  90.0  90.0  90.0  X  Y  Z                   0.0                  1.0     0.047251157          0.21217561  15.466666  15.466666  15.466666                   .  .  n/a  ::::EMD-1001::::MASK:26:::  
 #
-_em_3d_fitting.entry_id         .
-_em_3d_fitting.pdb_chain_id     .
+_em_3d_fitting.id               1
+_em_3d_fitting.entry_id         ?
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  "poor atom-atom contacts and cross correlation coefficient"
 _em_3d_fitting.ref_protocol     "RIGID BODY FIT"

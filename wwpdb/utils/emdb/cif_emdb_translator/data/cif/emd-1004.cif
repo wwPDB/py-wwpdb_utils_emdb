@@ -133,8 +133,8 @@ _em_entity_assembly.details
 _em_entity_assembly.oligomeric_state_legacy
 _em_entity_assembly.recombinant_exp_flag_legacy
 _em_entity_assembly.ribosome_details
-1  1  RIBOSOME  NATURAL  "70S Ribosome"                                 ?     .  .  .  .  .        false  "ribosome-prokaryote: LSU 50S"  
-0  0  SAMPLE    NATURAL  "Kirromycin stalled 70S Ribosome from E.coli"  ?     .  3  .  .  monomer  .      .  
+1  1  RIBOSOME  NATURAL  "70S Ribosome"                                 None  .  .  .  .  .        false  "ribosome-prokaryote: LSU 50S"  
+0  0  SAMPLE    NATURAL  "Kirromycin stalled 70S Ribosome from E.coli"  None  .  3  .  .  monomer  .      .  
 #
 _em_entity_assembly_naturalsource.id                       .
 _em_entity_assembly_naturalsource.entity_assembly_id       1
@@ -171,8 +171,8 @@ _entity.pdbx_number_of_molecules
 _entity.pdbx_ec
 _entity.pdbx_mutation
 _entity.details
-1  non-polymer  nat  "EF-Tu, tRNA, GTP"       .  .  ?     .  
-2  polymer      nat  "formyl-methionyl tRNA"  .  .  ?     .  
+1  non-polymer  nat  "EF-Tu, tRNA, GTP"       .  .  None  .  
+2  polymer      nat  "formyl-methionyl tRNA"  .  .  None  .  
 #
 _entity_poly.entity_id                 1
 _entity_poly.type                      polyribonucleotide
@@ -285,6 +285,10 @@ _em_3d_reconstruction.symmetry_type        POINT
 #
 _em_start_model.image_processing_id  1
 #
+_em_final_classification.image_processing_id  1
+#
+_em_euler_angle_assignment.image_processing_id  1
+#
 _em_single_particle_entity.point_symmetry       C1
 _em_single_particle_entity.id                   1
 _em_single_particle_entity.image_processing_id  1
@@ -335,8 +339,8 @@ _em_map.annotation_details
 
 _em_map.label                 ::::EMD-1004::::
 #
-_em_3d_fitting.entry_id         .
-_em_3d_fitting.pdb_chain_id     .
+_em_3d_fitting.id               1
+_em_3d_fitting.entry_id         ?
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  .
 _em_3d_fitting.ref_protocol     "RIGID BODY FIT"

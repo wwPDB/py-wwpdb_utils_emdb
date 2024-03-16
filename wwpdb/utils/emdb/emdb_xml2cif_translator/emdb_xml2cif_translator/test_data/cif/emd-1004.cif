@@ -339,8 +339,8 @@ _em_map.annotation_details
 
 _em_map.label                 ::::EMD-1004::::
 #
-_em_3d_fitting.entry_id         .
-_em_3d_fitting.pdb_chain_id     .
+_em_3d_fitting.id               1
+_em_3d_fitting.entry_id         ?
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  .
 _em_3d_fitting.ref_protocol     "RIGID BODY FIT"

@@ -367,14 +367,19 @@ _em_map.contour_level_source  AUTHOR
 _em_map.annotation_details    "E.coli 70s ribosome-RF2(mutant) complex"
 _em_map.label                 ::::EMD-1008::::
 #
-_em_3d_fitting.entry_id         1MVR
-_em_3d_fitting.pdb_chain_id     .
+_em_3d_fitting.id               1
+_em_3d_fitting.entry_id         ?
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  .
 _em_3d_fitting.ref_protocol     "RIGID BODY FIT"
 _em_3d_fitting.details          "manual fitting using O"
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        .
+#
+_em_3d_fitting_list.3d_fitting_id   1
+_em_3d_fitting_list.id              1
+_em_3d_fitting_list.pdb_entry_id    1M16
+_em_3d_fitting_list.accession_code  1M16
 #
 loop_
 _em_software.category

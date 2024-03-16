@@ -448,10 +448,6 @@ class Mappings(object):
                             list_values.append("EMDB")
                         if logic_value == self.Const.Y:
                             list_values.append("Y")
-                        # if logic_value == self.Const.ID:
-                        #     list_values = [xml_value, [str(index + 1) for index in range(len(xml_value))]]
-                        #     list_values.append([str(index + 1) for index in range(len(xml_value))])
-
                         if logic_value == self.Const.YES:
                             list_values.append("YES")
                         if logic_value == self.Const.NO:

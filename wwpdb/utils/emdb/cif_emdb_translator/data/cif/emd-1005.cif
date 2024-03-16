@@ -138,7 +138,7 @@ _em_entity_assembly.ribosome_details
  in the map
 ;
   .        false  "ribosome-prokaryote: LSU 50S"  
-0  0  SAMPLE    NATURAL  "release factor RF2 bound to E. coli ribosomes"  ?         .  2  .  .  monomer  .      .  
+0  0  SAMPLE    NATURAL  "release factor RF2 bound to E. coli ribosomes"  None      .  2  .  .  monomer  .      .  
 #
 _em_entity_assembly_naturalsource.id                       .
 _em_entity_assembly_naturalsource.entity_assembly_id       1
@@ -169,7 +169,7 @@ _entity.src_method                man
 _entity.pdbx_description          "release factor 2"
 _entity.pdbx_number_of_molecules  1
 _entity.pdbx_ec                   .
-_entity.pdbx_mutation             ?
+_entity.pdbx_mutation             None
 _entity.details                   .
 #
 _entity_poly.entity_id  1
@@ -284,16 +284,18 @@ _em_3d_reconstruction.symmetry_type        POINT
 #
 _em_start_model.image_processing_id  1
 #
-_em_euler_angle_assignment.id       1
-_em_euler_angle_assignment.type     .
-_em_euler_angle_assignment.order    FINAL
-_em_euler_angle_assignment.details  "beta gamma"
-#
+_em_final_classification.image_processing_id       1
 _em_final_classification.id                        1
 _em_final_classification.details                   .
 _em_final_classification.avg_num_images_per_class  .
 _em_final_classification.num_classes               103
 _em_final_classification.type                      2D
+#
+_em_euler_angle_assignment.image_processing_id  1
+_em_euler_angle_assignment.id                   1
+_em_euler_angle_assignment.type                 .
+_em_euler_angle_assignment.order                FINAL
+_em_euler_angle_assignment.details              "beta gamma"
 #
 _em_single_particle_entity.point_symmetry       C1
 _em_single_particle_entity.id                   1
@@ -345,14 +347,22 @@ _em_map.annotation_details
 
 _em_map.label                 ::::EMD-1005::::
 #
-_em_3d_fitting.entry_id         1GIY
-_em_3d_fitting.pdb_chain_id     .
+_em_3d_fitting.id               1
+_em_3d_fitting.entry_id         ?
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  "best visual fit using the program O"
 _em_3d_fitting.ref_protocol     "RIGID BODY FIT"
 _em_3d_fitting.details          "Protocol: rigid body. rigid body of three individual domains keeping the connectivity; linkers betweenn domains defined based on temperature factors of crystal structure, conserved Gly and Pro residues, proteolytic sites, and global domain architecture"
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        REAL
+#
+loop_
+_em_3d_fitting_list.3d_fitting_id
+_em_3d_fitting_list.id
+_em_3d_fitting_list.pdb_entry_id
+_em_3d_fitting_list.accession_code
+1  1  1GIX  1GIX  
+2  2  1GIY  1GIY  
 #
 loop_
 _em_software.category

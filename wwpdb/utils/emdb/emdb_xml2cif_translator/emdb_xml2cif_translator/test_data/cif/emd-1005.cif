@@ -347,14 +347,22 @@ _em_map.annotation_details
 
 _em_map.label                 ::::EMD-1005::::
 #
-_em_3d_fitting.entry_id         1GIY
-_em_3d_fitting.pdb_chain_id     .
+_em_3d_fitting.id               1
+_em_3d_fitting.entry_id         ?
 _em_3d_fitting.method           .
 _em_3d_fitting.target_criteria  "best visual fit using the program O"
 _em_3d_fitting.ref_protocol     "RIGID BODY FIT"
 _em_3d_fitting.details          "Protocol: rigid body. rigid body of three individual domains keeping the connectivity; linkers betweenn domains defined based on temperature factors of crystal structure, conserved Gly and Pro residues, proteolytic sites, and global domain architecture"
 _em_3d_fitting.overall_b_value  .
 _em_3d_fitting.ref_space        REAL
+#
+loop_
+_em_3d_fitting_list.3d_fitting_id
+_em_3d_fitting_list.id
+_em_3d_fitting_list.pdb_entry_id
+_em_3d_fitting_list.accession_code
+1  1  1GIX  1GIX  
+2  2  1GIY  1GIY  
 #
 loop_
 _em_software.category
