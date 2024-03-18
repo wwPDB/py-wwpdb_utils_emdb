@@ -542,8 +542,12 @@ class EMDBMetadata(object):
                         soft_cat = "PARTICLE SELECTION"
                     elif "ctf_correction" in xslice:
                         soft_cat = "CTF CORRECTION"
+                    elif "initial_angle_assignment" in xslice:
+                        soft_cat = "INITIAL EULER ASSIGNMENT"
+                    elif "final_angle_assignment" in xslice:
+                        soft_cat = "FINAL EULER ASSIGNMENT"
                 else:
-                    soft_cat = ""
+                    soft_cat = "OTHER"
             self.mappings_in.map_xml_value_to_code(soft_cat, slice)
 
     def primary_and_reference_ids(self, slice, root, tags, e_item, att=None):
