@@ -188,10 +188,18 @@ class Model:
         # Extracting atom coordinates from the MMCIF file
         mmcif_dict = MMCIF2Dict(path2model)
         self.file = path2model
-        self.structure = [(float(x), float(y), float(z)) for x, y, z in
-                          zip(mmcif_dict['_atom_site.Cartn_x'], mmcif_dict['_atom_site.Cartn_y'],
-                              mmcif_dict['_atom_site.Cartn_z'])]
-
+        self.structure = [
+            (float(x), float(y), float(z)) 
+            for x, y, z in zip(
+                mmcif_dict['_atom_site.Cartn_x'], 
+                mmcif_dict['_atom_site.Cartn_y'], 
+                mmcif_dict['_atom_site.Cartn_z']
+            )
+        ] if (
+            '_atom_site.Cartn_x' in mmcif_dict and 
+            '_atom_site.Cartn_y' in mmcif_dict and 
+            '_atom_site.Cartn_z' in mmcif_dict
+        ) else None
 
 class Validator:
     """
@@ -332,7 +340,7 @@ class Validator:
                 'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]  # Compare primary map to each half map
             })
 
-        if self.model:
+        if self.model and self.model.structure:
             num_atoms_outside, fraction_atoms_outside = self._get_atoms_outside()
             result['map_to_model'] = {
                 'num_atoms_outside': num_atoms_outside,
