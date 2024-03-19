@@ -4195,7 +4195,7 @@ class CifEMDBTranslator(object):
                             """
                             # if legacy:
                             if sup_type == 'RIBOSOME':
-                                set_cif_value(complex_sup_mol.set_ribosome_details, "ribosome_details", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
+                                set_cif_value(complex_sup_mol.set_ribosome_details, "ribosome_details_legacy", const.EM_ENTITY_ASSEMBLY, cif_list=sup_in)
 
                         # set up the supramolecule specific tagname explicitly
                         # as DSgenerate doesn't provide it

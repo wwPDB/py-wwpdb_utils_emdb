@@ -142,7 +142,7 @@ _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
 _em_entity_assembly.oligomeric_state_legacy
 _em_entity_assembly.recombinant_exp_flag_legacy
-_em_entity_assembly.ribosome_details
+_em_entity_assembly.ribosome_details_legacy
 1  1  RIBOSOME  NATURAL  "E.coli 70s ribosome"                      None  .  .  .  .  .  false  "ribosome-prokaryote: LSU 50S"  
 0  0  SAMPLE    NATURAL  "E.coli 70s ribosome-RF2(mutant) complex"  None  .  5  .  .  .  .      .  
 #

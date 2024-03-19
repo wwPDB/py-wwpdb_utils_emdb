@@ -132,7 +132,7 @@ _em_entity_assembly.entity_id_list
 _em_entity_assembly.details
 _em_entity_assembly.oligomeric_state_legacy
 _em_entity_assembly.recombinant_exp_flag_legacy
-_em_entity_assembly.ribosome_details
+_em_entity_assembly.ribosome_details_legacy
 1  1  RIBOSOME  NATURAL  ribosome                                         ribosome  .  .  .  
 ;Proteins L7/L12 of the LSU 50S subunit are not seen
  in the map
