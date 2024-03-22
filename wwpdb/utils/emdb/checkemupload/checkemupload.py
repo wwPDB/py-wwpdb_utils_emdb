@@ -51,7 +51,7 @@ class EMMap:
         """
         try:
             self.md5_checksum()
-            with mrcfile.open(self.file, mode='r', permissive=True) as mrc:
+            with mrcfile.mmap(self.file, mode='r', permissive=False) as mrc:
                 self.header = mrc.header
                 self.box_size = self.header.cella.tolist()
                 self.pixel_size = mrc.voxel_size.tolist()
