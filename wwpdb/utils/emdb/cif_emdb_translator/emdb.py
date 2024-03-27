@@ -2,24 +2,24 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Mon Feb  5 18:29:43 2024 by generateDS.py version 2.43.3.
+# Generated Wed Mar 27 17:13:50 2024 by generateDS.py version 2.43.3.
 # Python 3.9.7 (default, Sep 16 2021, 08:50:36)  [Clang 10.0.0 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', '/Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_2/emdb.py')
+#   ('-o', '/Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_3/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   /Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_2/emdb.xsd
+#   /Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_3/emdb.xsd
 #
 # Command line:
-#   /Users/sanja/generateDS/generateDS-2.43.3/generateDS.py --root-element="emd" -f -o "/Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_2/emdb.py" --no-warnings --external-encoding="utf-8" /Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_2/emdb.xsd
+#   /Users/sanja/generateDS/generateDS-2.43.3/generateDS.py --root-element="emd" -f -o "/Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_3/emdb.py" --no-warnings --external-encoding="utf-8" /Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_3/emdb.xsd
 #
 # Current working directory (os.getcwd()):
-#   sanja
+#   emdb_schemas
 #
 
 import sys
@@ -1021,6 +1021,7 @@ class allowed_film_or_detector_model(str, Enum):
     AGFASCIENTAFILM='AGFA SCIENTA FILM'
     DECTRISSINGLA_1_KX_1_K='DECTRIS SINGLA (1k x 1k)'
     DECTRISELA_1_KX_0_5_K='DECTRIS ELA (1k x 0.5k)'
+    DECTRISARINA_0_2_KX_0_2_K='DECTRIS ARINA (0.2k x 0.2k)'
     DIRECTELECTRONAPOLLO_4_KX_4_K='DIRECT ELECTRON APOLLO (4k x 4k)'
     DIRECTELECTRONDE_10_5_KX_4_K='DIRECT ELECTRON DE-10 (5k x 4k)'
     DIRECTELECTRONDE_12_4_KX_3_K='DIRECT ELECTRON DE-12 (4k x 3k)'
@@ -1276,6 +1277,7 @@ class illumination_modeType(str, Enum):
 
 
 class imaging_modeType(str, Enum):
+    _4_DSTEM='4D-STEM'
     BRIGHTFIELD='BRIGHT FIELD'
     DARKFIELD='DARK FIELD'
     DIFFRACTION='DIFFRACTION'
@@ -1770,7 +1772,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.9.2', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.9.3', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1896,7 +1898,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.9.2" and 'version' not in already_processed:
+        if self.version != "3.0.9.3" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -14594,7 +14596,7 @@ class base_microscopy_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['BRIGHT FIELD', 'DARK FIELD', 'DIFFRACTION', 'OTHER']
+            enumerations = ['4D-STEM', 'BRIGHT FIELD', 'DARK FIELD', 'DIFFRACTION', 'OTHER']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on imaging_modeType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
@@ -33693,7 +33695,7 @@ class film_or_detector_modelType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['AGFA SCIENTA FILM', 'DECTRIS SINGLA (1k x 1k)', 'DECTRIS ELA (1k x 0.5k)', 'DIRECT ELECTRON APOLLO (4k x 4k)', 'DIRECT ELECTRON DE-10 (5k x 4k)', 'DIRECT ELECTRON DE-12 (4k x 3k)', 'DIRECT ELECTRON DE-16 (4k x 4k)', 'DIRECT ELECTRON DE-20 (5k x 3k)', 'DIRECT ELECTRON DE-64 (8k x 8k)', 'FEI CETA (4k x 4k)', 'FEI EAGLE (2k x 2k)', 'FEI EAGLE (4k x 4k)', 'FEI FALCON I (4k x 4k)', 'FEI FALCON II (4k x 4k)', 'FEI FALCON III (4k x 4k)', 'FEI FALCON IV (4k x 4k)', 'GATAN ALPINE (2.3k x 3.2k)', 'GATAN K2 (4k x 4k)', 'GATAN K2 BASE (4k x 4k)', 'GATAN K2 IS (4k x 4k)', 'GATAN K2 QUANTUM (4k x 4k)', 'GATAN K2 SUMMIT (4k x 4k)', 'GATAN K3 (6k x 4k)', 'GATAN K3 BIOCONTINUUM (6k x 4k)', 'GATAN K3 BIOQUANTUM (6k x 4k)', 'GATAN MULTISCAN', 'GATAN ORIUS SC1000 (4k x 2.7k)', 'GATAN ORIUS SC200 (2k x 2k)', 'GATAN ORIUS SC600 (2.7k x 2.7k)', 'GATAN ULTRASCAN 1000 (2k x 2k)', 'GATAN ULTRASCAN 10000 (10k x 10k)', 'GATAN ULTRASCAN 4000 (4k x 4k)', 'GENERIC CCD', 'GENERIC CCD (2k x 2k)', 'GENERIC CCD (4k x 4k)', 'GENERIC FILM', 'GENERIC GATAN', 'GENERIC GATAN (2k x 2k)', 'GENERIC GATAN (4k x 4k)', 'GENERIC IMAGE PLATES', 'GENERIC TVIPS', 'GENERIC TVIPS (2k x 2k)', 'GENERIC TVIPS (4k x 4k)', 'KODAK 4489 FILM', 'KODAK SO-163 FILM', 'OTHER', 'PROSCAN TEM-PIV (2k x 2k)', 'SIA 15C (3k x 3k)', 'TFS FALCON 4i (4k x 4k)', 'TVIPS TEMCAM-F216 (2k x 2k)', 'TVIPS TEMCAM-F224 (2k x 2k)', 'TVIPS TEMCAM-F415 (4k x 4k)', 'TVIPS TEMCAM-F416 (4k x 4k)', 'TVIPS TEMCAM-F816 (8k x 8k)']
+            enumerations = ['AGFA SCIENTA FILM', 'DECTRIS SINGLA (1k x 1k)', 'DECTRIS ELA (1k x 0.5k)', 'DECTRIS ARINA (0.2k x 0.2k)', 'DIRECT ELECTRON APOLLO (4k x 4k)', 'DIRECT ELECTRON DE-10 (5k x 4k)', 'DIRECT ELECTRON DE-12 (4k x 3k)', 'DIRECT ELECTRON DE-16 (4k x 4k)', 'DIRECT ELECTRON DE-20 (5k x 3k)', 'DIRECT ELECTRON DE-64 (8k x 8k)', 'FEI CETA (4k x 4k)', 'FEI EAGLE (2k x 2k)', 'FEI EAGLE (4k x 4k)', 'FEI FALCON I (4k x 4k)', 'FEI FALCON II (4k x 4k)', 'FEI FALCON III (4k x 4k)', 'FEI FALCON IV (4k x 4k)', 'GATAN ALPINE (2.3k x 3.2k)', 'GATAN K2 (4k x 4k)', 'GATAN K2 BASE (4k x 4k)', 'GATAN K2 IS (4k x 4k)', 'GATAN K2 QUANTUM (4k x 4k)', 'GATAN K2 SUMMIT (4k x 4k)', 'GATAN K3 (6k x 4k)', 'GATAN K3 BIOCONTINUUM (6k x 4k)', 'GATAN K3 BIOQUANTUM (6k x 4k)', 'GATAN MULTISCAN', 'GATAN ORIUS SC1000 (4k x 2.7k)', 'GATAN ORIUS SC200 (2k x 2k)', 'GATAN ORIUS SC600 (2.7k x 2.7k)', 'GATAN ULTRASCAN 1000 (2k x 2k)', 'GATAN ULTRASCAN 10000 (10k x 10k)', 'GATAN ULTRASCAN 4000 (4k x 4k)', 'GENERIC CCD', 'GENERIC CCD (2k x 2k)', 'GENERIC CCD (4k x 4k)', 'GENERIC FILM', 'GENERIC GATAN', 'GENERIC GATAN (2k x 2k)', 'GENERIC GATAN (4k x 4k)', 'GENERIC IMAGE PLATES', 'GENERIC TVIPS', 'GENERIC TVIPS (2k x 2k)', 'GENERIC TVIPS (4k x 4k)', 'KODAK 4489 FILM', 'KODAK SO-163 FILM', 'OTHER', 'PROSCAN TEM-PIV (2k x 2k)', 'SIA 15C (3k x 3k)', 'TFS FALCON 4i (4k x 4k)', 'TVIPS TEMCAM-F216 (2k x 2k)', 'TVIPS TEMCAM-F224 (2k x 2k)', 'TVIPS TEMCAM-F415 (4k x 4k)', 'TVIPS TEMCAM-F416 (4k x 4k)', 'TVIPS TEMCAM-F816 (8k x 8k)']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on allowed_film_or_detector_model' % {"value" : encode_str_2_3(value), "lineno": lineno} )
