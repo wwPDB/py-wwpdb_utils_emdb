@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.9.2"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.9.3"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -2213,6 +2213,7 @@
             <xs:element name="imaging_mode">
                 <xs:simpleType>
                     <xs:restriction base="xs:token">
+                        <xs:enumeration value="4D-STEM"/>
                         <xs:enumeration value="BRIGHT FIELD"/>
                         <xs:enumeration value="DARK FIELD"/>
                         <xs:enumeration value="DIFFRACTION"/>
@@ -2670,6 +2671,7 @@
             <xs:enumeration value="AGFA SCIENTA FILM"/>
             <xs:enumeration value="DECTRIS SINGLA (1k x 1k)"/>
             <xs:enumeration value="DECTRIS ELA (1k x 0.5k)"/>
+            <xs:enumeration value="DECTRIS ARINA (0.2k x 0.2k)"/>
             <xs:enumeration value="DIRECT ELECTRON APOLLO (4k x 4k)"/>
             <xs:enumeration value="DIRECT ELECTRON DE-10 (5k x 4k)"/>
             <xs:enumeration value="DIRECT ELECTRON DE-12 (4k x 3k)"/>
