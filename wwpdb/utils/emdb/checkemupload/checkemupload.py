@@ -189,6 +189,12 @@ class Model:
         mmcif_dict = MMCIF2Dict(path2model)
         self.file = path2model
         # Zhe edit 24042024
+        #
+        # While the coordinate file has been validated to contain floats,
+        # BioPython does not deal with multiple data blocks properly.
+        # The second and subsequent data blocks are misparsed.
+        # Therefore, the try/except handles the misfeature - rejecting
+        # "bad" data
         structure = []
         x = mmcif_dict['_atom_site.Cartn_x']
         y = mmcif_dict['_atom_site.Cartn_y']
