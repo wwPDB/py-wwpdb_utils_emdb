@@ -188,18 +188,20 @@ class Model:
         # Extracting atom coordinates from the MMCIF file
         mmcif_dict = MMCIF2Dict(path2model)
         self.file = path2model
-        self.structure = [
-            (float(x), float(y), float(z))
-            for x, y, z in zip(
-                mmcif_dict['_atom_site.Cartn_x'],
-                mmcif_dict['_atom_site.Cartn_y'],
-                mmcif_dict['_atom_site.Cartn_z']
-            )
-        ] if (
-            '_atom_site.Cartn_x' in mmcif_dict
-            and '_atom_site.Cartn_y' in mmcif_dict
-            and '_atom_site.Cartn_z' in mmcif_dict
-        ) else None
+        # Zhe edit 24042024
+        structure = []
+        x = mmcif_dict['_atom_site.Cartn_x']
+        y = mmcif_dict['_atom_site.Cartn_y']
+        z = mmcif_dict['_atom_site.Cartn_z']
+        for x, y, z in zip(x, y, z):
+            try:
+                newx = float(x)
+                newy = float(y)
+                newz = float(z)
+                structure.append((newx, newy, newz))
+            except ValueError:
+                continue
+        self.structure = structure
 
 
 class Validator:
