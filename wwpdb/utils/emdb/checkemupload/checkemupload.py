@@ -76,7 +76,8 @@ class EMMap:
         except FileNotFoundError:
             raise FileNotFoundError(f"File not found: {self.file}")  # pylint: disable=raise-missing-from
         except Exception as e:
-            raise Exception(f"An error occurred while loading the file: {str(e)}")  # pylint: disable=broad-exception-raised,raise-missing-from
+            raise Exception(
+                f"An error occurred while loading the file: {str(e)}")  # pylint: disable=broad-exception-raised,raise-missing-from
 
     def md5_checksum(self):
         """
@@ -238,10 +239,10 @@ class Validator:
         """
 
         ang = (angs[0] * math.pi / 180, angs[1] * math.pi / 180, angs[2] * math.pi / 180)
-        insidesqrt = 1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) - \
-                     math.cos(ang[0]) ** 2 - \
-                     math.cos(ang[1]) ** 2 - \
-                     math.cos(ang[2]) ** 2
+        insidesqrt = (1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) -
+                      math.cos(ang[0]) ** 2 -
+                      math.cos(ang[1]) ** 2 -
+                      math.cos(ang[2]) ** 2)
 
         cellvolume = apixs[0] * apixs[1] * apixs[2] * math.sqrt(insidesqrt)
 
@@ -249,11 +250,10 @@ class Validator:
         m12 = -math.cos(ang[2]) / (apixs[0] * math.sin(ang[2]))
 
         m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (
-                    cellvolume * math.sin(ang[2]))
+                cellvolume * math.sin(ang[2]))
         m21 = 0
         m22 = 1 / (apixs[1] * math.sin(ang[2]))
-        m23 = apixs[0] * apixs[2] * (math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0])) / (
-                    cellvolume * math.sin(ang[2]))
+        m23 = apixs[0] * apixs[2] * (math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0])) / (cellvolume * math.sin(ang[2]))
         m31 = 0
         m32 = 0
         m33 = apixs[0] * apixs[1] * math.sin(ang[2]) / cellvolume
@@ -306,13 +306,11 @@ class Validator:
 
         if self.em_map.header.cellb.alpha == self.em_map.header.cellb.beta == self.em_map.header.cellb.gamma == 90.:
             crs = [self.em_map.header.mapc, self.em_map.header.mapr, self.em_map.header.maps]
-            ordinds = [crs.index(1), crs.index(2), crs.index(3)]
+            # ordinds = [crs.index(1), crs.index(2), crs.index(3)]
 
             zindex = float(onecoor[2] - self.em_map.header.origin.z) / z_apix - nzstart
             yindex = float(onecoor[1] - self.em_map.header.origin.y) / y_apix - nystart
             xindex = float(onecoor[0] - self.em_map.header.origin.x) / x_apix - nxstart
-
-
         else:
             apixs = [x_apix, y_apix, z_apix]
             xindex, yindex, zindex = self._matrix_indices(apixs, onecoor)
@@ -412,8 +410,10 @@ class Validator:
             if not all(os.path.isfile(half_map.file) for half_map in self.half_maps):
                 raise FileNotFoundError("One or more half maps not found.")
             result.update({
-                'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1]),  # Compare half maps to each other
-                'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]  # Compare primary map to each half map
+                'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1]),
+                # Compare half maps to each other
+                'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
+                # Compare primary map to each half map
             })
 
         if self.model and self.model.structure:
