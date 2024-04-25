@@ -239,18 +239,13 @@ class Validator:
         """
 
         ang = (angs[0] * math.pi / 180, angs[1] * math.pi / 180, angs[2] * math.pi / 180)
-        insidesqrt = (1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) -
-                      math.cos(ang[0]) ** 2 -
-                      math.cos(ang[1]) ** 2 -
-                      math.cos(ang[2]) ** 2)
-
+        insidesqrt = (1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0]) ** 2 - math.cos(ang[1]) ** 2 - math.cos(ang[2]) ** 2)
         cellvolume = apixs[0] * apixs[1] * apixs[2] * math.sqrt(insidesqrt)
 
         m11 = 1 / apixs[0]
         m12 = -math.cos(ang[2]) / (apixs[0] * math.sin(ang[2]))
 
-        m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (
-                cellvolume * math.sin(ang[2]))
+        m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (cellvolume * math.sin(ang[2]))
         m21 = 0
         m22 = 1 / (apixs[1] * math.sin(ang[2]))
         m23 = apixs[0] * apixs[2] * (math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0])) / (cellvolume * math.sin(ang[2]))
@@ -283,7 +278,6 @@ class Validator:
         """
                 Find one atom's indices correspoding to its cubic or plane
                 the 8 (cubic) or 4 (plane) indices are saved in indices variable
-            :param map: Density map instance from TEMPy.MapParser
             :param onecoor: List contains the atom coordinates in (x, y, z) order
             :return: Tuple contains two list of index: first has the 8 or 4 indices in the cubic;second has the float index of the input atom
             """
@@ -301,13 +295,12 @@ class Validator:
         x_apix = xdim / xnintervals
 
         self.header_check()
-        map_xsize, map_ysize, map_zsize = self.nxyz
+        # map_xsize, map_ysize, map_zsize = self.nxyz
         nxstart, nystart, nzstart = self.nstarts
 
         if self.em_map.header.cellb.alpha == self.em_map.header.cellb.beta == self.em_map.header.cellb.gamma == 90.:
-            crs = [self.em_map.header.mapc, self.em_map.header.mapr, self.em_map.header.maps]
+            # crs = [self.em_map.header.mapc, self.em_map.header.mapr, self.em_map.header.maps]
             # ordinds = [crs.index(1), crs.index(2), crs.index(3)]
-
             zindex = float(onecoor[2] - self.em_map.header.origin.z) / z_apix - nzstart
             yindex = float(onecoor[1] - self.em_map.header.origin.y) / y_apix - nystart
             xindex = float(onecoor[0] - self.em_map.header.origin.x) / x_apix - nxstart
