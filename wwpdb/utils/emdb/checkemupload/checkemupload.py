@@ -76,7 +76,8 @@ class EMMap:
         except FileNotFoundError:
             raise FileNotFoundError(f"File not found: {self.file}")  # pylint: disable=raise-missing-from
         except Exception as e:
-            raise Exception(f"An error occurred while loading the file: {str(e)}")  # pylint: disable=broad-exception-raised,raise-missing-from
+            raise Exception(
+                f"An error occurred while loading the file: {str(e)}")  # pylint: disable=broad-exception-raised,raise-missing-from
 
     def md5_checksum(self):
         """
@@ -317,7 +318,7 @@ class Validator:
         for atom in self.model.structure:
             atom_index, nxyz = self._get_indices(atom)
             # Check if the atom is outside the primary map boundaries
-            if any(coord < 0 or coord >= nxyz[i] for i, coord in enumerate(atom_index)):
+            if any(coord < 0 or coord > nxyz[i] - 1 for i, coord in enumerate(atom_index)):
                 num_atoms_outside += 1
         # Calculate the fraction of atoms outside the primary map
         fraction_atoms_outside = num_atoms_outside / len(self.model.structure)
@@ -345,8 +346,10 @@ class Validator:
             if not all(os.path.isfile(half_map.file) for half_map in self.half_maps):
                 raise FileNotFoundError("One or more half maps not found.")
             result.update({
-                'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1]),  # Compare half maps to each other
-                'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]  # Compare primary map to each half map
+                'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1]),
+                # Compare half maps to each other
+                'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
+                # Compare primary map to each half map
             })
 
         if self.model and self.model.structure:
