@@ -76,8 +76,8 @@ class EMMap:
         except FileNotFoundError:
             raise FileNotFoundError(f"File not found: {self.file}")  # pylint: disable=raise-missing-from
         except Exception as e:
-            raise Exception(
-                f"An error occurred while loading the file: {str(e)}")  # pylint: disable=broad-exception-raised,raise-missing-from
+            raise Exception(  # pylint: disable=broad-exception-raised,raise-missing-from
+                f"An error occurred while loading the file: {str(e)}")
 
     def md5_checksum(self):
         """
@@ -228,6 +228,8 @@ class Validator:
         self.em_map = em_map
         self.half_maps = half_maps
         self.model = model
+        self.nxyz = None
+        self.nstarts = None
 
     def _map_matrix(self, apixs, angs):
         """
