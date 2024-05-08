@@ -48,7 +48,7 @@ class EMMap:
         """
         try:
             self.md5_checksum()
-            with mrcfile.mmap(self.file, mode='r', permissive=False) as mrc:
+            with mrcfile.open(self.file, mode='r', permissive=False) as mrc:
                 self.header = mrc.header
                 self.box_size = self.header.cella.tolist()
                 self.pixel_size = mrc.voxel_size.tolist()
@@ -579,13 +579,13 @@ def main():
             em_map = EMMap(args.primmap)
             errors.extend(em_map.errors)
             half_maps = []
-            for hm in args.halfmaps:
+            for i, hm in enumerate(args.halfmaps, 1):
                 if os.path.isfile(hm):
                     halfmap = EMMap(hm)
                     half_maps.append(halfmap)
                     errors.extend(halfmap.errors)
                 else:
-                    errors.append(f"Half map file not found: {hm}")
+                    errors.append(f"Half map {i} file not found.")
             model = None
             if args.model and os.path.isfile(args.model):
                 model = Model(args.model)
@@ -599,12 +599,17 @@ def main():
                 errors.extend(validator.errors)
             if errors:
                 result['error'] = '\n'.join(errors)
+        else:
+            result['error'] = "Primary map file not found."
 
             # Printing results to stdout
             print(json.dumps(result, indent=4))
 
     except Exception as e:
-        result['error'] = str(e)
+        message = f"An error occurred while performing checks: {str(e)}"
+        result['error'] = message
+        print(message)
+        traceback.print_exc()
 
     finally:
         # Writing results to output JSON file
