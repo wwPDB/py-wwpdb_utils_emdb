@@ -39,15 +39,15 @@ class EMMap:
         self.ge = lambda x, y: x >= y - self.epsilon
         # Lambda to check whether a value is less than or equal to another value, by using epsilon as tolerance
         self.le = lambda x, y: x <= y + self.epsilon
-        self.load()
         self.errors = []
+        self.md5_checksum()
+        self.load()
 
     def load(self):
         """
         Load map file and extract relevant information.
         """
         try:
-            self.md5_checksum()
             with mrcfile.open(self.file, mode='r', permissive=False) as mrc:
                 self.header = mrc.header
                 self.box_size = self.header.cella.tolist()
@@ -94,6 +94,11 @@ class EMMap:
                 for chunk in iter(lambda: f.read(4096), b""):
                     hash_md5.update(chunk)
             self.hash = hash_md5.hexdigest()
+        except FileNotFoundError:
+            message = f"File not found: {self.file}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
         except Exception as e:
             message = f"An error occurred while calculating the MD5 checksum: {str(e)}"
             self.errors.append(message)
@@ -349,9 +354,13 @@ class Validator:
                     result['error'] = "One or more half maps not found."
                 else:
                     result.update({
-                        'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1]),
-                        'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
+                        'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1])
                     })
+
+            if self.em_map and self.half_maps:
+                result.update({
+                    'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
+                })
 
             if self.model and self.model.structure:
                 num_atoms_outside, fraction_atoms_outside = self._get_atoms_outside()
@@ -359,6 +368,7 @@ class Validator:
                     'num_atoms_outside': num_atoms_outside,
                     'fraction_atoms_outside': fraction_atoms_outside
                 }
+
         except Exception as e:
             result['error'] = "An error occurred while performing checks." # TODO: Add more details to the error message (ask Jack Turner to help with this)
             message = f"An error occurred while performing checks: {str(e)}"
@@ -574,36 +584,38 @@ def main():
 
     result, errors = {}, []
     try:
+        em_map, model, half_maps = None, None, []
         # Checking if files exist and loading data
-        if os.path.isfile(args.primmap):
-            em_map = EMMap(args.primmap)
-            errors.extend(em_map.errors)
-            half_maps = []
-            for i, hm in enumerate(args.halfmaps, 1):
-                if os.path.isfile(hm):
-                    halfmap = EMMap(hm)
-                    half_maps.append(halfmap)
-                    errors.extend(halfmap.errors)
-                else:
-                    errors.append(f"Half map {i} file not found.")
-            model = None
-            if args.model and os.path.isfile(args.model):
-                model = Model(args.model)
-                errors.extend(model.errors)
-            else:
-                errors.append("Model file not found.")
-            if not errors:
-                # Performing validation checks
-                validator = Validator(em_map, half_maps, model)
-                result.update(validator.check())
-                errors.extend(validator.errors)
-            if errors:
-                result['error'] = '\n'.join(errors)
-        else:
-            result['error'] = "Primary map file not found."
+        # if os.path.isfile(args.primmap):
+        em_map = EMMap(args.primmap)
+        errors.extend(em_map.errors)
 
-            # Printing results to stdout
-            print(json.dumps(result, indent=4))
+        # Loading model if provided
+        if args.model:
+            # if os.path.isfile(args.model):
+            model = Model(args.model)
+            errors.extend(model.errors)
+        
+        # Loading half maps if provided
+        if args.halfmaps:
+            for i, hm in enumerate(args.halfmaps, 1):
+                # if os.path.isfile(hm):
+                halfmap = EMMap(hm)
+                half_maps.append(halfmap)
+                errors.extend(halfmap.errors)
+                # else:
+                #     errors.append(f"Half map {i} file not found.")
+        
+        
+        # if not errors:
+        # Performing validation checks
+        validator = Validator(em_map, half_maps, model)
+        result.update(validator.check())
+        errors.extend(validator.errors)
+
+        # Adding errors to the result
+        if errors:
+            result['error'] = '\n'.join(errors)
 
     except Exception as e:
         message = f"An error occurred while performing checks: {str(e)}"
@@ -612,6 +624,9 @@ def main():
         traceback.print_exc()
 
     finally:
+        # Printing results to stdout
+        print(json.dumps(result, indent=4))
+
         # Writing results to output JSON file
         parentdir = os.path.dirname(args.primmap)
         basename = os.path.basename(args.primmap)
