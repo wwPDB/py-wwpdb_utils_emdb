@@ -40,13 +40,16 @@ class EMMap:
         # Lambda to check whether a value is less than or equal to another value, by using epsilon as tolerance
         self.le = lambda x, y: x <= y + self.epsilon
         self.errors = []
-        self.md5_checksum()
         self.load()
 
     def load(self):
         """
         Load map file and extract relevant information.
         """
+        self.hash = self.md5_checksum()
+        if self.hash is None:
+            return
+
         try:
             with mrcfile.open(self.file, mode='r', permissive=False) as mrc:
                 self.header = mrc.header
@@ -93,7 +96,8 @@ class EMMap:
                 # f.seek(header_size)
                 for chunk in iter(lambda: f.read(4096), b""):
                     hash_md5.update(chunk)
-            self.hash = hash_md5.hexdigest()
+            # self.hash = hash_md5.hexdigest()
+            return hash_md5.hexdigest()
         except FileNotFoundError:
             message = f"File not found: {self.file}"
             self.errors.append(message)
@@ -241,8 +245,8 @@ class Model:
             path2model (str): Path to the MMCIF file.
         """
         self.file = path2model
-        self.structure = self.get_coordinates()
         self.errors = []
+        self.structure = self.get_coordinates()
     
     def get_coordinates(self):
         """
@@ -257,8 +261,6 @@ class Model:
         # "bad" data
         mmcif_dict, error, message = self.parse_mmcif()
         if error:
-            self.errors.append(message)
-            print(message)
             return None
         if not mmcif_dict:
             message = "No coordinates found in the MMCIF file."
@@ -296,10 +298,14 @@ class Model:
         """
         Parse the MMCIF file
         """
-        # Extracting atom coordinates from the MMCIF file
         mmcif_dict, error, message = None, False, ""
         try:
             mmcif_dict = MMCIF2Dict(self.file) # TODO: Replace with more robust parser, maybe the OneDep's one.
+        except FileNotFoundError:
+            error = True
+            message = f"File not found: {self.file}"
+            self.errors.append(message)
+            print(message)
         except Exception as e:
             error = True
             message = f"An error occurred while parsing the MMCIF file: {str(e)}"
@@ -314,7 +320,7 @@ class Validator:
     Class for validating and comparing EM maps and models.
     """
 
-    def __init__(self, em_map, half_maps=None, model=None):
+    def __init__(self, em_map=None, half_maps=None, model=None):
         """
         Initialize a Validator instance.
 
@@ -357,19 +363,21 @@ class Validator:
                         'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1])
                     })
 
-            if self.em_map and self.half_maps:
-                result.update({
-                    'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
-                })
+            if os.path.isfile(self.em_map.file):
+                if all(os.path.isfile(half_map.file) for half_map in self.half_maps):
+                    result.update({
+                        'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
+                    })
 
-            if self.model and self.model.structure:
-                num_atoms_outside, fraction_atoms_outside = self._get_atoms_outside()
-                result['map_to_model'] = {
-                    'num_atoms_outside': num_atoms_outside,
-                    'fraction_atoms_outside': fraction_atoms_outside
-                }
+                if self.model and self.model.structure:
+                    num_atoms_outside, fraction_atoms_outside = self._get_atoms_outside()
+                    result['map_to_model'] = {
+                        'num_atoms_outside': num_atoms_outside,
+                        'fraction_atoms_outside': fraction_atoms_outside
+                    }
 
         except Exception as e:
+            
             result['error'] = "An error occurred while performing checks." # TODO: Add more details to the error message (ask Jack Turner to help with this)
             message = f"An error occurred while performing checks: {str(e)}"
             self.errors.append(message)
