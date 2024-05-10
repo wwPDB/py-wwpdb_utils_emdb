@@ -74,7 +74,7 @@ class EMMap:
                         self.nstarts[crsindices[2]]
                     )).tolist()
         except FileNotFoundError:
-            message = f"File not found: {self.file}"
+            message = f"File not found: {os.path.basename(self.file)}"
             self.errors.append(message)
             print(message)
             traceback.print_exc()
@@ -99,7 +99,7 @@ class EMMap:
             # self.hash = hash_md5.hexdigest()
             return hash_md5.hexdigest()
         except FileNotFoundError:
-            message = f"File not found: {self.file}"
+            message = f"File not found: {os.path.basename(self.file)}"
             self.errors.append(message)
             print(message)
             traceback.print_exc()
@@ -303,7 +303,7 @@ class Model:
             mmcif_dict = MMCIF2Dict(self.file) # TODO: Replace with more robust parser, maybe the OneDep's one.
         except FileNotFoundError:
             error = True
-            message = f"File not found: {self.file}"
+            message = f"File not found: {os.path.basename(self.file)}"
             self.errors.append(message)
             print(message)
         except Exception as e:
