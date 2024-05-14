@@ -42,7 +42,7 @@ from wwpdb.apps.deposit.depui.common_functions import getDir, getFile
 
 
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, mock_open
 
 class TestFileConversion(unittest.TestCase):
     @patch('os.stat')

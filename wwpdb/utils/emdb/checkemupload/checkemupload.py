@@ -39,19 +39,19 @@ class EMMap:
         self.ge = lambda x, y: x >= y - self.epsilon
         # Lambda to check whether a value is less than or equal to another value, by using epsilon as tolerance
         self.le = lambda x, y: x <= y + self.epsilon
+        self.errors = []
         self.load()
 
     def load(self):
         """
         Load map file and extract relevant information.
-
-        Raises:
-            FileNotFoundError: If the file is not found.
-            Exception: If an error occurs during file loading.
         """
+        self.hash = self.md5_checksum()
+        if self.hash is None:
+            return
+
         try:
-            self.md5_checksum()
-            with mrcfile.mmap(self.file, mode='r', permissive=False) as mrc:
+            with mrcfile.open(self.file, mode='r', permissive=False) as mrc:
                 self.header = mrc.header
                 self.box_size = self.header.cella.tolist()
                 self.pixel_size = mrc.voxel_size.tolist()
@@ -74,23 +74,40 @@ class EMMap:
                         self.nstarts[crsindices[2]]
                     )).tolist()
         except FileNotFoundError:
-            raise FileNotFoundError(f"File not found: {self.file}")  # pylint: disable=raise-missing-from
+            message = f"File not found: {os.path.basename(self.file)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
         except Exception as e:
-            raise Exception(  # pylint: disable=broad-exception-raised,raise-missing-from
-                f"An error occurred while loading the file: {str(e)}")
+            message = f"An error occurred while loading the file: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
 
     def md5_checksum(self):
         """
         Calculate the MD5 checksum of the map file.
         """
-        hash_md5 = hashlib.md5()
-        with open(self.file, "rb") as f:
-            # Depending on your file format, you might need to skip the header
-            # before starting to read the data
-            # f.seek(header_size)
-            for chunk in iter(lambda: f.read(4096), b""):
-                hash_md5.update(chunk)
-        self.hash = hash_md5.hexdigest()
+        try:
+            hash_md5 = hashlib.md5()
+            with open(self.file, "rb") as f:
+                # Depending on your file format, you might need to skip the header
+                # before starting to read the data
+                # f.seek(header_size)
+                for chunk in iter(lambda: f.read(4096), b""):
+                    hash_md5.update(chunk)
+            # self.hash = hash_md5.hexdigest()
+            return hash_md5.hexdigest()
+        except FileNotFoundError:
+            message = f"File not found: {os.path.basename(self.file)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+        except Exception as e:
+            message = f"An error occurred while calculating the MD5 checksum: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
 
     def same_box_size(self, another_map):
         """
@@ -102,7 +119,14 @@ class EMMap:
         Returns:
             bool: True if same box size, False otherwise.
         """
-        return all(np.array(self.box_size) - np.array(another_map.box_size) <= self.epsilon)
+        try:
+            return all(np.array(self.box_size) - np.array(another_map.box_size) <= self.epsilon)
+        except Exception as e:
+            message = f"An error occurred while comparing box sizes: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return False
 
     def same_or_smaller_box_size(self, another_map):
         """
@@ -114,7 +138,14 @@ class EMMap:
         Returns:
             bool: True if smaller or same box size, False otherwise.
         """
-        return all(self.le(np.array(self.box_size), np.array(another_map.box_size)))
+        try:
+            return all(self.le(np.array(self.box_size), np.array(another_map.box_size)))
+        except Exception as e:
+            message = f"An error occurred while comparing box sizes: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return False
 
     def overlaps(self, another_map):
         """
@@ -126,10 +157,17 @@ class EMMap:
         Returns:
             bool: True if overlaps, False otherwise.
         """
-        origin1, end1 = np.array(self.origin), np.array(self.end)
-        origin2, end2 = np.array(another_map.origin), np.array(another_map.end)
-        # Check whether the absolute difference between the origin and end coordinates is less than epsilon
-        return all(abs(origin1 - origin2) <= self.epsilon) and all(abs(end1 - end2) <= self.epsilon)
+        try:
+            origin1, end1 = np.array(self.origin), np.array(self.end)
+            origin2, end2 = np.array(another_map.origin), np.array(another_map.end)
+            # Check whether the absolute difference between the origin and end coordinates is less than epsilon
+            return all(abs(origin1 - origin2) <= self.epsilon) and all(abs(end1 - end2) <= self.epsilon)
+        except Exception as e:
+            message = f"An error occurred while comparing map boundaries: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return False
 
     def fits_inside(self, another_map):
         """
@@ -141,11 +179,18 @@ class EMMap:
         Returns:
             bool: True if completely inside, False otherwise.
         """
-        origin1, end1 = np.array(self.origin), np.array(self.end)
-        origin2, end2 = np.array(another_map.origin), np.array(another_map.end)
-        # Check whether the origin and end coordinates are greater than or equal to the origin and end coordinates of
-        # the other map, respectively
-        return all(self.ge(origin1, origin2)) and all(self.le(end1, end2))
+        try:
+            origin1, end1 = np.array(self.origin), np.array(self.end)
+            origin2, end2 = np.array(another_map.origin), np.array(another_map.end)
+            # Check whether the origin and end coordinates are greater than or equal to the origin and end coordinates of
+            # the other map, respectively
+            return all(self.ge(origin1, origin2)) and all(self.le(end1, end2))
+        except Exception as e:
+            message = f"An error occurred while comparing map boundaries: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return False
 
     def same_pixel_size(self, another_map):
         """
@@ -157,8 +202,15 @@ class EMMap:
         Returns:
             bool: True if same pixel size, False otherwise.
         """
-        diff = np.array(self.pixel_size) - np.array(another_map.pixel_size)
-        return all(diff <= self.epsilon)
+        try:
+            diff = np.array(self.pixel_size) - np.array(another_map.pixel_size)
+            return all(diff <= self.epsilon)
+        except Exception as e:
+            message = f"An error occurred while comparing pixel sizes: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return False
 
     def pixel_size_is_multiple(self, another_map):
         """
@@ -170,15 +222,21 @@ class EMMap:
         Returns:
             bool: True if pixel size is a multiple, False otherwise.
         """
-        modulo = np.array(self.pixel_size) % np.array(another_map.pixel_size)
-        return all(modulo <= self.epsilon)
+        try:
+            modulo = np.array(self.pixel_size) % np.array(another_map.pixel_size)
+            return all(modulo <= self.epsilon)
+        except Exception as e:
+            message = f"An error occurred while comparing pixel sizes: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return False
 
 
 class Model:
     """
     Class representing a structural model in MMCIF format.
     """
-
     def __init__(self, path2model):
         """
         Initialize a Model instance.
@@ -186,9 +244,14 @@ class Model:
         Args:
             path2model (str): Path to the MMCIF file.
         """
-        # Extracting atom coordinates from the MMCIF file
-        mmcif_dict = MMCIF2Dict(path2model)
         self.file = path2model
+        self.errors = []
+        self.structure = self.get_coordinates()
+    
+    def get_coordinates(self):
+        """
+        Get atom coordinates from the parsed MMCIF file.
+        """
         # Zhe edit 24042024
         #
         # While the coordinate file has been validated to contain floats,
@@ -196,6 +259,23 @@ class Model:
         # The second and subsequent data blocks are misparsed.
         # Therefore, the try/except handles the misfeature - rejecting
         # "bad" data
+        mmcif_dict, error, message = self.parse_mmcif()
+        if error:
+            return None
+        if not mmcif_dict:
+            message = "No coordinates found in the MMCIF file."
+            self.errors.append(message)
+            print(message)
+            return None
+        if not (
+            '_atom_site.Cartn_x' in mmcif_dict
+            and '_atom_site.Cartn_y' in mmcif_dict
+            and '_atom_site.Cartn_z' in mmcif_dict
+            ):
+            message = "No coordinates found in the MMCIF file."
+            self.errors.append(message)
+            print(message)
+            return None
         structure = []
         x = mmcif_dict['_atom_site.Cartn_x']
         y = mmcif_dict['_atom_site.Cartn_y']
@@ -206,9 +286,33 @@ class Model:
                 newy = float(y)
                 newz = float(z)
                 structure.append((newx, newy, newz))
-            except ValueError:
+            except ValueError as e:
+                message = f"Error parsing coordinates: {str(e)}"
+                self.errors.append(message)
+                print(message)
+                traceback.print_exc()
                 continue
-        self.structure = structure
+        return structure
+    
+    def parse_mmcif(self):
+        """
+        Parse the MMCIF file
+        """
+        mmcif_dict, error, message = None, False, ""
+        try:
+            mmcif_dict = MMCIF2Dict(self.file) # TODO: Replace with more robust parser, maybe the OneDep's one.
+        except FileNotFoundError:
+            error = True
+            message = f"File not found: {os.path.basename(self.file)}"
+            self.errors.append(message)
+            print(message)
+        except Exception as e:
+            error = True
+            message = f"An error occurred while parsing the MMCIF file: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+        return mmcif_dict, error, message
 
 
 class Validator:
@@ -216,7 +320,7 @@ class Validator:
     Class for validating and comparing EM maps and models.
     """
 
-    def __init__(self, em_map, half_maps=None, model=None):
+    def __init__(self, em_map=None, half_maps=None, model=None):
         """
         Initialize a Validator instance.
 
@@ -230,158 +334,7 @@ class Validator:
         self.model = model
         self.nxyz = None
         self.nstarts = None
-
-    def _map_matrix(self, apixs, angs):
-        """
-        calculate the matrix to transform Cartesian coordinates to fractional coordinates
-        (check the definination to see the matrix formular)
-        :param apixs: array of apix lenght
-        :param angs: array of anglex in alpha, beta, gamma order
-        :return: array of matrix
-        """
-
-        ang = (angs[0] * math.pi / 180, angs[1] * math.pi / 180, angs[2] * math.pi / 180)
-        insidesqrt = (1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0]) ** 2 - math.cos(ang[1]) ** 2 - math.cos(ang[2]) ** 2)
-        cellvolume = apixs[0] * apixs[1] * apixs[2] * math.sqrt(insidesqrt)
-
-        m11 = 1 / apixs[0]
-        m12 = -math.cos(ang[2]) / (apixs[0] * math.sin(ang[2]))
-
-        m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (cellvolume * math.sin(ang[2]))
-        m21 = 0
-        m22 = 1 / (apixs[1] * math.sin(ang[2]))
-        m23 = apixs[0] * apixs[2] * (math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0])) / (cellvolume * math.sin(ang[2]))
-        m31 = 0
-        m32 = 0
-        m33 = apixs[0] * apixs[1] * math.sin(ang[2]) / cellvolume
-        prematrix = [[m11, m12, m13], [m21, m22, m23], [m31, m32, m33]]
-        matrix = np.asarray(prematrix)
-
-        return matrix
-
-    def _matrix_indices(self, apixs, onecoor):
-        angs = [self.em_map.header.cellb.alpha, self.em_map.header.cellb.beta, self.em_map.header.cellb.gamma]
-        matrix = self._map_matrix(apixs, angs)
-        result = matrix.dot(np.asarray(onecoor))
-        return result[0] - self.em_map.nstarts[0], result[1] - self.em_map.nstarts[1], result[2] - self.em_map.nstarts[
-            2]
-
-    def header_check(self):
-        crs = (self.em_map.header.mapc, self.em_map.header.mapr, self.em_map.header.maps)
-        crsindices = (crs.index(1), crs.index(2), crs.index(3))
-        self.nstarts = (self.em_map.header.nxstart, self.em_map.header.nystart, self.em_map.header.nzstart)
-        self.nxyz = (self.em_map.header.nx, self.em_map.header.ny, self.em_map.header.nz)
-
-        if crs != (1, 2, 3):
-            self.nxyz = (self.nxyz[crsindices[0]], self.nxyz[crsindices[1]], self.nxyz[crsindices[2]])
-            self.nstarts = (self.nstarts[crsindices[0]], self.nstarts[crsindices[1]], self.nstarts[crsindices[2]])
-
-    def _get_indices(self, onecoor):
-        """
-                Find one atom's indices correspoding to its cubic or plane
-                the 8 (cubic) or 4 (plane) indices are saved in indices variable
-            :param onecoor: List contains the atom coordinates in (x, y, z) order
-            :return: Tuple contains two list of index: first has the 8 or 4 indices in the cubic;second has the float index of the input atom
-            """
-
-        zdim = self.em_map.header.cella.z
-        znintervals = self.em_map.header.mz
-        z_apix = zdim / znintervals
-
-        ydim = self.em_map.header.cella.y
-        ynintervals = self.em_map.header.my
-        y_apix = ydim / ynintervals
-
-        xdim = self.em_map.header.cella.x
-        xnintervals = self.em_map.header.mx
-        x_apix = xdim / xnintervals
-
-        self.header_check()
-        # map_xsize, map_ysize, map_zsize = self.nxyz
-        nxstart, nystart, nzstart = self.nstarts
-
-        if self.em_map.header.cellb.alpha == self.em_map.header.cellb.beta == self.em_map.header.cellb.gamma == 90.:
-            # crs = [self.em_map.header.mapc, self.em_map.header.mapr, self.em_map.header.maps]
-            # ordinds = [crs.index(1), crs.index(2), crs.index(3)]
-            zindex = float(onecoor[2] - self.em_map.header.origin.z) / z_apix - nzstart
-            yindex = float(onecoor[1] - self.em_map.header.origin.y) / y_apix - nystart
-            xindex = float(onecoor[0] - self.em_map.header.origin.x) / x_apix - nxstart
-        else:
-            apixs = [x_apix, y_apix, z_apix]
-            xindex, yindex, zindex = self._matrix_indices(apixs, onecoor)
-
-        oneindex = [xindex, yindex, zindex]
-
-        return oneindex, self.nxyz
-
-    def _compare_maps(self, map1, map2):
-        result = {
-            'em_volumes': [
-                {
-                    'name': os.path.basename(map1.file),
-                    'checksum': map1.hash
-                },
-                {
-                    'name': os.path.basename(map2.file),
-                    'checksum': map2.hash
-                }
-            ],
-            'map_checks': {
-                'identical': map1.hash == map2.hash
-            }
-        }
-        if not result['map_checks']['identical']:
-            # Check if the maps have the same box size
-            same_box_size = map1.same_box_size(map2)
-            result['map_checks']['same_box_size'] = same_box_size
-            if not same_box_size:
-                result['em_volumes'][0].update({
-                    'box_size': [round(x, 2) for x in map1.box_size]
-                })
-                result['em_volumes'][1].update({
-                    'box_size': [round(x, 2) for x in map2.box_size]
-                })
-                # Check if the map box has a smaller or same box size than another map
-                result['map_checks']['same_or_smaller_box_size'] = map1.same_or_smaller_box_size(map2)
-            # Check if the maps have the same pixel size
-            same_pixel_size = map1.same_pixel_size(map2)
-            result['map_checks']['same_pixel_size'] = same_pixel_size
-            if not same_pixel_size:
-                result['em_volumes'][0].update({
-                    'pixel_size': [round(x, 2) for x in map1.pixel_size]
-                })
-                result['em_volumes'][1].update({
-                    'pixel_size': [round(x, 2) for x in map2.pixel_size]
-                })
-                # Check if the maps have pixel size that is a multiple
-                result['map_checks']['pixel_size_is_multiple'] = map1.pixel_size_is_multiple(map2)
-            # Check if the maps overlap
-            overlap = map1.overlaps(map2)
-            result['map_checks']['overlap'] = overlap
-            if not overlap:
-                result['em_volumes'][0].update({
-                    'origin': [round(x, 2) for x in map1.origin],
-                    'end': [round(x, 2) for x in map1.end]
-                })
-                result['em_volumes'][1].update({
-                    'origin': [round(x, 2) for x in map2.origin],
-                    'end': [round(x, 2) for x in map2.end]
-                })
-                # Check if the maps fit inside each other
-                result['map_checks']['fits_inside'] = map1.fits_inside(map2)
-
-        return result
-
-    def _get_atoms_outside(self):
-        num_atoms_outside = 0  # Initialize counter for atoms outside the primary map
-        for atom in self.model.structure:
-            atom_index, nxyz = self._get_indices(atom)
-            # Check if the atom is outside the primary map boundaries
-            if any(coord < 0 or coord > nxyz[i] - 1 for i, coord in enumerate(atom_index)):
-                num_atoms_outside += 1
-        # Calculate the fraction of atoms outside the primary map
-        fraction_atoms_outside = num_atoms_outside / len(self.model.structure)
-        return num_atoms_outside, fraction_atoms_outside
+        self.errors = []
 
     def check(self):
         """
@@ -399,28 +352,230 @@ class Validator:
         """
         result = {}
 
-        if self.half_maps:
-            if len(self.half_maps) != 2:
-                raise Exception("Two half maps must be provided.")  # pylint: disable=broad-exception-raised
-            if not all(os.path.isfile(half_map.file) for half_map in self.half_maps):
-                raise FileNotFoundError("One or more half maps not found.")
-            result.update({
-                'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1]),
-                # Compare half maps to each other
-                'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
-                # Compare primary map to each half map
-            })
+        try:
+            if self.half_maps:
+                if len(self.half_maps) != 2:
+                    result['error'] = "Two half maps must be provided."
+                elif not all(os.path.isfile(half_map.file) for half_map in self.half_maps):
+                    result['error'] = "One or more half maps not found."
+                else:
+                    result.update({
+                        'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1])
+                    })
 
-        if self.model and self.model.structure:
-            num_atoms_outside, fraction_atoms_outside = self._get_atoms_outside()
-            result['map_to_model'] = {
-                'num_atoms_outside': num_atoms_outside,
-                # Calculate the fraction of atoms outside the primary map
-                'fraction_atoms_outside': fraction_atoms_outside
-            }
+            if os.path.isfile(self.em_map.file):
+                if all(os.path.isfile(half_map.file) for half_map in self.half_maps):
+                    result.update({
+                        'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
+                    })
+
+                if self.model and self.model.structure:
+                    num_atoms_outside, fraction_atoms_outside = self._get_atoms_outside()
+                    result['map_to_model'] = {
+                        'num_atoms_outside': num_atoms_outside,
+                        'fraction_atoms_outside': fraction_atoms_outside
+                    }
+
+        except Exception as e:
+            
+            result['error'] = "An error occurred while performing checks." # TODO: Add more details to the error message (ask Jack Turner to help with this)
+            message = f"An error occurred while performing checks: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
 
         return result
 
+    def _map_matrix(self, apixs, angs):
+        """
+        calculate the matrix to transform Cartesian coordinates to fractional coordinates
+        (check the definination to see the matrix formular)
+        :param apixs: array of apix lenght
+        :param angs: array of anglex in alpha, beta, gamma order
+        :return: array of matrix
+        """
+        try:
+            ang = (angs[0] * math.pi / 180, angs[1] * math.pi / 180, angs[2] * math.pi / 180)
+            insidesqrt = (1 + 2 * math.cos(ang[0]) * math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0]) ** 2 - math.cos(ang[1]) ** 2 - math.cos(ang[2]) ** 2)
+            cellvolume = apixs[0] * apixs[1] * apixs[2] * math.sqrt(insidesqrt)
+
+            m11 = 1 / apixs[0]
+            m12 = -math.cos(ang[2]) / (apixs[0] * math.sin(ang[2]))
+
+            m13 = apixs[1] * apixs[2] * (math.cos(ang[0]) * math.cos(ang[2]) - math.cos(ang[1])) / (cellvolume * math.sin(ang[2]))
+            m21 = 0
+            m22 = 1 / (apixs[1] * math.sin(ang[2]))
+            m23 = apixs[0] * apixs[2] * (math.cos(ang[1]) * math.cos(ang[2]) - math.cos(ang[0])) / (cellvolume * math.sin(ang[2]))
+            m31 = 0
+            m32 = 0
+            m33 = apixs[0] * apixs[1] * math.sin(ang[2]) / cellvolume
+            prematrix = [[m11, m12, m13], [m21, m22, m23], [m31, m32, m33]]
+            matrix = np.asarray(prematrix)
+
+            return matrix
+        except Exception as e:
+            message = f"An error occurred while calculating the matrix: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return None
+
+    def _matrix_indices(self, apixs, onecoor):
+        try:
+            angs = [self.em_map.header.cellb.alpha, self.em_map.header.cellb.beta, self.em_map.header.cellb.gamma]
+            matrix = self._map_matrix(apixs, angs)
+            result = matrix.dot(np.asarray(onecoor))
+            return result[0] - self.em_map.nstarts[0], result[1] - self.em_map.nstarts[1], result[2] - self.em_map.nstarts[
+                2]
+        except Exception as e:
+            message = f"An error occurred while calculating the indices: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return None
+
+    def _header_check(self):
+        try:
+            crs = (self.em_map.header.mapc, self.em_map.header.mapr, self.em_map.header.maps)
+            crsindices = (crs.index(1), crs.index(2), crs.index(3))
+            self.nstarts = (self.em_map.header.nxstart, self.em_map.header.nystart, self.em_map.header.nzstart)
+            self.nxyz = (self.em_map.header.nx, self.em_map.header.ny, self.em_map.header.nz)
+
+            if crs != (1, 2, 3):
+                self.nxyz = (self.nxyz[crsindices[0]], self.nxyz[crsindices[1]], self.nxyz[crsindices[2]])
+                self.nstarts = (self.nstarts[crsindices[0]], self.nstarts[crsindices[1]], self.nstarts[crsindices[2]])
+        except Exception as e:
+            message = f"An error occurred while checking the header: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+
+    def _get_indices(self, onecoor):
+        """
+            Find one atom's indices correspoding to its cubic or plane
+            the 8 (cubic) or 4 (plane) indices are saved in indices variable
+        :param onecoor: List contains the atom coordinates in (x, y, z) order
+        :return: Tuple contains two list of index: first has the 8 or 4 indices in the cubic;second has the float index of the input atom
+        """
+        try:
+            zdim = self.em_map.header.cella.z
+            znintervals = self.em_map.header.mz
+            z_apix = zdim / znintervals
+
+            ydim = self.em_map.header.cella.y
+            ynintervals = self.em_map.header.my
+            y_apix = ydim / ynintervals
+
+            xdim = self.em_map.header.cella.x
+            xnintervals = self.em_map.header.mx
+            x_apix = xdim / xnintervals
+
+            self._header_check()
+            # map_xsize, map_ysize, map_zsize = self.nxyz
+            nxstart, nystart, nzstart = self.nstarts
+
+            if self.em_map.header.cellb.alpha == self.em_map.header.cellb.beta == self.em_map.header.cellb.gamma == 90.:
+                # crs = [self.em_map.header.mapc, self.em_map.header.mapr, self.em_map.header.maps]
+                # ordinds = [crs.index(1), crs.index(2), crs.index(3)]
+                zindex = float(onecoor[2] - self.em_map.header.origin.z) / z_apix - nzstart
+                yindex = float(onecoor[1] - self.em_map.header.origin.y) / y_apix - nystart
+                xindex = float(onecoor[0] - self.em_map.header.origin.x) / x_apix - nxstart
+            else:
+                apixs = [x_apix, y_apix, z_apix]
+                xindex, yindex, zindex = self._matrix_indices(apixs, onecoor)
+
+            oneindex = [xindex, yindex, zindex]
+
+            return oneindex, self.nxyz
+        except Exception as e:
+            message = f"An error occurred while getting the indices: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return None, None
+
+    def _compare_maps(self, map1, map2):
+        try:
+            result = {
+                'em_volumes': [
+                    {
+                        'name': os.path.basename(map1.file),
+                        'checksum': map1.hash
+                    },
+                    {
+                        'name': os.path.basename(map2.file),
+                        'checksum': map2.hash
+                    }
+                ],
+                'map_checks': {
+                    'identical': map1.hash == map2.hash
+                }
+            }
+            if not result['map_checks']['identical']:
+                # Check if the maps have the same box size
+                same_box_size = map1.same_box_size(map2)
+                result['map_checks']['same_box_size'] = same_box_size
+                if not same_box_size:
+                    result['em_volumes'][0].update({
+                        'box_size': [round(x, 2) for x in map1.box_size]
+                    })
+                    result['em_volumes'][1].update({
+                        'box_size': [round(x, 2) for x in map2.box_size]
+                    })
+                    # Check if the map box has a smaller or same box size than another map
+                    result['map_checks']['same_or_smaller_box_size'] = map1.same_or_smaller_box_size(map2)
+                # Check if the maps have the same pixel size
+                same_pixel_size = map1.same_pixel_size(map2)
+                result['map_checks']['same_pixel_size'] = same_pixel_size
+                if not same_pixel_size:
+                    result['em_volumes'][0].update({
+                        'pixel_size': [round(x, 2) for x in map1.pixel_size]
+                    })
+                    result['em_volumes'][1].update({
+                        'pixel_size': [round(x, 2) for x in map2.pixel_size]
+                    })
+                    # Check if the maps have pixel size that is a multiple
+                    result['map_checks']['pixel_size_is_multiple'] = map1.pixel_size_is_multiple(map2)
+                # Check if the maps overlap
+                overlap = map1.overlaps(map2)
+                result['map_checks']['overlap'] = overlap
+                if not overlap:
+                    result['em_volumes'][0].update({
+                        'origin': [round(x, 2) for x in map1.origin],
+                        'end': [round(x, 2) for x in map1.end]
+                    })
+                    result['em_volumes'][1].update({
+                        'origin': [round(x, 2) for x in map2.origin],
+                        'end': [round(x, 2) for x in map2.end]
+                    })
+                    # Check if the maps fit inside each other
+                    result['map_checks']['fits_inside'] = map1.fits_inside(map2)
+
+            return result
+        except Exception as e:
+            message = f"An error occurred while comparing maps: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return None
+
+    def _get_atoms_outside(self):
+        try:
+            num_atoms_outside = 0  # Initialize counter for atoms outside the primary map
+            for atom in self.model.structure:
+                atom_index, nxyz = self._get_indices(atom)
+                # Check if the atom is outside the primary map boundaries
+                if any(coord < 0 or coord > nxyz[i] - 1 for i, coord in enumerate(atom_index)):
+                    num_atoms_outside += 1
+            # Calculate the fraction of atoms outside the primary map
+            fraction_atoms_outside = num_atoms_outside / len(self.model.structure)
+            return num_atoms_outside, fraction_atoms_outside
+        except Exception as e:
+            message = f"An error occurred while getting atoms outside the map: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+            return None, None
 
 def main():
     """
@@ -435,21 +590,48 @@ def main():
     parser.add_argument("--output", help="Output JSON file", required=False)
     args = parser.parse_args()
 
-    # Checking if files exist and loading data
-    if os.path.isfile(args.primmap):
+    result, errors = {}, []
+    try:
+        em_map, model, half_maps = None, None, []
+        # Checking if files exist and loading data
+        # if os.path.isfile(args.primmap):
         em_map = EMMap(args.primmap)
-        half_maps = []
-        for halfmap in args.halfmaps:
-            if os.path.isfile(halfmap):
-                half_maps.append(EMMap(halfmap))
-        model = None
-        if args.model and os.path.isfile(args.model):
-            model = Model(args.model)
+        errors.extend(em_map.errors)
 
+        # Loading model if provided
+        if args.model:
+            # if os.path.isfile(args.model):
+            model = Model(args.model)
+            errors.extend(model.errors)
+        
+        # Loading half maps if provided
+        if args.halfmaps:
+            for i, hm in enumerate(args.halfmaps, 1):
+                # if os.path.isfile(hm):
+                halfmap = EMMap(hm)
+                half_maps.append(halfmap)
+                errors.extend(halfmap.errors)
+                # else:
+                #     errors.append(f"Half map {i} file not found.")
+        
+        
+        # if not errors:
         # Performing validation checks
         validator = Validator(em_map, half_maps, model)
-        result = validator.check()
+        result.update(validator.check())
+        errors.extend(validator.errors)
 
+        # Adding errors to the result
+        if errors:
+            result['error'] = '\n'.join(errors)
+
+    except Exception as e:
+        message = f"An error occurred while performing checks: {str(e)}"
+        result['error'] = message
+        print(message)
+        traceback.print_exc()
+
+    finally:
         # Printing results to stdout
         print(json.dumps(result, indent=4))
 
@@ -465,8 +647,7 @@ def main():
             json.dump(result, f, indent=4)
         print(f"Result written to {filename}")
 
-        return 0
-    return 1
+        return 0 if 'error' not in result else 1
 
 
 # Main script execution
