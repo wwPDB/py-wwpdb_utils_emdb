@@ -41,7 +41,7 @@ class EMMap:
         self.le = lambda x, y: x <= y + self.epsilon
         self.errors = []
         self.warnings = []
-        self.loggings = []
+        self.logs = []
         self.load()
 
     def load(self):
@@ -78,12 +78,12 @@ class EMMap:
         except FileNotFoundError:
             message = f"File not found: {os.path.basename(self.file)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
         except Exception as e:
             message = f"An error occurred while loading the file: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
 
     def md5_checksum(self):
@@ -103,12 +103,12 @@ class EMMap:
         except FileNotFoundError:
             message = f"File not found: {os.path.basename(self.file)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
         except Exception as e:
             message = f"An error occurred while calculating the MD5 checksum: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
 
     def same_box_size(self, another_map):
@@ -126,7 +126,7 @@ class EMMap:
         except Exception as e:
             message = f"An error occurred while comparing box sizes: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return False
 
@@ -145,7 +145,7 @@ class EMMap:
         except Exception as e:
             message = f"An error occurred while comparing box sizes: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return False
 
@@ -167,7 +167,7 @@ class EMMap:
         except Exception as e:
             message = f"An error occurred while comparing map boundaries: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return False
 
@@ -190,7 +190,7 @@ class EMMap:
         except Exception as e:
             message = f"An error occurred while comparing map boundaries: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return False
 
@@ -210,7 +210,7 @@ class EMMap:
         except Exception as e:
             message = f"An error occurred while comparing pixel sizes: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return False
 
@@ -230,7 +230,7 @@ class EMMap:
         except Exception as e:
             message = f"An error occurred while comparing pixel sizes: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return False
 
@@ -249,7 +249,7 @@ class Model:
         self.file = path2model
         self.errors = []
         self.warnings = []
-        self.loggings = []
+        self.logs = []
         self.structure = self.get_coordinates()
     
     def get_coordinates(self):
@@ -314,7 +314,7 @@ class Model:
             error = True
             message = f"An error occurred while parsing the MMCIF file: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
         return mmcif_dict, error, message
 
@@ -340,7 +340,7 @@ class Validator:
         self.nstarts = None
         self.errors = []
         self.warnings = []
-        self.loggings = []
+        self.logs = []
 
     def check(self):
         """
@@ -387,7 +387,7 @@ class Validator:
             result['error'] = "An error occurred while performing checks." # TODO: Add more details to the error message (ask Jack Turner to help with this)
             message = f"An error occurred while performing checks: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
 
         return result
@@ -422,7 +422,7 @@ class Validator:
         except Exception as e:
             message = f"An error occurred while calculating the matrix: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return None
 
@@ -436,7 +436,7 @@ class Validator:
         except Exception as e:
             message = f"An error occurred while calculating the indices: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return None
 
@@ -453,7 +453,7 @@ class Validator:
         except Exception as e:
             message = f"An error occurred while checking the header: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
 
     def _get_indices(self, onecoor):
@@ -496,7 +496,7 @@ class Validator:
         except Exception as e:
             message = f"An error occurred while getting the indices: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return None, None
 
@@ -561,7 +561,7 @@ class Validator:
         except Exception as e:
             message = f"An error occurred while comparing maps: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return None
 
@@ -579,7 +579,7 @@ class Validator:
         except Exception as e:
             message = f"An error occurred while getting atoms outside the map: {str(e)}\n"
             message += traceback.format_exc()
-            self.loggings.append(message)
+            self.logs.append(message)
             print(message)
             return None, None
 
@@ -596,21 +596,21 @@ def main():
     parser.add_argument("--output", help="Output JSON file", required=False)
     args = parser.parse_args()
 
-    result, errors, warnings, loggings = {}, [], [], []
+    result, errors, warnings, logs = {}, [], [], []
     try:
         em_map, model, half_maps = None, None, []
         # Loading data
         em_map = EMMap(args.primmap)
         errors.extend(em_map.errors)
         warnings.extend(em_map.warnings)
-        loggings.extend(em_map.loggings)
+        logs.extend(em_map.logs)
 
         # Loading model if provided
         if args.model:
             model = Model(args.model)
             errors.extend(model.errors)
             warnings.extend(model.warnings)
-            loggings.extend(model.loggings)
+            logs.extend(model.logs)
         
         # Loading half maps if provided
         if args.halfmaps:
@@ -619,27 +619,27 @@ def main():
                 half_maps.append(halfmap)
                 errors.extend(halfmap.errors)
                 warnings.extend(halfmap.warnings)
-                loggings.extend(halfmap.loggings)
+                logs.extend(halfmap.logs)
         
         # Performing validation checks
         validator = Validator(em_map, half_maps, model)
         result.update(validator.check())
         errors.extend(validator.errors)
         warnings.extend(validator.warnings)
-        loggings.extend(validator.loggings)
+        logs.extend(validator.logs)
 
-        # Adding errors, warnings, and loggings to the result
+        # Adding errors, warnings, and logs to the result
         if errors:
             result['error'] = '\n'.join(errors)
         if warnings:
             result['warning'] = '\n'.join(warnings)
-        if loggings:
-            result['logging'] = '\n'.join(loggings)
+        if logs:
+            result['log'] = '\n'.join(logs)
 
     except Exception as e:
         message = f"An error occurred while performing checks: {str(e)}\n"
         message += traceback.format_exc()
-        result['logging'] = message
+        result['log'] = message
         print(message)
 
     finally:
@@ -651,7 +651,7 @@ def main():
             root, ext = os.path.splitext(root)
         filename = args.output or f'{os.path.join(parentdir, root)}-checks.json'
         message = f"\nResults written to {filename}"
-        result['logging'] += message
+        result['log'] += message
         print(message)
         # Printing results to stdout
         print(json.dumps(result, indent=4))
