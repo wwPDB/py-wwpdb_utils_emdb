@@ -596,52 +596,53 @@ def main():
     parser.add_argument("--output", help="Output JSON file", required=False)
     args = parser.parse_args()
 
-    result, errors = {}, []
+    result, errors, warnings, loggings = {}, [], [], []
     try:
         em_map, model, half_maps = None, None, []
-        # Checking if files exist and loading data
-        # if os.path.isfile(args.primmap):
+        # Loading data
         em_map = EMMap(args.primmap)
         errors.extend(em_map.errors)
+        warnings.extend(em_map.warnings)
+        loggings.extend(em_map.loggings)
 
         # Loading model if provided
         if args.model:
-            # if os.path.isfile(args.model):
             model = Model(args.model)
             errors.extend(model.errors)
+            warnings.extend(model.warnings)
+            loggings.extend(model.loggings)
         
         # Loading half maps if provided
         if args.halfmaps:
             for i, hm in enumerate(args.halfmaps, 1):
-                # if os.path.isfile(hm):
                 halfmap = EMMap(hm)
                 half_maps.append(halfmap)
                 errors.extend(halfmap.errors)
-                # else:
-                #     errors.append(f"Half map {i} file not found.")
+                warnings.extend(halfmap.warnings)
+                loggings.extend(halfmap.loggings)
         
-        
-        # if not errors:
         # Performing validation checks
         validator = Validator(em_map, half_maps, model)
         result.update(validator.check())
         errors.extend(validator.errors)
+        warnings.extend(validator.warnings)
+        loggings.extend(validator.loggings)
 
-        # Adding errors to the result
+        # Adding errors, warnings, and loggings to the result
         if errors:
             result['error'] = '\n'.join(errors)
+        if warnings:
+            result['warning'] = '\n'.join(warnings)
+        if loggings:
+            result['logging'] = '\n'.join(loggings)
 
     except Exception as e:
-        message = f"An error occurred while performing checks: {str(e)}"
-        result['error'] = message
+        message = f"An error occurred while performing checks: {str(e)}\n"
+        message += traceback.format_exc()
+        result['logging'] = message
         print(message)
-        traceback.print_exc()
 
     finally:
-        # Printing results to stdout
-        print(json.dumps(result, indent=4))
-
-        # Writing results to output JSON file
         parentdir = os.path.dirname(args.primmap)
         basename = os.path.basename(args.primmap)
         root, ext = os.path.splitext(basename)
@@ -649,13 +650,16 @@ def main():
             basename = root
             root, ext = os.path.splitext(root)
         filename = args.output or f'{os.path.join(parentdir, root)}-checks.json'
+        message = f"\nResults written to {filename}"
+        result['logging'] += message
+        print(message)
+        # Printing results to stdout
+        print(json.dumps(result, indent=4))
+        # Writing results to output JSON file
         with open(filename, 'w') as f:
             json.dump(result, f, indent=4)
-        print(f"Result written to {filename}")
 
         return 0 if 'error' not in result else 1
-
-
 # Main script execution
 if __name__ == "__main__":
     try:
