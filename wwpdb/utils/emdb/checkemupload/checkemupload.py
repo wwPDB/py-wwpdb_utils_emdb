@@ -378,7 +378,7 @@ class Validator:
                     }
 
         except Exception as e:
-            message = "An error occurred while performing checks." # TODO: Add more details to the error message (ask Jack Turner to help with this)
+            message = "An error occurred while performing checks" # TODO: Add more details to the error message (ask Jack Turner to help with this)
             result['warning'] = message
             message += f": {str(e)}\n"
             message += traceback.format_exc()
@@ -656,7 +656,7 @@ def main():
         with open(filename, 'w') as f:
             json.dump(result, f, indent=4)
         return 0 if 'error' not in result else 1
-        
+
 # Main script execution
 if __name__ == "__main__":
     try:
