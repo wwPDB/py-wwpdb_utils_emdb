@@ -359,23 +359,18 @@ class Validator:
         result = {}
 
         try:
-            if self.half_maps:
-                if len(self.half_maps) != 2:
-                    result['error'] = "Two half maps must be provided."
-                elif not all(os.path.isfile(half_map.file) for half_map in self.half_maps):
-                    result['error'] = "One or more half maps not found."
-                else:
-                    result.update({
-                        'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1])
-                    })
+            if self.half_maps and len(self.half_maps) == 2 and all(isinstance(half_map, EMMap) and os.path.isfile(half_map.file) for half_map in self.half_maps):
+                result.update({
+                    'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1])
+                })
 
-            if os.path.isfile(self.em_map.file):
-                if all(os.path.isfile(half_map.file) for half_map in self.half_maps):
+            if isinstance(self.em_map, EMMap) and os.path.isfile(self.em_map.file):
+                if all(isinstance(half_map, EMMap) and os.path.isfile(half_map.file) for half_map in self.half_maps):
                     result.update({
                         'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
                     })
 
-                if self.model and self.model.structure:
+                if self.model and isinstance(self.model, Model) and self.model.structure:
                     num_atoms_outside, fraction_atoms_outside = self._get_atoms_outside()
                     result['map_to_model'] = {
                         'num_atoms_outside': num_atoms_outside,
@@ -383,9 +378,9 @@ class Validator:
                     }
 
         except Exception as e:
-            
-            result['error'] = "An error occurred while performing checks." # TODO: Add more details to the error message (ask Jack Turner to help with this)
-            message = f"An error occurred while performing checks: {str(e)}\n"
+            message = "An error occurred while performing checks." # TODO: Add more details to the error message (ask Jack Turner to help with this)
+            result['warning'] = message
+            message += f": {str(e)}\n"
             message += traceback.format_exc()
             self.logs.append(message)
             print(message)
@@ -637,7 +632,9 @@ def main():
             result['log'] = '\n'.join(logs)
 
     except Exception as e:
-        message = f"An error occurred while performing checks: {str(e)}\n"
+        message = "An error occurred while performing checks"
+        result['warning'] = message
+        message += f": {str(e)}\n"
         message += traceback.format_exc()
         result['log'] = message
         print(message)
@@ -658,14 +655,14 @@ def main():
         # Writing results to output JSON file
         with open(filename, 'w') as f:
             json.dump(result, f, indent=4)
-
         return 0 if 'error' not in result else 1
+        
 # Main script execution
 if __name__ == "__main__":
     try:
         sys.exit(main())
     except Exception as _e:  # noqa: F841
         # Use Traceback to be able to see the error in the logs
-        print("An error occurred:")
+        print(f"An error occurred: {_e}")
         traceback.print_exc()
         sys.exit(1)
