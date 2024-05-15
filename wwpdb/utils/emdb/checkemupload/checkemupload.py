@@ -40,6 +40,8 @@ class EMMap:
         # Lambda to check whether a value is less than or equal to another value, by using epsilon as tolerance
         self.le = lambda x, y: x <= y + self.epsilon
         self.errors = []
+        self.warnings = []
+        self.loggings = []
         self.load()
 
     def load(self):
@@ -74,15 +76,15 @@ class EMMap:
                         self.nstarts[crsindices[2]]
                     )).tolist()
         except FileNotFoundError:
-            message = f"File not found: {os.path.basename(self.file)}"
-            self.errors.append(message)
+            message = f"File not found: {os.path.basename(self.file)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
         except Exception as e:
-            message = f"An error occurred while loading the file: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while loading the file: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
 
     def md5_checksum(self):
         """
@@ -99,15 +101,15 @@ class EMMap:
             # self.hash = hash_md5.hexdigest()
             return hash_md5.hexdigest()
         except FileNotFoundError:
-            message = f"File not found: {os.path.basename(self.file)}"
-            self.errors.append(message)
+            message = f"File not found: {os.path.basename(self.file)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
         except Exception as e:
-            message = f"An error occurred while calculating the MD5 checksum: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while calculating the MD5 checksum: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
 
     def same_box_size(self, another_map):
         """
@@ -122,10 +124,10 @@ class EMMap:
         try:
             return all(np.array(self.box_size) - np.array(another_map.box_size) <= self.epsilon)
         except Exception as e:
-            message = f"An error occurred while comparing box sizes: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while comparing box sizes: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return False
 
     def same_or_smaller_box_size(self, another_map):
@@ -141,10 +143,10 @@ class EMMap:
         try:
             return all(self.le(np.array(self.box_size), np.array(another_map.box_size)))
         except Exception as e:
-            message = f"An error occurred while comparing box sizes: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while comparing box sizes: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return False
 
     def overlaps(self, another_map):
@@ -163,10 +165,10 @@ class EMMap:
             # Check whether the absolute difference between the origin and end coordinates is less than epsilon
             return all(abs(origin1 - origin2) <= self.epsilon) and all(abs(end1 - end2) <= self.epsilon)
         except Exception as e:
-            message = f"An error occurred while comparing map boundaries: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while comparing map boundaries: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return False
 
     def fits_inside(self, another_map):
@@ -186,10 +188,10 @@ class EMMap:
             # the other map, respectively
             return all(self.ge(origin1, origin2)) and all(self.le(end1, end2))
         except Exception as e:
-            message = f"An error occurred while comparing map boundaries: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while comparing map boundaries: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return False
 
     def same_pixel_size(self, another_map):
@@ -206,10 +208,10 @@ class EMMap:
             diff = np.array(self.pixel_size) - np.array(another_map.pixel_size)
             return all(diff <= self.epsilon)
         except Exception as e:
-            message = f"An error occurred while comparing pixel sizes: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while comparing pixel sizes: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return False
 
     def pixel_size_is_multiple(self, another_map):
@@ -226,10 +228,10 @@ class EMMap:
             modulo = np.array(self.pixel_size) % np.array(another_map.pixel_size)
             return all(modulo <= self.epsilon)
         except Exception as e:
-            message = f"An error occurred while comparing pixel sizes: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while comparing pixel sizes: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return False
 
 
@@ -246,6 +248,8 @@ class Model:
         """
         self.file = path2model
         self.errors = []
+        self.warnings = []
+        self.loggings = []
         self.structure = self.get_coordinates()
     
     def get_coordinates(self):
@@ -308,10 +312,10 @@ class Model:
             print(message)
         except Exception as e:
             error = True
-            message = f"An error occurred while parsing the MMCIF file: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while parsing the MMCIF file: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
         return mmcif_dict, error, message
 
 
@@ -335,6 +339,8 @@ class Validator:
         self.nxyz = None
         self.nstarts = None
         self.errors = []
+        self.warnings = []
+        self.loggings = []
 
     def check(self):
         """
@@ -379,10 +385,10 @@ class Validator:
         except Exception as e:
             
             result['error'] = "An error occurred while performing checks." # TODO: Add more details to the error message (ask Jack Turner to help with this)
-            message = f"An error occurred while performing checks: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while performing checks: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
 
         return result
 
@@ -414,10 +420,10 @@ class Validator:
 
             return matrix
         except Exception as e:
-            message = f"An error occurred while calculating the matrix: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while calculating the matrix: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return None
 
     def _matrix_indices(self, apixs, onecoor):
@@ -428,10 +434,10 @@ class Validator:
             return result[0] - self.em_map.nstarts[0], result[1] - self.em_map.nstarts[1], result[2] - self.em_map.nstarts[
                 2]
         except Exception as e:
-            message = f"An error occurred while calculating the indices: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while calculating the indices: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return None
 
     def _header_check(self):
@@ -445,10 +451,10 @@ class Validator:
                 self.nxyz = (self.nxyz[crsindices[0]], self.nxyz[crsindices[1]], self.nxyz[crsindices[2]])
                 self.nstarts = (self.nstarts[crsindices[0]], self.nstarts[crsindices[1]], self.nstarts[crsindices[2]])
         except Exception as e:
-            message = f"An error occurred while checking the header: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while checking the header: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
 
     def _get_indices(self, onecoor):
         """
@@ -488,10 +494,10 @@ class Validator:
 
             return oneindex, self.nxyz
         except Exception as e:
-            message = f"An error occurred while getting the indices: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while getting the indices: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return None, None
 
     def _compare_maps(self, map1, map2):
@@ -553,10 +559,10 @@ class Validator:
 
             return result
         except Exception as e:
-            message = f"An error occurred while comparing maps: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while comparing maps: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return None
 
     def _get_atoms_outside(self):
@@ -571,10 +577,10 @@ class Validator:
             fraction_atoms_outside = num_atoms_outside / len(self.model.structure)
             return num_atoms_outside, fraction_atoms_outside
         except Exception as e:
-            message = f"An error occurred while getting atoms outside the map: {str(e)}"
-            self.errors.append(message)
+            message = f"An error occurred while getting atoms outside the map: {str(e)}\n"
+            message += traceback.format_exc()
+            self.loggings.append(message)
             print(message)
-            traceback.print_exc()
             return None, None
 
 def main():
