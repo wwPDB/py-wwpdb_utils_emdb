@@ -379,7 +379,7 @@ class Validator:
 
         except Exception as e:
             message = "An error occurred while performing checks" # TODO: Add more details to the error message (ask Jack Turner to help with this)
-            result['warning'] = message
+            result['warning'] = message + "!\n"
             message += f": {str(e)}\n"
             message += traceback.format_exc()
             self.logs.append(message)
@@ -633,7 +633,7 @@ def main():
 
     except Exception as e:
         message = "An error occurred while performing checks"
-        result['warning'] = message
+        result['warning'] = message + "!\n"
         message += f": {str(e)}\n"
         message += traceback.format_exc()
         result['log'] = message
