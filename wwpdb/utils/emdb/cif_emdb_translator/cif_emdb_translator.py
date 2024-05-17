@@ -1478,7 +1478,7 @@ class CifEMDBTranslator(object):
             @param cif_item: full name of the cif category, e.g. _em_admin.title
             """
             xsd = ""
-            if cif_item in const.MMCIF_TO_XSD:
+            if cif_item in const.MMCIF_TO_XSD:  # pylint: disable=possibly-used-before-assignment
                 xsd = const.MMCIF_TO_XSD[cif_item]
             else:
                 txt = u"CIF item (%s) not found in the MMCIF_TO_XSD dictionary." % cif_item
@@ -1731,7 +1731,7 @@ class CifEMDBTranslator(object):
                             constructed_cif_value = constructor(valueOf_=fmt_cif_value, res_type=res_type)
                 else:
                     constructed_cif_value = fmt_cif_value
-                setter_func(constructed_cif_value)
+                setter_func(constructed_cif_value)  # pylint: disable=possibly-used-before-assignment
                 log(cif_item, setter_func, fmt_cif_value, soft_name=soft_name)
             else:
                 log(cif_item, setter_func, parent_el_req=parent_el_req, soft_name=soft_name)
@@ -3088,7 +3088,7 @@ class CifEMDBTranslator(object):
                                     correct_acc_code = acc_code.replace("B", "")
                                     corrected = True
                                 if corrected:
-                                    set_cif_value(emdb_ref.set_emdb_id, "access_code", const.EM_DB_REFERENCE, cif_list=emdb_ref_in, cif_value=correct_acc_code)
+                                    set_cif_value(emdb_ref.set_emdb_id, "access_code", const.EM_DB_REFERENCE, cif_list=emdb_ref_in, cif_value=correct_acc_code)  # pylint: disable=possibly-used-before-assignment
                                     txt = u"emdb_id is set to (%s) as (_em_db_reference.access_code) is (%s)." % (correct_acc_code, acc_code)
                                     self.current_entry_log.warn_logs.append(
                                         self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt)
@@ -3156,7 +3156,7 @@ class CifEMDBTranslator(object):
                                     )
                                     self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                                 if corrected:
-                                    set_cif_value(cross_ref.set_emdb_id, "db_id", const.PDBX_DATABASE_RELATED, cif_list=rel_in, cif_value=correct_db_id)
+                                    set_cif_value(cross_ref.set_emdb_id, "db_id", const.PDBX_DATABASE_RELATED, cif_list=rel_in, cif_value=correct_db_id)  # pylint: disable=possibly-used-before-assignment
                                     txt = u"emdb_id is set to (%s) as the value for (_pdbx_database_related.db_id) is given as (%s)." % (correct_db_id, db_id)
                                     self.current_entry_log.warn_logs.append(
                                         self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.change_title + txt)
@@ -5557,7 +5557,7 @@ class CifEMDBTranslator(object):
                     rec_exp_dict_in = get_rec_exp_dict(ent_id_in, src_dicts, ent_poly_in, is_supramolecule=False)
                     set_el_recombinant_expression(p_mol, ent_id_in, rec_exp_dict_in)
                     # element 2
-                    set_el_enantiomer(p_mol, ent_type_in)
+                    set_el_enantiomer(p_mol, ent_type_in)  # pylint: disable=possibly-used-before-assignment
                     # element 3
                     set_el_sequence(p_mol, ent_poly_in, ent_id_in, ent_ref_dict)
                     # element 4
@@ -6048,7 +6048,7 @@ class CifEMDBTranslator(object):
                         set_cif_value(shadow.set_details, "details", const.EM_SHADOWING, cif_list=shadow_in)
 
                     # element 1
-                    set_el_material(shadow, shadow_in)
+                    set_el_material(shadow, shadow_in)  # pylint: disable=possibly-used-before-assignment
                     # element 2
                     set_el_angle(shadow, shadow_in)
                     # element 3
@@ -6242,7 +6242,7 @@ class CifEMDBTranslator(object):
                                 )
 
                             # element 1
-                            set_el_type(pretreat, pretreat_in)
+                            set_el_type(pretreat, pretreat_in)  # pylint: disable=possibly-used-before-assignment
                             # element 2
                             set_el_time(pretreat, pretreat_in)
                             # element 3
@@ -6268,7 +6268,7 @@ class CifEMDBTranslator(object):
                         """
                         set_cif_value(grid.set_details, "details", const.EM_SAMPLE_SUPPORT, cif_list=grid_in)
 
-                    grid_id_in = get_cif_value(const.K_ID, const.EM_SAMPLE_SUPPORT, grid_in)
+                    grid_id_in = get_cif_value(const.K_ID, const.EM_SAMPLE_SUPPORT, grid_in)  # pylint: disable=possibly-used-before-assignment
                     # element 1
                     set_el_model(grid, grid_in)
                     # element 2
@@ -6522,7 +6522,7 @@ class CifEMDBTranslator(object):
                     # element 3
                     set_el_diameter(fid, fid_in)
 
-                fs_present = get_cif_value("fiducial_markers", const.EM_TOMOGRAPHY_SPECIMEN, tom_prep_in)
+                fs_present = get_cif_value("fiducial_markers", const.EM_TOMOGRAPHY_SPECIMEN, tom_prep_in)  # pylint: disable=possibly-used-before-assignment
                 if tom_id_in in fid_dict_in and fs_present == "YES":
                     fid_list = emdb.fiducial_markers_listType()
                     fid_list_in = fid_dict_in[tom_id_in]
@@ -6660,7 +6660,7 @@ class CifEMDBTranslator(object):
                         set_cif_value(u_tome.set_details, "details", const.EM_ULTRAMICROTOMY, cif_list=u_tome_in)
 
                     # element 1
-                    set_el_instrument(u_tome, u_tome_in)
+                    set_el_instrument(u_tome, u_tome_in)  # Will be inherited from caller scope.  #  pylint: disable=used-before-assignment
                     # element 2
                     set_el_temperature(u_tome, u_tome_in)
                     # element 3
@@ -6794,7 +6794,7 @@ class CifEMDBTranslator(object):
                         set_cif_value(fib.set_details, "details", const.EM_FOCUSED_ION_BEAM, cif_list=fib_in, cif_value=all_details)
 
                     # element 1
-                    details_txt = set_el_instrument(fib, fib_in)
+                    details_txt = set_el_instrument(fib, fib_in)  # Will be inherited from caller scope.  #  pylint: disable=used-before-assignment
                     # element 2
                     set_el_ion(fib, fib_in, details_txt)
                     # element 3
@@ -6816,14 +6816,14 @@ class CifEMDBTranslator(object):
 
                 sec_in = get_cif_value("sectioning", const.EM_TOMOGRAPHY_SPECIMEN, tom_prep_in)
                 if sec_in is not None:
-                    if sec_in == "ULTRAMICROTOMY" and tom_id_in in u_tome_dict_in:
+                    if sec_in == "ULTRAMICROTOMY" and tom_id_in in u_tome_dict_in:  # Ordering sets this  #  pylint: disable=possibly-used-before-assignment
                         u_tome_in = u_tome_dict_in[tom_id_in]
                         u_tome = emdb.ultramicrotomyType()
                         set_ultramicrotomy_type(u_tome)
                         if u_tome.has__content():
                             tom_prep.set_sectioning(emdb.sectioningType(ultramicrotomy=u_tome))
                     elif sec_in == "FOCUSED ION BEAM" and tom_id_in in fib_dict_in:
-                        fib_in = fib_dict_in[tom_id_in]
+                        fib_in = fib_dict_in[tom_id_in]  # fib_in must be set before calling set_focused_ion_beam_type
                         fib = emdb.focused_ion_beamType()
                         set_focused_ion_beam_type(fib)
                         if fib.has__content():
@@ -6939,7 +6939,7 @@ class CifEMDBTranslator(object):
                     set_cif_value(cryst.set_details, "details", const.EM_CRYSTAL_FORMATION, cif_list=cryst_in)
 
                 # element 1
-                set_el_lipid_protein_ratio(cryst, cryst_in)
+                set_el_lipid_protein_ratio(cryst, cryst_in)  # Will never happen but should be passed to function.  #  pylint: disable=possibly-used-before-assignment
                 # element 2
                 set_el_lipid_mixture(cryst, cryst_in)
                 # element 3
@@ -6956,7 +6956,7 @@ class CifEMDBTranslator(object):
             cryst_dict_in = make_dict(const.EM_CRYSTAL_FORMATION, const.K_SPECIMEN_ID)
 
             if sp_id_in in cryst_dict_in:
-                cryst_in = cryst_dict_in[sp_id_in]
+                cryst_in = cryst_dict_in[sp_id_in]  # must be set before set_crystal_formation_type
                 cryst = emdb.crystal_formationType()
                 set_crystal_formation_type(cryst)
                 if cryst.has__content():
@@ -9153,11 +9153,11 @@ class CifEMDBTranslator(object):
                         }
                         set_final_reconstruction(spfr, ip_id_in, final_rec_dicts)
                         # element 1
-                        set_el_number_images_used(spfr, f_rec_in)
+                        set_el_number_images_used(spfr, f_rec_in)  # Will never happen but should be passed to function.  #  pylint: disable=possibly-used-before-assignment
 
                     final_rec_dict_in = non_st_dicts["final_rec_dict_in"]
                     if ip_id_in in final_rec_dict_in:
-                        f_rec_in = final_rec_dict_in[ip_id_in]
+                        f_rec_in = final_rec_dict_in[ip_id_in]  # used in set_non_subtom_final_reconstruction_type
                         spfr = emdb.non_subtom_final_reconstruction_type()
                         set_non_subtom_final_rec_type(spfr)
                         im_proc.set_final_reconstruction(spfr)

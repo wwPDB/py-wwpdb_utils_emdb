@@ -247,7 +247,7 @@ class Model:
         self.file = path2model
         self.errors = []
         self.structure = self.get_coordinates()
-    
+
     def get_coordinates(self):
         """
         Get atom coordinates from the parsed MMCIF file.
@@ -271,7 +271,7 @@ class Model:
             '_atom_site.Cartn_x' in mmcif_dict
             and '_atom_site.Cartn_y' in mmcif_dict
             and '_atom_site.Cartn_z' in mmcif_dict
-            ):
+        ):
             message = "No coordinates found in the MMCIF file."
             self.errors.append(message)
             print(message)
@@ -293,14 +293,14 @@ class Model:
                 traceback.print_exc()
                 continue
         return structure
-    
+
     def parse_mmcif(self):
         """
         Parse the MMCIF file
         """
         mmcif_dict, error, message = None, False, ""
         try:
-            mmcif_dict = MMCIF2Dict(self.file) # TODO: Replace with more robust parser, maybe the OneDep's one.
+            mmcif_dict = MMCIF2Dict(self.file)  # TODO: Replace with more robust parser, maybe the OneDep's one.
         except FileNotFoundError:
             error = True
             message = f"File not found: {os.path.basename(self.file)}"
@@ -377,8 +377,8 @@ class Validator:
                     }
 
         except Exception as e:
-            
-            result['error'] = "An error occurred while performing checks." # TODO: Add more details to the error message (ask Jack Turner to help with this)
+
+            result['error'] = "An error occurred while performing checks."  # TODO: Add more details to the error message (ask Jack Turner to help with this)
             message = f"An error occurred while performing checks: {str(e)}"
             self.errors.append(message)
             print(message)
@@ -577,6 +577,7 @@ class Validator:
             traceback.print_exc()
             return None, None
 
+
 def main():
     """
     Main function that parses command line arguments, performs validation checks,
@@ -603,18 +604,17 @@ def main():
             # if os.path.isfile(args.model):
             model = Model(args.model)
             errors.extend(model.errors)
-        
+
         # Loading half maps if provided
         if args.halfmaps:
-            for i, hm in enumerate(args.halfmaps, 1):
+            for _i, hm in enumerate(args.halfmaps, 1):
                 # if os.path.isfile(hm):
                 halfmap = EMMap(hm)
                 half_maps.append(halfmap)
                 errors.extend(halfmap.errors)
                 # else:
                 #     errors.append(f"Half map {i} file not found.")
-        
-        
+
         # if not errors:
         # Performing validation checks
         validator = Validator(em_map, half_maps, model)
@@ -647,7 +647,7 @@ def main():
             json.dump(result, f, indent=4)
         print(f"Result written to {filename}")
 
-        return 0 if 'error' not in result else 1
+        return 0 if 'error' not in result else 1  # pylint: disable=return-in-finally,lost-exception
 
 
 # Main script execution
