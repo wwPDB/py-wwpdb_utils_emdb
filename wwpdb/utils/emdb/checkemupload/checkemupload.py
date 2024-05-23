@@ -363,8 +363,8 @@ class Validator:
                         'half_maps_to_each_other': self._compare_maps(self.half_maps[0], self.half_maps[1])
                     })
 
-            if os.path.isfile(self.em_map.file):
-                if all(os.path.isfile(half_map.file) for half_map in self.half_maps):
+            if self.em_map and os.path.isfile(self.em_map.file):
+                if self.half_maps and all(os.path.isfile(half_map.file) for half_map in self.half_maps):
                     result.update({
                         'primary_map_to_half_maps': [self._compare_maps(self.em_map, half_map) for half_map in self.half_maps]
                     })
@@ -585,69 +585,97 @@ def main():
     """
     # Parsing command line arguments
     parser = argparse.ArgumentParser(description="Perform checks on uploaded maps.")
-    parser.add_argument("primmap", help="Input MRC primary map file")
-    parser.add_argument("--halfmaps", nargs=2, help="Input MRC half maps", required=False, default=[])
-    parser.add_argument("--model", help="Input MMCIF model file", required=False)
+
+    group = parser.add_mutually_exclusive_group(required=False)
+    group.add_argument("--input", help="Input JSON file containing paths for input files")
+
+    file_group = parser.add_argument_group("file paths (required if --input is not provided)")
+    file_group.add_argument("--primmap", help="Input MRC primary map file", required=False)
+    file_group.add_argument("--halfmaps", nargs=2, help="Input MRC half maps", required=False, default=[])
+    file_group.add_argument("--model", help="Input MMCIF model file", required=False)
+
     parser.add_argument("--output", help="Output JSON file", required=False)
+
     args = parser.parse_args()
 
     result, errors = {}, []
-    try:
-        em_map, model, half_maps = None, None, []
-        # Checking if files exist and loading data
-        # if os.path.isfile(args.primmap):
-        em_map = EMMap(args.primmap)
-        errors.extend(em_map.errors)
+    # If input is provided, load the paths from the JSON file
+    if args.input:
+        try:
+            with open(args.input, 'r') as f:
+                input_paths = json.load(f)
+            args.primmap = input_paths.get('primmap', args.primmap)
+            args.halfmaps = input_paths.get('halfmaps', args.halfmaps)
+            args.model = input_paths.get('model', args.model)
+        except FileNotFoundError:
+            errors.append(f"Input file {args.input} not found.")
+        except json.JSONDecodeError:
+            errors.append(f"Input file {args.input} is not a valid JSON file.")
 
-        # Loading model if provided
-        if args.model:
-            # if os.path.isfile(args.model):
-            model = Model(args.model)
-            errors.extend(model.errors)
+    if args.primmap:
+        try:
+            em_map, model, half_maps = None, None, []
+            # Checking if files exist and loading data
+            # if os.path.isfile(args.primmap):
+            em_map = EMMap(args.primmap)
+            errors.extend(em_map.errors)
 
-        # Loading half maps if provided
-        if args.halfmaps:
-            for _i, hm in enumerate(args.halfmaps, 1):
-                # if os.path.isfile(hm):
-                halfmap = EMMap(hm)
-                half_maps.append(halfmap)
-                errors.extend(halfmap.errors)
-                # else:
-                #     errors.append(f"Half map {i} file not found.")
+            # Loading model if provided
+            if args.model:
+                # if os.path.isfile(args.model):
+                model = Model(args.model)
+                errors.extend(model.errors)
 
-        # if not errors:
-        # Performing validation checks
-        validator = Validator(em_map, half_maps, model)
-        result.update(validator.check())
-        errors.extend(validator.errors)
+            # Loading half maps if provided
+            if args.halfmaps:
+                for _i, hm in enumerate(args.halfmaps, 1):
+                    # if os.path.isfile(hm):
+                    halfmap = EMMap(hm)
+                    half_maps.append(halfmap)
+                    errors.extend(halfmap.errors)
+                    # else:
+                    #     errors.append(f"Half map {i} file not found.")
 
-        # Adding errors to the result
-        if errors:
-            result['error'] = '\n'.join(errors)
+            # if not errors:
+            # Performing validation checks
+            validator = Validator(em_map, half_maps, model)
+            result.update(validator.check())
+            errors.extend(validator.errors)
 
-    except Exception as e:
-        message = f"An error occurred while performing checks: {str(e)}"
-        result['error'] = message
-        print(message)
-        traceback.print_exc()
+        except Exception as e:
+            message = f"An error occurred while performing checks: {str(e)}"
+            result['error'] = message
+            print(message)
+            traceback.print_exc()
+    
+    elif not args.input:
+        errors.append("--primmap is required when --input is not provided")
+        
+    # Adding errors to the result
+    if errors:
+        result['error'] = '\n'.join(errors)
 
-    finally:
-        # Printing results to stdout
-        print(json.dumps(result, indent=4))
+    # Printing results to stdout
+    print(json.dumps(result, indent=4))
 
-        # Writing results to output JSON file
-        parentdir = os.path.dirname(args.primmap)
-        basename = os.path.basename(args.primmap)
-        root, ext = os.path.splitext(basename)
-        while ext:
-            basename = root
-            root, ext = os.path.splitext(root)
-        filename = args.output or f'{os.path.join(parentdir, root)}-checks.json'
-        with open(filename, 'w') as f:
-            json.dump(result, f, indent=4)
-        print(f"Result written to {filename}")
+    # Writing results to output JSON file
+    if not args.output:
+        if args.primmap:
+            parentdir = os.path.dirname(args.primmap)
+            basename = os.path.basename(args.primmap)
+            root, ext = os.path.splitext(basename)
+            while ext:
+                basename = root
+                root, ext = os.path.splitext(root)
+            args.output = f'{os.path.join(parentdir, root)}-checks.json'
+        else:
+            args.output = 'checks.json'
+    
+    with open(args.output, 'w') as f:
+        json.dump(result, f, indent=4)
+    print(f"Result written to {args.output}")
 
-        return 0 if 'error' not in result else 1  # pylint: disable=return-in-finally,lost-exception
+    return 0 if 'error' not in result else 1  # pylint: disable=return-in-finally,lost-exception
 
 
 # Main script execution
