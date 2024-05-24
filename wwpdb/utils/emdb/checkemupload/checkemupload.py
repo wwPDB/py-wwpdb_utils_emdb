@@ -46,13 +46,10 @@ class EMMap:
         """
         Load map file and extract relevant information.
         """
-        self.hash = self.md5_checksum()
-        if self.hash is None:
-            return
-
         try:
             with mrcfile.open(self.file, mode='r', permissive=False) as mrc:
                 self.header = mrc.header
+                self.hash = self.md5_checksum(mrc.data)
                 self.box_size = self.header.cella.tolist()
                 self.pixel_size = mrc.voxel_size.tolist()
                 self.nxyz = np.array((self.header.nx, self.header.ny, self.header.nz)).tolist()
@@ -84,25 +81,16 @@ class EMMap:
             print(message)
             traceback.print_exc()
 
-    def md5_checksum(self):
+    def md5_checksum(self, data=None):
         """
         Calculate the MD5 checksum of the map file.
         """
         try:
             hash_md5 = hashlib.md5()
-            with open(self.file, "rb") as f:
-                # Depending on your file format, you might need to skip the header
-                # before starting to read the data
-                # f.seek(header_size)
-                for chunk in iter(lambda: f.read(4096), b""):
-                    hash_md5.update(chunk)
-            # self.hash = hash_md5.hexdigest()
+            # Convert the data array to bytes and update the MD5 hash
+            data_bytes = data.tobytes()
+            hash_md5.update(data_bytes)
             return hash_md5.hexdigest()
-        except FileNotFoundError:
-            message = f"File not found: {os.path.basename(self.file)}"
-            self.errors.append(message)
-            print(message)
-            traceback.print_exc()
         except Exception as e:
             message = f"An error occurred while calculating the MD5 checksum: {str(e)}"
             self.errors.append(message)
