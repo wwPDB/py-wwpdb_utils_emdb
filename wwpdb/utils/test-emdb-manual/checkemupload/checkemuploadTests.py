@@ -23,7 +23,7 @@ from wwpdb.apps.deposit.depui.common_functions import getDir, getFile
 # if status == 0 or not finished:
 #     print("Unable to perform checks on uploaded files!")
 
-# path2output = getFile(username, "tempdep", "em-check-output", "json", versionId='latest', mileStone=None, wfInstanceId=None, partNumber=None)
+# path2output = getFile(username, "tempdep", "em-map-report", "json", versionId='latest', mileStone=None, wfInstanceId=None, partNumber=None)
 
 # try:
 #     with open(path2output, 'r', encoding='utf-8') as f:
@@ -66,7 +66,7 @@ class TestFileConversion(unittest.TestCase):
         self.assertNotEqual(status, 0)
         self.assertTrue(finished)
 
-        path2output = getFile(username, "tempdep", "em-check-output", "json", versionId='latest', mileStone=None, wfInstanceId=None, partNumber=None)
+        path2output = getFile(username, "tempdep", "em-map-report", "json", versionId='latest', mileStone=None, wfInstanceId=None, partNumber=None)
 
         with patch('builtins.open', new=MagicMock()) as mock_open:
             mock_open.return_value.__enter__.return_value = MagicMock()

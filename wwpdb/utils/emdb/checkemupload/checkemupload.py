@@ -656,7 +656,7 @@ def main():
         result['error'] = '\n'.join(errors)
 
     # Printing results to stdout
-    print(json.dumps(result, indent=4))
+    print(json.dumps(result))
 
     # Writing results to output JSON file
     if not args.output:
