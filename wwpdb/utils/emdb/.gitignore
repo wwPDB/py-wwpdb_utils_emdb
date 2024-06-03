@@ -117,3 +117,6 @@ test-output
 
 # emacs
 *~
+# OS
+.DS_Store
+Thumbs.db
