@@ -1,0 +1,443 @@
+[
+    {
+        "situation": "Everything is fine",
+        "primmap": {
+            "file": "/path/to/input/file/stub.map.gz",
+            "hash": "d41d8cd98f00b204e9800998ecf8427e",
+            "header": "header information",
+            "nxyz": [128, 128, 128],
+            "nstarts": [0, 0, 0],
+            "box_size": [128.0, 128.0, 128.0],
+            "pixel_size": [1.0, 1.0, 1.0],
+            "origin": [0.0, 0.0, 0.0],
+            "end": [128.0, 128.0, 128.0],
+            "epsilon": 1.1920928955078125e-07,
+            "errors": []
+        },
+        "halfmaps": [
+            {
+                "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            },
+            {
+                "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                "hash": "5d41402abc4b2a76b9719d911017c592",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            }
+        ],
+        "model": {
+            "file": "/path/to/input/file/stub.cif",
+            "structure": [],
+            "errors": []
+        }
+    },
+    {
+        "situation": "Half-map identical to primary map",
+        "primmap": {
+            "file": "/path/to/input/file/stub.map.gz",
+            "hash": "d41d8cd98f00b204e9800998ecf8427e",
+            "header": "header information",
+            "nxyz": [128, 128, 128],
+            "nstarts": [0, 0, 0],
+            "box_size": [128.0, 128.0, 128.0],
+            "pixel_size": [1.0, 1.0, 1.0],
+            "origin": [0.0, 0.0, 0.0],
+            "end": [128.0, 128.0, 128.0],
+            "epsilon": 1.1920928955078125e-07,
+            "errors": []
+        },
+        "halfmaps": [
+            {
+                "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            },
+            {
+                "file": "/path/to/input/file/copy_of_stub.map.gz",
+                "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            }
+        ],
+        "model": {
+            "file": "/path/to/input/file/stub.cif",
+            "structure": [],
+            "errors": []
+        }
+    },
+    {
+        "situation": "Half-maps identical to each other",
+        "primmap": {
+            "file": "/path/to/input/file/stub.map.gz",
+            "hash": "d41d8cd98f00b204e9800998ecf8427e",
+            "header": "header information",
+            "nxyz": [128, 128, 128],
+            "nstarts": [0, 0, 0],
+            "box_size": [128.0, 128.0, 128.0],
+            "pixel_size": [1.0, 1.0, 1.0],
+            "origin": [0.0, 0.0, 0.0],
+            "end": [128.0, 128.0, 128.0],
+            "epsilon": 1.1920928955078125e-07,
+            "errors": []
+        },
+        "halfmaps": [
+            {
+                "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            },
+            {
+                "file": "/path/to/input/file/copy_of_stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            }
+        ],
+        "model": {
+            "file": "/path/to/input/file/stub.cif",
+            "structure": [],
+            "errors": []
+        }
+    },
+    {
+        "situation": "Half-maps not overlaid",
+        "primmap": {
+            "file": "/path/to/input/file/another_stub.map.gz",
+            "hash": "d41d8cd98f00b204e9800998ecf8427e",
+            "header": "header information",
+            "nxyz": [128, 128, 128],
+            "nstarts": [0, 0, 0],
+            "box_size": [128.0, 128.0, 128.0],
+            "pixel_size": [1.0, 1.0, 1.0],
+            "origin": [0.0, 0.0, 0.0],
+            "end": [128.0, 128.0, 128.0],
+            "epsilon": 1.1920928955078125e-07,
+            "errors": []
+        },
+        "halfmaps": [
+            {
+                "file": "/path/to/input/file/another_stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            },
+            {
+                "file": "/path/to/input/file/another_stub_half_map_2.map.gz",
+                "hash": "5d41402abc4b2a76b9719d911017c592",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            }
+        ],
+        "model": {
+            "file": "/path/to/input/file/another_stub.cif",
+            "structure": [],
+            "errors": []
+        }
+    },
+    {
+        "situation": "Half-maps with different pixel sizes",
+        "primmap": {
+            "file": "/path/to/input/file/stub.map.gz",
+            "hash": "d41d8cd98f00b204e9800998ecf8427e",
+            "header": "header information",
+            "nxyz": [128, 128, 128],
+            "nstarts": [0, 0, 0],
+            "box_size": [128.0, 128.0, 128.0],
+            "pixel_size": [1.0, 1.0, 1.0],
+            "origin": [0.0, 0.0, 0.0],
+            "end": [128.0, 128.0, 128.0],
+            "epsilon": 1.1920928955078125e-07,
+            "errors": []
+        },
+        "halfmaps": [
+            {
+                "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            },
+            {
+                "file": "/path/to/input/file/another_stub_half_map_2.map.gz",
+                "hash": "5d41402abc4b2a76b9719d911017c592",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [2.0, 2.0, 2.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            }
+        ],
+        "model": {
+            "file": "/path/to/input/file/stub.cif",
+            "structure": [],
+            "errors": []
+        }
+    },
+    {
+        "situation": "Model contains atoms outside map bounding box",
+        "primmap": {
+            "file": "/path/to/input/file/stub.map.gz",
+            "hash": "d41d8cd98f00b204e9800998ecf8427e",
+            "header": "header information",
+            "nxyz": [128, 128, 128],
+            "nstarts": [0, 0, 0],
+            "box_size": [128.0, 128.0, 128.0],
+            "pixel_size": [1.0, 1.0, 1.0],
+            "origin": [0.0, 0.0, 0.0],
+            "end": [128.0, 128.0, 128.0],
+            "epsilon": 1.1920928955078125e-07,
+            "errors": []
+        },
+        "halfmaps": [
+            {
+                "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            },
+            {
+                "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                "hash": "5d41402abc4b2a76b9719d911017c592",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            }
+        ],
+        "model": {
+            "file": "/path/to/input/file/another_stub.cif",
+            "structure": [],
+            "errors": []
+        }
+    },
+    {
+        "situation": "Primary map with box size greater than half map's",
+        "primmap": {
+            "file": "/path/to/input/file/another_stub.map.gz",
+            "hash": "d41d8cd98f00b204e9800998ecf8427e",
+            "header": "header information",
+            "nxyz": [256, 256, 256],
+            "nstarts": [0, 0, 0],
+            "box_size": [256.0, 256.0, 256.0],
+            "pixel_size": [1.0, 1.0, 1.0],
+            "origin": [0.0, 0.0, 0.0],
+            "end": [256.0, 256.0, 256.0],
+            "epsilon": 1.1920928955078125e-07,
+            "errors": []
+        },
+        "halfmaps": [
+            {
+                "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            },
+            {
+                "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                "hash": "5d41402abc4b2a76b9719d911017c592",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            }
+        ],
+        "model": {
+            "file": "/path/to/input/file/another_stub.cif",
+            "structure": [],
+            "errors": []
+        }
+    },
+    {
+        "situation": "Primary map bounding box extends beyond the boundary of the half-map bounding boxes",
+        "primmap": {
+            "file": "/path/to/input/file/another_stub.map.gz",
+            "hash": "d41d8cd98f00b204e9800998ecf8427e",
+            "header": "header information",
+            "nxyz": [256, 256, 256],
+            "nstarts": [0, 0, 0],
+            "box_size": [256.0, 256.0, 256.0],
+            "pixel_size": [1.0, 1.0, 1.0],
+            "origin": [0.0, 0.0, 0.0],
+            "end": [256.0, 256.0, 256.0],
+            "epsilon": 1.1920928955078125e-07,
+            "errors": []
+        },
+        "halfmaps": [
+            {
+                "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            },
+            {
+                "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                "hash": "5d41402abc4b2a76b9719d911017c592",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            }
+        ],
+        "model": {
+            "file": "/path/to/input/file/another_stub.cif",
+            "structure": [],
+            "errors": []
+        }
+    },
+    {
+        "situation": "Pixel sizes of primary map and half-map are not even multiple of each other",
+        "primmap": {
+            "file": "/path/to/input/file/another_stub.map.gz",
+            "hash": "d41d8cd98f00b204e9800998ecf8427e",
+            "header": "header information",
+            "nxyz": [256, 256, 256],
+            "nstarts": [0, 0, 0],
+            "box_size": [256.0, 256.0, 256.0],
+            "pixel_size": [1.0, 1.0, 1.0],
+            "origin": [0.0, 0.0, 0.0],
+            "end": [256.0, 256.0, 256.0],
+            "epsilon": 1.1920928955078125e-07,
+            "errors": []
+        },
+        "halfmaps": [
+            {
+                "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                "hash": "098f6bcd4621d373cade4e832627b4f6",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.0, 1.0, 1.0],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            },
+            {
+                "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                "hash": "5d41402abc4b2a76b9719d911017c592",
+                "header": "header information",
+                "nxyz": [128, 128, 128],
+                "nstarts": [0, 0, 0],
+                "box_size": [128.0, 128.0, 128.0],
+                "pixel_size": [1.5, 1.5, 1.5],
+                "origin": [0.0, 0.0, 0.0],
+                "end": [128.0, 128.0, 128.0],
+                "epsilon": 1.1920928955078125e-07,
+                "errors": []
+            }
+        ],
+        "model": {
+            "file": "/path/to/input/file/another_stub.cif",
+            "structure": [],
+            "errors": []
+        }
+    }     
+]
