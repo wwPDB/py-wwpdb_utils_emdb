@@ -53,7 +53,6 @@ class EMMap:
         # Lambda to check whether a value is less than or equal to another value, by using epsilon as tolerance
         self.le = lambda x, y: x <= y + self.epsilon
         self.errors = []
-        self.load()
 
     def load(self):
         """
@@ -314,7 +313,23 @@ class Model:
             expected output
         """
         self.file = path2model
+        self.structure = None
         self.errors = []
+    
+    def load(self):
+        """
+        Load the structural model from the MMCIF file and store the coordinates.
+        This function loads the structural model from the MMCIF file and stores the coordinates in the 'structure' attribute of the Model instance. Any errors encountered during the process are logged and handled accordingly.
+        :param self: An instance of the Model class.
+        :returns: None
+        :rtype: None
+        :raises: This function may raise exceptions if the file is not found or if an error occurs during the loading process.
+        **Example**::
+            >>> model = Model('/path/to/model.cif')
+            >>> model.load()
+            >>> print(model.structure)
+            [(1.0, 2.0, 3.0), (4.0, 5.0, 6.0), (7.0, 8.0, 9.0)]
+        """
         self.structure = self.get_coordinates()
 
     def get_coordinates(self):
@@ -327,7 +342,9 @@ class Model:
         :raises ValueError: Raised if there is an issue with parsing coordinate values.
         :raises Exception: Raised in case of unexpected errors during processing.
         **Example**::
-            >>> coords = get_coordinates(self)
+            >>> model = Model('/path/to/model.cif')
+            >>> model.load()
+            >>> print(model.structure)
             [(1.0, 2.0, 3.0), (4.0, 5.0, 6.0), (7.0, 8.0, 9.0)]
         """
         # Zhe edit 24042024
@@ -839,15 +856,18 @@ def main():
             # Checking if files exist and loading data
             # if os.path.isfile(args.primmap):
             em_map = EMMap(args.primmap)
+            em_map.load()
             errors.extend(em_map.errors)
             # Loading model if provided
             if args.model:
                 model = Model(args.model)
+                model.load()
                 errors.extend(model.errors)
             # Loading half maps if provided
             if args.halfmaps:
                 for _i, hm in enumerate(args.halfmaps, 1):
                     halfmap = EMMap(hm)
+                    halfmap.load()
                     half_maps.append(halfmap)
                     errors.extend(halfmap.errors)
             validator = Validator(em_map, half_maps, model)
