@@ -10,6 +10,18 @@ import mrcfile
 import hashlib
 from Bio.PDB.MMCIF2Dict import MMCIF2Dict
 import traceback
+import inspect
+
+
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, np.float32):
+            return float(obj)
+        elif isinstance(obj, bytes):  # Add this check
+            return obj.decode()  # Convert bytes to string
+        return json.JSONEncoder.default(self, obj)
 
 
 class EMMap:
@@ -260,7 +272,7 @@ class EMMap:
             False
         """
         try:
-            diff = np.array(self.pixel_size) - np.array(another_map.pixel_size)
+            diff = abs(np.array(self.pixel_size) - np.array(another_map.pixel_size))
             return all(diff <= self.epsilon)
         except Exception as e:
             message = f"An error occurred while comparing pixel sizes: {str(e)}"
@@ -717,8 +729,8 @@ class Validator:
         try:
             result = {
                 "em_volumes": [
-                    {"name": os.path.basename(map1.file), "checksum": map1.hash},
-                    {"name": os.path.basename(map2.file), "checksum": map2.hash},
+                    {k: v for k, v in map1.__dict__.items() if k not in ('header', 'epsilon', 'error') and not inspect.isfunction(v)},
+                    {k: v for k, v in map2.__dict__.items() if k not in ('header', 'epsilon', 'error') and not inspect.isfunction(v)},
                 ],
                 "map_checks": {"identical": map1.hash == map2.hash},
             }
@@ -884,7 +896,7 @@ def main():
     if errors:
         result["error"] = "\n".join(errors)
     # Printing results to stdout
-    print(json.dumps(result))
+    print(json.dumps(result, cls=NumpyEncoder))
     # Writing results to output JSON file
     if not args.output:
         if args.primmap:
@@ -898,7 +910,7 @@ def main():
         else:
             args.output = "checks.json"
     with open(args.output, "w") as f:
-        json.dump(result, f, indent=4)
+        json.dump(result, f, indent=4, cls=NumpyEncoder)
     print(f"Result written to {args.output}")
     return 0 if "error" not in result else 1  # pylint: disable=return-in-finally,lost-exception
 
