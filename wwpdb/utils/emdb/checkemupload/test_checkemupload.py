@@ -268,12 +268,23 @@ class TestCheckEmUpload(unittest.TestCase):
         # Create an instance of ResultGenerator
         stub_data_path = os.path.join(data_dir, 'stub_data.json')
         cls.generator = ResultGenerator(stub_data_path)
-
-        # Generate the expected results for each situation and write them to the `answer_key.json` file
-        cls.expected_results = {}
-        for situation in cls.generator.stub_data:
-            result = cls.generator.get_result(situation['situation'])
-            cls.expected_results[situation['situation']] = result
+        # # NOTE: Results in the `answer_key.json` file are generated using the following code
+        # # Generate the expected results for each situation and write them to the `answer_key.json` file
+        # cls.expected_results = {}
+        # for situation in cls.generator.stub_data:
+        #     result = cls.generator.get_result(situation['situation'])
+        #     cls.expected_results[situation['situation']] = result
+        # # Write the expected results to a JSON file
+        # with open(os.path.join(data_dir, 'answer_key.json'), 'w') as f:
+        #     json.dump(cls.expected_results, f, cls=NumpyEncoder, indent=4)
+        # # NOTE: The expected results are generated only once and saved in the `answer_key.json` file, which can be further edited manually
+        
+        # Load the expected results from the `answer_key.json` file
+        with open(os.path.join(data_dir, 'answer_key.json'), 'r') as f:
+            cls.expected_results = json.load(f)
+        # NOTE: Model-related tests are currently resulting in null values for the expected results
+        # NOTE: This behavior is expected as the header attribute of the EMMap object is not being set, just mocked
+        # TODO: To fix this, the header attribute of the EMMap object should be set (or mocked) to a valid value
 
     def test_everything_is_fine(self):
         actual_result = self.generator.get_result('Everything is fine')

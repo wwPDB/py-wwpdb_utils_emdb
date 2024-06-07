@@ -1,0 +1,2249 @@
+{
+    "Everything is fine": {
+        "half_maps_to_each_other": {
+            "em_volumes": [
+                {
+                    "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                    "hash": "ddcc6957f1580bf7f54b907232f2ba05",
+                    "nxyz": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "pixel_size": [
+                        1.0824999809265137,
+                        1.0824999809265137,
+                        1.0824999809265137
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "errors": []
+                },
+                {
+                    "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                    "hash": "8f1df03fbf3afdd082a89357cb797daf",
+                    "nxyz": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "pixel_size": [
+                        1.0824999809265137,
+                        1.0824999809265137,
+                        1.0824999809265137
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "errors": []
+                }
+            ],
+            "map_checks": {
+                "identical": false,
+                "same_box_size": true,
+                "same_pixel_size": true,
+                "overlap": true
+            }
+        },
+        "primary_map_to_half_maps": [
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "7bc626cda87b132f9f90693593d994ef",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                        "hash": "ddcc6957f1580bf7f54b907232f2ba05",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": true
+                }
+            },
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "7bc626cda87b132f9f90693593d994ef",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                        "hash": "8f1df03fbf3afdd082a89357cb797daf",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": true
+                }
+            }
+        ],
+        "map_to_model": {
+            "num_atoms_outside": null,
+            "fraction_atoms_outside": null
+        }
+    },
+    "Half-map identical to primary map": {
+        "half_maps_to_each_other": {
+            "em_volumes": [
+                {
+                    "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                    "hash": "ddcc6957f1580bf7f54b907232f2ba05",
+                    "nxyz": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "pixel_size": [
+                        1.0824999809265137,
+                        1.0824999809265137,
+                        1.0824999809265137
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "errors": []
+                },
+                {
+                    "file": "/path/to/input/file/copy_of_stub.map.gz",
+                    "hash": "7bc626cda87b132f9f90693593d994ef",
+                    "nxyz": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "pixel_size": [
+                        1.0824999809265137,
+                        1.0824999809265137,
+                        1.0824999809265137
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "errors": []
+                }
+            ],
+            "map_checks": {
+                "identical": false,
+                "same_box_size": true,
+                "same_pixel_size": true,
+                "overlap": true
+            }
+        },
+        "primary_map_to_half_maps": [
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "7bc626cda87b132f9f90693593d994ef",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                        "hash": "ddcc6957f1580bf7f54b907232f2ba05",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": true
+                }
+            },
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "7bc626cda87b132f9f90693593d994ef",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/copy_of_stub.map.gz",
+                        "hash": "7bc626cda87b132f9f90693593d994ef",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": true
+                }
+            }
+        ],
+        "map_to_model": {
+            "num_atoms_outside": null,
+            "fraction_atoms_outside": null
+        }
+    },
+    "Half-maps identical to each other": {
+        "half_maps_to_each_other": {
+            "em_volumes": [
+                {
+                    "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                    "hash": "ddcc6957f1580bf7f54b907232f2ba05",
+                    "nxyz": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "pixel_size": [
+                        1.0824999809265137,
+                        1.0824999809265137,
+                        1.0824999809265137
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "errors": []
+                },
+                {
+                    "file": "/path/to/input/file/copy_of_stub_half_map_1.map.gz",
+                    "hash": "ddcc6957f1580bf7f54b907232f2ba05",
+                    "nxyz": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "pixel_size": [
+                        1.0824999809265137,
+                        1.0824999809265137,
+                        1.0824999809265137
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        259.79998779296875,
+                        259.79998779296875,
+                        259.79998779296875
+                    ],
+                    "errors": []
+                }
+            ],
+            "map_checks": {
+                "identical": true
+            }
+        },
+        "primary_map_to_half_maps": [
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "7bc626cda87b132f9f90693593d994ef",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                        "hash": "ddcc6957f1580bf7f54b907232f2ba05",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": true
+                }
+            },
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "7bc626cda87b132f9f90693593d994ef",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/copy_of_stub_half_map_1.map.gz",
+                        "hash": "ddcc6957f1580bf7f54b907232f2ba05",
+                        "nxyz": [
+                            240,
+                            240,
+                            240
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "pixel_size": [
+                            1.0824999809265137,
+                            1.0824999809265137,
+                            1.0824999809265137
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            259.79998779296875,
+                            259.79998779296875,
+                            259.79998779296875
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": true
+                }
+            }
+        ],
+        "map_to_model": {
+            "num_atoms_outside": null,
+            "fraction_atoms_outside": null
+        }
+    },
+    "Half-maps not overlaid": {
+        "half_maps_to_each_other": {
+            "em_volumes": [
+                {
+                    "file": "/path/to/input/file/another_stub_half_map_1.map.gz",
+                    "hash": "9edb41d67400c6d7d8c835e30d4a614a",
+                    "nxyz": [
+                        40,
+                        40,
+                        40
+                    ],
+                    "nstarts": [
+                        -5,
+                        -2,
+                        -3
+                    ],
+                    "box_size": [
+                        92.0,
+                        92.0,
+                        92.0
+                    ],
+                    "pixel_size": [
+                        2.299999952316284,
+                        2.299999952316284,
+                        2.299999952316284
+                    ],
+                    "origin": [
+                        -11.5,
+                        -4.6,
+                        -6.9
+                    ],
+                    "end": [
+                        80.5,
+                        87.4,
+                        85.1
+                    ],
+                    "errors": []
+                },
+                {
+                    "file": "/path/to/input/file/another_stub_half_map_2.map.gz",
+                    "hash": "324dd36a0432714c4fa320819eba96b0",
+                    "nxyz": [
+                        40,
+                        40,
+                        40
+                    ],
+                    "nstarts": [
+                        -4,
+                        -1,
+                        -2
+                    ],
+                    "box_size": [
+                        92.0,
+                        92.0,
+                        92.0
+                    ],
+                    "pixel_size": [
+                        2.299999952316284,
+                        2.299999952316284,
+                        2.299999952316284
+                    ],
+                    "origin": [
+                        -9.2,
+                        -2.3,
+                        -4.6
+                    ],
+                    "end": [
+                        82.8,
+                        89.7,
+                        87.4
+                    ],
+                    "errors": []
+                }
+            ],
+            "map_checks": {
+                "identical": false,
+                "same_box_size": true,
+                "same_pixel_size": true,
+                "overlap": false,
+                "fits_inside": false
+            }
+        },
+        "primary_map_to_half_maps": [
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/another_stub.map.gz",
+                        "hash": "0b7a6198950e2a3b86e57b8851d7e1a0",
+                        "nxyz": [
+                            33,
+                            38,
+                            37
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            75.9000015258789,
+                            87.4000015258789,
+                            85.0999984741211
+                        ],
+                        "pixel_size": [
+                            2.299999952316284,
+                            2.299999952316284,
+                            2.299999952316284
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            75.9,
+                            87.4,
+                            85.1
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/another_stub_half_map_1.map.gz",
+                        "hash": "9edb41d67400c6d7d8c835e30d4a614a",
+                        "nxyz": [
+                            40,
+                            40,
+                            40
+                        ],
+                        "nstarts": [
+                            -5,
+                            -2,
+                            -3
+                        ],
+                        "box_size": [
+                            92.0,
+                            92.0,
+                            92.0
+                        ],
+                        "pixel_size": [
+                            2.299999952316284,
+                            2.299999952316284,
+                            2.299999952316284
+                        ],
+                        "origin": [
+                            -11.5,
+                            -4.6,
+                            -6.9
+                        ],
+                        "end": [
+                            80.5,
+                            87.4,
+                            85.1
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": false,
+                    "fits_inside": true
+                }
+            },
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/another_stub.map.gz",
+                        "hash": "0b7a6198950e2a3b86e57b8851d7e1a0",
+                        "nxyz": [
+                            33,
+                            38,
+                            37
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            75.9000015258789,
+                            87.4000015258789,
+                            85.0999984741211
+                        ],
+                        "pixel_size": [
+                            2.299999952316284,
+                            2.299999952316284,
+                            2.299999952316284
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            75.9,
+                            87.4,
+                            85.1
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/another_stub_half_map_2.map.gz",
+                        "hash": "324dd36a0432714c4fa320819eba96b0",
+                        "nxyz": [
+                            40,
+                            40,
+                            40
+                        ],
+                        "nstarts": [
+                            -4,
+                            -1,
+                            -2
+                        ],
+                        "box_size": [
+                            92.0,
+                            92.0,
+                            92.0
+                        ],
+                        "pixel_size": [
+                            2.299999952316284,
+                            2.299999952316284,
+                            2.299999952316284
+                        ],
+                        "origin": [
+                            -9.2,
+                            -2.3,
+                            -4.6
+                        ],
+                        "end": [
+                            82.8,
+                            89.7,
+                            87.4
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": false,
+                    "fits_inside": true
+                }
+            }
+        ],
+        "map_to_model": {
+            "num_atoms_outside": null,
+            "fraction_atoms_outside": null
+        }
+    },
+    "Half-maps with different pixel sizes": {
+        "half_maps_to_each_other": {
+            "em_volumes": [
+                {
+                    "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                    "hash": "098f6bcd4621d373cade4e832627b4f6",
+                    "nxyz": [
+                        128,
+                        128,
+                        128
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                },
+                {
+                    "file": "/path/to/input/file/another_stub_half_map_2.map.gz",
+                    "hash": "5d41402abc4b2a76b9719d911017c592",
+                    "nxyz": [
+                        64,
+                        64,
+                        64
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        2.0,
+                        2.0,
+                        2.0
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                }
+            ],
+            "map_checks": {
+                "identical": false,
+                "same_box_size": true,
+                "same_pixel_size": false,
+                "pixel_size_is_multiple": false,
+                "overlap": true
+            }
+        },
+        "primary_map_to_half_maps": [
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                        "hash": "098f6bcd4621d373cade4e832627b4f6",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": true
+                }
+            },
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/another_stub_half_map_2.map.gz",
+                        "hash": "5d41402abc4b2a76b9719d911017c592",
+                        "nxyz": [
+                            64,
+                            64,
+                            64
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            2.0,
+                            2.0,
+                            2.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": false,
+                    "pixel_size_is_multiple": false,
+                    "overlap": true
+                }
+            }
+        ],
+        "map_to_model": {
+            "num_atoms_outside": null,
+            "fraction_atoms_outside": null
+        }
+    },
+    "Model contains atoms outside map bounding box": {
+        "half_maps_to_each_other": {
+            "em_volumes": [
+                {
+                    "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                    "hash": "098f6bcd4621d373cade4e832627b4f6",
+                    "nxyz": [
+                        128,
+                        128,
+                        128
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                },
+                {
+                    "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                    "hash": "5d41402abc4b2a76b9719d911017c592",
+                    "nxyz": [
+                        128,
+                        128,
+                        128
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                }
+            ],
+            "map_checks": {
+                "identical": false,
+                "same_box_size": true,
+                "same_pixel_size": true,
+                "overlap": true
+            }
+        },
+        "primary_map_to_half_maps": [
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                        "hash": "098f6bcd4621d373cade4e832627b4f6",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": true
+                }
+            },
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                        "hash": "5d41402abc4b2a76b9719d911017c592",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": true,
+                    "same_pixel_size": true,
+                    "overlap": true
+                }
+            }
+        ],
+        "map_to_model": {
+            "num_atoms_outside": null,
+            "fraction_atoms_outside": null
+        }
+    },
+    "Primary map with box size greater than half map's": {
+        "half_maps_to_each_other": {
+            "em_volumes": [
+                {
+                    "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                    "hash": "098f6bcd4621d373cade4e832627b4f6",
+                    "nxyz": [
+                        128,
+                        128,
+                        128
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                },
+                {
+                    "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                    "hash": "5d41402abc4b2a76b9719d911017c592",
+                    "nxyz": [
+                        128,
+                        128,
+                        128
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                }
+            ],
+            "map_checks": {
+                "identical": false,
+                "same_box_size": true,
+                "same_pixel_size": true,
+                "overlap": true
+            }
+        },
+        "primary_map_to_half_maps": [
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/another_stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "pixel_size": [
+                            2.0,
+                            2.0,
+                            2.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                        "hash": "098f6bcd4621d373cade4e832627b4f6",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": false,
+                    "same_or_smaller_box_size": false,
+                    "same_pixel_size": false,
+                    "pixel_size_is_multiple": true,
+                    "overlap": false,
+                    "fits_inside": false
+                }
+            },
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/another_stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "pixel_size": [
+                            2.0,
+                            2.0,
+                            2.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                        "hash": "5d41402abc4b2a76b9719d911017c592",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": false,
+                    "same_or_smaller_box_size": false,
+                    "same_pixel_size": false,
+                    "pixel_size_is_multiple": true,
+                    "overlap": false,
+                    "fits_inside": false
+                }
+            }
+        ],
+        "map_to_model": {
+            "num_atoms_outside": null,
+            "fraction_atoms_outside": null
+        }
+    },
+    "Primary map bounding box extends beyond the boundary of the half-map bounding boxes": {
+        "half_maps_to_each_other": {
+            "em_volumes": [
+                {
+                    "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                    "hash": "098f6bcd4621d373cade4e832627b4f6",
+                    "nxyz": [
+                        128,
+                        128,
+                        128
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                },
+                {
+                    "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                    "hash": "5d41402abc4b2a76b9719d911017c592",
+                    "nxyz": [
+                        128,
+                        128,
+                        128
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                }
+            ],
+            "map_checks": {
+                "identical": false,
+                "same_box_size": true,
+                "same_pixel_size": true,
+                "overlap": true
+            }
+        },
+        "primary_map_to_half_maps": [
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/another_stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            256,
+                            256,
+                            256
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                        "hash": "098f6bcd4621d373cade4e832627b4f6",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": false,
+                    "same_or_smaller_box_size": false,
+                    "same_pixel_size": true,
+                    "overlap": false,
+                    "fits_inside": false
+                }
+            },
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/another_stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            256,
+                            256,
+                            256
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                        "hash": "5d41402abc4b2a76b9719d911017c592",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": false,
+                    "same_or_smaller_box_size": false,
+                    "same_pixel_size": true,
+                    "overlap": false,
+                    "fits_inside": false
+                }
+            }
+        ],
+        "map_to_model": {
+            "num_atoms_outside": null,
+            "fraction_atoms_outside": null
+        }
+    },
+    "Pixel sizes of primary map and half-map are not even multiple of each other": {
+        "half_maps_to_each_other": {
+            "em_volumes": [
+                {
+                    "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                    "hash": "098f6bcd4621d373cade4e832627b4f6",
+                    "nxyz": [
+                        128,
+                        128,
+                        128
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                },
+                {
+                    "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                    "hash": "5d41402abc4b2a76b9719d911017c592",
+                    "nxyz": [
+                        85.33333333333333,
+                        85.33333333333333,
+                        85.33333333333333
+                    ],
+                    "nstarts": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "box_size": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "pixel_size": [
+                        1.5,
+                        1.5,
+                        1.5
+                    ],
+                    "origin": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "end": [
+                        128.0,
+                        128.0,
+                        128.0
+                    ],
+                    "errors": []
+                }
+            ],
+            "map_checks": {
+                "identical": false,
+                "same_box_size": true,
+                "same_pixel_size": false,
+                "pixel_size_is_multiple": false,
+                "overlap": true
+            }
+        },
+        "primary_map_to_half_maps": [
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/another_stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            256,
+                            256,
+                            256
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_1.map.gz",
+                        "hash": "098f6bcd4621d373cade4e832627b4f6",
+                        "nxyz": [
+                            128,
+                            128,
+                            128
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": false,
+                    "same_or_smaller_box_size": false,
+                    "same_pixel_size": true,
+                    "overlap": false,
+                    "fits_inside": false
+                }
+            },
+            {
+                "em_volumes": [
+                    {
+                        "file": "/path/to/input/file/another_stub.map.gz",
+                        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+                        "nxyz": [
+                            256,
+                            256,
+                            256
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "pixel_size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            256.0,
+                            256.0,
+                            256.0
+                        ],
+                        "errors": []
+                    },
+                    {
+                        "file": "/path/to/input/file/stub_half_map_2.map.gz",
+                        "hash": "5d41402abc4b2a76b9719d911017c592",
+                        "nxyz": [
+                            85.33333333333333,
+                            85.33333333333333,
+                            85.33333333333333
+                        ],
+                        "nstarts": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "box_size": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "pixel_size": [
+                            1.5,
+                            1.5,
+                            1.5
+                        ],
+                        "origin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "end": [
+                            128.0,
+                            128.0,
+                            128.0
+                        ],
+                        "errors": []
+                    }
+                ],
+                "map_checks": {
+                    "identical": false,
+                    "same_box_size": false,
+                    "same_or_smaller_box_size": false,
+                    "same_pixel_size": false,
+                    "pixel_size_is_multiple": false,
+                    "overlap": false,
+                    "fits_inside": false
+                }
+            }
+        ],
+        "map_to_model": {
+            "num_atoms_outside": null,
+            "fraction_atoms_outside": null
+        }
+    }
+}
