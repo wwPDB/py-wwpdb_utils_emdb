@@ -264,14 +264,16 @@ class TestValidator(unittest.TestCase):
 class TestCheckEmUpload(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # Load the expected results from answer_key.json
-        results_path = os.path.join(data_dir, 'answer_key.json')
-        with open(results_path, 'r') as f:
-            cls.expected_results = json.load(f)
 
         # Create an instance of ResultGenerator
         stub_data_path = os.path.join(data_dir, 'stub_data.json')
         cls.generator = ResultGenerator(stub_data_path)
+
+        # Generate the expected results for each situation and write them to the `answer_key.json` file
+        cls.expected_results = {}
+        for situation in cls.generator.stub_data:
+            result = cls.generator.get_result(situation['situation'])
+            cls.expected_results[situation['situation']] = result
 
     def test_everything_is_fine(self):
         actual_result = self.generator.get_result('Everything is fine')
