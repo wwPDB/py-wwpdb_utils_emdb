@@ -15,13 +15,13 @@ django.setup()
 from wwpdb.utils.emdb.checkemupload.checkemupload import EMMap, Model, Validator
 from wwpdb.utils.config.ConfigInfo import ConfigInfo, getSiteId
 
-site_id = getSiteId()
-config = ConfigInfo(site_id)
-onedep_path = os.environ['ONEDEP_PATH']
-deployment = config.get('SITE_SUFFIX')
-data_dir = os.path.join(onedep_path, 'deployments', deployment, 'source/py-wwpdb_utils_emdb/wwpdb/utils/emdb/checkemupload/data/')
-stub_data_path = os.path.join(data_dir, 'stub_data.json')
-# raise ValueError(f'Path: {stub_data_path}')
+SITE_ID = getSiteId()
+CONFIG = ConfigInfo(SITE_ID)
+ONEDEP_PATH = os.environ['ONEDEP_PATH']
+DEPLOYENT = CONFIG.get('SITE_SUFFIX')
+DATA_DIR = os.path.join(ONEDEP_PATH, 'deployments', DEPLOYENT, 'source/py-wwpdb_utils_emdb/wwpdb/utils/emdb/checkemupload/data/')
+STUB_DATA_PATH = os.path.join(DATA_DIR, 'stub_data.json')
+# raise ValueError(f'Path: {STUB_DATA_PATH}')
 
 
 # Add this class to convert numpy arrays to lists when serializing to JSON
@@ -38,9 +38,9 @@ class NumpyEncoder(json.JSONEncoder):
 
 # Create a class that generates the expected results for each situation
 class ResultGenerator:
-    def __init__(self, stub_data_path):
+    def __init__(self, STUB_DATA_PATH):
         # Load the JSON file containing the file paths
-        with open(stub_data_path, 'r') as f:
+        with open(STUB_DATA_PATH, 'r') as f:
             self.stub_data = json.load(f)
 
     # Use patch to mock os.path.isfile
@@ -222,7 +222,7 @@ class TestValidator(unittest.TestCase):
     def setUp(self, mock_isfile):
         # Create instances of EMMap and Model with mock data
         # Use the `ResultGenerator` class to generate the expected results for the "Everything is fine" situation
-        self.generator = ResultGenerator(stub_data_path)
+        self.generator = ResultGenerator(STUB_DATA_PATH)
         self.stub_data = None
         for situation in self.generator.stub_data:
             if situation['situation'] == 'Everything is fine':
@@ -266,8 +266,7 @@ class TestCheckEmUpload(unittest.TestCase):
     def setUpClass(cls):
 
         # Create an instance of ResultGenerator
-        stub_data_path = os.path.join(data_dir, 'stub_data.json')
-        cls.generator = ResultGenerator(stub_data_path)
+        cls.generator = ResultGenerator(STUB_DATA_PATH)
         # # NOTE: Results in the `answer_key.json` file are generated using the following code
         # # Generate the expected results for each situation and write them to the `answer_key.json` file
         # cls.expected_results = {}
@@ -275,12 +274,12 @@ class TestCheckEmUpload(unittest.TestCase):
         #     result = cls.generator.get_result(situation['situation'])
         #     cls.expected_results[situation['situation']] = result
         # # Write the expected results to a JSON file
-        # with open(os.path.join(data_dir, 'answer_key.json'), 'w') as f:
+        # with open(os.path.join(DATA_DIR, 'answer_key.json'), 'w') as f:
         #     json.dump(cls.expected_results, f, cls=NumpyEncoder, indent=4)
         # # NOTE: The expected results are generated only once and saved in the `answer_key.json` file, which can be further edited manually
         
         # Load the expected results from the `answer_key.json` file
-        with open(os.path.join(data_dir, 'answer_key.json'), 'r') as f:
+        with open(os.path.join(DATA_DIR, 'answer_key.json'), 'r') as f:
             cls.expected_results = json.load(f)
         # NOTE: Model-related tests are currently resulting in null values for the expected results
         # NOTE: This behavior is expected as the header attribute of the EMMap object is not being set, just mocked
