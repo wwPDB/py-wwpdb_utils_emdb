@@ -60,10 +60,6 @@ class EMMap:
         self.end = None
         # Epsilon to use as tolerance for floating point comparisons
         self.epsilon = np.finfo(np.float32).eps
-        # Lambda to check whether a value is greater than or equal to another value, by using epsilon as tolerance
-        self.ge = lambda x, y: x >= y - self.epsilon
-        # Lambda to check whether a value is less than or equal to another value, by using epsilon as tolerance
-        self.le = lambda x, y: x <= y + self.epsilon
         self.errors = []
 
     def load(self):
@@ -169,7 +165,7 @@ class EMMap:
         """
         try:
             return all(
-                np.array(self.box_size) - np.array(another_map.box_size) <= self.epsilon
+                abs(np.array(self.box_size) - np.array(another_map.box_size)) <= self.epsilon
             )
         except Exception as e:
             message = f"An error occurred while comparing box sizes: {str(e)}"
@@ -194,7 +190,7 @@ class EMMap:
             True
         """
         try:
-            return all(self.le(np.array(self.box_size), np.array(another_map.box_size)))
+            return all(np.greater_equal(np.array(self.box_size) + self.epsilon, np.array(another_map.box_size)))
         except Exception as e:
             message = f"An error occurred while comparing box sizes: {str(e)}"
             self.errors.append(message)
@@ -240,15 +236,19 @@ class EMMap:
         :rtype: bool
         :raises: This function may raise exceptions in case of errors during the boundary comparison process.
         **Example**::
-            >>> map1 = EMMap(origin=[0, 0], end=[5, 5])
-            >>> map2 = EMMap(origin=[1, 1], end=[4, 4])
+            >>> map1 = EMMap(origin=[1, 1], end=[4, 4])
+            >>> map2 = EMMap(origin=[0, 0], end=[5, 5])
             >>> map1.fits_inside(map2)
             True
         """
         try:
             (origin1, end1) = (np.array(self.origin), np.array(self.end))
             (origin2, end2) = (np.array(another_map.origin), np.array(another_map.end))
-            return all(self.ge(origin1, origin2)) and all(self.le(end1, end2))
+            return all(
+                np.greater_equal(origin1, origin2 - self.epsilon)
+            ) and all(
+                np.less_equal(end1, end2 + self.epsilon)
+            )
         except Exception as e:
             message = f"An error occurred while comparing map boundaries: {str(e)}"
             self.errors.append(message)
