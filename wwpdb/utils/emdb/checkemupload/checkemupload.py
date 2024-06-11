@@ -164,9 +164,7 @@ class EMMap:
             False
         """
         try:
-            return all(
-                abs(np.array(self.box_size) - np.array(another_map.box_size)) <= self.epsilon
-            )
+            return np.allclose(self.box_size, another_map.box_size, atol=self.epsilon)
         except Exception as e:
             message = f"An error occurred while comparing box sizes: {str(e)}"
             self.errors.append(message)
@@ -184,13 +182,14 @@ class EMMap:
         :rtype: bool
         :raises: This function can raise generic exceptions if there is an error while comparing the box sizes of the maps.
         **Example**::
-            >>> map1 = EMMap()
-            >>> map2 = EMMap()
+            >>> map1 = EMMap(box_size=[100, 100, 100])
+            >>> map2 = EMMap(box_size=[100, 100, 100])
             >>> map1.same_or_smaller_box_size(map2)
             True
         """
         try:
-            return all(np.greater_equal(np.array(self.box_size) + self.epsilon, np.array(another_map.box_size)))
+            # Check if each dimension of the current map's box size is less than or equal to the corresponding dimension in another_map
+            return all(np.less_equal(self.box_size, another_map.box_size)) or np.allclose(self.box_size, another_map.box_size, atol=self.epsilon)
         except Exception as e:
             message = f"An error occurred while comparing box sizes: {str(e)}"
             self.errors.append(message)
@@ -216,9 +215,7 @@ class EMMap:
         try:
             (origin1, end1) = (np.array(self.origin), np.array(self.end))
             (origin2, end2) = (np.array(another_map.origin), np.array(another_map.end))
-            return all(abs(origin1 - origin2) <= self.epsilon) and all(
-                abs(end1 - end2) <= self.epsilon
-            )
+            return all(np.isclose(origin1, origin2, atol=self.epsilon)) and all(np.isclose(end1, end2, atol=self.epsilon))
         except Exception as e:
             message = f"An error occurred while comparing map boundaries: {str(e)}"
             self.errors.append(message)
@@ -244,11 +241,7 @@ class EMMap:
         try:
             (origin1, end1) = (np.array(self.origin), np.array(self.end))
             (origin2, end2) = (np.array(another_map.origin), np.array(another_map.end))
-            return all(
-                np.greater_equal(origin1, origin2 - self.epsilon)
-            ) and all(
-                np.less_equal(end1, end2 + self.epsilon)
-            )
+            return all(np.greater_equal(origin1, origin2 - self.epsilon)) and all(np.less_equal(end1, end2 + self.epsilon))
         except Exception as e:
             message = f"An error occurred while comparing map boundaries: {str(e)}"
             self.errors.append(message)
@@ -272,8 +265,10 @@ class EMMap:
             False
         """
         try:
-            diff = abs(np.array(self.pixel_size) - np.array(another_map.pixel_size))
-            return all(diff <= self.epsilon)
+            # diff = abs(np.array(self.pixel_size) - np.array(another_map.pixel_size))
+            # return all(diff <= self.epsilon)
+            # Use isclose to achieve the same result as above
+            return np.allclose(self.pixel_size, another_map.pixel_size, atol=self.epsilon)
         except Exception as e:
             message = f"An error occurred while comparing pixel sizes: {str(e)}"
             self.errors.append(message)
@@ -297,8 +292,10 @@ class EMMap:
             True
         """
         try:
-            modulo = np.array(self.pixel_size) % np.array(another_map.pixel_size)
-            return all(modulo <= self.epsilon)
+            # modulo = np.array(self.pixel_size) % np.array(another_map.pixel_size)
+            # return all(modulo <= self.epsilon)
+            # Use isclose to achieve the same result as above
+            return np.allclose(np.mod(self.pixel_size, another_map.pixel_size), 0, atol=self.epsilon)
         except Exception as e:
             message = f"An error occurred while comparing pixel sizes: {str(e)}"
             self.errors.append(message)
