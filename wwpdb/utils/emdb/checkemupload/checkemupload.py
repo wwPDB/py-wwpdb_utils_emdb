@@ -19,6 +19,8 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.tolist()
         elif isinstance(obj, np.float32):
             return float(obj)
+        elif isinstance(obj, np.bool_):
+            return bool(obj)
         elif isinstance(obj, bytes):  # Add this check
             return obj.decode()  # Convert bytes to string
         return json.JSONEncoder.default(self, obj)
@@ -213,9 +215,10 @@ class EMMap:
             True
         """
         try:
-            (origin1, end1) = (np.array(self.origin), np.array(self.end))
-            (origin2, end2) = (np.array(another_map.origin), np.array(another_map.end))
-            return all(np.isclose(origin1, origin2, atol=self.epsilon)) and all(np.isclose(end1, end2, atol=self.epsilon))
+            # Convert map boundaries to numpy arrays and round the values
+            origin1, end1 = np.round(np.array(self.origin), decimals=2), np.round(np.array(self.end), decimals=2)
+            origin2, end2 = np.round(np.array(another_map.origin), decimals=2), np.round(np.array(another_map.end), decimals=2)
+            return np.allclose(origin1, origin2, atol=self.epsilon) and np.allclose(end1, end2, atol=self.epsilon)
         except Exception as e:
             message = f"An error occurred while comparing map boundaries: {str(e)}"
             self.errors.append(message)
@@ -239,9 +242,19 @@ class EMMap:
             True
         """
         try:
-            (origin1, end1) = (np.array(self.origin), np.array(self.end))
-            (origin2, end2) = (np.array(another_map.origin), np.array(another_map.end))
-            return all(np.greater_equal(origin1, origin2 - self.epsilon)) and all(np.less_equal(end1, end2 + self.epsilon))
+            # Convert map boundaries to numpy arrays and round the values
+            origin1, end1 = np.round(np.array(self.origin), decimals=2), np.round(np.array(self.end), decimals=2)
+            origin2, end2 = np.round(np.array(another_map.origin), decimals=2), np.round(np.array(another_map.end), decimals=2)
+            
+            # Check if all dimensions of self's boundaries are within the corresponding dimensions of another_map's boundaries
+            fits_inside = not np.any(np.less(origin1, origin2)) and not np.any(np.greater(end1, end2))
+            
+            # If the strict check fails, apply a tolerance check
+            if not fits_inside:
+                fits_inside = np.allclose(origin1, origin2, atol=self.epsilon) and np.allclose(end1, end2, atol=self.epsilon)
+            
+            return fits_inside
+
         except Exception as e:
             message = f"An error occurred while comparing map boundaries: {str(e)}"
             self.errors.append(message)
