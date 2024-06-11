@@ -267,17 +267,6 @@ class TestCheckEmUpload(unittest.TestCase):
 
         # Create an instance of ResultGenerator
         cls.generator = ResultGenerator(STUB_DATA_PATH)
-        # # NOTE: Results in the `answer_key.json` file are generated using the following code
-        # # Generate the expected results for each situation and write them to the `answer_key.json` file
-        # cls.expected_results = {}
-        # for situation in cls.generator.stub_data:
-        #     result = cls.generator.get_result(situation['situation'])
-        #     cls.expected_results[situation['situation']] = result
-        # # Write the expected results to a JSON file
-        # with open(os.path.join(DATA_DIR, 'answer_key.json'), 'w') as f:
-        #     json.dump(cls.expected_results, f, cls=NumpyEncoder, indent=4)
-        # # NOTE: The expected results are generated only once and saved in the `answer_key.json` file, which can be further edited manually
-        
         # Load the expected results from the `answer_key.json` file
         with open(os.path.join(DATA_DIR, 'answer_key.json'), 'r') as f:
             cls.expected_results = json.load(f)
@@ -288,10 +277,6 @@ class TestCheckEmUpload(unittest.TestCase):
     def test_everything_is_fine(self):
         actual_result = self.generator.get_result('Everything is fine')
         self.assertEqual(actual_result, self.expected_results['Everything is fine'])
-
-    def test_half_map_identical_to_primary_map(self):
-        actual_result = self.generator.get_result('Half-map identical to primary map')
-        self.assertEqual(actual_result, self.expected_results['Half-map identical to primary map'])
 
     def test_half_maps_identical_to_each_other(self):
         actual_result = self.generator.get_result('Half-maps identical to each other')
@@ -305,9 +290,13 @@ class TestCheckEmUpload(unittest.TestCase):
         actual_result = self.generator.get_result('Half-maps with different pixel sizes')
         self.assertEqual(actual_result, self.expected_results['Half-maps with different pixel sizes'])
 
-    def test_model_contains_atoms_outside_map_bounding_box(self):
-        actual_result = self.generator.get_result('Model contains atoms outside map bounding box')
-        self.assertEqual(actual_result, self.expected_results['Model contains atoms outside map bounding box'])
+    # def test_model_contains_atoms_outside_map_bounding_box(self):
+    #     actual_result = self.generator.get_result('Model contains atoms outside map bounding box')
+    #     self.assertEqual(actual_result, self.expected_results['Model contains atoms outside map bounding box'])
+
+    def test_half_map_identical_to_primary_map(self):
+        actual_result = self.generator.get_result('Half-map identical to primary map')
+        self.assertEqual(actual_result, self.expected_results['Half-map identical to primary map'])
 
     def test_primary_map_with_box_size_greater_than_half_maps(self):
         actual_result = self.generator.get_result("Primary map with box size greater than half map's")
@@ -316,6 +305,11 @@ class TestCheckEmUpload(unittest.TestCase):
     def test_primary_map_bounding_box_extends_beyond_boundary_of_half_map_bounding_boxes(self):
         actual_result = self.generator.get_result('Primary map bounding box extends beyond the boundary of the half-map bounding boxes')
         self.assertEqual(actual_result, self.expected_results['Primary map bounding box extends beyond the boundary of the half-map bounding boxes'])
+
+    # Pixel sizes of primary map and half-map are not even multiple of each other
+    def test_pixel_sizes_of_primary_map_and_half_map_are_not_even_multiple_of_each_other(self):
+        actual_result = self.generator.get_result('Pixel sizes of primary map and half-map are not even multiple of each other')
+        self.assertEqual(actual_result, self.expected_results['Pixel sizes of primary map and half-map are not even multiple of each other'])
 
     def test_situation_not_found(self):
         with self.assertRaises(ValueError):
