@@ -1,4 +1,8 @@
 import os
+os.environ["DJANGO_SETTINGS_MODULE"] = "wwpdb.apps.deposit.settings"
+import django
+django.setup()
+
 import numpy as np
 import json
 import inspect
@@ -8,18 +12,14 @@ import hashlib
 import mrcfile
 from Bio.PDB.MMCIF2Dict import MMCIF2Dict
 
-import django
-os.environ["DJANGO_SETTINGS_MODULE"] = "wwpdb.apps.deposit.settings"
-django.setup()
-
-from wwpdb.utils.emdb.checkemupload.checkemupload import EMMap, Model, Validator
 from wwpdb.utils.config.ConfigInfo import ConfigInfo, getSiteId
+from wwpdb.utils.emdb.checkemupload.checkemupload import EMMap, Model, Validator
 
 SITE_ID = getSiteId()
 CONFIG = ConfigInfo(SITE_ID)
 ONEDEP_PATH = os.environ['ONEDEP_PATH']
 DEPLOYENT = CONFIG.get('SITE_SUFFIX')
-DATA_DIR = os.path.join(ONEDEP_PATH, 'deployments', DEPLOYENT, 'source/py-wwpdb_utils_emdb/wwpdb/utils/emdb/checkemupload/data/')
+DATA_DIR = os.path.join(ONEDEP_PATH, 'deployments', DEPLOYENT, 'source/py-wwpdb_utils_emdb/wwpdb/utils/tests-emdb/data/')
 STUB_DATA_PATH = os.path.join(DATA_DIR, 'stub_data.json')
 # raise ValueError(f'Path: {STUB_DATA_PATH}')
 
@@ -314,6 +314,7 @@ class TestCheckEmUpload(unittest.TestCase):
     def test_situation_not_found(self):
         with self.assertRaises(ValueError):
             self.generator.get_result('Situation not found')
+
 
 if __name__ == '__main__':
     unittest.main()
