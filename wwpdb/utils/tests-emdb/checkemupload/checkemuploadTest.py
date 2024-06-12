@@ -8,6 +8,7 @@ import json
 import inspect
 import unittest
 from unittest.mock import patch, mock_open, MagicMock
+
 import hashlib
 import mrcfile
 from Bio.PDB.MMCIF2Dict import MMCIF2Dict
