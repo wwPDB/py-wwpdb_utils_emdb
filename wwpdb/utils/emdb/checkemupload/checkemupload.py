@@ -42,7 +42,9 @@ class EMMap:
     def __init__(self, path2file):
         """
         Initialize an EMMap instance.
-        This function initializes an instance of EMMap with the provided map file path. It sets several attributes to None and defines some utility functions related to floating-point comparisons using a small epsilon value. Finally, it loads the map from the specified path.
+        This function initializes an instance of EMMap with the provided map file path. It sets several
+        attributes to None and defines some utility functions related to floating-point comparisons using
+        a small epsilon value. Finally, it loads the map from the specified path.
         :param path2file: Path to the map file as a string.
         :returns: None
         :rtype: None
@@ -67,7 +69,9 @@ class EMMap:
     def load(self):
         """
         Load map file and extract relevant information.
-        This function reads a map file, extracts essential information such as header details, checksum, box size, pixel size, and coordinate reference system. The function processes the file using 'mrcfile' library and then performs data manipulation to derive the necessary parameters.
+        This function reads a map file, extracts essential information such as header details, checksum,
+        box size, pixel size, and coordinate reference system. The function processes the file using 'mrcfile'
+        library and then performs data manipulation to derive the necessary parameters.
         :param self: A reference to the class instance.
         :returns: None; updates attributes of the class instance with extracted information.
         :raises FileNotFoundError: If the specified file cannot be found.
@@ -245,14 +249,14 @@ class EMMap:
             # Convert map boundaries to numpy arrays and round the values
             origin1, end1 = np.round(np.array(self.origin), decimals=2), np.round(np.array(self.end), decimals=2)
             origin2, end2 = np.round(np.array(another_map.origin), decimals=2), np.round(np.array(another_map.end), decimals=2)
-            
+
             # Check if all dimensions of self's boundaries are within the corresponding dimensions of another_map's boundaries
             fits_inside = not np.any(np.less(origin1, origin2)) and not np.any(np.greater(end1, end2))
-            
+
             # If the strict check fails, apply a tolerance check
             if not fits_inside:
                 fits_inside = np.allclose(origin1, origin2, atol=self.epsilon) and np.allclose(end1, end2, atol=self.epsilon)
-            
+
             return fits_inside
 
         except Exception as e:
@@ -337,11 +341,12 @@ class Model:
         self.file = path2model
         self.structure = None
         self.errors = []
-    
+
     def load(self):
         """
         Load the structural model from the MMCIF file and store the coordinates.
-        This function loads the structural model from the MMCIF file and stores the coordinates in the 'structure' attribute of the Model instance. Any errors encountered during the process are logged and handled accordingly.
+        This function loads the structural model from the MMCIF file and stores the coordinates in the 'structure'
+        attribute of the Model instance. Any errors encountered during the process are logged and handled accordingly.
         :param self: An instance of the Model class.
         :returns: None
         :rtype: None
@@ -357,7 +362,9 @@ class Model:
     def get_coordinates(self):
         """
         Get atom coordinates from the parsed MMCIF file.
-        Retrieve atom coordinates from the Multi-column Coded Information File (MMCIF) data after parsing. This function extracts x, y, z coordinates from the parsed MMCIF dictionary and creates a list of coordinate tuples. Any errors encountered during parsing or coordinate extraction are logged and handled accordingly.
+        Retrieve atom coordinates from the Multi-column Coded Information File (MMCIF) data after parsing.
+        This function extracts x, y, z coordinates from the parsed MMCIF dictionary and creates a list of
+        coordinate tuples. Any errors encountered during parsing or coordinate extraction are logged and handled accordingly.
         :param self: Represents an instance of the class containing the MMCIF parsing functionality.
         :returns: A list of coordinate tuples (x, y, z) extracted from the MMCIF file.
         :rtype: list
@@ -477,9 +484,15 @@ class Validator:
         self.errors = []
 
     def check(self):
-        """
-        Perform a series of checks to validate and compare EM maps and structural models.
-        For maps, it compares the half maps if provided, and compares each half map to the primary map. For each pair of maps, it checks if they are identical, if they have the same box size, if one has a smaller box size than the other, if they overlap, if one fits inside the other, if they have the same pixel size, and if one has a pixel size that is a multiple of the other. For the model, it checks the number and fraction of atoms outside the primary EM map.
+        """Perform a series of checks to validate and compare EM maps and structural models.
+        For maps, it compares the half maps if provided, and compares
+        each half map to the primary map. For each pair of maps, it
+        checks if they are identical, if they have the same box size,
+        if one has a smaller box size than the other, if they overlap,
+        if one fits inside the other, if they have the same pixel
+        size, and if one has a pixel size that is a multiple of the
+        other. For the model, it checks the number and fraction of
+        atoms outside the primary EM map.
         :param None: This function takes no parameters.
         :returns: Results of the checks in a dictionary format.
         :rtype: dict
@@ -488,6 +501,7 @@ class Validator:
             >>> check()
             {'primary_map_to_half_maps': [comparison_result1, comparison_result2],
              'map_to_model': {'num_atoms_outside': num_outside, 'fraction_atoms_outside': fraction_outside}}
+
         """
         result = {}
         try:
@@ -538,7 +552,9 @@ class Validator:
     def _map_matrix(self, apixs, angs):
         """
         Calculate the matrix to transform Cartesian coordinates to fractional coordinates.
-        This function takes arrays of apix lengths and angles in alpha, beta, gamma order as inputs to compute a matrix representing the transformation. The matrix is determined based on the provided lengths and angles according to a specific formula.
+        This function takes arrays of apix lengths and angles in alpha, beta, gamma order as inputs to compute
+        a matrix representing the transformation. The matrix is determined based on the provided lengths and
+        angles according to a specific formula.
         :param apixs: Array of lengths for x, y, and z axes.
         :param angs: Array of angles in alpha, beta, gamma order.
         :returns: Array representing the transformation matrix.
@@ -673,9 +689,13 @@ class Validator:
     def _get_indices(self, onecoor):
         """
         Find the indices corresponding to a single atom's cubic or plane coordinates.
-        This function takes in a list of atom coordinates in the (x, y, z) order and determines the corresponding 8 (cubic) or 4 (plane) indices. The calculated indices are then returned as part of a tuple containing two lists: the first list holds the cubic indices, and the second list contains the float index of the input atom.
+        This function takes in a list of atom coordinates in the (x, y, z) order and determines
+        the corresponding 8 (cubic) or 4 (plane) indices. The calculated indices are then returned
+        as part of a tuple containing two lists: the first list holds the cubic indices, and the second
+        list contains the float index of the input atom.
         :param onecoor: List containing the atom coordinates in (x, y, z) order.
-        :return: Tuple containing two lists of indices: the first list with 8 or 4 indices in the cubic form, and the second list with the float index of the input atom.
+        :return: Tuple containing two lists of indices: the first list with 8 or 4 indices in the cubic form,
+                 and the second list with the float index of the input atom.
         :raises: Exception if an error occurs while getting the indices.
         **Example**::
             >>> _get_indices([10, 20, 30])
@@ -796,7 +816,9 @@ class Validator:
     def _get_atoms_outside(self):
         """
         Get the number of atoms outside the map along with the corresponding fraction.
-        This function iterates over atoms in the structure to determine the number of atoms that are outside the defined map boundaries. It calculates both the count of atoms outside the map and the fraction relative to the total number of atoms in the structure.
+        This function iterates over atoms in the structure to determine the number of atoms
+        that are outside the defined map boundaries. It calculates both the count of atoms outside
+        the map and the fraction relative to the total number of atoms in the structure.
         :param self: The instance of the parent class containing the structure and necessary methods.
         :returns: A tuple containing the number of atoms outside the map and the fraction of such atoms relative to the total atoms.
         :rtype: Tuple[int, float]
