@@ -8,6 +8,7 @@ import math
 import json
 import mrcfile
 import hashlib
+from Bio.PDB import PDBParser
 from Bio.PDB.MMCIF2Dict import MMCIF2Dict
 import traceback
 import inspect
@@ -339,6 +340,7 @@ class Model:
             expected output
         """
         self.file = path2model
+        self.format = self.identify_file_format()
         self.structure = None
         self.errors = []
 
@@ -361,12 +363,11 @@ class Model:
 
     def get_coordinates(self):
         """
-        Get atom coordinates from the parsed MMCIF file.
-        Retrieve atom coordinates from the Multi-column Coded Information File (MMCIF) data after parsing.
-        This function extracts x, y, z coordinates from the parsed MMCIF dictionary and creates a list of
+        Get atom coordinates from the parsed file (MMCIF or PDB).
+        This function extracts x, y, z coordinates from the parsed dictionary and creates a list of
         coordinate tuples. Any errors encountered during parsing or coordinate extraction are logged and handled accordingly.
-        :param self: Represents an instance of the class containing the MMCIF parsing functionality.
-        :returns: A list of coordinate tuples (x, y, z) extracted from the MMCIF file.
+        :param self: Represents an instance of the class containing the parsing functionality.
+        :returns: A list of coordinate tuples (x, y, z) extracted from the file.
         :rtype: list
         :raises ValueError: Raised if there is an issue with parsing coordinate values.
         :raises Exception: Raised in case of unexpected errors during processing.
@@ -383,27 +384,32 @@ class Model:
         # The second and subsequent data blocks are misparsed.
         # Therefore, the try/except handles the misfeature - rejecting
         # "bad" data
-        (mmcif_dict, error, message) = self.parse_mmcif()
-        if error:
-            return None
-        if not mmcif_dict:
-            message = "No coordinates found in the MMCIF file."
+        try:
+            if self.format == 'MMCIF':
+                (parsed_data, error, message) = self.parse_mmcif()
+            elif self.format == 'PDB':
+                (parsed_data, error, message) = self.parse_pdb()
+            else:
+                message = "Unknown file format"
+                self.errors.append(message)
+                print(message)
+                return None
+        except Exception as e:
+            message = f"An error occurred while parsing the file: {str(e)}"
             self.errors.append(message)
             print(message)
             return None
-        if not (
-            "_atom_site.Cartn_x" in mmcif_dict
-            and "_atom_site.Cartn_y" in mmcif_dict
-            and ("_atom_site.Cartn_z" in mmcif_dict)
-        ):
-            message = "No coordinates found in the MMCIF file."
+
+        if error or not parsed_data:
             self.errors.append(message)
             print(message)
             return None
+
         structure = []
-        x = mmcif_dict["_atom_site.Cartn_x"]
-        y = mmcif_dict["_atom_site.Cartn_y"]
-        z = mmcif_dict["_atom_site.Cartn_z"]
+        x = parsed_data["_atom_site.Cartn_x"]
+        y = parsed_data["_atom_site.Cartn_y"]
+        z = parsed_data["_atom_site.Cartn_z"]
+
         for x, y, z in zip(x, y, z):
             try:
                 newx = float(x)
@@ -417,6 +423,22 @@ class Model:
                 traceback.print_exc()
                 continue
         return structure
+
+    def identify_file_format(self):
+        with open(self.file, 'r') as file:
+            # Read the first few lines of the file
+            lines = [file.readline().strip() for _ in range(10)]
+            
+            # Check for PDB format markers
+            pdb_markers = ['HEADER', 'TITLE', 'ATOM', 'HETATM', 'TER', 'END']
+            for line in lines:
+                if any(marker in line for marker in pdb_markers):
+                    return 'PDB'
+            
+            # Check for MMCIF format marker
+            for line in lines:
+                if line.startswith('data_'):
+                    return 'MMCIF'
 
     def parse_mmcif(self):
         """
@@ -445,6 +467,43 @@ class Model:
             print(message)
             traceback.print_exc()
         return (mmcif_dict, error, message)
+
+    def parse_pdb(self):
+        """
+        Parse the PDB file and return a dictionary.
+        This function reads the PDB file and parses its contents into a dictionary using the BioPython library. It returns the parsed dictionary, along with any errors encountered during the parsing process.
+        :param self: An instance of the Model class.
+        :returns: A dictionary containing the parsed PDB data.
+        :rtype: dict
+        :raises: This function may raise exceptions if the file is not found or if an error occurs during the parsing process.
+        **Example**::
+            >>> parse_pdb(self)
+            ({'_atom_site.Cartn_x': [...], '_atom_site.Cartn_y': [...], '_atom_site.Cartn_z': [...]}, False, "")
+        """
+        pdb_dict, error, message = {"_atom_site.Cartn_x": [], "_atom_site.Cartn_y": [], "_atom_site.Cartn_z": []}, False, ""
+        try:
+            parser = PDBParser()
+            structure = parser.get_structure("model", self.file)
+            for model in structure:
+                for chain in model:
+                    for residue in chain:
+                        for atom in residue:
+                            coords = atom.get_coord()
+                            pdb_dict["_atom_site.Cartn_x"].append(coords[0])
+                            pdb_dict["_atom_site.Cartn_y"].append(coords[1])
+                            pdb_dict["_atom_site.Cartn_z"].append(coords[2])
+        except FileNotFoundError:
+            error = True
+            message = f"File not found: {os.path.basename(self.file)}"
+            self.errors.append(message)
+            print(message)
+        except Exception as e:
+            error = True
+            message = f"An error occurred while parsing the PDB file: {str(e)}"
+            self.errors.append(message)
+            print(message)
+            traceback.print_exc()
+        return (pdb_dict, error, message)
 
 
 class Validator:
