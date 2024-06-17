@@ -69,9 +69,11 @@ class ResultGenerator:
                 halfmaps.append(halfmap)
             
             # Do the same for the model
-            model = Model(model_data['file'])
-            for key, value in model_data.items():
-                setattr(model, key, value)
+            with patch.object(Model, 'identify_file_format', return_value='MMCIF'):
+                # Create an instance of Model with mock data
+                model = Model(model_data['file'])
+                for key, value in model_data.items():
+                    setattr(model, key, value)
 
             # Validate the objects
             validator = Validator(primmap, halfmaps, model)
@@ -178,8 +180,11 @@ class TestEMMap(unittest.TestCase):
 class TestModel(unittest.TestCase):
 
     def setUp(self):
-        # Create an instance of Model with mock data
-        self.model = Model('path/to/mock_model.cif')
+        # Mock the identify_file_format method to return 'PDB'
+        with patch.object(Model, 'identify_file_format', return_value='MMCIF'):
+            # Create an instance of Model with mock data
+            self.model = Model('path/to/mock_model.cif')
+
         self.model.structure = [(1.0, 2.0, 3.0), (4.0, 5.0, 6.0), (7.0, 8.0, 9.0)]
         self.model.errors = []
 
@@ -188,11 +193,33 @@ class TestModel(unittest.TestCase):
             self.model.load()
             self.assertEqual(self.model.structure, [(1.0, 2.0, 3.0), (4.0, 5.0, 6.0), (7.0, 8.0, 9.0)])
 
+    def test_identify_file_format(self):
+        mock_file_content = 'HEADER\nTITLE\nATOM\n'  # adjust this to match the content of a real PDB file
+        with patch('builtins.open', mock_open(read_data=mock_file_content)):
+            self.assertEqual(self.model.identify_file_format(), 'PDB')
+
+        mock_file_content = 'data_\n'  # adjust this to match the content of a real MMCIF file
+        with patch('builtins.open', mock_open(read_data=mock_file_content)):
+            self.assertEqual(self.model.identify_file_format(), 'MMCIF')
+
+        mock_file_content = 'UNKNOWN\n'  # adjust this to match the content of an unknown file format
+        with patch('builtins.open', mock_open(read_data=mock_file_content)):
+            self.assertIsNone(self.model.identify_file_format())
+
     def test_get_coordinates(self):
         with patch.object(self.model, 'parse_mmcif', return_value=(
             {'_atom_site.Cartn_x': ['1.0'], '_atom_site.Cartn_y': ['2.0'], '_atom_site.Cartn_z': ['3.0']},
             False, ""
         )):
+            self.model.format = 'MMCIF'
+            coordinates = self.model.get_coordinates()
+            self.assertEqual(coordinates, [(1.0, 2.0, 3.0)])
+
+        with patch.object(self.model, 'parse_pdb', return_value=(
+            {'_atom_site.Cartn_x': ['1.0'], '_atom_site.Cartn_y': ['2.0'], '_atom_site.Cartn_z': ['3.0']},
+            False, ""
+        )):
+            self.model.format = 'PDB'
             coordinates = self.model.get_coordinates()
             self.assertEqual(coordinates, [(1.0, 2.0, 3.0)])
 
@@ -213,6 +240,27 @@ class TestModel(unittest.TestCase):
         # Adjusted expected result
         expected_result = {'_atom_site.Cartn_x': ['1.0'], '_atom_site.Cartn_y': ['2.0'], '_atom_site.Cartn_z': ['3.0'], 'data_': 'test'}
         self.assertEqual(result, (expected_result, False, ""))
+
+    @patch('Bio.PDB.PDBParser.get_structure')
+    def test_parse_pdb(self, mock_get_structure):
+        mock_structure = MagicMock()
+        mock_atom = MagicMock()
+        mock_atom.get_coord.return_value = (1.0, 2.0, 3.0)
+        mock_residue = MagicMock()
+        mock_residue.__iter__.return_value = iter([mock_atom])
+        mock_chain = MagicMock()
+        mock_chain.__iter__.return_value = iter([mock_residue])
+        mock_model = MagicMock()
+        mock_model.__iter__.return_value = iter([mock_chain])
+        mock_structure.__iter__.return_value = iter([mock_model])
+        mock_get_structure.return_value = mock_structure
+
+        pdb_dict, error, message = self.model.parse_pdb()
+        self.assertEqual(pdb_dict["_atom_site.Cartn_x"], [1.0])
+        self.assertEqual(pdb_dict["_atom_site.Cartn_y"], [2.0])
+        self.assertEqual(pdb_dict["_atom_site.Cartn_z"], [3.0])
+        self.assertFalse(error)
+        self.assertEqual(message, "")
 
 
 # Create a test class for unit testing the Validator class
@@ -245,9 +293,11 @@ class TestValidator(unittest.TestCase):
                 setattr(halfmap, key, value)
             self.halfmaps.append(halfmap)
 
-        self.model = Model(model_data['file'])
-        for key, value in model_data.items():
-            setattr(self.model, key, value)
+        with patch.object(Model, 'identify_file_format', return_value='MMCIF'):
+            # Create an instance of Model with mock data
+            self.model = Model(model_data['file'])
+            for key, value in model_data.items():
+                setattr(self.model, key, value)
 
         # Create an instance of Validator with the mock data    
         self.validator = Validator(self.primmap, self.halfmaps, self.model)
