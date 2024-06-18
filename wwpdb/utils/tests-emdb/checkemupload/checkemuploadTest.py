@@ -1,16 +1,15 @@
 import os
-os.environ["DJANGO_SETTINGS_MODULE"] = "wwpdb.apps.deposit.settings"
-import django
-django.setup()
+# os.environ["DJANGO_SETTINGS_MODULE"] = "wwpdb.apps.deposit.settings"
+# import django
+# django.setup()
 
 import numpy as np
 import json
-import inspect
 import unittest
 from unittest.mock import patch, mock_open, MagicMock
 import hashlib
-import mrcfile
-from Bio.PDB.MMCIF2Dict import MMCIF2Dict
+import mrcfile  # noqa: F401
+from Bio.PDB.MMCIF2Dict import MMCIF2Dict  # noqa: F401
 
 from wwpdb.utils.config.ConfigInfo import ConfigInfo, getSiteId
 from wwpdb.utils.emdb.checkemupload.checkemupload import EMMap, Model, Validator
@@ -59,7 +58,7 @@ class ResultGenerator:
             # For each attribute in the primmap object, assign the value from the JSON file that has the same key
             for key, value in primmap_data.items():
                 setattr(primmap, key, value)
-            
+
             # Do the same for the halfmaps
             halfmaps = []
             for halfmap_data in halfmaps_data:
@@ -67,7 +66,7 @@ class ResultGenerator:
                 for key, value in halfmap_data.items():
                     setattr(halfmap, key, value)
                 halfmaps.append(halfmap)
-            
+
             # Do the same for the model
             with patch.object(Model, 'identify_file_format', return_value='MMCIF'):
                 # Create an instance of Model with mock data
@@ -225,11 +224,11 @@ class TestModel(unittest.TestCase):
 
     @patch('os.path.isfile', return_value=True)
     @patch('os.path.basename', return_value='dummy_file')
-    @patch('Bio.PDB.MMCIF2Dict.MMCIF2Dict', return_value = {
-            '_atom_site.Cartn_x': ['1.0'],
-            '_atom_site.Cartn_y': ['2.0'],
-            '_atom_site.Cartn_z': ['3.0']
-        })
+    @patch('Bio.PDB.MMCIF2Dict.MMCIF2Dict', return_value={
+        '_atom_site.Cartn_x': ['1.0'],
+        '_atom_site.Cartn_y': ['2.0'],
+        '_atom_site.Cartn_z': ['3.0']
+    })
     def test_parse_mmcif(self, mock_mmcif2dict, mock_basename, mock_isfile):
         # Mock the open function to return a file-like object with some data
         mock_file = mock_open(read_data='data_test\n_atom_site.Cartn_x 1.0\n_atom_site.Cartn_y 2.0\n_atom_site.Cartn_z 3.0\n')
@@ -274,7 +273,7 @@ class TestValidator(unittest.TestCase):
         self.stub_data = None
         for situation in self.generator.stub_data:
             if situation['situation'] == 'Everything is fine':
-                self.stub_data = {k:v for k,v in situation.items() if k != 'situation'}
+                self.stub_data = {k: v for k, v in situation.items() if k != 'situation'}
                 break
         self.expected_result = self.generator.get_result('Everything is fine')
 
@@ -299,7 +298,7 @@ class TestValidator(unittest.TestCase):
             for key, value in model_data.items():
                 setattr(self.model, key, value)
 
-        # Create an instance of Validator with the mock data    
+        # Create an instance of Validator with the mock data
         self.validator = Validator(self.primmap, self.halfmaps, self.model)
 
     @patch('os.path.isfile', return_value=True)
@@ -331,7 +330,7 @@ class TestCheckEmUpload(unittest.TestCase):
     def test_half_maps_identical_to_each_other(self):
         actual_result = self.generator.get_result('Half-maps identical to each other')
         self.assertEqual(actual_result, self.expected_results['Half-maps identical to each other'])
-    
+
     def test_half_maps_not_overlaid(self):
         actual_result = self.generator.get_result('Half-maps not overlaid')
         self.assertEqual(actual_result, self.expected_results['Half-maps not overlaid'])

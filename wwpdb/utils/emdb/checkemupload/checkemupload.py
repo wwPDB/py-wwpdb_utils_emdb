@@ -15,7 +15,7 @@ import inspect
 
 
 class NumpyEncoder(json.JSONEncoder):
-    def default(self, obj):
+    def default(self, obj):  # pylint: disable=arguments-renamed
         if isinstance(obj, np.ndarray):
             return obj.tolist()
         elif isinstance(obj, np.float32):
@@ -428,13 +428,13 @@ class Model:
         with open(self.file, 'r') as file:
             # Read the first few lines of the file
             lines = [file.readline().strip() for _ in range(10)]
-            
+
             # Check for PDB format markers
             pdb_markers = ['HEADER', 'TITLE', 'ATOM', 'HETATM', 'TER', 'END']
             for line in lines:
                 if any(marker in line for marker in pdb_markers):
                     return 'PDB'
-            
+
             # Check for MMCIF format marker
             for line in lines:
                 if line.startswith('data_'):
