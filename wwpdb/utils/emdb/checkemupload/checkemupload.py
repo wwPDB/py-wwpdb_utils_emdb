@@ -390,7 +390,7 @@ class Model:
             elif self.format == 'PDB':
                 (parsed_data, error, message) = self.parse_pdb()
             else:
-                message = "Unknown file format"
+                message = "Unknown model file format"
                 self.errors.append(message)
                 print(message)
                 return None
@@ -425,19 +425,28 @@ class Model:
         return structure
 
     def identify_file_format(self):
+        """
+        Identify the format of the model file (PDB or MMCIF).
+        This function reads the first few lines of the model file to identify the format based on the presence of specific format markers. It returns the format of the file as a string.
+        :param self: An instance of the Model class.
+        :returns: The format of the model file (PDB or MMCIF).
+        :rtype: str
+        :raises: This function may raise exceptions if the file is not found or if an error occurs during the format identification process.
+        **Example**::
+            >>> model = Model('/path/to/model.cif')
+            >>> model.identify_file_format()
+            'MMCIF'
+        """
         with open(self.file, 'r') as file:
             # Read the first few lines of the file
             lines = [file.readline().strip() for _ in range(10)]
 
-            # Check for PDB format markers
-            pdb_markers = ['HEADER', 'TITLE', 'ATOM', 'HETATM', 'TER', 'END']
+            # Check for PDB and MMCIF format markers
+            pdb_markers = ['HEADER', 'TITLE', 'ATOM', 'HETATM', 'CRYST', 'MODEL', 'REMARK', 'TER', 'END']
             for line in lines:
                 if any(marker in line for marker in pdb_markers):
                     return 'PDB'
-
-            # Check for MMCIF format marker
-            for line in lines:
-                if line.startswith('data_'):
+                elif line.startswith('data_'):
                     return 'MMCIF'
 
     def parse_mmcif(self):
