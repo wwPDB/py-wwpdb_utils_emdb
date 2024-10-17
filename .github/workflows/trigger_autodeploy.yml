@@ -9,14 +9,7 @@ on:
       - master
 
 jobs:
-    build:
-        name: Call Azure Pipeline
-        runs-on: ubuntu-latest
-        steps:
-        - name: Azure Pipelines Action
-          uses: Azure/pipelines@v1.2
-          with:
-            azure-devops-project-url: https://dev.azure.com/wwPDB/wwPDB%20Python%20Projects
-            azure-pipeline-name: 'wwPDB.azure_autodeploy_pipeline'
-            azure-devops-token: ${{ secrets.AZURE_AUTODEPLOY_TOKEN }}
-            azure-pipeline-variables: '{"git_repo": "${{github.repository}}", "git_branch": "${{github.ref_name}}", "git_sha": "${{github.sha}}", "git_actor": "${{github.actor}}", "git_owner": "${{github.repository_owner}}"}'
+  deploy_dev:
+    name: Deploy github repository on development
+    uses: wwPDB/wwpdb-reusable-actions/.github/workflows/autodeploy.yml@main
+    secrets: inherit
