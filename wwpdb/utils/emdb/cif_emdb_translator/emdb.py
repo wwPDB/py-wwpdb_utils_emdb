@@ -2,24 +2,24 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Mar 27 17:13:50 2024 by generateDS.py version 2.43.3.
-# Python 3.9.7 (default, Sep 16 2021, 08:50:36)  [Clang 10.0.0 ]
+# Generated Tue Jan 21 10:46:05 2025 by generateDS.py version 2.44.3.
+# Python 3.10.9 (main, Mar  1 2023, 12:33:47) [Clang 14.0.6 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', '/Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_3/emdb.py')
+#   ('-o', '/Users/lucas/Development/EMDB/emdb-schemas/emdb_schemas/v3/v3_0_9_4/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   /Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_3/emdb.xsd
+#   /Users/lucas/Development/EMDB/emdb-schemas/emdb_schemas/v3/v3_0_9_4/emdb.xsd
 #
 # Command line:
-#   /Users/sanja/generateDS/generateDS-2.43.3/generateDS.py --root-element="emd" -f -o "/Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_3/emdb.py" --no-warnings --external-encoding="utf-8" /Users/sanja/IdeaProjects/emdb_schemas/emdb_schemas/v3/v3_0_9_3/emdb.xsd
+#   /Users/lucas/anaconda3/bin/generateDS --root-element="emd" -f -o "/Users/lucas/Development/EMDB/emdb-schemas/emdb_schemas/v3/v3_0_9_4/emdb.py" --no-warnings --external-encoding="utf-8" /Users/lucas/Development/EMDB/emdb-schemas/emdb_schemas/v3/v3_0_9_4/emdb.xsd
 #
 # Current working directory (os.getcwd()):
-#   emdb_schemas
+#   EMDB
 #
 
 import sys
@@ -179,10 +179,10 @@ except ModulenotfoundExp_ as exp:
     except ModulenotfoundExp_ as exp:
         class GeneratedsSuperSuper(object):
             pass
-
+    
     class GeneratedsSuper(GeneratedsSuperSuper):
         __hash__ = object.__hash__
-        tzoff_pattern = re_.compile(r'(\+|-)((0\d|1[0-3]):[0-5]\d|14:00)$')
+        tzoff_pattern = re_.compile('(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)$')
         class _FixedOffsetTZ(datetime_.tzinfo):
             def __init__(self, offset, name):
                 self.__offset = datetime_.timedelta(minutes=offset)
@@ -265,7 +265,7 @@ except ModulenotfoundExp_ as exp:
             if value.endswith('.'):
                 value += '0'
             return value
-
+    
         def gds_parse_float(self, input_data, node=None, input_name=''):
             try:
                 fval_ = float(input_data)
@@ -620,7 +620,7 @@ except ModulenotfoundExp_ as exp:
             path_list.reverse()
             path = '/'.join(path_list)
             return path
-        Tag_strip_pattern_ = re_.compile(r'\{.*\}')
+        Tag_strip_pattern_ = re_.compile(r'{.*}')
         def get_path_list_(self, node, path_list):
             if node is None:
                 return
@@ -695,8 +695,8 @@ except ModulenotfoundExp_ as exp:
                     self.gds_elementtree_node_.sourceline)
             else:
                 return ""
-
-
+    
+    
     def getSubclassFromModule_(module, class_):
         '''Get the subclass of a class from a specific module.'''
         name = class_.__name__ + 'Sub'
@@ -934,10 +934,10 @@ class MixedContainer:
         if self.content_type == MixedContainer.TypeString:
             text = self.value
         elif (self.content_type == MixedContainer.TypeInteger or
-              self.content_type == MixedContainer.TypeBoolean):
+                self.content_type == MixedContainer.TypeBoolean):
             text = '%d' % self.value
         elif (self.content_type == MixedContainer.TypeFloat or
-              self.content_type == MixedContainer.TypeDecimal):
+                self.content_type == MixedContainer.TypeDecimal):
             text = '%f' % self.value
         elif self.content_type == MixedContainer.TypeDouble:
             text = '%g' % self.value
@@ -969,7 +969,7 @@ class MixedContainer:
 
 class MemberSpec_(object):
     def __init__(self, name='', data_type='', container=0,
-                 optional=0, child_attrs=None, choice=None):
+            optional=0, child_attrs=None, choice=None):
         self.name = name
         self.data_type = data_type
         self.container = container
@@ -1444,6 +1444,7 @@ class microscopeType(str, Enum):
     TFSTALOS='TFS TALOS'
     TFSTALOSL_120_C='TFS TALOS L120C'
     TFSTALOSF_200_C='TFS TALOS F200C'
+    TFSTITANTHEMIS='TFS TITAN THEMIS'
     TFSTUNDRA='TFS TUNDRA'
     ZEISSLEO_912='ZEISS LEO912'
     ZEISSLIBRA_120_PLUS='ZEISS LIBRA120PLUS'
@@ -1772,7 +1773,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.9.3', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.9.4', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1860,13 +1861,13 @@ class entry_type(GeneratedsSuper):
     validate_emdb_id_type_patterns_ = [['^(EMD-\\d{4,})$']]
     def has__content(self):
         if (
-                self.admin is not None or
-                self.crossreferences is not None or
-                self.sample is not None or
-                self.structure_determination_list is not None or
-                self.map is not None or
-                self.interpretation is not None or
-                self.validation is not None
+            self.admin is not None or
+            self.crossreferences is not None or
+            self.sample is not None or
+            self.structure_determination_list is not None or
+            self.map is not None or
+            self.interpretation is not None or
+            self.validation is not None
         ):
             return True
         else:
@@ -1898,7 +1899,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.9.3" and 'version' not in already_processed:
+        if self.version != "3.0.9.4" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -2115,20 +2116,20 @@ class admin_type(GeneratedsSuper):
         self.composite_map = composite_map
     def has__content(self):
         if (
-                self.status_history_list is not None or
-                self.current_status is not None or
-                self.sites is not None or
-                self.key_dates is not None or
-                self.obsolete_list is not None or
-                self.superseded_by_list is not None or
-                self.grant_support is not None or
-                self.microscopy_center is not None or
-                self.contact_author or
-                self.title is not None or
-                self.authors_list is not None or
-                self.details is not None or
-                self.keywords is not None or
-                self.replace_existing_entry is not None
+            self.status_history_list is not None or
+            self.current_status is not None or
+            self.sites is not None or
+            self.key_dates is not None or
+            self.obsolete_list is not None or
+            self.superseded_by_list is not None or
+            self.grant_support is not None or
+            self.microscopy_center is not None or
+            self.contact_author or
+            self.title is not None or
+            self.authors_list is not None or
+            self.details is not None or
+            self.keywords is not None or
+            self.replace_existing_entry is not None
         ):
             return True
         else:
@@ -2361,7 +2362,7 @@ class version_list_type(GeneratedsSuper):
         self.status[index] = value
     def has__content(self):
         if (
-                self.status
+            self.status
         ):
             return True
         else:
@@ -2514,11 +2515,11 @@ class version_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.date is not None or
-                self.code is not None or
-                self.processing_site is not None or
-                self.annotator is not None or
-                self.details is not None
+            self.date is not None or
+            self.code is not None or
+            self.processing_site is not None or
+            self.annotator is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -2691,7 +2692,7 @@ class code_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -2825,9 +2826,9 @@ class supersedes_type(GeneratedsSuper):
     validate_emdb_id_type_patterns_ = [['^(EMD-\\d{4,})$']]
     def has__content(self):
         if (
-                self.date is not None or
-                self.entry is not None or
-                self.details is not None
+            self.date is not None or
+            self.entry is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -2959,9 +2960,9 @@ class grant_reference_type(GeneratedsSuper):
         self.country = country
     def has__content(self):
         if (
-                self.funding_body is not None or
-                self.code is not None or
-                self.country is not None
+            self.funding_body is not None or
+            self.code is not None or
+            self.country is not None
         ):
             return True
         else:
@@ -3231,20 +3232,20 @@ class contact_details_type(GeneratedsSuper):
     validate_emailType_patterns_ = [['^([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4})$']]
     def has__content(self):
         if (
-                self.role is not None or
-                self.title is not None or
-                self.first_name is not None or
-                self.middle_name is not None or
-                self.last_name is not None or
-                self.organization is not None or
-                self.street is not None or
-                self.town_or_city is not None or
-                self.state_or_province is not None or
-                self.country is not None or
-                self.post_or_zip_code is not None or
-                self.email is not None or
-                self.telephone is not None or
-                self.fax is not None
+            self.role is not None or
+            self.title is not None or
+            self.first_name is not None or
+            self.middle_name is not None or
+            self.last_name is not None or
+            self.organization is not None or
+            self.street is not None or
+            self.town_or_city is not None or
+            self.state_or_province is not None or
+            self.country is not None or
+            self.post_or_zip_code is not None or
+            self.email is not None or
+            self.telephone is not None or
+            self.fax is not None
         ):
             return True
         else:
@@ -3579,9 +3580,9 @@ class telephone_number_type(GeneratedsSuper):
     validate_localType_patterns_ = [['^(\\d+( ext. \\d+)?)$']]
     def has__content(self):
         if (
-                self.country is not None or
-                self.area is not None or
-                self.local is not None
+            self.country is not None or
+            self.area is not None or
+            self.local is not None
         ):
             return True
         else:
@@ -3736,7 +3737,7 @@ class author_ORCID_type(GeneratedsSuper):
     validate_ORCID_type_patterns_ = [['^([0-9]{4}-[0-9]{4}-[0-9]{4}-([0-9]{3}X|[0-9]{4}))$']]
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -3840,8 +3841,8 @@ class author_order_type(author_ORCID_type):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_) or
-                super(author_order_type, self).has__content()
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_) or
+            super(author_order_type, self).has__content()
         ):
             return True
         else:
@@ -3956,11 +3957,11 @@ class crossreferences_type(GeneratedsSuper):
         self.auxiliary_link_list = auxiliary_link_list
     def has__content(self):
         if (
-                self.citation_list is not None or
-                self.emdb_list is not None or
-                self.pdb_list is not None or
-                self.other_db_list is not None or
-                self.auxiliary_link_list is not None
+            self.citation_list is not None or
+            self.emdb_list is not None or
+            self.pdb_list is not None or
+            self.other_db_list is not None or
+            self.auxiliary_link_list is not None
         ):
             return True
         else:
@@ -4279,19 +4280,19 @@ class journal_citation(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.author or
-                self.title is not None or
-                self.journal is not None or
-                self.journal_abbreviation is not None or
-                self.country is not None or
-                self.issue is not None or
-                self.volume is not None or
-                self.first_page is not None or
-                self.last_page is not None or
-                self.year is not None or
-                self.language is not None or
-                self.external_references or
-                self.details is not None
+            self.author or
+            self.title is not None or
+            self.journal is not None or
+            self.journal_abbreviation is not None or
+            self.country is not None or
+            self.issue is not None or
+            self.volume is not None or
+            self.first_page is not None or
+            self.last_page is not None or
+            self.year is not None or
+            self.language is not None or
+            self.external_references or
+            self.details is not None
         ):
             return True
         else:
@@ -4669,20 +4670,20 @@ class non_journal_citation(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.author or
-                self.editor or
-                self.title is not None or
-                self.thesis_title is not None or
-                self.chapter_title is not None or
-                self.volume is not None or
-                self.publisher is not None or
-                self.publisher_location is not None or
-                self.first_page is not None or
-                self.last_page is not None or
-                self.year is not None or
-                self.language is not None or
-                self.external_references or
-                self.details is not None
+            self.author or
+            self.editor or
+            self.title is not None or
+            self.thesis_title is not None or
+            self.chapter_title is not None or
+            self.volume is not None or
+            self.publisher is not None or
+            self.publisher_location is not None or
+            self.first_page is not None or
+            self.last_page is not None or
+            self.year is not None or
+            self.language is not None or
+            self.external_references or
+            self.details is not None
         ):
             return True
         else:
@@ -4946,7 +4947,7 @@ class emdb_cross_reference_list_type(GeneratedsSuper):
         self.emdb_reference[index] = value
     def has__content(self):
         if (
-                self.emdb_reference
+            self.emdb_reference
         ):
             return True
         else:
@@ -5066,9 +5067,9 @@ class emdb_cross_reference_type(GeneratedsSuper):
     validate_emdb_id_type_patterns_ = [['^(EMD-\\d{4,})$']]
     def has__content(self):
         if (
-                self.emdb_id is not None or
-                self.relationship is not None or
-                self.details is not None
+            self.emdb_id is not None or
+            self.relationship is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -5196,7 +5197,7 @@ class pdb_cross_reference_list_type(GeneratedsSuper):
         self.pdb_reference[index] = value
     def has__content(self):
         if (
-                self.pdb_reference
+            self.pdb_reference
         ):
             return True
         else:
@@ -5316,9 +5317,9 @@ class pdb_cross_reference_type(GeneratedsSuper):
     validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
     def has__content(self):
         if (
-                self.pdb_id is not None or
-                self.relationship is not None or
-                self.details is not None
+            self.pdb_id is not None or
+            self.relationship is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -5446,7 +5447,7 @@ class other_db_cross_reference_list_type(GeneratedsSuper):
         self.db_reference[index] = value
     def has__content(self):
         if (
-                self.db_reference
+            self.db_reference
         ):
             return True
         else:
@@ -5557,10 +5558,10 @@ class other_db_cross_reference_type(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.db_name is not None or
-                self.accession_id is not None or
-                self.content_type is not None or
-                self.details is not None
+            self.db_name is not None or
+            self.accession_id is not None or
+            self.content_type is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -5740,9 +5741,9 @@ class auxiliary_link_type(GeneratedsSuper):
     validate_linkType_patterns_ = [['^((https?|ftp)://.*)$']]
     def has__content(self):
         if (
-                self.type_ is not None or
-                self.link is not None or
-                self.details is not None
+            self.type_ is not None or
+            self.link is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -5877,9 +5878,9 @@ class sample_type(GeneratedsSuper):
         self.macromolecule_list = macromolecule_list
     def has__content(self):
         if (
-                self.name is not None or
-                self.supramolecule_list is not None or
-                self.macromolecule_list is not None
+            self.name is not None or
+            self.supramolecule_list is not None or
+            self.macromolecule_list is not None
         ):
             return True
         else:
@@ -5991,7 +5992,7 @@ class sci_name_type(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -6151,15 +6152,15 @@ class base_supramolecule_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.name is not None or
-                self.category is not None or
-                self.parent is not None or
-                self.macromolecule_list is not None or
-                self.details is not None or
-                self.number_of_copies is not None or
-                self.oligomeric_state is not None or
-                self.external_references or
-                self.recombinant_exp_flag is not None
+            self.name is not None or
+            self.category is not None or
+            self.parent is not None or
+            self.macromolecule_list is not None or
+            self.details is not None or
+            self.number_of_copies is not None or
+            self.oligomeric_state is not None or
+            self.external_references or
+            self.recombinant_exp_flag is not None
         ):
             return True
         else:
@@ -6376,9 +6377,9 @@ class cell_supramolecule_type(base_supramolecule_type):
         self.synthetic_source[index] = value
     def has__content(self):
         if (
-                self.natural_source or
-                self.synthetic_source or
-                super(cell_supramolecule_type, self).has__content()
+            self.natural_source or
+            self.synthetic_source or
+            super(cell_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -6527,10 +6528,10 @@ class base_source_type(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                self.organism is not None or
-                self.strain is not None or
-                self.synonym_organism is not None or
-                self.details is not None
+            self.organism is not None or
+            self.strain is not None or
+            self.synonym_organism is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -6695,7 +6696,7 @@ class organism_type(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -6841,12 +6842,12 @@ class complex_supramolecule_type(base_supramolecule_type):
         self.chimera = chimera
     def has__content(self):
         if (
-                self.natural_source or
-                self.synthetic_source or
-                self.recombinant_expression or
-                self.molecular_weight is not None or
-                self.ribosome_details is not None or
-                super(complex_supramolecule_type, self).has__content()
+            self.natural_source or
+            self.synthetic_source or
+            self.recombinant_expression or
+            self.molecular_weight is not None or
+            self.ribosome_details is not None or
+            super(complex_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -7012,12 +7013,12 @@ class complex_source_type(base_source_type):
         self.cellular_location = cellular_location
     def has__content(self):
         if (
-                self.organ is not None or
-                self.tissue is not None or
-                self.cell is not None or
-                self.organelle is not None or
-                self.cellular_location is not None or
-                super(complex_source_type, self).has__content()
+            self.organ is not None or
+            self.tissue is not None or
+            self.cell is not None or
+            self.organelle is not None or
+            self.cellular_location is not None or
+            super(complex_source_type, self).has__content()
         ):
             return True
         else:
@@ -7217,11 +7218,11 @@ class recombinant_source_type(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                self.recombinant_organism is not None or
-                self.recombinant_strain is not None or
-                self.recombinant_cell is not None or
-                self.recombinant_plasmid is not None or
-                self.recombinant_synonym_organism is not None
+            self.recombinant_organism is not None or
+            self.recombinant_strain is not None or
+            self.recombinant_cell is not None or
+            self.recombinant_plasmid is not None or
+            self.recombinant_synonym_organism is not None
         ):
             return True
         else:
@@ -7389,9 +7390,9 @@ class molecular_weight_type(GeneratedsSuper):
         self.method = method
     def has__content(self):
         if (
-                self.experimental is not None or
-                self.theoretical is not None or
-                self.method is not None
+            self.experimental is not None or
+            self.theoretical is not None or
+            self.method is not None
         ):
             return True
         else:
@@ -7543,11 +7544,11 @@ class organelle_or_cellular_component_supramolecule_type(base_supramolecule_type
         self.recombinant_expression = recombinant_expression
     def has__content(self):
         if (
-                self.natural_source or
-                self.synthetic_source or
-                self.molecular_weight is not None or
-                self.recombinant_expression is not None or
-                super(organelle_or_cellular_component_supramolecule_type, self).has__content()
+            self.natural_source or
+            self.synthetic_source or
+            self.molecular_weight is not None or
+            self.recombinant_expression is not None or
+            super(organelle_or_cellular_component_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -7691,12 +7692,12 @@ class organelle_source_type(base_source_type):
         self.cellular_location = cellular_location
     def has__content(self):
         if (
-                self.organ is not None or
-                self.tissue is not None or
-                self.cell is not None or
-                self.organelle is not None or
-                self.cellular_location is not None or
-                super(organelle_source_type, self).has__content()
+            self.organ is not None or
+            self.tissue is not None or
+            self.cell is not None or
+            self.organelle is not None or
+            self.cellular_location is not None or
+            super(organelle_source_type, self).has__content()
         ):
             return True
         else:
@@ -7890,11 +7891,11 @@ class sample_supramolecule_type(base_supramolecule_type):
         self.molecular_weight = molecular_weight
     def has__content(self):
         if (
-                self.natural_source or
-                self.synthetic_source or
-                self.number_unique_components is not None or
-                self.molecular_weight is not None or
-                super(sample_supramolecule_type, self).has__content()
+            self.natural_source or
+            self.synthetic_source or
+            self.number_unique_components is not None or
+            self.molecular_weight is not None or
+            super(sample_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -8030,10 +8031,10 @@ class sample_source_type(base_source_type):
         self.cell = cell
     def has__content(self):
         if (
-                self.organ is not None or
-                self.tissue is not None or
-                self.cell is not None or
-                super(sample_source_type, self).has__content()
+            self.organ is not None or
+            self.tissue is not None or
+            self.cell is not None or
+            super(sample_source_type, self).has__content()
         ):
             return True
         else:
@@ -8187,9 +8188,9 @@ class tissue_supramolecule_type(base_supramolecule_type):
         self.sythetic_source[index] = value
     def has__content(self):
         if (
-                self.natural_source or
-                self.sythetic_source or
-                super(tissue_supramolecule_type, self).has__content()
+            self.natural_source or
+            self.sythetic_source or
+            super(tissue_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -8299,9 +8300,9 @@ class tissue_source_type(base_source_type):
         self.tissue = tissue
     def has__content(self):
         if (
-                self.organ is not None or
-                self.tissue is not None or
-                super(tissue_source_type, self).has__content()
+            self.organ is not None or
+            self.tissue is not None or
+            super(tissue_source_type, self).has__content()
         ):
             return True
         else:
@@ -8560,22 +8561,22 @@ class virus_supramolecule_type(base_supramolecule_type):
         return result
     def has__content(self):
         if (
-                self.sci_species_name is not None or
-                self.sci_species_strain is not None or
-                self.natural_host or
-                self.synthetic_host or
-                self.host_system is not None or
-                self.molecular_weight is not None or
-                self.virus_shell or
-                self.virus_type is not None or
-                self.virus_isolate is not None or
-                self.virus_enveloped is not None or
-                self.virus_empty is not None or
-                self.syn_species_name is not None or
-                self.sci_species_serotype is not None or
-                self.sci_species_serocomplex is not None or
-                self.sci_species_subspecies is not None or
-                super(virus_supramolecule_type, self).has__content()
+            self.sci_species_name is not None or
+            self.sci_species_strain is not None or
+            self.natural_host or
+            self.synthetic_host or
+            self.host_system is not None or
+            self.molecular_weight is not None or
+            self.virus_shell or
+            self.virus_type is not None or
+            self.virus_isolate is not None or
+            self.virus_enveloped is not None or
+            self.virus_empty is not None or
+            self.syn_species_name is not None or
+            self.sci_species_serotype is not None or
+            self.sci_species_serocomplex is not None or
+            self.sci_species_subspecies is not None or
+            super(virus_supramolecule_type, self).has__content()
         ):
             return True
         else:
@@ -8815,7 +8816,7 @@ class virus_species_name_type(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -8898,7 +8899,7 @@ class virus_host_type(base_source_type):
         self.ns_prefix_ = ns_prefix
     def has__content(self):
         if (
-                super(virus_host_type, self).has__content()
+            super(virus_host_type, self).has__content()
         ):
             return True
         else:
@@ -8991,7 +8992,7 @@ class macromolecule_list_type(GeneratedsSuper):
         self.macromolecule[index] = value
     def has__content(self):
         if (
-                self.macromolecule
+            self.macromolecule
         ):
             return True
         else:
@@ -9183,13 +9184,13 @@ class base_macromolecule_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.name is not None or
-                self.natural_source is not None or
-                self.molecular_weight is not None or
-                self.details is not None or
-                self.number_of_copies is not None or
-                self.oligomeric_state is not None or
-                self.recombinant_exp_flag is not None
+            self.name is not None or
+            self.natural_source is not None or
+            self.molecular_weight is not None or
+            self.details is not None or
+            self.number_of_copies is not None or
+            self.oligomeric_state is not None or
+            self.recombinant_exp_flag is not None
         ):
             return True
         else:
@@ -9410,12 +9411,12 @@ class macromolecule_source_type(base_source_type):
         self.cellular_location = cellular_location
     def has__content(self):
         if (
-                self.organ is not None or
-                self.tissue is not None or
-                self.cell is not None or
-                self.organelle is not None or
-                self.cellular_location is not None or
-                super(macromolecule_source_type, self).has__content()
+            self.organ is not None or
+            self.tissue is not None or
+            self.cell is not None or
+            self.organelle is not None or
+            self.cellular_location is not None or
+            super(macromolecule_source_type, self).has__content()
         ):
             return True
         else:
@@ -9613,12 +9614,12 @@ class dna_macromolecule_type(base_macromolecule_type):
         return result
     def has__content(self):
         if (
-                self.sequence is not None or
-                self.classification is not None or
-                self.structure is not None or
-                self.synthetic_flag is not None or
-                self.synthetic_source is not None or
-                super(dna_macromolecule_type, self).has__content()
+            self.sequence is not None or
+            self.classification is not None or
+            self.structure is not None or
+            self.synthetic_flag is not None or
+            self.synthetic_source is not None or
+            super(dna_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -9779,9 +9780,9 @@ class em_label_macromolecule_type(base_macromolecule_type):
         return result
     def has__content(self):
         if (
-                self.formula is not None or
-                self.synthetic_source is not None or
-                super(em_label_macromolecule_type, self).has__content()
+            self.formula is not None or
+            self.synthetic_source is not None or
+            super(em_label_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -9925,10 +9926,10 @@ class ligand_macromolecule_type(base_macromolecule_type):
         return result
     def has__content(self):
         if (
-                self.formula is not None or
-                self.external_references or
-                self.recombinant_expression is not None or
-                super(ligand_macromolecule_type, self).has__content()
+            self.formula is not None or
+            self.external_references or
+            self.recombinant_expression is not None or
+            super(ligand_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -10078,13 +10079,13 @@ class other_macromolecule_type(base_macromolecule_type):
         self.synthetic_source = synthetic_source
     def has__content(self):
         if (
-                self.sequence is not None or
-                self.classification is not None or
-                self.recombinant_expression is not None or
-                self.structure is not None or
-                self.synthetic_flag is not None or
-                self.synthetic_source is not None or
-                super(other_macromolecule_type, self).has__content()
+            self.sequence is not None or
+            self.classification is not None or
+            self.recombinant_expression is not None or
+            self.structure is not None or
+            self.synthetic_flag is not None or
+            self.synthetic_source is not None or
+            super(other_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -10297,12 +10298,12 @@ class protein_or_peptide_macromolecule_type(base_macromolecule_type):
     validate_ec_numberType_patterns_ = [['^(([1-7]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-)))(([ ]*,[ ]*)([1-6]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-))))*)$']]
     def has__content(self):
         if (
-                self.recombinant_expression is not None or
-                self.synthetic_source is not None or
-                self.enantiomer is not None or
-                self.sequence is not None or
-                self.ec_number or
-                super(protein_or_peptide_macromolecule_type, self).has__content()
+            self.recombinant_expression is not None or
+            self.synthetic_source is not None or
+            self.enantiomer is not None or
+            self.sequence is not None or
+            self.ec_number or
+            super(protein_or_peptide_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -10515,13 +10516,13 @@ class rna_macromolecule_type(base_macromolecule_type):
     validate_ec_numberType33_patterns_ = [['^(\\d+(\\.(\\d+|\\-)){3})$']]
     def has__content(self):
         if (
-                self.sequence is not None or
-                self.classification is not None or
-                self.structure is not None or
-                self.synthetic_flag is not None or
-                self.synthetic_source is not None or
-                self.ec_number or
-                super(rna_macromolecule_type, self).has__content()
+            self.sequence is not None or
+            self.classification is not None or
+            self.structure is not None or
+            self.synthetic_flag is not None or
+            self.synthetic_source is not None or
+            self.ec_number or
+            super(rna_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -10729,10 +10730,10 @@ class saccharide_macromolecule_type(base_macromolecule_type):
         return result
     def has__content(self):
         if (
-                self.enantiomer is not None or
-                self.formula is not None or
-                self.external_references or
-                super(saccharide_macromolecule_type, self).has__content()
+            self.enantiomer is not None or
+            self.formula is not None or
+            self.external_references or
+            super(saccharide_macromolecule_type, self).has__content()
         ):
             return True
         else:
@@ -10936,12 +10937,12 @@ class structure_determination_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.method is not None or
-                self.aggregation_state is not None or
-                self.macromolecules_and_complexes is not None or
-                self.specimen_preparation_list is not None or
-                self.microscopy_list is not None or
-                self.image_processing
+            self.method is not None or
+            self.aggregation_state is not None or
+            self.macromolecules_and_complexes is not None or
+            self.specimen_preparation_list is not None or
+            self.microscopy_list is not None or
+            self.image_processing
         ):
             return True
         else:
@@ -11146,8 +11147,8 @@ class macromolecules_and_complexes_type(GeneratedsSuper):
         self.complex_id[index] = value
     def has__content(self):
         if (
-                self.macromolecule_id or
-                self.complex_id
+            self.macromolecule_id or
+            self.complex_id
         ):
             return True
         else:
@@ -11307,14 +11308,14 @@ class base_preparation_type(GeneratedsSuper):
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
     def has__content(self):
         if (
-                self.concentration is not None or
-                self.buffer is not None or
-                self.staining is not None or
-                self.sugar_embedding is not None or
-                self.shadowing is not None or
-                self.grid is not None or
-                self.vitrification is not None or
-                self.details is not None
+            self.concentration is not None or
+            self.buffer is not None or
+            self.staining is not None or
+            self.sugar_embedding is not None or
+            self.shadowing is not None or
+            self.grid is not None or
+            self.vitrification is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -11523,9 +11524,9 @@ class buffer_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.ph is not None or
-                self.component or
-                self.details is not None
+            self.ph is not None or
+            self.component or
+            self.details is not None
         ):
             return True
         else:
@@ -11663,9 +11664,9 @@ class buffer_component_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.concentration is not None or
-                self.formula is not None or
-                self.name is not None
+            self.concentration is not None or
+            self.formula is not None or
+            self.name is not None
         ):
             return True
         else:
@@ -11843,12 +11844,12 @@ class grid_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.model is not None or
-                self.material is not None or
-                self.mesh is not None or
-                self.support_film or
-                self.pretreatment is not None or
-                self.details is not None
+            self.model is not None or
+            self.material is not None or
+            self.mesh is not None or
+            self.support_film or
+            self.pretreatment is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -12051,9 +12052,9 @@ class film_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.film_material is not None or
-                self.film_topology is not None or
-                self.film_thickness is not None
+            self.film_material is not None or
+            self.film_topology is not None or
+            self.film_thickness is not None
         ):
             return True
         else:
@@ -12219,10 +12220,10 @@ class grid_pretreatment_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.type_ is not None or
-                self.time is not None or
-                self.atmosphere is not None or
-                self.pressure is not None
+            self.type_ is not None or
+            self.time is not None or
+            self.atmosphere is not None or
+            self.pressure is not None
         ):
             return True
         else:
@@ -12421,13 +12422,13 @@ class vitrification_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.cryogen_name is not None or
-                self.chamber_humidity is not None or
-                self.chamber_temperature is not None or
-                self.instrument is not None or
-                self.details is not None or
-                self.timed_resolved_state is not None or
-                self.method is not None
+            self.cryogen_name is not None or
+            self.chamber_humidity is not None or
+            self.chamber_temperature is not None or
+            self.instrument is not None or
+            self.details is not None or
+            self.timed_resolved_state is not None or
+            self.method is not None
         ):
             return True
         else:
@@ -12595,8 +12596,8 @@ class crystallography_preparation_type(base_preparation_type):
         self.crystal_formation = crystal_formation
     def has__content(self):
         if (
-                self.crystal_formation is not None or
-                super(crystallography_preparation_type, self).has__content()
+            self.crystal_formation is not None or
+            super(crystallography_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -12711,7 +12712,7 @@ class crystal_formation_temperature_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -12827,7 +12828,7 @@ class crystal_formation_time_type(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -12910,7 +12911,7 @@ class helical_preparation_type(base_preparation_type):
         self.ns_prefix_ = ns_prefix
     def has__content(self):
         if (
-                super(helical_preparation_type, self).has__content()
+            super(helical_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -12989,7 +12990,7 @@ class single_particle_preparation_type(base_preparation_type):
         self.ns_prefix_ = ns_prefix
     def has__content(self):
         if (
-                super(single_particle_preparation_type, self).has__content()
+            super(single_particle_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -13068,7 +13069,7 @@ class subtomogram_averaging_preparation_type(base_preparation_type):
         self.ns_prefix_ = ns_prefix
     def has__content(self):
         if (
-                super(subtomogram_averaging_preparation_type, self).has__content()
+            super(subtomogram_averaging_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -13177,12 +13178,12 @@ class tomography_preparation_type(base_preparation_type):
         self.sectioning = sectioning
     def has__content(self):
         if (
-                self.fiducial_markers_list is not None or
-                self.high_pressure_freezing is not None or
-                self.embedding_material is not None or
-                self.cryo_protectant is not None or
-                self.sectioning is not None or
-                super(tomography_preparation_type, self).has__content()
+            self.fiducial_markers_list is not None or
+            self.high_pressure_freezing is not None or
+            self.embedding_material is not None or
+            self.cryo_protectant is not None or
+            self.sectioning is not None or
+            super(tomography_preparation_type, self).has__content()
         ):
             return True
         else:
@@ -13333,9 +13334,9 @@ class fiducial_marker_type(GeneratedsSuper):
         self.diameter = diameter
     def has__content(self):
         if (
-                self.fiducial_type is not None or
-                self.manufacturer is not None or
-                self.diameter is not None
+            self.fiducial_type is not None or
+            self.manufacturer is not None or
+            self.diameter is not None
         ):
             return True
         else:
@@ -13476,7 +13477,7 @@ class fiducial_marker_diameter_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -13583,7 +13584,7 @@ class temperature_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -13686,7 +13687,7 @@ class ultramicrotomy_final_thickness_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -13793,7 +13794,7 @@ class fib_voltage_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -13899,7 +13900,7 @@ class fib_current_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -14001,7 +14002,7 @@ class fib_dose_rate_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -14091,7 +14092,7 @@ class fib_duration_type(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -14198,7 +14199,7 @@ class fib_initial_thickness_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -14301,7 +14302,7 @@ class fib_final_thickness_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -14566,7 +14567,7 @@ class base_microscopy_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['FEI MORGAGNI', 'FEI POLARA 300', 'FEI TALOS ARCTICA', 'FEI TECNAI 10', 'FEI TECNAI 12', 'FEI TECNAI 20', 'FEI TECNAI ARCTICA', 'FEI TECNAI F20', 'FEI TECNAI F30', 'FEI TECNAI SPHERA', 'FEI TECNAI SPIRIT', 'FEI TITAN', 'FEI TITAN KRIOS', 'FEI/PHILIPS CM10', 'FEI/PHILIPS CM12', 'FEI/PHILIPS CM120T', 'FEI/PHILIPS CM200FEG', 'FEI/PHILIPS CM200FEG/SOPHIE', 'FEI/PHILIPS CM200FEG/ST', 'FEI/PHILIPS CM200FEG/UT', 'FEI/PHILIPS CM200T', 'FEI/PHILIPS CM300FEG/HE', 'FEI/PHILIPS CM300FEG/ST', 'FEI/PHILIPS CM300FEG/T', 'FEI/PHILIPS EM400', 'FEI/PHILIPS EM420', 'HITACHI EF2000', 'HITACHI H-9500SD', 'HITACHI H3000 UHVEM', 'HITACHI H7600', 'HITACHI HF2000', 'HITACHI HF3000', 'JEOL 100CX', 'JEOL 1000EES', 'JEOL 1010', 'JEOL 1200', 'JEOL 1200EX', 'JEOL 1200EXII', 'JEOL 1230', 'JEOL 1400', 'JEOL 1400/HR + YPS FEG', 'JEOL 2000EX', 'JEOL 2000EXII', 'JEOL 2010', 'JEOL 2010F', 'JEOL 2010HC', 'JEOL 2010HT', 'JEOL 2010UHR', 'JEOL 2011', 'JEOL 2100', 'JEOL 2100F', 'JEOL 2200FS', 'JEOL 2200FSC', 'JEOL 3000SFF', 'JEOL 3100FEF', 'JEOL 3100FFC', 'JEOL 3200FS', 'JEOL 3200FSC', 'JEOL 4000', 'JEOL 4000EX', 'JEOL CRYO ARM 200', 'JEOL CRYO ARM 300', 'JEOL KYOTO-3000SFF', 'TFS GLACIOS', 'TFS KRIOS', 'TFS TALOS', 'TFS TALOS L120C', 'TFS TALOS F200C', 'TFS TUNDRA', 'ZEISS LEO912', 'ZEISS LIBRA120PLUS']
+            enumerations = ['FEI MORGAGNI', 'FEI POLARA 300', 'FEI TALOS ARCTICA', 'FEI TECNAI 10', 'FEI TECNAI 12', 'FEI TECNAI 20', 'FEI TECNAI ARCTICA', 'FEI TECNAI F20', 'FEI TECNAI F30', 'FEI TECNAI SPHERA', 'FEI TECNAI SPIRIT', 'FEI TITAN', 'FEI TITAN KRIOS', 'FEI/PHILIPS CM10', 'FEI/PHILIPS CM12', 'FEI/PHILIPS CM120T', 'FEI/PHILIPS CM200FEG', 'FEI/PHILIPS CM200FEG/SOPHIE', 'FEI/PHILIPS CM200FEG/ST', 'FEI/PHILIPS CM200FEG/UT', 'FEI/PHILIPS CM200T', 'FEI/PHILIPS CM300FEG/HE', 'FEI/PHILIPS CM300FEG/ST', 'FEI/PHILIPS CM300FEG/T', 'FEI/PHILIPS EM400', 'FEI/PHILIPS EM420', 'HITACHI EF2000', 'HITACHI H-9500SD', 'HITACHI H3000 UHVEM', 'HITACHI H7600', 'HITACHI HF2000', 'HITACHI HF3000', 'JEOL 100CX', 'JEOL 1000EES', 'JEOL 1010', 'JEOL 1200', 'JEOL 1200EX', 'JEOL 1200EXII', 'JEOL 1230', 'JEOL 1400', 'JEOL 1400/HR + YPS FEG', 'JEOL 2000EX', 'JEOL 2000EXII', 'JEOL 2010', 'JEOL 2010F', 'JEOL 2010HC', 'JEOL 2010HT', 'JEOL 2010UHR', 'JEOL 2011', 'JEOL 2100', 'JEOL 2100F', 'JEOL 2200FS', 'JEOL 2200FSC', 'JEOL 3000SFF', 'JEOL 3100FEF', 'JEOL 3100FFC', 'JEOL 3200FS', 'JEOL 3200FSC', 'JEOL 4000', 'JEOL 4000EX', 'JEOL CRYO ARM 200', 'JEOL CRYO ARM 300', 'JEOL KYOTO-3000SFF', 'TFS GLACIOS', 'TFS KRIOS', 'TFS TALOS', 'TFS TALOS L120C', 'TFS TALOS F200C', 'TFS TITAN THEMIS', 'TFS TUNDRA', 'ZEISS LEO912', 'ZEISS LIBRA120PLUS']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on microscopeType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
@@ -14666,32 +14667,32 @@ class base_microscopy_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.specimen_preparations is not None or
-                self.microscope is not None or
-                self.illumination_mode is not None or
-                self.imaging_mode is not None or
-                self.electron_source is not None or
-                self.acceleration_voltage is not None or
-                self.c2_aperture_diameter is not None or
-                self.nominal_cs is not None or
-                self.nominal_defocus_min is not None or
-                self.calibrated_defocus_min is not None or
-                self.nominal_defocus_max is not None or
-                self.calibrated_defocus_max is not None or
-                self.nominal_magnification is not None or
-                self.calibrated_magnification is not None or
-                self.specimen_holder_model is not None or
-                self.cooling_holder_cryogen is not None or
-                self.temperature is not None or
-                self.alignment_procedure is not None or
-                self.specialist_optics is not None or
-                self.software_list is not None or
-                self.details is not None or
-                self.date is not None or
-                self.image_recording_list is not None or
-                self.specimen_holder is not None or
-                self.tilt_angle_min is not None or
-                self.tilt_angle_max is not None
+            self.specimen_preparations is not None or
+            self.microscope is not None or
+            self.illumination_mode is not None or
+            self.imaging_mode is not None or
+            self.electron_source is not None or
+            self.acceleration_voltage is not None or
+            self.c2_aperture_diameter is not None or
+            self.nominal_cs is not None or
+            self.nominal_defocus_min is not None or
+            self.calibrated_defocus_min is not None or
+            self.nominal_defocus_max is not None or
+            self.calibrated_defocus_max is not None or
+            self.nominal_magnification is not None or
+            self.calibrated_magnification is not None or
+            self.specimen_holder_model is not None or
+            self.cooling_holder_cryogen is not None or
+            self.temperature is not None or
+            self.alignment_procedure is not None or
+            self.specialist_optics is not None or
+            self.software_list is not None or
+            self.details is not None or
+            self.date is not None or
+            self.image_recording_list is not None or
+            self.specimen_holder is not None or
+            self.tilt_angle_min is not None or
+            self.tilt_angle_max is not None
         ):
             return True
         else:
@@ -15071,7 +15072,7 @@ class residual_tilt_type(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -15198,11 +15199,11 @@ class specialist_optics_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.phase_plate is not None or
-                self.sph_aberration_corrector is not None or
-                self.chr_aberration_corrector is not None or
-                self.energy_filter is not None or
-                self.details is not None
+            self.phase_plate is not None or
+            self.sph_aberration_corrector is not None or
+            self.chr_aberration_corrector is not None or
+            self.energy_filter is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -15358,7 +15359,7 @@ class software_list_type(GeneratedsSuper):
         self.software[index] = value
     def has__content(self):
         if (
-                self.software
+            self.software
         ):
             return True
         else:
@@ -15463,9 +15464,9 @@ class software_type(GeneratedsSuper):
         self.processing_details = processing_details
     def has__content(self):
         if (
-                self.name is not None or
-                self.version is not None or
-                self.processing_details is not None
+            self.name is not None or
+            self.version is not None or
+            self.processing_details is not None
         ):
             return True
         else:
@@ -15610,10 +15611,10 @@ class crystallography_microscopy_type(base_microscopy_type):
         self.tilt_series[index] = value
     def has__content(self):
         if (
-                self.camera_length is not None or
-                self.tilt_list is not None or
-                self.tilt_series or
-                super(crystallography_microscopy_type, self).has__content()
+            self.camera_length is not None or
+            self.tilt_list is not None or
+            self.tilt_series or
+            super(crystallography_microscopy_type, self).has__content()
         ):
             return True
         else:
@@ -15736,9 +15737,9 @@ class tilt_series_type(GeneratedsSuper):
         self.axis_rotation = axis_rotation
     def has__content(self):
         if (
-                self.axis1 is not None or
-                self.axis2 is not None or
-                self.axis_rotation is not None
+            self.axis1 is not None or
+            self.axis2 is not None or
+            self.axis_rotation is not None
         ):
             return True
         else:
@@ -15863,9 +15864,9 @@ class axis_type(GeneratedsSuper):
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
     def has__content(self):
         if (
-                self.min_angle is not None or
-                self.max_angle is not None or
-                self.angle_increment is not None
+            self.min_angle is not None or
+            self.max_angle is not None or
+            self.angle_increment is not None
         ):
             return True
         else:
@@ -15980,7 +15981,7 @@ class helical_microscopy_type(base_microscopy_type):
         self.ns_prefix_ = ns_prefix
     def has__content(self):
         if (
-                super(helical_microscopy_type, self).has__content()
+            super(helical_microscopy_type, self).has__content()
         ):
             return True
         else:
@@ -16059,7 +16060,7 @@ class single_particle_microscopy_type(base_microscopy_type):
         self.ns_prefix_ = ns_prefix
     def has__content(self):
         if (
-                super(single_particle_microscopy_type, self).has__content()
+            super(single_particle_microscopy_type, self).has__content()
         ):
             return True
         else:
@@ -16153,8 +16154,8 @@ class tomography_microscopy_type(base_microscopy_type):
         self.tilt_series[index] = value
     def has__content(self):
         if (
-                self.tilt_series or
-                super(tomography_microscopy_type, self).has__content()
+            self.tilt_series or
+            super(tomography_microscopy_type, self).has__content()
         ):
             return True
         else:
@@ -16264,8 +16265,8 @@ class base_image_processing_type(GeneratedsSuper):
     def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
     def has__content(self):
         if (
-                self.image_recording_id is not None or
-                self.details is not None
+            self.image_recording_id is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -16453,16 +16454,16 @@ class crystallography_processing_type(base_image_processing_type):
         self.crystallography_statistics = crystallography_statistics
     def has__content(self):
         if (
-                self.final_reconstruction is not None or
-                self.crystal_parameters is not None or
-                self.startup_model or
-                self.ctf_correction is not None or
-                self.molecular_replacement is not None or
-                self.lattice_distortion_correction_software_list is not None or
-                self.symmetry_determination_software_list is not None or
-                self.merging_software_list is not None or
-                self.crystallography_statistics is not None or
-                super(crystallography_processing_type, self).has__content()
+            self.final_reconstruction is not None or
+            self.crystal_parameters is not None or
+            self.startup_model or
+            self.ctf_correction is not None or
+            self.molecular_replacement is not None or
+            self.lattice_distortion_correction_software_list is not None or
+            self.symmetry_determination_software_list is not None or
+            self.merging_software_list is not None or
+            self.crystallography_statistics is not None or
+            super(crystallography_processing_type, self).has__content()
         ):
             return True
         else:
@@ -16648,9 +16649,9 @@ class applied_symmetry_type(GeneratedsSuper):
     validate_point_groupType_patterns_ = [['^(C\\d+|D\\d+|O|T|I)$'], ['^(C\\d+|D\\d+|O|T|I)$']]
     def has__content(self):
         if (
-                self.space_group is not None or
-                self.point_group is not None or
-                self.helical_parameters is not None
+            self.space_group is not None or
+            self.point_group is not None or
+            self.helical_parameters is not None
         ):
             return True
         else:
@@ -16796,9 +16797,9 @@ class helical_parameters_type(GeneratedsSuper):
     validate_axial_symmetryType_patterns_ = [['^([C|D][1-9][0-9]*)$']]
     def has__content(self):
         if (
-                self.delta_z is not None or
-                self.delta_phi is not None or
-                self.axial_symmetry is not None
+            self.delta_z is not None or
+            self.delta_phi is not None or
+            self.axial_symmetry is not None
         ):
             return True
         else:
@@ -16939,11 +16940,11 @@ class reconstruction_filtering_type(GeneratedsSuper):
         self.other = other
     def has__content(self):
         if (
-                self.background_masked is not None or
-                self.spatial_filtering is not None or
-                self.sharpening is not None or
-                self.b_factorSharpening is not None or
-                self.other is not None
+            self.background_masked is not None or
+            self.spatial_filtering is not None or
+            self.sharpening is not None or
+            self.b_factorSharpening is not None or
+            self.other is not None
         ):
             return True
         else:
@@ -17102,10 +17103,10 @@ class background_masked_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.geometrical_shape is not None or
-                self.dimensions is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.geometrical_shape is not None or
+            self.dimensions is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -17260,9 +17261,9 @@ class crystal_parameters_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.unit_cell is not None or
-                self.plane_group is not None or
-                self.space_group is not None
+            self.unit_cell is not None or
+            self.plane_group is not None or
+            self.space_group is not None
         ):
             return True
         else:
@@ -17421,13 +17422,13 @@ class unit_cell_type(GeneratedsSuper):
         self.beta = beta
     def has__content(self):
         if (
-                self.a is not None or
-                self.b is not None or
-                self.c is not None or
-                self.c_sampling_length is not None or
-                self.gamma is not None or
-                self.alpha is not None or
-                self.beta is not None
+            self.a is not None or
+            self.b is not None or
+            self.c is not None or
+            self.c_sampling_length is not None or
+            self.gamma is not None or
+            self.alpha is not None or
+            self.beta is not None
         ):
             return True
         else:
@@ -17584,7 +17585,7 @@ class cell_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -17691,7 +17692,7 @@ class cell_angle_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -17835,13 +17836,13 @@ class starting_map_type(GeneratedsSuper):
     validate_emdb_id_type_patterns_ = [['^(EMD-\\d{4,})$']]
     def has__content(self):
         if (
-                self.random_conical_tilt is not None or
-                self.orthogonal_tilt is not None or
-                self.emdb_id is not None or
-                self.pdb_model is not None or
-                self.insilico_model is not None or
-                self.other is not None or
-                self.details is not None
+            self.random_conical_tilt is not None or
+            self.orthogonal_tilt is not None or
+            self.emdb_id is not None or
+            self.pdb_model is not None or
+            self.insilico_model is not None or
+            self.other is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -18027,8 +18028,8 @@ class pdb_model_type(GeneratedsSuper):
     validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
     def has__content(self):
         if (
-                self.pdb_id is not None or
-                self.chain_id_list is not None
+            self.pdb_id is not None or
+            self.chain_id_list is not None
         ):
             return True
         else:
@@ -18181,8 +18182,8 @@ class chain_type(GeneratedsSuper):
     validate_residue_rangeType_patterns_ = [['^(\\d+-\\d+)$']]
     def has__content(self):
         if (
-                self.chain_id or
-                self.residue_range is not None
+            self.chain_id or
+            self.residue_range is not None
         ):
             return True
         else:
@@ -18339,11 +18340,11 @@ class ctf_correction_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.phase_reversal is not None or
-                self.amplitude_correction is not None or
-                self.correction_operation is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.phase_reversal is not None or
+            self.amplitude_correction is not None or
+            self.correction_operation is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -18495,9 +18496,9 @@ class molecular_replacement_type(GeneratedsSuper):
         self.software_list = software_list
     def has__content(self):
         if (
-                self.starting_model or
-                self.resolution_range is not None or
-                self.software_list is not None
+            self.starting_model or
+            self.resolution_range is not None or
+            self.software_list is not None
         ):
             return True
         else:
@@ -18666,17 +18667,17 @@ class crystallography_statistics_type(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_intensities_measured is not None or
-                self.number_structure_factors is not None or
-                self.fourier_space_coverage is not None or
-                self.r_sym is not None or
-                self.r_merge is not None or
-                self.overall_phase_error is not None or
-                self.overall_phase_residual is not None or
-                self.phase_error_rejection_criteria is not None or
-                self.high_resolution is not None or
-                self.shell_list is not None or
-                self.details is not None
+            self.number_intensities_measured is not None or
+            self.number_structure_factors is not None or
+            self.fourier_space_coverage is not None or
+            self.r_sym is not None or
+            self.r_merge is not None or
+            self.overall_phase_error is not None or
+            self.overall_phase_residual is not None or
+            self.phase_error_rejection_criteria is not None or
+            self.high_resolution is not None or
+            self.shell_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -18946,16 +18947,16 @@ class helical_processing_type(base_image_processing_type):
         self.crystal_parameters = crystal_parameters
     def has__content(self):
         if (
-                self.final_reconstruction is not None or
-                self.ctf_correction is not None or
-                self.segment_selection or
-                self.refinement is not None or
-                self.startup_model or
-                self.helical_layer_lines is not None or
-                self.initial_angle_assignment is not None or
-                self.final_angle_assignment is not None or
-                self.crystal_parameters is not None or
-                super(helical_processing_type, self).has__content()
+            self.final_reconstruction is not None or
+            self.ctf_correction is not None or
+            self.segment_selection or
+            self.refinement is not None or
+            self.startup_model or
+            self.helical_layer_lines is not None or
+            self.initial_angle_assignment is not None or
+            self.final_angle_assignment is not None or
+            self.crystal_parameters is not None or
+            super(helical_processing_type, self).has__content()
         ):
             return True
         else:
@@ -19144,12 +19145,12 @@ class segment_selection_type(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_selected is not None or
-                self.segment_length is not None or
-                self.segment_overlap is not None or
-                self.total_filament_length is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_selected is not None or
+            self.segment_length is not None or
+            self.segment_overlap is not None or
+            self.total_filament_length is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -19324,10 +19325,10 @@ class refinement_type(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.startup_model or
-                self.starting_symmetry or
-                self.software_list is not None or
-                self.details is not None
+            self.startup_model or
+            self.starting_symmetry or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -19464,10 +19465,10 @@ class layer_lines_type(GeneratedsSuper):
         self.indexing = indexing
     def has__content(self):
         if (
-                self.number_helices is not None or
-                self.helix_length is not None or
-                self.straightening is not None or
-                self.indexing is not None
+            self.number_helices is not None or
+            self.helix_length is not None or
+            self.straightening is not None or
+            self.indexing is not None
         ):
             return True
         else:
@@ -19698,10 +19699,10 @@ class angle_assignment_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.type_ is not None or
-                self.projection_matching_processing is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.type_ is not None or
+            self.projection_matching_processing is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -19895,16 +19896,16 @@ class singleparticle_processing_type(base_image_processing_type):
         self.final_three_d_classification = final_three_d_classification
     def has__content(self):
         if (
-                self.particle_selection or
-                self.ctf_correction is not None or
-                self.startup_model or
-                self.final_reconstruction is not None or
-                self.initial_angle_assignment is not None or
-                self.final_angle_assignment is not None or
-                self.final_multi_reference_alignment is not None or
-                self.final_two_d_classification is not None or
-                self.final_three_d_classification is not None or
-                super(singleparticle_processing_type, self).has__content()
+            self.particle_selection or
+            self.ctf_correction is not None or
+            self.startup_model or
+            self.final_reconstruction is not None or
+            self.initial_angle_assignment is not None or
+            self.final_angle_assignment is not None or
+            self.final_multi_reference_alignment is not None or
+            self.final_two_d_classification is not None or
+            self.final_three_d_classification is not None or
+            super(singleparticle_processing_type, self).has__content()
         ):
             return True
         else:
@@ -20087,11 +20088,11 @@ class particle_selection_type(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_selected is not None or
-                self.reference_model is not None or
-                self.method is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_selected is not None or
+            self.reference_model is not None or
+            self.method is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -20262,10 +20263,10 @@ class classification_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.number_classes is not None or
-                self.average_number_members_per_class is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_classes is not None or
+            self.average_number_members_per_class is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -20429,14 +20430,14 @@ class subtomogram_averaging_processing_type(base_image_processing_type):
         self.crystal_parameters = crystal_parameters
     def has__content(self):
         if (
-                self.final_reconstruction is not None or
-                self.extraction is not None or
-                self.ctf_correction is not None or
-                self.final_multi_reference_alignment is not None or
-                self.final_three_d_classification is not None or
-                self.final_angle_assignment is not None or
-                self.crystal_parameters is not None or
-                super(subtomogram_averaging_processing_type, self).has__content()
+            self.final_reconstruction is not None or
+            self.extraction is not None or
+            self.ctf_correction is not None or
+            self.final_multi_reference_alignment is not None or
+            self.final_three_d_classification is not None or
+            self.final_angle_assignment is not None or
+            self.crystal_parameters is not None or
+            super(subtomogram_averaging_processing_type, self).has__content()
         ):
             return True
         else:
@@ -20656,14 +20657,14 @@ class final_reconstruction_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.number_classes_used is not None or
-                self.applied_symmetry is not None or
-                self.algorithm is not None or
-                self.resolution is not None or
-                self.resolution_method is not None or
-                self.reconstruction_filtering is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_classes_used is not None or
+            self.applied_symmetry is not None or
+            self.algorithm is not None or
+            self.resolution is not None or
+            self.resolution_method is not None or
+            self.reconstruction_filtering is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -20864,11 +20865,11 @@ class tomography_processing_type(base_image_processing_type):
         self.crystal_parameters = crystal_parameters
     def has__content(self):
         if (
-                self.final_reconstruction is not None or
-                self.series_aligment_software_list is not None or
-                self.ctf_correction is not None or
-                self.crystal_parameters is not None or
-                super(tomography_processing_type, self).has__content()
+            self.final_reconstruction is not None or
+            self.series_aligment_software_list is not None or
+            self.ctf_correction is not None or
+            self.crystal_parameters is not None or
+            super(tomography_processing_type, self).has__content()
         ):
             return True
         else:
@@ -21108,20 +21109,20 @@ class map_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.file is not None or
-                self.symmetry is not None or
-                self.data_type is not None or
-                self.dimensions is not None or
-                self.origin is not None or
-                self.spacing is not None or
-                self.cell is not None or
-                self.axis_order is not None or
-                self.statistics is not None or
-                self.pixel_spacing is not None or
-                self.contour_list is not None or
-                self.label is not None or
-                self.annotation_details is not None or
-                self.details is not None
+            self.file is not None or
+            self.symmetry is not None or
+            self.data_type is not None or
+            self.dimensions is not None or
+            self.origin is not None or
+            self.spacing is not None or
+            self.cell is not None or
+            self.axis_order is not None or
+            self.statistics is not None or
+            self.pixel_spacing is not None or
+            self.contour_list is not None or
+            self.label is not None or
+            self.annotation_details is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -21366,9 +21367,9 @@ class integer_vector_map_type(GeneratedsSuper):
         self.sec = sec
     def has__content(self):
         if (
-                self.col is not None or
-                self.row is not None or
-                self.sec is not None
+            self.col is not None or
+            self.row is not None or
+            self.sec is not None
         ):
             return True
         else:
@@ -21507,10 +21508,10 @@ class map_statistics_type(GeneratedsSuper):
         self.std = std
     def has__content(self):
         if (
-                self.minimum is not None or
-                self.maximum is not None or
-                self.average is not None or
-                self.std is not None
+            self.minimum is not None or
+            self.maximum is not None or
+            self.average is not None or
+            self.std is not None
         ):
             return True
         else:
@@ -21651,7 +21652,7 @@ class pixel_spacing_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -21768,12 +21769,12 @@ class interpretation_type(GeneratedsSuper):
         self.half_map_list = half_map_list
     def has__content(self):
         if (
-                self.modelling_list is not None or
-                self.figure_list is not None or
-                self.segmentation_list is not None or
-                self.slices_list is not None or
-                self.additional_map_list is not None or
-                self.half_map_list is not None
+            self.modelling_list is not None or
+            self.figure_list is not None or
+            self.segmentation_list is not None or
+            self.slices_list is not None or
+            self.additional_map_list is not None or
+            self.half_map_list is not None
         ):
             return True
         else:
@@ -21973,14 +21974,14 @@ class modelling_type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.initial_model or
-                self.final_model is not None or
-                self.refinement_protocol is not None or
-                self.software_list is not None or
-                self.details is not None or
-                self.target_criteria is not None or
-                self.refinement_space is not None or
-                self.overall_bvalue is not None
+            self.initial_model or
+            self.final_model is not None or
+            self.refinement_protocol is not None or
+            self.software_list is not None or
+            self.details is not None or
+            self.target_criteria is not None or
+            self.refinement_space is not None or
+            self.overall_bvalue is not None
         ):
             return True
         else:
@@ -22170,8 +22171,8 @@ class figure_type(GeneratedsSuper):
     validate_fileType65_patterns_ = [['^(emd_\\d{4,}.+)$']]
     def has__content(self):
         if (
-                self.file is not None or
-                self.details is not None
+            self.file is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -22306,8 +22307,8 @@ class validation_type(GeneratedsSuper):
     validate_fileType66_patterns_ = [['^(emd_\\d{4,}_fsc(_[1-9]{1,})*.xml)$']]
     def has__content(self):
         if (
-                self.file is not None or
-                self.details is not None
+            self.file is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -22466,14 +22467,14 @@ class crystallography_validation_type(validation_type):
         self.data_completeness = data_completeness
     def has__content(self):
         if (
-                self.parallel_resolution is not None or
-                self.perpendicular_resolution is not None or
-                self.number_observed_reflections is not None or
-                self.number_unique_reflections is not None or
-                self.weighted_phase_residual is not None or
-                self.weighted_r_factor is not None or
-                self.data_completeness is not None or
-                super(crystallography_validation_type, self).has__content()
+            self.parallel_resolution is not None or
+            self.perpendicular_resolution is not None or
+            self.number_observed_reflections is not None or
+            self.number_unique_reflections is not None or
+            self.weighted_phase_residual is not None or
+            self.weighted_r_factor is not None or
+            self.data_completeness is not None or
+            super(crystallography_validation_type, self).has__content()
         ):
             return True
         else:
@@ -23157,7 +23158,7 @@ class fsc_curve_validation_type(validation_type):
         self.ns_prefix_ = ns_prefix
     def has__content(self):
         if (
-                super(fsc_curve_validation_type, self).has__content()
+            super(fsc_curve_validation_type, self).has__content()
         ):
             return True
         else:
@@ -23236,7 +23237,7 @@ class layer_lines_validation_type(validation_type):
         self.ns_prefix_ = ns_prefix
     def has__content(self):
         if (
-                super(layer_lines_validation_type, self).has__content()
+            super(layer_lines_validation_type, self).has__content()
         ):
             return True
         else:
@@ -23315,7 +23316,7 @@ class structure_factors_validation_type(validation_type):
         self.ns_prefix_ = ns_prefix
     def has__content(self):
         if (
-                super(structure_factors_validation_type, self).has__content()
+            super(structure_factors_validation_type, self).has__content()
         ):
             return True
         else:
@@ -23408,7 +23409,7 @@ class structure_determination_listType(GeneratedsSuper):
         self.structure_determination[index] = value
     def has__content(self):
         if (
-                self.structure_determination
+            self.structure_determination
         ):
             return True
         else:
@@ -23510,7 +23511,7 @@ class validationType(GeneratedsSuper):
         self.validation_method[index] = value
     def has__content(self):
         if (
-                self.validation_method
+            self.validation_method
         ):
             return True
         else:
@@ -23661,8 +23662,8 @@ class sitesType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.deposition is not None or
-                self.last_processing is not None
+            self.deposition is not None or
+            self.last_processing is not None
         ):
             return True
         else:
@@ -23823,11 +23824,11 @@ class key_datesType(GeneratedsSuper):
         self.update = update
     def has__content(self):
         if (
-                self.deposition is not None or
-                self.header_release is not None or
-                self.map_release is not None or
-                self.obsolete is not None or
-                self.update is not None
+            self.deposition is not None or
+            self.header_release is not None or
+            self.map_release is not None or
+            self.obsolete is not None or
+            self.update is not None
         ):
             return True
         else:
@@ -23966,7 +23967,7 @@ class obsolete_listType(GeneratedsSuper):
         self.entry[index] = value
     def has__content(self):
         if (
-                self.entry
+            self.entry
         ):
             return True
         else:
@@ -24068,7 +24069,7 @@ class superseded_by_listType(GeneratedsSuper):
         self.entry[index] = value
     def has__content(self):
         if (
-                self.entry
+            self.entry
         ):
             return True
         else:
@@ -24170,7 +24171,7 @@ class grant_supportType(GeneratedsSuper):
         self.grant_reference[index] = value
     def has__content(self):
         if (
-                self.grant_reference
+            self.grant_reference
         ):
             return True
         else:
@@ -24301,8 +24302,8 @@ class microscopy_centerType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.name is not None or
-                self.country is not None
+            self.name is not None or
+            self.country is not None
         ):
             return True
         else:
@@ -24420,7 +24421,7 @@ class contact_authorType(contact_details_type):
         self.private = private
     def has__content(self):
         if (
-                super(contact_authorType, self).has__content()
+            super(contact_authorType, self).has__content()
         ):
             return True
         else:
@@ -24520,7 +24521,7 @@ class authors_listType(GeneratedsSuper):
         self.author[index] = value
     def has__content(self):
         if (
-                self.author
+            self.author
         ):
             return True
         else:
@@ -24615,7 +24616,7 @@ class statusType(version_type):
         self.status_id = status_id
     def has__content(self):
         if (
-                super(statusType, self).has__content()
+            super(statusType, self).has__content()
         ):
             return True
         else:
@@ -24711,7 +24712,7 @@ class annotatorType(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -24814,7 +24815,7 @@ class organizationType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -24917,8 +24918,8 @@ class citation_listType(GeneratedsSuper):
         self.secondary_citation[index] = value
     def has__content(self):
         if (
-                self.primary_citation is not None or
-                self.secondary_citation
+            self.primary_citation is not None or
+            self.secondary_citation
         ):
             return True
         else:
@@ -25019,7 +25020,7 @@ class primary_citationType(GeneratedsSuper):
         self.citation_type = citation_type
     def has__content(self):
         if (
-                self.citation_type is not None
+            self.citation_type is not None
         ):
             return True
         else:
@@ -25135,7 +25136,7 @@ class secondary_citationType(GeneratedsSuper):
         self.citation_type = citation_type
     def has__content(self):
         if (
-                self.citation_type is not None
+            self.citation_type is not None
         ):
             return True
         else:
@@ -25260,7 +25261,7 @@ class auxiliary_link_listType(GeneratedsSuper):
         self.auxiliary_link[index] = value
     def has__content(self):
         if (
-                self.auxiliary_link
+            self.auxiliary_link
         ):
             return True
         else:
@@ -25369,7 +25370,7 @@ class external_referencesType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -25473,7 +25474,7 @@ class external_referencesType4(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -25583,8 +25584,8 @@ class relationshipType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.in_frame is not None or
-                self.other is not None
+            self.in_frame is not None or
+            self.other is not None
         ):
             return True
         else:
@@ -25717,8 +25718,8 @@ class relationshipType6(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.in_frame is not None or
-                self.other is not None
+            self.in_frame is not None or
+            self.other is not None
         ):
             return True
         else:
@@ -25838,7 +25839,7 @@ class supramolecule_listType(GeneratedsSuper):
         self.supramolecule[index] = value
     def has__content(self):
         if (
-                self.supramolecule
+            self.supramolecule
         ):
             return True
         else:
@@ -25991,7 +25992,7 @@ class categoryType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -26088,7 +26089,7 @@ class macromolecule_listType(GeneratedsSuper):
         self.macromolecule[index] = value
     def has__content(self):
         if (
-                self.macromolecule
+            self.macromolecule
         ):
             return True
         else:
@@ -26222,8 +26223,8 @@ class macromoleculeType(GeneratedsSuper):
         self.number_of_copies = number_of_copies
     def has__content(self):
         if (
-                self.macromolecule_id is not None or
-                self.number_of_copies is not None
+            self.macromolecule_id is not None or
+            self.number_of_copies is not None
         ):
             return True
         else:
@@ -26348,7 +26349,7 @@ class external_referencesType10(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -26469,7 +26470,7 @@ class experimentalType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -26590,7 +26591,7 @@ class theoreticalType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -26696,9 +26697,9 @@ class virus_shellType(GeneratedsSuper):
         self.shell_id = shell_id
     def has__content(self):
         if (
-                self.name is not None or
-                self.diameter is not None or
-                self.triangulation is not None
+            self.name is not None or
+            self.diameter is not None or
+            self.triangulation is not None
         ):
             return True
         else:
@@ -26844,7 +26845,7 @@ class diameterType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -26951,9 +26952,9 @@ class sequenceType(GeneratedsSuper):
         self.external_references[index] = value
     def has__content(self):
         if (
-                self.string is not None or
-                self.discrepancy_list is not None or
-                self.external_references
+            self.string is not None or
+            self.discrepancy_list is not None or
+            self.external_references
         ):
             return True
         else:
@@ -27091,7 +27092,7 @@ class discrepancy_listType(GeneratedsSuper):
     validate_discrepancyType_patterns_ = [['^([ ARNDCEQGHILKMFPSTWYVUOBZJX\\(\\)]\\d+[ ARNDCEQGHILKMFPSTWYVUOBZJX\\(\\)])$']]
     def has__content(self):
         if (
-                self.discrepancy
+            self.discrepancy
         ):
             return True
         else:
@@ -27208,7 +27209,7 @@ class external_referencesType14(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -27312,7 +27313,7 @@ class external_referencesType16(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -27432,9 +27433,9 @@ class sequenceType18(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.string is not None or
-                self.discrepancy_list is not None or
-                self.external_references
+            self.string is not None or
+            self.discrepancy_list is not None or
+            self.external_references
         ):
             return True
         else:
@@ -27574,7 +27575,7 @@ class discrepancy_listType19(GeneratedsSuper):
     validate_discrepancyType20_patterns_ = [['^([AGCTRYSWKMBDHVN\\.-]\\d+[AGCTRYSWKMBDHVN\\.-])$']]
     def has__content(self):
         if (
-                self.discrepancy
+            self.discrepancy
         ):
             return True
         else:
@@ -27678,7 +27679,7 @@ class external_referencesType21(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -27792,10 +27793,10 @@ class sequenceType22(GeneratedsSuper):
         self.external_references[index] = value
     def has__content(self):
         if (
-                self.string is not None or
-                self.discrepancy_list is not None or
-                self.connectivity is not None or
-                self.external_references
+            self.string is not None or
+            self.discrepancy_list is not None or
+            self.connectivity is not None or
+            self.external_references
         ):
             return True
         else:
@@ -27941,7 +27942,7 @@ class discrepancy_listType23(GeneratedsSuper):
     validate_discrepancyType24_patterns_ = [['^([ARNDCEQGHILKMFPSTWYVUOBZJX]\\d+[ARNDCEQGHILKMFPSTWYVUOBZJX])$']]
     def has__content(self):
         if (
-                self.discrepancy
+            self.discrepancy
         ):
             return True
         else:
@@ -28048,8 +28049,8 @@ class connectivityType(GeneratedsSuper):
         self._c_link = _c_link
     def has__content(self):
         if (
-                self._n_link is not None or
-                self._c_link is not None
+            self._n_link is not None or
+            self._c_link is not None
         ):
             return True
         else:
@@ -28150,7 +28151,7 @@ class _n_linkType(GeneratedsSuper):
         self.molecule_id = molecule_id
     def has__content(self):
         if (
-                self.molecule_id is not None
+            self.molecule_id is not None
         ):
             return True
         else:
@@ -28321,7 +28322,7 @@ class _c_linkType(GeneratedsSuper):
         self.molecule_id = molecule_id
     def has__content(self):
         if (
-                self.molecule_id is not None
+            self.molecule_id is not None
         ):
             return True
         else:
@@ -28432,7 +28433,7 @@ class external_referencesType25(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -28541,9 +28542,9 @@ class sequenceType27(GeneratedsSuper):
         self.external_references[index] = value
     def has__content(self):
         if (
-                self.string is not None or
-                self.discrepancy_list is not None or
-                self.external_references
+            self.string is not None or
+            self.discrepancy_list is not None or
+            self.external_references
         ):
             return True
         else:
@@ -28681,7 +28682,7 @@ class discrepancy_listType28(GeneratedsSuper):
     validate_discrepancyType29_patterns_ = [['^([ ARNDCEQGHILKMFPSTWYVUOBZJX\\(\\)]\\d+[ ARNDCEQGHILKMFPSTWYVUOBZJX\\(\\)])$']]
     def has__content(self):
         if (
-                self.discrepancy
+            self.discrepancy
         ):
             return True
         else:
@@ -28798,7 +28799,7 @@ class external_referencesType30(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -28902,7 +28903,7 @@ class external_referencesType35(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -28999,7 +29000,7 @@ class specimen_preparation_listType(GeneratedsSuper):
         self.specimen_preparation[index] = value
     def has__content(self):
         if (
-                self.specimen_preparation
+            self.specimen_preparation
         ):
             return True
         else:
@@ -29126,7 +29127,7 @@ class microscopy_listType(GeneratedsSuper):
         self.microscopy[index] = value
     def has__content(self):
         if (
-                self.microscopy
+            self.microscopy
         ):
             return True
         else:
@@ -29273,7 +29274,7 @@ class concentrationType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -29388,9 +29389,9 @@ class stainingType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.type_ is not None or
-                self.material is not None or
-                self.details is not None
+            self.type_ is not None or
+            self.material is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -29521,8 +29522,8 @@ class sugar_embeddingType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.material is not None or
-                self.details is not None
+            self.material is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -29649,10 +29650,10 @@ class shadowingType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.material is not None or
-                self.angle is not None or
-                self.thickness is not None or
-                self.details is not None
+            self.material is not None or
+            self.angle is not None or
+            self.thickness is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -29797,7 +29798,7 @@ class angleType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -29904,7 +29905,7 @@ class thicknessType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -30007,7 +30008,7 @@ class concentrationType39(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -30110,7 +30111,7 @@ class film_thicknessType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -30213,7 +30214,7 @@ class timeType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -30316,7 +30317,7 @@ class pressureType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -30423,7 +30424,7 @@ class chamber_humidityType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -30523,7 +30524,7 @@ class chamber_temperatureType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -30646,13 +30647,13 @@ class crystal_formationType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.lipid_protein_ratio is not None or
-                self.lipid_mixture is not None or
-                self.instrument is not None or
-                self.atmosphere is not None or
-                self.temperature is not None or
-                self.time is not None or
-                self.details is not None
+            self.lipid_protein_ratio is not None or
+            self.lipid_mixture is not None or
+            self.instrument is not None or
+            self.atmosphere is not None or
+            self.temperature is not None or
+            self.time is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -30824,7 +30825,7 @@ class fiducial_markers_listType(GeneratedsSuper):
         self.fiducial_marker[index] = value
     def has__content(self):
         if (
-                self.fiducial_marker
+            self.fiducial_marker
         ):
             return True
         else:
@@ -30939,8 +30940,8 @@ class high_pressure_freezingType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.instrument is not None or
-                self.details is not None
+            self.instrument is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -31063,9 +31064,9 @@ class sectioningType(GeneratedsSuper):
         self.other_sectioning = other_sectioning
     def has__content(self):
         if (
-                self.ultramicrotomy is not None or
-                self.focused_ion_beam is not None or
-                self.other_sectioning is not None
+            self.ultramicrotomy is not None or
+            self.focused_ion_beam is not None or
+            self.other_sectioning is not None
         ):
             return True
         else:
@@ -31194,10 +31195,10 @@ class ultramicrotomyType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.instrument is not None or
-                self.temperature is not None or
-                self.final_thickness is not None or
-                self.details is not None
+            self.instrument is not None or
+            self.temperature is not None or
+            self.final_thickness is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -31408,16 +31409,16 @@ class focused_ion_beamType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.instrument is not None or
-                self.ion is not None or
-                self.voltage is not None or
-                self.current is not None or
-                self.dose_rate is not None or
-                self.duration is not None or
-                self.temperature is not None or
-                self.initial_thickness is not None or
-                self.final_thickness is not None or
-                self.details is not None
+            self.instrument is not None or
+            self.ion is not None or
+            self.voltage is not None or
+            self.current is not None or
+            self.dose_rate is not None or
+            self.duration is not None or
+            self.temperature is not None or
+            self.initial_thickness is not None or
+            self.final_thickness is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -31609,7 +31610,7 @@ class specimen_preparationsType(GeneratedsSuper):
         self.specimen_preparation_id[index] = value
     def has__content(self):
         if (
-                self.specimen_preparation_id
+            self.specimen_preparation_id
         ):
             return True
         else:
@@ -31722,7 +31723,7 @@ class acceleration_voltageType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -31829,7 +31830,7 @@ class c2_aperture_diameterType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -31936,7 +31937,7 @@ class nominal_csType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -32043,7 +32044,7 @@ class nominal_defocus_minType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -32150,7 +32151,7 @@ class calibrated_defocus_minType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -32257,7 +32258,7 @@ class nominal_defocus_maxType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -32364,7 +32365,7 @@ class calibrated_defocus_maxType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -32463,9 +32464,9 @@ class temperatureType(GeneratedsSuper):
         self.temperature_average = temperature_average
     def has__content(self):
         if (
-                self.temperature_min is not None or
-                self.temperature_max is not None or
-                self.temperature_average is not None
+            self.temperature_min is not None or
+            self.temperature_max is not None or
+            self.temperature_average is not None
         ):
             return True
         else:
@@ -32604,12 +32605,12 @@ class alignment_procedureType(GeneratedsSuper):
         self.legacy = legacy
     def has__content(self):
         if (
-                self.none is not None or
-                self.basic is not None or
-                self.zemlin_tableau is not None or
-                self.coma_free is not None or
-                self.other is not None or
-                self.legacy is not None
+            self.none is not None or
+            self.basic is not None or
+            self.zemlin_tableau is not None or
+            self.coma_free is not None or
+            self.other is not None or
+            self.legacy is not None
         ):
             return True
         else:
@@ -32818,7 +32819,7 @@ class basicType(GeneratedsSuper):
         self.residual_tilt = residual_tilt
     def has__content(self):
         if (
-                self.residual_tilt is not None
+            self.residual_tilt is not None
         ):
             return True
         else:
@@ -32987,7 +32988,7 @@ class coma_freeType(GeneratedsSuper):
         self.residual_tilt = residual_tilt
     def has__content(self):
         if (
-                self.residual_tilt is not None
+            self.residual_tilt is not None
         ):
             return True
         else:
@@ -33162,8 +33163,8 @@ class legacyType(GeneratedsSuper):
         self.electron_beam_tilt_params = electron_beam_tilt_params
     def has__content(self):
         if (
-                self.astigmatism is not None or
-                self.electron_beam_tilt_params is not None
+            self.astigmatism is not None or
+            self.electron_beam_tilt_params is not None
         ):
             return True
         else:
@@ -33277,7 +33278,7 @@ class image_recording_listType(GeneratedsSuper):
         self.image_recording[index] = value
     def has__content(self):
         if (
-                self.image_recording
+            self.image_recording
         ):
             return True
         else:
@@ -33458,18 +33459,18 @@ class image_recordingType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.film_or_detector_model is not None or
-                self.detector_mode is not None or
-                self.digitization_details is not None or
-                self.number_grids_imaged is not None or
-                self.number_real_images is not None or
-                self.number_diffraction_images is not None or
-                self.average_exposure_time is not None or
-                self.average_electron_dose_per_image is not None or
-                self.detector_distance is not None or
-                self.details is not None or
-                self.od_range is not None or
-                self.bits_per_pixel is not None
+            self.film_or_detector_model is not None or
+            self.detector_mode is not None or
+            self.digitization_details is not None or
+            self.number_grids_imaged is not None or
+            self.number_real_images is not None or
+            self.number_diffraction_images is not None or
+            self.average_exposure_time is not None or
+            self.average_electron_dose_per_image is not None or
+            self.detector_distance is not None or
+            self.details is not None or
+            self.od_range is not None or
+            self.bits_per_pixel is not None
         ):
             return True
         else:
@@ -33716,7 +33717,7 @@ class film_or_detector_modelType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -33837,10 +33838,10 @@ class digitization_detailsType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.scanner is not None or
-                self.dimensions is not None or
-                self.sampling_interval is not None or
-                self.frames_per_image is not None
+            self.scanner is not None or
+            self.dimensions is not None or
+            self.sampling_interval is not None or
+            self.frames_per_image is not None
         ):
             return True
         else:
@@ -33977,8 +33978,8 @@ class dimensionsType(GeneratedsSuper):
         self.height = height
     def has__content(self):
         if (
-                self.width is not None or
-                self.height is not None
+            self.width is not None or
+            self.height is not None
         ):
             return True
         else:
@@ -34082,7 +34083,7 @@ class widthType(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -34172,7 +34173,7 @@ class heightType(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -34275,7 +34276,7 @@ class sampling_intervalType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -34382,7 +34383,7 @@ class average_exposure_timeType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -34489,7 +34490,7 @@ class average_electron_dose_per_imageType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -34594,10 +34595,10 @@ class energy_filterType(GeneratedsSuper):
         self.upper_energy_threshold = upper_energy_threshold
     def has__content(self):
         if (
-                self.name is not None or
-                self.slit_width is not None or
-                self.lower_energy_threshold is not None or
-                self.upper_energy_threshold is not None
+            self.name is not None or
+            self.slit_width is not None or
+            self.lower_energy_threshold is not None or
+            self.upper_energy_threshold is not None
         ):
             return True
         else:
@@ -34740,7 +34741,7 @@ class slit_widthType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -34847,7 +34848,7 @@ class lower_energy_thresholdType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -34954,7 +34955,7 @@ class upper_energy_thresholdType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -35061,7 +35062,7 @@ class camera_lengthType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -35174,7 +35175,7 @@ class tilt_listType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.angle
+            self.angle
         ):
             return True
         else:
@@ -35272,8 +35273,8 @@ class axis2Type(axis_type):
         self.axis_rotation = axis_rotation
     def has__content(self):
         if (
-                self.axis_rotation is not None or
-                super(axis2Type, self).has__content()
+            self.axis_rotation is not None or
+            super(axis2Type, self).has__content()
         ):
             return True
         else:
@@ -35373,7 +35374,7 @@ class axis_rotationType(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -35480,7 +35481,7 @@ class min_angleType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -35586,7 +35587,7 @@ class max_angleType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -35692,7 +35693,7 @@ class angle_incrementType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -35794,7 +35795,7 @@ class delta_zType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -35894,7 +35895,7 @@ class delta_phiType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -36005,11 +36006,11 @@ class spatial_filteringType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.low_frequency_cutoff is not None or
-                self.high_frequency_cutoff is not None or
-                self.filter_function is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.low_frequency_cutoff is not None or
+            self.high_frequency_cutoff is not None or
+            self.filter_function is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -36145,7 +36146,7 @@ class low_frequency_cutoffType(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -36234,7 +36235,7 @@ class high_frequency_cutoffType(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -36326,8 +36327,8 @@ class sharpeningType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.software_list is not None or
-                self.details is not None
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -36442,9 +36443,9 @@ class b_factorSharpeningType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self._brestore is not None or
-                self.software_list is not None or
-                self.details is not None
+            self._brestore is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -36575,7 +36576,7 @@ class _brestoreType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -36668,8 +36669,8 @@ class otherType45(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.software_list is not None or
-                self.details is not None
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -36790,10 +36791,10 @@ class dimensionsType46(GeneratedsSuper):
         self.depth = depth
     def has__content(self):
         if (
-                self.radius is not None or
-                self.width is not None or
-                self.height is not None or
-                self.depth is not None
+            self.radius is not None or
+            self.width is not None or
+            self.height is not None or
+            self.depth is not None
         ):
             return True
         else:
@@ -36926,7 +36927,7 @@ class radiusType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -37030,7 +37031,7 @@ class widthType48(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -37134,7 +37135,7 @@ class heightType50(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -37238,7 +37239,7 @@ class depthType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -37344,10 +37345,10 @@ class random_conical_tiltType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_images is not None or
-                self.tilt_angle is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_images is not None or
+            self.tilt_angle is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -37490,7 +37491,7 @@ class tilt_angleType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -37601,11 +37602,11 @@ class orthogonal_tiltType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.software_list is not None or
-                self.number_images is not None or
-                self.tilt_angle1 is not None or
-                self.tilt_angle2 is not None or
-                self.details is not None
+            self.software_list is not None or
+            self.number_images is not None or
+            self.tilt_angle1 is not None or
+            self.tilt_angle2 is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -37756,7 +37757,7 @@ class tilt_angle1Type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -37863,7 +37864,7 @@ class tilt_angle2Type(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -37972,8 +37973,8 @@ class phase_reversalType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.anisotropic is not None or
-                self.correction_space is not None
+            self.anisotropic is not None or
+            self.correction_space is not None
         ):
             return True
         else:
@@ -38102,8 +38103,8 @@ class amplitude_correctionType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.factor is not None or
-                self.correction_space is not None
+            self.factor is not None or
+            self.correction_space is not None
         ):
             return True
         else:
@@ -38240,8 +38241,8 @@ class starting_modelType(GeneratedsSuper):
     validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
     def has__content(self):
         if (
-                self.access_code is not None or
-                self.chain
+            self.access_code is not None or
+            self.chain
         ):
             return True
         else:
@@ -38356,8 +38357,8 @@ class resolution_rangeType(GeneratedsSuper):
         self.low_resolution = low_resolution
     def has__content(self):
         if (
-                self.high_resolution is not None or
-                self.low_resolution is not None
+            self.high_resolution is not None or
+            self.low_resolution is not None
         ):
             return True
         else:
@@ -38474,7 +38475,7 @@ class high_resolutionType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -38577,7 +38578,7 @@ class low_resolutionType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -38680,7 +38681,7 @@ class high_resolutionType53(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -38776,7 +38777,7 @@ class shell_listType(GeneratedsSuper):
         self.shell[index] = value
     def has__content(self):
         if (
-                self.shell
+            self.shell
         ):
             return True
         else:
@@ -38905,12 +38906,12 @@ class shellType(GeneratedsSuper):
         self.shell_id = shell_id
     def has__content(self):
         if (
-                self.high_resolution is not None or
-                self.low_resolution is not None or
-                self.number_structure_factors is not None or
-                self.phase_residual is not None or
-                self.fourier_space_coverage is not None or
-                self.multiplicity is not None
+            self.high_resolution is not None or
+            self.low_resolution is not None or
+            self.number_structure_factors is not None or
+            self.phase_residual is not None or
+            self.fourier_space_coverage is not None or
+            self.multiplicity is not None
         ):
             return True
         else:
@@ -39076,7 +39077,7 @@ class high_resolutionType54(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -39179,7 +39180,7 @@ class low_resolutionType55(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -39282,7 +39283,7 @@ class segment_lengthType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -39385,7 +39386,7 @@ class segment_overlapType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -39488,7 +39489,7 @@ class total_filament_lengthType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -39575,7 +39576,7 @@ class starting_symmetryType(GeneratedsSuper):
         self.helical_parameters = helical_parameters
     def has__content(self):
         if (
-                self.helical_parameters is not None
+            self.helical_parameters is not None
         ):
             return True
         else:
@@ -39686,10 +39687,10 @@ class helix_lengthType(GeneratedsSuper):
         self.software_list = software_list
     def has__content(self):
         if (
-                self.min is not None or
-                self.max is not None or
-                self.average is not None or
-                self.software_list is not None
+            self.min is not None or
+            self.max is not None or
+            self.average is not None or
+            self.software_list is not None
         ):
             return True
         else:
@@ -40040,7 +40041,7 @@ class indexingType(GeneratedsSuper):
         self.software_list = software_list
     def has__content(self):
         if (
-                self.software_list is not None
+            self.software_list is not None
         ):
             return True
         else:
@@ -40145,9 +40146,9 @@ class projection_matching_processingType(GeneratedsSuper):
         self.angular_sampling = angular_sampling
     def has__content(self):
         if (
-                self.number_reference_projections is not None or
-                self.merit_function is not None or
-                self.angular_sampling is not None
+            self.number_reference_projections is not None or
+            self.merit_function is not None or
+            self.angular_sampling is not None
         ):
             return True
         else:
@@ -40282,7 +40283,7 @@ class angular_samplingType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -40393,11 +40394,11 @@ class final_multi_reference_alignmentType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_reference_projections is not None or
-                self.merit_function is not None or
-                self.angular_sampling is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_reference_projections is not None or
+            self.merit_function is not None or
+            self.angular_sampling is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -40546,7 +40547,7 @@ class angular_samplingType57(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -40657,11 +40658,11 @@ class final_multi_reference_alignmentType58(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_reference_projections is not None or
-                self.merit_function is not None or
-                self.angular_sampling is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_reference_projections is not None or
+            self.merit_function is not None or
+            self.angular_sampling is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -40810,7 +40811,7 @@ class angular_samplingType59(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -40927,12 +40928,12 @@ class extractionType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_tomograms is not None or
-                self.number_images_used is not None or
-                self.reference_model is not None or
-                self.method is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_tomograms is not None or
+            self.number_images_used is not None or
+            self.reference_model is not None or
+            self.method is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -41101,10 +41102,10 @@ class final_multi_reference_alignmentType60(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_reference_projections is not None or
-                self.merit_function is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_reference_projections is not None or
+            self.merit_function is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -41259,12 +41260,12 @@ class extractionType61(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_tomograms is not None or
-                self.number_images_used is not None or
-                self.reference_model is not None or
-                self.method is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_tomograms is not None or
+            self.number_images_used is not None or
+            self.reference_model is not None or
+            self.method is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -41433,10 +41434,10 @@ class final_multi_reference_alignmentType62(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.number_reference_projections is not None or
-                self.merit_function is not None or
-                self.software_list is not None or
-                self.details is not None
+            self.number_reference_projections is not None or
+            self.merit_function is not None or
+            self.software_list is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -41596,7 +41597,7 @@ class resolutionType(GeneratedsSuper):
                 result = False
     def has__content(self):
         if (
-                (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
@@ -41704,9 +41705,9 @@ class originType(GeneratedsSuper):
         self.sec = sec
     def has__content(self):
         if (
-                self.col is not None or
-                self.row is not None or
-                self.sec is not None
+            self.col is not None or
+            self.row is not None or
+            self.sec is not None
         ):
             return True
         else:
@@ -41833,9 +41834,9 @@ class spacingType(GeneratedsSuper):
         self.z = z
     def has__content(self):
         if (
-                self.x is not None or
-                self.y is not None or
-                self.z is not None
+            self.x is not None or
+            self.y is not None or
+            self.z is not None
         ):
             return True
         else:
@@ -41986,12 +41987,12 @@ class cellType(GeneratedsSuper):
         self.gamma = gamma
     def has__content(self):
         if (
-                self.a is not None or
-                self.b is not None or
-                self.c is not None or
-                self.alpha is not None or
-                self.beta is not None or
-                self.gamma is not None
+            self.a is not None or
+            self.b is not None or
+            self.c is not None or
+            self.alpha is not None or
+            self.beta is not None or
+            self.gamma is not None
         ):
             return True
         else:
@@ -42181,9 +42182,9 @@ class axis_orderType(GeneratedsSuper):
     validate_slowType_patterns_ = [['^(X|Y|Z)$']]
     def has__content(self):
         if (
-                self.fast is not None or
-                self.medium is not None or
-                self.slow is not None
+            self.fast is not None or
+            self.medium is not None or
+            self.slow is not None
         ):
             return True
         else:
@@ -42328,9 +42329,9 @@ class pixel_spacingType(GeneratedsSuper):
         self.z = z
     def has__content(self):
         if (
-                self.x is not None or
-                self.y is not None or
-                self.z is not None
+            self.x is not None or
+            self.y is not None or
+            self.z is not None
         ):
             return True
         else:
@@ -42448,7 +42449,7 @@ class contour_listType(GeneratedsSuper):
         self.contour[index] = value
     def has__content(self):
         if (
-                self.contour
+            self.contour
         ):
             return True
         else:
@@ -42569,8 +42570,8 @@ class contourType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.level is not None or
-                self.source is not None
+            self.level is not None or
+            self.source is not None
         ):
             return True
         else:
@@ -42700,7 +42701,7 @@ class modelling_listType(GeneratedsSuper):
         self.modelling[index] = value
     def has__content(self):
         if (
-                self.modelling
+            self.modelling
         ):
             return True
         else:
@@ -42802,7 +42803,7 @@ class figure_listType(GeneratedsSuper):
         self.figure[index] = value
     def has__content(self):
         if (
-                self.figure
+            self.figure
         ):
             return True
         else:
@@ -42904,7 +42905,7 @@ class segmentation_listType(GeneratedsSuper):
         self.segmentation[index] = value
     def has__content(self):
         if (
-                self.segmentation
+            self.segmentation
         ):
             return True
         else:
@@ -43024,9 +43025,9 @@ class segmentationType(GeneratedsSuper):
     validate_fileType63_patterns_ = [['^([emd_\\d{4,}]+.*)$']]
     def has__content(self):
         if (
-                self.file is not None or
-                self.details is not None or
-                self.mask_details is not None
+            self.file is not None or
+            self.details is not None or
+            self.mask_details is not None
         ):
             return True
         else:
@@ -43154,7 +43155,7 @@ class slices_listType(GeneratedsSuper):
         self.slice[index] = value
     def has__content(self):
         if (
-                self.slice
+            self.slice
         ):
             return True
         else:
@@ -43256,7 +43257,7 @@ class additional_map_listType(GeneratedsSuper):
         self.additional_map[index] = value
     def has__content(self):
         if (
-                self.additional_map
+            self.additional_map
         ):
             return True
         else:
@@ -43358,7 +43359,7 @@ class half_map_listType(GeneratedsSuper):
         self.half_map[index] = value
     def has__content(self):
         if (
-                self.half_map
+            self.half_map
         ):
             return True
         else:
@@ -43463,9 +43464,9 @@ class initial_modelType(GeneratedsSuper):
         self.details = details
     def has__content(self):
         if (
-                self.access_code is not None or
-                self.chain is not None or
-                self.details is not None
+            self.access_code is not None or
+            self.chain is not None or
+            self.details is not None
         ):
             return True
         else:
@@ -43653,11 +43654,11 @@ class chainType(GeneratedsSuper):
         return result
     def has__content(self):
         if (
-                self.chain_id is not None or
-                self.residue_range is not None or
-                self.number_of_copies_in_final_model is not None or
-                self.source_name is not None or
-                self.initial_model_type is not None
+            self.chain_id is not None or
+            self.residue_range is not None or
+            self.number_of_copies_in_final_model is not None or
+            self.source_name is not None or
+            self.initial_model_type is not None
         ):
             return True
         else:
@@ -43844,9 +43845,9 @@ class final_modelType(GeneratedsSuper):
     validate_pdb_code_type_patterns_ = [['^(\\d[\\dA-Za-z]{3}|pdb_\\d{5}[\\dA-Za-z]{3})$']]
     def has__content(self):
         if (
-                self.access_code is not None or
-                self.chain or
-                self.details is not None
+            self.access_code is not None or
+            self.chain or
+            self.details is not None
         ):
             return True
         else:
@@ -43966,8 +43967,8 @@ class subtomogram_final_reconstruction_type(final_reconstruction_type):
         self.number_subtomograms_used = number_subtomograms_used
     def has__content(self):
         if (
-                self.number_subtomograms_used is not None or
-                super(subtomogram_final_reconstruction_type, self).has__content()
+            self.number_subtomograms_used is not None or
+            super(subtomogram_final_reconstruction_type, self).has__content()
         ):
             return True
         else:
@@ -44067,8 +44068,8 @@ class non_subtom_final_reconstruction_type(final_reconstruction_type):
         self.number_images_used = number_images_used
     def has__content(self):
         if (
-                self.number_images_used is not None or
-                super(non_subtom_final_reconstruction_type, self).has__content()
+            self.number_images_used is not None or
+            super(non_subtom_final_reconstruction_type, self).has__content()
         ):
             return True
         else:
@@ -44180,10 +44181,10 @@ class cell_source_type(base_source_type):
         self.cell = cell
     def has__content(self):
         if (
-                self.organ is not None or
-                self.tissue is not None or
-                self.cell is not None or
-                super(cell_source_type, self).has__content()
+            self.organ is not None or
+            self.tissue is not None or
+            self.cell is not None or
+            super(cell_source_type, self).has__content()
         ):
             return True
         else:
