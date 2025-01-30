@@ -2323,7 +2323,7 @@ class CifEMDBTranslator(object):
                             revision_num = revision_full
                             revision_list = []
                             revision_list.append(revision_in)
-                    revision_lists.update({revision_full: revision_list})
+                        revision_lists.update({revision_full: revision_list})
 
                     # get categories and items into revisions
                     revisions_categories = {key: [] for key in revision_lists}
