@@ -2147,7 +2147,7 @@ class CifEMDBTranslator(object):
                                     # attribute 1
                                     set_attr_part(part_content_type, revision_in)
 
-                                def set_categories_and_items(categories, items, revision_history_in, revision_details_in,
+                                def set_categories_and_items(categories, items, revision_history_in,
                                                              revision_categories, revision_items):
                                     """
                                     <xs:complexType name="metadata_revision_type"> extends <xs:extension base="base_revision_change_type"> and
@@ -2270,7 +2270,7 @@ class CifEMDBTranslator(object):
                                         metadata.original_tagname_ = "metadata"
                                         set_base_revision_change_type(metadata, revision_detail_in, revision_gr_in)
                                         set_categories_and_items(categories, items, revision_history_in,
-                                                                 revision_details_in, revision_categories, revision_items)
+                                                                 revision_categories, revision_items)
                                         if categories.has__content():
                                             metadata.set_categories(categories)
                                         if items.has__content():
