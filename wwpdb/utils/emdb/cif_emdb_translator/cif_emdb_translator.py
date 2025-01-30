@@ -2311,11 +2311,10 @@ class CifEMDBTranslator(object):
                     revision_lists = {}
                     revision_list = []
 
-                    for ordinal, revision_in in revision_history_in.items():
+                    for revision_in in revision_history_in.values():
                         major_revision = get_cif_value("major_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
                         minor_revision = get_cif_value("minor_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
                         revision_full = ".".join([major_revision, minor_revision])
-                        ordinal = "ignore"
                         if revision_num == revision_full:
                             revision_list.append(revision_in)
                         else:
