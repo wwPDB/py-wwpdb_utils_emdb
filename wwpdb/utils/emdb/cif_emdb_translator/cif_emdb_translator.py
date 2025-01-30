@@ -109,7 +109,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.9.4"
+        XML_OUT_VERSION = "3.0.10.0"
         XML_VERSION = XML_OUT_VERSION.replace('.', '_')
 
         # Cif categories
@@ -192,6 +192,11 @@ class CifEMDBTranslator(object):
         STRUCT = "struct"
         STRUCT_KEYWORDS = "struct_keywords"
         PDBX_DICT_ITEM_MAPPING = "pdbx_dict_item_mapping"
+        PDBX_AUDIT_REVISION_HISTORY = "pdbx_audit_revision_history"
+        PDBX_AUDIT_REVISION_DETAILS = "pdbx_audit_revision_details"
+        PDBX_AUDIT_REVISION_GROUP = "pdbx_audit_revision_group"
+        PDBX_AUDIT_REVISION_CATEGORY = "pdbx_audit_revision_category"
+        PDBX_AUDIT_REVISION_ITEM = "pdbx_audit_revision_item"
 
         # Keys
         K_EM_DIFFRACTION_STATS_ID = "em_diffraction_stats_id"
@@ -259,6 +264,15 @@ class CifEMDBTranslator(object):
         MAP_ADD = "additional map"
         MAP_MASK = "mask"
 
+        # Revision history types
+        PRIMARY_MAP = "Primary map"
+        HALF_MAP = "Half map"
+        MASK = "Mask"
+        ADDITIONAL_MAP = "Additional map"
+        FSC = "FSC"
+        EM_METADATA = "EM metadata"
+        IMAGE = "Image"
+
         # Entity types
         ENT_CYCLIC_PSEUDO_PEPTIDE = "cyclic-pseudo-peptide"
         ENT_DNA = "polydeoxyribonucleotide"
@@ -322,6 +336,47 @@ class CifEMDBTranslator(object):
             "Image stored as signed byte": "IMAGE STORED AS SIGNED BYTE",
             "Image stored as signed integer (2 bytes)": "IMAGE STORED AS SIGNED INTEGER (2 BYTES)",
             "Image stored as floating point number (4 bytes)": "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)",
+        }
+
+        MAP_REVISION_DETAILS_TYPE = {
+            "Initial release": "INITIAL_RELEASE",
+            "Coordinate replacement": "COORDINATE_REPLACEMENT",
+            "Obsolete": "OBSOLETE",
+            "Remediation": "REMEDIATION",
+            "Data added": "DATA_ADDED",
+            "Data updated": "DATA_UPDATED",
+            "Data removed": "DATA_REMOVED"
+        }
+
+        MAP_REVISION_PROVIDER = {
+            "author": "AUTHOR",
+            "repository": "REPOSITORY"
+        }
+
+        MAP_REVISION_GROUP = {
+            "Experimental data": "EXPERIMENTAL_DATA",
+            "Derived data": "DERIVED_DATA",
+            "Experimental summary": "EXPERIMENTAL_SUMMARY",
+            "Experimental preparation": "EXPERIMENTAL_PREPARATION",
+            "Database references": "DATABASE_REFERENCES",
+            "Data collection": "DATA_COLLECTION",
+            "Advisory": "ADVISORY",
+            "Source and taxonomy": "SOURCE_AND_TAXONOMY",
+            "Refinement description": "REFINEMENT_DESCRIPTION",
+            "Data processing": "DATA_PROCESSING",
+            "Structure summary": "STRUCTURE_SUMMARY",
+            "Version format compliance": "VERSION_FORMAT_COMPLIANCE",
+            "Other": "OTHER"
+        }
+
+        MAP_FILES = {
+            'Primary map': 'primary_map',
+            'Image': 'image',
+            'Half map': 'half_map',
+            'Mask': 'mask',
+            'FSC': 'fsc',
+            'Additional map': 'additional_map',
+            'EM metadata': 'metadata'
         }
 
         INFO_LOG_FILE_NAME = "INFO_cifEMDBTranslation.log"
@@ -1364,6 +1419,11 @@ class CifEMDBTranslator(object):
                 const.PDBX_ENTITY_SRC_SYN,
                 const.EM_SUPERSEDE,
                 const.EM_OBSOLETE,
+                const.PDBX_AUDIT_REVISION_HISTORY,
+                const.PDBX_AUDIT_REVISION_DETAILS,
+                const.PDBX_AUDIT_REVISION_GROUP,
+                const.PDBX_AUDIT_REVISION_CATEGORY,
+                const.PDBX_AUDIT_REVISION_ITEM
             ],
         )
         self.cif = Cif(container)
@@ -1884,7 +1944,7 @@ class CifEMDBTranslator(object):
         def set_admin_type(admin):
             """
             XSD: <xs:complexType name="admin_type"> is
-            ..a sequence of 13 elements
+            ..a sequence of 15 elements
             """
 
             def set_version_type(admin_status):
@@ -1965,6 +2025,327 @@ class CifEMDBTranslator(object):
                 status = emdb.version_type()
                 set_version_type(status)
                 admin.set_current_status(status)
+
+            def set_el_revision_history(admin):
+                """
+                List of entry's changes. The fisrt revision is from the initial release
+                XSD: <xs:element minOccurs="0" name="revision_history">
+                CIF: pdbx_audit_revision_history
+                """
+
+                def set_revisions_type(revisions, revision_history_in):
+                    """
+                    XSD: <xs:element name="revision" type="revision_history_type" maxOccurs="unbounded"/>
+                    CIF: pdbx_audit_revision_history
+                    """
+
+                    def set_revision_type(revision, revision_list, revision_categories, revision_items):
+                        """
+                        XSD: <xs:complexType name="revision_history_type"> is
+                        ... a sequence of 1 element and two attributes
+                        """
+
+                        def set_attr_version(revision, revision_list):
+                            """
+                            XSD: <xs:attribute name="version" type="revision_history_version_type" use="required"/>
+                            CIF: (pdbx_audit_revision_history.major_revision).(pdbx_audit_revision_history.minor_revision)
+                            """
+                            major_revision = get_cif_value("major_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_list[0])
+                            minor_revision = get_cif_value("minor_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_list[0])
+                            revision_full = ".".join([major_revision, minor_revision])
+                            set_cif_value(revision.set_version, cif_value=revision_full)
+
+                        def set_attr_date(revision, revision_list):
+                            """
+                            XSD: <xs:attribute name="date" type="xs:date" use="required"/>
+                            CIF: pdbx_audit_revision_history.revision_date
+                            """
+                            set_cif_value(revision.set_date, "revision_date", const.PDBX_AUDIT_REVISION_HISTORY,
+                                          cif_list=revision_list[0], fmt="date")
+
+                        def set_el_change_list(revision, revision_list):
+                            """
+                            XSD: <xs:element name="change_list" maxOccurs="1">
+                            CIF: pdbx_audit_revision_details and pdbx_audit_revision_history
+                            """
+
+                            def set_change_list_type(change_list, revision_list):
+                                """
+                                <xs:element name="change_list" maxOccurs="1"> is
+                                ... a sequence of revision_change_sub_group substitutions
+                                """
+
+                                def set_base_revision_change_type(base_content_type, revision_detail_in, revision_gr_in):
+                                    """
+                                    <xs:complexType name="base_revision_change_type"> is
+                                    ... a sequence of 5 elements
+                                    """
+
+                                    def set_el_revision_type(base_content_type, revision_detail_in):
+                                        """
+                                        XSD: <xs:element name="revision_type">
+                                        CIF: pdbx_audit_revision_details.type
+                                        """
+                                        set_cif_value(base_content_type.set_revision_type, "type", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in, fmt=const.MAP_REVISION_DETAILS_TYPE)
+
+                                    def set_el_provider(base_content_type, revision_detail_in):
+                                        """
+                                        XSD: <xs:element name="provider">
+                                        CIF: pdbx_audit_revision_details.provider
+                                        """
+                                        set_cif_value(base_content_type.set_provider, "provider", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in, fmt=const.MAP_REVISION_PROVIDER)
+
+                                    def set_el_description(base_content_type, revision_detail_in):
+                                        """
+                                        XSD: <xs:element name="description" type="xs:token" minOccurs="0"/>
+                                        CIF: pdbx_audit_revision_details.description
+                                        """
+                                        set_cif_value(base_content_type.set_description, "description", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in)
+
+                                    def set_el_details(base_content_type, revision_detail_in):
+                                        """
+                                        XSD: <xs:element name="details" type="xs:token" minOccurs="0"/>
+                                        CIF: pdbx_audit_revision_details.details
+                                        """
+                                        set_cif_value(base_content_type.set_details, "details", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in)
+
+                                    def set_el_revision_group(base_content_type, revision_gr_in):
+                                        """
+                                        XSD: <xs:element name="revision_group" minOccurs="0">
+                                        CIF: pdbx_audit_revision_group.group
+                                        """
+                                        set_cif_value(base_content_type.set_revision_group, "group", const.PDBX_AUDIT_REVISION_GROUP, cif_list=revision_gr_in, fmt=const.MAP_REVISION_GROUP)
+
+                                    if revision_detail_in is not None:
+                                        # element 1
+                                        set_el_revision_type(base_content_type, revision_detail_in)
+                                        # element 2
+                                        set_el_provider(base_content_type, revision_detail_in)
+                                        # element 3
+                                        set_el_description(base_content_type, revision_detail_in)
+                                        # element 4
+                                        set_el_details(base_content_type, revision_detail_in)
+
+                                    if revision_gr_in is not None:
+                                        # element 5
+                                        set_el_revision_group(base_content_type, revision_gr_in)
+
+                                def set_part_revision_change_type(part_content_type, revision_in, revision_detail_in):
+                                    """
+                                    <xs:complexType name="part_revision_change_type"> is
+                                    .. an extenstion of <xs:extension base="base_revision_change_type"> and
+                                    .. has 1 extra attribute
+                                    """
+                                    def set_attr_part(part_content_type, revision_in):
+                                        """
+                                        XSD: <xs:attribute name="part" type="xs:positiveInteger"/>
+                                        CIF: pdbx_audit_revision_history.internal_part_number = 2
+                                        """
+                                        set_cif_value(part_content_type.set_part, "part_number", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
+
+                                    set_base_revision_change_type(part_content_type, revision_detail_in, revision_gr_in)
+                                    # attribute 1
+                                    set_attr_part(part_content_type, revision_in)
+
+                                def set_categories_and_items(categories, items, revision_history_in,
+                                                             revision_categories, revision_items):
+                                    """
+                                    <xs:complexType name="metadata_revision_type"> extends <xs:extension base="base_revision_change_type"> and
+                                    ... has 2 more elements
+                                    """
+
+                                    def set_revision_category_or_item_type(category_or_item, revision_in):
+                                        """
+                                        <xs:complexType name="revision_category_or_item_type">
+                                        ... has 3 attributes
+                                        """
+                                        def set_attrib_revision_type(category_or_item, revision_in):
+                                            """
+                                            XSD: <xs:attribute name="revision_type" type="xs:token" use="required"/>
+                                            CIF: pdbx_audit_revision_category.data_content_type
+                                            """
+                                            set_cif_value(category_or_item.set_revision_type, "data_content_type", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in, fmt=const.MAP_FILES)
+
+                                        def set_attrib_part(category_or_item, revision_in):
+                                            """
+                                            XSD: <xs:attribute name="part" type="xs:positiveInteger"/>
+                                            CIF: pdbx_audit_revision_history.part_number
+                                            """
+                                            set_cif_value(category_or_item.set_part, "part_number", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
+
+                                        def set_attrib_revision_action(category_or_item, revision_in):
+                                            """
+                                            XSD: <xs:attribute name="revision_action" type="xs:token" use="required"/>
+                                            CIF: pdbx_audit_revision_details.type
+                                            """
+                                            set_cif_value(category_or_item.set_revision_action, "type", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
+
+                                        # attribute 1
+                                        set_attrib_revision_type(category_or_item, revision_in)
+                                        # attribute 2
+                                        set_attrib_part(category_or_item, revision_in)
+                                        # attribute 3
+                                        set_attrib_revision_action(category_or_item, revision_in)
+
+                                    def set_el_category(cat, revision_cat_in, revision_in):
+                                        """
+                                        <xs:element name="category" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
+                                        """
+                                        set_revision_category_or_item_type(cat, revision_in)
+                                        set_cif_value(cat.set_valueOf_, "category", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
+
+                                    def set_el_item(item, revision_it_in, revision_in):
+                                        """
+                                        <xs:element name="item" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
+                                        """
+                                        set_revision_category_or_item_type(item, revision_in)
+                                        set_cif_value(item.set_valueOf_, "item", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
+
+                                    # element 1
+                                    for revision_cat_in in revision_categories:
+                                        cat = emdb.revision_category_or_item_type()
+                                        cat_ordinal = get_cif_value("revision_ordinal", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
+                                        revision_in = revision_history_in.get(cat_ordinal)
+                                        set_el_category(cat, revision_cat_in, revision_in)
+                                        categories.add_category(cat)
+
+                                    # element 2
+                                    for revision_it_in in revision_items:
+                                        item = emdb.revision_category_or_item_type()
+                                        item_ordinal = get_cif_value("revision_ordinal", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
+                                        revision_in = revision_history_in.get(item_ordinal)
+                                        set_el_item(item, revision_it_in, revision_in)
+                                        items.add_item(item)
+
+                                revision_details_in = make_dict(const.PDBX_AUDIT_REVISION_DETAILS, "revision_ordinal")
+                                revision_group_in = make_dict(const.PDBX_AUDIT_REVISION_GROUP, "revision_ordinal")
+                                revision_history_in = make_dict(const.PDBX_AUDIT_REVISION_HISTORY, "ordinal")
+
+                                for revision_in in revision_list:
+                                    history_ordinal = get_cif_value("ordinal", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
+                                    revision_detail_in = revision_details_in.get(history_ordinal)
+                                    revision_gr_in = revision_group_in.get(history_ordinal)
+                                    data_content_type = get_cif_value("data_content_type", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
+                                    if data_content_type == const.PRIMARY_MAP:
+                                        primary_map = emdb.base_revision_change_type()
+                                        primary_map.original_tagname_ = "primary_map"
+                                        set_base_revision_change_type(primary_map, revision_detail_in, revision_gr_in)
+                                        if primary_map.has__content():
+                                            change_list.add_revision_change_sub_group(primary_map)
+                                    elif data_content_type == const.IMAGE:
+                                        image = emdb.part_revision_change_type()
+                                        image.original_tagname_ = "image"
+                                        set_part_revision_change_type(image, revision_in, revision_detail_in)
+                                        if image.has__content():
+                                            change_list.add_revision_change_sub_group(image)
+                                    elif data_content_type == const.HALF_MAP:
+                                        half_map = emdb.part_revision_change_type()
+                                        half_map.original_tagname_ = "half_map"
+                                        set_part_revision_change_type(half_map, revision_in, revision_detail_in)
+                                        if half_map.has__content():
+                                            change_list.add_revision_change_sub_group(half_map)
+                                    elif data_content_type == const.MASK:
+                                        mask = emdb.part_revision_change_type()
+                                        mask.original_tagname_ = "mask"
+                                        set_part_revision_change_type(mask, revision_in, revision_detail_in)
+                                        if mask.has__content():
+                                            change_list.add_revision_change_sub_group(mask)
+                                    elif data_content_type == const.ADDITIONAL_MAP:
+                                        add_map = emdb.part_revision_change_type()
+                                        add_map.original_tagname_ = "additional_map"
+                                        set_part_revision_change_type(add_map, revision_in, revision_detail_in)
+                                        if add_map.has__content():
+                                            change_list.add_revision_change_sub_group(add_map)
+                                    elif data_content_type == const.FSC:
+                                        fsc = emdb.part_revision_change_type()
+                                        fsc.original_tagname_ = "fsc"
+                                        set_part_revision_change_type(fsc, revision_in, revision_detail_in)
+                                        if fsc.has__content():
+                                            change_list.add_revision_change_sub_group(fsc)
+                                    elif data_content_type == const.EM_METADATA:
+                                        # metadata can only have once instance and one of categories and items
+                                        metadata = emdb.metadata_revision_type()
+                                        categories = emdb.categoriesType()
+                                        items = emdb.itemsType()
+                                        metadata.original_tagname_ = "metadata"
+                                        set_base_revision_change_type(metadata, revision_detail_in, revision_gr_in)
+                                        set_categories_and_items(categories, items, revision_history_in,
+                                                                 revision_categories, revision_items)
+                                        if categories.has__content():
+                                            metadata.set_categories(categories)
+                                        if items.has__content():
+                                            metadata.set_items(items)
+                                        if metadata.has__content():
+                                            change_list.add_revision_change_sub_group(metadata)
+
+                            change_list = emdb.change_listType()
+                            set_change_list_type(change_list, revision_list)
+                            revision.set_change_list(change_list)
+
+                        # attribute 1
+                        set_attr_version(revision, revision_list)
+                        # attribute 2
+                        set_attr_date(revision, revision_list)
+                        # element 1
+                        set_el_change_list(revision, revision_list)
+
+                    def set_revisons(revision_dict, rev_list, revisions_in):
+                        """
+                        Helper function
+                        """
+                        for revision, revision_list in rev_list.items():
+                            revisions = []
+                            for revision_ordinal, rev in revisions_in.items():
+                                for a_revision in revision_list:
+                                    a_ordinal = get_cif_value("ordinal", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
+                                    if a_ordinal == revision_ordinal:
+                                        major_revision = get_cif_value("major_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
+                                        minor_revision = get_cif_value("minor_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
+                                        revision_full = ".".join([major_revision, minor_revision])
+                                        if revision == revision_full:
+                                            revisions.append(rev)
+                                            break
+                            revision_dict[revision] = revisions
+
+                    revision_num = ""
+                    revision_lists = {}
+                    revision_list = []
+
+                    for revision_in in revision_history_in.values():
+                        major_revision = get_cif_value("major_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
+                        minor_revision = get_cif_value("minor_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
+                        revision_full = ".".join([major_revision, minor_revision])
+                        if revision_num == revision_full:
+                            revision_list.append(revision_in)
+                        else:
+                            if revision_num != "":
+                                revision_lists.update({revision_num: revision_list})
+                            revision_num = revision_full
+                            revision_list = []
+                            revision_list.append(revision_in)
+                        revision_lists.update({revision_full: revision_list})
+
+                    # get categories and items into revisions
+                    revisions_categories = {key: [] for key in revision_lists}
+                    revisions_items = {key: [] for key in revision_lists}
+
+                    revision_category_in = make_dict(const.PDBX_AUDIT_REVISION_CATEGORY, "revision_ordinal")
+                    revision_item_in = make_dict(const.PDBX_AUDIT_REVISION_ITEM, "revision_ordinal")
+
+                    set_revisons(revisions_categories, revision_lists, revision_category_in)
+                    set_revisons(revisions_items, revision_lists, revision_item_in)
+
+                    for revision_num, revision_list in revision_lists.items():
+                        revision = emdb.revision_history_type()
+                        set_revision_type(revision, revision_list, revisions_categories[revision_num], revisions_items[revision_num])
+                        revisions.add_revision(revision)
+
+                revision_history_in = make_dict(const.PDBX_AUDIT_REVISION_HISTORY, "ordinal")
+
+                revisions = emdb.revision_historyType()
+                set_revisions_type(revisions, revision_history_in)
+                if revisions.has__content():
+                    admin.set_revision_history(revisions)
 
             def set_el_sites(admin):
                 """
@@ -2559,33 +2940,37 @@ class CifEMDBTranslator(object):
             # element 2
             set_el_current_status(admin)
             # element 3
-            set_el_sites(admin)
+            set_el_revision_history(admin)
             # element 4
-            set_el_key_dates(admin)
+            set_el_sites(admin)
             # element 5
-            set_el_obsolete_list(admin)
+            set_el_key_dates(admin)
             # element 6
-            set_el_superseded_by_list(admin)
+            set_el_obsolete_list(admin)
             # element 7
+            set_el_superseded_by_list(admin)
+            # element 8
             aud_sup_in = make_dict(const.PDBX_AUDIT_SUPPORT, "ordinal", 2)
             set_el_grant_support(admin, aud_sup_in)
-            # element 8
+            # element 9
+            # set_el_microscopy_center(admin)
+            # element 10
             if self.__show_private:
                 contact_auth_in = make_dict(const.PDBX_CONTACT_AUTHOR, "id")
                 set_el_contact_author(admin, contact_auth_in)
-            # element 9
-            set_el_title(admin)
-            # element 10
-            set_el_authors_list(admin)
             # element 11
-            set_el_details()
+            set_el_title(admin)
             # element 12
+            set_el_authors_list(admin)
+            # element 13
+            set_el_details()
+            # element 14
             keywords_in = make_dict(const.STRUCT_KEYWORDS, "entry_id")
             for key_words in keywords_in.values():
                 pdbx_keywords = get_cif_value("text", const.STRUCT_KEYWORDS, cif_list=key_words)
                 if pdbx_keywords is not None:
                     set_el_keywords(admin, key_words)
-            # element 13
+            # element 15
             set_el_replace_existing_entry()
 
         def set_crossreferences_type(cross_references):
