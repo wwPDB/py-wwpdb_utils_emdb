@@ -24,7 +24,7 @@ def main():
 
             Examples:
             python test_cif_to_xml_translator.py -i input_cif_file -o output_xml_file
-            python test_cif_to_xml_translator.py -i "data/cif/EMD-0000.txt" -o "data/test/xml_v3_out/EMD-0000.xml"
+            python test_cif_to_xml_translator.py -i "data/cif/EMD-0000.cif" -o "data/test/xml_v3_out/EMD-0000.xml"
 
             Typical run:
             python test_cif_to_xml_translator.py -i in.cif -o out.xml
