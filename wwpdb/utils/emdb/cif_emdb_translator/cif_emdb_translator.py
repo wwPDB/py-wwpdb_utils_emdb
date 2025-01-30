@@ -2269,8 +2269,9 @@ class CifEMDBTranslator(object):
                                         items = emdb.itemsType()
                                         metadata.original_tagname_ = "metadata"
                                         set_base_revision_change_type(metadata, revision_detail_in, revision_gr_in)
-                                        set_categories_and_items(metadata, categories, items, revision_history_in, revision_details_in,
-                                                                revision_group_in, revision_categories, revision_items)
+                                        set_categories_and_items(metadata, categories, items, revision_history_in,
+                                                                 revision_details_in, revision_group_in,
+                                                                 revision_categories, revision_items)
                                         if categories.has__content():
                                             metadata.set_categories(categories)
                                         if items.has__content():
@@ -2316,7 +2317,7 @@ class CifEMDBTranslator(object):
                         minor_revision = get_cif_value("minor_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
                         revision_full = ".".join([major_revision, minor_revision])
                         if revision_num == revision_full:
-                           revision_list.append(revision_in)
+                            revision_list.append(revision_in)
                         else:
                             if revision_num != "":
                                 revision_lists.update({revision_num: revision_list})
