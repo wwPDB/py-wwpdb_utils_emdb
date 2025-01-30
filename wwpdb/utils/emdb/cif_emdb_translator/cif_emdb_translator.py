@@ -2147,14 +2147,14 @@ class CifEMDBTranslator(object):
                                     # attribute 1
                                     set_attr_part(part_content_type, revision_in)
 
-                                def set_categories_and_items(metadata, categories, items, revision_history_in, revision_details_in,
-                                                             revision_group_in, revision_categories, revision_items):
+                                def set_categories_and_items(categories, items, revision_history_in, revision_details_in,
+                                                             revision_categories, revision_items):
                                     """
                                     <xs:complexType name="metadata_revision_type"> extends <xs:extension base="base_revision_change_type"> and
                                     ... has 2 more elements
                                     """
 
-                                    def set_revision_category_or_item_type(category_or_item, revision_cat_or_it_in, revision_details_in, revision_in):
+                                    def set_revision_category_or_item_type(category_or_item, revision_in):
                                         """
                                         <xs:complexType name="revision_category_or_item_type">
                                         ... has 3 attributes
@@ -2191,14 +2191,14 @@ class CifEMDBTranslator(object):
                                         """
                                         <xs:element name="category" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
                                         """
-                                        set_revision_category_or_item_type(cat, revision_cat_in, revision_details_in, revision_in)
+                                        set_revision_category_or_item_type(cat, revision_in)
                                         set_cif_value(cat.set_valueOf_, "category", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
 
                                     def set_el_item(item, revision_it_in, revision_details_in, revision_in):
                                         """
                                         <xs:element name="item" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
                                         """
-                                        set_revision_category_or_item_type(item, revision_it_in, revision_details_in, revision_in)
+                                        set_revision_category_or_item_type(item, revision_in)
                                         set_cif_value(item.set_valueOf_, "item", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
 
                                     # element 1
@@ -2269,9 +2269,8 @@ class CifEMDBTranslator(object):
                                         items = emdb.itemsType()
                                         metadata.original_tagname_ = "metadata"
                                         set_base_revision_change_type(metadata, revision_detail_in, revision_gr_in)
-                                        set_categories_and_items(metadata, categories, items, revision_history_in,
-                                                                 revision_details_in, revision_group_in,
-                                                                 revision_categories, revision_items)
+                                        set_categories_and_items(categories, items, revision_history_in,
+                                                                 revision_details_in, revision_categories, revision_items)
                                         if categories.has__content():
                                             metadata.set_categories(categories)
                                         if items.has__content():
@@ -2316,6 +2315,7 @@ class CifEMDBTranslator(object):
                         major_revision = get_cif_value("major_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
                         minor_revision = get_cif_value("minor_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
                         revision_full = ".".join([major_revision, minor_revision])
+                        ordinal = "ignore"
                         if revision_num == revision_full:
                             revision_list.append(revision_in)
                         else:
