@@ -272,6 +272,7 @@ class CifEMDBTranslator(object):
         FSC = "FSC"
         EM_METADATA = "EM metadata"
         IMAGE = "Image"
+        STRUCTURE_MODEL = "Structure model"
 
         # Entity types
         ENT_CYCLIC_PSEUDO_PEPTIDE = "cyclic-pseudo-peptide"
@@ -376,7 +377,8 @@ class CifEMDBTranslator(object):
             'Mask': 'mask',
             'FSC': 'fsc',
             'Additional map': 'additional_map',
-            'EM metadata': 'metadata'
+            'EM metadata': 'metadata',
+            'Structure model': 'model'
         }
 
         INFO_LOG_FILE_NAME = "INFO_cifEMDBTranslation.log"
@@ -869,7 +871,20 @@ class CifEMDBTranslator(object):
             "_entity_src_gen.gene_src_strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
             "_pdbx_entity_src_syn.strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
             "_exptl.method": '<xs:element name="method">',
-            "_audit_author.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>'
+            "_audit_author.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>',
+            "_pdbx_audit_revision_history.revision_date": '<xs:attribute name="date" type="xs:date" use="required"/>',
+            "_pdbx_audit_revision_details and pdbx_audit_revision_history": '<xs:element name="change_list" maxOccurs="1">',
+            "_pdbx_audit_revision_details.type": '<xs:element name="revision_type">',
+            "_pdbx_audit_revision_details.provider": '<xs:element name="provider">',
+            "_pdbx_audit_revision_details.description": '<xs:element name="description" type="xs:token" minOccurs="0"/>',
+            "_pdbx_audit_revision_details.details": '<xs:element name="details" type="xs:token" minOccurs="0"/>',
+            "_pdbx_audit_revision_group.group": '<xs:element name="revision_group" minOccurs="0">',
+            "_pdbx_audit_revision_history.internal_part_number": '<xs:attribute name="part" type="xs:positiveInteger"/>',
+            "_pdbx_audit_revision_history.data_content_type": '<xs:attribute name="revision_type" type="xs:token" use="required"/>',
+            "_pdbx_audit_revision_history.part_number": '<xs:attribute name="part" type="xs:positiveInteger"/>',
+            "_pdbx_audit_revision_history.type": '<xs:attribute name="revision_action" type="xs:token" use="required"/>',
+            "_pdbx_audit_revision_category.category": '<xs:element name="category" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>',
+            "_pdbx_audit_revision_item.item": '<xs:element name="item" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>'
         }
 
     class ALog(object):
@@ -2154,7 +2169,7 @@ class CifEMDBTranslator(object):
                                     ... has 2 more elements
                                     """
 
-                                    def set_revision_category_or_item_type(category_or_item, revision_in):
+                                    def set_revision_category_or_item_type(category_or_item, revision_in, details_in):
                                         """
                                         <xs:complexType name="revision_category_or_item_type">
                                         ... has 3 attributes
@@ -2162,7 +2177,7 @@ class CifEMDBTranslator(object):
                                         def set_attrib_revision_type(category_or_item, revision_in):
                                             """
                                             XSD: <xs:attribute name="revision_type" type="xs:token" use="required"/>
-                                            CIF: pdbx_audit_revision_category.data_content_type
+                                            CIF: pdbx_audit_revision_history.data_content_type
                                             """
                                             set_cif_value(category_or_item.set_revision_type, "data_content_type", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in, fmt=const.MAP_FILES)
 
@@ -2173,32 +2188,36 @@ class CifEMDBTranslator(object):
                                             """
                                             set_cif_value(category_or_item.set_part, "part_number", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
 
-                                        def set_attrib_revision_action(category_or_item, revision_in):
+                                        def set_attrib_revision_action(category_or_item, details_in):
                                             """
                                             XSD: <xs:attribute name="revision_action" type="xs:token" use="required"/>
                                             CIF: pdbx_audit_revision_details.type
                                             """
-                                            set_cif_value(category_or_item.set_revision_action, "type", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
+                                            set_cif_value(category_or_item.set_revision_action, "type", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=details_in)
 
                                         # attribute 1
                                         set_attrib_revision_type(category_or_item, revision_in)
                                         # attribute 2
                                         set_attrib_part(category_or_item, revision_in)
                                         # attribute 3
-                                        set_attrib_revision_action(category_or_item, revision_in)
+                                        set_attrib_revision_action(category_or_item, details_in)
 
-                                    def set_el_category(cat, revision_cat_in, revision_in):
+                                    def set_el_category(cat, revision_cat_in, revision_in, details_in):
                                         """
                                         <xs:element name="category" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
+                                        XSD: <xs:element name="category" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
+                                        CIF: pdbx_audit_revision_category.category
                                         """
-                                        set_revision_category_or_item_type(cat, revision_in)
+                                        set_revision_category_or_item_type(cat, revision_in, details_in)
                                         set_cif_value(cat.set_valueOf_, "category", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
 
-                                    def set_el_item(item, revision_it_in, revision_in):
+                                    def set_el_item(item, revision_it_in, revision_in, details_in):
                                         """
                                         <xs:element name="item" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
+                                        XSD: <xs:element name="item" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
+                                        CIF: pdbx_audit_revision_item.item
                                         """
-                                        set_revision_category_or_item_type(item, revision_in)
+                                        set_revision_category_or_item_type(item, revision_in, details_in)
                                         set_cif_value(item.set_valueOf_, "item", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
 
                                     # element 1
@@ -2206,7 +2225,8 @@ class CifEMDBTranslator(object):
                                         cat = emdb.revision_category_or_item_type()
                                         cat_ordinal = get_cif_value("revision_ordinal", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
                                         revision_in = revision_history_in.get(cat_ordinal)
-                                        set_el_category(cat, revision_cat_in, revision_in)
+                                        details_in = revision_details_in.get(cat_ordinal)
+                                        set_el_category(cat, revision_cat_in, revision_in, details_in)
                                         categories.add_category(cat)
 
                                     # element 2
@@ -2214,7 +2234,7 @@ class CifEMDBTranslator(object):
                                         item = emdb.revision_category_or_item_type()
                                         item_ordinal = get_cif_value("revision_ordinal", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
                                         revision_in = revision_history_in.get(item_ordinal)
-                                        set_el_item(item, revision_it_in, revision_in)
+                                        set_el_item(item, revision_it_in, revision_in, details_in)
                                         items.add_item(item)
 
                                 revision_details_in = make_dict(const.PDBX_AUDIT_REVISION_DETAILS, "revision_ordinal")
@@ -2262,6 +2282,12 @@ class CifEMDBTranslator(object):
                                         set_part_revision_change_type(fsc, revision_in, revision_detail_in)
                                         if fsc.has__content():
                                             change_list.add_revision_change_sub_group(fsc)
+                                    elif data_content_type == const.STRUCTURE_MODEL:
+                                        fsc = emdb.part_revision_change_type()
+                                        fsc.original_tagname_ = "model"
+                                        set_part_revision_change_type(fsc, revision_in, revision_detail_in)
+                                        if fsc.has__content():
+                                            change_list.add_revision_change_sub_group(fsc)
                                     elif data_content_type == const.EM_METADATA:
                                         # metadata can only have once instance and one of categories and items
                                         metadata = emdb.metadata_revision_type()
@@ -2289,22 +2315,23 @@ class CifEMDBTranslator(object):
                         # element 1
                         set_el_change_list(revision, revision_list)
 
-                    def set_revisons(revision_dict, rev_list, revisions_in):
+                    def set_revisons(revision_dict, rev_list, revisions_in, cif_cat):
                         """
                         Helper function
                         """
-                        for revision, revision_list in rev_list.items():
+                        for revision, revision_list in rev_list.items(): # history
                             revisions = []
-                            for revision_ordinal, rev in revisions_in.items():
-                                for a_revision in revision_list:
-                                    a_ordinal = get_cif_value("ordinal", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
+                            for a_revision in revision_list: # history list
+                                a_ordinal = get_cif_value("ordinal", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
+                                for rev in revisions_in.values(): # cat or items
+                                    revision_ordinal = get_cif_value("revision_ordinal", cif_cat, cif_list=rev)
                                     if a_ordinal == revision_ordinal:
                                         major_revision = get_cif_value("major_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
                                         minor_revision = get_cif_value("minor_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
                                         revision_full = ".".join([major_revision, minor_revision])
                                         if revision == revision_full:
                                             revisions.append(rev)
-                                            break
+                                            # break
                             revision_dict[revision] = revisions
 
                     revision_num = ""
@@ -2329,11 +2356,11 @@ class CifEMDBTranslator(object):
                     revisions_categories = {key: [] for key in revision_lists}
                     revisions_items = {key: [] for key in revision_lists}
 
-                    revision_category_in = make_dict(const.PDBX_AUDIT_REVISION_CATEGORY, "revision_ordinal")
-                    revision_item_in = make_dict(const.PDBX_AUDIT_REVISION_ITEM, "revision_ordinal")
+                    revision_category_in = make_dict(const.PDBX_AUDIT_REVISION_CATEGORY, "ordinal")
+                    revision_item_in = make_dict(const.PDBX_AUDIT_REVISION_ITEM, "ordinal")
 
-                    set_revisons(revisions_categories, revision_lists, revision_category_in)
-                    set_revisons(revisions_items, revision_lists, revision_item_in)
+                    set_revisons(revisions_categories, revision_lists, revision_category_in, const.PDBX_AUDIT_REVISION_CATEGORY)
+                    set_revisons(revisions_items, revision_lists, revision_item_in, const.PDBX_AUDIT_REVISION_ITEM)
 
                     for revision_num, revision_list in revision_lists.items():
                         revision = emdb.revision_history_type()

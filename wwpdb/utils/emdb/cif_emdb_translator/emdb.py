@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Mon Jan 27 20:46:51 2025 by generateDS.py version 2.43.3.
+# Generated Thu Jan 30 10:52:36 2025 by generateDS.py version 2.43.3.
 # Python 3.9.19 (main, Mar 21 2024, 12:08:14)  [Clang 14.0.6 ]
 #
 # Command line options:
@@ -25831,6 +25831,11 @@ class change_listType(GeneratedsSuper):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.revision_change_sub_group.append(obj_)
             obj_.original_tagname_ = 'additional_map'
+        elif nodeName_ == 'model':
+            obj_ = part_revision_change_type.factory(parent_object_=self)
+            obj_.build(child_, gds_collector_=gds_collector_)
+            self.revision_change_sub_group.append(obj_)
+            obj_.original_tagname_ = 'model'
         elif nodeName_ == 'metadata':
             obj_ = metadata_revision_type.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)
@@ -45587,6 +45592,7 @@ GDSClassesMapping = {
     'mask': part_revision_change_type,
     'metadata': metadata_revision_type,
     'microscopy': base_microscopy_type,
+    'model': part_revision_change_type,
     'organelle_or_cellular_component_supramolecule': organelle_or_cellular_component_supramolecule_type,
     'other_macromolecule': other_macromolecule_type,
     'protein_or_peptide': protein_or_peptide_macromolecule_type,
