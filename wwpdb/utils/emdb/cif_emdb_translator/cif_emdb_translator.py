@@ -2076,76 +2076,76 @@ class CifEMDBTranslator(object):
                                 """
 
                                 def set_base_revision_change_type(base_content_type, revision_detail_in, revision_gr_in):
+                                    """
+                                    <xs:complexType name="base_revision_change_type"> is
+                                    ... a sequence of 5 elements
+                                    """
+
+                                    def set_el_revision_type(base_content_type, revision_detail_in):
                                         """
-                                        <xs:complexType name="base_revision_change_type"> is
-                                        ... a sequence of 5 elements
+                                        XSD: <xs:element name="revision_type">
+                                        CIF: pdbx_audit_revision_details.type
                                         """
+                                        set_cif_value(base_content_type.set_revision_type, "type", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in, fmt=const.MAP_REVISION_DETAILS_TYPE)
 
-                                        def set_el_revision_type(base_content_type, revision_detail_in):
-                                            """
-                                            XSD: <xs:element name="revision_type">
-                                            CIF: pdbx_audit_revision_details.type
-                                            """
-                                            set_cif_value(base_content_type.set_revision_type, "type", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in, fmt=const.MAP_REVISION_DETAILS_TYPE)
+                                    def set_el_provider(base_content_type, revision_detail_in):
+                                        """
+                                        XSD: <xs:element name="provider">
+                                        CIF: pdbx_audit_revision_details.provider
+                                        """
+                                        set_cif_value(base_content_type.set_provider, "provider", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in, fmt=const.MAP_REVISION_PROVIDER)
 
-                                        def set_el_provider(base_content_type, revision_detail_in):
-                                            """
-                                            XSD: <xs:element name="provider">
-                                            CIF: pdbx_audit_revision_details.provider
-                                            """
-                                            set_cif_value(base_content_type.set_provider, "provider", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in, fmt=const.MAP_REVISION_PROVIDER)
+                                    def set_el_description(base_content_type, revision_detail_in):
+                                        """
+                                        XSD: <xs:element name="description" type="xs:token" minOccurs="0"/>
+                                        CIF: pdbx_audit_revision_details.description
+                                        """
+                                        set_cif_value(base_content_type.set_description, "description", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in)
 
-                                        def set_el_description(base_content_type, revision_detail_in):
-                                            """
-                                            XSD: <xs:element name="description" type="xs:token" minOccurs="0"/>
-                                            CIF: pdbx_audit_revision_details.description
-                                            """
-                                            set_cif_value(base_content_type.set_description, "description", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in)
+                                    def set_el_details(base_content_type, revision_detail_in):
+                                        """
+                                        XSD: <xs:element name="details" type="xs:token" minOccurs="0"/>
+                                        CIF: pdbx_audit_revision_details.details
+                                        """
+                                        set_cif_value(base_content_type.set_details, "details", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in)
 
-                                        def set_el_details(base_content_type, revision_detail_in):
-                                            """
-                                            XSD: <xs:element name="details" type="xs:token" minOccurs="0"/>
-                                            CIF: pdbx_audit_revision_details.details
-                                            """
-                                            set_cif_value(base_content_type.set_details, "details", const.PDBX_AUDIT_REVISION_DETAILS, cif_list=revision_detail_in)
+                                    def set_el_revision_group(base_content_type, revision_gr_in):
+                                        """
+                                        XSD: <xs:element name="revision_group" minOccurs="0">
+                                        CIF: pdbx_audit_revision_group.group
+                                        """
+                                        set_cif_value(base_content_type.set_revision_group, "group", const.PDBX_AUDIT_REVISION_GROUP, cif_list=revision_gr_in, fmt=const.MAP_REVISION_GROUP)
 
-                                        def set_el_revision_group(base_content_type, revision_gr_in):
-                                            """
-                                            XSD: <xs:element name="revision_group" minOccurs="0">
-                                            CIF: pdbx_audit_revision_group.group
-                                            """
-                                            set_cif_value(base_content_type.set_revision_group, "group", const.PDBX_AUDIT_REVISION_GROUP, cif_list=revision_gr_in, fmt=const.MAP_REVISION_GROUP)
+                                    if revision_detail_in is not None:
+                                        # element 1
+                                        set_el_revision_type(base_content_type, revision_detail_in)
+                                        # element 2
+                                        set_el_provider(base_content_type, revision_detail_in)
+                                        # element 3
+                                        set_el_description(base_content_type, revision_detail_in)
+                                        # element 4
+                                        set_el_details(base_content_type, revision_detail_in)
 
-                                        if revision_detail_in is not None:
-                                            # element 1
-                                            set_el_revision_type(base_content_type, revision_detail_in)
-                                            # element 2
-                                            set_el_provider(base_content_type, revision_detail_in)
-                                            # element 3
-                                            set_el_description(base_content_type, revision_detail_in)
-                                            # element 4
-                                            set_el_details(base_content_type, revision_detail_in)
-
-                                        if revision_gr_in is not None:
-                                            # element 5
-                                            set_el_revision_group(base_content_type, revision_gr_in)
+                                    if revision_gr_in is not None:
+                                        # element 5
+                                        set_el_revision_group(base_content_type, revision_gr_in)
 
                                 def set_part_revision_change_type(part_content_type, revision_in, revision_detail_in):
+                                    """
+                                    <xs:complexType name="part_revision_change_type"> is
+                                    .. an extenstion of <xs:extension base="base_revision_change_type"> and
+                                    .. has 1 extra attribute
+                                    """
+                                    def set_attr_part(part_content_type, revision_in):
                                         """
-                                        <xs:complexType name="part_revision_change_type"> is
-                                        .. an extenstion of <xs:extension base="base_revision_change_type"> and
-                                        .. has 1 extra attribute
+                                        XSD: <xs:attribute name="part" type="xs:positiveInteger"/>
+                                        CIF: pdbx_audit_revision_history.internal_part_number = 2
                                         """
-                                        def set_attr_part(part_content_type, revision_in):
-                                            """
-                                            XSD: <xs:attribute name="part" type="xs:positiveInteger"/>
-                                            CIF: pdbx_audit_revision_history.internal_part_number = 2
-                                            """
-                                            set_cif_value(part_content_type.set_part, "part_number", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
+                                        set_cif_value(part_content_type.set_part, "part_number", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
 
-                                        set_base_revision_change_type(part_content_type, revision_detail_in, revision_gr_in)
-                                        # attribute 1
-                                        set_attr_part(part_content_type, revision_in)
+                                    set_base_revision_change_type(part_content_type, revision_detail_in, revision_gr_in)
+                                    # attribute 1
+                                    set_attr_part(part_content_type, revision_in)
 
                                 def set_categories_and_items(metadata, categories, items, revision_history_in, revision_details_in,
                                                              revision_group_in, revision_categories, revision_items):
@@ -2180,8 +2180,6 @@ class CifEMDBTranslator(object):
                                             """
                                             set_cif_value(category_or_item.set_revision_action, "type", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
 
-                                        history_ordinal = get_cif_value("ordinal", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
-                                        revision_detail_in = revision_details_in.get(history_ordinal)
                                         # attribute 1
                                         set_attrib_revision_type(category_or_item, revision_in)
                                         # attribute 2
@@ -2272,7 +2270,7 @@ class CifEMDBTranslator(object):
                                         metadata.original_tagname_ = "metadata"
                                         set_base_revision_change_type(metadata, revision_detail_in, revision_gr_in)
                                         set_categories_and_items(metadata, categories, items, revision_history_in, revision_details_in,
-                                                                   revision_group_in, revision_categories, revision_items)
+                                                                revision_group_in, revision_categories, revision_items)
                                         if categories.has__content():
                                             metadata.set_categories(categories)
                                         if items.has__content():
