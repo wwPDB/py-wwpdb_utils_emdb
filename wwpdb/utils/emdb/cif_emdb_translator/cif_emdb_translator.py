@@ -2234,6 +2234,7 @@ class CifEMDBTranslator(object):
                                         item = emdb.revision_category_or_item_type()
                                         item_ordinal = get_cif_value("revision_ordinal", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
                                         revision_in = revision_history_in.get(item_ordinal)
+                                        details_in = revision_details_in.get(item_ordinal)
                                         set_el_item(item, revision_it_in, revision_in, details_in)
                                         items.add_item(item)
 
