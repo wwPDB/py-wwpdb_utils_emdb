@@ -2284,11 +2284,11 @@ class CifEMDBTranslator(object):
                                         if fsc.has__content():
                                             change_list.add_revision_change_sub_group(fsc)
                                     elif data_content_type == const.STRUCTURE_MODEL:
-                                        fsc = emdb.part_revision_change_type()
-                                        fsc.original_tagname_ = "model"
-                                        set_part_revision_change_type(fsc, revision_in, revision_detail_in)
-                                        if fsc.has__content():
-                                            change_list.add_revision_change_sub_group(fsc)
+                                        model = emdb.part_revision_change_type()
+                                        model.original_tagname_ = "model"
+                                        set_part_revision_change_type(model, revision_in, revision_detail_in)
+                                        if model.has__content():
+                                            change_list.add_revision_change_sub_group(model)
                                     elif data_content_type == const.EM_METADATA:
                                         # metadata can only have once instance and one of categories and items
                                         metadata = emdb.metadata_revision_type()
