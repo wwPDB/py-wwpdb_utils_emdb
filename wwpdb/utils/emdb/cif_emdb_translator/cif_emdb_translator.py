@@ -9,7 +9,7 @@ Copyright [2014-2016] EMBL - European Bioinformatics Institute
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-http://www.apache.org/licenses/LICENSE-2.0
+https://www.apache.org/licenses/LICENSE-2.0
 Unless required by applicable law or agreed to in writing,
 software distributed under the License is distributed on
 an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -67,7 +67,7 @@ class Cif(object):
 
         return self.get(item)
 
-    def get(self, catname, err=False):  # pylint: disable=unused-argument
+    def get(self, catname):  # pylint: disable=unused-argument
         """Returns tuple representation of category or none like:
 
         a= [[('_database_2.database_id', u'PDB'), ('_database_2.database_code', u'0XXX')],
@@ -96,6 +96,20 @@ class Cif(object):
             retlist.append(rowlist)
 
         return retlist
+
+
+def write_to_file(log_file_name, log_content=None):
+    if log_file_name is not None:
+        log_file_hdl = open(log_file_name, "a")
+        if log_content is not None:
+            log_file_hdl.write(log_content)
+        log_file_hdl.close()
+
+
+def init_logger_log(log_file_name_in):
+    """"""
+    if not os.path.exists(log_file_name_in):
+        write_to_file(log_file_name_in)
 
 
 class CifEMDBTranslator(object):
@@ -272,6 +286,7 @@ class CifEMDBTranslator(object):
         FSC = "FSC"
         EM_METADATA = "EM metadata"
         IMAGE = "Image"
+        STRUCTURE_MODEL = "Structure model"
 
         # Entity types
         ENT_CYCLIC_PSEUDO_PEPTIDE = "cyclic-pseudo-peptide"
@@ -316,11 +331,11 @@ class CifEMDBTranslator(object):
         CIF_EMDB_CONSENSUS = "consensus EM volume"
         CIF_EMDB_FOCUSED = "focused EM volume"
         CIF_AUTHOR_RE = re.compile(r"^([A-Za-z0-9 \'\-.]+), (([A-Z\-]+\.)*)")
-        CIF_HALF_MAP_RE = re.compile(r"^D_[0-9]+\_em\-half\-volume\_P([0-9]+)\.map")
-        CIF_ADD_MAP_RE = re.compile(r"^D_[0-9]+\_em\-additional\-volume\_P([0-9]+)\.map")
-        CIF_EMD_ID_RE = re.compile(r"EMD\-([0-9]){4,}")
+        CIF_HALF_MAP_RE = re.compile(r"^D_[0-9]+_em-half-volume_P([0-9]+)\.map")
+        CIF_ADD_MAP_RE = re.compile(r"^D_[0-9]+_em-additional-volume_P([0-9]+)\.map")
+        CIF_EMD_ID_RE = re.compile(r"EMD-([0-9]){4,}")
         # format: D_1000218615_em-mask-volume_P1.map.V1
-        CIF_MSK_MAP_RE = re.compile(r"^D_[0-9]+\_em\-mask\-volume\_P([0-9]+)\.map")
+        CIF_MSK_MAP_RE = re.compile(r"^D_[0-9]+_em-mask-volume_P([0-9]+)\.map")
         DA2MDA = 1.0 / 1000000.0
         PROC_SITE_CIF2XML = {"PDBE": "PDBe", "RCSB": "RCSB", "PDBJ": "PDBj", "PDBC": "PDBc"}
         AGG_STATE_CIF2XML = {
@@ -376,7 +391,8 @@ class CifEMDBTranslator(object):
             'Mask': 'mask',
             'FSC': 'fsc',
             'Additional map': 'additional_map',
-            'EM metadata': 'metadata'
+            'EM metadata': 'metadata',
+            'Structure model': 'model'
         }
 
         INFO_LOG_FILE_NAME = "INFO_cifEMDBTranslation.log"
@@ -869,7 +885,20 @@ class CifEMDBTranslator(object):
             "_entity_src_gen.gene_src_strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
             "_pdbx_entity_src_syn.strain": '<xs:element name="strain" type="xs:token" minOccurs="0"/>',
             "_exptl.method": '<xs:element name="method">',
-            "_audit_author.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>'
+            "_audit_author.identifier_ORCID": '<xs:attribute name="ORCID" type="ORCID_type"/>',
+            "_pdbx_audit_revision_history.revision_date": '<xs:attribute name="date" type="xs:date" use="required"/>',
+            "_pdbx_audit_revision_details and pdbx_audit_revision_history": '<xs:element name="change_list" maxOccurs="1">',
+            "_pdbx_audit_revision_details.type": '<xs:element name="revision_type">',
+            "_pdbx_audit_revision_details.provider": '<xs:element name="provider">',
+            "_pdbx_audit_revision_details.description": '<xs:element name="description" type="xs:token" minOccurs="0"/>',
+            "_pdbx_audit_revision_details.details": '<xs:element name="details" type="xs:token" minOccurs="0"/>',
+            "_pdbx_audit_revision_group.group": '<xs:element name="revision_group" minOccurs="0">',
+            "_pdbx_audit_revision_history.internal_part_number": '<xs:attribute name="part" type="xs:positiveInteger"/>',
+            "_pdbx_audit_revision_history.data_content_type": '<xs:attribute name="revision_type" type="xs:token" use="required"/>',
+            "_pdbx_audit_revision_history.part_number": '<xs:attribute name="part" type="xs:positiveInteger"/>',
+            "_pdbx_audit_revision_history.type": '<xs:attribute name="revision_action" type="xs:token" use="required"/>',
+            "_pdbx_audit_revision_category.category": '<xs:element name="category" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>',
+            "_pdbx_audit_revision_item.item": '<xs:element name="item" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>'
         }
 
     class ALog(object):
@@ -930,8 +959,8 @@ class CifEMDBTranslator(object):
         _not_changed_for_now_title = "NOT CHANGED FOR NOW: "
         _validation_title = "VALIDATION ERROR "
 
-        def __init__(self, entry_ID):
-            self.ID = entry_ID
+        def __init__(self, entry_id):
+            self.ID = entry_id
             # logs lists
             self.error_logs = []
             self.warn_logs = []
@@ -1012,7 +1041,7 @@ class CifEMDBTranslator(object):
         def logs(self):
             return self.entry_logs
 
-    def __init__(self, info_log=None, warn_log=None, error_log=None):  # pylint: disable=unused-argument
+    def __init__(self):  # pylint: disable=unused-argument
         self.cif_file_name = None
         self.cif_file_read = False  # flag set once the cif file is read
         self.cif = None  # cif dictionary
@@ -1109,13 +1138,6 @@ class CifEMDBTranslator(object):
         if close_error:
             self.error_log_string.close()
 
-    def write_to_file(self, log_file_name, log_content=None):
-        if log_file_name is not None:
-            log_file_hdl = open(log_file_name, "a")
-            if log_content is not None:
-                log_file_hdl.write(log_content)
-            log_file_hdl.close()
-
     def write_a_logger_log(self, log_str, log_file_name):
         """
 
@@ -1125,7 +1147,7 @@ class CifEMDBTranslator(object):
         log_content = log_str.getvalue()
         if self.show_log_on_console:
             print("%s" % log_content)
-        self.write_to_file(log_file_name, log_content)
+        write_to_file(log_file_name, log_content)
 
     def write_logger_logs(self, write_error_log=False, write_warn_log=False, write_info_log=False):
         """
@@ -1152,11 +1174,6 @@ class CifEMDBTranslator(object):
                 self.write_a_logger_log(self.info_log_string, self.info_log_file_name)
                 self.info_log_string.close()
 
-    def init_logger_log(self, log_file_name_in):
-        """"""
-        if not os.path.exists(log_file_name_in):
-            self.write_to_file(log_file_name_in)
-
     def initialise_logging(self, log_info=False, info_log_file_name=None, log_warn=False, warn_log_file_name=None, log_error=False, error_log_file_name=None):
         """
         Sets the console logging
@@ -1174,17 +1191,17 @@ class CifEMDBTranslator(object):
         if log_info:
             if info_log_file_name is not None:
                 self.info_log_file_name = info_log_file_name
-            self.init_logger_log(self.info_log_file_name)
+            init_logger_log(self.info_log_file_name)
 
         if log_warn:
             if warn_log_file_name is not None:
                 self.warn_log_file_name = warn_log_file_name
-            self.init_logger_log(self.warn_log_file_name)
+            init_logger_log(self.warn_log_file_name)
 
         if log_error:
             if error_log_file_name is not None:
                 self.error_log_file_name = error_log_file_name
-            self.init_logger_log(self.error_log_file_name)
+            init_logger_log(self.error_log_file_name)
 
         # note the logging level of the parent logger
         self.parent_logger_level = logging.getLogger().getEffectiveLevel()
@@ -1214,7 +1231,7 @@ class CifEMDBTranslator(object):
     def get_log_level(self, log_string_name):
         """
 
-        :param log_string:
+        :param log_string_name:
         :return:
         """
         ret_str = ""
@@ -1229,7 +1246,7 @@ class CifEMDBTranslator(object):
     def open_log_stream(self, log_string_name):
         """
 
-        :param log_string:
+        :param log_string_name:
         :return:
         """
         log_string = None
@@ -1313,9 +1330,9 @@ class CifEMDBTranslator(object):
         about how the em categories map to the emd categories.
         Please note: the mapping is not one to one for certain categories
         """
-        siteId = getSiteId()
-        cIA = ConfigInfoAppEm(siteId)
-        em_map_file_name = cIA.get_emd_mapping_file_path()
+        site_id = getSiteId()
+        cia = ConfigInfoAppEm(site_id)
+        em_map_file_name = cia.get_emd_mapping_file_path()
         io_adapt = IoAdapterCore()
         map_cat_list = io_adapt.readFile(em_map_file_name)
         cat = self.Constants.PDBX_DICT_ITEM_MAPPING
@@ -1597,8 +1614,6 @@ class CifEMDBTranslator(object):
                     alert = "(" + self.entry_in_translation_log.id + ")" + alert_str
                     spacing = u" " * len(alert)
                     log_str.write(u"\n")
-                    cif_item_txt = u""
-                    xsd_txt = u"\n"
                     parent_txt = u"\n"
                     em_for_emd_txt = u"The _em category for the above category is (%s)."
                     soft_txt = u"Software name is (%s)"
@@ -1635,6 +1650,8 @@ class CifEMDBTranslator(object):
             @param cif_item: cif_value is for this cif_item
             @param setter_func: The function used to set cif_value
             @param fmt_cif_value: The cif value is formatted if the value is set
+            @param parent_el_req:
+            @param soft_name:
             This is used as a flag that setting went well
             """
             xsd = None
@@ -1725,7 +1742,7 @@ class CifEMDBTranslator(object):
             set_cif_value(setter_func, cif_key, cif_cat, constructor=emdb.a_type, res_type='BY AUTHOR')
 
             The 'parent_el_req' named argument is used to override the requirement for the XML element/argument
-            created in this translation by it's parent element requirement. The call can be:
+            created in this translation by its parent element requirement. The call can be:
 
             set_cif_value(setter_func, cif_key, cif_cat, parent_el_req=False)
 
@@ -1772,6 +1789,7 @@ class CifEMDBTranslator(object):
                         fmt_cif_value = fmt(cif_value)
                 else:
                     fmt_cif_value = cif_value
+                constructed_cif_value = None
                 if constructor is not None:
                     if units is None and the_type is None and ncbi is None and private is None and res_type is None:
                         constructed_cif_value = constructor(valueOf_=fmt_cif_value)
@@ -1922,7 +1940,7 @@ class CifEMDBTranslator(object):
                                "Ihsanawati",
                                "Preeti",
                                "Morigen",
-                               "Nolte-'T Hoen, E.N.M."
+                               "Nolte-'T Hoen, E.N.M."]
 
             Parameters:
             @param auth_in: string author name in CIF format
@@ -2039,7 +2057,7 @@ class CifEMDBTranslator(object):
                     CIF: pdbx_audit_revision_history
                     """
 
-                    def set_revision_type(revision, revision_list, revision_categories, revision_items):
+                    def set_revision_type(revision, revision_list):
                         """
                         XSD: <xs:complexType name="revision_history_type"> is
                         ... a sequence of 1 element and two attributes
@@ -2147,84 +2165,39 @@ class CifEMDBTranslator(object):
                                     # attribute 1
                                     set_attr_part(part_content_type, revision_in)
 
-                                def set_categories_and_items(categories, items, revision_history_in,
-                                                             revision_categories, revision_items):
+                                def set_complex_revision_change_type(data_type, revision_detail_in, revision_gr_in,
+                                                                     categories, items, history_ordinal):
                                     """
-                                    <xs:complexType name="metadata_revision_type"> extends <xs:extension base="base_revision_change_type"> and
-                                    ... has 2 more elements
+                                    <xs:complexType name="complex_revision_change_type"> extends <xs:extension base="base_revision_change_type">
+                                    ... has 2 elements
                                     """
 
-                                    def set_revision_category_or_item_type(category_or_item, revision_in):
-                                        """
-                                        <xs:complexType name="revision_category_or_item_type">
-                                        ... has 3 attributes
-                                        """
-                                        def set_attrib_revision_type(category_or_item, revision_in):
-                                            """
-                                            XSD: <xs:attribute name="revision_type" type="xs:token" use="required"/>
-                                            CIF: pdbx_audit_revision_category.data_content_type
-                                            """
-                                            set_cif_value(category_or_item.set_revision_type, "data_content_type", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in, fmt=const.MAP_FILES)
+                                    set_base_revision_change_type(data_type, revision_detail_in, revision_gr_in)
 
-                                        def set_attrib_part(category_or_item, revision_in):
-                                            """
-                                            XSD: <xs:attribute name="part" type="xs:positiveInteger"/>
-                                            CIF: pdbx_audit_revision_history.part_number
-                                            """
-                                            set_cif_value(category_or_item.set_part, "part_number", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
-
-                                        def set_attrib_revision_action(category_or_item, revision_in):
-                                            """
-                                            XSD: <xs:attribute name="revision_action" type="xs:token" use="required"/>
-                                            CIF: pdbx_audit_revision_details.type
-                                            """
-                                            set_cif_value(category_or_item.set_revision_action, "type", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
-
-                                        # attribute 1
-                                        set_attrib_revision_type(category_or_item, revision_in)
-                                        # attribute 2
-                                        set_attrib_part(category_or_item, revision_in)
-                                        # attribute 3
-                                        set_attrib_revision_action(category_or_item, revision_in)
-
-                                    def set_el_category(cat, revision_cat_in, revision_in):
-                                        """
-                                        <xs:element name="category" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
-                                        """
-                                        set_revision_category_or_item_type(cat, revision_in)
-                                        set_cif_value(cat.set_valueOf_, "category", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
-
-                                    def set_el_item(item, revision_it_in, revision_in):
-                                        """
-                                        <xs:element name="item" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>
-                                        """
-                                        set_revision_category_or_item_type(item, revision_in)
-                                        set_cif_value(item.set_valueOf_, "item", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
-
+                                    revision_categories_in = make_dict(const.PDBX_AUDIT_REVISION_CATEGORY, "ordinal")
                                     # element 1
-                                    for revision_cat_in in revision_categories:
-                                        cat = emdb.revision_category_or_item_type()
+                                    for revision_cat_in in revision_categories_in.values():
                                         cat_ordinal = get_cif_value("revision_ordinal", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
-                                        revision_in = revision_history_in.get(cat_ordinal)
-                                        set_el_category(cat, revision_cat_in, revision_in)
-                                        categories.add_category(cat)
+                                        if history_ordinal == cat_ordinal:
+                                            cat = get_cif_value("category", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
+                                            categories.add_category(cat)
 
+                                    revision_items_in = make_dict(const.PDBX_AUDIT_REVISION_ITEM, "ordinal")
                                     # element 2
-                                    for revision_it_in in revision_items:
-                                        item = emdb.revision_category_or_item_type()
+                                    for revision_it_in in revision_items_in.values():
                                         item_ordinal = get_cif_value("revision_ordinal", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
-                                        revision_in = revision_history_in.get(item_ordinal)
-                                        set_el_item(item, revision_it_in, revision_in)
-                                        items.add_item(item)
+                                        if history_ordinal == item_ordinal:
+                                            item = get_cif_value("item", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
+                                            items.add_item(item)
 
                                 revision_details_in = make_dict(const.PDBX_AUDIT_REVISION_DETAILS, "revision_ordinal")
                                 revision_group_in = make_dict(const.PDBX_AUDIT_REVISION_GROUP, "revision_ordinal")
-                                revision_history_in = make_dict(const.PDBX_AUDIT_REVISION_HISTORY, "ordinal")
 
                                 for revision_in in revision_list:
                                     history_ordinal = get_cif_value("ordinal", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
                                     revision_detail_in = revision_details_in.get(history_ordinal)
                                     revision_gr_in = revision_group_in.get(history_ordinal)
+
                                     data_content_type = get_cif_value("data_content_type", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=revision_in)
                                     if data_content_type == const.PRIMARY_MAP:
                                         primary_map = emdb.base_revision_change_type()
@@ -2262,15 +2235,27 @@ class CifEMDBTranslator(object):
                                         set_part_revision_change_type(fsc, revision_in, revision_detail_in)
                                         if fsc.has__content():
                                             change_list.add_revision_change_sub_group(fsc)
+                                    elif data_content_type == const.STRUCTURE_MODEL:
+                                        model = emdb.complex_revision_change_type()
+                                        categories = emdb.categoriesType()
+                                        items = emdb.itemsType()
+                                        model.original_tagname_ = "model"
+                                        set_complex_revision_change_type(model, revision_detail_in, revision_gr_in,
+                                                                         categories, items, history_ordinal)
+                                        if categories.has__content():
+                                            model.set_categories(categories)
+                                        if items.has__content():
+                                            model.set_items(items)
+                                        if model.has__content():
+                                            change_list.add_revision_change_sub_group(model)
                                     elif data_content_type == const.EM_METADATA:
-                                        # metadata can only have once instance and one of categories and items
-                                        metadata = emdb.metadata_revision_type()
+                                        # metadata can only have one instance and one of categories and items
+                                        metadata = emdb.complex_revision_change_type()
                                         categories = emdb.categoriesType()
                                         items = emdb.itemsType()
                                         metadata.original_tagname_ = "metadata"
-                                        set_base_revision_change_type(metadata, revision_detail_in, revision_gr_in)
-                                        set_categories_and_items(categories, items, revision_history_in,
-                                                                 revision_categories, revision_items)
+                                        set_complex_revision_change_type(metadata, revision_detail_in, revision_gr_in,
+                                                                         categories, items, history_ordinal)
                                         if categories.has__content():
                                             metadata.set_categories(categories)
                                         if items.has__content():
@@ -2289,24 +2274,6 @@ class CifEMDBTranslator(object):
                         # element 1
                         set_el_change_list(revision, revision_list)
 
-                    def set_revisons(revision_dict, rev_list, revisions_in):
-                        """
-                        Helper function
-                        """
-                        for revision, revision_list in rev_list.items():
-                            revisions = []
-                            for revision_ordinal, rev in revisions_in.items():
-                                for a_revision in revision_list:
-                                    a_ordinal = get_cif_value("ordinal", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
-                                    if a_ordinal == revision_ordinal:
-                                        major_revision = get_cif_value("major_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
-                                        minor_revision = get_cif_value("minor_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
-                                        revision_full = ".".join([major_revision, minor_revision])
-                                        if revision == revision_full:
-                                            revisions.append(rev)
-                                            break
-                            revision_dict[revision] = revisions
-
                     revision_num = ""
                     revision_lists = {}
                     revision_list = []
@@ -2321,23 +2288,12 @@ class CifEMDBTranslator(object):
                             if revision_num != "":
                                 revision_lists.update({revision_num: revision_list})
                             revision_num = revision_full
-                            revision_list = []
-                            revision_list.append(revision_in)
+                            revision_list = [revision_in]
                         revision_lists.update({revision_full: revision_list})
-
-                    # get categories and items into revisions
-                    revisions_categories = {key: [] for key in revision_lists}
-                    revisions_items = {key: [] for key in revision_lists}
-
-                    revision_category_in = make_dict(const.PDBX_AUDIT_REVISION_CATEGORY, "revision_ordinal")
-                    revision_item_in = make_dict(const.PDBX_AUDIT_REVISION_ITEM, "revision_ordinal")
-
-                    set_revisons(revisions_categories, revision_lists, revision_category_in)
-                    set_revisons(revisions_items, revision_lists, revision_item_in)
 
                     for revision_num, revision_list in revision_lists.items():
                         revision = emdb.revision_history_type()
-                        set_revision_type(revision, revision_list, revisions_categories[revision_num], revisions_items[revision_num])
+                        set_revision_type(revision, revision_list)
                         revisions.add_revision(revision)
 
                 revision_history_in = make_dict(const.PDBX_AUDIT_REVISION_HISTORY, "ordinal")
@@ -2641,6 +2597,8 @@ class CifEMDBTranslator(object):
                         """
                         XSD: <xs:complexType name="contact_details_type"> has
                         .. 14 elements
+                        @param cont_author:
+                        @param contact_auth_in:
                         @param parent_req: the requirement for the elements depend on
                                 the parent element requirement
                         """
@@ -2846,7 +2804,7 @@ class CifEMDBTranslator(object):
                 """
                 XSD: <xs:element name="title" type="xs:token">
                 The value is _struct.title if _em_depui.same_title_as_pdb.
-                Otherwise it is _em_admin.title
+                Otherwise, it is _em_admin.title
                 CIF: _em_depui.same_title_as_pdb  YES/NO
                     YES: CIF: _struct.title
                     NO: CIF: _em_admin.title
@@ -2878,7 +2836,7 @@ class CifEMDBTranslator(object):
                      ... 1 element of author_ORCID_type
                     """
 
-                    def set_author_orcid_type(author_with_ORCID, auth_in):
+                    def set_author_orcid_type(author_with_orcid, auth_in):
                         """
                         XSD: <xs:complexType name="author_ORCID_type"> extends author_type and hashttps://rcsbpdb.atlassian.net/browse/DAOTHER-2725has
                         ... 1 attribute
@@ -2887,14 +2845,15 @@ class CifEMDBTranslator(object):
                             CIF: _em_author_list.ordinal            1
                                  _em_author_list.author             'Turner, J.'
                                  _em_author_list.identifier_ORCID   0000-0002-5251-4674
+
                         """
 
-                        set_cif_value(author_with_ORCID.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST, cif_list=auth_in)
+                        set_cif_value(author_with_orcid.set_ORCID, "identifier_ORCID", const.EM_AUTHOR_LIST, cif_list=auth_in)
                         author = get_cif_value("author", const.EM_AUTHOR_LIST, cif_list=auth_in)
 
                         fmt_auth = format_author(author)
                         if fmt_auth != "":
-                            author_with_ORCID.set_valueOf_(fmt_auth)
+                            author_with_orcid.set_valueOf_(fmt_auth)
                         else:
                             txt = u"Author (%s) is not added to the list of authors as the format is wrong." % author
                             self.current_entry_log.warn_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt))
@@ -3041,7 +3000,7 @@ class CifEMDBTranslator(object):
                         2        1  'Navia, M.A.'
                         """
                         cite_authors_in = self.cif.get(const.CITATION_AUTHOR)
-                        if cite_authors_in != []:
+                        if cite_authors_in:
                             for cite_author in cite_authors_in:
                                 auth_id = get_cif_value("citation_id", const.CITATION_AUTHOR, cite_author)
                                 if auth_id not in auth_dict:
@@ -3090,8 +3049,6 @@ class CifEMDBTranslator(object):
                             No proper flag to distinguish between journal and book depositions.
                             Use the journal abbreviation as an implicit flag
                             """
-                            # ja_item = get_cif_item('journal_abbrev', const.CITATION)
-                            value_given = None
                             if jrnl_abbrev_in.lower() in ["to be published", "suppressed"]:
                                 value_given = False
                             else:
@@ -3224,8 +3181,7 @@ class CifEMDBTranslator(object):
                             CIF: _citation.unpublished_flag ?
                             """
                             unpublished_flag = get_cif_value("unpublished_flag", const.CITATION, cite_in)
-                            # uf_item = get_cif_item('unpublished_flag', const.CITATION)
-                            value_given = None
+
                             if unpublished_flag is None or unpublished_flag == "Y":
                                 value_given = False
                             else:
@@ -3377,14 +3333,13 @@ class CifEMDBTranslator(object):
                     ]
                     # get all citation values from cif
                     cite_list_in = self.cif.get(const.CITATION)
-                    if cite_list_in != []:
+                    if cite_list_in:
                         # set a flag for primary citations
                         any_primary_citations = False
                         # get all citation author values from cif
                         for cite_in in cite_list_in:
                             # CIF:_citation.id
                             cite_id_in = get_cif_value(const.K_ID, const.CITATION, cite_in)
-                            citation = None
                             if cite_id_in == "primary":
                                 if not any_primary_citations:
                                     any_primary_citations = True
@@ -3464,6 +3419,7 @@ class CifEMDBTranslator(object):
                                 )
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
+                                correct_acc_code = ""
                                 if (len(acc_code) == 4 or len(acc_code) == 5) and acc_code.isdigit():
                                     # acc_code is a 4 or 5-digit number - add EMD- to it
                                     correct_acc_code = "EMD-" + acc_code
@@ -3490,8 +3446,7 @@ class CifEMDBTranslator(object):
                         CIF: _em_db_reference.relationship ?
                         """
                         rel_in = get_cif_value("relationship", const.EM_DB_REFERENCE, emdb_ref_in)
-                        # rel_item = get_cif_item('relationship', const.EM_DB_REFERENCE)
-                        txt = None
+
                         if rel_in == "IN FRAME":
                             emdb_ref.set_relationship(emdb.relationshipType(in_frame="FULLOVERLAP"))
                             txt = u"The value (FULLOVERLAP) is given to (emdb_ref.set_relationship)."
@@ -3525,6 +3480,7 @@ class CifEMDBTranslator(object):
                                 txt = u"The value for (_pdbx_database_related.db_id) (%s) is in a wrong format. If a new value is given the message follows." % db_id
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
+                                correct_db_id = ""
                                 if (len(db_id) == 4 or len(db_id) == 5) and db_id.isdigit():
                                     # db_id is a 4 or 5-digit number - add EMD- to it
                                     correct_db_id = "EMD-" + db_id
@@ -3556,7 +3512,6 @@ class CifEMDBTranslator(object):
                         CIF: _pdbx_database_related.content_type
                         """
                         content_type = get_cif_value("content_type", const.PDBX_DATABASE_RELATED, rel_in)
-                        txt = None
                         if content_type == const.CIF_EMDB_ASSOC:
                             cross_ref.set_relationship(emdb.relationshipType(other=const.CIF_EMDB_ASSOC))
                             txt = u"The value (%s) is given to (cross_ref.set_relationship)." % const.CIF_EMDB_ASSOC
@@ -3641,8 +3596,7 @@ class CifEMDBTranslator(object):
                         CIF: _em_db_reference.relationship ?
                         """
                         rel_in = get_cif_value("relationship", const.EM_DB_REFERENCE, pdb_ref_in)
-                        # rel_item = get_cif_item('relationship', const.EM_DB_REFERENCE)
-                        txt = None
+
                         if rel_in == "IN FRAME":
                             pdb_ref.set_relationship(emdb.relationshipType(in_frame="FULLOVERLAP"))
                             txt = u"The value (FULLOVERLAP) is given to (pdb_ref.set_relationship)."
@@ -4015,11 +3969,12 @@ class CifEMDBTranslator(object):
 
                 if _entity_type != polymer then no source information will be present.
 
-                Details for both SUPRAMOLECULE and MACROMOLECULE  are required by the depUI on separate pages so you will always get data for both (map+model) or just supramolecule (map only).
+                Details for both SUPRAMOLECULE and MACROMOLECULE  are required by the depUI on separate pages, so you will always get data for both (map+model) or just supramolecule (map only).
 
                 Parameters:
                 @param ent_id_in:
-                @param src_dicts
+                @param src_dicts:
+                @param cif_cat_in:
                 @param is_supramolecule: True for supramolecules; False for macromolecules
                 """
                 if is_supramolecule:
@@ -4087,7 +4042,7 @@ class CifEMDBTranslator(object):
                     rec_exp_dict = dict(rec_exp_in)
                     if "_em_entity_assembly_recombinan.ncbi_tax_id" in rec_exp_dict:
                         tax_id = get_cif_value("ncbi_tax_id", const.EM_ENTITY_ASSEMBLY_RECOMBINANT, rec_exp_in)
-                        if tax_id is not None or tax_id.isspace():
+                        if tax_id is not None and not tax_id.isspace():
                             set_cif_value(
                                 r_exp.set_recombinant_organism, "organism", const.EM_ENTITY_ASSEMBLY_RECOMBINANT, cif_list=rec_exp_in, constructor=emdb.organism_type, ncbi=tax_id
                             )
@@ -4097,7 +4052,7 @@ class CifEMDBTranslator(object):
                             self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
                     elif "_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id" in rec_exp_dict:
                         tax_id = get_cif_value("pdbx_host_org_ncbi_taxonomy_id", const.ENTITY_SRC_GEN, rec_exp_in)
-                        if tax_id is not None or tax_id.isspace():
+                        if tax_id is not None and not tax_id.isspace():
                             set_cif_value(
                                 r_exp.set_recombinant_organism,
                                 "pdbx_host_org_scientific_name",
@@ -4332,6 +4287,7 @@ class CifEMDBTranslator(object):
                                     - this object will be updated
                     @param sup_in: cif em_entity_assembly category dictionary
                     @param sup_mol_id_in: cif id of supramolecule
+                    @param sample:
                     XSD: <xs:complexType name="base_supramolecule_type"> has
                     .. 1 attribute and
                     .. a sequence of 9 elements
@@ -4421,9 +4377,9 @@ class CifEMDBTranslator(object):
                                     a_macromol = emdb.macromoleculeType(macromolecule_id=int(m_in))
                                     a_macromol.original_tagname_ = "macromolecule"
                                     macro_list.add_macromolecule(a_macromol)
-                                txt = u"Macromolecule (%s) added to the list of macromolecules." % int(m_in)  # pylint: disable=undefined-loop-variable
-                                self.current_entry_log.info_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.info_title + txt))
-                                self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
+                                    txt = u"Macromolecule (%s) added to the list of macromolecules." % int(m_in)  # pylint: disable=undefined-loop-variable
+                                    self.current_entry_log.info_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.info_title + txt))
+                                    self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
                                 if macro_list.has__content():
                                     sup_mol.set_macromolecule_list(macro_list)
                             else:
@@ -4898,7 +4854,6 @@ class CifEMDBTranslator(object):
                         virus_shell_dict_in = sup_mol_dicts["virus_shell_dict_in"]
                         set_el_virus_shell(virus_sup_mol, sup_mol_id_in, virus_shell_dict_in)
 
-                        virus_in = {}
                         virus_dict_in = sup_mol_dicts["virus_dict_in"]
                         if virus_dict_in is not None:
                             if sup_mol_id_in in virus_dict_in:
@@ -5108,7 +5063,7 @@ class CifEMDBTranslator(object):
                         # element 1
                         set_el_natural_source(cell_sup_mol, sup_mol_id_in, sup_mol_dicts)
 
-                    sup_list_in = self.cif.get(const.EM_ENTITY_ASSEMBLY, None)
+                    sup_list_in = self.cif.get(const.EM_ENTITY_ASSEMBLY)
                     if sup_list_in is not None:
                         for sup_in in sup_list_in:
                             # get id from CIF: _em_entity_assembly.id 1
@@ -5415,7 +5370,7 @@ class CifEMDBTranslator(object):
                     ent_src_gen_dict - genetically modified source dictionary
                     ent_src_syn_dict - synthetic dictionary source dictionary
 
-                    Molecule source is set depending in which dictionary the entry ID is.
+                    Molecule source is set depending on in which dictionary the entry ID is.
                     XSD: <xs:complexType name="base_macromolecule_type"> has
                     .. 3 attributes and
                     .. 7 elements
@@ -6072,9 +6027,8 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="recombinant_expression" type="recombinant_source_type" minOccurs="0"/>
                         CIF: ??
                         There is no set_number_of_copies so why call this? Commented out for now
-                        safe_set(get_cif_value('pdbx_number_of_molecules',
-                                const.ENTITY, ent_in), mol.set_number_of_copies, int)
                         """
+                        # safe_set(get_cif_value('pdbx_number_of_molecules', const.ENTITY, ent_in), mol.set_number_of_copies, int)
 
                     # set up the macromolecule specific tagname explicitly
                     # as DSgenerate doesn't provide it
@@ -6100,7 +6054,7 @@ class CifEMDBTranslator(object):
                 struct_ref_dict = make_list_of_dicts(const.STRUCT_REF, const.K_ENTITY_ID)
                 ent_ref_dict.update(struct_ref_dict)
                 src_dicts = {"ent_src_nat_dict": ent_src_nat_dict, "ent_src_gen_dict": ent_src_gen_dict, "ent_src_syn_dict": ent_src_syn_dict, "ent_ref_dict": ent_ref_dict}
-                entity_list_in = self.cif.get(const.ENTITY, None)
+                entity_list_in = self.cif.get(const.ENTITY)
                 for ent_in in entity_list_in:
                     ent_id_in = get_cif_value(const.K_ID, const.ENTITY, ent_in)
                     if ent_id_in in ent_poly_dict:
@@ -6146,12 +6100,11 @@ class CifEMDBTranslator(object):
             # element 3
             set_el_macromolecule_list(sample)
 
-        def set_base_specimen_preparation(sp_id_in, spec_prep_in, specimen):
+        def set_base_specimen_preparation(spec_prep_in, specimen):
             """
             Set base_preparation_type elements
 
             Parameters:
-            @param sp_id_in: specimen id
             @param spec_prep_in: cif values for specific specimen preparation
             @param specimen: object for specimen preparation:
                             {tomography_preparation, single_particle_preparation,
@@ -6774,7 +6727,6 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="details" type="xs:string" minOccurs="0">
                         CIF: _em_vitrification.details
                         """
-                        all_details = ""
                         current_details = get_cif_value("details", const.EM_VITRIFICATION, cif_list=vitr_in)
                         if current_details is not None:
                             all_details = ". ".join((current_details, details_txt))
@@ -6956,7 +6908,6 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
                         CIF: _em_high_pressure_freezing.details
                         """
-                        all_details = ""
                         current_details = get_cif_value("details", const.EM_HIGH_PRESSURE_FREEZING, cif_list=h_pf_in)
                         if current_details is not None:
                             all_details = ". ".join((current_details, details_txt))
@@ -7170,7 +7121,6 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
                         CIF: _em_focused_ion_beam.details
                         """
-                        all_details = ""
                         current_details = get_cif_value("details", const.EM_FOCUSED_ION_BEAM, cif_list=fib_in)
                         if current_details is not None:
                             all_details = ". ".join((current_details, details_txt))
@@ -7241,8 +7191,8 @@ class CifEMDBTranslator(object):
             """
             Set additional elements for electron crystalography specimen preparation
 
-            Parameters:
             @param sp_id_in:
+            @param cryst_prep:
             """
 
             def set_crystal_formation_type(cryst):
@@ -7353,6 +7303,7 @@ class CifEMDBTranslator(object):
 
             @param ip_id_in: image processing id
             @param final_class_dict_in: dictionary for final classification categories
+            @param cat_soft_dict_in:
             @return clas: classification type object
             XSD: <xs:complexType name="classification_type">
             """
@@ -7492,28 +7443,28 @@ class CifEMDBTranslator(object):
                         if em_method == const.EMM_SP:
                             single_part_prep = emdb.single_particle_preparation_type()
                             single_part_prep.original_tagname_ = "single_particle_preparation"
-                            set_base_specimen_preparation(sp_id_in, spec_prep_in, single_part_prep)
+                            set_base_specimen_preparation(spec_prep_in, single_part_prep)
                             spec_prep_list.add_specimen_preparation(single_part_prep)
                         elif em_method == const.EMM_STOM:
                             subtom_prep = emdb.subtomogram_averaging_preparation_type()
                             subtom_prep.original_tagname_ = "subtomogram_averaging_preparation"
-                            set_base_specimen_preparation(sp_id_in, spec_prep_in, subtom_prep)
+                            set_base_specimen_preparation(spec_prep_in, subtom_prep)
                             spec_prep_list.add_specimen_preparation(subtom_prep)
                         elif em_method == const.EMM_HEL:
                             hel_prep = emdb.helical_preparation_type()
                             hel_prep.original_tagname_ = "helical_preparation"
-                            set_base_specimen_preparation(sp_id_in, spec_prep_in, hel_prep)
+                            set_base_specimen_preparation(spec_prep_in, hel_prep)
                             spec_prep_list.add_specimen_preparation(hel_prep)
                         elif em_method == const.EMM_TOM:
                             tom_prep = emdb.tomography_preparation_type()
                             tom_prep.original_tagname_ = "tomography_preparation"
-                            set_base_specimen_preparation(sp_id_in, spec_prep_in, tom_prep)
+                            set_base_specimen_preparation(spec_prep_in, tom_prep)
                             set_tom_prep_specifics(sp_id_in, tom_prep)
                             spec_prep_list.add_specimen_preparation(tom_prep)
                         elif em_method == const.EMM_EC:
                             cryst_prep = emdb.crystallography_preparation_type()
                             cryst_prep.original_tagname_ = "crystallography_preparation"
-                            set_base_specimen_preparation(sp_id_in, spec_prep_in, cryst_prep)
+                            set_base_specimen_preparation(spec_prep_in, cryst_prep)
                             set_el_cryst_prep_specifics(sp_id_in, cryst_prep)
                             spec_prep_list.add_specimen_preparation(cryst_prep)
                         else:
@@ -7533,7 +7484,7 @@ class CifEMDBTranslator(object):
 
                 def get_tilt_axis(ts_in, axis1=True):
                     """
-                    Get axis min, max and inc from a EM_TOMOGRAPHY
+                    Get axis min, max and inc from EM_TOMOGRAPHY
                     element and return an axis element
 
                     Parameters:
@@ -7758,7 +7709,7 @@ class CifEMDBTranslator(object):
 
                     Parameters:
                     @param mic: microscopy object
-                    @param: mic_id: microscopy id
+                    @param mic_id: microscopy id
                     XSD: <xs:element name="image_recording">
                     """
 
@@ -8013,7 +7964,7 @@ class CifEMDBTranslator(object):
                     Parameters:
                     @param mic_in: cif dictionary item for EM_IMAGING
                     @param mic: microscopy object
-                    @param: mic_id: microscopy id
+                    @param mic_id: microscopy id
                     XSD: <xs:complexType name="base_microscopy_type"> has
                     .. 1 attribute
                     .. 26 elements
@@ -8377,7 +8328,7 @@ class CifEMDBTranslator(object):
 
                     Parameters:
                     @param mic: microscopy object
-                    @param: mic_id: microscopy id
+                    @param mic_id: microscopy id
                     XSD: <xs:element name="tilt_series" type="tilt_series_type" maxOccurs="unbounded">
                     """
 
@@ -8485,8 +8436,8 @@ class CifEMDBTranslator(object):
                                 # XSD: <xs:element name="tilt_series"
                                 #      type="tilt_series_type" maxOccurs="unbounded" minOccurs="1">
 
-                mic_list_in = self.cif.get(const.EM_IMAGING, None)
-                if mic_list_in != []:
+                mic_list_in = self.cif.get(const.EM_IMAGING)
+                if mic_list_in:
                     for mic_in in mic_list_in:
                         mic_id = get_cif_value(const.K_ID, const.EM_IMAGING, mic_in)
                         if em_method == const.EMM_SP:
@@ -9019,8 +8970,8 @@ class CifEMDBTranslator(object):
                     """
                     Final reconstruction for every method but non-subtomographs
 
+                    @param final_rec: final reconstruction
                     @param ip_id_in: image processing id
-                    @param im_proc: image processing object
                     @param final_dicts: a dictionary of the following dictionaries:
                     final_rec_dict_in, cat_soft_dict_in,
                     p_sym_dict_in, h_sym_dict_in
@@ -9226,6 +9177,9 @@ class CifEMDBTranslator(object):
                     @param im_proc: image processing object
                     @param ip_id_in: image processing id
                     @param ang_dict_in: the dictionary containing angle assignments
+                    @param cat_soft_dict_in:
+                    @param em_method:
+                    @param parent_req:
                     XSD: <xs:complexType name="angle_assignment_type">
                     """
 
@@ -9361,6 +9315,7 @@ class CifEMDBTranslator(object):
                     @param im_proc: image processing object
                     @param cryst_dict_in: the dictionary with crystalography parameters
                     @param dict_category: category in cifused for the dictionary
+                    @param parent_req:
                     """
 
                     def set_crystal_parameters_type(cryst, cryst_in, dict_category, parent_req):
@@ -11185,22 +11140,22 @@ class CifEMDBTranslator(object):
                                             self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.info_title + txt)
                                         )
                                         self.log_formatted(self.info_log_string, const.INFO_ALERT + txt)
-                            if map_type == "mask":
-                                cntr_level = get_cif_value("contour_level", const.EM_MAP, cif_list=map_in)
-                                if cntr_level is not None:
-                                    if not isinstance(cntr_level, str):
-                                        set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, fmt=float)
-                                    else:
-                                        # contour level is a string; check if the string can be converted
-                                        if is_number(cntr_level.lstrip("+-")):
-                                            cl_float = float(cntr_level.lstrip("+-"))
-                                            set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, cif_value=cl_float)
+                                if map_type == "mask":
+                                    cntr_level = get_cif_value("contour_level", const.EM_MAP, cif_list=map_in)
+                                    if cntr_level is not None:
+                                        if not isinstance(cntr_level, str):
+                                            set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, fmt=float)
                                         else:
-                                            txt = u"Contour level is given as a text value of %s. This is not correct. It should be a number." % cntr_level
-                                            self.current_entry_log.error_logs.append(
-                                                self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt)
-                                            )
-                                            self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
+                                            # contour level is a string; check if the string can be converted
+                                            if is_number(cntr_level.lstrip("+-")):
+                                                cl_float = float(cntr_level.lstrip("+-"))
+                                                set_cif_value(cntr.set_level, "contour_level", const.EM_MAP, cif_list=map_in, cif_value=cl_float)
+                                            else:
+                                                txt = u"Contour level is given as a text value of %s. This is not correct. It should be a number." % cntr_level
+                                                self.current_entry_log.error_logs.append(
+                                                    self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.error_title + txt)
+                                                )
+                                                self.log_formatted(self.error_log_string, const.REQUIRED_ALERT + txt)
 
                         def set_el_source(cntr, map_in):
                             """
@@ -11839,7 +11794,7 @@ class CifEMDBTranslator(object):
                     set_el_details(fsc, fsc_in)
 
                 validation = emdb.validationType()
-                fsc_list_in = self.cif.get(const.EM_FSC_CURVE, None)
+                fsc_list_in = self.cif.get(const.EM_FSC_CURVE)
                 for fsc_in in fsc_list_in:
                     fsc = emdb.fsc_curve_validation_type()
                     fsc.original_tagname_ = "fsc_curve"
@@ -11869,7 +11824,7 @@ class CifEMDBTranslator(object):
             set_el_validation()
 
         def get_entry_id_from_input_file():
-            cif_re = re.compile(r"EMD\-([0-9]){4,}")
+            cif_re = re.compile(r"EMD-([0-9]){4,}")
             search_result = re.search(cif_re, self.cif_file_name)
             if search_result is not None:
                 return search_result.group()
@@ -11908,28 +11863,27 @@ class CifEMDBTranslator(object):
         Method to validate any schema against any file
         """
         try:
-            # Python3 reqires a byte string for lxml as encoding in file
-            xml_file = open(xml_filename, "rb")
-            try:
-                etree.fromstring(xml_file.read(), the_parser)
-            except etree.XMLSyntaxError:
-                return False
-            except etree.XMLSchemaError:
-                return False
-            return True
+            # Python3 requires a byte string for lxml as encoding in file
+            with open(xml_filename, "rb") as xml_file:
+                try:
+                    etree.fromstring(xml_file.read(), the_parser)
+                    return True
+                except (etree.XMLSyntaxError, etree.XMLSchemaError):
+                    return False
         except IOError as exp:
-            txt = u"Error (%s) occured. Arguments (%s)." % (str(exp), exp.args)
-            self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.validation_title + txt))
+            txt = f"Error ({exp}) occurred. Arguments ({exp.args})."
+            self.current_entry_log.error_logs.append(
+                self.ALog(log_text=f"({self.entry_in_translation_log.id}) {self.current_entry_log.validation_title} {txt}")
+            )
             self.log_formatted(self.error_log_string, self.Constants.VALIDATION_ERROR + txt)
             return False
-        finally:
-            xml_file.close()
 
     def show_validation_errors(self, in_xml, in_schema_filename):
         """
         Called if the validation of the in_xml file against
         the schema in_schema_filename fails. Shows the list of validation errors.
         """
+        xml_schema = None
         try:
             xml_doc = etree.parse(in_xml)
             xsd = etree.parse(in_schema_filename)
@@ -11942,15 +11896,15 @@ class CifEMDBTranslator(object):
             txt = u"PARSING ERROR: %s." % exp
             self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + txt))
             self.log_formatted(self.error_log_string, txt)
-        except etree.DocumentInvalid as exp:
+        except etree.DocumentInvalid:
             i = 1
-            for err in exp.error_log:  # pylint: disable=no-member
+            for err in xml_schema.error_log:  # pylint: disable=no-member
                 txt = u"%d: %s" % (i, err)
                 self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.validation_title + txt))
                 self.log_formatted(self.error_log_string, self.Constants.VALIDATION_ERROR + txt)
                 i = i + 1
 
-    def validation_logger_header(self, log_str, in_schema_filename):  # pylint: disable=unused-argument
+    def validation_logger_header(self, log_str):  # pylint: disable=unused-argument
         """
         Makes the validation logger pretty
         """
@@ -11972,26 +11926,27 @@ class CifEMDBTranslator(object):
         Validate in_xml against in_schema
         """
         try:
-            # For python3, as encoding in file, lxml requires bytes string
-            in_schema = open(in_schema_filename, "rb")
+            # Python3 requires a byte string for lxml as encoding in file
+            with open(in_schema_filename, "rb") as in_schema:
+                schema_doc = in_schema.read()
+                schema_root = etree.XML(schema_doc)
+                the_schema = etree.XMLSchema(schema_root)
+
+                xml_parser = etree.XMLParser(schema=the_schema)
+                validates = self.validate_file(xml_parser, in_xml)
+
+                if not validates:
+                    self.validation_logger_header(self.error_log_string)
+                    self.show_validation_errors(in_xml, in_schema_filename)
+
+                return validates
         except IOError as exp:
-            txt = u"Error (%s) occured. Arguments (%s)." % (str(exp), exp.args)
-            self.current_entry_log.error_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.validation_title + txt))
+            txt = f"Error ({exp}) occurred. Arguments ({exp.args})."
+            self.current_entry_log.error_logs.append(
+                self.ALog(log_text=f"({self.entry_in_translation_log.id}) {self.current_entry_log.validation_title} {txt}")
+            )
             self.log_formatted(self.error_log_string, self.Constants.VALIDATION_ERROR + txt)
             return False
-        else:
-            schema_doc = in_schema.read()
-            schema_root = etree.XML(schema_doc)
-            the_schema = etree.XMLSchema(schema_root)
-
-            xml_parser = etree.XMLParser(schema=the_schema)
-            validates = self.validate_file(xml_parser, in_xml)
-            if not validates:
-                self.validation_logger_header(self.error_log_string, in_schema_filename)
-                self.show_validation_errors(in_xml, in_schema_filename)
-            return validates
-        finally:
-            in_schema.close()
 
     def translate_and_validate(self, in_cif, out_xml, in_schema=None):
         """
@@ -12038,6 +11993,8 @@ def main():
 
     logging.info("*** cif_emdb_translator.py version %s ***", __version__)
     parser = OptionParser(usage=usage, version=__version__)
+    parser.add_option("-p", "--private-include", action="store_false", dest="private_inc", help="Private elements included in the xml output file")
+    parser.add_option("-s", "--show-log-id", action="store_false", dest="show_log_ids", help="Entry ids are printed into logs")
     parser.add_option("-o", "--out-file", action="store", type="string", metavar="FILE", dest="outputFile", help="Write output to FILE")
     parser.add_option("-i", "--in-file", action="store", type="string", metavar="FILE", dest="inputFile", help="Write input to FILE")
     parser.add_option("-x", "--xml", action="store_true", dest="translate2Xml", help="Translate cif file to XML", default=True)
@@ -12046,8 +12003,6 @@ def main():
     parser.add_option("-w", "--warn-log", action="store_false", dest="warn_log", help="Logging to WARN file flag")
     parser.add_option("-e", "--error-log", action="store_false", dest="err_log", help="Logging to ERROR file flag")
     parser.add_option("-l", "--console-log", action="store_false", dest="console_log", help="Logging to console turned on")
-    parser.add_option("-p", "--private-include", action="store_false", dest="private_inc", help="Private elements included in the xml output file")
-    parser.add_option("-s", "--show-log-id", action="store_false", dest="show_log_ids", help="Entry ids are printed into logs")
 
     (options, args) = parser.parse_args()
 
@@ -12055,8 +12010,6 @@ def main():
     if len(args) == 0:
         print(usage)
         sys.exit("No input options given!")
-    #     else:
-    #         input_file = args[0]
 
     if options.translate2Xml is True:
         translator = CifEMDBTranslator()
