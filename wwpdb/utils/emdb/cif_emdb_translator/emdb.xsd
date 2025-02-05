@@ -261,7 +261,7 @@
     <xs:element name="revision_change_sub_group" type="base_revision_change_type" abstract="true"/>
     <xs:complexType name="base_revision_change_type">
         <xs:sequence>
-            <xs:element name="revision_type">
+            <xs:element name="revision_type" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:token">
                         <xs:enumeration value="INITIAL_RELEASE"/>
@@ -274,7 +274,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="provider">
+            <xs:element name="provider" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:token">
                         <xs:enumeration value="REPOSITORY"/>
@@ -318,40 +318,29 @@
     <xs:element name="mask" substitutionGroup="revision_change_sub_group" type="part_revision_change_type"/>
     <xs:element name="fsc" substitutionGroup="revision_change_sub_group" type="part_revision_change_type"/>
     <xs:element name="additional_map" substitutionGroup="revision_change_sub_group" type="part_revision_change_type"/>
-    <xs:element name="model" substitutionGroup="revision_change_sub_group" type="part_revision_change_type"/>
-    <xs:element name="metadata" substitutionGroup="revision_change_sub_group" type="metadata_revision_type"/>
-    <xs:complexType name="metadata_revision_type">
+    <xs:element name="model" substitutionGroup="revision_change_sub_group" type="complex_revision_change_type"/>
+    <xs:element name="metadata" substitutionGroup="revision_change_sub_group" type="complex_revision_change_type"/>
+    <xs:complexType name="complex_revision_change_type">
         <xs:complexContent>
             <xs:extension base="base_revision_change_type">
                 <xs:sequence>
                     <xs:element name="categories" minOccurs="0">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="category" type="revision_category_or_item_type"
-                                            minOccurs="1" maxOccurs="unbounded"/>
+                                <xs:element name="category" type="xs:token" minOccurs="1" maxOccurs="unbounded"/>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="items" minOccurs="0">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="item" type="revision_category_or_item_type"
-                                            minOccurs="1" maxOccurs="unbounded"/>
+                                <xs:element name="item" type="xs:token" minOccurs="1" maxOccurs="unbounded"/>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
-    </xs:complexType>
-    <xs:complexType name="revision_category_or_item_type">
-        <xs:simpleContent>
-            <xs:extension base="xs:token">
-                <xs:attribute name="revision_type" type="xs:token" use="required"/>
-                <xs:attribute name="part" type="xs:positiveInteger"/>
-                <xs:attribute name="revision_action" type="xs:token" use="required"/>
-            </xs:extension>
-        </xs:simpleContent>
     </xs:complexType>
     <xs:complexType name="contact_details_type">
         <xs:sequence>

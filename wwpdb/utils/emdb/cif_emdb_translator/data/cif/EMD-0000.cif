@@ -53,8 +53,6 @@ _pdbx_audit_revision_details.details
 2 2 'Image' repository  'Initial release'  ? ?
 3 3 'EM metadata' repository  'Initial release'  ? ?
 4 4 'Structure model' repository  'Initial release'  ? ?
-5 5 'EM metadata' repository  'Data updated'  ? ?
-6 6 'Structure model' repository  'Data updated'  ? ?
 
 loop_
 _pdbx_audit_revision_group.ordinal
