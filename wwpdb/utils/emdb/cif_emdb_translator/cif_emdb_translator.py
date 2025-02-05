@@ -2282,24 +2282,6 @@ class CifEMDBTranslator(object):
                         # element 1
                         set_el_change_list(revision, revision_list)
 
-                    def set_revisons(revision_dict, rev_list, revisions_in, cif_cat):
-                        """
-                        Helper function
-                        """
-                        for revision, revision_list in rev_list.items():  # history
-                            revisions = []
-                            for a_revision in revision_list:  # history list
-                                a_ordinal = get_cif_value("ordinal", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
-                                for rev in revisions_in.values():  # cat or items
-                                    revision_ordinal = get_cif_value("revision_ordinal", cif_cat, cif_list=rev)
-                                    if a_ordinal == revision_ordinal:
-                                        major_revision = get_cif_value("major_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
-                                        minor_revision = get_cif_value("minor_revision", const.PDBX_AUDIT_REVISION_HISTORY, cif_list=a_revision)
-                                        revision_full = ".".join([major_revision, minor_revision])
-                                        if revision == revision_full:
-                                            revisions.append(rev)
-                            revision_dict[revision] = revisions
-
                     revision_num = ""
                     revision_lists = {}
                     revision_list = []
@@ -2317,19 +2299,9 @@ class CifEMDBTranslator(object):
                             revision_list = [revision_in]
                         revision_lists.update({revision_full: revision_list})
 
-                    # get categories and items into revisions
-                    revisions_categories = {key: [] for key in revision_lists}
-                    revisions_items = {key: [] for key in revision_lists}
-
-                    revision_category_in = make_dict(const.PDBX_AUDIT_REVISION_CATEGORY, "revision_ordinal")
-                    revision_item_in = make_dict(const.PDBX_AUDIT_REVISION_ITEM, "revision_ordinal")
-
-                    set_revisons(revisions_categories, revision_lists, revision_category_in, const.PDBX_AUDIT_REVISION_CATEGORY)
-                    set_revisons(revisions_items, revision_lists, revision_item_in, const.PDBX_AUDIT_REVISION_ITEM)
-
                     for revision_num, revision_list in revision_lists.items():
                         revision = emdb.revision_history_type()
-                        set_revision_type(revision, revision_list)  # , revisions_categories[revision_num], revisions_items[revision_num])
+                        set_revision_type(revision, revision_list)
                         revisions.add_revision(revision)
 
                 revision_history_in = make_dict(const.PDBX_AUDIT_REVISION_HISTORY, "ordinal")
