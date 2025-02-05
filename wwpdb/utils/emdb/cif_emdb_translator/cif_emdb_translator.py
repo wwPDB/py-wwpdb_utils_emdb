@@ -2179,10 +2179,6 @@ class CifEMDBTranslator(object):
                                     for revision_cat_in in revision_categories_in.values():
                                         cat_ordinal = get_cif_value("revision_ordinal", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
                                         if history_ordinal == cat_ordinal:
-                                            """
-                                            XSD: <xs:element name="category" type="xs:token" minOccurs="1" maxOccurs="unbounded"/>
-                                            CIF: pdbx_audit_revision_category.category
-                                            """
                                             cat = get_cif_value("category", const.PDBX_AUDIT_REVISION_CATEGORY, cif_list=revision_cat_in)
                                             categories.add_category(cat)
 
@@ -2191,10 +2187,6 @@ class CifEMDBTranslator(object):
                                     for revision_it_in in revision_items_in.values():
                                         item_ordinal = get_cif_value("revision_ordinal", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
                                         if history_ordinal == item_ordinal:
-                                            """
-                                            XSD: <xs:element name="item" type="xs:token" minOccurs="1" maxOccurs="unbounded"/>
-                                            CIF: pdbx_audit_revision_item.item
-                                            """
                                             item = get_cif_value("item", const.PDBX_AUDIT_REVISION_ITEM, cif_list=revision_it_in)
                                             items.add_item(item)
 
@@ -12001,6 +11993,8 @@ def main():
 
     logging.info("*** cif_emdb_translator.py version %s ***", __version__)
     parser = OptionParser(usage=usage, version=__version__)
+    parser.add_option("-p", "--private-include", action="store_false", dest="private_inc", help="Private elements included in the xml output file")
+    parser.add_option("-s", "--show-log-id", action="store_false", dest="show_log_ids", help="Entry ids are printed into logs")
     parser.add_option("-o", "--out-file", action="store", type="string", metavar="FILE", dest="outputFile", help="Write output to FILE")
     parser.add_option("-i", "--in-file", action="store", type="string", metavar="FILE", dest="inputFile", help="Write input to FILE")
     parser.add_option("-x", "--xml", action="store_true", dest="translate2Xml", help="Translate cif file to XML", default=True)
@@ -12009,8 +12003,6 @@ def main():
     parser.add_option("-w", "--warn-log", action="store_false", dest="warn_log", help="Logging to WARN file flag")
     parser.add_option("-e", "--error-log", action="store_false", dest="err_log", help="Logging to ERROR file flag")
     parser.add_option("-l", "--console-log", action="store_false", dest="console_log", help="Logging to console turned on")
-    parser.add_option("-p", "--private-include", action="store_false", dest="private_inc", help="Private elements included in the xml output file")
-    parser.add_option("-s", "--show-log-id", action="store_false", dest="show_log_ids", help="Entry ids are printed into logs")
 
     (options, args) = parser.parse_args()
 
@@ -12022,8 +12014,8 @@ def main():
     if options.translate2Xml is True:
         translator = CifEMDBTranslator()
         translator.set_logger_logging(options.info_log, options.warn_log, options.err_log, options.console_log)
-        translator.set_show_private()
-        translator.set_show_log_id()
+        translator.set_show_private(options.private_inc)
+        translator.set_show_log_id(options.show_log_ids)
         translator.read_cif_in_file(options.inputFile)
         translator.translate_cif_to_xml()
         translator.write_xml_out_file(options.outputFile)
