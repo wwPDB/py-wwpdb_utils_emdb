@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Mar 19 14:21:44 2025 by generateDS.py version 2.44.3.
+# Generated Wed Mar 19 16:31:55 2025 by generateDS.py version 2.44.3.
 # Python 3.10.9 (main, Mar  1 2023, 12:33:47) [Clang 14.0.6 ]
 #
 # Command line options:
@@ -1526,23 +1526,23 @@ class resolution_methodType(str, Enum):
 
 
 class revision_groupType(str, Enum):
-    ADVISORY='Advisory'
-    ATOMICMODEL='Atomic model'
-    AUTHORSUPPORTINGEVIDENCE='Author supporting evidence'
-    DATACOLLECTION='Data collection'
-    DATAPROCESSING='Data processing'
-    DATABASEREFERENCES='Database references'
-    DERIVEDCALCULATIONS='Derived calculations'
-    EXPERIMENTALDATA='Experimental data'
-    EXPERIMENTALPREPARATION='Experimental preparation'
-    EXPERIMENTALSUMMARY='Experimental summary'
-    NONPOLYMERDESCRIPTION='Non-polymer description'
-    OTHER='Other'
-    POLYMERSEQUENCE='Polymer sequence'
-    REFINEMENTDESCRIPTION='Refinement description'
-    SOURCEANDTAXONOMY='Source and taxonomy'
-    STRUCTURESUMMARY='Structure summary'
-    VERSIONFORMATCOMPLIANCE='Version format compliance'
+    ADVISORY='ADVISORY'
+    ATOMIC_MODEL='ATOMIC_MODEL'
+    AUTHOR_SUPPORTING_EVIDENCE='AUTHOR_SUPPORTING_EVIDENCE'
+    DATA_COLLECTION='DATA_COLLECTION'
+    DATA_PROCESSING='DATA_PROCESSING'
+    DATABASE_REFERENCES='DATABASE_REFERENCES'
+    DERIVED_CALCULATIONS='DERIVED_CALCULATIONS'
+    EXPERIMENTAL_DATA='EXPERIMENTAL_DATA'
+    EXPERIMENTAL_PREPARATION='EXPERIMENTAL_PREPARATION'
+    EXPERIMENTAL_SUMMARY='EXPERIMENTAL_SUMMARY'
+    NON_POLYMER_DESCRIPTION='NON_POLYMER_DESCRIPTION'
+    OTHER='OTHER'
+    POLYMER_SEQUENCE='POLYMER_SEQUENCE'
+    REFINEMENT_DESCRIPTION='REFINEMENT_DESCRIPTION'
+    SOURCE_AND_TAXONOMY='SOURCE_AND_TAXONOMY'
+    STRUCTURE_SUMMARY='STRUCTURE_SUMMARY'
+    VERSION_FORMAT_COMPLIANCE='VERSION_FORMAT_COMPLIANCE'
 
 
 class revision_typeType(str, Enum):
@@ -3343,7 +3343,7 @@ class base_revision_change_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['Advisory', 'Atomic model', 'Author supporting evidence', 'Data collection', 'Data processing', 'Database references', 'Derived calculations', 'Experimental data', 'Experimental preparation', 'Experimental summary', 'Non-polymer description', 'Other', 'Polymer sequence', 'Refinement description', 'Source and taxonomy', 'Structure summary', 'Version format compliance']
+            enumerations = ['ADVISORY', 'ATOMIC_MODEL', 'AUTHOR_SUPPORTING_EVIDENCE', 'DATA_COLLECTION', 'DATA_PROCESSING', 'DATABASE_REFERENCES', 'DERIVED_CALCULATIONS', 'EXPERIMENTAL_DATA', 'EXPERIMENTAL_PREPARATION', 'EXPERIMENTAL_SUMMARY', 'NON_POLYMER_DESCRIPTION', 'OTHER', 'POLYMER_SEQUENCE', 'REFINEMENT_DESCRIPTION', 'SOURCE_AND_TAXONOMY', 'STRUCTURE_SUMMARY', 'VERSION_FORMAT_COMPLIANCE']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on revision_groupType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
