@@ -563,7 +563,7 @@ _em_specimen.vitrification_applied   YES
 #
 _em_support_film.id                  1
 _em_support_film.sample_support_id   1
-_em_support_film.material            GOLD
+_em_support_film.material            'SILICON DIOXIDE'
 _em_support_film.thickness           ?
 _em_support_film.topology            'HOLEY ARRAY'
 #
