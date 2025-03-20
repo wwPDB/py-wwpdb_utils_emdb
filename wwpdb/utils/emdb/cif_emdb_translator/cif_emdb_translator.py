@@ -369,19 +369,23 @@ class CifEMDBTranslator(object):
         }
 
         MAP_REVISION_GROUP = {
-            "Experimental data": "EXPERIMENTAL_DATA",
-            "Derived data": "DERIVED_DATA",
-            "Experimental summary": "EXPERIMENTAL_SUMMARY",
-            "Experimental preparation": "EXPERIMENTAL_PREPARATION",
-            "Database references": "DATABASE_REFERENCES",
-            "Data collection": "DATA_COLLECTION",
             "Advisory": "ADVISORY",
-            "Source and taxonomy": "SOURCE_AND_TAXONOMY",
-            "Refinement description": "REFINEMENT_DESCRIPTION",
+            "Atomic model": "ATOMIC_MODEL",
+            "Author supporting evidence": "AUTHOR_SUPPORTING_EVIDENCE",
+            "Data collection": "DATA_COLLECTION",
             "Data processing": "DATA_PROCESSING",
+            "Database references": "DATABASE_REFERENCES",
+            "Derived calculations": "DERIVED_CALCULATIONS",
+            "Experimental data": "EXPERIMENTAL_DATA",
+            "Experimental preparation": "EXPERIMENTAL_PREPARATION",
+            "Experimental summary": "EXPERIMENTAL_SUMMARY",
+            "Non-polymer description": "NON_POLYMER_DESCRIPTION",
+            "Other": "OTHER",
+            "Polymer sequence": "POLYMER_SEQUENCE",
+            "Refinement description": "REFINEMENT_DESCRIPTION",
+            "Source and taxonomy": "SOURCE_AND_TAXONOMY",
             "Structure summary": "STRUCTURE_SUMMARY",
-            "Version format compliance": "VERSION_FORMAT_COMPLIANCE",
-            "Other": "OTHER"
+            "Version format compliance": "VERSION_FORMAT_COMPLIANCE"
         }
 
         MAP_FILES = {

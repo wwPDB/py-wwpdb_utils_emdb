@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.10.1"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.10.2"/>
     </xs:complexType>
     <xs:complexType name="admin_type">
         <xs:sequence>
@@ -286,19 +286,23 @@
             <xs:element name="revision_group" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:token">
-                        <xs:enumeration value="EXPERIMENTAL_DATA"/>
-                        <xs:enumeration value="DERIVED_DATA"/>
-                        <xs:enumeration value="EXPERIMENTAL_SUMMARY"/>
-                        <xs:enumeration value="EXPERIMENTAL_PREPARATION"/>
-                        <xs:enumeration value="DATABASE_REFERENCES"/>
-                        <xs:enumeration value="DATA_COLLECTION"/>
                         <xs:enumeration value="ADVISORY"/>
-                        <xs:enumeration value="SOURCE_AND_TAXONOMY"/>
-                        <xs:enumeration value="REFINEMENT_DESCRIPTION"/>
+                        <xs:enumeration value="ATOMIC_MODEL"/>
+                        <xs:enumeration value="AUTHOR_SUPPORTING_EVIDENCE"/>
+                        <xs:enumeration value="DATA_COLLECTION"/>
                         <xs:enumeration value="DATA_PROCESSING"/>
+                        <xs:enumeration value="DATABASE_REFERENCES"/>
+                        <xs:enumeration value="DERIVED_CALCULATIONS"/>
+                        <xs:enumeration value="EXPERIMENTAL_DATA"/>
+                        <xs:enumeration value="EXPERIMENTAL_PREPARATION"/>
+                        <xs:enumeration value="EXPERIMENTAL_SUMMARY"/>
+                        <xs:enumeration value="NON_POLYMER_DESCRIPTION"/>
+                        <xs:enumeration value="OTHER"/>
+                        <xs:enumeration value="POLYMER_SEQUENCE"/>
+                        <xs:enumeration value="REFINEMENT_DESCRIPTION"/>
+                        <xs:enumeration value="SOURCE_AND_TAXONOMY"/>
                         <xs:enumeration value="STRUCTURE_SUMMARY"/>
                         <xs:enumeration value="VERSION_FORMAT_COMPLIANCE"/>
-                        <xs:enumeration value="OTHER"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
