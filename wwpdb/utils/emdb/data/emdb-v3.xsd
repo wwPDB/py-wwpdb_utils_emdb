@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.10.2"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.10.3"/>
     </xs:complexType>
     <xs:complexType name="admin_type">
         <xs:sequence>
@@ -1916,6 +1916,7 @@
             <xs:element name="instrument" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:token">
+                        <xs:enumeration value="CRYOSOL VITROJET"/>
                         <xs:enumeration value="EMS-002 RAPID IMMERSION FREEZER"/>
                         <xs:enumeration value="FEI VITROBOT MARK I"/>
                         <xs:enumeration value="FEI VITROBOT MARK II"/>
@@ -1929,6 +1930,8 @@
                         <xs:enumeration value="LEICA PLUNGER"/>
                         <xs:enumeration value="REICHERT-JUNG PLUNGER"/>
                         <xs:enumeration value="SPOTITON"/>
+                        <xs:enumeration value="SPT LABTECH CHAMELEON"/>
+                        <xs:enumeration value="ZEISS PLUNGE FREEZER CRYOBOX"/>
                         <xs:enumeration value="OTHER"/>
                     </xs:restriction>
                 </xs:simpleType>

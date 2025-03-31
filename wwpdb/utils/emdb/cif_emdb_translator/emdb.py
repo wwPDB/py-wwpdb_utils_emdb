@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Mar 19 16:31:55 2025 by generateDS.py version 2.44.3.
+# Generated Fri Mar 28 15:41:55 2025 by generateDS.py version 2.44.3.
 # Python 3.10.9 (main, Mar  1 2023, 12:33:47) [Clang 14.0.6 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb_schemas/v3/v3_0_10_2/emdb.py')
+#   ('-o', 'emdb_schemas/v3/v3_0_10_3/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb_schemas/v3/v3_0_10_2/emdb.xsd
+#   emdb_schemas/v3/v3_0_10_3/emdb.xsd
 #
 # Command line:
-#   /Users/lucas/anaconda3/bin/generateDS --root-element="emd" -f -o "emdb_schemas/v3/v3_0_10_2/emdb.py" --no-warnings --external-encoding="utf-8" emdb_schemas/v3/v3_0_10_2/emdb.xsd
+#   /Users/lucas/anaconda3/bin/generateDS --root-element="emd" -f -o "emdb_schemas/v3/v3_0_10_3/emdb.py" --no-warnings --external-encoding="utf-8" emdb_schemas/v3/v3_0_10_3/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   emdb-schemas
@@ -1305,6 +1305,7 @@ class initial_model_typeType(str, Enum):
 
 
 class instrumentType(str, Enum):
+    CRYOSOLVITROJET='CRYOSOL VITROJET'
     EMS_002RAPIDIMMERSIONFREEZER='EMS-002 RAPID IMMERSION FREEZER'
     FEIVITROBOTMARKI='FEI VITROBOT MARK I'
     FEIVITROBOTMARKII='FEI VITROBOT MARK II'
@@ -1318,6 +1319,8 @@ class instrumentType(str, Enum):
     LEICAPLUNGER='LEICA PLUNGER'
     REICHERTJUNGPLUNGER='REICHERT-JUNG PLUNGER'
     SPOTITON='SPOTITON'
+    SPTLABTECHCHAMELEON='SPT LABTECH CHAMELEON'
+    ZEISSPLUNGEFREEZERCRYOBOX='ZEISS PLUNGE FREEZER CRYOBOX'
     OTHER='OTHER'
 
 
@@ -1809,7 +1812,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.10.2', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.10.3', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1935,7 +1938,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.10.2" and 'version' not in already_processed:
+        if self.version != "3.0.10.3" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -13134,7 +13137,7 @@ class vitrification_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['EMS-002 RAPID IMMERSION FREEZER', 'FEI VITROBOT MARK I', 'FEI VITROBOT MARK II', 'FEI VITROBOT MARK III', 'FEI VITROBOT MARK IV', 'GATAN CRYOPLUNGE 3', 'HOMEMADE PLUNGER', 'LEICA EM CPC', 'LEICA EM GP', 'LEICA KF80', 'LEICA PLUNGER', 'REICHERT-JUNG PLUNGER', 'SPOTITON', 'OTHER']
+            enumerations = ['CRYOSOL VITROJET', 'EMS-002 RAPID IMMERSION FREEZER', 'FEI VITROBOT MARK I', 'FEI VITROBOT MARK II', 'FEI VITROBOT MARK III', 'FEI VITROBOT MARK IV', 'GATAN CRYOPLUNGE 3', 'HOMEMADE PLUNGER', 'LEICA EM CPC', 'LEICA EM GP', 'LEICA KF80', 'LEICA PLUNGER', 'REICHERT-JUNG PLUNGER', 'SPOTITON', 'SPT LABTECH CHAMELEON', 'ZEISS PLUNGE FREEZER CRYOBOX', 'OTHER']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on instrumentType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
