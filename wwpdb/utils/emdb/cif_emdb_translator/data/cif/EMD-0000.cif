@@ -427,7 +427,7 @@ _em_vitrification.chamber_temperature   ?
 _em_vitrification.cryogen_name          ETHANE-PROPANE
 _em_vitrification.details               ?
 _em_vitrification.humidity              ?
-_em_vitrification.instrument            ?
+_em_vitrification.instrument            'SPT LABTECH CHAMELEON'
 _em_vitrification.entry_id              ?
 #
 _em_experiment.entry_id                ?
