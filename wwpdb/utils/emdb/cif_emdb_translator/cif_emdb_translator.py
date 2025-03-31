@@ -6699,6 +6699,7 @@ class CifEMDBTranslator(object):
                         details_txt = u""
                         instrument = get_cif_value("instrument", const.EM_VITRIFICATION, cif_list=vitr_in)
                         allowed_instruments = {
+                            "CRYOSOL VITROJET",
                             "EMS-002 RAPID IMMERSION FREEZER",
                             "FEI VITROBOT MARK I",
                             "FEI VITROBOT MARK II",
@@ -6712,6 +6713,8 @@ class CifEMDBTranslator(object):
                             "LEICA PLUNGER",
                             "REICHERT-JUNG PLUNGER",
                             "SPOTITON",
+                            "SPT LABTECH CHAMELEON",
+                            "ZEISS PLUNGE FREEZER CRYOBOX",
                             "OTHER",
                         }
                         if instrument is not None:
