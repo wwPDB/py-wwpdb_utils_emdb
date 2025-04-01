@@ -8168,6 +8168,13 @@ class CifEMDBTranslator(object):
                         CIF: _em_imaging.specimen_holder_model 'FEI TITAN KRIOS AUTOGRID HOLDER'
                         """
                         set_cif_value(mic.set_specimen_holder_model, "specimen_holder_model", const.EM_IMAGING, cif_list=mic_in)
+                    
+                    def set_el_objective_aperture(mic, mic_in):
+                        """
+                        XSD: <xs:element name="objective_aperture" minOccurs="0">
+                        CIF: _em_imaging.objective_aperture 100
+                        """
+                        set_cif_value(mic.set_objective_aperture, "objective_aperture", const.EM_IMAGING, cif_list=mic_in)
 
                     def set_el_cooling_holder_cryogen(mic, mic_in):
                         """
