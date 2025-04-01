@@ -8183,6 +8183,13 @@ class CifEMDBTranslator(object):
                         """
                         set_cif_value(mic.set_microscope_serial_number, "microscope_serial_number", const.EM_IMAGING, cif_list=mic_in)
 
+                    def set_el_microscope_version(mic, mic_in):
+                        """
+                        XSD: <xs:element name="microscope_version" type="xs:string" minOccurs="0">
+                        CIF: _em_imaging.microscope_version '1.0'
+                        """
+                        set_cif_value(mic.set_microscope_version, "microscope_version", const.EM_IMAGING, cif_list=mic_in)
+
                     def set_el_cooling_holder_cryogen(mic, mic_in):
                         """
                         XSD: <xs:element name="cooling_holder_cryogen" minOccurs="0">
