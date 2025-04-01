@@ -8175,6 +8175,13 @@ class CifEMDBTranslator(object):
                         CIF: _em_imaging.objective_aperture 100
                         """
                         set_cif_value(mic.set_objective_aperture, "objective_aperture", const.EM_IMAGING, cif_list=mic_in)
+                    
+                    def set_el_microscope_serial_number(mic, mic_in):
+                        """
+                        XSD: <xs:element name="microscope_serial_number" type="xs:string" minOccurs="0">
+                        CIF: _em_imaging.microscope_serial_number '123456789'
+                        """
+                        set_cif_value(mic.set_microscope_serial_number, "microscope_serial_number", const.EM_IMAGING, cif_list=mic_in)
 
                     def set_el_cooling_holder_cryogen(mic, mic_in):
                         """
