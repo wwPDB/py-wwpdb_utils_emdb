@@ -8169,27 +8169,6 @@ class CifEMDBTranslator(object):
                         """
                         set_cif_value(mic.set_specimen_holder_model, "specimen_holder_model", const.EM_IMAGING, cif_list=mic_in)
                     
-                    def set_el_objective_aperture(mic, mic_in):
-                        """
-                        XSD: <xs:element name="objective_aperture" minOccurs="0">
-                        CIF: _em_imaging.objective_aperture 100
-                        """
-                        set_cif_value(mic.set_objective_aperture, "objective_aperture", const.EM_IMAGING, cif_list=mic_in)
-                    
-                    def set_el_microscope_serial_number(mic, mic_in):
-                        """
-                        XSD: <xs:element name="microscope_serial_number" type="xs:string" minOccurs="0">
-                        CIF: _em_imaging.microscope_serial_number '123456789'
-                        """
-                        set_cif_value(mic.set_microscope_serial_number, "microscope_serial_number", const.EM_IMAGING, cif_list=mic_in)
-
-                    def set_el_microscope_version(mic, mic_in):
-                        """
-                        XSD: <xs:element name="microscope_version" type="xs:string" minOccurs="0">
-                        CIF: _em_imaging.microscope_version '1.0'
-                        """
-                        set_cif_value(mic.set_microscope_version, "microscope_version", const.EM_IMAGING, cif_list=mic_in)
-
                     def set_el_cooling_holder_cryogen(mic, mic_in):
                         """
                         XSD: <xs:element name="cooling_holder_cryogen" minOccurs="0">
@@ -8297,6 +8276,27 @@ class CifEMDBTranslator(object):
                         Deprecated (2014/11/14)
                         """
 
+                    def set_el_objective_aperture(mic, mic_in):
+                        """
+                        XSD: <xs:element name="objective_aperture" minOccurs="0">
+                        CIF: _em_imaging.objective_aperture 100
+                        """
+                        set_cif_value(mic.set_objective_aperture, "objective_aperture", const.EM_IMAGING, cif_list=mic_in)
+                    
+                    def set_el_microscope_serial_number(mic, mic_in):
+                        """
+                        XSD: <xs:element name="microscope_serial_number" type="xs:string" minOccurs="0">
+                        CIF: _em_imaging.microscope_serial_number '123456789'
+                        """
+                        set_cif_value(mic.set_microscope_serial_number, "microscope_serial_number", const.EM_IMAGING, cif_list=mic_in)
+
+                    def set_el_microscope_version(mic, mic_in):
+                        """
+                        XSD: <xs:element name="microscope_version" type="xs:string" minOccurs="0">
+                        CIF: _em_imaging.microscope_version '1.0'
+                        """
+                        set_cif_value(mic.set_microscope_version, "microscope_version", const.EM_IMAGING, cif_list=mic_in)
+
                     # attribute 1
                     set_attr_id(mic)
                     # element 1
@@ -8351,6 +8351,12 @@ class CifEMDBTranslator(object):
                     set_el_tilt_angle_min()
                     # element 26
                     set_el_tilt_angle_max()
+                    # element 27
+                    set_el_objective_aperture(mic, mic_in)
+                    # element 28
+                    set_el_microscope_serial_number(mic, mic_in)
+                    # element 29
+                    set_el_microscope_version(mic, mic_in)
 
                 def set_tilt_parameters(mic_id, mic):
                     """
