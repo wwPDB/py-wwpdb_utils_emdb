@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Tue Apr  1 15:45:02 2025 by generateDS.py version 2.44.3.
+# Generated Wed Apr  2 10:14:19 2025 by generateDS.py version 2.44.3.
 # Python 3.10.9 (main, Mar  1 2023, 12:33:47) [Clang 14.0.6 ]
 #
 # Command line options:
@@ -17172,7 +17172,7 @@ class crystallography_processing_type(base_image_processing_type):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = base_image_processing_type
-    def __init__(self, image_processing_id=None, image_recording_id=None, details=None, final_reconstruction=None, crystal_parameters=None, startup_model=None, ctf_correction=None, motion_correction=None, molecular_replacement=None, lattice_distortion_correction_software_list=None, symmetry_determination_software_list=None, merging_software_list=None, crystallography_statistics=None, gds_collector_=None, **kwargs_):
+    def __init__(self, image_processing_id=None, image_recording_id=None, details=None, final_reconstruction=None, crystal_parameters=None, startup_model=None, ctf_correction=None, molecular_replacement=None, lattice_distortion_correction_software_list=None, symmetry_determination_software_list=None, merging_software_list=None, crystallography_statistics=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -17190,8 +17190,6 @@ class crystallography_processing_type(base_image_processing_type):
         self.startup_model_nsprefix_ = None
         self.ctf_correction = ctf_correction
         self.ctf_correction_nsprefix_ = None
-        self.motion_correction = motion_correction
-        self.motion_correction_nsprefix_ = None
         self.molecular_replacement = molecular_replacement
         self.molecular_replacement_nsprefix_ = None
         self.lattice_distortion_correction_software_list = lattice_distortion_correction_software_list
@@ -17239,10 +17237,6 @@ class crystallography_processing_type(base_image_processing_type):
         return self.ctf_correction
     def set_ctf_correction(self, ctf_correction):
         self.ctf_correction = ctf_correction
-    def get_motion_correction(self):
-        return self.motion_correction
-    def set_motion_correction(self, motion_correction):
-        self.motion_correction = motion_correction
     def get_molecular_replacement(self):
         return self.molecular_replacement
     def set_molecular_replacement(self, molecular_replacement):
@@ -17269,7 +17263,6 @@ class crystallography_processing_type(base_image_processing_type):
             self.crystal_parameters is not None or
             self.startup_model or
             self.ctf_correction is not None or
-            self.motion_correction is not None or
             self.molecular_replacement is not None or
             self.lattice_distortion_correction_software_list is not None or
             self.symmetry_determination_software_list is not None or
@@ -17323,9 +17316,6 @@ class crystallography_processing_type(base_image_processing_type):
         if self.ctf_correction is not None:
             namespaceprefix_ = self.ctf_correction_nsprefix_ + ':' if (UseCapturedNS_ and self.ctf_correction_nsprefix_) else ''
             self.ctf_correction.export(outfile, level, namespaceprefix_, namespacedef_='', name_='ctf_correction', pretty_print=pretty_print)
-        if self.motion_correction is not None:
-            namespaceprefix_ = self.motion_correction_nsprefix_ + ':' if (UseCapturedNS_ and self.motion_correction_nsprefix_) else ''
-            self.motion_correction.export(outfile, level, namespaceprefix_, namespacedef_='', name_='motion_correction', pretty_print=pretty_print)
         if self.molecular_replacement is not None:
             namespaceprefix_ = self.molecular_replacement_nsprefix_ + ':' if (UseCapturedNS_ and self.molecular_replacement_nsprefix_) else ''
             self.molecular_replacement.export(outfile, level, namespaceprefix_, namespacedef_='', name_='molecular_replacement', pretty_print=pretty_print)
@@ -17375,11 +17365,6 @@ class crystallography_processing_type(base_image_processing_type):
             obj_.build(child_, gds_collector_=gds_collector_)
             self.ctf_correction = obj_
             obj_.original_tagname_ = 'ctf_correction'
-        elif nodeName_ == 'motion_correction':
-            obj_ = motion_correction_type.factory(parent_object_=self)
-            obj_.build(child_, gds_collector_=gds_collector_)
-            self.motion_correction = obj_
-            obj_.original_tagname_ = 'motion_correction'
         elif nodeName_ == 'molecular_replacement':
             obj_ = molecular_replacement_type.factory(parent_object_=self)
             obj_.build(child_, gds_collector_=gds_collector_)

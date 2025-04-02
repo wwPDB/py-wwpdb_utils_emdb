@@ -3059,8 +3059,6 @@
             <xs:element name="startup_model" type="starting_map_type" minOccurs="0"
                 maxOccurs="unbounded"/>
             <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
-            <!-- Add motion_correction of motion_correction_type-->
-            <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
             <xs:element name="molecular_replacement" type="molecular_replacement_type" minOccurs="0"/>
             <xs:element name="lattice_distortion_correction_software_list" type="software_list_type"
                 minOccurs="0"/>
