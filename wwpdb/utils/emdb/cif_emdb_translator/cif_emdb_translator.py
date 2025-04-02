@@ -64,7 +64,7 @@ class Cif(object):
                 raise StopIteration
             else:
                 return nl[item]
-
+            
         return self.get(item)
 
     def get(self, catname):  # pylint: disable=unused-argument
@@ -85,7 +85,8 @@ class Cif(object):
 
         retlist = []
 
-        # print dir(dc_obj)
+        # print(dir(dc_obj))
+        
         attrlist = dc_obj.getAttributeList()
         for row in range(dc_obj.getRowCount()):
             rowlist = []
@@ -1450,7 +1451,8 @@ class CifEMDBTranslator(object):
                 const.PDBX_AUDIT_REVISION_DETAILS,
                 const.PDBX_AUDIT_REVISION_GROUP,
                 const.PDBX_AUDIT_REVISION_CATEGORY,
-                const.PDBX_AUDIT_REVISION_ITEM
+                const.PDBX_AUDIT_REVISION_ITEM,
+                # const.EM_MOTION_CORRECTION,
             ],
         )
         self.cif = Cif(container)
@@ -1541,6 +1543,9 @@ class CifEMDBTranslator(object):
             @return: value or None
             """
             if cif_category is not None and cif_key is not None:
+                if cif_category == "em_ctf_correction" and cif_key == "image_processing_id":
+                    # this is a special case where the key has "em_" prefix
+                    cif_key = "em_" + cif_key
                 full_key = "_" + cif_category + "." + cif_key
                 category_lists = [cif_list] if cif_list else self.cif[cif_category]
                 for category_list in category_lists:
@@ -8627,7 +8632,7 @@ class CifEMDBTranslator(object):
                     if part_sel.has__content():
                         im_proc.add_particle_selection(part_sel)
 
-                def set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in):
+                def set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in):
                     """
                     Sets CTF correction
 
@@ -9572,7 +9577,7 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
                         if ip_id_in in sp_dict_list["ctf_corr_dict_in"]:
-                            set_ctfcorrection(ip_id_in, im_proc, sp_dict_list["ctf_corr_dict_in"])
+                            set_ctf_correction(ip_id_in, im_proc, sp_dict_list["ctf_corr_dict_in"])
 
                     def set_el_startup_model(ip_id_in, im_proc, sp_dict_list):
                         """
@@ -9796,7 +9801,7 @@ class CifEMDBTranslator(object):
                         """
                         ctf_corr_dict_in = subtom_dicts["ctf_corr_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in)
 
                     def set_el_final_multi_ref_align():
                         """
@@ -9918,7 +9923,7 @@ class CifEMDBTranslator(object):
                         """
                         ctf_corr_dict_in = hel_dict_list["ctf_corr_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in)
 
                     def set_el_segment_selection(im_proc, hel_dict_list):
                         """
@@ -10148,7 +10153,7 @@ class CifEMDBTranslator(object):
                         """
                         ctf_corr_dict_in = cryst_dicts["ctf_corr_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in)
 
                     def set_el_molecular_replacement(im_proc, cryst_dicts):
                         """
@@ -10558,7 +10563,7 @@ class CifEMDBTranslator(object):
                         """
                         ctf_corr_dict_in = tomo_dicts["ctf_corr_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in)
 
                     def set_el_crystal_parameters(im_proc, ip_id_in, tomo_dicts):
                         """
@@ -10637,7 +10642,8 @@ class CifEMDBTranslator(object):
                 soft_dict_in = make_list_of_dicts(const.EM_SOFTWARE, const.K_IMAGE_PROCESSING_ID)
                 part_sel_dict_in = make_list_of_dicts(const.EM_PARTICLE_SELECTION, const.K_IMAGE_PROCESSING_ID, min_length=2)
                 vol_sel_dict_in = make_dict(const.EM_VOLUME_SELECTION, const.K_IMAGE_PROCESSING_ID, min_length=2)
-                ctf_corr_dict_in = make_dict(const.EM_CTF_CORRECTION, const.K_IMAGE_PROCESSING_ID)
+                ctf_corr_dict_in = make_list_of_dicts(const.EM_CTF_CORRECTION, const.K_IMAGE_PROCESSING_ID)
+                print("ctf_corr_dict_in", ctf_corr_dict_in)
                 st_mod_dict_in = make_list_of_dicts(const.EM_START_MODEL, const.K_IMAGE_PROCESSING_ID)
                 ang_dict_in = make_list_of_dicts(const.EM_EULER_ANGLE_ASSIGNMENT, const.K_IMAGE_PROCESSING_ID)
                 final_class_dict_in = make_dict(const.EM_FINAL_CLASSIFICATION, const.K_IMAGE_PROCESSING_ID)
@@ -10651,6 +10657,7 @@ class CifEMDBTranslator(object):
                 cry_shell_dict_in = make_list_of_dicts(const.EM_DIFFRACTION_SHELL, const.K_EM_DIFFRACTION_STATS_ID)
                 im_rec_dict_in = make_dict(const.EM_IMAGE_RECORDING, const.K_ID)
                 motion_corr_dict_in = make_list_of_dicts(const.EM_MOTION_CORRECTION, const.K_IMAGE_PROCESSING_ID)
+                # print("motion_corr_dict_in", motion_corr_dict_in)
 
                 ip_list_in = assert_get_value(const.EM_IMAGE_PROCESSING, self.cif)
                 for ip_in in ip_list_in:
