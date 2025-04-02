@@ -692,4 +692,9 @@ _pdbx_depui_status_flags.merged_fail                            ?
 _pdbx_depui_status_flags.post_rel_replacement_reason            ?
 _pdbx_depui_status_flags.post_rel_replacement_reason_details    ?
 _pdbx_depui_status_flags.has_accepted_assemblies                ?
+# 
+_em_motion_correction.id                     1
+_em_motion_correction.image_processing_id    1
+_em_motion_correction.type                   "WHOLE MICROGRAPH"
+_em_motion_correction.details                'Testing testing'
 #
