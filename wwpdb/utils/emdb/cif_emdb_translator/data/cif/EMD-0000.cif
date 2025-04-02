@@ -413,6 +413,9 @@ _em_imaging.recording_temperature_minimum   ?
 _em_imaging.residual_tilt                   ?
 _em_imaging.specimen_holder_model           ?
 _em_imaging.specimen_id                     1
+_em_imaging.microscope_serial_number        'test123456' 
+_em_imaging.microscope_version              'g4' 
+_em_imaging.objective_aperture              5
 #
 _em_sample_support.id               1
 _em_sample_support.specimen_id      1
