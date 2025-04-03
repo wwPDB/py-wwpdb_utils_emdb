@@ -1530,34 +1530,51 @@ class CifEMDBTranslator(object):
 
         def get_cif_value(cif_key, cif_category, cif_list=None):
             """
-            With the assumption that the cif_category is implemented as a
-            list of tuples, find value corresponding to key
-
+            Recursively search for a value corresponding to a key in a CIF category.
+        
             Parameters:
-            @param cif_key: key for a (key,value) pair
-            @param cif_category: cif category with the list of (key,value) tuples
-            @param cif_list: If this is 'None' then the cif list in the wrapping function is used
+            @param cif_key: key for a (key, value) pair
+            @param cif_category: CIF category with the list of (key, value) tuples
+            @param cif_list: If this is 'None', the CIF list in the wrapping function is used
             @return: value or None
             """
-            if cif_category is not None and cif_key is not None:
-                if cif_category == "em_ctf_correction" and cif_key == "image_processing_id":
-                    # this is a special case where the key has "em_" prefix
-                    cif_key = "em_" + cif_key
-                full_key = "_" + cif_category + "." + cif_key
-                category_lists = [cif_list] if cif_list else self.cif[cif_category]
-                for category_list in category_lists:
-                    cif_value = [item for item in category_list if item[0] == full_key]
-                    if cif_value is not None:
-                        if len(cif_value) == 1 and len(cif_value[0]) == 2:
-                            ret = cif_value[0][1]
-                            # Handle unicode returned from mmCIF parsers, as Python 2 unidcode does not support upper()
-                            if ret:
-                                ret = str(ret)
-                            return ret
-                        else:
-                            return None
-            else:
+            if cif_category is None or cif_key is None:
                 return None
+        
+            # Handle special case for "em_ctf_correction.image_processing_id"
+            if cif_category == "em_ctf_correction" and cif_key == "image_processing_id":
+                cif_key = "em_" + cif_key
+        
+            full_key = f"_{cif_category}.{cif_key}"
+        
+            # Handle default value for self.cif.get()
+            if cif_list:
+                data_to_search = cif_list
+            else:
+                data_to_search = self.cif.get(cif_category) if cif_category in self.cif else []
+        
+            # Define a recursive helper function
+            def recursive_search(data):
+                """
+                Recursively search for the full_key in the given data.
+        
+                @param data: The data to search (can be a list, tuple, or other iterable)
+                @return: value or None
+                """
+                if isinstance(data, list):  # Check if data is iterable
+                    for item in data:
+                        # If the item is a string and matches the full_key, return its value
+                        if isinstance(item, tuple) and len(item) == 2 and isinstance(item[0], str) and item[0] == full_key:
+                            return str(item[1]) if item[1] else None
+                        # If the item is iterable, search recursively
+                        elif isinstance(item, (list)):
+                            result = recursive_search(item)
+                            if result is not None:
+                                return result
+                return None
+        
+            # Start the recursive search
+            return recursive_search(data_to_search)
 
         def get_xsd_for_cif_item(cif_item):
             """
