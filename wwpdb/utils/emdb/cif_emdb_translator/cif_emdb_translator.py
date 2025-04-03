@@ -212,7 +212,6 @@ class CifEMDBTranslator(object):
         PDBX_AUDIT_REVISION_GROUP = "pdbx_audit_revision_group"
         PDBX_AUDIT_REVISION_CATEGORY = "pdbx_audit_revision_category"
         PDBX_AUDIT_REVISION_ITEM = "pdbx_audit_revision_item"
-        EM_MOTION_CORRECTION = "em_motion_correction"
 
         # Keys
         K_EM_DIFFRACTION_STATS_ID = "em_diffraction_stats_id"
@@ -907,9 +906,7 @@ class CifEMDBTranslator(object):
             "_pdbx_audit_revision_history.part_number": '<xs:attribute name="part" type="xs:positiveInteger"/>',
             "_pdbx_audit_revision_history.type": '<xs:attribute name="revision_action" type="xs:token" use="required"/>',
             "_pdbx_audit_revision_category.category": '<xs:element name="category" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>',
-            "_pdbx_audit_revision_item.item": '<xs:element name="item" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>',
-            "_em_motion_correction.type": '<xs:element name="type" minOccurs="1" maxOccurs="1">',
-            "_em_motion_correction.details": '<xs:element name="details" minOccurs="0" maxOccurs="1" type="xs:string">',
+            "_pdbx_audit_revision_item.item": '<xs:element name="item" type="revision_category_or_item_type" minOccurs="1" maxOccurs="unbounded"/>'
         }
 
     class ALog(object):
@@ -9636,16 +9633,6 @@ class CifEMDBTranslator(object):
                             f3dc = set_classification(ip_id_in, final_class_dict_in, cat_soft_dict_in)
                             if f3dc.has__content():
                                 im_proc.set_final_three_d_classification(f3dc)
-                    
-                    def set_el_motion_correction(ip_id_in, im_proc, sp_dict_list):
-                        """
-                        XSD: <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
-                        """
-                        motion_corr_dict_in = sp_dict_list["motion_corr_dict_in"]
-                        if ip_id_in in motion_corr_dict_in:
-                            mc_list_in = motion_corr_dict_in[ip_id_in]
-                            for mc_in in mc_list_in:
-                                set_motion_correction(mc_in, im_proc, motion_corr_dict_in)
 
                     # element 1
                     set_el_particle_selection(ip_id_in, im_proc, sp_dict_list)
@@ -9665,8 +9652,6 @@ class CifEMDBTranslator(object):
                     set_el_final_two_d_class(ip_id_in, im_proc, sp_dict_list)
                     # element 9
                     set_el_final_three_d_class(ip_id_in, im_proc, sp_dict_list)
-                    # element 10
-                    set_el_motion_correction(ip_id_in, im_proc, sp_dict_list)
 
                 def set_subtom_av_im_proc_specifics(ip_id_in, im_proc, subtom_dicts, em_method):
                     """
@@ -9837,16 +9822,6 @@ class CifEMDBTranslator(object):
                             set_crystal_parameters(ip_id_in, im_proc, subtom_dicts["two_d_cryst_dict_in"], const.EM_2D_CRYSTAL_ENTITY, parent_req=False)
                         if ip_id_in in subtom_dicts["three_d_cryst_dict_in"]:
                             set_crystal_parameters(ip_id_in, im_proc, subtom_dicts["three_d_cryst_dict_in"], const.EM_3D_CRYSTAL_ENTITY, parent_req=False)
-                    
-                    def set_el_motion_correction(ip_id_in, im_proc, sp_dict_list):
-                        """
-                        XSD: <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
-                        """
-                        motion_corr_dict_in = sp_dict_list["motion_corr_dict_in"]
-                        if ip_id_in in motion_corr_dict_in:
-                            mc_list_in = motion_corr_dict_in[ip_id_in]
-                            for mc_in in mc_list_in:
-                                set_motion_correction(mc_in, im_proc, motion_corr_dict_in)
 
                     # element 1
                     set_el_final_reconstruction(im_proc, subtom_dicts)
@@ -9862,8 +9837,6 @@ class CifEMDBTranslator(object):
                     set_el_final_angle_assignment(im_proc, subtom_dicts, em_method)
                     # element 7
                     set_el_crystal_parameters(im_proc, subtom_dicts)
-                    # element 8
-                    set_el_motion_correction(ip_id_in, im_proc, subtom_dicts)
 
                 def set_helical_proc_specifics(ip_id_in, im_proc, hel_dict_list):
                     """
@@ -10069,16 +10042,6 @@ class CifEMDBTranslator(object):
                         three_d_cryst_dict_in = hel_dict_list["three_d_cryst_dict_in"]
                         if ip_id_in in three_d_cryst_dict_in:
                             set_crystal_parameters(ip_id_in, im_proc, three_d_cryst_dict_in, const.EM_3D_CRYSTAL_ENTITY, parent_req=False)
-                    
-                    def set_el_motion_correction(ip_id_in, im_proc, sp_dict_list):
-                        """
-                        XSD: <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
-                        """
-                        motion_corr_dict_in = sp_dict_list["motion_corr_dict_in"]
-                        if ip_id_in in motion_corr_dict_in:
-                            mc_list_in = motion_corr_dict_in[ip_id_in]
-                            for mc_in in mc_list_in:
-                                set_motion_correction(mc_in, im_proc, motion_corr_dict_in)
 
                     # element 1
                     set_el_final_reconstruction(im_proc, ip_id_in, hel_dict_list)
@@ -10098,8 +10061,6 @@ class CifEMDBTranslator(object):
                     set_el_final_angle_assignment(im_proc, ip_id_in, hel_dict_list, em_method)
                     # element 9
                     set_el_crystal_parameters(ip_id_in, im_proc, hel_dict_list)
-                    # element 10
-                    set_el_motion_correction(ip_id_in, im_proc, hel_dict_list)
 
                 def set_cryst_proc_specifics(ip_id_in, im_proc, cryst_dicts):
                     """
@@ -10575,16 +10536,6 @@ class CifEMDBTranslator(object):
                         three_d_cryst_dict_in = tomo_dicts["three_d_cryst_dict_in"]
                         if ip_id_in in three_d_cryst_dict_in:
                             set_crystal_parameters(ip_id_in, im_proc, three_d_cryst_dict_in, const.EM_3D_CRYSTAL_ENTITY, parent_req=False)
-                    
-                    def set_el_motion_correction(ip_id_in, im_proc, sp_dict_list):
-                        """
-                        XSD: <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
-                        """
-                        motion_corr_dict_in = sp_dict_list["motion_corr_dict_in"]
-                        if ip_id_in in motion_corr_dict_in:
-                            mc_list_in = motion_corr_dict_in[ip_id_in]
-                            for mc_in in mc_list_in:
-                                set_motion_correction(mc_in, im_proc, motion_corr_dict_in)
 
                     # element 1
                     set_el_final_reconstruction(im_proc, ip_id_in)
@@ -10594,49 +10545,6 @@ class CifEMDBTranslator(object):
                     set_el_ctf_correction(im_proc, ip_id_in, tomo_dicts)
                     # element 4
                     set_el_crystal_parameters(im_proc, ip_id_in, tomo_dicts)
-                    # element 5
-                    set_el_motion_correction(ip_id_in, im_proc, tomo_dicts)
-
-                def set_motion_correction(ip_id_in, im_proc, motion_corr_dict_in):
-                    """
-                    Sets motion correction
-                
-                    @param ip_id_in: image processing id
-                    @param im_proc: image processing object
-                    @param motion_corr_dict_in: dictionary for motion correction
-                    XSD: <xs:complexType name="motion_correction_type">
-                    """
-                
-                    def set_motion_correction_type(motion_corr):
-                        """
-                        XSD: <xs:complexType name="motion_correction_type"> has
-                        .. 2 elements
-                        """
-                
-                        def set_el_type(motion_corr, motion_corr_in):
-                            """
-                            XSD: <xs:element name="type" minOccurs="1" maxOccurs="1">
-                            CIF: _em_motion_correction.type
-                            """
-                            set_cif_value(motion_corr.set_type, "type", const.EM_MOTION_CORRECTION, cif_list=motion_corr_in)
-                
-                        def set_el_details(motion_corr, motion_corr_in):
-                            """
-                            XSD: <xs:element name="details" minOccurs="0" maxOccurs="1">
-                            CIF: _em_motion_correction.details
-                            """
-                            set_cif_value(motion_corr.set_details, "details", const.EM_MOTION_CORRECTION, cif_list=motion_corr_in)
-                
-                        motion_corr_in = motion_corr_dict_in[ip_id_in]
-                        # element 1
-                        set_el_type(motion_corr, motion_corr_in)
-                        # element 2
-                        set_el_details(motion_corr, motion_corr_in)
-                
-                    motion_corr = emdb.motion_correction_type()
-                    set_motion_correction_type(motion_corr)
-                    if motion_corr.has__content():
-                        im_proc.set_motion_correction(motion_corr)                
 
                 # Create dictionaries indexed by em_image_processing_id
                 soft_dict_in = make_list_of_dicts(const.EM_SOFTWARE, const.K_IMAGE_PROCESSING_ID)
@@ -10656,8 +10564,6 @@ class CifEMDBTranslator(object):
                 cry_stats_dict_in = make_dict(const.EM_DIFFRACTION_STATS, const.K_IMAGE_PROCESSING_ID)
                 cry_shell_dict_in = make_list_of_dicts(const.EM_DIFFRACTION_SHELL, const.K_EM_DIFFRACTION_STATS_ID)
                 im_rec_dict_in = make_dict(const.EM_IMAGE_RECORDING, const.K_ID)
-                motion_corr_dict_in = make_list_of_dicts(const.EM_MOTION_CORRECTION, const.K_IMAGE_PROCESSING_ID)
-                # print("motion_corr_dict_in", motion_corr_dict_in)
 
                 ip_list_in = assert_get_value(const.EM_IMAGE_PROCESSING, self.cif)
                 for ip_in in ip_list_in:
@@ -10681,7 +10587,6 @@ class CifEMDBTranslator(object):
                             "final_class_dict_in": final_class_dict_in,
                             "final_2d_class_dict_in": final_2d_class_dict_in,
                             "final_rec_dict_in": final_rec_dict_in,
-                            "motion_corr_dict_in": motion_corr_dict_in,
                         }
                         set_single_part_im_proc_specs(ip_id_in, sp_im_proc, sp_dicts)
                         struct_det.add_image_processing(sp_im_proc)
@@ -10700,7 +10605,6 @@ class CifEMDBTranslator(object):
                             "st_mod_dict_in": st_mod_dict_in,
                             "two_d_cryst_dict_in": two_d_cryst_dict_in,
                             "three_d_cryst_dict_in": three_d_cryst_dict_in,
-                            "motion_corr_dict_in": motion_corr_dict_in,
                         }
                         set_helical_proc_specifics(ip_id_in, hel_im_proc, helical_dicts)
                         struct_det.add_image_processing(hel_im_proc)
@@ -10716,7 +10620,6 @@ class CifEMDBTranslator(object):
                             "ctf_corr_dict_in": ctf_corr_dict_in,
                             "two_d_cryst_dict_in": two_d_cryst_dict_in,
                             "three_d_cryst_dict_in": three_d_cryst_dict_in,
-                            "motion_corr_dict_in": motion_corr_dict_in,
                         }
                         set_tom_proc_specifics(ip_id_in, tom_im_proc, tomo_dicts)
                         struct_det.add_image_processing(tom_im_proc)
@@ -10735,7 +10638,6 @@ class CifEMDBTranslator(object):
                             "ang_dict_in": ang_dict_in,
                             "two_d_cryst_dict_in": two_d_cryst_dict_in,
                             "three_d_cryst_dict_in": three_d_cryst_dict_in,
-                            "motion_corr_dict_in": motion_corr_dict_in,
                         }
                         set_subtom_av_im_proc_specifics(ip_id_in, subtom_im_proc, subtom_dicts, em_method)
                         struct_det.add_image_processing(subtom_im_proc)
