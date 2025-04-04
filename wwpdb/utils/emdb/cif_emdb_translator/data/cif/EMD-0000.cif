@@ -703,19 +703,20 @@ _em_software.fitting_id
 _em_software.imaging_id 
 _em_software.name 
 _em_software.version 
-'PARTICLE SELECTION'       ? 1  1 ? ? ? ? 
-'IMAGE ACQUISITION'        ? 2  ? ? 1 ? ? 
-MASKING                    ? 3  ? ? ? ? ? 
-'CTF CORRECTION'           ? 4  1 ? ? ? ? 
-'LAYERLINE INDEXING'       ? 5  ? ? ? ? ? 
-'DIFFRACTION INDEXING'     ? 6  ? ? ? ? ? 
-'MODEL FITTING'            ? 7  ? ? ? ? ? 
-'MODEL REFINEMENT'         ? 8  ? ? ? ? ? 
-OTHER                      ? 9  ? ? ? ? ? 
-'INITIAL EULER ASSIGNMENT' ? 10 1 ? ? ? ? 
-'FINAL EULER ASSIGNMENT'   ? 11 1 ? ? ? ? 
-CLASSIFICATION             ? 12 1 ? ? ? ? 
-RECONSTRUCTION             ? 13 1 ? ? ? ? 
+'PARTICLE SELECTION'       'Particles were selected using crYOLO with a general model.'           1  1 ? ? 'crYOLO'             '1.8.0' 
+'IMAGE ACQUISITION'        'Automated data acquisition using EPU on a Titan Krios microscope.'   2  ? ? 1 'EPU'                '2.11.0' 
+MASKING                    'Masks were generated using RELION post-processing module.'           3  ? ? ? 'RELION'             '4.0.1' 
+'CTF CORRECTION'           'CTF correction performed with CTFFIND4 in combination with Relion.'  4  1 ? ? 'CTFFIND4'           '4.1.14' 
+'LAYERLINE INDEXING'       'Layerline indexing carried out manually in MATLAB.'                  5  ? ? ? 'MATLAB'             'R2022a' 
+'DIFFRACTION INDEXING'     'Diffraction pattern indexing using DIALS.'                           6  ? ? ? 'DIALS'              '3.5.0' 
+'MODEL FITTING'            'Atomic model fitting performed using Chimera.'                       7  ? ? ? 'UCSF Chimera'       '1.16' 
+'MODEL REFINEMENT'         'Refinement completed using Phenix real-space refine.'                8  ? ? ? 'Phenix'             '1.20.1-4487' 
+OTHER                      'Map visualization and analysis using ChimeraX.'                      9  ? ? ? 'ChimeraX'           '1.6' 
+'INITIAL EULER ASSIGNMENT' 'Initial orientations assigned using RELION 3D classification.'       10 1 ? ? 'RELION'             '4.0.1' 
+'FINAL EULER ASSIGNMENT'   'Final orientations assigned with cryoSPARC homogeneous refinement.'  11 1 ? ? 'cryoSPARC'          '4.0' 
+CLASSIFICATION             '3D classification performed in RELION using auto-refine parameters.' 12 1 ? ? 'RELION'             '4.0.1' 
+RECONSTRUCTION             '3D map reconstructed using cryoSPARC NU-refinement.'                 13 1 ? ? 'cryoSPARC'          '4.0' 
+
 # 
 _em_specimen.concentration           ? 
 _em_specimen.details                 ? 
