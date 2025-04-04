@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.10.3"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.11.0"/>
     </xs:complexType>
     <xs:complexType name="admin_type">
         <xs:sequence>
@@ -316,13 +316,20 @@
         </xs:complexContent>
     </xs:complexType>
     <xs:element name="primary_map" substitutionGroup="revision_change_sub_group"/>
-    <xs:element name="image" substitutionGroup="revision_change_sub_group" type="part_revision_change_type"/>
-    <xs:element name="half_map" substitutionGroup="revision_change_sub_group" type="part_revision_change_type"/>
-    <xs:element name="mask" substitutionGroup="revision_change_sub_group" type="part_revision_change_type"/>
-    <xs:element name="fsc" substitutionGroup="revision_change_sub_group" type="part_revision_change_type"/>
-    <xs:element name="additional_map" substitutionGroup="revision_change_sub_group" type="part_revision_change_type"/>
-    <xs:element name="model" substitutionGroup="revision_change_sub_group" type="complex_revision_change_type"/>
-    <xs:element name="metadata" substitutionGroup="revision_change_sub_group" type="complex_revision_change_type"/>
+    <xs:element name="image" substitutionGroup="revision_change_sub_group"
+        type="part_revision_change_type"/>
+    <xs:element name="half_map" substitutionGroup="revision_change_sub_group"
+        type="part_revision_change_type"/>
+    <xs:element name="mask" substitutionGroup="revision_change_sub_group"
+        type="part_revision_change_type"/>
+    <xs:element name="fsc" substitutionGroup="revision_change_sub_group"
+        type="part_revision_change_type"/>
+    <xs:element name="additional_map" substitutionGroup="revision_change_sub_group"
+        type="part_revision_change_type"/>
+    <xs:element name="model" substitutionGroup="revision_change_sub_group"
+        type="complex_revision_change_type"/>
+    <xs:element name="metadata" substitutionGroup="revision_change_sub_group"
+        type="complex_revision_change_type"/>
     <xs:complexType name="complex_revision_change_type">
         <xs:complexContent>
             <xs:extension base="base_revision_change_type">
@@ -330,14 +337,16 @@
                     <xs:element name="categories" minOccurs="0">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="category" type="xs:token" minOccurs="1" maxOccurs="unbounded"/>
+                                <xs:element name="category" type="xs:token" minOccurs="1"
+                                    maxOccurs="unbounded"/>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="items" minOccurs="0">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="item" type="xs:token" minOccurs="1" maxOccurs="unbounded"/>
+                                <xs:element name="item" type="xs:token" minOccurs="1"
+                                    maxOccurs="unbounded"/>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
@@ -1803,7 +1812,7 @@
                         <xs:enumeration value="GRAPHENE"/>
                         <xs:enumeration value="GRAPHENE OXIDE"/>
                         <xs:enumeration value="PARLODION"/>
-                        <xs:enumeration value="SILICON DIOXIDE" />
+                        <xs:enumeration value="SILICON DIOXIDE"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -2662,6 +2671,31 @@
             <xs:element name="specimen_holder" type="xs:string" minOccurs="0"/>
             <xs:element name="tilt_angle_min" type="xs:string" minOccurs="0"/>
             <xs:element name="tilt_angle_max" type="xs:string" minOccurs="0"/>
+            <xs:element name="objective_aperture" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:float">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Diameter, in microns, of the objective aperture.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="microscope_serial_number" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Microscope serial number.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="microscope_version" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Version of the microscope.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
         <xs:attribute name="microscopy_id" type="xs:positiveInteger" use="required"/>
     </xs:complexType>
@@ -3477,6 +3511,73 @@
             </xs:element>
             <xs:element name="software_list" type="software_list_type" minOccurs="0"/>
             <xs:element name="details" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="NONE"/>
+                        <xs:enumeration value="PHASE FLIPPING ONLY"/>
+                        <xs:enumeration value="PHASE FLIPPING AND AMPLITUDE CORRECTION"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="motion_correction_type">
+        <xs:annotation>
+            <xs:documentation>
+                Data items in the EM_MOTION_CORRECTION category record details 
+                of corrections made during imaging the sample in the electron microscope.
+                This includes information such as the type of motion correction applied, 
+                references to related image processing steps, and additional descriptive details.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        PRIMARY KEY
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[][_,.;:&lt;&gt;()/\{}'`~!@#$%A-Za-z0-9*|+-]*"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="image_processing_id" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Pointer to _em_image_processing.id in the EM_IMAGE_PROCESSING category.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[][_,.;:&lt;&gt;()/\{}'`~!@#$%A-Za-z0-9*|+-]*"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element> -->
+            <xs:element name="type" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Type of motion correction carried out.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="MICROGRAPH PATCHES"/>
+                        <xs:enumeration value="NONE"/>
+                        <xs:enumeration value="PER PARTICLE"/>
+                        <xs:enumeration value="WHOLE MICROGRAPH"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="details" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        A description of the motion correction operation in more detail.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="correction_space_type">
@@ -3599,6 +3700,8 @@
             <xs:element name="final_reconstruction" type="non_subtom_final_reconstruction_type"
                 minOccurs="0"/>
             <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
+            <!-- Add motion_correction of motion_correction_type-->
+            <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
             <xs:element name="segment_selection" type="segment_selection_type" minOccurs="0"
                 maxOccurs="unbounded"/>
             <xs:element name="refinement" type="refinement_type" minOccurs="0"/>
@@ -3744,6 +3847,8 @@
             <xs:element name="particle_selection" type="particle_selection_type" minOccurs="0"
                 maxOccurs="unbounded"/>
             <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
+            <!-- Add motion_correction of motion_correction_type-->
+            <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
             <xs:element name="startup_model" type="starting_map_type" minOccurs="0"
                 maxOccurs="unbounded"/>
             <xs:element name="final_reconstruction" type="non_subtom_final_reconstruction_type"
@@ -3824,6 +3929,8 @@
                 </xs:complexType>
             </xs:element>
             <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
+            <!-- Add motion_correction of motion_correction_type-->
+            <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
             <xs:element name="final_multi_reference_alignment" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
@@ -3904,6 +4011,8 @@
                 minOccurs="0"/>
             <xs:element name="series_aligment_software_list" type="software_list_type" minOccurs="0"/>
             <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
+            <!-- Add motion_correction of motion_correction_type-->
+            <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
             <xs:element name="crystal_parameters" type="crystal_parameters_type" minOccurs="0"/>
         </xs:sequence>
     </xs:group>

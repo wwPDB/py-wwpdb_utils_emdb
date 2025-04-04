@@ -64,7 +64,7 @@ class Cif(object):
                 raise StopIteration
             else:
                 return nl[item]
-
+            
         return self.get(item)
 
     def get(self, catname):  # pylint: disable=unused-argument
@@ -85,7 +85,8 @@ class Cif(object):
 
         retlist = []
 
-        # print dir(dc_obj)
+        # print(dir(dc_obj))
+        
         attrlist = dc_obj.getAttributeList()
         for row in range(dc_obj.getRowCount()):
             rowlist = []
@@ -123,7 +124,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.10.1"
+        XML_OUT_VERSION = "3.0.11.0"
         XML_VERSION = XML_OUT_VERSION.replace('.', '_')
 
         # Cif categories
@@ -527,24 +528,27 @@ class CifEMDBTranslator(object):
             "_em_image_scans.used_frames_per_image": '<xs:element name="frames_per_image" type="xs:token" minOccurs="0"/>',
             "_em_image_scans.sampling_interval": '<xs:element name="sampling_interval" minOccurs="0">',
             "_em_imaging.id": '<xs:attribute name="microscopy_id" type="xs:positiveInteger" use="required"/>',
-            "_em_imaging.microscope_model": '<xs:element name="microscope">',
-            "_em_imaging.illumination_mode": '<xs:element name="illumination_mode">',
-            "_em_imaging.mode": '<xs:element name="imaging_mode">',
-            "_em_imaging.electron_source": '<xs:element name="electron_source">',
-            "_em_imaging.nominal_magnification": '<xs:element name="nominal_magnification" type="allowed_magnification" minOccurs="0"/>',
-            "_em_imaging.calibrated_magnification": '<xs:element name="calibrated_magnification" type="allowed_magnification" minOccurs="0"/>',
-            "_em_imaging.specimen_holder_model": '<xs:element name="specimen_holder_model" minOccurs="0">',
-            "_em_imaging.cryogen": '<xs:element name="cooling_holder_cryogen" minOccurs="0">',
-            "_em_imaging.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
             "_em_imaging.accelerating_voltage": '<xs:element name="acceleration_voltage">',
             "_em_imaging.c2_aperture_diameter": '<xs:element name="c2_aperture_diameter" minOccurs="0">',
-            "_em_imaging.nominal_cs": '<xs:element name="nominal_cs" minOccurs="0">',
-            "_em_imaging.nominal_defocus_min": '<xs:element name="nominal_defocus_min" minOccurs="0">',
-            "_em_imaging.calibrated_defocus_min": '<xs:element name="calibrated_defocus_min" minOccurs="0">',
-            "_em_imaging.nominal_defocus_max": '<xs:element name="nominal_defocus_max" minOccurs="0">',
             "_em_imaging.calibrated_defocus_max": '<xs:element name="calibrated_defocus_max" minOccurs="0">',
+            "_em_imaging.calibrated_defocus_min": '<xs:element name="calibrated_defocus_min" minOccurs="0">',
+            "_em_imaging.calibrated_magnification": '<xs:element name="calibrated_magnification" type="allowed_magnification" minOccurs="0"/>',
+            "_em_imaging.cryogen": '<xs:element name="cooling_holder_cryogen" minOccurs="0">',
+            "_em_imaging.details": '<xs:element name="details" type="xs:string" minOccurs="0">',
+            "_em_imaging.electron_source": '<xs:element name="electron_source">',
+            "_em_imaging.illumination_mode": '<xs:element name="illumination_mode">',
+            "_em_imaging.microscope_model": '<xs:element name="microscope">',
+            "_em_imaging.mode": '<xs:element name="imaging_mode">',
+            "_em_imaging.nominal_cs": '<xs:element name="nominal_cs" minOccurs="0">',
+            "_em_imaging.nominal_defocus_max": '<xs:element name="nominal_defocus_max" minOccurs="0">',
+            "_em_imaging.nominal_defocus_min": '<xs:element name="nominal_defocus_min" minOccurs="0">',
+            "_em_imaging.nominal_magnification": '<xs:element name="nominal_magnification" type="allowed_magnification" minOccurs="0"/>',
             "_em_imaging.recording_temperature_maximum": '<xs:element name="temperature" minOccurs="0">',
             "_em_imaging.recording_temperature_minimum": '<xs:element name="temperature" minOccurs="0">',
+            "_em_imaging.specimen_holder_model": '<xs:element name="specimen_holder_model" minOccurs="0">',
+            "_em_imaging.objective_aperture": '<xs:element name="objective_aperture" minOccurs="0">',
+            "_em_imaging.microscope_serial_number": '<xs:element name="microscope_serial_number" type="xs:string" minOccurs="0">',
+            "_em_imaging.microscope_version": '<xs:element name="microscope_version" type="xs:string" minOccurs="0">',
             "_em_sample_support.grid_type": '<xs:element name="model" type="xs:token" minOccurs="0">',
             "_em_sample_support.grid_material": '<xs:element name="material" minOccurs="0">',
             "_em_sample_support.grid_mesh_size": '<xs:element name="mesh" type="xs:positiveInteger" minOccurs="0">',
@@ -1444,7 +1448,8 @@ class CifEMDBTranslator(object):
                 const.PDBX_AUDIT_REVISION_DETAILS,
                 const.PDBX_AUDIT_REVISION_GROUP,
                 const.PDBX_AUDIT_REVISION_CATEGORY,
-                const.PDBX_AUDIT_REVISION_ITEM
+                const.PDBX_AUDIT_REVISION_ITEM,
+                # const.EM_MOTION_CORRECTION,
             ],
         )
         self.cif = Cif(container)
@@ -1525,31 +1530,51 @@ class CifEMDBTranslator(object):
 
         def get_cif_value(cif_key, cif_category, cif_list=None):
             """
-            With the assumption that the cif_category is implemented as a
-            list of tuples, find value corresponding to key
-
+            Recursively search for a value corresponding to a key in a CIF category.
+        
             Parameters:
-            @param cif_key: key for a (key,value) pair
-            @param cif_category: cif category with the list of (key,value) tuples
-            @param cif_list: If this is 'None' then the cif list in the wrapping function is used
+            @param cif_key: key for a (key, value) pair
+            @param cif_category: CIF category with the list of (key, value) tuples
+            @param cif_list: If this is 'None', the CIF list in the wrapping function is used
             @return: value or None
             """
-            if cif_category is not None and cif_key is not None:
-                full_key = "_" + cif_category + "." + cif_key
-                category_lists = [cif_list] if cif_list else self.cif[cif_category]
-                for category_list in category_lists:
-                    cif_value = [item for item in category_list if item[0] == full_key]
-                    if cif_value is not None:
-                        if len(cif_value) == 1 and len(cif_value[0]) == 2:
-                            ret = cif_value[0][1]
-                            # Handle unicode returned from mmCIF parsers, as Python 2 unidcode does not support upper()
-                            if ret:
-                                ret = str(ret)
-                            return ret
-                        else:
-                            return None
-            else:
+            if cif_category is None or cif_key is None:
                 return None
+        
+            # Handle special case for "em_ctf_correction.image_processing_id"
+            if cif_category == "em_ctf_correction" and cif_key == "image_processing_id":
+                cif_key = "em_" + cif_key
+        
+            full_key = f"_{cif_category}.{cif_key}"
+        
+            # Handle default value for self.cif.get()
+            if cif_list:
+                data_to_search = cif_list
+            else:
+                data_to_search = self.cif.get(cif_category) if cif_category in self.cif else []
+        
+            # Define a recursive helper function
+            def recursive_search(data):
+                """
+                Recursively search for the full_key in the given data.
+        
+                @param data: The data to search (can be a list, tuple, or other iterable)
+                @return: value or None
+                """
+                if isinstance(data, list):  # Check if data is iterable
+                    for item in data:
+                        # If the item is a string and matches the full_key, return its value
+                        if isinstance(item, tuple) and len(item) == 2 and isinstance(item[0], str) and item[0] == full_key:
+                            return str(item[1]) if item[1] else None
+                        # If the item is iterable, search recursively
+                        elif isinstance(item, (list)):
+                            result = recursive_search(item)
+                            if result is not None:
+                                return result
+                return None
+        
+            # Start the recursive search
+            return recursive_search(data_to_search)
 
         def get_xsd_for_cif_item(cif_item):
             """
@@ -8165,7 +8190,7 @@ class CifEMDBTranslator(object):
                         CIF: _em_imaging.specimen_holder_model 'FEI TITAN KRIOS AUTOGRID HOLDER'
                         """
                         set_cif_value(mic.set_specimen_holder_model, "specimen_holder_model", const.EM_IMAGING, cif_list=mic_in)
-
+                    
                     def set_el_cooling_holder_cryogen(mic, mic_in):
                         """
                         XSD: <xs:element name="cooling_holder_cryogen" minOccurs="0">
@@ -8273,6 +8298,27 @@ class CifEMDBTranslator(object):
                         Deprecated (2014/11/14)
                         """
 
+                    def set_el_objective_aperture(mic, mic_in):
+                        """
+                        XSD: <xs:element name="objective_aperture" minOccurs="0">
+                        CIF: _em_imaging.objective_aperture 100
+                        """
+                        set_cif_value(mic.set_objective_aperture, "objective_aperture", const.EM_IMAGING, cif_list=mic_in)
+                    
+                    def set_el_microscope_serial_number(mic, mic_in):
+                        """
+                        XSD: <xs:element name="microscope_serial_number" type="xs:string" minOccurs="0">
+                        CIF: _em_imaging.microscope_serial_number '123456789'
+                        """
+                        set_cif_value(mic.set_microscope_serial_number, "microscope_serial_number", const.EM_IMAGING, cif_list=mic_in)
+
+                    def set_el_microscope_version(mic, mic_in):
+                        """
+                        XSD: <xs:element name="microscope_version" type="xs:string" minOccurs="0">
+                        CIF: _em_imaging.microscope_version '1.0'
+                        """
+                        set_cif_value(mic.set_microscope_version, "microscope_version", const.EM_IMAGING, cif_list=mic_in)
+
                     # attribute 1
                     set_attr_id(mic)
                     # element 1
@@ -8327,6 +8373,12 @@ class CifEMDBTranslator(object):
                     set_el_tilt_angle_min()
                     # element 26
                     set_el_tilt_angle_max()
+                    # element 27
+                    set_el_objective_aperture(mic, mic_in)
+                    # element 28
+                    set_el_microscope_serial_number(mic, mic_in)
+                    # element 29
+                    set_el_microscope_version(mic, mic_in)
 
                 def set_tilt_parameters(mic_id, mic):
                     """
@@ -8594,7 +8646,7 @@ class CifEMDBTranslator(object):
                     if part_sel.has__content():
                         im_proc.add_particle_selection(part_sel)
 
-                def set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in):
+                def set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in, cat_soft_dict_in):
                     """
                     Sets CTF correction
 
@@ -8603,12 +8655,12 @@ class CifEMDBTranslator(object):
                     @param ctf_corr_dict_in: dictionary for CTF correction
                     XSD: <xs:complexType name="ctf_correction_type">
                     """
-
                     def set_ctf_correction_type(ctf_corr):
                         """
                         XSD: <xs:complexType name="ctf_correction_type"> has
                         .. 5 elements
                         """
+                        ctf_corr_in = ctf_corr_dict_in[ip_id_in]
 
                         def set_el_phase_reversal(ctf_corr, ctf_corr_in):
                             """
@@ -8627,7 +8679,13 @@ class CifEMDBTranslator(object):
                                     XSD: <xs:element name="anisotropic" type="xs:boolean" minOccurs="0"/>
                                     CIF: _em_ctf_correction.phase_reversal_anisotropic YES/NO
                                     """
-                                    set_cif_value(ph_rev.set_anisotropic, "phase_reversal_anisotropic", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                                    set_cif_value(
+                                        ph_rev.set_anisotropic,
+                                        "phase_reversal_anisotropic",
+                                        const.EM_CTF_CORRECTION,
+                                        fmt=lambda v: v == "YES",
+                                        cif_list=ctf_corr_in,
+                                    )
 
                                 def set_el_correction_space(ph_rev, ctf_corr_in):
                                     """
@@ -8637,16 +8695,20 @@ class CifEMDBTranslator(object):
                                     """
                                     pra = get_cif_value("phase_reversal_anisotropic", const.EM_CTF_CORRECTION, ctf_corr_in)
                                     if pra == "YES":
-                                        # Yes if Anisotropic phase reversal (flipping) was performed
-                                        set_cif_value(ph_rev.set_correction_space, "phase_reversal_correction_space", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                                        set_cif_value(
+                                            ph_rev.set_correction_space,
+                                            "phase_reversal_correction_space",
+                                            const.EM_CTF_CORRECTION,
+                                            cif_list=ctf_corr_in,
+                                        )
 
                                 # element 1
                                 set_el_anisotropic(ph_rev)
                                 # element 2
                                 set_el_correction_space(ph_rev, ctf_corr_in)
 
-                            ph_rev = get_cif_value("phase_reversal", const.EM_CTF_CORRECTION, ctf_corr_in)
-                            if ph_rev == "YES":
+                            ph_rev_val = get_cif_value("phase_reversal", const.EM_CTF_CORRECTION, ctf_corr_in)
+                            if ph_rev_val == "YES":
                                 # Yes if Phase reversal (flipping) was performed
                                 ph_rev = emdb.phase_reversalType()
                                 set_phase_reversal_type(ph_rev, ctf_corr_in)
@@ -8669,7 +8731,13 @@ class CifEMDBTranslator(object):
                                     XSD: <xs:element name="factor" type="xs:float" minOccurs="0">
                                     CIF: _em_ctf_correction.amplitude_correction_factor
                                     """
-                                    set_cif_value(am_corr.set_factor, "amplitude_correction", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                                    set_cif_value(
+                                        am_corr.set_factor,
+                                        "amplitude_correction_factor",
+                                        const.EM_CTF_CORRECTION,
+                                        fmt=float,
+                                        cif_list=ctf_corr_in,
+                                    )
 
                                 def set_el_correction_space(am_corr, ctf_corr_in):
                                     """
@@ -8677,43 +8745,69 @@ class CifEMDBTranslator(object):
                                     CIF: _em_ctf_correction.amplitude_correction_space
                                         REAL/RECIPROCAL
                                     """
-                                    set_cif_value(am_corr.set_correction_space, "amplitude_correction_space", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                                    set_cif_value(
+                                        am_corr.set_correction_space,
+                                        "amplitude_correction_space",
+                                        const.EM_CTF_CORRECTION,
+                                        cif_list=ctf_corr_in,
+                                    )
 
-                                # element 1
                                 set_el_factor(am_corr, ctf_corr_in)
-                                # element 2
                                 set_el_correction_space(am_corr, ctf_corr_in)
 
-                            amp_corr = get_cif_value("amplitude_correction", const.EM_CTF_CORRECTION, ctf_corr_in)
-                            if amp_corr is not None:
+                            amp_corr_flag = get_cif_value("amplitude_correction", const.EM_CTF_CORRECTION, ctf_corr_in)
+                            if amp_corr_flag == "YES":
                                 am_corr = emdb.amplitude_correctionType()
                                 set_amplitude_correction_type(am_corr, ctf_corr_in)
                                 ctf_corr.set_amplitude_correction(am_corr)
-                            else:
-                                # ADD LOGGER MESSAGE
-                                pass
 
                         def set_el_correction_operation(ctf_corr, ctf_corr_in):
                             """
                             XSD: <xs:element name="correction_operation" minOccurs="0">
                             CIF: _em_ctf_correction.correction_operation
                             """
-                            set_cif_value(ctf_corr.set_correction_operation, "correction_operation", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                            set_cif_value(
+                                ctf_corr.set_correction_operation,
+                                "correction_operation",
+                                const.EM_CTF_CORRECTION,
+                                cif_list=ctf_corr_in,
+                            )
 
                         def set_el_software_list(ctf_corr, cat_soft_dict_in):
                             """
                             XSD: <xs:element name="software_list" type="software_list_type" minOccurs="0"/>
                             """
-                            set_software_list(const.SOFT_CTF_CORRECTION, cat_soft_dict_in, ctf_corr.set_software_list)
+                            set_software_list(
+                                const.SOFT_CTF_CORRECTION,
+                                cat_soft_dict_in,
+                                ctf_corr.set_software_list,
+                            )
 
                         def set_el_details(ctf_corr, ctf_corr_in):
                             """
                             XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
                             CIF: _em_ctf_correction.details
                             """
-                            set_cif_value(ctf_corr.set_details, "details", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                            set_cif_value(
+                                ctf_corr.set_details,
+                                "details",
+                                const.EM_CTF_CORRECTION,
+                                cif_list=ctf_corr_in,
+                            )
 
-                        ctf_corr_in = ctf_corr_dict_in[ip_id_in]
+                        def set_el_type(ctf_corr, ctf_corr_in):
+                            """
+                            XSD: <xs:element name="type"> (enumeration: NONE, PHASE FLIPPING ONLY, ...)
+                            CIF: _em_ctf_correction.type
+                            """
+                            set_cif_value(
+                                ctf_corr.set_type,
+                                "type",
+                                const.EM_CTF_CORRECTION,
+                                cif_list=ctf_corr_in,
+                            )
+
+                        # Call all element setters
                         # element 1
                         set_el_phase_reversal(ctf_corr, ctf_corr_in)
                         # element 2
@@ -8721,14 +8815,18 @@ class CifEMDBTranslator(object):
                         # element 3
                         set_el_correction_operation(ctf_corr, ctf_corr_in)
                         # element 4
+                        # Note: set_el_software_list still expects `cat_soft_dict_in`, which is not passed
                         set_el_software_list(ctf_corr, cat_soft_dict_in)
                         # element 5
                         set_el_details(ctf_corr, ctf_corr_in)
+                        # element 6
+                        set_el_type(ctf_corr, ctf_corr_in)  # ✅ NEW!
 
                     ctf_corr = emdb.ctf_correction_type()
                     set_ctf_correction_type(ctf_corr)
                     if ctf_corr.has__content():
                         im_proc.set_ctf_correction(ctf_corr)
+
 
                 def set_startup_model(ip_id_in, im_proc, st_mod_dict_in):
                     """
@@ -9538,8 +9636,15 @@ class CifEMDBTranslator(object):
                         """
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
-                        if ip_id_in in sp_dict_list["ctf_corr_dict_in"]:
-                            set_ctfcorrection(ip_id_in, im_proc, sp_dict_list["ctf_corr_dict_in"])
+                        ctf_corr_dict_in = sp_dict_list["ctf_corr_dict_in"]
+                        cat_soft_dict_in = sp_dict_list["cat_soft_dict_in"]
+                        if ip_id_in in ctf_corr_dict_in:
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_startup_model(ip_id_in, im_proc, sp_dict_list):
                         """
@@ -9750,8 +9855,14 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type"/>
                         """
                         ctf_corr_dict_in = subtom_dicts["ctf_corr_dict_in"]
+                        cat_soft_dict_in = subtom_dicts.get("cat_soft_dict_in", {})  # fallback to empty dict if not present
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_final_multi_ref_align():
                         """
@@ -9860,8 +9971,14 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
                         ctf_corr_dict_in = hel_dict_list["ctf_corr_dict_in"]
+                        ctf_soft_dict_in = hel_dict_list["cat_soft_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_segment_selection(im_proc, hel_dict_list):
                         """
@@ -10078,8 +10195,14 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
                         ctf_corr_dict_in = cryst_dicts["ctf_corr_dict_in"]
+                        cat_soft_dict_in = cryst_dicts["cat_soft_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_molecular_replacement(im_proc, cryst_dicts):
                         """
@@ -10488,8 +10611,14 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
                         ctf_corr_dict_in = tomo_dicts["ctf_corr_dict_in"]
+                        cat_soft_dict_in = tomo_dicts["cat_soft_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctfcorrection(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_crystal_parameters(im_proc, ip_id_in, tomo_dicts):
                         """
@@ -10515,7 +10644,7 @@ class CifEMDBTranslator(object):
                 soft_dict_in = make_list_of_dicts(const.EM_SOFTWARE, const.K_IMAGE_PROCESSING_ID)
                 part_sel_dict_in = make_list_of_dicts(const.EM_PARTICLE_SELECTION, const.K_IMAGE_PROCESSING_ID, min_length=2)
                 vol_sel_dict_in = make_dict(const.EM_VOLUME_SELECTION, const.K_IMAGE_PROCESSING_ID, min_length=2)
-                ctf_corr_dict_in = make_dict(const.EM_CTF_CORRECTION, const.K_IMAGE_PROCESSING_ID)
+                ctf_corr_dict_in = make_list_of_dicts(const.EM_CTF_CORRECTION, const.K_IMAGE_PROCESSING_ID)
                 st_mod_dict_in = make_list_of_dicts(const.EM_START_MODEL, const.K_IMAGE_PROCESSING_ID)
                 ang_dict_in = make_list_of_dicts(const.EM_EULER_ANGLE_ASSIGNMENT, const.K_IMAGE_PROCESSING_ID)
                 final_class_dict_in = make_dict(const.EM_FINAL_CLASSIFICATION, const.K_IMAGE_PROCESSING_ID)

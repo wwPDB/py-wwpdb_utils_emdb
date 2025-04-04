@@ -1,28 +1,28 @@
-data_D_1292118478
-#
+data_D_8000212087
+# 
 loop_
-_pdbx_contact_author.id
-_pdbx_contact_author.address_1
-_pdbx_contact_author.address_2
-_pdbx_contact_author.address_3
-_pdbx_contact_author.legacy_address
-_pdbx_contact_author.city
-_pdbx_contact_author.state_province
-_pdbx_contact_author.postal_code
-_pdbx_contact_author.email
-_pdbx_contact_author.fax
-_pdbx_contact_author.name_first
-_pdbx_contact_author.name_last
-_pdbx_contact_author.name_mi
-_pdbx_contact_author.name_salutation
-_pdbx_contact_author.country
-_pdbx_contact_author.continent
-_pdbx_contact_author.phone
-_pdbx_contact_author.role
-_pdbx_contact_author.organization_type
-_pdbx_contact_author.identifier_ORCID
-1 ? ? ? ? ? ? ? lars-anders.carlson@umu.se ? Lars-Anders Carlson ? ? Sweden ? +46-76-1179779 'responsible scientist'               academic 0000-0003-2342-6488
-2 ? ? ? ? ? ? ? lars-anders.carlson@umu.se ? Lars-Anders Carlson ? ? Sweden ? +46-76-1179779 'principal investigator/group leader' academic 0000-0003-2342-6488
+_pdbx_contact_author.id 
+_pdbx_contact_author.address_1 
+_pdbx_contact_author.address_2 
+_pdbx_contact_author.address_3 
+_pdbx_contact_author.legacy_address 
+_pdbx_contact_author.city 
+_pdbx_contact_author.state_province 
+_pdbx_contact_author.postal_code 
+_pdbx_contact_author.email 
+_pdbx_contact_author.fax 
+_pdbx_contact_author.name_first 
+_pdbx_contact_author.name_last 
+_pdbx_contact_author.name_mi 
+_pdbx_contact_author.name_salutation 
+_pdbx_contact_author.country 
+_pdbx_contact_author.continent 
+_pdbx_contact_author.phone 
+_pdbx_contact_author.role 
+_pdbx_contact_author.organization_type 
+_pdbx_contact_author.identifier_ORCID 
+1 ? ? ? ? ? ? ? jturner@ebi.ac.uk ? Jack Turner ? ? 'United Kingdom' ? 07555444555 'responsible scientist'               academic 0000-0002-5251-4674 
+2 ? ? ? ? ? ? ? jturner@ebi.ac.uk ? Jack Turner ? ? 'United Kingdom' ? 07555444555 'principal investigator/group leader' academic 0000-0002-5251-4674 
 #
 loop_
 _pdbx_audit_revision_history.ordinal
@@ -168,344 +168,447 @@ _pdbx_audit_revision_item.item
 18 6 'Structure model' '_citation.title'
 19 6 'Structure model' '_citation.year'
 20 6 'Structure model' '_em_admin.last_update'
-#
+# 
 loop_
-_database_2.database_id
-_database_2.database_code
-_database_2.pdbx_database_accession
-_database_2.pdbx_DOI
-WWPDB D_1292118478 ? ?
-EMDB  EMD-13682    ? ?
-#
-_struct_keywords.entry_id        D_1292118478
-_struct_keywords.text            'virus, autophagy, membrane, CYTOSOLIC PROTEIN'
-_struct_keywords.pdbx_keywords   'CYTOSOLIC PROTEIN'
-_struct_keywords.pdbx_details    ?
-#
-_exptl.absorpt_coefficient_mu     ?
-_exptl.absorpt_correction_T_max   ?
-_exptl.absorpt_correction_T_min   ?
-_exptl.absorpt_correction_type    ?
-_exptl.absorpt_process_details    ?
-_exptl.entry_id                   D_1292118478
-_exptl.crystals_number            ?
-_exptl.details                    ?
-_exptl.method                     'ELECTRON MICROSCOPY'
-_exptl.method_details             ?
-#
-_pdbx_database_status.status_code                          PROC
-_pdbx_database_status.author_release_status_code           HOLD
-_pdbx_database_status.status_code_sf                       ?
-_pdbx_database_status.status_code_mr                       ?
-_pdbx_database_status.dep_release_code_coordinates         ?
-_pdbx_database_status.dep_release_code_sequence            ?
-_pdbx_database_status.dep_release_code_struct_fact         ?
-_pdbx_database_status.dep_release_code_nmr_constraints     ?
-_pdbx_database_status.entry_id                             D_1292118478
-_pdbx_database_status.recvd_deposit_form                   ?
-_pdbx_database_status.date_deposition_form                 ?
-_pdbx_database_status.date_begin_deposition                ?
-_pdbx_database_status.date_begin_processing                2021-10-06
-_pdbx_database_status.date_end_processing                  ?
-_pdbx_database_status.date_begin_release_preparation       ?
-_pdbx_database_status.date_author_release_request          ?
-_pdbx_database_status.recvd_coordinates                    ?
-_pdbx_database_status.date_coordinates                     ?
-_pdbx_database_status.recvd_struct_fact                    ?
-_pdbx_database_status.date_struct_fact                     ?
-_pdbx_database_status.recvd_nmr_constraints                ?
-_pdbx_database_status.date_nmr_constraints                 ?
-_pdbx_database_status.recvd_internal_approval              ?
-_pdbx_database_status.recvd_manuscript                     ?
-_pdbx_database_status.date_manuscript                      ?
-_pdbx_database_status.name_depositor                       ?
-_pdbx_database_status.recvd_author_approval                N
-_pdbx_database_status.author_approval_type                 .
-_pdbx_database_status.date_author_approval                 ?
-_pdbx_database_status.recvd_initial_deposition_date        2021-10-06
-_pdbx_database_status.date_submitted                       ?
-_pdbx_database_status.date_of_sf_release                   ?
-_pdbx_database_status.date_of_mr_release                   ?
-_pdbx_database_status.date_of_PDB_release                  ?
-_pdbx_database_status.date_hold_coordinates                .
-_pdbx_database_status.date_hold_struct_fact                .
-_pdbx_database_status.date_hold_nmr_constraints            ?
-_pdbx_database_status.hold_for_publication                 .
-_pdbx_database_status.SG_entry                             N
-_pdbx_database_status.pdb_date_of_author_approval          ?
-_pdbx_database_status.deposit_site                         PDBE
-_pdbx_database_status.process_site                         PDBE
-_pdbx_database_status.dep_release_code_chemical_shifts     ?
-_pdbx_database_status.recvd_chemical_shifts                ?
-_pdbx_database_status.date_chemical_shifts                 ?
-_pdbx_database_status.date_hold_chemical_shifts            ?
-_pdbx_database_status.status_code_cs                       ?
-_pdbx_database_status.date_of_cs_release                   ?
-_pdbx_database_status.date_nmr_data                        ?
-_pdbx_database_status.date_hold_nmr_data                   ?
-_pdbx_database_status.date_of_nmr_data_release             ?
-_pdbx_database_status.dep_release_code_nmr_data            ?
-_pdbx_database_status.recvd_nmr_data                       ?
-_pdbx_database_status.status_code_nmr_data                 ?
-_pdbx_database_status.methods_development_category         ?
-_pdbx_database_status.pdb_format_compatible                Y
-_pdbx_database_status.post_rel_status                      ?
-_pdbx_database_status.post_rel_recvd_coord                 ?
-_pdbx_database_status.post_rel_recvd_coord_date            ?
-_pdbx_database_status.auth_req_rel_date                    ?
-_pdbx_database_status.ndb_tid                              ?
-_pdbx_database_status.status_coordinates_in_NDB            ?
-_pdbx_database_status.date_revised                         ?
-_pdbx_database_status.replaced_entry_id                    ?
-_pdbx_database_status.revision_id                          ?
-_pdbx_database_status.revision_description                 ?
-_pdbx_database_status.pdbx_annotator                       EBI
-_pdbx_database_status.date_of_NDB_release                  ?
-_pdbx_database_status.date_released_to_PDB                 ?
-_pdbx_database_status.skip_PDB_REMARK_500                  ?
-_pdbx_database_status.skip_PDB_REMARK                      ?
-_pdbx_database_status.title_suppression                    N
-_pdbx_database_status.date_accepted_terms_and_conditions   2021-10-06
-#
-_pdbx_database_related.db_name
-_pdbx_database_related.details
-_pdbx_database_related.db_id
-_pdbx_database_related.content_type
-EMDB ? EMD-13682 'associated EM volume'
-EMDB ? EMD-13683 'focused EM volume'
-EMDB ? EMD-13684 'consensus EM volume'
-#
-_citation.abstract                  ?
-_citation.abstract_id_CAS           ?
-_citation.book_id_ISBN              ?
-_citation.book_publisher            ?
-_citation.book_publisher_city       ?
-_citation.book_title                ?
-_citation.coordinate_linkage        ?
-_citation.country                   ?
-_citation.database_id_Medline       ?
-_citation.details                   ?
-_citation.id                        primary
-_citation.journal_abbrev            'To Be Published'
-_citation.journal_id_ASTM           ?
-_citation.journal_id_CSD            0353
-_citation.journal_id_ISSN           ?
-_citation.journal_full              ?
-_citation.journal_issue             ?
-_citation.journal_volume            ?
-_citation.language                  ?
-_citation.page_first                ?
-_citation.page_last                 ?
-_citation.title                     'In situ structures of membrane-assisted assembly and selective autophagy of enteroviruses'
-_citation.year                      ?
-_citation.database_id_CSD           ?
-_citation.pdbx_database_id_DOI      ?
-_citation.pdbx_database_id_PubMed   ?
-_citation.pdbx_database_id_patent   ?
-_citation.unpublished_flag          ?
-#
+_database_2.database_id 
+_database_2.database_code 
+_database_2.pdbx_database_accession 
+_database_2.pdbx_DOI 
+WWPDB D_8000212087 ? ? 
+EMDB  EMD-90288    ? ? 
+# 
+_struct_keywords.entry_id        D_8000212087 
+_struct_keywords.text            'test, STRUCTURAL GENOMICS' 
+_struct_keywords.pdbx_keywords   'STRUCTURAL GENOMICS' 
+_struct_keywords.pdbx_details    ? 
+# 
+_exptl.absorpt_coefficient_mu     ? 
+_exptl.absorpt_correction_T_max   ? 
+_exptl.absorpt_correction_T_min   ? 
+_exptl.absorpt_correction_type    ? 
+_exptl.absorpt_process_details    ? 
+_exptl.entry_id                   D_8000212087 
+_exptl.crystals_number            ? 
+_exptl.details                    ? 
+_exptl.method                     'ELECTRON MICROSCOPY' 
+_exptl.method_details             ? 
+# 
+_pdbx_database_status.status_code                          PROC 
+_pdbx_database_status.author_release_status_code           HOLD 
+_pdbx_database_status.status_code_sf                       ? 
+_pdbx_database_status.status_code_mr                       ? 
+_pdbx_database_status.dep_release_code_coordinates         ? 
+_pdbx_database_status.dep_release_code_sequence            ? 
+_pdbx_database_status.dep_release_code_struct_fact         ? 
+_pdbx_database_status.dep_release_code_nmr_constraints     ? 
+_pdbx_database_status.entry_id                             D_8000212087 
+_pdbx_database_status.recvd_deposit_form                   ? 
+_pdbx_database_status.date_deposition_form                 ? 
+_pdbx_database_status.date_begin_deposition                ? 
+_pdbx_database_status.date_begin_processing                2023-04-20 
+_pdbx_database_status.date_end_processing                  ? 
+_pdbx_database_status.date_begin_release_preparation       ? 
+_pdbx_database_status.date_author_release_request          ? 
+_pdbx_database_status.recvd_coordinates                    ? 
+_pdbx_database_status.date_coordinates                     ? 
+_pdbx_database_status.recvd_struct_fact                    ? 
+_pdbx_database_status.date_struct_fact                     ? 
+_pdbx_database_status.recvd_nmr_constraints                ? 
+_pdbx_database_status.date_nmr_constraints                 ? 
+_pdbx_database_status.recvd_internal_approval              ? 
+_pdbx_database_status.recvd_manuscript                     ? 
+_pdbx_database_status.date_manuscript                      ? 
+_pdbx_database_status.name_depositor                       ? 
+_pdbx_database_status.recvd_author_approval                N 
+_pdbx_database_status.author_approval_type                 . 
+_pdbx_database_status.date_author_approval                 ? 
+_pdbx_database_status.recvd_initial_deposition_date        2023-04-20 
+_pdbx_database_status.date_submitted                       ? 
+_pdbx_database_status.date_of_sf_release                   ? 
+_pdbx_database_status.date_of_mr_release                   ? 
+_pdbx_database_status.date_of_PDB_release                  ? 
+_pdbx_database_status.date_hold_coordinates                . 
+_pdbx_database_status.date_hold_struct_fact                . 
+_pdbx_database_status.date_hold_nmr_constraints            ? 
+_pdbx_database_status.hold_for_publication                 . 
+_pdbx_database_status.SG_entry                             N 
+_pdbx_database_status.pdb_date_of_author_approval          ? 
+_pdbx_database_status.deposit_site                         RCSB 
+_pdbx_database_status.process_site                         RCSB 
+_pdbx_database_status.dep_release_code_chemical_shifts     ? 
+_pdbx_database_status.recvd_chemical_shifts                ? 
+_pdbx_database_status.date_chemical_shifts                 ? 
+_pdbx_database_status.date_hold_chemical_shifts            ? 
+_pdbx_database_status.status_code_cs                       ? 
+_pdbx_database_status.date_of_cs_release                   ? 
+_pdbx_database_status.date_nmr_data                        ? 
+_pdbx_database_status.date_hold_nmr_data                   ? 
+_pdbx_database_status.date_of_nmr_data_release             ? 
+_pdbx_database_status.dep_release_code_nmr_data            ? 
+_pdbx_database_status.recvd_nmr_data                       ? 
+_pdbx_database_status.status_code_nmr_data                 ? 
+_pdbx_database_status.methods_development_category         ? 
+_pdbx_database_status.pdb_format_compatible                Y 
+_pdbx_database_status.post_rel_status                      ? 
+_pdbx_database_status.post_rel_recvd_coord                 ? 
+_pdbx_database_status.post_rel_recvd_coord_date            ? 
+_pdbx_database_status.auth_req_rel_date                    ? 
+_pdbx_database_status.ndb_tid                              ? 
+_pdbx_database_status.status_coordinates_in_NDB            ? 
+_pdbx_database_status.date_revised                         ? 
+_pdbx_database_status.replaced_entry_id                    ? 
+_pdbx_database_status.revision_id                          ? 
+_pdbx_database_status.revision_description                 ? 
+_pdbx_database_status.pdbx_annotator                       UNASSIGN 
+_pdbx_database_status.date_of_NDB_release                  ? 
+_pdbx_database_status.date_released_to_PDB                 ? 
+_pdbx_database_status.skip_PDB_REMARK_500                  ? 
+_pdbx_database_status.skip_PDB_REMARK                      ? 
+_pdbx_database_status.title_suppression                    N 
+_pdbx_database_status.date_accepted_terms_and_conditions   2023-04-20 
+# 
 loop_
-_citation_author.citation_id
-_citation_author.name
-_citation_author.ordinal
-_citation_author.identifier_ORCID
-primary 'Dahmane, S.'      1 0000-0003-4193-1496
-primary 'Kerviel, A.'      2 0000-0002-1315-9841
-primary 'Morado, D.R.'     3 0000-0003-4693-3220
-primary 'Shankar, K.'      4 0000-0002-0011-3756
-primary 'Ahlman, B.'       5 ?
-primary 'Lazarou, M.'      6 0000-0003-2150-5545
-primary 'Altan-Bonnet, N.' 7 ?
-primary 'Carlson, L.-A.'   8 0000-0003-2342-6488
-#
-_database_PDB_rev.num             ?
-_database_PDB_rev.date            ?
-_database_PDB_rev.date_original   2021-10-06
-_database_PDB_rev.status          ?
-_database_PDB_rev.replaces        ?
-_database_PDB_rev.mod_type        ?
-#
-_atom_sites.entry_id                    D_1292118478
-_atom_sites.fract_transf_matrix[1][1]   1.000000
-_atom_sites.fract_transf_matrix[1][2]   0.000000
-_atom_sites.fract_transf_matrix[1][3]   0.000000
-_atom_sites.fract_transf_matrix[2][1]   0.000000
-_atom_sites.fract_transf_matrix[2][2]   1.000000
-_atom_sites.fract_transf_matrix[2][3]   0.000000
-_atom_sites.fract_transf_matrix[3][1]   0.000000
-_atom_sites.fract_transf_matrix[3][2]   0.000000
-_atom_sites.fract_transf_matrix[3][3]   1.000000
-_atom_sites.fract_transf_vector[1]      0.00000
-_atom_sites.fract_transf_vector[2]      0.00000
-_atom_sites.fract_transf_vector[3]      0.00000
-#
-_em_3d_fitting_list.3d_fitting_id       1
-_em_3d_fitting_list.id      1
-_em_3d_fitting_list.pdb_entry_id          ?
-_em_3d_fitting_list.pdb_chain_id          A
-_em_3d_fitting_list.pdb_chain_residue_range     1-324
-_em_3d_fitting_list.source_name      PDB
-_em_3d_fitting_list.type      'experimental model'
-_em_3d_fitting_list.details     'TEST TO CHECK IF IT INCLUDES EM_FSC_CURVES DETAILS'
-_em_3d_fitting_list.accession_code  1abc
-
-#
-_em_3d_fitting.entry_id          ?
-_em_3d_fitting.id                1
-_em_3d_fitting.details           ?
-_em_3d_fitting.overall_b_value   ?
-_em_3d_fitting.ref_protocol      ?
-_em_3d_fitting.ref_space         ?
-_em_3d_fitting.target_criteria   ?
+_pdbx_database_related.db_name 
+_pdbx_database_related.details 
+_pdbx_database_related.db_id 
+_pdbx_database_related.content_type 
+EMDB . EMD-90288 'associated EM volume' 
+EMDB ? EMD-12345 'consensus EM volume'  
+EMDB ? EMD-12346 'focused EM volume'    
+# 
+_citation.abstract                  ? 
+_citation.abstract_id_CAS           ? 
+_citation.book_id_ISBN              ? 
+_citation.book_publisher            ? 
+_citation.book_publisher_city       ? 
+_citation.book_title                ? 
+_citation.coordinate_linkage        ? 
+_citation.country                   ? 
+_citation.database_id_Medline       ? 
+_citation.details                   ? 
+_citation.id                        primary 
+_citation.journal_abbrev            'To Be Published' 
+_citation.journal_id_ASTM           ? 
+_citation.journal_id_CSD            0353 
+_citation.journal_id_ISSN           ? 
+_citation.journal_full              ? 
+_citation.journal_issue             ? 
+_citation.journal_volume            ? 
+_citation.language                  ? 
+_citation.page_first                ? 
+_citation.page_last                 ? 
+_citation.title                     'To Be Published' 
+_citation.year                      ? 
+_citation.database_id_CSD           ? 
+_citation.pdbx_database_id_DOI      ? 
+_citation.pdbx_database_id_PubMed   ? 
+_citation.pdbx_database_id_patent   ? 
+_citation.unpublished_flag          ? 
+# 
+_citation_author.citation_id        primary 
+_citation_author.name               'Turner, J.' 
+_citation_author.ordinal            1 
+_citation_author.identifier_ORCID   ? 
+# 
+_entity_poly.entity_id                             1 
+_entity_poly.nstd_chirality                        ? 
+_entity_poly.nstd_linkage                          ? 
+_entity_poly.nstd_monomer                          ? 
+_entity_poly.number_of_monomers                    ? 
+_entity_poly.type                                  'polypeptide(L)' 
+_entity_poly.type_details                          ? 
+_entity_poly.pdbx_strand_id                        ? 
+_entity_poly.pdbx_seq_one_letter_code              
+;MFFSLLLVLGLTEAEKIKICLQKQVNSSFSLHNGFGGNLYATEEKRMFELVKPKAGASVL
+NQSTWIGFGDSRTDKSNSAFPRSADVSAKTADKFRFLSGGSLMLSMFGPPGKVDYLYQGC
+GKHKVFYEGVNWSPHAAINCYRKNWTDIKLNFQKNIYELASQSHCMSLVNALDKTIPLQV
+TAGTAGNCNNSFLKNPALYTQEVKPSENKCGKENLAFFTLPTQFGTYECKLHLVASCYFI
+YDSKEVYNKRGCDNYFQVIYDSFGKVVGGLDNRVSPYTGNSGDTPTMQCDMLQLKPGRYS
+VRSSPRFLLMPERSYCFDMKEKGPVTAVQSIWGKGRESDYAVDQACLSTPGCMLIQKQKP
+YIGEADDHHGDQEMRELLSGLDYEARCISQSGWVNETSPFTEKYLLPPKFGRCPLAAKEE
+SIPKIPDGLLIPTSGTDTTVTKPKSRIFGIDDLIIGVLFVAIVETGIGGYLLGSRKESGG
+GVTKESAEKGFEKIGNDIQILKSSINIAIEKLNDRISHDEQAIRDLTLEIENARSEALLG
+ELGIIRALLVGNISIGLQESLWELASEITNRAGDLAVEVSPGCWIIDNNICDQSCQNFIF
+KFNETAPVPTIPPLDTKIDLQSDPFYWGSSLGLAITATISLAALVISGIAICRTK
+;
+_entity_poly.pdbx_seq_one_letter_code_can          ? 
+_entity_poly.pdbx_target_identifier                ? 
+_entity_poly.pdbx_seq_one_letter_code_sample       ? 
+_entity_poly.pdbx_explicit_linking_flag            ? 
+_entity_poly.pdbx_sequence_evidence_code           'depositor provided' 
+_entity_poly.pdbx_build_self_reference             ? 
+_entity_poly.pdbx_N_terminal_seq_one_letter_code   ? 
+_entity_poly.pdbx_C_terminal_seq_one_letter_code   ? 
+_entity_poly.pdbx_seq_three_letter_code            ? 
+_entity_poly.pdbx_seq_db_name                      ? 
+_entity_poly.pdbx_seq_db_id                        ? 
+_entity_poly.pdbx_seq_align_begin                  ? 
+_entity_poly.pdbx_seq_align_end                    ? 
+# 
+_entity.details                             ? 
+_entity.formula_weight                      ? 
+_entity.id                                  1 
+_entity.src_method                          nat 
+_entity.type                                polymer 
+_entity.pdbx_description                    test 
+_entity.pdbx_number_of_molecules            ? 
+_entity.pdbx_parent_entity_id               ? 
+_entity.pdbx_mutation                       ? 
+_entity.pdbx_fragment                       ? 
+_entity.pdbx_ec                             ? 
+_entity.pdbx_modification                   ? 
+_entity.pdbx_formula_weight_exptl           ? 
+_entity.pdbx_formula_weight_exptl_method    ? 
+_entity.pdbx_target_id                      ? 
+_entity.pdbx_entities_per_biological_unit   ? 
+# 
+_entity_src_nat.common_name                ? 
+_entity_src_nat.details                    ? 
+_entity_src_nat.entity_id                  1 
+_entity_src_nat.genus                      ? 
+_entity_src_nat.species                    ? 
+_entity_src_nat.strain                     ? 
+_entity_src_nat.tissue                     ? 
+_entity_src_nat.tissue_fraction            ? 
+_entity_src_nat.pdbx_organism_scientific   'Influenza A virus' 
+_entity_src_nat.pdbx_secretion             ? 
+_entity_src_nat.pdbx_fragment              ? 
+_entity_src_nat.pdbx_variant               ? 
+_entity_src_nat.pdbx_cell_line             ? 
+_entity_src_nat.pdbx_atcc                  ? 
+_entity_src_nat.pdbx_cellular_location     ? 
+_entity_src_nat.pdbx_organ                 ? 
+_entity_src_nat.pdbx_organelle             ? 
+_entity_src_nat.pdbx_cell                  ? 
+_entity_src_nat.pdbx_plasmid_name          ? 
+_entity_src_nat.pdbx_plasmid_details       ? 
+_entity_src_nat.pdbx_ncbi_taxonomy_id      11320 
+_entity_src_nat.pdbx_src_id                1 
+_entity_src_nat.pdbx_alt_source_flag       ? 
+_entity_src_nat.pdbx_beg_seq_num           ? 
+_entity_src_nat.pdbx_end_seq_num           ? 
+_entity_src_nat.pdbx_culture_collection    ? 
+# 
+_database_PDB_rev.num             . 
+_database_PDB_rev.date            ? 
+_database_PDB_rev.date_original   2023-04-20 
+_database_PDB_rev.status          ? 
+_database_PDB_rev.replaces        ? 
+_database_PDB_rev.mod_type        ? 
+# 
+_atom_sites.entry_id                    D_8000212087 
+_atom_sites.fract_transf_matrix[1][1]   1.000000 
+_atom_sites.fract_transf_matrix[1][2]   0.000000 
+_atom_sites.fract_transf_matrix[1][3]   0.000000 
+_atom_sites.fract_transf_matrix[2][1]   0.000000 
+_atom_sites.fract_transf_matrix[2][2]   1.000000 
+_atom_sites.fract_transf_matrix[2][3]   0.000000 
+_atom_sites.fract_transf_matrix[3][1]   0.000000 
+_atom_sites.fract_transf_matrix[3][2]   0.000000 
+_atom_sites.fract_transf_matrix[3][3]   1.000000 
+_atom_sites.fract_transf_vector[1]      0.00000 
+_atom_sites.fract_transf_vector[2]      0.00000 
+_atom_sites.fract_transf_vector[3]      0.00000 
+# 
+_em_3d_fitting.id                            1 
+_em_3d_fitting.entry_id                      D_8000212087 
+_em_3d_fitting.method                        ? 
+_em_3d_fitting.target_criteria               ? 
+_em_3d_fitting.software_name                 ? 
+_em_3d_fitting.details                       ? 
+_em_3d_fitting.overall_b_value               ? 
+_em_3d_fitting.ref_space                     ? 
+_em_3d_fitting.ref_protocol                  ? 
+_em_3d_fitting.initial_refinement_model_id   ? 
 #
 _em_fsc_curve.id    1
 _em_fsc_curve.details  "FSC"
 _em_fsc_curve.file  "emd_0000_fsc_1.xml"
 #
-_em_3d_reconstruction.entry_id              ?
-_em_3d_reconstruction.id                    1
-_em_3d_reconstruction.algorithm             ?
-_em_3d_reconstruction.details               ?
-_em_3d_reconstruction.fsc_type              'EVEN/ODD MAPS REFINED TOTALLY INDEPENDENT (GOLD STANDARD)'
-_em_3d_reconstruction.refinement_type       ?
-_em_3d_reconstruction.image_processing_id   1
-_em_3d_reconstruction.num_class_averages    1
-_em_3d_reconstruction.num_particles         141855
-_em_3d_reconstruction.resolution            18.5
-_em_3d_reconstruction.resolution_method     'FSC 0.143 CUT-OFF'
-_em_3d_reconstruction.symmetry_type         POINT
-#
-_em_buffer.id            1
-_em_buffer.details       ?
-_em_buffer.pH            7.4
-_em_buffer.specimen_id   1
-#
-_em_entity_assembly.id               1
-_em_entity_assembly.parent_id        0
-_em_entity_assembly.details          ?
-_em_entity_assembly.go_id            ?
-_em_entity_assembly.name             'Autophagosome-associated protein filament inside poliovirus-infected human cells.'
-_em_entity_assembly.source           NATURAL
-_em_entity_assembly.type             CELL
-_em_entity_assembly.chimera          ?
-_em_entity_assembly.entity_id_list   ?
-#
-_em_imaging.id                              1
-_em_imaging.entry_id                        ?
-_em_imaging.accelerating_voltage            300
-_em_imaging.alignment_procedure             'COMA FREE'
-_em_imaging.c2_aperture_diameter            70
-_em_imaging.calibrated_defocus_max          ?
-_em_imaging.calibrated_defocus_min          ?
-_em_imaging.calibrated_magnification        ?
-_em_imaging.cryogen                         NITROGEN
-_em_imaging.details                         ?
-_em_imaging.electron_source                 'FIELD EMISSION GUN'
-_em_imaging.illumination_mode               'FLOOD BEAM'
-_em_imaging.microscope_model                'FEI TITAN KRIOS'
-_em_imaging.mode                            'BRIGHT FIELD'
-_em_imaging.nominal_cs                      2.7
-_em_imaging.nominal_defocus_max             4000
-_em_imaging.nominal_defocus_min             3000
-_em_imaging.nominal_magnification           33000
-_em_imaging.recording_temperature_maximum   ?
-_em_imaging.recording_temperature_minimum   ?
-_em_imaging.residual_tilt                   ?
-_em_imaging.specimen_holder_model           ?
-_em_imaging.specimen_id                     1
-#
-_em_sample_support.id               1
-_em_sample_support.specimen_id      1
-_em_sample_support.details          ?
-_em_sample_support.grid_material    GOLD
-_em_sample_support.grid_mesh_size   300
-_em_sample_support.grid_type        UltrAuFoil
-#
-_em_vitrification.id                    1
-_em_vitrification.specimen_id           1
-_em_vitrification.chamber_temperature   ?
-_em_vitrification.cryogen_name          ETHANE-PROPANE
-_em_vitrification.details               ?
-_em_vitrification.humidity              ?
-_em_vitrification.instrument            'SPT LABTECH CHAMELEON'
-_em_vitrification.entry_id              ?
-#
-_em_experiment.entry_id                ?
-_em_experiment.id                      1
-_em_experiment.aggregation_state       CELL
-_em_experiment.reconstruction_method   'SUBTOMOGRAM AVERAGING'
-_em_experiment.entity_assembly_id      1
-#
-_em_single_particle_entity.entry_id              ?
-_em_single_particle_entity.id                    1
-_em_single_particle_entity.image_processing_id   1
-_em_single_particle_entity.point_symmetry        C1
-#
-_em_admin.entry_id                      D_1292118478
-_em_admin.current_status                AUTH
-_em_admin.deposition_date               2021-10-06
-_em_admin.deposition_site               PDBE
-_em_admin.details                       ?
-_em_admin.map_hold_date                 ?
-_em_admin.last_update                   2021-10-06
-_em_admin.map_release_date              ?
-_em_admin.obsoleted_date                ?
-_em_admin.replace_existing_entry_flag   NO
-_em_admin.title                         'In situ subtomogram average of autophagosome-associated protein filament'
-_em_admin.header_release_date           ?
-_em_admin.composite_map                 YES
-#
-loop_
-_em_author_list.ordinal
-_em_author_list.author
-_em_author_list.identifier_ORCID
-1 'Dahmane, S.'    0000-0003-4193-1496
-2 'Morado, D.R.'   0000-0003-4693-3220
-3 'Carlson, L.-A.' 0000-0003-2342-6488
-#
-_em_ctf_correction.id                                1
+_em_3d_reconstruction.entry_id                    D_8000212087 
+_em_3d_reconstruction.id                          1 
+_em_3d_reconstruction.method                      ? 
+_em_3d_reconstruction.algorithm                   ? 
+_em_3d_reconstruction.citation_id                 ? 
+_em_3d_reconstruction.details                     ? 
+_em_3d_reconstruction.resolution                  5 
+_em_3d_reconstruction.resolution_method           'FSC 0.143 CUT-OFF' 
+_em_3d_reconstruction.magnification_calibration   ? 
+_em_3d_reconstruction.ctf_correction_method       ? 
+_em_3d_reconstruction.nominal_pixel_size          ? 
+_em_3d_reconstruction.actual_pixel_size           ? 
+_em_3d_reconstruction.num_particles               5000 
+_em_3d_reconstruction.euler_angles_details        ? 
+_em_3d_reconstruction.num_class_averages          ? 
+_em_3d_reconstruction.software                    ? 
+_em_3d_reconstruction.fsc_type                    'EVEN/ODD MAPS REFINED AGAINST THE SAME MODEL (SEMI-INDEPENDENT)' 
+_em_3d_reconstruction.refinement_type             ? 
+_em_3d_reconstruction.image_processing_id         1 
+_em_3d_reconstruction.symmetry_type               POINT 
+# 
+_em_buffer.id            1 
+_em_buffer.specimen_id   1 
+_em_buffer.name          ? 
+_em_buffer.details       ? 
+_em_buffer.pH            7 
+# 
+_em_entity_assembly.id                              1 
+_em_entity_assembly.assembly_id                     1 
+_em_entity_assembly.parent_id                       0 
+_em_entity_assembly.source                          NATURAL 
+_em_entity_assembly.type                            COMPLEX 
+_em_entity_assembly.name                            test 
+_em_entity_assembly.details                         ? 
+_em_entity_assembly.go_id                           ? 
+_em_entity_assembly.ipr_id                          ? 
+_em_entity_assembly.synonym                         ? 
+_em_entity_assembly.number_of_copies                ? 
+_em_entity_assembly.oligomeric_details              ? 
+_em_entity_assembly.entity_id_list                  ? 
+_em_entity_assembly.ebi_organism_scientific         ? 
+_em_entity_assembly.ebi_organism_common             ? 
+_em_entity_assembly.ebi_strain                      ? 
+_em_entity_assembly.ebi_tissue                      ? 
+_em_entity_assembly.ebi_cell                        ? 
+_em_entity_assembly.ebi_organelle                   ? 
+_em_entity_assembly.ebi_cellular_location           ? 
+_em_entity_assembly.ebi_engineered                  ? 
+_em_entity_assembly.ebi_expression_system           ? 
+_em_entity_assembly.ebi_expression_system_plasmid   ? 
+_em_entity_assembly.mutant_flag                     ? 
+_em_entity_assembly.chimera                         NO 
+# 
+_em_imaging.entry_id                        D_8000212087 
+_em_imaging.id                              1 
+_em_imaging.astigmatism                     ? 
+_em_imaging.electron_beam_tilt_params       ? 
+_em_imaging.residual_tilt                   ? 
+_em_imaging.sample_support_id               1 
+_em_imaging.detector_id                     1 
+_em_imaging.scans_id                        1 
+_em_imaging.microscope_id                   ? 
+_em_imaging.microscope_model                'FEI TITAN KRIOS' 
+_em_imaging.specimen_holder_type            ? 
+_em_imaging.specimen_holder_model           ? 
+_em_imaging.details                         ? 
+_em_imaging.date                            ? 
+_em_imaging.accelerating_voltage            300 
+_em_imaging.illumination_mode               'FLOOD BEAM' 
+_em_imaging.mode                            'BRIGHT FIELD' 
+_em_imaging.nominal_cs                      ? 
+_em_imaging.nominal_defocus_min             3000 
+_em_imaging.nominal_defocus_max             2000 
+_em_imaging.calibrated_defocus_min          ? 
+_em_imaging.calibrated_defocus_max          ? 
+_em_imaging.tilt_angle_min                  ? 
+_em_imaging.tilt_angle_max                  ? 
+_em_imaging.nominal_magnification           ? 
+_em_imaging.calibrated_magnification        ? 
+_em_imaging.electron_source                 'FIELD EMISSION GUN' 
+_em_imaging.electron_dose                   ? 
+_em_imaging.energy_filter                   ? 
+_em_imaging.energy_window                   ? 
+_em_imaging.citation_id                     ? 
+_em_imaging.temperature                     ? 
+_em_imaging.detector_distance               ? 
+_em_imaging.recording_temperature_minimum   ? 
+_em_imaging.recording_temperature_maximum   ? 
+_em_imaging.alignment_procedure             ? 
+_em_imaging.c2_aperture_diameter            ? 
+_em_imaging.specimen_id                     1 
+_em_imaging.cryogen                         ? 
+_em_imaging.microscope_serial_number        'test123456' 
+_em_imaging.microscope_version              'g4' 
+_em_imaging.objective_aperture              5
+# 
+_em_vitrification.entry_id                D_8000212087 
+_em_vitrification.id                      1 
+_em_vitrification.sample_preparation_id   ? 
+_em_vitrification.specimen_id             1 
+_em_vitrification.cryogen_name            ETHANE 
+_em_vitrification.humidity                ? 
+_em_vitrification.temp                    ? 
+_em_vitrification.chamber_temperature     ? 
+_em_vitrification.instrument              'SPT LABTECH CHAMELEON'
+_em_vitrification.method                  ? 
+_em_vitrification.time_resolved_state     ? 
+_em_vitrification.citation_id             ? 
+_em_vitrification.details                 ? 
+# 
+_em_experiment.entry_id                D_8000212087 
+_em_experiment.id                      1 
+_em_experiment.reconstruction_method   'SINGLE PARTICLE' 
+_em_experiment.aggregation_state       PARTICLE 
+_em_experiment.specimen_type           ? 
+_em_experiment.entity_assembly_id      1 
+# 
+_em_admin.current_status                AUTH 
+_em_admin.deposition_date               2023-04-20 
+_em_admin.deposition_site               RCSB 
+_em_admin.details                       ? 
+_em_admin.entry_id                      D_8000212087 
+_em_admin.last_update                   2023-04-20 
+_em_admin.map_release_date              ? 
+_em_admin.map_hold_date                 2024-04-20 
+_em_admin.header_release_date           ? 
+_em_admin.obsoleted_date                ? 
+_em_admin.replace_existing_entry_flag   NO 
+_em_admin.title                         'test src id = 1' 
+# 
+_em_author_list.author             'Turner, J.' 
+_em_author_list.identifier_ORCID   ? 
+_em_author_list.ordinal            1 
+# 
+_em_ctf_correction.amplitude_correction              YES
+_em_ctf_correction.amplitude_correction_factor       0.95
+_em_ctf_correction.amplitude_correction_space        RECIPROCAL
+_em_ctf_correction.correction_operation              MULTIPLICATION
+_em_ctf_correction.details                           'CTF correction was applied using Relion.'
 _em_ctf_correction.em_image_processing_id            1
-_em_ctf_correction.type                              'PHASE FLIPPING ONLY'
-_em_ctf_correction.details                           ?
-_em_ctf_correction.amplitude_correction              ?
-_em_ctf_correction.amplitude_correction_factor       ?
-_em_ctf_correction.amplitude_correction_space        ?
-_em_ctf_correction.correction_operation              ?
-_em_ctf_correction.phase_reversal                    ?
-_em_ctf_correction.phase_reversal_anisotropic        ?
-_em_ctf_correction.phase_reversal_correction_space   ?
-#
-_em_depui.entry_id                      D_1292118478
-_em_depui.depositor_hold_instructions   HPUB
-_em_depui.macromolecule_description     NO
-_em_depui.obsolete_instructions         ?
-_em_depui.same_authors_as_pdb           NO
-_em_depui.same_title_as_pdb             NO
-_em_depui.composite_map_deposition      ?
-#
-_em_entity_assembly_naturalsource.id                   2
-_em_entity_assembly_naturalsource.entity_assembly_id   1
-_em_entity_assembly_naturalsource.cell                 ?
-_em_entity_assembly_naturalsource.cellular_location    ?
-_em_entity_assembly_naturalsource.ncbi_tax_id          9606
-_em_entity_assembly_naturalsource.organ                ?
-_em_entity_assembly_naturalsource.organelle            ?
-_em_entity_assembly_naturalsource.organism             'Homo sapiens'
-_em_entity_assembly_naturalsource.strain               ?
-_em_entity_assembly_naturalsource.tissue               ?
-#
+_em_ctf_correction.id                                1
+_em_ctf_correction.phase_reversal                    YES
+_em_ctf_correction.phase_reversal_anisotropic        YES
+_em_ctf_correction.phase_reversal_correction_space   REAL
+_em_ctf_correction.type                              'PHASE FLIPPING AND AMPLITUDE CORRECTION'
+# 
+_em_depui.composite_map_deposition      'COMPOSITE MAP' 
+_em_depui.depositor_hold_instructions   HOLD 
+_em_depui.entry_id                      D_8000212087 
+_em_depui.macromolecule_description     YES 
+_em_depui.obsolete_instructions         ? 
+_em_depui.same_authors_as_pdb           . 
+_em_depui.same_title_as_pdb             . 
+# 
+_em_entity_assembly_molwt.entity_assembly_id   1 
+_em_entity_assembly_molwt.experimental_flag    NO 
+_em_entity_assembly_molwt.id                   1 
+_em_entity_assembly_molwt.units                ? 
+_em_entity_assembly_molwt.value                ? 
+_em_entity_assembly_molwt.method               ? 
+# 
+_em_entity_assembly_naturalsource.cell                 ? 
+_em_entity_assembly_naturalsource.cellular_location    ? 
+_em_entity_assembly_naturalsource.entity_assembly_id   1 
+_em_entity_assembly_naturalsource.id                   2 
+_em_entity_assembly_naturalsource.ncbi_tax_id          385576 
+_em_entity_assembly_naturalsource.organism             'Influenza A virus (A/Alaska/6/1977(H3N2))' 
+_em_entity_assembly_naturalsource.organelle            ? 
+_em_entity_assembly_naturalsource.organ                ? 
+_em_entity_assembly_naturalsource.strain               ? 
+_em_entity_assembly_naturalsource.tissue               ? 
+# 
 loop_
-_em_euler_angle_assignment.id
-_em_euler_angle_assignment.details
-_em_euler_angle_assignment.image_processing_id
-_em_euler_angle_assignment.order
-_em_euler_angle_assignment.proj_matching_angular_sampling
-_em_euler_angle_assignment.proj_matching_merit_function
-_em_euler_angle_assignment.proj_matching_num_projections
-_em_euler_angle_assignment.type
-1 ? 1 INITIAL ? ? ? 'NOT APPLICABLE'
-2 ? 1 FINAL   ? ? ? 'ANGULAR RECONSTITUTION'
-#
+_em_euler_angle_assignment.details 
+_em_euler_angle_assignment.id 
+_em_euler_angle_assignment.image_processing_id 
+_em_euler_angle_assignment.order 
+_em_euler_angle_assignment.proj_matching_angular_sampling 
+_em_euler_angle_assignment.proj_matching_merit_function 
+_em_euler_angle_assignment.proj_matching_num_projections 
+_em_euler_angle_assignment.type 
+? 1 1 INITIAL ? ? ? 'MAXIMUM LIKELIHOOD' 
+? 2 1 FINAL   ? ? ? 'MAXIMUM LIKELIHOOD' 
+# 
 _em_final_classification.id                         1
 _em_final_classification.type                       3D
 _em_final_classification.avg_num_images_per_class   ?
@@ -520,21 +623,21 @@ _em_grid_pretreatment.pressure            ?
 _em_grid_pretreatment.time                30
 _em_grid_pretreatment.type                'GLOW DISCHARGE'
 #
-_em_image_processing.id                   1
-_em_image_processing.image_recording_id   1
-_em_image_processing.details              ?
-#
-_em_image_recording.id                                  1
-_em_image_recording.imaging_id                          1
-_em_image_recording.avg_electron_dose_per_image         2.5
-_em_image_recording.average_exposure_time               ?
-_em_image_recording.details                             ?
-_em_image_recording.detector_mode                       SUPER-RESOLUTION
-_em_image_recording.film_or_detector_model              'GATAN K2 SUMMIT (4k x 4k)'
-_em_image_recording.num_diffraction_images              ?
-_em_image_recording.num_grids_imaged                    ?
-_em_image_recording.num_real_images                     ?
-_em_image_recording.avg_electron_dose_per_subtomogram   ?
+_em_image_processing.id                   1 
+_em_image_processing.image_recording_id   1 
+_em_image_processing.details              ? 
+# 
+_em_image_recording.id                                  1 
+_em_image_recording.imaging_id                          1 
+_em_image_recording.average_exposure_time               ? 
+_em_image_recording.avg_electron_dose_per_subtomogram   ? 
+_em_image_recording.avg_electron_dose_per_image         55 
+_em_image_recording.details                             ? 
+_em_image_recording.detector_mode                       ? 
+_em_image_recording.film_or_detector_model              'FEI FALCON II (4k x 4k)' 
+_em_image_recording.num_diffraction_images              ? 
+_em_image_recording.num_grids_imaged                    ? 
+_em_image_recording.num_real_images                     ? 
 #
 _em_imaging_optics.id                         1
 _em_imaging_optics.imaging_id                 1
@@ -546,150 +649,151 @@ _em_imaging_optics.energyfilter_slit_width    20
 _em_imaging_optics.phase_plate                ?
 _em_imaging_optics.sph_aberration_corrector   ?
 _em_imaging_optics.details                    ?
-#
+# 
+_em_map.id                     1 
+_em_map.entry_id               D_8000212087 
+_em_map.annotation_details     ? 
+_em_map.axis_order_fast        X 
+_em_map.axis_order_medium      Y 
+_em_map.axis_order_slow        Z 
+_em_map.cell_a                 512.0 
+_em_map.cell_b                 512.0 
+_em_map.cell_c                 512.0 
+_em_map.cell_alpha             90.0 
+_em_map.cell_beta              90.0 
+_em_map.cell_gamma             90.0 
+_em_map.contour_level          1 
+_em_map.contour_level_source   author 
+_em_map.data_type              'Image stored as floating point number (4 bytes)' 
+_em_map.dimensions_col         512 
+_em_map.dimensions_row         512 
+_em_map.dimensions_sec         512 
+_em_map.endian_type            big 
+_em_map.file                   D_8000212087_em-volume_P1.map.V2 
+_em_map.original_file          emd_0236.map 
+_em_map.format                 CCP4 
+_em_map.partition              1 
+_em_map.label                  ::::EMDATABANK.org::::EMD-90288:::: 
+_em_map.limit_col              511 
+_em_map.limit_row              511 
+_em_map.limit_sec              511 
+_em_map.origin_col             0 
+_em_map.origin_row             0 
+_em_map.origin_sec             0 
+_em_map.pixel_spacing_x        1.0 
+_em_map.pixel_spacing_y        1.0 
+_em_map.pixel_spacing_z        1.0 
+_em_map.size_kb                536871936 
+_em_map.spacing_x              512 
+_em_map.spacing_y              512 
+_em_map.spacing_z              512 
+_em_map.statistics_average     0.0032642235 
+_em_map.statistics_maximum     4.7277756 
+_em_map.statistics_minimum     -2.234049 
+_em_map.statistics_std         0.17477667 
+_em_map.symmetry_space_group   1 
+_em_map.type                   'primary map' 
+# 
 loop_
-_em_map.entry_id
-_em_map.id
-_em_map.annotation_details
-_em_map.axis_order_fast
-_em_map.axis_order_medium
-_em_map.axis_order_slow
-_em_map.cell_a
-_em_map.cell_alpha
-_em_map.cell_b
-_em_map.cell_beta
-_em_map.cell_c
-_em_map.cell_gamma
-_em_map.contour_level
-_em_map.contour_level_source
-_em_map.data_type
-_em_map.dimensions_col
-_em_map.dimensions_row
-_em_map.dimensions_sec
-_em_map.endian_type
-_em_map.file
-_em_map.original_file
-_em_map.format
-_em_map.label
-_em_map.limit_col
-_em_map.limit_row
-_em_map.limit_sec
-_em_map.origin_col
-_em_map.origin_row
-_em_map.origin_sec
-_em_map.partition
-_em_map.pixel_spacing_x
-_em_map.pixel_spacing_y
-_em_map.pixel_spacing_z
-_em_map.size_kb
-_em_map.spacing_x
-_em_map.spacing_y
-_em_map.spacing_z
-_em_map.statistics_average
-_em_map.statistics_maximum
-_em_map.statistics_minimum
-_em_map.statistics_std
-_em_map.symmetry_space_group
-_em_map.type
-? 1 'Autophagosome-associated protein filament' X Y Z 429.0 90.0 429.0 90.0 429.0 90.0 0.015 author 'Image stored as floating point number (4 bytes)' 100 100 100 big D_1292118478_em-volume_P1.map.V2            ? CCP4 ::::EMDATABANK.org::::EMD-13682:::: 49 49 49 -50 -50 -50 1 4.29 4.29 4.29 4001024 100 100 100 -5.403114E-5  0.10313908  -0.06239607  0.0073031676 1 'primary map'
-? 2 'unsharpened map'                           X Y Z 429.0 90.0 429.0 90.0 429.0 90.0 0.01  author 'Image stored as floating point number (4 bytes)' 100 100 100 big D_1292118478_em-additional-volume_P1.map.V2 ? CCP4 ::::EMDATABANK.org::::EMD-13682:::: 49 49 49 -50 -50 -50 1 4.29 4.29 4.29 4001024 100 100 100 -5.4031138E-5 0.05726408  -0.032311346 0.0044612056 1 'additional map'
-? 3 'unmasked half map'                         X Y Z 429.0 90.0 429.0 90.0 429.0 90.0 0.01  author 'Image stored as floating point number (4 bytes)' 100 100 100 big D_1292118478_em-half-volume_P2.map.V2       ? CCP4 ::::EMDATABANK.org::::EMD-13682:::: 49 49 49 -50 -50 -50 2 4.29 4.29 4.29 4001024 100 100 100 -2.2411554E-5 0.053642742 -0.032719295 0.0048729456 1 'half map'
-? 4 'unmasked half map'                         X Y Z 429.0 90.0 429.0 90.0 429.0 90.0 0.01  author 'Image stored as floating point number (4 bytes)' 100 100 100 big D_1292118478_em-half-volume_P1.map.V2       ? CCP4 ::::EMDATABANK.org::::EMD-13682:::: 49 49 49 -50 -50 -50 1 4.29 4.29 4.29 4001024 100 100 100 -1.1672208E-5 0.06088542  -0.032598644 0.0050113727 1 'half map'
-? 5 'mask'                                      X Y Z 429.0 90.0 429.0 90.0 429.0 90.0 0.02  author 'Image stored as floating point number (4 bytes)' 100 100 100 big D_1292118478_em-mask-volume_P1.map.V1       ? CCP4 ::::EMDATABANK.org::::EMD-13682:::: 49 49 49 -50 -50 -50 1 4.29 4.29 4.29 4001024 100 100 100 -1.1672208E-5 0.06088542  -0.032598644 0.0050113727 1 'mask'
+_em_software.category 
+_em_software.details 
+_em_software.id 
+_em_software.image_processing_id 
+_em_software.fitting_id 
+_em_software.imaging_id 
+_em_software.name 
+_em_software.version 
+'PARTICLE SELECTION'       'Particles were selected using crYOLO with a general model.'           1  1 ? ? 'crYOLO'             '1.8.0' 
+'IMAGE ACQUISITION'        'Automated data acquisition using EPU on a Titan Krios microscope.'   2  ? ? 1 'EPU'                '2.11.0' 
+MASKING                    'Masks were generated using RELION post-processing module.'           3  ? ? ? 'RELION'             '4.0.1' 
+'CTF CORRECTION'           'CTF correction performed with CTFFIND4 in combination with Relion.'  4  1 ? ? 'CTFFIND4'           '4.1.14' 
+'LAYERLINE INDEXING'       'Layerline indexing carried out manually in MATLAB.'                  5  ? ? ? 'MATLAB'             'R2022a' 
+'DIFFRACTION INDEXING'     'Diffraction pattern indexing using DIALS.'                           6  ? ? ? 'DIALS'              '3.5.0' 
+'MODEL FITTING'            'Atomic model fitting performed using Chimera.'                       7  ? ? ? 'UCSF Chimera'       '1.16' 
+'MODEL REFINEMENT'         'Refinement completed using Phenix real-space refine.'                8  ? ? ? 'Phenix'             '1.20.1-4487' 
+OTHER                      'Map visualization and analysis using ChimeraX.'                      9  ? ? ? 'ChimeraX'           '1.6' 
+'INITIAL EULER ASSIGNMENT' 'Initial orientations assigned using RELION 3D classification.'       10 1 ? ? 'RELION'             '4.0.1' 
+'FINAL EULER ASSIGNMENT'   'Final orientations assigned with cryoSPARC homogeneous refinement.'  11 1 ? ? 'cryoSPARC'          '4.0' 
+CLASSIFICATION             '3D classification performed in RELION using auto-refine parameters.' 12 1 ? ? 'RELION'             '4.0.1' 
+RECONSTRUCTION             '3D map reconstructed using cryoSPARC NU-refinement.'                 13 1 ? ? 'cryoSPARC'          '4.0' 
+
+# 
+_em_specimen.concentration           ? 
+_em_specimen.details                 ? 
+_em_specimen.embedding_applied       NO 
+_em_specimen.experiment_id           1 
+_em_specimen.id                      1 
+_em_specimen.shadowing_applied       NO 
+_em_specimen.staining_applied        NO 
+_em_specimen.vitrification_applied   YES 
+# 
+_em_start_model.details                          ? 
+_em_start_model.emdb_id                          ? 
+_em_start_model.id                               1 
+_em_start_model.image_processing_id              1 
+_em_start_model.insilico_model                   ? 
+_em_start_model.orthogonal_tilt_angle1           ? 
+_em_start_model.orthogonal_tilt_angle2           ? 
+_em_start_model.orthogonal_tilt_num_images       ? 
+_em_start_model.other                            ? 
+_em_start_model.pdb_id                           ? 
+_em_start_model.random_conical_tilt_angle        ? 
+_em_start_model.random_conical_tilt_num_images   ? 
+_em_start_model.type                             NONE 
+# 
+_entry.id         D_8000212087 
+_entry.pdbx_DOI   ? 
+# 
+_em_motion_correction.id                     1
+_em_motion_correction.image_processing_id    1
+_em_motion_correction.type                   "WHOLE MICROGRAPH"
+_em_motion_correction.details                'Testing testing'
 #
-loop_
-_em_software.id
-_em_software.category
-_em_software.details
-_em_software.name
-_em_software.version
-_em_software.image_processing_id
-_em_software.fitting_id
-_em_software.imaging_id
-1  'VOLUME SELECTION'         ? ?        ?   1 ? ?
-2  'IMAGE ACQUISITION'        ? SerialEM 3.8 ? ? 1
-3  MASKING                    ? ?        ?   ? ? ?
-4  'CTF CORRECTION'           ? ?        ?   1 ? ?
-5  'LAYERLINE INDEXING'       ? ?        ?   ? ? ?
-6  'DIFFRACTION INDEXING'     ? ?        ?   ? ? ?
-7  'MODEL FITTING'            ? ?        ?   ? ? ?
-8  'MODEL REFINEMENT'         ? ?        ?   ? ? ?
-9  OTHER                      ? ?        ?   ? ? ?
-10 'INITIAL EULER ASSIGNMENT' ? ?        ?   1 ? ?
-11 'FINAL EULER ASSIGNMENT'   ? subTOM   ?   1 ? ?
-12 'FINAL EULER ASSIGNMENT'   ? Dynamo   ?   1 ? ?
-13 CLASSIFICATION             ? ?        ?   1 ? ?
-14 RECONSTRUCTION             ? subTOM   ?   1 ? ?
-#
-_em_specimen.id                      1
-_em_specimen.experiment_id           1
-_em_specimen.concentration           ?
-_em_specimen.details                 'Cryo-FIB lamellas of HeLa cells grown on EM-grids and infected with poliovirus type 1.'
-_em_specimen.embedding_applied       NO
-_em_specimen.shadowing_applied       NO
-_em_specimen.staining_applied        NO
-_em_specimen.vitrification_applied   YES
-#
-_em_support_film.id                  1
-_em_support_film.sample_support_id   1
-_em_support_film.material            'SILICON DIOXIDE'
-_em_support_film.thickness           ?
-_em_support_film.topology            'HOLEY ARRAY'
-#
-_em_volume_selection.id                      1
-_em_volume_selection.details                 ?
-_em_volume_selection.image_processing_id     1
-_em_volume_selection.method                  ?
-_em_volume_selection.num_tomograms           16
-_em_volume_selection.num_volumes_extracted   55376
-_em_volume_selection.reference_model         ?
-#
-_entry.pdbx_DOI   ?
-#
-loop_
-_pdbx_audit_support.funding_organization
-_pdbx_audit_support.country
-_pdbx_audit_support.grant_number
-_pdbx_audit_support.details
-_pdbx_audit_support.ordinal
-'H2020 Marie Curie Actions of the European Commission' Sweden 795892          ? 1
-'Human Frontier Science Program (HFSP)'                Sweden CDA00047/2017-C ? 2
-'Knut and Alice Wallenberg Foundation'                 Sweden ?               ? 3
-#
-_pdbx_depui_entry_details.dep_dataset_id              D_1292118478
-_pdbx_depui_entry_details.wwpdb_site_id               PDBE_PROD
-_pdbx_depui_entry_details.experimental_methods        EM-subtomogram,EM
-_pdbx_depui_entry_details.requested_accession_types   EMDB
-_pdbx_depui_entry_details.validated_contact_email     lars-anders.carlson@umu.se
-_pdbx_depui_entry_details.country                     Sweden
-_pdbx_depui_entry_details.structural_genomics_flag    N
-_pdbx_depui_entry_details.related_database_name       ?
-_pdbx_depui_entry_details.related_database_code       ?
-_pdbx_depui_entry_details.replace_pdb_id              ?
-#
-_pdbx_depui_status_flags.dep_dataset_id                         D_1292118478
-_pdbx_depui_status_flags.primary_citation_status                N
-_pdbx_depui_status_flags.corresponding_author_status            Y
-_pdbx_depui_status_flags.reference_citation_status              N
-_pdbx_depui_status_flags.is_grant_funded                        ?
-_pdbx_depui_status_flags.has_ncs_data                           ?
-_pdbx_depui_status_flags.prediction_target                      N
-_pdbx_depui_status_flags.has_helical_symmetry                   ?
-_pdbx_depui_status_flags.has_point_symmetry                     ?
-_pdbx_depui_status_flags.has_cyclic_symmetry                    ?
-_pdbx_depui_status_flags.has_accepted_terms_and_conditions      Y
-_pdbx_depui_status_flags.has_viewed_validation_report           Y
-_pdbx_depui_status_flags.validated_model_file_name              ?
-_pdbx_depui_status_flags.merge_prior_model_file_name            ?
-_pdbx_depui_status_flags.merge_replace_model_file_name          ?
-_pdbx_depui_status_flags.merge_output_model_file_name           ?
-_pdbx_depui_status_flags.is_ligand_processing_complete          Y
-_pdbx_depui_status_flags.sample_xyz_sequence_alignments_valid   Y
-_pdbx_depui_status_flags.has_sas_data                           N
-_pdbx_depui_status_flags.is_sas_deposited                       ?
-_pdbx_depui_status_flags.use_sas_refine                         ?
-_pdbx_depui_status_flags.merged_fail                            ?
-_pdbx_depui_status_flags.post_rel_replacement_reason            ?
-_pdbx_depui_status_flags.post_rel_replacement_reason_details    ?
-_pdbx_depui_status_flags.has_accepted_assemblies                ?
-#
+_pdbx_audit_support.funding_organization   'Medical Research Council (MRC, United Kingdom)' 
+_pdbx_audit_support.country                'United Kingdom' 
+_pdbx_audit_support.grant_number           ? 
+_pdbx_audit_support.details                ? 
+_pdbx_audit_support.ordinal                1 
+# 
+_pdbx_depui_entity_features.dep_dataset_id   D_8000212087 
+_pdbx_depui_entity_features.entity_id        1 
+_pdbx_depui_entity_features.type             'None of these' 
+# 
+_pdbx_depui_entry_details.dep_dataset_id               D_8000212087 
+_pdbx_depui_entry_details.wwpdb_site_id                WWPDB_DEPLOY_TEST_RU 
+_pdbx_depui_entry_details.experimental_methods         EM-single_part,EM 
+_pdbx_depui_entry_details.requested_accession_types    EMDB 
+_pdbx_depui_entry_details.validated_contact_email      jturner@ebi.ac.uk 
+_pdbx_depui_entry_details.validated_identifier_ORCID   ? 
+_pdbx_depui_entry_details.country                      'United States' 
+_pdbx_depui_entry_details.structural_genomics_flag     N 
+_pdbx_depui_entry_details.related_database_name        ? 
+_pdbx_depui_entry_details.related_database_code        ? 
+_pdbx_depui_entry_details.replace_pdb_id               ? 
+# 
+_pdbx_depui_status_flags.dep_dataset_id                         D_8000212087 
+_pdbx_depui_status_flags.primary_citation_status                N 
+_pdbx_depui_status_flags.corresponding_author_status            Y 
+_pdbx_depui_status_flags.reference_citation_status              N 
+_pdbx_depui_status_flags.is_grant_funded                        ? 
+_pdbx_depui_status_flags.has_ncs_data                           ? 
+_pdbx_depui_status_flags.prediction_target                      N 
+_pdbx_depui_status_flags.has_helical_symmetry                   ? 
+_pdbx_depui_status_flags.has_point_symmetry                     ? 
+_pdbx_depui_status_flags.has_cyclic_symmetry                    ? 
+_pdbx_depui_status_flags.has_accepted_terms_and_conditions      Y 
+_pdbx_depui_status_flags.has_viewed_validation_report           Y 
+_pdbx_depui_status_flags.validated_model_file_name              ? 
+_pdbx_depui_status_flags.merge_prior_model_file_name            ? 
+_pdbx_depui_status_flags.merge_replace_model_file_name          ? 
+_pdbx_depui_status_flags.merge_output_model_file_name           ? 
+_pdbx_depui_status_flags.is_ligand_processing_complete          Y 
+_pdbx_depui_status_flags.sample_xyz_sequence_alignments_valid   Y 
+_pdbx_depui_status_flags.has_sas_data                           N 
+_pdbx_depui_status_flags.is_sas_deposited                       ? 
+_pdbx_depui_status_flags.use_sas_refine                         ? 
+_pdbx_depui_status_flags.merged_fail                            ? 
+_pdbx_depui_status_flags.post_rel_replacement_reason            ? 
+_pdbx_depui_status_flags.post_rel_replacement_reason_details    ? 
+_pdbx_depui_status_flags.has_accepted_assemblies                ? 
+# 
