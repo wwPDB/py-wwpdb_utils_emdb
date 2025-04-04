@@ -598,6 +598,7 @@ class CifEMDBTranslator(object):
             "_em_ctf_correction.amplitude_correction_space": '<xs:element name="correction_space" type="correction_space_type" minOccurs="0"/>',
             "_em_ctf_correction.correction_operation": '<xs:element name="correction_operation" minOccurs="0">',
             "_em_ctf_correction.details": '<xs:element name="details" type="xs:string" minOccurs="0"/>',
+            "_em_ctf_correction.type": '<xs:element name="type" minOccurs="0">',
             "_em_image_recording.id": '<xs:attribute name="image_recording_id" type="xs:positiveInteger"/>',
             "_em_image_recording.detector_mode": '<xs:element name="detector_mode" minOccurs="0">',
             "_em_image_recording.num_grids_imaged": '<xs:element name="number_grids_imaged" type="xs:positiveInteger" minOccurs="0"/>',
