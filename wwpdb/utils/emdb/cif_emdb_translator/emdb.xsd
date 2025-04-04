@@ -3511,6 +3511,15 @@
             </xs:element>
             <xs:element name="software_list" type="software_list_type" minOccurs="0"/>
             <xs:element name="details" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="NONE"/>
+                        <xs:enumeration value="PHASE FLIPPING ONLY"/>
+                        <xs:enumeration value="PHASE FLIPPING AND AMPLITUDE CORRECTION"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="motion_correction_type">
