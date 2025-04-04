@@ -34,6 +34,8 @@ import io
 from optparse import OptionParser  # pylint: disable=deprecated-module
 from lxml import etree
 
+import json
+
 # Deployment paths
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from wwpdb.utils.config.ConfigInfoApp import ConfigInfoAppEm
@@ -8646,7 +8648,7 @@ class CifEMDBTranslator(object):
                     if part_sel.has__content():
                         im_proc.add_particle_selection(part_sel)
 
-                def set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in):
+                def set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in, cat_soft_dict_in):
                     """
                     Sets CTF correction
 
@@ -8655,12 +8657,17 @@ class CifEMDBTranslator(object):
                     @param ctf_corr_dict_in: dictionary for CTF correction
                     XSD: <xs:complexType name="ctf_correction_type">
                     """
-
+                    print("[DEBUG] set_ctf_correction")
+                    print("[DEBUG] ip_id_in", json.dumps(ip_id_in, indent=2))
+                    print("[DEBUG] im_proc", im_proc)
+                    print("[DEBUG] ctf_corr_dict_in", json.dumps(ctf_corr_dict_in, indent=2))
+                    print("[DEBUG] cat_soft_dict_in", json.dumps(cat_soft_dict_in, indent=2))
                     def set_ctf_correction_type(ctf_corr):
                         """
                         XSD: <xs:complexType name="ctf_correction_type"> has
                         .. 5 elements
                         """
+                        ctf_corr_in = ctf_corr_dict_in[ip_id_in]
 
                         def set_el_phase_reversal(ctf_corr, ctf_corr_in):
                             """
@@ -8679,7 +8686,13 @@ class CifEMDBTranslator(object):
                                     XSD: <xs:element name="anisotropic" type="xs:boolean" minOccurs="0"/>
                                     CIF: _em_ctf_correction.phase_reversal_anisotropic YES/NO
                                     """
-                                    set_cif_value(ph_rev.set_anisotropic, "phase_reversal_anisotropic", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                                    set_cif_value(
+                                        ph_rev.set_anisotropic,
+                                        "phase_reversal_anisotropic",
+                                        const.EM_CTF_CORRECTION,
+                                        fmt=lambda v: v == "YES",
+                                        cif_list=ctf_corr_in,
+                                    )
 
                                 def set_el_correction_space(ph_rev, ctf_corr_in):
                                     """
@@ -8689,16 +8702,20 @@ class CifEMDBTranslator(object):
                                     """
                                     pra = get_cif_value("phase_reversal_anisotropic", const.EM_CTF_CORRECTION, ctf_corr_in)
                                     if pra == "YES":
-                                        # Yes if Anisotropic phase reversal (flipping) was performed
-                                        set_cif_value(ph_rev.set_correction_space, "phase_reversal_correction_space", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                                        set_cif_value(
+                                            ph_rev.set_correction_space,
+                                            "phase_reversal_correction_space",
+                                            const.EM_CTF_CORRECTION,
+                                            cif_list=ctf_corr_in,
+                                        )
 
                                 # element 1
                                 set_el_anisotropic(ph_rev)
                                 # element 2
                                 set_el_correction_space(ph_rev, ctf_corr_in)
 
-                            ph_rev = get_cif_value("phase_reversal", const.EM_CTF_CORRECTION, ctf_corr_in)
-                            if ph_rev == "YES":
+                            ph_rev_val = get_cif_value("phase_reversal", const.EM_CTF_CORRECTION, ctf_corr_in)
+                            if ph_rev_val == "YES":
                                 # Yes if Phase reversal (flipping) was performed
                                 ph_rev = emdb.phase_reversalType()
                                 set_phase_reversal_type(ph_rev, ctf_corr_in)
@@ -8721,7 +8738,13 @@ class CifEMDBTranslator(object):
                                     XSD: <xs:element name="factor" type="xs:float" minOccurs="0">
                                     CIF: _em_ctf_correction.amplitude_correction_factor
                                     """
-                                    set_cif_value(am_corr.set_factor, "amplitude_correction", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                                    set_cif_value(
+                                        am_corr.set_factor,
+                                        "amplitude_correction_factor",
+                                        const.EM_CTF_CORRECTION,
+                                        fmt=float,
+                                        cif_list=ctf_corr_in,
+                                    )
 
                                 def set_el_correction_space(am_corr, ctf_corr_in):
                                     """
@@ -8729,43 +8752,69 @@ class CifEMDBTranslator(object):
                                     CIF: _em_ctf_correction.amplitude_correction_space
                                         REAL/RECIPROCAL
                                     """
-                                    set_cif_value(am_corr.set_correction_space, "amplitude_correction_space", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                                    set_cif_value(
+                                        am_corr.set_correction_space,
+                                        "amplitude_correction_space",
+                                        const.EM_CTF_CORRECTION,
+                                        cif_list=ctf_corr_in,
+                                    )
 
-                                # element 1
                                 set_el_factor(am_corr, ctf_corr_in)
-                                # element 2
                                 set_el_correction_space(am_corr, ctf_corr_in)
 
-                            amp_corr = get_cif_value("amplitude_correction", const.EM_CTF_CORRECTION, ctf_corr_in)
-                            if amp_corr is not None:
+                            amp_corr_flag = get_cif_value("amplitude_correction", const.EM_CTF_CORRECTION, ctf_corr_in)
+                            if amp_corr_flag == "YES":
                                 am_corr = emdb.amplitude_correctionType()
                                 set_amplitude_correction_type(am_corr, ctf_corr_in)
                                 ctf_corr.set_amplitude_correction(am_corr)
-                            else:
-                                # ADD LOGGER MESSAGE
-                                pass
 
                         def set_el_correction_operation(ctf_corr, ctf_corr_in):
                             """
                             XSD: <xs:element name="correction_operation" minOccurs="0">
                             CIF: _em_ctf_correction.correction_operation
                             """
-                            set_cif_value(ctf_corr.set_correction_operation, "correction_operation", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                            set_cif_value(
+                                ctf_corr.set_correction_operation,
+                                "correction_operation",
+                                const.EM_CTF_CORRECTION,
+                                cif_list=ctf_corr_in,
+                            )
 
                         def set_el_software_list(ctf_corr, cat_soft_dict_in):
                             """
                             XSD: <xs:element name="software_list" type="software_list_type" minOccurs="0"/>
                             """
-                            set_software_list(const.SOFT_CTF_CORRECTION, cat_soft_dict_in, ctf_corr.set_software_list)
+                            set_software_list(
+                                const.SOFT_CTF_CORRECTION,
+                                cat_soft_dict_in,
+                                ctf_corr.set_software_list,
+                            )
 
                         def set_el_details(ctf_corr, ctf_corr_in):
                             """
                             XSD: <xs:element name="details" type="xs:string" minOccurs="0"/>
                             CIF: _em_ctf_correction.details
                             """
-                            set_cif_value(ctf_corr.set_details, "details", const.EM_CTF_CORRECTION, cif_list=ctf_corr_in)
+                            set_cif_value(
+                                ctf_corr.set_details,
+                                "details",
+                                const.EM_CTF_CORRECTION,
+                                cif_list=ctf_corr_in,
+                            )
 
-                        ctf_corr_in = ctf_corr_dict_in[ip_id_in]
+                        def set_el_type(ctf_corr, ctf_corr_in):
+                            """
+                            XSD: <xs:element name="type"> (enumeration: NONE, PHASE FLIPPING ONLY, ...)
+                            CIF: _em_ctf_correction.type
+                            """
+                            set_cif_value(
+                                ctf_corr.set_type,
+                                "type",
+                                const.EM_CTF_CORRECTION,
+                                cif_list=ctf_corr_in,
+                            )
+
+                        # Call all element setters
                         # element 1
                         set_el_phase_reversal(ctf_corr, ctf_corr_in)
                         # element 2
@@ -8773,14 +8822,18 @@ class CifEMDBTranslator(object):
                         # element 3
                         set_el_correction_operation(ctf_corr, ctf_corr_in)
                         # element 4
+                        # Note: set_el_software_list still expects `cat_soft_dict_in`, which is not passed
                         set_el_software_list(ctf_corr, cat_soft_dict_in)
                         # element 5
                         set_el_details(ctf_corr, ctf_corr_in)
+                        # element 6
+                        set_el_type(ctf_corr, ctf_corr_in)  # ✅ NEW!
 
                     ctf_corr = emdb.ctf_correction_type()
                     set_ctf_correction_type(ctf_corr)
                     if ctf_corr.has__content():
                         im_proc.set_ctf_correction(ctf_corr)
+
 
                 def set_startup_model(ip_id_in, im_proc, st_mod_dict_in):
                     """
@@ -9590,8 +9643,15 @@ class CifEMDBTranslator(object):
                         """
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
-                        if ip_id_in in sp_dict_list["ctf_corr_dict_in"]:
-                            set_ctf_correction(ip_id_in, im_proc, sp_dict_list["ctf_corr_dict_in"])
+                        ctf_corr_dict_in = sp_dict_list["ctf_corr_dict_in"]
+                        cat_soft_dict_in = sp_dict_list["cat_soft_dict_in"]
+                        if ip_id_in in ctf_corr_dict_in:
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_startup_model(ip_id_in, im_proc, sp_dict_list):
                         """
@@ -9802,8 +9862,14 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type"/>
                         """
                         ctf_corr_dict_in = subtom_dicts["ctf_corr_dict_in"]
+                        cat_soft_dict_in = subtom_dicts.get("cat_soft_dict_in", {})  # fallback to empty dict if not present
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_final_multi_ref_align():
                         """
@@ -9912,8 +9978,14 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
                         ctf_corr_dict_in = hel_dict_list["ctf_corr_dict_in"]
+                        ctf_soft_dict_in = hel_dict_list["cat_soft_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_segment_selection(im_proc, hel_dict_list):
                         """
@@ -10130,8 +10202,14 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
                         ctf_corr_dict_in = cryst_dicts["ctf_corr_dict_in"]
+                        cat_soft_dict_in = cryst_dicts["cat_soft_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_molecular_replacement(im_proc, cryst_dicts):
                         """
@@ -10540,8 +10618,14 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
                         ctf_corr_dict_in = tomo_dicts["ctf_corr_dict_in"]
+                        cat_soft_dict_in = tomo_dicts["cat_soft_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
-                            set_ctf_correction(ip_id_in, im_proc, ctf_corr_dict_in)
+                            set_ctf_correction(
+                                ip_id_in,
+                                im_proc,
+                                ctf_corr_dict_in,
+                                cat_soft_dict_in  # 👈 this one was missing
+                            )
 
                     def set_el_crystal_parameters(im_proc, ip_id_in, tomo_dicts):
                         """
@@ -10568,7 +10652,7 @@ class CifEMDBTranslator(object):
                 part_sel_dict_in = make_list_of_dicts(const.EM_PARTICLE_SELECTION, const.K_IMAGE_PROCESSING_ID, min_length=2)
                 vol_sel_dict_in = make_dict(const.EM_VOLUME_SELECTION, const.K_IMAGE_PROCESSING_ID, min_length=2)
                 ctf_corr_dict_in = make_list_of_dicts(const.EM_CTF_CORRECTION, const.K_IMAGE_PROCESSING_ID)
-                print("ctf_corr_dict_in", ctf_corr_dict_in)
+                # print("[DEBUG] ctf_corr_dict_in", json.dumps(ctf_corr_dict_in, indent=2))
                 st_mod_dict_in = make_list_of_dicts(const.EM_START_MODEL, const.K_IMAGE_PROCESSING_ID)
                 ang_dict_in = make_list_of_dicts(const.EM_EULER_ANGLE_ASSIGNMENT, const.K_IMAGE_PROCESSING_ID)
                 final_class_dict_in = make_dict(const.EM_FINAL_CLASSIFICATION, const.K_IMAGE_PROCESSING_ID)
