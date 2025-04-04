@@ -559,15 +559,15 @@ _em_author_list.author             'Turner, J.'
 _em_author_list.identifier_ORCID   ? 
 _em_author_list.ordinal            1 
 # 
-_em_ctf_correction.amplitude_correction              ?
+_em_ctf_correction.amplitude_correction              YES
 _em_ctf_correction.amplitude_correction_factor       0.95
 _em_ctf_correction.amplitude_correction_space        RECIPROCAL
 _em_ctf_correction.correction_operation              MULTIPLICATION
 _em_ctf_correction.details                           'CTF correction was applied using Relion.'
 _em_ctf_correction.em_image_processing_id            1
 _em_ctf_correction.id                                1
-_em_ctf_correction.phase_reversal                    ?
-_em_ctf_correction.phase_reversal_anisotropic        ?
+_em_ctf_correction.phase_reversal                    YES
+_em_ctf_correction.phase_reversal_anisotropic        YES
 _em_ctf_correction.phase_reversal_correction_space   REAL
 _em_ctf_correction.type                              'PHASE FLIPPING AND AMPLITUDE CORRECTION'
 # 
