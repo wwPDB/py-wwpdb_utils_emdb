@@ -34,8 +34,6 @@ import io
 from optparse import OptionParser  # pylint: disable=deprecated-module
 from lxml import etree
 
-import json
-
 # Deployment paths
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from wwpdb.utils.config.ConfigInfoApp import ConfigInfoAppEm
@@ -8657,11 +8655,6 @@ class CifEMDBTranslator(object):
                     @param ctf_corr_dict_in: dictionary for CTF correction
                     XSD: <xs:complexType name="ctf_correction_type">
                     """
-                    print("[DEBUG] set_ctf_correction")
-                    print("[DEBUG] ip_id_in", json.dumps(ip_id_in, indent=2))
-                    print("[DEBUG] im_proc", im_proc)
-                    print("[DEBUG] ctf_corr_dict_in", json.dumps(ctf_corr_dict_in, indent=2))
-                    print("[DEBUG] cat_soft_dict_in", json.dumps(cat_soft_dict_in, indent=2))
                     def set_ctf_correction_type(ctf_corr):
                         """
                         XSD: <xs:complexType name="ctf_correction_type"> has
@@ -10652,7 +10645,6 @@ class CifEMDBTranslator(object):
                 part_sel_dict_in = make_list_of_dicts(const.EM_PARTICLE_SELECTION, const.K_IMAGE_PROCESSING_ID, min_length=2)
                 vol_sel_dict_in = make_dict(const.EM_VOLUME_SELECTION, const.K_IMAGE_PROCESSING_ID, min_length=2)
                 ctf_corr_dict_in = make_list_of_dicts(const.EM_CTF_CORRECTION, const.K_IMAGE_PROCESSING_ID)
-                # print("[DEBUG] ctf_corr_dict_in", json.dumps(ctf_corr_dict_in, indent=2))
                 st_mod_dict_in = make_list_of_dicts(const.EM_START_MODEL, const.K_IMAGE_PROCESSING_ID)
                 ang_dict_in = make_list_of_dicts(const.EM_EULER_ANGLE_ASSIGNMENT, const.K_IMAGE_PROCESSING_ID)
                 final_class_dict_in = make_dict(const.EM_FINAL_CLASSIFICATION, const.K_IMAGE_PROCESSING_ID)
