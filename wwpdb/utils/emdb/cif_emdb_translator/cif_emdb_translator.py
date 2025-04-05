@@ -64,7 +64,7 @@ class Cif(object):
                 raise StopIteration
             else:
                 return nl[item]
-            
+
         return self.get(item)
 
     def get(self, catname):  # pylint: disable=unused-argument
@@ -86,7 +86,7 @@ class Cif(object):
         retlist = []
 
         # print(dir(dc_obj))
-        
+
         attrlist = dc_obj.getAttributeList()
         for row in range(dc_obj.getRowCount()):
             rowlist = []
@@ -1535,7 +1535,7 @@ class CifEMDBTranslator(object):
         def get_cif_value(cif_key, cif_category, cif_list=None):
             """
             Recursively search for a value corresponding to a key in a CIF category.
-        
+
             Parameters:
             @param cif_key: key for a (key, value) pair
             @param cif_category: CIF category with the list of (key, value) tuples
@@ -1544,24 +1544,24 @@ class CifEMDBTranslator(object):
             """
             if cif_category is None or cif_key is None:
                 return None
-        
+
             # Handle special case for "em_ctf_correction.image_processing_id"
             if cif_category == "em_ctf_correction" and cif_key == "image_processing_id":
                 cif_key = "em_" + cif_key
-        
+
             full_key = f"_{cif_category}.{cif_key}"
-        
+
             # Handle default value for self.cif.get()
             if cif_list:
                 data_to_search = cif_list
             else:
                 data_to_search = self.cif.get(cif_category) if cif_category in self.cif else []
-        
+
             # Define a recursive helper function
             def recursive_search(data):
                 """
                 Recursively search for the full_key in the given data.
-        
+
                 @param data: The data to search (can be a list, tuple, or other iterable)
                 @return: value or None
                 """
@@ -1576,7 +1576,7 @@ class CifEMDBTranslator(object):
                             if result is not None:
                                 return result
                 return None
-        
+
             # Start the recursive search
             return recursive_search(data_to_search)
 
@@ -8194,7 +8194,7 @@ class CifEMDBTranslator(object):
                         CIF: _em_imaging.specimen_holder_model 'FEI TITAN KRIOS AUTOGRID HOLDER'
                         """
                         set_cif_value(mic.set_specimen_holder_model, "specimen_holder_model", const.EM_IMAGING, cif_list=mic_in)
-                    
+
                     def set_el_cooling_holder_cryogen(mic, mic_in):
                         """
                         XSD: <xs:element name="cooling_holder_cryogen" minOccurs="0">
@@ -8308,7 +8308,7 @@ class CifEMDBTranslator(object):
                         CIF: _em_imaging.objective_aperture 100
                         """
                         set_cif_value(mic.set_objective_aperture, "objective_aperture", const.EM_IMAGING, cif_list=mic_in)
-                    
+
                     def set_el_microscope_serial_number(mic, mic_in):
                         """
                         XSD: <xs:element name="microscope_serial_number" type="xs:string" minOccurs="0">
@@ -8876,7 +8876,6 @@ class CifEMDBTranslator(object):
 
                     if motion_corr.has__content():
                         im_proc.set_motion_correction(motion_corr)
-
 
                 def set_startup_model(ip_id_in, im_proc, st_mod_dict_in):
                     """
@@ -9657,7 +9656,7 @@ class CifEMDBTranslator(object):
                         set_non_subtom_final_rec_type(spfr)
                         im_proc.set_final_reconstruction(spfr)
 
-                def set_single_part_im_proc_specs(ip_id_in, im_proc, sp_dict_list):
+                def set_single_part_im_proc_specs(ip_id_in, im_proc, sp_dict_list):  # pylint: disable=unused-argument
                     """
                     Set elements specific for single particle image processing add group
 
@@ -9923,7 +9922,7 @@ class CifEMDBTranslator(object):
                                 ctf_corr_dict_in,
                                 cat_soft_dict_in  # 👈 this one was missing
                             )
-                    
+
                     def set_el_motion_correction(im_proc, ip_id_in, sp_dict_list):
                         """
                         XSD: <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
@@ -10049,8 +10048,8 @@ class CifEMDBTranslator(object):
                                 ctf_corr_dict_in,
                                 cat_soft_dict_in  # 👈 this one was missing
                             )
-                    
-                    def set_el_motion_correction(im_proc, ip_id_in, sp_dict_list):
+
+                    def set_el_motion_correction(im_proc, ip_id_in, sp_dict_list):  # pylint: disable=unused-argument
                         """
                         XSD: <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
                         """
@@ -10699,8 +10698,8 @@ class CifEMDBTranslator(object):
                                 ctf_corr_dict_in,
                                 cat_soft_dict_in  # 👈 this one was missing
                             )
-                    
-                    def set_el_motion_correction(im_proc, ip_id_in, sp_dict_list):
+
+                    def set_el_motion_correction(im_proc, ip_id_in, sp_dict_list):  # pylint: disable=unused-argument
                         """
                         XSD: <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
                         """
