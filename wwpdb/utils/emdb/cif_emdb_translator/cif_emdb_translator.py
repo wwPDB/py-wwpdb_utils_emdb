@@ -9923,7 +9923,7 @@ class CifEMDBTranslator(object):
                                 cat_soft_dict_in  # 👈 this one was missing
                             )
 
-                    def set_el_motion_correction(im_proc, ip_id_in, sp_dict_list):
+                    def set_el_motion_correction(im_proc, ip_id_in, sp_dict_list):  # pylint: disable=unused-argument
                         """
                         XSD: <xs:element name="motion_correction" type="motion_correction_type" minOccurs="0"/>
                         """
