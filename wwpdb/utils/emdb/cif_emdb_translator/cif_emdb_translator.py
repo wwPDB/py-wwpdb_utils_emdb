@@ -10040,7 +10040,7 @@ class CifEMDBTranslator(object):
                         XSD: <xs:element name="ctf_correction" type="ctf_correction_type" minOccurs="0"/>
                         """
                         ctf_corr_dict_in = hel_dict_list["ctf_corr_dict_in"]
-                        ctf_soft_dict_in = hel_dict_list["cat_soft_dict_in"]
+                        cat_soft_dict_in = hel_dict_list["cat_soft_dict_in"]
                         if ip_id_in in ctf_corr_dict_in:
                             set_ctf_correction(
                                 ip_id_in,
