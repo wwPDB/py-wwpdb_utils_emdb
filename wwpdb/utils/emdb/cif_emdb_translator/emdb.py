@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Fri Apr  4 11:16:49 2025 by generateDS.py version 2.44.3.
+# Generated Mon Apr  7 12:12:28 2025 by generateDS.py version 2.44.3.
 # Python 3.10.9 (main, Mar  1 2023, 12:33:47) [Clang 14.0.6 ]
 #
 # Command line options:
@@ -15097,8 +15097,11 @@ class fib_final_thickness_type(GeneratedsSuper):
 
 
 class base_microscopy_type(GeneratedsSuper):
-    """microscope_serial_number --
-    Microscope serial number.
+    """objective_aperture --
+    Diameter, in microns, of the objective aperture.
+      
+    * microscope_serial_number --
+      Microscope serial number.
       
     * microscope_version --
       Version of the microscope.
@@ -15180,7 +15183,6 @@ class base_microscopy_type(GeneratedsSuper):
         self.tilt_angle_max = tilt_angle_max
         self.tilt_angle_max_nsprefix_ = None
         self.objective_aperture = objective_aperture
-        self.validate_objective_apertureType(self.objective_aperture)
         self.objective_aperture_nsprefix_ = None
         self.microscope_serial_number = microscope_serial_number
         self.microscope_serial_number_nsprefix_ = None
@@ -15430,16 +15432,6 @@ class base_microscopy_type(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on cooling_holder_cryogenType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
                 result = False
-        return result
-    def validate_objective_apertureType(self, value):
-        result = True
-        # Validate type objective_apertureType, a restriction on xs:float.
-        if value is not None and Validate_simpletypes_ and self.gds_collector_ is not None:
-            if not isinstance(value, float):
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (float)' % {"value": value, "lineno": lineno, })
-                return False
-            pass
         return result
     def has__content(self):
         if (
@@ -15830,8 +15822,6 @@ class base_microscopy_type(GeneratedsSuper):
             fval_ = self.gds_validate_float(fval_, node, 'objective_aperture')
             self.objective_aperture = fval_
             self.objective_aperture_nsprefix_ = child_.prefix
-            # validate type objective_apertureType
-            self.validate_objective_apertureType(self.objective_aperture)
         elif nodeName_ == 'microscope_serial_number':
             value_ = child_.text
             value_ = self.gds_parse_string(value_, node, 'microscope_serial_number')
