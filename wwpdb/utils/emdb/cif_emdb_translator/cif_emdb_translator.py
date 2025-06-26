@@ -3713,8 +3713,9 @@ class CifEMDBTranslator(object):
                         """
                         set_cif_value(other_db_ref.set_details, "details", const.PDBX_DATABASE_RELATED, cif_list=other_db_ref_in)
 
-                    if "SASBDB" in other_db_ref_dict_in:
-                        other_db_ref_list_in = other_db_ref_dict_in["SASBDB"]
+                    # Process all databases in other_db_ref_dict_in, not just SASBDB
+                    for db_name in other_db_ref_dict_in:
+                        other_db_ref_list_in = other_db_ref_dict_in[db_name]
                         for other_db_ref_in in other_db_ref_list_in:
                             other_db_ref = emdb.other_db_cross_reference_type()
                             set_ref_el_db_name(other_db_ref, other_db_ref_in)
