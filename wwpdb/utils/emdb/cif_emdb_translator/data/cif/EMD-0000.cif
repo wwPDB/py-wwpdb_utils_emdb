@@ -274,7 +274,9 @@ _pdbx_database_related.db_id
 _pdbx_database_related.content_type 
 EMDB . EMD-90288 'associated EM volume' 
 EMDB ? EMD-12345 'consensus EM volume'  
-EMDB ? EMD-12346 'focused EM volume'    
+EMDB ? EMD-12346 'focused EM volume'
+NOR ? NOR00639 'norine database reference'
+SASBDB ? SASVGQ 'SASBDB database reference'
 # 
 _citation.abstract                  ? 
 _citation.abstract_id_CAS           ? 
