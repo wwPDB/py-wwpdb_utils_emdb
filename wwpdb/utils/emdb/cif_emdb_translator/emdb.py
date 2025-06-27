@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Mon Apr  7 12:12:28 2025 by generateDS.py version 2.44.3.
+# Generated Thu Jun 26 14:52:08 2025 by generateDS.py version 2.44.3.
 # Python 3.10.9 (main, Mar  1 2023, 12:33:47) [Clang 14.0.6 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb_schemas/v3/v3_0_11_0/emdb.py')
+#   ('-o', 'emdb_schemas/v3/v3_0_11_1/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb_schemas/v3/v3_0_11_0/emdb.xsd
+#   emdb_schemas/v3/v3_0_11_1/emdb.xsd
 #
 # Command line:
-#   /Users/lucas/anaconda3/bin/generateDS --root-element="emd" -f -o "emdb_schemas/v3/v3_0_11_0/emdb.py" --no-warnings --external-encoding="utf-8" emdb_schemas/v3/v3_0_11_0/emdb.xsd
+#   /Users/lucas/anaconda3/bin/generateDS --root-element="emd" -f -o "emdb_schemas/v3/v3_0_11_1/emdb.py" --no-warnings --external-encoding="utf-8" emdb_schemas/v3/v3_0_11_1/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   emdb-schemas
@@ -1829,7 +1829,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.11.0', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.11.1', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1955,7 +1955,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.11.0" and 'version' not in already_processed:
+        if self.version != "3.0.11.1" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -18980,7 +18980,7 @@ class chain_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_residue_rangeType_patterns_, ))
                 result = False
         return result
-    validate_residue_rangeType_patterns_ = [['^(\\d+-\\d+)$']]
+    validate_residue_rangeType_patterns_ = [['^([+-]?[0-9]+-[+-]?[0-9]+)$']]
     def has__content(self):
         if (
             self.chain_id or
@@ -45120,7 +45120,7 @@ class chainType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%s" does not match xsd pattern restrictions: %s' % (encode_str_2_3(value), self.validate_residue_rangeType66_patterns_, ))
                 result = False
         return result
-    validate_residue_rangeType66_patterns_ = [['^(\\d+-\\d+)$']]
+    validate_residue_rangeType66_patterns_ = [['^([+-]?[0-9]+-[+-]?[0-9]+)$']]
     def validate_source_nameType(self, value):
         result = True
         # Validate type source_nameType, a restriction on xs:string.

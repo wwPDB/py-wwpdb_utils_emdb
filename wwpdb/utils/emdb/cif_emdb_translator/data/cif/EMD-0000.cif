@@ -423,6 +423,17 @@ _em_3d_fitting.ref_space                     ?
 _em_3d_fitting.ref_protocol                  ? 
 _em_3d_fitting.initial_refinement_model_id   ? 
 #
+loop_
+_em_3d_fitting_list.id
+_em_3d_fitting_list.3d_fitting_id
+_em_3d_fitting_list.pdb_entry_id
+_em_3d_fitting_list.pdb_chain_id
+_em_3d_fitting_list.pdb_chain_residue_range
+_em_3d_fitting_list.chain_residue_range
+_em_3d_fitting_list.details
+1 1 4v19 A -59-0 -59-0 'Test negative residue range'
+2 1 4v19 B 1-100 1-100 'Test positive residue range'
+#
 _em_fsc_curve.id    1
 _em_fsc_curve.details  "FSC"
 _em_fsc_curve.file  "emd_0000_fsc_1.xml"
