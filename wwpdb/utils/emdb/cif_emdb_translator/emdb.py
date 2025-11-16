@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Sun Jun 29 12:49:21 2025 by generateDS.py version 2.44.3.
-# Python 3.10.9 (main, Mar  1 2023, 12:33:47) [Clang 14.0.6 ]
+# Generated Fri Nov 14 17:01:18 2025 by generateDS.py version 2.44.3.
+# Python 3.9.6 (default, Oct 17 2025, 17:15:54)  [Clang 17.0.0 (clang-1700.4.4.1)]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb_schemas/v3/v3_0_11_2/emdb.py')
+#   ('-o', 'emdb_schemas/v3/v3_0_11_3/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb_schemas/v3/v3_0_11_2/emdb.xsd
+#   emdb_schemas/v3/v3_0_11_3/emdb.xsd
 #
 # Command line:
-#   /Users/lucas/anaconda3/bin/generateDS --root-element="emd" -f -o "emdb_schemas/v3/v3_0_11_2/emdb.py" --no-warnings --external-encoding="utf-8" emdb_schemas/v3/v3_0_11_2/emdb.xsd
+#   /Users/lucas/Desktop/OneDep/emdb-schemas/.venv/bin/generateDS --root-element="emd" -f -o "emdb_schemas/v3/v3_0_11_3/emdb.py" --no-warnings --external-encoding="utf-8" emdb_schemas/v3/v3_0_11_3/emdb.xsd
 #
 # Current working directory (os.getcwd()):
 #   emdb-schemas
@@ -1450,6 +1450,9 @@ class microscopeType(str, Enum):
     TFSTALOSF_200_C='TFS TALOS F200C'
     TFSTITANTHEMIS='TFS TITAN THEMIS'
     TFSTUNDRA='TFS TUNDRA'
+    SHUIMUTOTEM_120_S='SHUIMU TOTEM 120S'
+    SHUIMUTOTEM_200_S='SHUIMU TOTEM 200S'
+    SHUIMUTOTEM_300_S='SHUIMU TOTEM 300S'
     ZEISSLEO_912='ZEISS LEO912'
     ZEISSLIBRA_120_PLUS='ZEISS LIBRA120PLUS'
 
@@ -1832,7 +1835,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.11.2', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.11.3', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1958,7 +1961,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.11.2" and 'version' not in already_processed:
+        if self.version != "3.0.11.3" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -15338,7 +15341,7 @@ class base_microscopy_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['FEI MORGAGNI', 'FEI POLARA 300', 'FEI TALOS ARCTICA', 'FEI TECNAI 10', 'FEI TECNAI 12', 'FEI TECNAI 20', 'FEI TECNAI ARCTICA', 'FEI TECNAI F20', 'FEI TECNAI F30', 'FEI TECNAI SPHERA', 'FEI TECNAI SPIRIT', 'FEI TITAN', 'FEI TITAN KRIOS', 'FEI/PHILIPS CM10', 'FEI/PHILIPS CM12', 'FEI/PHILIPS CM120T', 'FEI/PHILIPS CM200FEG', 'FEI/PHILIPS CM200FEG/SOPHIE', 'FEI/PHILIPS CM200FEG/ST', 'FEI/PHILIPS CM200FEG/UT', 'FEI/PHILIPS CM200T', 'FEI/PHILIPS CM300FEG/HE', 'FEI/PHILIPS CM300FEG/ST', 'FEI/PHILIPS CM300FEG/T', 'FEI/PHILIPS EM400', 'FEI/PHILIPS EM420', 'HITACHI EF2000', 'HITACHI H-9500SD', 'HITACHI H3000 UHVEM', 'HITACHI H7600', 'HITACHI HF2000', 'HITACHI HF3000', 'JEOL 100CX', 'JEOL 1000EES', 'JEOL 1010', 'JEOL 1200', 'JEOL 1200EX', 'JEOL 1200EXII', 'JEOL 1230', 'JEOL 1400', 'JEOL 1400/HR + YPS FEG', 'JEOL 2000EX', 'JEOL 2000EXII', 'JEOL 2010', 'JEOL 2010F', 'JEOL 2010HC', 'JEOL 2010HT', 'JEOL 2010UHR', 'JEOL 2011', 'JEOL 2100', 'JEOL 2100F', 'JEOL 2200FS', 'JEOL 2200FSC', 'JEOL 3000SFF', 'JEOL 3100FEF', 'JEOL 3100FFC', 'JEOL 3200FS', 'JEOL 3200FSC', 'JEOL 4000', 'JEOL 4000EX', 'JEOL CRYO ARM 200', 'JEOL CRYO ARM 300', 'JEOL KYOTO-3000SFF', 'TFS GLACIOS', 'TFS KRIOS', 'TFS TALOS', 'TFS TALOS L120C', 'TFS TALOS F200C', 'TFS TITAN THEMIS', 'TFS TUNDRA', 'ZEISS LEO912', 'ZEISS LIBRA120PLUS']
+            enumerations = ['FEI MORGAGNI', 'FEI POLARA 300', 'FEI TALOS ARCTICA', 'FEI TECNAI 10', 'FEI TECNAI 12', 'FEI TECNAI 20', 'FEI TECNAI ARCTICA', 'FEI TECNAI F20', 'FEI TECNAI F30', 'FEI TECNAI SPHERA', 'FEI TECNAI SPIRIT', 'FEI TITAN', 'FEI TITAN KRIOS', 'FEI/PHILIPS CM10', 'FEI/PHILIPS CM12', 'FEI/PHILIPS CM120T', 'FEI/PHILIPS CM200FEG', 'FEI/PHILIPS CM200FEG/SOPHIE', 'FEI/PHILIPS CM200FEG/ST', 'FEI/PHILIPS CM200FEG/UT', 'FEI/PHILIPS CM200T', 'FEI/PHILIPS CM300FEG/HE', 'FEI/PHILIPS CM300FEG/ST', 'FEI/PHILIPS CM300FEG/T', 'FEI/PHILIPS EM400', 'FEI/PHILIPS EM420', 'HITACHI EF2000', 'HITACHI H-9500SD', 'HITACHI H3000 UHVEM', 'HITACHI H7600', 'HITACHI HF2000', 'HITACHI HF3000', 'JEOL 100CX', 'JEOL 1000EES', 'JEOL 1010', 'JEOL 1200', 'JEOL 1200EX', 'JEOL 1200EXII', 'JEOL 1230', 'JEOL 1400', 'JEOL 1400/HR + YPS FEG', 'JEOL 2000EX', 'JEOL 2000EXII', 'JEOL 2010', 'JEOL 2010F', 'JEOL 2010HC', 'JEOL 2010HT', 'JEOL 2010UHR', 'JEOL 2011', 'JEOL 2100', 'JEOL 2100F', 'JEOL 2200FS', 'JEOL 2200FSC', 'JEOL 3000SFF', 'JEOL 3100FEF', 'JEOL 3100FFC', 'JEOL 3200FS', 'JEOL 3200FSC', 'JEOL 4000', 'JEOL 4000EX', 'JEOL CRYO ARM 200', 'JEOL CRYO ARM 300', 'JEOL KYOTO-3000SFF', 'TFS GLACIOS', 'TFS KRIOS', 'TFS TALOS', 'TFS TALOS L120C', 'TFS TALOS F200C', 'TFS TITAN THEMIS', 'TFS TUNDRA', 'SHUIMU TOTEM 120S', 'SHUIMU TOTEM 200S', 'SHUIMU TOTEM 300S', 'ZEISS LEO912', 'ZEISS LIBRA120PLUS']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on microscopeType' % {"value" : encode_str_2_3(value), "lineno": lineno} )

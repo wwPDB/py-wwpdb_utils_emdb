@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.11.2"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.11.3"/>
     </xs:complexType>
     <xs:complexType name="admin_type">
         <xs:sequence>
@@ -2326,6 +2326,9 @@
                         <xs:enumeration value="TFS TALOS F200C"/>
                         <xs:enumeration value="TFS TITAN THEMIS"/>
                         <xs:enumeration value="TFS TUNDRA"/>
+                        <xs:enumeration value="SHUIMU TOTEM 120S"/>
+                        <xs:enumeration value="SHUIMU TOTEM 200S"/>
+                        <xs:enumeration value="SHUIMU TOTEM 300S"/>
                         <xs:enumeration value="ZEISS LEO912"/>
                         <xs:enumeration value="ZEISS LIBRA120PLUS"/>
                     </xs:restriction>
