@@ -3453,8 +3453,8 @@ class CifEMDBTranslator(object):
                                 self.current_entry_log.warn_logs.append(self.ALog(log_text="(" + self.entry_in_translation_log.id + ")" + self.current_entry_log.warn_title + txt))
                                 self.log_formatted(self.warn_log_string, const.NOT_REQUIRED_ALERT + txt)
                                 correct_acc_code = ""
-                                if (len(acc_code) == 4 or len(acc_code) == 5) and acc_code.isdigit():
-                                    # acc_code is a 4 or 5-digit number - add EMD- to it
+                                if (len(acc_code) >= 4 and len(acc_code) <= 6) and acc_code.isdigit():
+                                    # acc_code is a 4, 5, or 6-digit number - add EMD- to it
                                     correct_acc_code = "EMD-" + acc_code
                                     corrected = True
                                 if acc_code.find("EMDB") != -1:
