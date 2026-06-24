@@ -13,3 +13,5 @@ jobs:
     name: Deploy github repository on development
     uses: wwPDB/wwpdb-reusable-actions/.github/workflows/autodeploy.yml@main
     secrets: inherit
+    permissions:
+      contents: read
