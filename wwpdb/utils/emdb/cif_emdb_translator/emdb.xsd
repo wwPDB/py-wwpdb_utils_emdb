@@ -1881,7 +1881,6 @@
     </xs:complexType>
     <xs:simpleType name="allowed_time_glow_discharge">
         <xs:restriction base="xs:positiveInteger">
-            <xs:maxInclusive value="300"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="allowed_pressure_glow_discharge">
