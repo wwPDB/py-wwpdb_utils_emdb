@@ -114,3 +114,5 @@ test-output
 
 # Pycharm
 .idea
+
+.DS_Store

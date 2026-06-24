@@ -124,7 +124,7 @@ class CifEMDBTranslator(object):
         They have been collected here for ease of use.
         """
 
-        XML_OUT_VERSION = "3.0.11.0"
+        XML_OUT_VERSION = "3.0.11.4"
         XML_VERSION = XML_OUT_VERSION.replace('.', '_')
 
         # Cif categories

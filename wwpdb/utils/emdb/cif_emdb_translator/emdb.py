@@ -31712,10 +31712,7 @@ class timeType(GeneratedsSuper):
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (int)' % {"value": value, "lineno": lineno, })
                 return False
-            if value > 300:
-                lineno = self.gds_get_node_lineno_()
-                self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd maxInclusive restriction on allowed_time_glow_discharge' % {"value": value, "lineno": lineno} )
-                result = False
+            pass
         return result
     def has__content(self):
         if (
