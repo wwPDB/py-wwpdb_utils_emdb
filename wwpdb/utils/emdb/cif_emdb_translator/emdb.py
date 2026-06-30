@@ -2,24 +2,24 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Fri Nov 14 17:01:18 2025 by generateDS.py version 2.44.3.
-# Python 3.9.6 (default, Oct 17 2025, 17:15:54)  [Clang 17.0.0 (clang-1700.4.4.1)]
+# Generated Tue Jun 30 13:57:02 2026 by generateDS.py version 2.44.3.
+# Python 3.8.20 | packaged by conda-forge | (default, Sep 30 2024, 17:48:42)  [Clang 17.0.6 ]
 #
 # Command line options:
 #   ('--root-element', 'emd')
 #   ('-f', '')
-#   ('-o', 'emdb_schemas/v3/v3_0_11_3/emdb.py')
+#   ('-o', 'emdb_schemas/current/emdb.py')
 #   ('--no-warnings', '')
 #   ('--external-encoding', 'utf-8')
 #
 # Command line arguments:
-#   emdb_schemas/v3/v3_0_11_3/emdb.xsd
+#   emdb_schemas/current/emdb.xsd
 #
 # Command line:
-#   /Users/lucas/Desktop/OneDep/emdb-schemas/.venv/bin/generateDS --root-element="emd" -f -o "emdb_schemas/v3/v3_0_11_3/emdb.py" --no-warnings --external-encoding="utf-8" emdb_schemas/v3/v3_0_11_3/emdb.xsd
+#   /Users/neli/anaconda3/envs/emdb_schemas/bin/generateDS --root-element="emd" -f -o "emdb_schemas/current/emdb.py" --no-warnings --external-encoding="utf-8" emdb_schemas/current/emdb.xsd
 #
 # Current working directory (os.getcwd()):
-#   emdb-schemas
+#   emdb_schemas
 #
 
 import sys
@@ -1252,6 +1252,7 @@ class film_materialType(str, Enum):
     GRAPHENEOXIDE='GRAPHENE OXIDE'
     PARLODION='PARLODION'
     SILICONDIOXIDE='SILICON DIOXIDE'
+    NICKELTITANIUM='NICKEL TITANIUM'
 
 
 class film_topologyType(str, Enum):
@@ -12775,7 +12776,7 @@ class film_type(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['CARBON', 'CELLULOSE ACETATE', 'FORMVAR', 'GOLD', 'GRAPHENE', 'GRAPHENE OXIDE', 'PARLODION', 'SILICON DIOXIDE']
+            enumerations = ['CARBON', 'CELLULOSE ACETATE', 'FORMVAR', 'GOLD', 'GRAPHENE', 'GRAPHENE OXIDE', 'PARLODION', 'SILICON DIOXIDE', 'NICKEL TITANIUM']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on film_materialType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
