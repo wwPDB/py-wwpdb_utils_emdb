@@ -1816,6 +1816,7 @@
                         <xs:enumeration value="GRAPHENE OXIDE"/>
                         <xs:enumeration value="PARLODION"/>
                         <xs:enumeration value="SILICON DIOXIDE"/>
+                        <xs:enumeration value="NICKEL TITANIUM"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
