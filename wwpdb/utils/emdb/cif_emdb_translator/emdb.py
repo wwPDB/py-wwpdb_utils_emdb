@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Wed Jul  8 16:12:55 2026 by generateDS.py version 2.44.3.
+# Generated Fri Jul 31 13:06:58 2026 by generateDS.py version 2.44.3.
 # Python 3.8.20 | packaged by conda-forge | (default, Sep 30 2024, 17:48:42)  [Clang 17.0.6 ]
 #
 # Command line options:
@@ -1603,6 +1603,7 @@ class source_nameType(str, Enum):
     MODELLER='Modeller'
     ROSE_TTA_FOLD='RoseTTAFold'
     SWISS_MODEL='SwissModel'
+    MODEL_ANGELO='ModelAngelo'
     OTHER='Other'
 
 
@@ -1841,7 +1842,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.11.7', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.11.8', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1967,7 +1968,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.11.7" and 'version' not in already_processed:
+        if self.version != "3.0.11.8" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -45139,7 +45140,7 @@ class chainType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['PDB', 'AlphaFold', 'ITasser', 'ModelArchive', 'Modeller', 'RoseTTAFold', 'SwissModel', 'Other']
+            enumerations = ['PDB', 'AlphaFold', 'ITasser', 'ModelArchive', 'Modeller', 'RoseTTAFold', 'SwissModel', 'ModelAngelo', 'Other']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on source_nameType' % {"value" : encode_str_2_3(value), "lineno": lineno} )
