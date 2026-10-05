@@ -7033,7 +7033,7 @@ class CifEMDBTranslator(object):
                         set_cif_value(u_tome.set_details, "details", const.EM_ULTRAMICROTOMY, cif_list=u_tome_in)
 
                     # element 1
-                    set_el_instrument(u_tome, u_tome_in)  # Will be inherited from caller scope.  #  pylint: disable=used-before-assignment
+                    set_el_instrument(u_tome, u_tome_in)  # Will be inherited from caller scope.  #  pylint: disable=used-before-assignment,possibly-used-before-assignment
                     # element 2
                     set_el_temperature(u_tome, u_tome_in)
                     # element 3
@@ -7166,7 +7166,7 @@ class CifEMDBTranslator(object):
                         set_cif_value(fib.set_details, "details", const.EM_FOCUSED_ION_BEAM, cif_list=fib_in, cif_value=all_details)
 
                     # element 1
-                    details_txt = set_el_instrument(fib, fib_in)  # Will be inherited from caller scope.  #  pylint: disable=used-before-assignment
+                    details_txt = set_el_instrument(fib, fib_in)  # Will be inherited from caller scope.  #  pylint: disable=used-before-assignment,possibly-used-before-assignment
                     # element 2
                     set_el_ion(fib, fib_in, details_txt)
                     # element 3
