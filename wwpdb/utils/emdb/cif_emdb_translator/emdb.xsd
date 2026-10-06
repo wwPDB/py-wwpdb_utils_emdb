@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.11.8"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.11.9"/>
     </xs:complexType>
     <xs:complexType name="admin_type">
         <xs:sequence>
@@ -1234,7 +1234,7 @@
         <xs:complexContent>
             <xs:extension base="base_macromolecule_type">
                 <xs:sequence>
-                    <xs:element name="sequence">
+                    <xs:element name="sequence" minOccurs="0">
                         <xs:complexType>
                             <xs:sequence>
                                 <xs:element name="string" type="xs:token"/>
@@ -1408,7 +1408,7 @@
                             </xs:restriction>
                         </xs:simpleType>
                     </xs:element>
-                    <xs:element name="sequence">
+                    <xs:element name="sequence" minOccurs="0">
                         <xs:complexType>
                             <xs:sequence>
                                 <xs:element name="string" type="xs:token" minOccurs="0"/>
@@ -1489,7 +1489,7 @@
         <xs:complexContent>
             <xs:extension base="base_macromolecule_type">
                 <xs:sequence>
-                    <xs:element name="sequence">
+                    <xs:element name="sequence" minOccurs="0">
                         <xs:complexType>
                             <xs:sequence>
                                 <xs:element name="string" type="xs:token"/>
@@ -2590,7 +2590,7 @@
                                                   <xs:enumeration value="NIKON SUPER COOLSCAN 9000"/>
                                                   <xs:enumeration value="OPTRONICS"/>
                                                   <xs:enumeration value="OTHER"/>
-                                                  <xs:enumeration value="PATCHWORK DENSITOMETER"/>
+                                                  <xs:enumeration value="IMAGE SCIENCE PATCHWORK DENSITOMETER"/>
                                                   <xs:enumeration value="PERKIN ELMER"/>
                                                   <xs:enumeration value="PRIMESCAN"/>
                                                   <xs:enumeration value="TEMSCAN"/>
