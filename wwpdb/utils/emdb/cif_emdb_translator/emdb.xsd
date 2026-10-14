@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.11.9"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.11.10"/>
     </xs:complexType>
     <xs:complexType name="admin_type">
         <xs:sequence>
@@ -2845,6 +2845,8 @@
             <xs:enumeration value="FEI FALCON III (4k x 4k)"/>
             <xs:enumeration value="FEI FALCON IV (4k x 4k)"/>
             <xs:enumeration value="GATAN ALPINE (2.3k x 3.2k)"/>
+            <xs:enumeration value="GATAN ALPINE VISTA (5.7k x 4k)"/>
+            <xs:enumeration value="GATAN CLEARVIEW (4k x 4k)"/>
             <xs:enumeration value="GATAN K2 (4k x 4k)"/>
             <xs:enumeration value="GATAN K2 BASE (4k x 4k)"/>
             <xs:enumeration value="GATAN K2 IS (4k x 4k)"/>
@@ -2853,10 +2855,19 @@
             <xs:enumeration value="GATAN K3 (6k x 4k)"/>
             <xs:enumeration value="GATAN K3 BIOCONTINUUM (6k x 4k)"/>
             <xs:enumeration value="GATAN K3 BIOQUANTUM (6k x 4k)"/>
+            <xs:enumeration value="GATAN K3 IS (5.7k x 4k)"/>
+            <xs:enumeration value="GATAN K3 IS BASE (3.4k x 4k)"/>
+            <xs:enumeration value="GATAN METRO (2k x 2k)"/>
             <xs:enumeration value="GATAN MULTISCAN"/>
+            <xs:enumeration value="GATAN ONEVIEW (4k x 4k)"/>
             <xs:enumeration value="GATAN ORIUS SC1000 (4k x 2.7k)"/>
             <xs:enumeration value="GATAN ORIUS SC200 (2k x 2k)"/>
             <xs:enumeration value="GATAN ORIUS SC600 (2.7k x 2.7k)"/>
+            <xs:enumeration value="GATAN RIO 4 (2k x 2k)"/>
+            <xs:enumeration value="GATAN RIO 9 (3k x 3k)"/>
+            <xs:enumeration value="GATAN RIO16 (4k x 4k)"/>
+            <xs:enumeration value="GATAN STELLA (0.5k x 0.5k)"/>
+            <xs:enumeration value="GATAN STELLA (1k x 0.5k)"/>
             <xs:enumeration value="GATAN ULTRASCAN 1000 (2k x 2k)"/>
             <xs:enumeration value="GATAN ULTRASCAN 10000 (10k x 10k)"/>
             <xs:enumeration value="GATAN ULTRASCAN 4000 (4k x 4k)"/>
@@ -2877,10 +2888,12 @@
             <xs:enumeration value="PROSCAN TEM-PIV (2k x 2k)"/>
             <xs:enumeration value="SIA 15C (3k x 3k)"/>
             <xs:enumeration value="TFS FALCON 4i (4k x 4k)"/>
+            <xs:enumeration value="TFS FALCON C (2k x 2k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F216 (2k x 2k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F224 (2k x 2k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F415 (4k x 4k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F416 (4k x 4k)"/>
+            <xs:enumeration value="TVIPS TEMCAM-F816 (8k x 8k)"/>
             <xs:enumeration value="TVIPS TEMCAM-F816 (8k x 8k)"/>
         </xs:restriction>
     </xs:simpleType>

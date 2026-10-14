@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Tue Oct  6 14:01:24 2026 by generateDS.py version 2.44.3.
+# Generated Wed Oct 14 11:48:58 2026 by generateDS.py version 2.44.3.
 # Python 3.8.20 | packaged by conda-forge | (default, Sep 30 2024, 17:48:42)  [Clang 17.0.6 ]
 #
 # Command line options:
@@ -1036,6 +1036,8 @@ class allowed_film_or_detector_model(str, Enum):
     FEIFALCONIII_4_KX_4_K='FEI FALCON III (4k x 4k)'
     FEIFALCONIV_4_KX_4_K='FEI FALCON IV (4k x 4k)'
     GATANALPINE_2_3_KX_3_2_K='GATAN ALPINE (2.3k x 3.2k)'
+    GATANALPINEVISTA_5_7_KX_4_K='GATAN ALPINE VISTA (5.7k x 4k)'
+    GATANCLEARVIEW_4_KX_4_K='GATAN CLEARVIEW (4k x 4k)'
     GATANK_2_4_KX_4_K='GATAN K2 (4k x 4k)'
     GATANK_2BASE_4_KX_4_K='GATAN K2 BASE (4k x 4k)'
     GATANK_2IS_4_KX_4_K='GATAN K2 IS (4k x 4k)'
@@ -1044,10 +1046,19 @@ class allowed_film_or_detector_model(str, Enum):
     GATANK_3_6_KX_4_K='GATAN K3 (6k x 4k)'
     GATANK_3BIOCONTINUUM_6_KX_4_K='GATAN K3 BIOCONTINUUM (6k x 4k)'
     GATANK_3BIOQUANTUM_6_KX_4_K='GATAN K3 BIOQUANTUM (6k x 4k)'
+    GATANK_3IS_5_7_KX_4_K='GATAN K3 IS (5.7k x 4k)'
+    GATANK_3ISBASE_3_4_KX_4_K='GATAN K3 IS BASE (3.4k x 4k)'
+    GATANMETRO_2_KX_2_K='GATAN METRO (2k x 2k)'
     GATANMULTISCAN='GATAN MULTISCAN'
+    GATANONEVIEW_4_KX_4_K='GATAN ONEVIEW (4k x 4k)'
     GATANORIUSSC_1000_4_KX_2_7_K='GATAN ORIUS SC1000 (4k x 2.7k)'
     GATANORIUSSC_200_2_KX_2_K='GATAN ORIUS SC200 (2k x 2k)'
     GATANORIUSSC_600_2_7_KX_2_7_K='GATAN ORIUS SC600 (2.7k x 2.7k)'
+    GATANRIO_4_2_KX_2_K='GATAN RIO 4 (2k x 2k)'
+    GATANRIO_9_3_KX_3_K='GATAN RIO 9 (3k x 3k)'
+    GATANRIO_16_4_KX_4_K='GATAN RIO16 (4k x 4k)'
+    GATANSTELLA_0_5_KX_0_5_K='GATAN STELLA (0.5k x 0.5k)'
+    GATANSTELLA_1_KX_0_5_K='GATAN STELLA (1k x 0.5k)'
     GATANULTRASCAN_1000_2_KX_2_K='GATAN ULTRASCAN 1000 (2k x 2k)'
     GATANULTRASCAN_10000_10_KX_10_K='GATAN ULTRASCAN 10000 (10k x 10k)'
     GATANULTRASCAN_4000_4_KX_4_K='GATAN ULTRASCAN 4000 (4k x 4k)'
@@ -1068,11 +1079,13 @@ class allowed_film_or_detector_model(str, Enum):
     PROSCANTEMPIV_2_KX_2_K='PROSCAN TEM-PIV (2k x 2k)'
     SIA_15_C_3_KX_3_K='SIA 15C (3k x 3k)'
     TFSFALCON_4_I_4_KX_4_K='TFS FALCON 4i (4k x 4k)'
+    TFSFALCONC_2_KX_2_K='TFS FALCON C (2k x 2k)'
     TVIPSTEMCAMF_216_2_KX_2_K='TVIPS TEMCAM-F216 (2k x 2k)'
     TVIPSTEMCAMF_224_2_KX_2_K='TVIPS TEMCAM-F224 (2k x 2k)'
     TVIPSTEMCAMF_415_4_KX_4_K='TVIPS TEMCAM-F415 (4k x 4k)'
     TVIPSTEMCAMF_416_4_KX_4_K='TVIPS TEMCAM-F416 (4k x 4k)'
     TVIPSTEMCAMF_816_8_KX_8_K='TVIPS TEMCAM-F816 (8k x 8k)'
+    TVIPSTEMCAMF_816_8_KX_8_K_1='TVIPS TEMCAM-F816 (8k x 8k)'
 
 
 class atmosphereType(str, Enum):
@@ -1842,7 +1855,7 @@ class entry_type(GeneratedsSuper):
     __hash__ = GeneratedsSuper.__hash__
     subclass = None
     superclass = None
-    def __init__(self, emdb_id=None, version='3.0.11.9', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
+    def __init__(self, emdb_id=None, version='3.0.11.10', admin=None, crossreferences=None, sample=None, structure_determination_list=None, map=None, interpretation=None, validation=None, gds_collector_=None, **kwargs_):
         self.gds_collector_ = gds_collector_
         self.gds_elementtree_node_ = None
         self.original_tagname_ = None
@@ -1968,7 +1981,7 @@ class entry_type(GeneratedsSuper):
         if self.emdb_id is not None and 'emdb_id' not in already_processed:
             already_processed.add('emdb_id')
             outfile.write(' emdb_id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.emdb_id), input_name='emdb_id')), ))
-        if self.version != "3.0.11.9" and 'version' not in already_processed:
+        if self.version != "3.0.11.10" and 'version' not in already_processed:
             already_processed.add('version')
             outfile.write(' version=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.version), input_name='version')), ))
     def _exportChildren(self, outfile, level, namespaceprefix_='', namespacedef_='', name_='entry_type', fromsubclass_=False, pretty_print=True):
@@ -35205,7 +35218,7 @@ class film_or_detector_modelType(GeneratedsSuper):
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s is not of the correct base simple type (str)' % {"value": value, "lineno": lineno, })
                 return False
             value = value
-            enumerations = ['AGFA SCIENTA FILM', 'DECTRIS SINGLA (1k x 1k)', 'DECTRIS ELA (1k x 0.5k)', 'DECTRIS ARINA (0.2k x 0.2k)', 'DIRECT ELECTRON APOLLO (4k x 4k)', 'DIRECT ELECTRON DE-10 (5k x 4k)', 'DIRECT ELECTRON DE-12 (4k x 3k)', 'DIRECT ELECTRON DE-16 (4k x 4k)', 'DIRECT ELECTRON DE-20 (5k x 3k)', 'DIRECT ELECTRON DE-64 (8k x 8k)', 'FEI CETA (4k x 4k)', 'FEI EAGLE (2k x 2k)', 'FEI EAGLE (4k x 4k)', 'FEI FALCON I (4k x 4k)', 'FEI FALCON II (4k x 4k)', 'FEI FALCON III (4k x 4k)', 'FEI FALCON IV (4k x 4k)', 'GATAN ALPINE (2.3k x 3.2k)', 'GATAN K2 (4k x 4k)', 'GATAN K2 BASE (4k x 4k)', 'GATAN K2 IS (4k x 4k)', 'GATAN K2 QUANTUM (4k x 4k)', 'GATAN K2 SUMMIT (4k x 4k)', 'GATAN K3 (6k x 4k)', 'GATAN K3 BIOCONTINUUM (6k x 4k)', 'GATAN K3 BIOQUANTUM (6k x 4k)', 'GATAN MULTISCAN', 'GATAN ORIUS SC1000 (4k x 2.7k)', 'GATAN ORIUS SC200 (2k x 2k)', 'GATAN ORIUS SC600 (2.7k x 2.7k)', 'GATAN ULTRASCAN 1000 (2k x 2k)', 'GATAN ULTRASCAN 10000 (10k x 10k)', 'GATAN ULTRASCAN 4000 (4k x 4k)', 'GENERIC CCD', 'GENERIC CCD (2k x 2k)', 'GENERIC CCD (4k x 4k)', 'GENERIC FILM', 'GENERIC GATAN', 'GENERIC GATAN (2k x 2k)', 'GENERIC GATAN (4k x 4k)', 'GENERIC IMAGE PLATES', 'GENERIC TVIPS', 'GENERIC TVIPS (2k x 2k)', 'GENERIC TVIPS (4k x 4k)', 'KODAK 4489 FILM', 'KODAK SO-163 FILM', 'OTHER', 'PROSCAN TEM-PIV (2k x 2k)', 'SIA 15C (3k x 3k)', 'TFS FALCON 4i (4k x 4k)', 'TVIPS TEMCAM-F216 (2k x 2k)', 'TVIPS TEMCAM-F224 (2k x 2k)', 'TVIPS TEMCAM-F415 (4k x 4k)', 'TVIPS TEMCAM-F416 (4k x 4k)', 'TVIPS TEMCAM-F816 (8k x 8k)']
+            enumerations = ['AGFA SCIENTA FILM', 'DECTRIS SINGLA (1k x 1k)', 'DECTRIS ELA (1k x 0.5k)', 'DECTRIS ARINA (0.2k x 0.2k)', 'DIRECT ELECTRON APOLLO (4k x 4k)', 'DIRECT ELECTRON DE-10 (5k x 4k)', 'DIRECT ELECTRON DE-12 (4k x 3k)', 'DIRECT ELECTRON DE-16 (4k x 4k)', 'DIRECT ELECTRON DE-20 (5k x 3k)', 'DIRECT ELECTRON DE-64 (8k x 8k)', 'FEI CETA (4k x 4k)', 'FEI EAGLE (2k x 2k)', 'FEI EAGLE (4k x 4k)', 'FEI FALCON I (4k x 4k)', 'FEI FALCON II (4k x 4k)', 'FEI FALCON III (4k x 4k)', 'FEI FALCON IV (4k x 4k)', 'GATAN ALPINE (2.3k x 3.2k)', 'GATAN ALPINE VISTA (5.7k x 4k)', 'GATAN CLEARVIEW (4k x 4k)', 'GATAN K2 (4k x 4k)', 'GATAN K2 BASE (4k x 4k)', 'GATAN K2 IS (4k x 4k)', 'GATAN K2 QUANTUM (4k x 4k)', 'GATAN K2 SUMMIT (4k x 4k)', 'GATAN K3 (6k x 4k)', 'GATAN K3 BIOCONTINUUM (6k x 4k)', 'GATAN K3 BIOQUANTUM (6k x 4k)', 'GATAN K3 IS (5.7k x 4k)', 'GATAN K3 IS BASE (3.4k x 4k)', 'GATAN METRO (2k x 2k)', 'GATAN MULTISCAN', 'GATAN ONEVIEW (4k x 4k)', 'GATAN ORIUS SC1000 (4k x 2.7k)', 'GATAN ORIUS SC200 (2k x 2k)', 'GATAN ORIUS SC600 (2.7k x 2.7k)', 'GATAN RIO 4 (2k x 2k)', 'GATAN RIO 9 (3k x 3k)', 'GATAN RIO16 (4k x 4k)', 'GATAN STELLA (0.5k x 0.5k)', 'GATAN STELLA (1k x 0.5k)', 'GATAN ULTRASCAN 1000 (2k x 2k)', 'GATAN ULTRASCAN 10000 (10k x 10k)', 'GATAN ULTRASCAN 4000 (4k x 4k)', 'GENERIC CCD', 'GENERIC CCD (2k x 2k)', 'GENERIC CCD (4k x 4k)', 'GENERIC FILM', 'GENERIC GATAN', 'GENERIC GATAN (2k x 2k)', 'GENERIC GATAN (4k x 4k)', 'GENERIC IMAGE PLATES', 'GENERIC TVIPS', 'GENERIC TVIPS (2k x 2k)', 'GENERIC TVIPS (4k x 4k)', 'KODAK 4489 FILM', 'KODAK SO-163 FILM', 'OTHER', 'PROSCAN TEM-PIV (2k x 2k)', 'SIA 15C (3k x 3k)', 'TFS FALCON 4i (4k x 4k)', 'TFS FALCON C (2k x 2k)', 'TVIPS TEMCAM-F216 (2k x 2k)', 'TVIPS TEMCAM-F224 (2k x 2k)', 'TVIPS TEMCAM-F415 (4k x 4k)', 'TVIPS TEMCAM-F416 (4k x 4k)', 'TVIPS TEMCAM-F816 (8k x 8k)', 'TVIPS TEMCAM-F816 (8k x 8k)']
             if value not in enumerations:
                 lineno = self.gds_get_node_lineno_()
                 self.gds_collector_.add_message('Value "%(value)s"%(lineno)s does not match xsd enumeration restriction on allowed_film_or_detector_model' % {"value" : encode_str_2_3(value), "lineno": lineno} )
