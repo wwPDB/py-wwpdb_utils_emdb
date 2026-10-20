@@ -25,7 +25,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.11.10"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.11.11"/>
     </xs:complexType>
     <xs:complexType name="admin_type">
         <xs:sequence>
@@ -3913,8 +3913,8 @@
             <xs:element name="extraction">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="number_tomograms" type="xs:positiveInteger"/>
-                        <xs:element name="number_images_used" type="xs:positiveInteger"/>
+                        <xs:element name="number_tomograms" type="xs:positiveInteger" minOccurs="0" />
+                        <xs:element name="number_images_used" type="xs:positiveInteger" minOccurs="0" />
                         <xs:element name="reference_model" type="xs:token" minOccurs="0"/>
                         <xs:element name="method" type="xs:string" minOccurs="0"/>
                         <xs:element name="software_list" type="software_list_type" minOccurs="0"/>
