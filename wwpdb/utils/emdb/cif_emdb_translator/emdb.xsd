@@ -3910,7 +3910,7 @@
         <xs:sequence>
             <xs:element name="final_reconstruction" type="subtomogram_final_reconstruction_type"
                 minOccurs="0"/>
-            <xs:element name="extraction">
+            <xs:element name="extraction" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="number_tomograms" type="xs:positiveInteger" minOccurs="0" />
