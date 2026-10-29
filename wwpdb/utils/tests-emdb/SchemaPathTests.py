@@ -15,10 +15,9 @@ from wwpdb.utils.emdb.EmdbSchema import EmdbSchema
 class SchamePathTests(unittest.TestCase):
     def testSchemaPath(self):
         es = EmdbSchema()
-        spath = es.getSchemaPath()
-
-        ok = os.path.exists(spath)
-        self.assertTrue(ok, "EMDB schema missing: %s" % spath)
+        with es.getSchemaPathContext() as spath:
+            ok = os.path.exists(spath)
+            self.assertTrue(ok, "EMDB schema missing: %s" % spath)
 
 
 if __name__ == "__main__":
