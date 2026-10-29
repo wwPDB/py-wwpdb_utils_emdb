@@ -6,6 +6,8 @@ mock; python_version < '3'
 
 mrcfile
 numpy
+emdb-schemas>=3.0.11.13
+importlib-resources>=5.0; python_version < '3.9'
 pytest
 mock
 setuptools

@@ -34,10 +34,12 @@ setup(
         "Natural Language :: English",
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
     entry_points={"console_scripts": ["em_emd_conversion=wwpdb.utils.config.emdb.cif_emdb_translator:main"]},
     #
@@ -47,8 +49,11 @@ setup(
         "mrcfile",
         "biopython",
         "numpy",
-        "wwpdb.utils.config>=0.22.2"
+        "wwpdb.utils.config>=0.22.2",
+        "emdb-schemas>=3.0.11.13",
+        "importlib-resources>=5.0; python_version < '3.9'",
     ],
+    python_requires=">=3.8",
     packages=find_packages(exclude=["wwpdb.utils.tests-emdb", "mock-data", "tests.*", "wwpdb.utils.emdb/cif_emdb)translator/*test*.py"]),
     include_package_data=True,
     package_data={

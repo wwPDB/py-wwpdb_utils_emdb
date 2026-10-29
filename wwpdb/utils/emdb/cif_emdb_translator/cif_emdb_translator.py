@@ -38,7 +38,7 @@ from lxml import etree
 from wwpdb.utils.config.ConfigInfo import getSiteId
 from wwpdb.utils.config.ConfigInfoApp import ConfigInfoAppEm
 from mmcif.io.IoAdapterCore import IoAdapterCore
-from . import emdb
+from emdb_schemas import emdb
 from ..EmdbSchema import EmdbSchema
 
 
@@ -12183,13 +12183,13 @@ class CifEMDBTranslator(object):
         """
         Validates XML file after reading an input cif file, translating it and creating XML
         """
-        if in_schema is None:
-            es = EmdbSchema()
-            in_schema = es.getSchemaPath()
-
         self.translate(in_cif, out_xml)
         if self.create_xml:
-            self.validate(out_xml, in_schema)
+            if in_schema is None:
+                with EmdbSchema().getSchemaPathContext() as schema_path:
+                    self.validate(out_xml, schema_path)
+            else:
+                self.validate(out_xml, in_schema)
 
 
 def main():
