@@ -50,7 +50,7 @@ setup(
         "biopython",
         "numpy",
         "wwpdb.utils.config>=0.22.2",
-        "emdb-schemas>=3.0.11.13",
+        "emdb-schemas>=3.0.11.14",
         "importlib-resources>=5.0; python_version < '3.9'",
     ],
     python_requires=">=3.8",
